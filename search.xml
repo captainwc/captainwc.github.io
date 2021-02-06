@@ -11,6 +11,12 @@
         <content type="html"><![CDATA[<h1 id="Hello-Hexo-World"><a href="#Hello-Hexo-World" class="headerlink" title="Hello Hexo World!"></a>Hello Hexo World!</h1><blockquote><p>this is my first blog on captainwc.github.io, just for test</p></blockquote><p>Here is a table below:</p><table><thead><tr><th align="center">a</th><th align="left">b</th><th align="left">c</th></tr></thead><tbody><tr><td align="center">fruits</td><td align="left">banana</td><td align="left">pera</td></tr><tr><td align="center">nums</td><td align="left">two</td><td align="left">3</td></tr><tr><td align="center">hunmam</td><td align="left">man</td><td align="left">woman</td></tr></tbody></table><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include "iostream"using namespace std;int main(){cout&lt;&lt;"Hello world!"&lt;&lt;endl;    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li><input checked="" disabled="" type="checkbox"> create my hexo</li><li><input disabled="" type="checkbox"> start writting blogs</li></ul><p>$$<br>f(x)=x^2+y_0<br>$$</p><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p><strong>sounds greate!</strong></p><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><p>==a very nice software!==</p><p><del>just…</del></p><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><p><em>好活儿</em></p>]]></content>
       
       
+      <categories>
+          
+          <category> daily </category>
+          
+      </categories>
+      
       
         <tags>
             
