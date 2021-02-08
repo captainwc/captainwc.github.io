@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>vim常用命令</title>
+      <link href="2021/02/09/vim-chang-yong-kuai-jie-jian/"/>
+      <url>2021/02/09/vim-chang-yong-kuai-jie-jian/</url>
+      
+        <content type="html"><![CDATA[<h1 id="vim常用快捷键"><a href="#vim常用快捷键" class="headerlink" title="vim常用快捷键"></a>vim常用快捷键</h1><h2 id="vim插入命令"><a href="#vim插入命令" class="headerlink" title="vim插入命令"></a>vim插入命令</h2><table><thead><tr><th align="center">快捷键</th><th>功能</th></tr></thead><tbody><tr><td align="center">i</td><td>光标前插入</td></tr><tr><td align="center">a</td><td>光标后插入</td></tr><tr><td align="center">I</td><td>行首插入</td></tr><tr><td align="center">A</td><td>行尾插入</td></tr><tr><td align="center">o</td><td>下一行插入新行</td></tr><tr><td align="center">O</td><td>上一行插入新行</td></tr></tbody></table><h2 id="vim移动命令"><a href="#vim移动命令" class="headerlink" title="vim移动命令"></a>vim移动命令</h2><h3 id="行内移动"><a href="#行内移动" class="headerlink" title="行内移动"></a>行内移动</h3><table><thead><tr><th align="center">快捷键</th><th>功能</th></tr></thead><tbody><tr><td align="center">w</td><td>向前移动一个单词(word)</td></tr><tr><td align="center">b</td><td>向后移动一个单词(back)</td></tr><tr><td align="center">0</td><td>行首</td></tr><tr><td align="center">^</td><td>行首非空字符</td></tr><tr><td align="center">$</td><td>行尾</td></tr></tbody></table><h3 id="行间移动"><a href="#行间移动" class="headerlink" title="行间移动"></a>行间移动</h3><table><thead><tr><th align="center">快捷键</th><th>功能</th></tr></thead><tbody><tr><td align="center">gg</td><td>文件顶部(go)</td></tr><tr><td align="center">G</td><td>文件尾部</td></tr><tr><td align="center">数字gg</td><td>数字对应行</td></tr><tr><td align="center">：数字</td><td>数字对应行</td></tr></tbody></table><h3 id="页间移动"><a href="#页间移动" class="headerlink" title="页间移动"></a>页间移动</h3><table><thead><tr><th align="center">快捷键</th><th align="left">功能</th></tr></thead><tbody><tr><td align="center">ctrl+b</td><td align="left">向上翻页</td></tr><tr><td align="center">ctrl+f</td><td align="left">向下翻页</td></tr><tr><td align="center">H</td><td align="left">屏幕顶部(head)</td></tr><tr><td align="center">M</td><td align="left">屏幕中间(middle)</td></tr><tr><td align="center">L</td><td align="left">屏幕底部(low)</td></tr></tbody></table><h3 id="其他移动"><a href="#其他移动" class="headerlink" title="其他移动"></a>其他移动</h3><table><thead><tr><th align="center">快捷键</th><th align="left">功能</th></tr></thead><tbody><tr><td align="center">{</td><td align="left">上一段（空行分割段落）</td></tr><tr><td align="center">}</td><td align="left">下一段</td></tr><tr><td align="center">%</td><td align="left">括号切换</td></tr><tr><td align="center">m 字母</td><td align="left">为当前位置作标记，记为字母(mark)</td></tr><tr><td align="center">‘ 字母</td><td align="left">跳转到字母标记的行</td></tr></tbody></table><h2 id="vim选中命令"><a href="#vim选中命令" class="headerlink" title="vim选中命令"></a>vim选中命令</h2><table><thead><tr><th align="center">快捷键</th><th align="left">功能</th></tr></thead><tbody><tr><td align="center">v</td><td align="left">可视字符模式</td></tr><tr><td align="center">V</td><td align="left">可视行模式</td></tr><tr><td align="center">ctrl+v</td><td align="left">可是块模式（垂直选中文本）</td></tr><tr><td align="center">&lt;移动命令&gt;</td><td align="left">进入可视模式后可与移动命令相结合来选择文本</td></tr></tbody></table><h2 id="vim编辑命令"><a href="#vim编辑命令" class="headerlink" title="vim编辑命令"></a>vim编辑命令</h2><h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><table><thead><tr><th align="center">快捷键</th><th align="left">功能</th></tr></thead><tbody><tr><td align="center">u</td><td align="left">撤销(undo)</td></tr><tr><td align="center">ctrl+r</td><td align="left">恢复撤销(redo)</td></tr><tr><td align="center">x</td><td align="left">删除光标所在字符</td></tr><tr><td align="center">d+&lt;移动命令&gt;</td><td align="left">删除选中文本//d0 dw d’a d}</td></tr><tr><td align="center">D</td><td align="left">删除至行尾</td></tr><tr><td align="center">dd</td><td align="left">删除当前行</td></tr><tr><td align="center">ndd</td><td align="left">删除n行</td></tr></tbody></table><h3 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h3><table><thead><tr><th align="center">快捷键</th><th align="left">功能</th></tr></thead><tbody><tr><td align="center">y+&lt;移动命令&gt;</td><td align="left">复制选中文本（copy)</td></tr><tr><td align="center">yy</td><td align="left">复制本行</td></tr><tr><td align="center">p</td><td align="left">粘贴(paste)</td></tr><tr><td align="center">r</td><td align="left">替换光标所在字符（replace，如需需要变小写为大写）</td></tr><tr><td align="center">R</td><td align="left">进入替换模式（类似平时按insert进入的插入模式）</td></tr></tbody></table><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><table><thead><tr><th align="center">快捷键</th><th align="left">功能</th></tr></thead><tbody><tr><td align="center">&gt;&gt;</td><td align="left">向右缩进四个空格（可视模式下一个&gt;即可缩进）</td></tr><tr><td align="center">&gt;&gt;</td><td align="left">向左缩进四个空格</td></tr><tr><td align="center">.</td><td align="left">重复执行上一动作</td></tr><tr><td align="center">/str</td><td align="left">查找字符串，n查找下一个，N查找上一个</td></tr><tr><td align="center">*</td><td align="left">向后匹配光标所在单词</td></tr><tr><td align="center">#</td><td align="left">向前查找光标所在单词</td></tr></tbody></table><h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ol><li><p><code>8i#ESC</code>：########</p></li><li><p><code>0ctrl+vjjjI# ESC</code>：当前光标所在行及下面三行被注释掉了（行首都加上了”# “) </p></li></ol><blockquote><p>解释：</p><p>1.输入了8后进入插入模式，然后输入了一个#号，此时按ESC返回，则执行了8次这一动作</p><p>2.输入0将光标移至行首，随后进入可视块模式，jjj向下移动了三次，共选中了四行，然后按大写I进入插入模式（可视模式下一定要按大写I才能进入插入模式），然后在行首输入了# ，再按ESC返回，则选中行的行首都被加上了# ，即被注释掉了</p></blockquote><h2 id="末行命令"><a href="#末行命令" class="headerlink" title="末行命令"></a>末行命令</h2><ul><li><p><code>:%s///g</code></p><ul><li>全局替换：<code>:%s/旧文本/新文本/g</code></li><li>局部替换：<code>:s/旧文本/新文本/g</code></li><li>确认替换：<code>:%s/旧文本/新文本/gc</code>，y/n/a/q </li></ul></li><li><p><code>:e文件名 or :e.</code>：编辑另一文件或打开当前目录(edit)</p></li><li><p><code>:n文件名</code>：新建文件(new)</p></li><li><p><code>:w文件名</code>：另存为文件(write)</p></li><li><p><code>:w :q :wq :q!</code>：保存/退出/保存并退出/强制退出（不保留更改）(quit)</p></li><li><p><code>:sp文件名</code>：下方增加分屏显示文件(split)</p></li><li><p><code>:vsp文件名</code>：右边增加分屏显示文件(vertical)</p><ul><li><code>ctrl+w+下列参数</code><ul><li>w：切换到下一窗口</li><li>r：互换窗口</li><li>c：关闭当前窗口，但不能是最后一个窗口</li><li>q：退出当前窗口</li><li>o：关闭其他窗口</li></ul></li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技巧总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vim </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hello hexo</title>
       <link href="2021/02/02/hello-hexo/"/>
       <url>2021/02/02/hello-hexo/</url>
@@ -16,25 +41,6 @@
           <category> daily </category>
           
       </categories>
-      
-      
-        <tags>
-            
-            <tag> test </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="2021/02/02/hello-world/"/>
-      <url>2021/02/02/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="code-wrapper"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span></code></pre></div><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="code-wrapper"><pre><code class="hljs bash">$ hexo server</code></pre></div><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="code-wrapper"><pre><code class="hljs bash">$ hexo generate</code></pre></div><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="code-wrapper"><pre><code class="hljs bash">$ hexo deploy</code></pre></div><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-      
       
       
         <tags>
