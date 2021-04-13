@@ -5,12 +5,24 @@
   
   <entry>
     <title>PAT习题笔记（更新中）</title>
-    <link href="/2021/04/13/1-sui-bi/"/>
-    <url>/2021/04/13/1-sui-bi/</url>
+    <link href="/2021/04/13/pat-bi-ji/"/>
+    <url>/2021/04/13/pat-bi-ji/</url>
     
-    <content type="html"><![CDATA[<h1 id="做题笔记"><a href="#做题笔记" class="headerlink" title="做题笔记"></a>做题笔记</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul><li>获得随机数<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2></li><li>输入数据时，直接可得到最值；通过定义temp、max、min三个量即可</li><li>新行中，ctrl+z，再enter，可以得到一个EOF</li><li>数组下标可以作为id等利用起来</li></ul><h2 id="图像输出"><a href="#图像输出" class="headerlink" title="图像输出"></a>图像输出</h2><ul><li>四射五入，<ul><li>float可以强制类型转换i=(int)(a+0.5)；i即为a四舍五入的结果</li><li>int型可以i=(int)(a/3.0+0.5);即将除数写成float型，除得结果自动转为float，再加0.5强制转换为int</li><li>double可以用round()函数；</li></ul></li><li>乘1.0可将int型数据转换为浮点数。妙在在式子中出现的int型数据可以直接乘1.0不会改变值；</li></ul><h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><ul><li>10进制往下转<ul><li>除基取余(n%d;n=d)，用数组保存余数结果，输出时注意要从高位输出</li></ul></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="做题笔记"><a href="#做题笔记" class="headerlink" title="做题笔记"></a>做题笔记</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul><li>获得随机数</li></ul><h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><ul><li>输入数据时，直接可得到最值；通过定义temp、max、min三个量即可</li><li>新行中，ctrl+z，再enter，可以得到一个EOF</li><li>数组下标可以作为id等利用起来</li></ul><h2 id="图像输出"><a href="#图像输出" class="headerlink" title="图像输出"></a>图像输出</h2><ul><li>四舍五入，<ul><li>float可以强制类型转换i=(int)(a+0.5)；i即为a四舍五入的结果</li><li>int型可以i=(int)(a/3.0+0.5);即将除数写成float型，除得结果自动转为float，再加0.5强制转换为int</li><li>double可以用round()函数；</li></ul></li><li>乘1.0可将int型数据转换为浮点数。妙在在式子中出现的int型数据可以直接乘1.0不会改变值；</li></ul><h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><ul><li>10进制往下转<ul><li>除基取余(n%d;n=d)，用数组保存余数结果，输出时注意要从高位输出</li></ul></li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>技巧总结</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>pat</tag>
+      
+    </tags>
     
   </entry>
   
