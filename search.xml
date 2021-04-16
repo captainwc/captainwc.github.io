@@ -133,34 +133,9 @@
     
     
     <entry>
-      <title>hello hexo</title>
-      <link href="2021/02/02/hello-hexo/"/>
-      <url>2021/02/02/hello-hexo/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Hello-Hexo-World"><a href="#Hello-Hexo-World" class="headerlink" title="Hello Hexo World!"></a>Hello Hexo World!</h1><blockquote><p>this is my first blog on captainwc.github.io, just for test</p></blockquote><p>Here is a table below:</p><table><thead><tr><th align="center">a</th><th align="left">b</th><th align="left">c</th></tr></thead><tbody><tr><td align="center">fruits</td><td align="left">banana</td><td align="left">pera</td></tr><tr><td align="center">nums</td><td align="left">two</td><td align="left">3</td></tr><tr><td align="center">hunmam</td><td align="left">man</td><td align="left">woman</td></tr></tbody></table><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"iostream"</span></span><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{<span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"Hello world!"</span>&lt;&lt;<span class="hljs-built_in">endl</span>;    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;}</code></pre></div><ul><li><input checked="" disabled="" type="checkbox"> create my hexo</li><li><input disabled="" type="checkbox"> start writting blogs</li></ul><p>$$<br>f(x)=x^2+y_0<br>$$</p><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p><strong>sounds greate!</strong></p><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><p>==a very nice software!==</p><p><del>just…</del></p><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><p><em>好活儿</em></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> daily </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> test </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>windows下vscode设置C++环境</title>
-      <link href="2020/08/17/windows-xia-vscode-she-zhi-c-huan-jing/"/>
-      <url>2020/08/17/windows-xia-vscode-she-zhi-c-huan-jing/</url>
+      <link href="2020/12/30/windows-xia-vscode-she-zhi-c-huan-jing/"/>
+      <url>2020/12/30/windows-xia-vscode-she-zhi-c-huan-jing/</url>
       
         <content type="html"><![CDATA[<h1 id="windows下vscode设置C-环境"><a href="#windows下vscode设置C-环境" class="headerlink" title="windows下vscode设置C++环境"></a>windows下vscode设置C++环境</h1><blockquote><p>教程来源于网络多方面搜集，经过本人执行总结出一条较为简单的路径</p></blockquote><h2 id="一、软件准备"><a href="#一、软件准备" class="headerlink" title="一、软件准备"></a>一、软件准备</h2><p>vscode：</p><p>windows power shell：微软商店</p><p>mingw：[<a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/sjlj/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0.7z/download]">https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/sjlj/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0.7z/download]</a>(<a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains">https://sourceforge.net/projects/mingw-w64/files/Toolchains</a> targetting Win64/Personal Builds/mingw-builds/8.1.0/threads-posix/sjlj/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0.7z/download)</p><p>因为vscode只是一个编辑器而不是ide，要想运行c++代码需要提供一个编译环境。这个的下载比较慢，后面我会传到百度网盘上。</p><h2 id="二、软件配置"><a href="#二、软件配置" class="headerlink" title="二、软件配置"></a>二、软件配置</h2><h3 id="mingw"><a href="#mingw" class="headerlink" title="mingw"></a>mingw</h3><p>选择一个文件夹解压，相当于安装位置，然后复制其中bin文件夹的路径。</p><p>从控制面板进入系统和安全-&gt;系统，选择高级系统设置，点击下面的“环境变量”，选择“系统变量”下面的“Path”，点击编辑-&gt;新建，然后将刚复制的bin文件夹位置粘贴上去，一路点击确定退出。</p><p>此后在win+r运行cmd或直接在power shell下面，运行<code>gcc -v</code>命令，如果能出现版本信息，表示安装成功。</p><h3 id="windows-power-shell"><a href="#windows-power-shell" class="headerlink" title="windows power shell"></a>windows power shell</h3><p>运行程序后点击设置，会出现他的json文件，通过这个我们可以自己设置其外观，比如字体、大小、背景等。<em>这一步不是必须的</em></p><p>由于Powershell默认禁止运行脚本，需要先开启权限。</p><p>在管理员模式下运行powershell，然后输入命令<code>set-ExecutionPolicy RemoteSigned</code></p><h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><p>一、更改默认位置</p><p><code>echo "Set-Location D:\" &gt; $Profile</code></p><h3 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h3><p>首先需要安装几个插件，直接搜索，C/C++，code runer，run in terminal等</p><p>然后设置里搜索”code runner”，将“code-runner：run in terminal”和“code-runner：save file before run”勾选上。勾选后者主要是改动代码后可以直接运行，而不用先保存。</p><p>此时运行时powershell会出现微软的广告，下面可以将其去掉</p><p>打开文件<code>C:\Users\%username%\AppData\Roaming\Code\User\settings.json</code>，在其中加入一行代码</p><p><code>"terminal.integrated.shellArgs.windows": ["-NoLogo"]</code></p><p>然后在powershell中输入</p><p><code>code C:\Users\%username%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</code></p><p>在其中输入<code>clear</code>，保存文件即可。</p>]]></content>
       
@@ -179,6 +154,31 @@
             <tag> mingw </tag>
             
             <tag> vscode </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hello hexo</title>
+      <link href="2020/12/29/hello-hexo/"/>
+      <url>2020/12/29/hello-hexo/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Hello-Hexo-World"><a href="#Hello-Hexo-World" class="headerlink" title="Hello Hexo World!"></a>Hello Hexo World!</h1><blockquote><p>this is my first blog on captainwc.github.io, just for test</p></blockquote><p>Here is a table below:</p><table><thead><tr><th align="center">a</th><th align="left">b</th><th align="left">c</th></tr></thead><tbody><tr><td align="center">fruits</td><td align="left">banana</td><td align="left">pera</td></tr><tr><td align="center">nums</td><td align="left">two</td><td align="left">3</td></tr><tr><td align="center">hunmam</td><td align="left">man</td><td align="left">woman</td></tr></tbody></table><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"iostream"</span></span><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{<span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"Hello world!"</span>&lt;&lt;<span class="hljs-built_in">endl</span>;    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;}</code></pre></div><ul><li><input checked="" disabled="" type="checkbox"> create my hexo</li><li><input disabled="" type="checkbox"> start writting blogs</li></ul><p>$$<br>f(x)=x^2+y_0<br>$$</p><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p><strong>sounds greate!</strong></p><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><p>==a very nice software!==</p><p><del>just…</del></p><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><p><em>好活儿</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> daily </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> test </tag>
             
         </tags>
       
