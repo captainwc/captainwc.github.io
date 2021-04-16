@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="kk">
   <meta name="keywords" content="">
-  <title>PAT习题笔记（更新中） ヽ(✿ﾟ▽ﾟ)ノ 开宝特攻</title>
+  <title>ubuntu中配置环境变量 ヽ(✿ﾟ▽ﾟ)ノ 开宝特攻</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -164,7 +164,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="PAT习题笔记（更新中）">
+            <span class="h2" id="subtitle" title="ubuntu中配置环境变量">
               
             </span>
 
@@ -179,8 +179,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-13 20:35" pubdate>
-        2021年4月13日 晚上
+      <time datetime="2021-04-13 15:35" pubdate>
+        2021年4月13日 下午
       </time>
     </span>
   
@@ -191,7 +191,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      214 字
+      560 字
     </span>
   
 
@@ -201,7 +201,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        分钟
     </span>
   
@@ -239,32 +239,28 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">PAT习题笔记（更新中）</h1>
+            <h1 style="display: none">ubuntu中配置环境变量</h1>
             
             <div class="markdown-body">
-              <h1 id="做题笔记"><a href="#做题笔记" class="headerlink" title="做题笔记"></a>做题笔记</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li>获得随机数</li>
+              <p>今天下载latex时，安装成功后提示：<br>Add /usr/local/texlive/2021/texmf-dist/doc/man to MANPATH.</p>
+<p>Add /usr/local/texlive/2021/texmf-dist/doc/info to INFOPATH.</p>
+<p>Most importantly, add /usr/local/texlive/2021/bin/x86_64-linux to your PATH for current and future sessions.</p>
+<p>正好就以此为例记录以下linux添加PATH的方法</p>
+<h1 id="什么是环境变量"><a href="#什么是环境变量" class="headerlink" title="什么是环境变量"></a>什么是环境变量</h1><p>简单的说就是把某些文件夹、文件、功能，单独拎出来，放到整个系统的视线下。此后在命令中用到这些功能时，不必非要在其对应文件夹下才能找的到，而是直接可以用。又有系统环境变量、用户环境变量，顾名思义。</p>
+<h1 id="怎么改变环境变量"><a href="#怎么改变环境变量" class="headerlink" title="怎么改变环境变量"></a>怎么改变环境变量</h1><h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><p><code>echo $PATH</code></p>
+<h2 id="临时修改"><a href="#临时修改" class="headerlink" title="临时修改"></a>临时修改</h2><p>能直接echo，很自然像普通变量一样能直接修改：<br><code>export PATH=$PATH:/???/???</code><br>此后立即生效，但仅在此终端下有效，关闭后复原</p>
+<h2 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h2><blockquote>
+<p>不准确之处还请指正；详细了解请查阅相关资料</p>
+</blockquote>
+<h3 id="关于-etc-profile、-etc-bashrc、-profile、-bashrc四个文件"><a href="#关于-etc-profile、-etc-bashrc、-profile、-bashrc四个文件" class="headerlink" title="关于/etc/.profile、 /etc/.bashrc、 ~/.profile、 ~/.bashrc四个文件"></a>关于/etc/.profile、 /etc/.bashrc、 ~/.profile、 ~/.bashrc四个文件</h3><ul>
+<li><b>/ect/.profile</b>：为系统每个用户设置环境信息；当其第一次登陆时生效；修改后重启生效或使用<code>source /etc/.profile</code>命令</li>
+<li><b>/ect/.bashrc</b>：为每一个运行bash的用户设置环境信息；当bash shell被打开时执行；重开bash或source命令生效</li>
+<li><b>~/.profile</b>：为当前用户设置环境信息；登陆生效；重启/source生效</li>
+<li><b>~/.bashrc</b>：为当前用户配置专属bash shell信息；重开/source生效</li>
 </ul>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><ul>
-<li>输入数据时，直接可得到最值；通过定义temp、max、min三个量即可</li>
-<li>新行中，ctrl+z，再enter，可以得到一个EOF</li>
-<li>数组下标可以作为id等利用起来</li>
-</ul>
-<h2 id="图像输出"><a href="#图像输出" class="headerlink" title="图像输出"></a>图像输出</h2><ul>
-<li>四舍五入，<ul>
-<li>float可以强制类型转换i=(int)(a+0.5)；i即为a四舍五入的结果</li>
-<li>int型可以i=(int)(a/3.0+0.5);即将除数写成float型，除得结果自动转为float，再加0.5强制转换为int</li>
-<li>double可以用round()函数；</li>
-</ul>
-</li>
-<li>乘1.0可将int型数据转换为浮点数。妙在在式子中出现的int型数据可以直接乘1.0不会改变值；</li>
-</ul>
-<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><ul>
-<li>10进制往下转<ul>
-<li>除基取余(n%d;n=d)，用数组保存余数结果，输出时注意要从高位输出</li>
-</ul>
-</li>
-</ul>
+<h3 id="修改方式"><a href="#修改方式" class="headerlink" title="修改方式"></a>修改方式</h3><p>根据需要选择修改的文件。如只在运行终端时使用，就只改.bashrc文件，其他情况下也用就再改.profile文件。<br>如修改~/.bashrc文件：<br>首先打开文件<code>vi ~/.bashrc</code><br>在最后加上<br><code>export MANPATH=${MANPATH}:/usr/local/texlive/2021/texmf-dist/doc/man</code><br><code>export INFOPATH=${INFOPATH}:/usr/local/texlive/2021/texmf-dist/doc/info</code><br><code>export PATH=${PATH}:/usr/local/texlive/2021/bin/x86_64-linux</code><br>wq即可</p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="TexLive-TexStudio中文包编译出错"><a href="#TexLive-TexStudio中文包编译出错" class="headerlink" title="TexLive+TexStudio中文包编译出错"></a>TexLive+TexStudio中文包编译出错</h2><p>引用中文包时<code>\usepackage[UTF8]{ctex}</code>时报错：<code>Critical ctex error: "fontset-unavailable" CTeX fontset </code>fandol’ is unavailable in current mode`<br>只需在option-&gt;build中将默认编译器pdflatex换掉，如换为xelatex</p>
+<h2 id="将chrome添加到path"><a href="#将chrome添加到path" class="headerlink" title="将chrome添加到path"></a>将chrome添加到path</h2><p>在终端中firefox可以打开火狐，但chrome不能用，可以如下配置<br>在~/.bashrc中添加：<br><code>#set chrome command</code><br><code>export PATH=$PATH:/opt/google/chrome</code></p>
 
             </div>
             <hr>
@@ -274,7 +270,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/knowldege/">knowldege</a>
+                      <a class="hover-with-bg" href="/categories/experience/">experience</a>
                     
                   </div>
                 
@@ -282,9 +278,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/c/">c++</a>
-                    
-                      <a class="hover-with-bg" href="/tags/pat/">pat</a>
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
                     
                   </div>
                 
@@ -297,9 +291,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/14/chang-yong-shu-xue-fu-hao-de-latex-biao-shi/">
+                      <a href="/2021/04/13/pat-bi-ji/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">常用数学符号的latex表示</span>
+                        <span class="hidden-mobile">PAT习题笔记（更新中）</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -307,8 +301,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/13/ubuntu-zhong-pei-zhi-huan-jing-bian-liang/">
-                        <span class="hidden-mobile">ubuntu中配置环境变量</span>
+                      <a href="/2021/02/09/vim-chang-yong-kuai-jie-jian/">
+                        <span class="hidden-mobile">vim常用命令</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -327,8 +321,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'https://captainwc.github.io/2021/04/13/pat-bi-ji/';
-        this.page.identifier = '/2021/04/13/pat-bi-ji/';
+        this.page.url = 'https://captainwc.github.io/2021/04/13/ubuntu-zhong-pei-zhi-huan-jing-bian-liang/';
+        this.page.identifier = '/2021/04/13/ubuntu-zhong-pei-zhi-huan-jing-bian-liang/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');
