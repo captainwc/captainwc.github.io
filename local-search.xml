@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>C++ Primer Plus学习笔记（更新中）</title>
+    <link href="/2021/04/22/c-pp/"/>
+    <url>/2021/04/22/c-pp/</url>
+    
+    <content type="html"><![CDATA[<h1 id="C-primer-plus-学习笔记"><a href="#C-primer-plus-学习笔记" class="headerlink" title="C++ primer plus 学习笔记"></a>C++ primer plus 学习笔记</h1><h2 id="第2章-开始学习c"><a href="#第2章-开始学习c" class="headerlink" title="第2章 开始学习c++"></a>第2章 开始学习c++</h2><h3 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h3><p><code>using namespace std</code></p><ul><li><strong>namespace</strong>，命名空间，用于区分封装好的代码中的不同函数，如厂家microsoft和厂家google的产品中都有一个printout()函数，那么要区分二者，可以将printout（）分别定义在micro和google两个命名空间。这样在使用时实际上是<code>micro::printout()</code>和<code>google::printout()</code></li><li><strong>std</strong>，类、函数、变量就是c++编译器的标准组件，他们都放在名称空间std中。因此iostream中的cout实际上是<code>std::cout</code>、<code>std::endl</code>等等</li><li><strong>using</strong>，一条编译指令。<code>using namespace std</code>表示使用cout等时不用加std：：前缀。但这会导致std中的所有名称都可用，在大型项目中是一个潜在的问题。也可以单独声明，<code>using std::cout</code>，这样cout就可以用了</li></ul><h3 id="c-源码风格"><a href="#c-源码风格" class="headerlink" title="c++源码风格"></a>c++源码风格</h3><ul><li>每条语句占一行</li><li>每个函数有一个开始和结束花括号，各占一行</li><li>函数中的语句相对于花括号缩进</li><li>与函数名称相关的圆括号周围没有空白</li></ul><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>类是用户定义的一种数据类型。要定义类，需要描述他能够表示什么信息，和能够对数据进行什么操作。类之于对象，就像类型之于变量。也就是说，类定义描述的是数据格式及其用法，而对象则是根据数据格式规范创建的实体。</p><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p><strong>函数头</strong>：<code>double sqrt(double n)</code>后面跟{函数体}</p><p><strong>函数声明</strong>：<code>double sqrt(double);</code>//function prototype</p><p><strong>函数调用</strong>：<code>fl1 = sqrt(x);</code></p><h3 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h3><ol><li>有的语言里面，有返回值的叫函数（function），没返回值的叫过程（procedure）</li><li>连续赋值是允许的，从右往左</li><li>main函数的返回值，是返回给操作系统了，即将操作系统看作调用程序。返回0表示这正确退出，返回其他则表示有问题。在shell或windows批处理中可以通过返回值来判断程序正确执行与否</li><li><code>#define log(x) std::cout&lt;&lt; x &lt;&lt;std::endl;</code></li><li></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>knowledge</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>c++</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>markdown技巧搜集（更新中）</title>
     <link href="/2021/04/16/markdown-xiao-ji-qiao-shou-ji/"/>
     <url>/2021/04/16/markdown-xiao-ji-qiao-shou-ji/</url>
