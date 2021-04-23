@@ -191,7 +191,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      559 字
+      560 字
     </span>
   
 
@@ -259,7 +259,7 @@
 <li><b>~/.bashrc</b>：为当前用户配置专属bash shell信息；重开/source生效</li>
 </ul>
 <h3 id="修改方式"><a href="#修改方式" class="headerlink" title="修改方式"></a>修改方式</h3><p>根据需要选择修改的文件。如只在运行终端时使用，就只改.bashrc文件，其他情况下也用就再改.profile文件。<br>如修改~/.bashrc文件：<br>首先打开文件<code>vi ~/.bashrc</code><br>在最后加上<br><code>export MANPATH=${MANPATH}:/usr/local/texlive/2021/texmf-dist/doc/man</code><br><code>export INFOPATH=${INFOPATH}:/usr/local/texlive/2021/texmf-dist/doc/info</code><br><code>export PATH=${PATH}:/usr/local/texlive/2021/bin/x86_64-linux</code><br>wq即可</p>
-<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="TexLive-TexStudio中文包编译出错"><a href="#TexLive-TexStudio中文包编译出错" class="headerlink" title="TexLive+TexStudio中文包编译出错"></a>TexLive+TexStudio中文包编译出错</h2><p>引用中文包时<code>\usepackage[UTF8]{ctex}</code>时报错：<code>Critical ctex error: "fontset-unavailable" CTeX fontset</code>fandol’ is unavailable in current mode`<br>只需在option-&gt;build中将默认编译器pdflatex换掉，如换为xelatex</p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="TexLive-TexStudio中文包编译出错"><a href="#TexLive-TexStudio中文包编译出错" class="headerlink" title="TexLive+TexStudio中文包编译出错"></a>TexLive+TexStudio中文包编译出错</h2><p>引用中文包时<code>\usepackage[UTF8]{ctex}</code>时报错：<code>Critical ctex error: "fontset-unavailable" CTeX fontset </code>fandol’ is unavailable in current mode`<br>只需在option-&gt;build中将默认编译器pdflatex换掉，如换为xelatex</p>
 <h2 id="将chrome添加到path"><a href="#将chrome添加到path" class="headerlink" title="将chrome添加到path"></a>将chrome添加到path</h2><p>在终端中firefox可以打开火狐，但chrome不能用，可以如下配置<br>在~/.bashrc中添加：<br><code>#set chrome command</code><br><code>export PATH=$PATH:/opt/google/chrome</code></p>
 
             </div>

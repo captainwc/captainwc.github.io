@@ -191,7 +191,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      482 字
+      539 字
     </span>
   
 
@@ -249,7 +249,7 @@
 </li>
 <li><p><code>[baidu]:https://www.baidu.com</code>定义了“baidu”这个tag，以后通过<code>[搜索][baidu]</code>、<code>[search][baidu]</code>、<code>[suiji][baidu]</code>打开的都是百度的链接，不用重复输入网址了</p>
 </li>
-<li><p>加上<code>\begin{align}  \end{align}</code>后，可以通过使用<code>&amp;</code>来在相应位置进行对齐。<br>如<code>&amp;=  &amp;=</code>就是将各个等号进行对齐<br><code>\operatorname</code>的结果就是让字母显示得不太一样，证明其是”operator”<br><code>\left</code>要在align的外面；大括号前面要加上转义字符；右半括号不想显示就<code>\right .</code>不加会报错奥</p>
+<li><p>加上<code>\begin{align}  \end{align}</code>后，可以通过使用<code>&amp;</code>来在相应位置进行对齐。<br>如<code>&amp;=  &amp;=</code>就是将各个等号进行对齐<br><code>\operatorname</code>的结果就是让字母显示得不太一样，证明其是”operator”<br><code>\left </code>要在align的外面；大括号前面要加上转义字符；右半括号不想显示就<code>\right .</code>不加会报错奥</p>
 <div class="hljs code-wrapper"><pre><code class="hljs latex"><span class="hljs-keyword">\left</span> <span class="hljs-keyword">\{</span>
 <span class="hljs-keyword">\begin</span>{align}
 <span class="hljs-keyword">\operatorname</span>{H}(X) <span class="hljs-built_in">&amp;</span> = <span class="hljs-keyword">\operatorname</span>{E}[-<span class="hljs-keyword">\ln</span>(p(X))] <span class="hljs-keyword">\\</span>
@@ -257,18 +257,20 @@
 <span class="hljs-built_in">&amp;</span> = <span class="hljs-keyword">\alpha</span> - <span class="hljs-keyword">\ln</span>(<span class="hljs-keyword">\beta</span>) + <span class="hljs-keyword">\ln</span>(<span class="hljs-keyword">\Gamma</span>(<span class="hljs-keyword">\alpha</span>)) + (1-<span class="hljs-keyword">\alpha</span>)<span class="hljs-keyword">\psi</span>(<span class="hljs-keyword">\alpha</span>)
 <span class="hljs-keyword">\end</span>{align}
 <span class="hljs-keyword">\right</span> .</code></pre></div>
-<p>效果如下：</p>
-<script type="math/tex; mode=display">
-\left\{
- \begin{align}
-          \operatorname{H}(X) & = \operatorname{E}[-\ln(p(X))]\\
-          & = \operatorname{E}[-\alpha \ln(\beta) + \ln(\Gamma(\alpha)) - (\alpha-1)\ln(X) + \beta X] \\
-          & = \alpha - \ln(\beta) + \ln(\Gamma(\alpha)) + (1-\alpha)\psi(\alpha)
- \end{align}
- \right.</script><p> <strong>注：</strong> Hexo 默认的 Markdown 渲染器不支持复杂公式，如果有显示需要的话，要先卸载原有的渲染器<code>npm uninstall hexo-renderer-marked --save</code>，然后安装新的，这里我安装的是mathjax<code>npm install hexo-renderer-kramed --save</code>，这个右键点击公式还有拓展功能，只不过要加载js，可能速度会略慢。最后<code>hexo clean</code>一下再部署</p>
+
+<p>效果如下：<br>$$<br>\left{</p>
+<div class="hljs code-wrapper"><pre><code>\begin{align}
+         \operatorname{H}(X) &amp; = \operatorname{E}[-\ln(p(X))]\\
+         &amp; = \operatorname{E}[-\alpha \ln(\beta) + \ln(\Gamma(\alpha)) - (\alpha-1)\ln(X) + \beta X] \\
+         &amp; = \alpha - \ln(\beta) + \ln(\Gamma(\alpha)) + (1-\alpha)\psi(\alpha)
+\end{align}
+\right.
+</code></pre></div>
+<p>$$</p>
+<p>注：Hexo 默认的 Markdown 渲染器不支持复杂公式，所以这个显示不出来。就是正常的公式组，实现了左括号与等号对齐。如果有显示需要的话，要先卸载原有的渲染器<code>npm uninstall hexo-renderer-marked --save</code>，然后安装新的，比如用mathjax<code>npm install hexo-renderer-kramed --save</code>，这个右键点击公式还有拓展功能，只不过要加载js，可能速度会略慢。最后<code>hexo clean</code>一下再部署。但在typora中显示是正常的，所以，不会真有人做完笔记本地不用联网用吧？<span class="github-emoji"><span>🐶</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f436.png?v8" srcset="/img/loading.gif" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
 </li>
 </ol>
-<ol>
+<ol start="5">
 <li>众所周知，按住<code>ctrl</code>可以选中多行，再<code>ctrl+x</code>可以将多行剪切掉。此时再按住<code>ctrl</code>点击不同行然后<code>ctrl+v</code>即可将刚剪切掉的两行粘贴在光标对应的位置。这点在改变诸如<code>\left\{  \right]</code>位置时比较有用。配合<code>ctrl+z</code>来看相对应环境的作用。多行输入/删除相同内容。（只在代码块内有用）</li>
 <li></li>
 </ol>
