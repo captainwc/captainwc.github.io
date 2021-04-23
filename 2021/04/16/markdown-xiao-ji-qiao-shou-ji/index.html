@@ -29,7 +29,7 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/tomorrow-night-eighties.min.css" />
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/atom-one-dark.min.css" />
     
   
 
@@ -55,7 +55,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":40,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":40,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -191,7 +191,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      421 字
+      420 字
     </span>
   
 
@@ -242,28 +242,42 @@
             <h1 style="display: none">markdown技巧搜集（更新中）</h1>
             
             <div class="markdown-body">
-              <h1 id="markdown小技巧收集"><a href="#markdown小技巧收集" class="headerlink" title="markdown小技巧收集"></a>markdown小技巧收集</h1><ol>
-<li><p><code>:smile:</code>​结果​为<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" srcset="/img/loading.gif" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，可用来输出表情。只需一个<code>:</code>起手</p>
+              <h1 id="markdown小技巧收集"><a class="markdownIt-Anchor" href="#markdown小技巧收集"></a> markdown小技巧收集</h1>
+<ol>
+<li>
+<p><code>:smile:</code>​结果​为😄，可用来输出表情。只需一个<code>:</code>起手</p>
 </li>
-<li><p><code>&lt;a name="section_1"&gt;&lt;/a&gt;</code>定义了一个secion_1的标签，通过<code>[第一章](#section_1)</code>可进行文章内跳转，类似目录的功能</p>
+<li>
+<p><code>&lt;a name="section_1"&gt;&lt;/a&gt;</code>定义了一个secion_1的标签，通过<code>[第一章](#section_1)</code>可进行文章内跳转，类似目录的功能</p>
 </li>
-<li><p><code>[baidu]:https://www.baidu.com</code>定义了“baidu”这个tag，以后通过<code>[搜索][baidu]</code>、<code>[search][baidu]</code>、<code>[suiji][baidu]</code>打开的都是百度的链接，不用重复输入网址了</p>
+<li>
+<p><code>[baidu]:https://www.baidu.com</code>定义了“baidu”这个tag，以后通过<code>[搜索][baidu]</code>、<code>[search][baidu]</code>、<code>[suiji][baidu]</code>打开的都是百度的链接，不用重复输入网址了</p>
 </li>
-<li><p>加上<code>\begin{align}  \end{align}</code>后，可以通过使用<code>&amp;</code>来在相应位置进行对齐。<br>如<code>&amp;=  &amp;=</code>就是将各个等号进行对齐<br><code>\operatorname</code>的结果就是让字母显示得不太一样，证明其是”operator”<br><code>\left </code>要在align的外面；大括号前面要加上转义字符；右半括号不想显示就<code>\right .</code>不加会报错奥</p>
-<div class="code-wrapper"><pre><code class="hljs latex"><span class="hljs-keyword">\left</span> <span class="hljs-keyword">\{</span>
+<li>
+<p>加上<code>\begin{align} \end{align}</code>后，可以通过使用<code>&amp;</code>来在相应位置进行对齐。<br>
+如<code>&amp;= &amp;=</code>就是将各个等号进行对齐<br>
+<code>\operatorname</code>的结果就是让字母显示得不太一样，证明其是"operator"<br>
+<code>\left</code>要在align的外面；大括号前面要加上转义字符；右半括号不想显示就<code>\right .</code>不加会报错奥</p>
+<div class="hljs code-wrapper"><pre><code class="hljs latex"><span class="hljs-keyword">\left</span> <span class="hljs-keyword">\{</span>
 <span class="hljs-keyword">\begin</span>{align}
 <span class="hljs-keyword">\operatorname</span>{H}(X) <span class="hljs-built_in">&amp;</span> = <span class="hljs-keyword">\operatorname</span>{E}[-<span class="hljs-keyword">\ln</span>(p(X))] <span class="hljs-keyword">\\</span>
 <span class="hljs-built_in">&amp;</span> = <span class="hljs-keyword">\operatorname</span>{E}[-<span class="hljs-keyword">\alpha</span> <span class="hljs-keyword">\ln</span>(<span class="hljs-keyword">\beta</span>) + <span class="hljs-keyword">\ln</span>(<span class="hljs-keyword">\Gamma</span>(<span class="hljs-keyword">\alpha</span>)) - (<span class="hljs-keyword">\alpha</span>-1)<span class="hljs-keyword">\ln</span>(X) + <span class="hljs-keyword">\beta</span> X] <span class="hljs-keyword">\\</span>
 <span class="hljs-built_in">&amp;</span> = <span class="hljs-keyword">\alpha</span> - <span class="hljs-keyword">\ln</span>(<span class="hljs-keyword">\beta</span>) + <span class="hljs-keyword">\ln</span>(<span class="hljs-keyword">\Gamma</span>(<span class="hljs-keyword">\alpha</span>)) + (1-<span class="hljs-keyword">\alpha</span>)<span class="hljs-keyword">\psi</span>(<span class="hljs-keyword">\alpha</span>)
 <span class="hljs-keyword">\end</span>{align}
 <span class="hljs-keyword">\right</span> .</code></pre></div>
-
 <p>效果如下：（hh在网页上好像<code>\\</code>换行显示不出来，在typora中是正常的）（\left {直接不编译可太过分了）</p>
 </li>
 </ol>
-<p>$$<br>\left{<br>\begin{align}<br>         \operatorname{H}(X) &amp; = \operatorname{E}[-\ln(p(X))]\<br>         &amp; = \operatorname{E}[-\alpha \ln(\beta) + \ln(\Gamma(\alpha)) - (\alpha-1)\ln(X) + \beta X] \<br>         &amp; = \alpha - \ln(\beta) + \ln(\Gamma(\alpha)) + (1-\alpha)\psi(\alpha)<br>\end{align}<br>\right.<br>$$</p>
+\left\{
+\begin{align}
+         \operatorname{H}(X) &amp; = \operatorname{E}[-\ln(p(X))]\\
+         &amp; = \operatorname{E}[-\alpha \ln(\beta) + \ln(\Gamma(\alpha)) - (\alpha-1)\ln(X) + \beta X] \\
+         &amp; = \alpha - \ln(\beta) + \ln(\Gamma(\alpha)) + (1-\alpha)\psi(\alpha)
+\end{align}
+\right.
+
 <ol start="5">
-<li>众所周知，按住<code>ctrl</code>可以选中多行，再<code>ctrl+x</code>可以将多行剪切掉。此时再按住<code>ctrl</code>点击不同行然后<code>ctrl+v</code>即可将刚剪切掉的两行粘贴在光标对应的位置。这点在改变诸如<code>\left\{  \right]</code>位置时比较有用。配合<code>ctrl+z</code>来看相对应环境的作用。多行输入/删除相同内容。（只在代码块内有用）</li>
+<li>众所周知，按住<code>ctrl</code>可以选中多行，再<code>ctrl+x</code>可以将多行剪切掉。此时再按住<code>ctrl</code>点击不同行然后<code>ctrl+v</code>即可将刚剪切掉的两行粘贴在光标对应的位置。这点在改变诸如<code>\left\{ \right]</code>位置时比较有用。配合<code>ctrl+z</code>来看相对应环境的作用。多行输入/删除相同内容。（只在代码块内有用）</li>
 <li></li>
 </ol>
 
@@ -289,7 +303,7 @@
                 
               </div>
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载烦请注明出处奥 ʕ̯•͡ˑ͓•̯᷅ʔ <br>给您跳段儿街舞 ጿ ኈ ቼ ዽ ጿ ኈ ቼ ዽ ጿ ኈ ቼ ዽ ጿ ኈ ቼ ዽ ጿ ኈ ቼ ዽ ጿ</p>
               
               
                 <div class="post-prevnext">
@@ -400,7 +414,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://captainwc.github.io/" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://www.cnblogs.com/shuaikai" target="_blank" rel="nofollow noopener"><span>Myblogs</span></a> 
+     <a href="https://github.com/captainwc/captainwc.github.io" target="_blank" rel="nofollow noopener"><span>ForkMe</span></a> <i class="iconfont icon-love"></i> <a href="https://www.cnblogs.com/shuaikai" target="_blank" rel="nofollow noopener"><span>Myblogs</span></a> 
   </div>
   
   <div class="statistics">
