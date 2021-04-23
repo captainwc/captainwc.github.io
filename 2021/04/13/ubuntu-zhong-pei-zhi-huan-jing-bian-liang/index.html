@@ -191,7 +191,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      565 字
+      559 字
     </span>
   
 
@@ -201,7 +201,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      6
        分钟
     </span>
   
@@ -242,49 +242,25 @@
             <h1 style="display: none">ubuntu中配置环境变量</h1>
             
             <div class="markdown-body">
-              <p>今天下载latex时，安装成功后提示：<br>
-Add /usr/local/texlive/2021/texmf-dist/doc/man to MANPATH.</p>
+              <p>今天下载latex时，安装成功后提示：<br>Add /usr/local/texlive/2021/texmf-dist/doc/man to MANPATH.</p>
 <p>Add /usr/local/texlive/2021/texmf-dist/doc/info to INFOPATH.</p>
 <p>Most importantly, add /usr/local/texlive/2021/bin/x86_64-linux to your PATH for current and future sessions.</p>
 <p>正好就以此为例记录以下linux添加PATH的方法</p>
-<h1 id="什么是环境变量"><a class="markdownIt-Anchor" href="#什么是环境变量"></a> 什么是环境变量</h1>
-<p>简单的说就是把某些文件夹、文件、功能，单独拎出来，放到整个系统的视线下。此后在命令中用到这些功能时，不必非要在其对应文件夹下才能找的到，而是直接可以用。又有系统环境变量、用户环境变量，顾名思义。</p>
-<h1 id="怎么改变环境变量"><a class="markdownIt-Anchor" href="#怎么改变环境变量"></a> 怎么改变环境变量</h1>
-<h2 id="查看"><a class="markdownIt-Anchor" href="#查看"></a> 查看</h2>
-<p><code>echo $PATH</code></p>
-<h2 id="临时修改"><a class="markdownIt-Anchor" href="#临时修改"></a> 临时修改</h2>
-<p>能直接echo，很自然像普通变量一样能直接修改：<br>
-<code>export PATH=$PATH:/???/???</code><br>
-此后立即生效，但仅在此终端下有效，关闭后复原</p>
-<h2 id="修改文件"><a class="markdownIt-Anchor" href="#修改文件"></a> 修改文件</h2>
-<blockquote>
+<h1 id="什么是环境变量"><a href="#什么是环境变量" class="headerlink" title="什么是环境变量"></a>什么是环境变量</h1><p>简单的说就是把某些文件夹、文件、功能，单独拎出来，放到整个系统的视线下。此后在命令中用到这些功能时，不必非要在其对应文件夹下才能找的到，而是直接可以用。又有系统环境变量、用户环境变量，顾名思义。</p>
+<h1 id="怎么改变环境变量"><a href="#怎么改变环境变量" class="headerlink" title="怎么改变环境变量"></a>怎么改变环境变量</h1><h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><p><code>echo $PATH</code></p>
+<h2 id="临时修改"><a href="#临时修改" class="headerlink" title="临时修改"></a>临时修改</h2><p>能直接echo，很自然像普通变量一样能直接修改：<br><code>export PATH=$PATH:/???/???</code><br>此后立即生效，但仅在此终端下有效，关闭后复原</p>
+<h2 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h2><blockquote>
 <p>不准确之处还请指正；详细了解请查阅相关资料</p>
 </blockquote>
-<h3 id="关于etcprofile-etcbashrc-~profile-~bashrc四个文件"><a class="markdownIt-Anchor" href="#关于etcprofile-etcbashrc-~profile-~bashrc四个文件"></a> 关于/etc/.profile、 /etc/.bashrc、 ~/.profile、 ~/.bashrc四个文件</h3>
-<ul>
+<h3 id="关于-etc-profile、-etc-bashrc、-profile、-bashrc四个文件"><a href="#关于-etc-profile、-etc-bashrc、-profile、-bashrc四个文件" class="headerlink" title="关于/etc/.profile、 /etc/.bashrc、 ~/.profile、 ~/.bashrc四个文件"></a>关于/etc/.profile、 /etc/.bashrc、 ~/.profile、 ~/.bashrc四个文件</h3><ul>
 <li><b>/ect/.profile</b>：为系统每个用户设置环境信息；当其第一次登陆时生效；修改后重启生效或使用<code>source /etc/.profile</code>命令</li>
 <li><b>/ect/.bashrc</b>：为每一个运行bash的用户设置环境信息；当bash shell被打开时执行；重开bash或source命令生效</li>
 <li><b>~/.profile</b>：为当前用户设置环境信息；登陆生效；重启/source生效</li>
 <li><b>~/.bashrc</b>：为当前用户配置专属bash shell信息；重开/source生效</li>
 </ul>
-<h3 id="修改方式"><a class="markdownIt-Anchor" href="#修改方式"></a> 修改方式</h3>
-<p>根据需要选择修改的文件。如只在运行终端时使用，就只改.bashrc文件，其他情况下也用就再改.profile文件。<br>
-如修改~/.bashrc文件：<br>
-首先打开文件<code>vi ~/.bashrc</code><br>
-在最后加上<br>
-<code>export MANPATH=${MANPATH}:/usr/local/texlive/2021/texmf-dist/doc/man</code><br>
-<code>export INFOPATH=${INFOPATH}:/usr/local/texlive/2021/texmf-dist/doc/info</code><br>
-<code>export PATH=${PATH}:/usr/local/texlive/2021/bin/x86_64-linux</code><br>
-wq即可</p>
-<h1 id="补充"><a class="markdownIt-Anchor" href="#补充"></a> 补充</h1>
-<h2 id="texlivetexstudio中文包编译出错"><a class="markdownIt-Anchor" href="#texlivetexstudio中文包编译出错"></a> TexLive+TexStudio中文包编译出错</h2>
-<p>引用中文包时<code>\usepackage[UTF8]{ctex}</code>时报错：<code>Critical ctex error: "fontset-unavailable" CTeX fontset</code>fandol’ is unavailable in current mode`<br>
-只需在option-&gt;build中将默认编译器pdflatex换掉，如换为xelatex</p>
-<h2 id="将chrome添加到path"><a class="markdownIt-Anchor" href="#将chrome添加到path"></a> 将chrome添加到path</h2>
-<p>在终端中firefox可以打开火狐，但chrome不能用，可以如下配置<br>
-在~/.bashrc中添加：<br>
-<code>#set chrome command</code><br>
-<code>export PATH=$PATH:/opt/google/chrome</code></p>
+<h3 id="修改方式"><a href="#修改方式" class="headerlink" title="修改方式"></a>修改方式</h3><p>根据需要选择修改的文件。如只在运行终端时使用，就只改.bashrc文件，其他情况下也用就再改.profile文件。<br>如修改~/.bashrc文件：<br>首先打开文件<code>vi ~/.bashrc</code><br>在最后加上<br><code>export MANPATH=${MANPATH}:/usr/local/texlive/2021/texmf-dist/doc/man</code><br><code>export INFOPATH=${INFOPATH}:/usr/local/texlive/2021/texmf-dist/doc/info</code><br><code>export PATH=${PATH}:/usr/local/texlive/2021/bin/x86_64-linux</code><br>wq即可</p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="TexLive-TexStudio中文包编译出错"><a href="#TexLive-TexStudio中文包编译出错" class="headerlink" title="TexLive+TexStudio中文包编译出错"></a>TexLive+TexStudio中文包编译出错</h2><p>引用中文包时<code>\usepackage[UTF8]{ctex}</code>时报错：<code>Critical ctex error: "fontset-unavailable" CTeX fontset</code>fandol’ is unavailable in current mode`<br>只需在option-&gt;build中将默认编译器pdflatex换掉，如换为xelatex</p>
+<h2 id="将chrome添加到path"><a href="#将chrome添加到path" class="headerlink" title="将chrome添加到path"></a>将chrome添加到path</h2><p>在终端中firefox可以打开火狐，但chrome不能用，可以如下配置<br>在~/.bashrc中添加：<br><code>#set chrome command</code><br><code>export PATH=$PATH:/opt/google/chrome</code></p>
 
             </div>
             <hr>
