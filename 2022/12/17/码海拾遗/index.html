@@ -1,0 +1,979 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo/0.png">
+  <link rel="icon" href="/img/logo/0.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="kk">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="完整的总结总是劳神耗时的，已经熟稔的或者易于得到的部分也没有总结下来的必要。然遨游码海，总归有一些需要记忆的小点，好记性不如烂笔头，单开一篇又没必要，索性全归为一篇，作为手册。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="码海拾遗">
+<meta property="og:url" content="https://captainwc.github.io/2022/12/17/%E7%A0%81%E6%B5%B7%E6%8B%BE%E9%81%97/index.html">
+<meta property="og:site_name" content="开宝特攻">
+<meta property="og:description" content="完整的总结总是劳神耗时的，已经熟稔的或者易于得到的部分也没有总结下来的必要。然遨游码海，总归有一些需要记忆的小点，好记性不如烂笔头，单开一篇又没必要，索性全归为一篇，作为手册。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://captainwc.github.io/img/banner/100.jpg">
+<meta property="article:published_time" content="2022-12-17T08:15:57.000Z">
+<meta property="article:modified_time" content="2023-04-02T09:21:42.063Z">
+<meta property="article:author" content="kk">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="vim">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="makefile">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://captainwc.github.io/img/banner/100.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>码海拾遗 - 开宝特攻</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":90,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>shuaikai</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner/102.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="码海拾遗"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        kk
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-17 16:15" pubdate>
+          2022年12月17日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          74 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">码海拾遗</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="码海拾遗"><a href="#码海拾遗" class="headerlink" title="码海拾遗"></a>码海拾遗</h1><h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><blockquote>
+<p>直接：sudo apt install <name></p>
+</blockquote>
+<ol>
+<li><code>tldr</code>：too long dont read，一个简单版本的man手册，记得先-u更新一下</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf"><code>fzf</code></a>：对输出列表进行模糊查询</li>
+<li><code>colordiff</code>：彩色版diff，可以alias为diff</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/sharkdp/fd#installation"><code>fd-find</code></a>：更快的find命令，命令为<code>fdfind</code>，alias为fd，功能非常多，<code>-h</code>查看</li>
+<li><code>htop</code>：更易于阅读的top命令</li>
+<li><code>ncdu</code>：更易于阅读的du命令，可以直接排序，查看文件夹大小</li>
+<li><code>ripgrep</code>：更强大的grep命令，命令为<code>rg</code></li>
+<li><code>bat</code>：能高亮的cat命令，命令为<code>batcat</code>，alias为bat</li>
+<li><code>diff-so-fancy</code>：下载后添加到PATH，chown和chgrp一下就好了，用法是<code>git diff --color | diff-so-fancy</code>，可以alias为gitd。能够让git diff显示的清晰一些，看情况用</li>
+<li><code>manpages-zh</code>：中文man手册，用法：<code>man -M /usr/share/man/zh_CN</code>，alias为<code>cman</code><br><code>manpages-posix-dev</code>：POSIX的man手册</li>
+</ol>
+<h3 id="shell编程"><a href="#shell编程" class="headerlink" title="shell编程"></a>shell编程</h3><ol>
+<li>变量都是字符串，即<code>&quot;%s&quot;</code>输出</li>
+<li><code>((var=var + 1)), var=$(expr &quot;var&quot; + 1)</code></li>
+<li>$RANDOM 生成随机数</li>
+<li><code>ctrl-a/e</code>:行首&#x2F;行尾；  <code>Alt-b/f</code>:左&#x2F;右一个单词<br> <code>crtl-w</code>:往左删一个词；  <code>Alt-d</code>:往右删一个词<br> <code>ctrl-u/k</code>:删除光标左&#x2F;右所有字符<br> <code>ctrl-y</code>:粘贴刚才删除的内容<br> <code>ctrl shift &#39;-&#39;</code>:撤销操作</li>
+<li><code>^xxx</code>:删除上一条命令中的 xxx<br><code>^foo^bar</code>:把上一条命令中的 foo 替换为 bar</li>
+<li><code>find . -perm /111 -type f -delete</code>：linux下删除可执行文件（加个type可以略掉文件夹）（<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/779.html">find命令参考</a>）<ul>
+<li><code>-perm mode</code>：必须与mode指示的一样<br><code>-perm /mode</code>：mode中表示的，满足一个就好了，比如<code>111</code>，则只要有一个<code>1</code>满足就好了<br><code>-perm -mode</code>：mode中表示的，必须全部具有，<code>111</code>就是ugo都得可执行，缺一不可。别的属性不管</li>
+<li><code>find -iname readme -o -name *.c -not -size +100k -exec ls -i &#123;&#125; + -fprintf0 file.txt  </code>：<br>find查找是<strong>完全匹配</strong>；逻辑与或非；size的单位注意默认不是byte；exec结尾是<code>&#123;&#125; +</code>大括号表示结果</li>
+</ul>
+</li>
+</ol>
+<h3 id="三剑客-grep-awk-sed"><a href="#三剑客-grep-awk-sed" class="headerlink" title="三剑客 grep awk sed"></a>三剑客 grep awk sed</h3><h4 id="例子-1"><a href="#例子-1" class="headerlink" title="例子(1)"></a>例子(1)</h4><p>&#x3D;&#x3D;用awk和sed迁移阿里云上的图片：&#x3D;&#x3D;</p>
+<ol>
+<li><p>找到阿里云oss仓库，选择批量导出url，导出后是一个.csv文件，格式为obj，url</p>
+</li>
+<li><p>找一个文件夹下载所有url</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> export_urls.csv | awk -F, <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span> | xargs wget<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>把下载的这些<strong>文件上传</strong>到新的oss上，得到新的链接。这会导致原来的笔记里面的图片链接全部失效，因此要更改链接。链接的区别只在前面的bucket地址，后面的图片名是完全一样的。因此只需要找到所有的笔记文件，把其中图片url中前面的bucket链接改成新的连接前缀即可</p>
+</li>
+<li><p>此处用到的fd命令要先下载，即fd-find。可以对文件夹进行递归正则查询。至此，就完成了对所有图片的迁移、更改链接操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">fd <span class="hljs-string">&quot;.*\.md$&quot;</span> | xargs sed -i <span class="hljs-string">&#x27;s/https:\/\/xxx.xxx/https:\/\/yyy.yyy/g&#x27;</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><h3 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h3><ol>
+<li>定义宏：<code>q + [a-zA-Z] + your_operation + q</code>，使用时<code>@ + [a-zA-Z]</code></li>
+<li><code>Ctrl + a</code>光标第一个数字加一，<code>Ctrl + x</code>光标第一个数字减一</li>
+<li>行内移动：<code>f w b e</code></li>
+<li>自动补全：<code>Ctrl + p</code></li>
+<li>查询man手册：<code>K</code></li>
+<li>#：自动查找井号后面的单词</li>
+<li><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230208121344239.png" srcset="/img/loading.gif" lazyload alt="image-20230208121344239" style="zoom: 67%;" /></li>
+<li><code>ctrl w ←↑↓→</code>切换窗口，<code>ctrl w HJKL</code>移动窗口</li>
+<li><code>:vertical resize +-n</code>：调整当前窗口宽度，去掉<code>vertical</code>调整高度</li>
+<li>默认的<code>map</code>是递归的，比如a映射b，b映射c，那么就等于是a映射了c。可以根据使用模式，做非递归的映射，即<code>nnoremap/inoremap/vnoremap/cnoremap</code>(normal&#x2F;insert&#x2F;visual&#x2F;comandline)</li>
+<li><a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast/blob/master/doc/help.md">doc&#x2F;help.md · chenxuan&#x2F;vim-fast - 码云 - 开源中国 (gitee.com)</a></li>
+</ol>
+<h3 id="myvimrc"><a href="#myvimrc" class="headerlink" title="myvimrc"></a>myvimrc</h3><p>快速配置：<a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast">vimfast</a> || 基于<a target="_blank" rel="noopener" href="https://github.com/chxuan/vimplus">vimplus </a>|| vim快捷键<a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast/blob/master/doc/help.md">help.md</a>  || 内置快捷键<a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast/blob/master/doc/key.md">key.md</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 无插件快速配置 √</span><br>wget https://gitee.com/mirrorvim/vim-fast/raw/master/vimrc-no-plug -O ~/.vimrc<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>“&#x2F;&#x2F;“开头的不用添加到vimrc中，只是表说明作用</p>
+</blockquote>
+<h4 id="通用设置"><a href="#通用设置" class="headerlink" title="通用设置"></a>通用设置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">let</span> mapleader = <span class="hljs-string">&quot;,&quot;</span>      <span class="hljs-string">&quot; 定义&lt;leader&gt;键为逗号[，]</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="打开窗口"><a href="#打开窗口" class="headerlink" title="打开窗口"></a>打开窗口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-string">&quot;分屏与竖直分屏</span><br><span class="hljs-string">// :split [file]</span><br><span class="hljs-string">// :vsplit [file]</span><br><span class="hljs-string">&quot;</span>vim中调试<br>// Termdebug [bug_file]	<span class="hljs-string">&quot; 打开源代码、gdb、IO三个窗口</span><br><span class="hljs-string">nnoremap &lt;leader&gt;&lt;leader&gt;d Termdebug&lt;space&gt;	&quot;</span> 用[，，d]直接打开此模式<br><span class="hljs-string">&quot;vim中打开新的终端</span><br><span class="hljs-string">// :vert term	&quot;</span> vert，即打开竖直方向终端，去掉即水平方向分窗口<br>nnoremap &lt;leader&gt;&lt;leader&gt;t :vert term	<span class="hljs-string">&quot; 打开竖直终端</span><br><span class="hljs-string">nnoremap &lt;leader&gt;&lt;leader&gt;t :bo term ++rows=6	&quot;</span>六行水平终端<br></code></pre></td></tr></table></figure>
+
+<h4 id="窗口调整"><a href="#窗口调整" class="headerlink" title="窗口调整"></a>窗口调整</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-string">&quot;改变窗口大小</span><br><span class="hljs-string">nnoremap &lt;c-up&gt; :resize+1&lt;cr&gt;</span><br><span class="hljs-string">nnoremap &lt;c-down&gt; :resize-1&lt;cr&gt;</span><br><span class="hljs-string">nnoremap &lt;c-left&gt; :vertical resize+1&lt;cr&gt;</span><br><span class="hljs-string">nnoremap &lt;c-right&gt; :vertical resize-1&lt;cr&gt;</span><br><span class="hljs-string">&quot;</span>改变当前窗口<br>nnoremap &lt;s-up&gt; &lt;c-w&gt;k<br>nnoremap &lt;s-down&gt; &lt;c-w&gt;j<br>nnoremap &lt;s-left&gt; &lt;c-w&gt;h<br>nnoremap &lt;s-right&gt; &lt;c-w&gt;l<br><span class="hljs-string">&quot;改变窗口位置</span><br><span class="hljs-string">nnoremap &lt;c-s-up&gt; &lt;c-w&gt;K</span><br><span class="hljs-string">nnoremap &lt;c-s-down&gt; &lt;c-w&gt;J</span><br><span class="hljs-string">nnoremap &lt;c-s-left&gt; &lt;c-w&gt;H</span><br><span class="hljs-string">nnoremap &lt;c-s-right&gt; &lt;c-w&gt;L</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="其他便捷操作"><a href="#其他便捷操作" class="headerlink" title="其他便捷操作"></a>其他便捷操作</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-string">&quot; 自动括号</span><br><span class="hljs-string">inoremap ( ()&lt;left&gt;	&quot;</span>插入模式<br>inoremap [ []&lt;left&gt;<br>inoremap &#123; &#123;&#125;&lt;left&gt;<br>cnoremap ( ()&lt;left&gt;	<span class="hljs-string">&quot;命令行模式</span><br><span class="hljs-string">cnoremap [ []&lt;left&gt;</span><br><span class="hljs-string">cnoremap &#123; &#123;&#125;&lt;left&gt;</span><br><span class="hljs-string">&quot;</span> 快捷编辑文件<br>nnoremap e :edit&lt;space&gt;&lt;c-r&gt;=getcwd()&lt;cr&gt;/<br></code></pre></td></tr></table></figure>
+
+<h3 id="mybash-aliases"><a href="#mybash-aliases" class="headerlink" title="mybash_aliases"></a>mybash_aliases</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># default</span><br><span class="hljs-built_in">alias</span> gdb=<span class="hljs-string">&#x27;gdb -q&#x27;</span><br><span class="hljs-built_in">alias</span> ll=<span class="hljs-string">&#x27;ls -alhF --color=auto&#x27;</span><br><span class="hljs-built_in">alias</span> python=<span class="hljs-string">&#x27;python3&#x27;</span><br><br><span class="hljs-comment"># git</span><br><span class="hljs-built_in">alias</span> gita=<span class="hljs-string">&#x27;git add&#x27;</span><br><span class="hljs-built_in">alias</span> gitb=<span class="hljs-string">&#x27;git branch&#x27;</span><br><span class="hljs-built_in">alias</span> gitc=<span class="hljs-string">&#x27;git checkout&#x27;</span><br><span class="hljs-built_in">alias</span> gitl=<span class="hljs-string">&#x27;git log&#x27;</span><br><span class="hljs-built_in">alias</span> gitlg=<span class="hljs-string">&#x27;git log --graph&#x27;</span><br><span class="hljs-built_in">alias</span> gitlo=<span class="hljs-string">&#x27;git log --oneline&#x27;</span><br><span class="hljs-built_in">alias</span> gitlog=<span class="hljs-string">&#x27;git log --oneline --graph&#x27;</span><br><span class="hljs-built_in">alias</span> gitr=<span class="hljs-string">&#x27;git reset&#x27;</span><br><span class="hljs-built_in">alias</span> gitrh=<span class="hljs-string">&#x27;git reset --hard&#x27;</span><br><span class="hljs-built_in">alias</span> gitrs=<span class="hljs-string">&#x27;git reset --soft&#x27;</span><br><span class="hljs-built_in">alias</span> gits=<span class="hljs-string">&#x27;git status&#x27;</span><br><span class="hljs-built_in">alias</span> gitd=<span class="hljs-string">&#x27;git diff --color | diff-so-fancy&#x27;</span><br><br><span class="hljs-comment"># some tools</span><br><span class="hljs-built_in">alias</span> bat=<span class="hljs-string">&#x27;batcat&#x27;</span><br><span class="hljs-built_in">alias</span> diff=<span class="hljs-string">&#x27;colordiff&#x27;</span><br><span class="hljs-built_in">alias</span> fd=<span class="hljs-string">&#x27;fdfind&#x27;</span><br><span class="hljs-built_in">alias</span> grep=<span class="hljs-string">&#x27;rg&#x27;</span><br><span class="hljs-built_in">alias</span> top=<span class="hljs-string">&#x27;htop&#x27;</span><br><br><span class="hljs-comment"># for convinence</span><br><span class="hljs-built_in">alias</span> PATH=<span class="hljs-string">&#x27;echo $PATH | xargs -d: -n1&#x27;</span><br><br><span class="hljs-built_in">alias</span> sb=<span class="hljs-string">&#x27;source ~/.bashrc&#x27;</span><br><span class="hljs-built_in">alias</span> sv=<span class="hljs-string">&#x27;source ~/.vimrc&#x27;</span><br><span class="hljs-built_in">alias</span> vimb=<span class="hljs-string">&#x27;vim ~/.bashrc&#x27;</span><br><span class="hljs-built_in">alias</span> vimv=<span class="hljs-string">&#x27;vim ~/.vimrc&#x27;</span><br><br><span class="hljs-comment"># windows</span><br><span class="hljs-comment"># alias jupyter=&#x27;jupyter notebook&#x27;</span><br><span class="hljs-comment"># alias make=&#x27;mingw32-make.exe&#x27;</span><br><br><span class="hljs-comment"># wsl</span><br><span class="hljs-comment"># alias wincodes=&#x27;cd /mnt/d/codes&#x27;</span><br><span class="hljs-comment"># alias windesk=&#x27;cd /mnt/c/Users/wddjwk/Desktop&#x27;</span><br><span class="hljs-comment"># alias windownload=&#x27;cd /mnt/c/Users/wddjwk/Downloads&#x27;</span><br><span class="hljs-comment"># alias wintest=&#x27;cd /mnt/d/test&#x27;</span><br><span class="hljs-comment"># alias win~=&#x27;cd /mnt/c/Users/wddjwk&#x27;</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="零碎-1"><a href="#零碎-1" class="headerlink" title="零碎"></a>零碎</h3><ol>
+<li><code>git config --global init.defaultBranch main</code></li>
+<li>找机会修改一下github用户名</li>
+<li><code>--global</code>: <code>~/.gitconfig</code><br><code>--system</code>:<code>/etc/gitconfig</code></li>
+</ol>
+<h3 id="快捷git"><a href="#快捷git" class="headerlink" title="快捷git"></a>快捷git</h3><blockquote>
+<p>可以直接创建一个<code>.bash_aliases</code>文件</p>
+<p>也可以<code>git global comfig alias.st status</code>，配置别名</p>
+</blockquote>
+<h2 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a>makefile</h2><h3 id="模板1"><a href="#模板1" class="headerlink" title="模板1"></a>模板1</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># 一个适合中小规模的makefile模版，基本上自己按照实际情况指定一下 源文件，目标文件，头文件目录，以及源文件后缀就行了。</span><br><br><span class="hljs-comment"># ---------------------------------------------------------------------------</span><br><span class="hljs-comment"># commands</span><br><span class="hljs-comment"># ---------------------------------------------------------------------------</span><br>CC := gcc<br>LINK := gcc<br>RM := rm -rf<br>MV := mv<br>TAR := tar<br>MKDIR := mkdir<br><br><span class="hljs-comment"># ---------------------------------------------------------------------------</span><br><span class="hljs-comment"># settings</span><br><span class="hljs-comment"># ---------------------------------------------------------------------------</span><br>SRC_SUFFIX := .c<br>OBJ_SUFFIX := .o<br>LIB_SUFFIX := .a<br>BIN_SUFFIX := .exe<br>DLL_SUFFIX := .so<br><br>INC_PREFIX := -I<br>LIB_PREFIX := -L<br><br>OPT_C := -c<br>OPT_OUT := -o<br>OPT_LINKOUT := -o<br><br>CFLAGS := <span class="hljs-variable">$(OPT_C)</span><br>LIBFLAGS := -Debug<br><br><span class="hljs-comment"># ---------------------------------------------------------------------------</span><br><span class="hljs-comment"># directories</span><br><span class="hljs-comment"># ---------------------------------------------------------------------------</span><br>SRC_DIR := ./src<br>OBJ_DIR := ./obj<br>INC_DIR := ./inc<br>LIB_DIR := ./lib /usr/local/lib /lib /usr/lib<br><br><span class="hljs-comment"># ---------------------------------------------------------------------------</span><br><span class="hljs-comment"># common settings</span><br><span class="hljs-comment"># ---------------------------------------------------------------------------</span><br>SRCS := <span class="hljs-variable">$(<span class="hljs-built_in">wildcard</span> <span class="hljs-variable">$(SRC_DIR)</span>/*<span class="hljs-variable">$(SRC_SUFFIX)</span>)</span><br>OBJS := <span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> <span class="hljs-variable">$(SRC_DIR)</span>/%<span class="hljs-variable">$(SRC_SUFFIX)</span>,<span class="hljs-variable">$(OBJ_DIR)</span>/%<span class="hljs-variable">$(OBJ_SUFFIX)</span>,<span class="hljs-variable">$(SRCS)</span>)</span><br>INCS := <span class="hljs-variable">$(<span class="hljs-built_in">addprefix</span> <span class="hljs-variable">$(INC_PREFIX)</span>, <span class="hljs-variable">$(INC_DIR)</span>)</span><br>LIBS := <span class="hljs-variable">$(<span class="hljs-built_in">addprefix</span> <span class="hljs-variable">$(LIB_PREFIX)</span>, <span class="hljs-variable">$(LIB_DIR)</span>)</span> <span class="hljs-variable">$(LIBFLAGS)</span><br>TEMPFILES := core core.* *<span class="hljs-variable">$(OBJ_SUFFIX)</span> temp.* *.out typescript*<br><br><span class="hljs-comment"># ---------------------------------------------------------------------------</span><br><span class="hljs-comment"># make rule</span><br><span class="hljs-comment"># ---------------------------------------------------------------------------</span><br>TARGET := loader<br><br><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: all clean</span><br><br><span class="hljs-section">all: <span class="hljs-variable">$(TARGET)</span></span><br><br><span class="hljs-section">clean:</span><br><span class="hljs-variable">$(RM)</span> <span class="hljs-variable">$(TARGET)</span><span class="hljs-variable">$(BIN_SUFFIX)</span> <span class="hljs-variable">$(OBJS)</span><br><br><span class="hljs-variable">$(TARGET)</span>:<span class="hljs-variable">$(OBJS)</span><br><span class="hljs-variable">$(LINK)</span> <span class="hljs-variable">$(OPT_LINKOUT)</span><span class="hljs-variable">$(TARGET)</span><span class="hljs-variable">$(BIN_SUFFIX)</span> <span class="hljs-variable">$(LIBS)</span> <span class="hljs-variable">$(OBJS)</span><br><br><span class="hljs-variable">$(OBJS)</span>:<span class="hljs-variable">$(OBJ_DIR)</span>/%<span class="hljs-variable">$(OBJ_SUFFIX)</span>:<span class="hljs-variable">$(SRC_DIR)</span>/%<span class="hljs-variable">$(SRC_SUFFIX)</span><br><span class="hljs-variable">$(CC)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$(INCS)</span> <span class="hljs-variable">$(OPT_OUT)</span><span class="hljs-variable">$@</span> <span class="hljs-variable">$&lt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="模板2"><a href="#模板2" class="headerlink" title="模板2"></a>模板2</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs makefile">CXX := g++<br><br>SRC_DIR := ./src<br>OBJ_DIR := ./build<br>BIN_DIR := ./bin<br>INC_DIR := ./<span class="hljs-keyword">include</span><br><br>VPATH = <span class="hljs-variable">$(INC_DIR)</span> <span class="hljs-variable">$(OBJ_DIR)</span> <span class="hljs-variable">$(SRC_DIR)</span><br><span class="hljs-keyword">vpath</span> %.h <span class="hljs-variable">$(INC_DIR)</span><br><br><span class="hljs-comment"># 一种搜索源文件的方式</span><br><span class="hljs-comment"># SRC_DIRS = $(shell find $(SRC_DIR) -maxdepth 3 -type d)</span><br><span class="hljs-comment"># SRCS = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.cpp))</span><br><span class="hljs-comment"># <span class="hljs-doctag">TODO:</span> 这样子出来的目标文件，在jing&#x27;tai时就找不到依赖了</span><br><span class="hljs-comment"># OBJS := $(OBJ_DIR)/$(notdir $(patsubst %.cpp, %.o, $(SRCS)))</span><br><br>SRCS := <span class="hljs-variable">$(<span class="hljs-built_in">wildcard</span> <span class="hljs-variable">$(SRC_DIR)</span>/*.cpp)</span><br>OBJS := <span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> <span class="hljs-variable">$(SRC_DIR)</span>/%.cpp, <span class="hljs-variable">$(OBJ_DIR)</span>/%.o, <span class="hljs-variable">$(SRCS)</span>)</span><br>INCS := <span class="hljs-variable">$(<span class="hljs-built_in">addprefix</span> -I, <span class="hljs-variable">$(INC_DIR)</span>)</span><br>BUILDING_DIRS := <span class="hljs-variable">$(OBJ_DIR)</span> <span class="hljs-variable">$(BIN_DIR)</span><br><br>TARGET := adb_lab2.exe<br>RUN := run.sh<br><br><span class="hljs-variable">$(TARGET)</span> : <span class="hljs-variable">$(BUILDING_DIRS)</span> <span class="hljs-variable">$(OBJS)</span><br>	<span class="hljs-variable">$(CXX)</span> -o <span class="hljs-variable">$(BIN_DIR)</span>/<span class="hljs-variable">$(TARGET)</span> <span class="hljs-variable">$(OBJS)</span><br>	@touch <span class="hljs-variable">$(RUN)</span><br>	@echo <span class="hljs-string">&quot;<span class="hljs-variable">$(BIN_DIR)</span>/<span class="hljs-variable">$(TARGET)</span>&quot;</span> &gt; <span class="hljs-variable">$(RUN)</span><br><br><span class="hljs-comment"># 这里的前缀不能少。makefile不会自动去VPATH里面找这几个目标，而是直接当成新的目标来对待</span><br><span class="hljs-variable">$(OBJ_DIR)</span>/BufferPoolManager.o : BufferPoolManager.h LRUReplacer.h<br><span class="hljs-variable">$(OBJ_DIR)</span>/DataStorageManager.o : DataStorageManager.h<br><span class="hljs-variable">$(OBJ_DIR)</span>/LRUReplacer.o : LRUReplacer.h<br><span class="hljs-variable">$(OBJ_DIR)</span>/main.o : BufferPoolManager.h<br><br><span class="hljs-comment"># 一个创建运行时依赖文件夹的方法</span><br><span class="hljs-variable">$(BUILDING_DIRS)</span> :<br>	@mkdir <span class="hljs-variable">$@</span><br><br><span class="hljs-comment"># 这叫 静态模式</span><br><span class="hljs-variable">$(OBJS)</span> : <span class="hljs-variable">$(OBJ_DIR)</span>/%.o : <span class="hljs-variable">$(SRC_DIR)</span>/%.cpp<br>	<span class="hljs-variable">$(CXX)</span> -o <span class="hljs-variable">$@</span> -c <span class="hljs-variable">$&lt;</span> <span class="hljs-variable">$(INCS)</span><br><br><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: all clean output</span><br>all : <span class="hljs-variable">$(TARGET)</span><br><span class="hljs-section">clean:</span><br>	-rm -rf <span class="hljs-variable">$(BUILDING_DIRS)</span> test.dbf <span class="hljs-variable">$(RUN)</span><br><span class="hljs-section">output:</span><br>	@echo <span class="hljs-variable">$(SRCS)</span><br>	@echo --------------<br>	@echo <span class="hljs-variable">$(OBJS)</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="模板3"><a href="#模板3" class="headerlink" title="模板3"></a>模板3</h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs makefile">CC := gcc<br>CC_INCLUDE_FLAGS := -I ./<span class="hljs-keyword">include</span>/<br>CC_FLAGS := <span class="hljs-variable">$(CC_INCLUDE_FLAGS)</span> -g<br><br><span class="hljs-comment"># 程序执行的参数</span><br>ARGS := ~/codes<br><br>DIR_SRC := ./src<br>DIR_OBJ := ./build<br>DIR_EXE := ./bin<br><br>SRCS := <span class="hljs-variable">$(<span class="hljs-built_in">shell</span> find <span class="hljs-variable">$(DIR_SRC)</span> -name &quot;*.c&quot;)</span><br>OBJS := <span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> <span class="hljs-variable">$(DIR_SRC)</span>/%.c, <span class="hljs-variable">$(DIR_OBJ)</span>/%.o, <span class="hljs-variable">$(SRCS)</span>)</span><br>DPTS := <span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> %.c, %.d, <span class="hljs-variable">$(SRCS)</span>)</span><br>DIRS := <span class="hljs-variable">$(DIR_OBJ)</span> <span class="hljs-variable">$(DIR_EXE)</span><br><br>target := <span class="hljs-variable">$(DIR_EXE)</span>/my_ls_pro<br><br><span class="hljs-variable">$(target)</span>: <span class="hljs-variable">$(DIRS)</span> <span class="hljs-variable">$(OBJS)</span><br>	<span class="hljs-variable">$(CC)</span> <span class="hljs-variable">$(OBJS)</span> -o <span class="hljs-variable">$@</span><br><br><span class="hljs-variable">$(DIRS)</span>:<br>	@mkdir <span class="hljs-variable">$@</span><br><br><span class="hljs-variable">$(DIR_OBJ)</span>/%.o: <span class="hljs-variable">$(DIR_SRC)</span>/%.c<br>	<span class="hljs-variable">$(CC)</span> <span class="hljs-variable">$(CC_FLAGS)</span> -c <span class="hljs-variable">$&lt;</span> -o <span class="hljs-variable">$@</span><br><br><span class="hljs-section">%.d: %.c</span><br>	@set -e; \<br>	rm -f <span class="hljs-variable">$@</span>; \<br>	<span class="hljs-variable">$(CC)</span> -MM <span class="hljs-variable">$(CC_FLAGS)</span> <span class="hljs-variable">$&lt;</span> <span class="hljs-variable">$(CC_INCLUDE_FLAGS)</span> &gt; <span class="hljs-variable">$@</span>.$$$$.dtmp; \<br>	sed &#x27;s,\(.*\)\.o\:,<span class="hljs-variable">$*</span>\.o <span class="hljs-variable">$*</span>\.d\:,g&#x27; &lt; <span class="hljs-variable">$@</span>.$$$$.dtmp &gt; <span class="hljs-variable">$@</span>;\<br>	rm -f <span class="hljs-variable">$@</span>.$$$$.dtmp<br><br><span class="hljs-keyword">-include</span> <span class="hljs-variable">$(DPTS)</span><br><br><span class="hljs-section">clean:</span><br>	rm -f <span class="hljs-variable">$(OBJS)</span><br>	rm -f <span class="hljs-variable">$(DPTS)</span><br><br><span class="hljs-section">run:</span><br>	make<br>	<span class="hljs-variable">$(target)</span> <span class="hljs-variable">$(ARGS)</span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><p><a target="_blank" rel="noopener" href="https://www.zhaixue.cc/makefile/makefile-text-func.html">REF1：makefile简明教程</a>,    <a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/90512346">REF2：如何输出到指定文件夹</a> ，<a target="_blank" rel="noopener" href="https://airguanz.github.io/2018/04/27/makefile-dept.html">REF3：关于自动生成依赖.d文件</a></p>
+<h4 id="模式替换"><a href="#模式替换" class="headerlink" title="模式替换"></a>模式替换</h4><p><code>$(patsubst &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt; ) </code><br>        查找<text>中的单词（单词以“空格”、“Tab”或“回车”“换行”分隔）是否符合模式<pattern>，如果匹配的话，则以<replacement>替换。</p>
+<p>​        这里，<pattern>可以包括通配符“%”，表示任意长度的字串。如果<replacement>中也包含“%”，那么，<replacement>中的这个“%”将是<pattern>中的那个“%”所代表的字串。（可以用“\”来转义，以“%”来表示真实含义的“%”字符）</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> %.c,%.o, a.c b.c)</span><br><span class="hljs-comment"># 把字串 “a.c b.c” 符合模式[%.c]的单词替换成[%.o]，返回结果是 “a.o b.o”</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="变量替换引用"><a href="#变量替换引用" class="headerlink" title="变量替换引用"></a>变量替换引用</h4><p>​		对于一个已经定义的变量，可以使用“替换引用”将其值中的后缀字符（串）使用指定的字符（字符串）替换。格式为<code>$(VAR:A=B)</code>或者<code>$&#123;VAR:A=B&#125;</code></p>
+<p>​		意思是，替换变量“VAR”中所有“A”字符结尾的字为“B”结尾的字。“结尾”的含义是空格之前（变量值多个字之间使用空格分开）。而对于变量其它部分的“A”字符不进行替换。 </p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs makefile">foo := a.o b.o c.o<br>bar := $(foo:.o=.c)<br><span class="hljs-comment"># 注意变量不要带 $</span><br>SRCS_NODIR := <span class="hljs-variable">$(<span class="hljs-built_in">notdir</span> $(<span class="hljs-built_in">wildcard</span> <span class="hljs-variable">$(SRC_DIR)</span>/*<span class="hljs-variable">$(SRC_SUFFIX)</span>)</span>)<br>OBJS_NODIR := $(SRCS_NODIR:<span class="hljs-variable">$(SRC_SUFFIX)</span>=<span class="hljs-variable">$(OBJ_SUFFIX)</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="编码风格"><a href="#编码风格" class="headerlink" title="编码风格"></a>编码风格</h2><h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><h4 id="普通变量"><a href="#普通变量" class="headerlink" title="普通变量"></a>普通变量</h4><ul>
+<li><p>推荐使用下划线隔开单词(<a target="_blank" rel="noopener" href="https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/naming/">Google开源风格指南</a>)，也可以使用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%A7%9D%E5%B3%B0%E5%BC%8F%E5%A4%A7%E5%B0%8F%E5%AF%AB">驼峰命名</a>法，但是不要使用无意义的字母！</p>
+</li>
+<li><p><code>tDataNode</code>：t 开头表示这是一个类型，type</p>
+</li>
+<li><p><code>kPI</code>：k 开头表示常量，在程序运行中不会被修改</p>
+</li>
+</ul>
+<h4 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h4><blockquote>
+<p>以下内容准确性待考究。但首尾下划线一般都表示“私有”之意</p>
+</blockquote>
+<ol>
+<li><p>__foo__: 定义的是特殊方法，一般是系统定义名字，类似__init__()之类</p>
+</li>
+<li><p>_foo:以单划线开头的表示的是protected类型的变量或函数，即保护类型，只允许本身和子类访问。也有在后面加下划线的，同理。都是表达”私有”之意。</p>
+</li>
+<li><p>__foo:以双下划线开头的表示的是private类型的变量或函数，即私有类型，只允许本身访问。</p>
+</li>
+<li><p>C语言中，单下划线开头表示是标准库的变量，双下划线表示是编译器的变量</p>
+</li>
+</ol>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p><a href="(https://aijishu.com/a/1060000000228594)">参考</a></p>
+<h4 id="文件注释"><a href="#文件注释" class="headerlink" title="文件注释"></a>文件注释</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @file 文件名</span><br><span class="hljs-comment"> * @brief 简介		 </span><br><span class="hljs-comment"> * @details 细节</span><br><span class="hljs-comment"> * @author 作者</span><br><span class="hljs-comment"> * @version 版本号</span><br><span class="hljs-comment"> * @date 年-月-日</span><br><span class="hljs-comment"> * @copyright 版权</span><br><span class="hljs-comment"> * @todo 待办</span><br><span class="hljs-comment"> * @throw 异常描述</span><br><span class="hljs-comment"> * @bugs 漏洞</span><br><span class="hljs-comment"> * @pre 前提条件</span><br><span class="hljs-comment"> * @see [参考]</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="函数注释"><a href="#函数注释" class="headerlink" title="函数注释"></a>函数注释</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @brief 函数描述</span><br><span class="hljs-comment"> * @param 参数描述</span><br><span class="hljs-comment"> * @return 返回描述</span><br><span class="hljs-comment"> * @retval 返回值描述</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="结构体注释"><a href="#结构体注释" class="headerlink" title="结构体注释"></a>结构体注释</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/**</span><br><span class="hljs-comment">* @brief 类的详细描述</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="常变量注释"><a href="#常变量注释" class="headerlink" title="常变量注释"></a>常变量注释</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//定义一个整型变量a</span><br><span class="hljs-type">int</span> a<br><br><span class="hljs-type">int</span> a; <span class="hljs-comment">/*!&lt; 定义一个整型变量a */</span><br><span class="hljs-type">int</span> a; <span class="hljs-comment">/**&lt; 定义一个整型变量a */</span><br><span class="hljs-type">int</span> a; <span class="hljs-comment">//!&lt; 定义一个整型变量a</span><br><span class="hljs-type">int</span> a; <span class="hljs-comment">///&lt; 定义一个整型变量a</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h3><h4 id="表格的使用"><a href="#表格的使用" class="headerlink" title="表格的使用"></a>表格的使用</h4><p>​	并排插入图片，需要用到<strong>表格</strong>才能实现。插入图片不需要用到<code>&lt;a herf&gt;&lt;/a&gt;</code>，不然点一下就跳转也有些烦人。<code>html</code>标签不写在代码块内即生效。</p>
+<p>​	图片大小可以用<code>&lt;td style=&quot;width:50%&quot;&gt;&lt;/td&gt;</code>来调整，各占50%就好了</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border:none;text-align:center;&quot;</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:50%&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">border</span>=<span class="hljs-string">&quot;0&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:50%&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">border</span>=<span class="hljs-string">&quot;0&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--可以排图，也可以图文混排，也可以用来添加注释--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:50%&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>图1 <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:50%&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>图2 <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="音视频"><a href="#音视频" class="headerlink" title="音视频"></a>音视频</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">controls</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.runoob.com/try/demo_source/horse.mp3&quot;</span> &gt;</span><br>您的浏览器不支持 audio 元素。<br><span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;320&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;240&quot;</span> <span class="hljs-attr">controls</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.runoob.com/try/demo_source/movie.mp4&quot;</span>  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;video/mp4&quot;</span>&gt;</span><br>  您的浏览器不支持 HTML5 video 标签。<br><span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="markdown-to-slide"><a href="#markdown-to-slide" class="headerlink" title="markdown to slide"></a>markdown to slide</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://cn.sli.dev/guide/syntax.html">slidev</a>：更专业，更强大</li>
+<li><a target="_blank" rel="noopener" href="https://marp.app/">marp</a>：更贴合markdown语法，以md为中心</li>
+</ul>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><h3 id="函数速查"><a href="#函数速查" class="headerlink" title="函数速查"></a>函数速查</h3><p>（可以参考本地文件<a href="file://D:/books/C/C函数速查.pdf">C函数速查</a>）</p>
+<h4 id="printf"><a href="#printf" class="headerlink" title="printf"></a>printf</h4><ol>
+<li><p>打印颜色<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/qinghaowusu/p/13864090.html">颜色控制码-cnblogs</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 一般格式为</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\033[控制码1;控制码2;控制码3...m %s \033[控制码m\n&quot;</span>, str);<br><span class="hljs-comment">// 例如下面将输出一个黄色的str</span><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\033[32m %s \033[0m \n&quot;</span>, str);<br></code></pre></td></tr></table></figure>
+
+<table style="border:none;text-align:center">
+    <tr>
+        <td style="width:60%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230315202644787.png" srcset="/img/loading.gif" lazyload></td>
+        <td style="width:20%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230315202729372.png" srcset="/img/loading.gif" lazyload></td>
+        <td style="width:20%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230315202804434.png" srcset="/img/loading.gif" lazyload></td>
+    </tr>
+</table>
+</li>
+<li><p>打印数据类型</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Printf_format_string">维基百科-printf-format</a>        <a target="_blank" rel="noopener" href="https://www.runoob.com/cprogramming/c-function-printf.html">参考-runoob.com</a><br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230315203138618.png" srcset="/img/loading.gif" lazyload alt="image-20230315203138618"></p>
+<p><code>a A</code>：以十六进制形式输出浮点数（C99）</p>
+<p><code>z</code>：输出<code>size_t</code>类型的推荐做法</p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230315203325027.png" srcset="/img/loading.gif" lazyload alt="image-20230315203325027"></p>
+</li>
+<li></li>
+</ol>
+<h4 id="字符串处理"><a href="#字符串处理" class="headerlink" title="字符串处理"></a>字符串处理</h4><p>:star:<code>autof()</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 字符串转浮点数</span><br><span class="hljs-type">double</span> <span class="hljs-title function_">atof</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *s)</span>;<br><span class="hljs-comment">// 字符转转int</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">atoi</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *s)</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="C-1"><a href="#C-1" class="headerlink" title="C++"></a>C++</h2><h3 id="语法-amp-特性"><a href="#语法-amp-特性" class="headerlink" title="语法&amp;特性"></a>语法&amp;特性</h3><h4 id="关键字和上下文关键字"><a href="#关键字和上下文关键字" class="headerlink" title="关键字和上下文关键字"></a>关键字和上下文关键字</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">// delete</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">func</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span></span>=<span class="hljs-keyword">delete</span>;<br><span class="hljs-comment">// override, final</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">final</span></span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="类模板与友元函数"><a href="#类模板与友元函数" class="headerlink" title="类模板与友元函数"></a>类模板与友元函数</h4><p><a target="_blank" rel="noopener" href="https://book.itheima.net/course/223/1275663370879508481/1275667890921545729">参考这里</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 模板类中声明友元函数共有四种：</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-type">void</span> <span class="hljs-title">f1</span><span class="hljs-params">()</span></span>;			<span class="hljs-comment">// 1.不需要模板参数的，非模板函数	</span><br>	<span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-type">void</span> <span class="hljs-title">f2</span><span class="hljs-params">(A&lt;T&gt;&amp; a)</span></span>;	<span class="hljs-comment">// 2.需要模板参数的，非模板函数</span><br>	<span class="hljs-keyword">friend</span> <span class="hljs-type">void</span> <span class="hljs-built_in">f3</span>&lt;T&gt;(A&lt;T&gt;&amp; a);	<span class="hljs-comment">// 3.需要模板参数的，模板函数</span><br>	<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> U&gt;		<span class="hljs-comment">// 4.需要模板参数且自带参数的模板函数</span><br>	<span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-type">void</span> <span class="hljs-title">f4</span><span class="hljs-params">(A&lt;U&gt;&amp; a)</span></span>;<br><span class="hljs-keyword">private</span>:<br>	T v;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>​		不要在类内声明的是第二种，在类外定义的却是第三种了。</p>
+<h3 id="库与函数速查"><a href="#库与函数速查" class="headerlink" title="库与函数速查"></a>库与函数速查</h3><h4 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h4><p>:star:<code>getline()</code></p>
+<ol>
+<li><p>有两个getline()函数，一个在<a target="_blank" rel="noopener" href="https://cplusplus.com/reference/istream/istream/getline/">&lt;istream&gt;</a>里面，通过（输入流）成员调用的方式指出输入流，一个在<a target="_blank" rel="noopener" href="https://cplusplus.com/reference/string/string/getline/?kw=getline">&lt;string&gt;</a>里面，为顶层函数，在参数列表中指出输入流</p>
+</li>
+<li><p>getline()实际读取的为&#x3D;&#x3D;(n - 1)&#x3D;&#x3D;个字符，且会把终止符&#x3D;&#x3D;从流中删除&#x3D;&#x3D;</p>
+</li>
+<li><p>读到文件尾返回<a target="_blank" rel="noopener" href="https://cplusplus.com/reference/ios/ios_base/iostate/">eofbit</a></p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">// # include&lt;istream&gt; // 注意是char*，同时要指出读入的size</span><br><span class="hljs-function">istream&amp; <span class="hljs-title">getline</span> <span class="hljs-params">(<span class="hljs-type">char</span>* s, streamsize n, <span class="hljs-type">char</span> delim )</span></span>;<br><span class="hljs-comment">// # include&lt;string&gt;</span><br><span class="hljs-function">istream&amp; <span class="hljs-title">getline</span> <span class="hljs-params">(istream&amp;  is, string&amp; str, <span class="hljs-type">char</span> delim)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>:star:<code>get()</code></p>
+<ol>
+<li><p>与getline()区别在于，读到delim字符后，会中止并将其&#x3D;&#x3D;保留在流中&#x3D;&#x3D;，这就会被下一个用户读到</p>
+</li>
+<li><p>只有<a target="_blank" rel="noopener" href="https://cplusplus.com/reference/istream/istream/get/">&lt;istream&gt;</a>版本</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-comment">// 依次为：single character (1)，c-string (2)，stream buffer (3)	</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">get</span><span class="hljs-params">()</span></span>; <span class="hljs-function">istream&amp; <span class="hljs-title">get</span> <span class="hljs-params">(<span class="hljs-type">char</span>&amp; c)</span></span>;<br><span class="hljs-function">istream&amp; <span class="hljs-title">get</span> <span class="hljs-params">(<span class="hljs-type">char</span>* s, streamsize n, <span class="hljs-type">char</span> delim)</span></span>;<br><span class="hljs-function">istream&amp; <span class="hljs-title">get</span> <span class="hljs-params">(streambuf&amp; sb, <span class="hljs-type">char</span> delim)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<h4 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h4><p><a target="_blank" rel="noopener" href="https://cplusplus.com/reference/regex/">&lt;regex&gt;</a>库是C11中新增的特性，下面给出一些使用的例子</p>
+<p><code>regex</code>：定义一个正则表达式类，如<code>regex rx(&quot;^[0-9]&quot;);</code></p>
+<p><code>match_result</code>：</p>
+<h3 id="标准库STL"><a href="#标准库STL" class="headerlink" title="标准库STL"></a>标准库STL</h3><p><a target="_blank" rel="noopener" href="https://book.itheima.net/course/223/1275663370879508481/1275668006118105089">参考一：黑马</a></p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h3><h4 id="最优子结构的证明-1"><a href="#最优子结构的证明-1" class="headerlink" title="最优子结构的证明[1]"></a>最优子结构的证明<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="参见[《算法导论》](D:\books\数据结构与算法\算法导论 第3版.pdf)关于霍夫曼编码和拟阵贪心选择性质的证明">[1]</span></a></sup></h4><p><strong>最优子结构</strong>：问题$S_{ij}$的最优解$A_{ij}$必然包含子问题$S_{ik}$和$S_{kj}$的最优解$A_{ik}$和$A_{kj}$</p>
+<p>​		证明(cust-and-paste)法：如果不包含，则子问题有一个更好的解,粘贴进来比原来的最优解要好，则原来的不是最优，推出矛盾</p>
+<p><strong>贪心选择性质</strong>：做出局部的最优解可以得到全局的最优解</p>
+<p>​		命题：做出当前最优选择{x}，则存在一个问题S的最优解A，包含{x}</p>
+<p>​		证明：如果最优解B不包含{x}，则对任意B中元素y，均有$w(y) &lt; w(x)$。从A&#x3D;{x}开始构建，不断从B中选择元素加入A中，直至|A|&#x3D;|B|，此时A与B的不同就在于，A有{x}，B有{$y_i$}。由于$w(y_i) &lt; w(x)$，故$w(B) &lt; w(A)$，B不是最优解，推出矛盾。</p>
+<p>​		因此最优解一定包含这一局部最优解，下面的任务就是找出这个包含x的最优解A。又由于问题S具有最优子结构，因此这一问题又转换为，求出问题$A-{x}$的最优解，对其继续运用贪心选择性质，然后不断迭代即可。</p>
+<h2 id="references"><a href="#references" class="headerlink" title="references"></a>references</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>参见[《算法导论》](D:\books\数据结构与算法\算法导论 第3版.pdf)关于霍夫曼编码和拟阵贪心选择性质的证明
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/knowledge/" class="category-chain-item">knowledge</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C-C/">#C/C++</a>
+      
+        <a href="/tags/linux/">#linux</a>
+      
+        <a href="/tags/vim/">#vim</a>
+      
+        <a href="/tags/git/">#git</a>
+      
+        <a href="/tags/makefile/">#makefile</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>码海拾遗</div>
+      <div>https://captainwc.github.io/2022/12/17/码海拾遗/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>kk</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/11/PA%E5%A4%87%E5%BF%98/" title="PA备忘">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PA备忘</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/17/ubuntu%E5%AE%89%E8%A3%85mysql/" title="ubuntu22安装mysql8">
+                        <span class="hidden-mobile">ubuntu22安装mysql8</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/captainwc/captainwc.github.io" target="_blank" rel="nofollow noopener"><span>ForkMe</span></a> <i class="iconfont icon-love"></i> <a href="https://www.cnblogs.com/shuaikai" target="_blank" rel="nofollow noopener"><span>Myblogs</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1017 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo/0.png">
+  <link rel="icon" href="/img/logo/0.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="kk">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="近期读完了《征服C指针》一书，简单总结了一下书中的内容，留待复习用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="征服C指针">
+<meta property="og:url" content="https://captainwc.github.io/2022/10/08/%E5%BE%81%E6%9C%8DC%E6%8C%87%E9%92%88/index.html">
+<meta property="og:site_name" content="开宝特攻">
+<meta property="og:description" content="近期读完了《征服C指针》一书，简单总结了一下书中的内容，留待复习用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://captainwc.github.io/img/banner/114.jpg">
+<meta property="article:published_time" content="2022-10-07T17:15:57.000Z">
+<meta property="article:modified_time" content="2023-04-02T09:08:28.095Z">
+<meta property="article:author" content="kk">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://captainwc.github.io/img/banner/114.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>征服C指针 - 开宝特攻</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":90,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>shuaikai</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner/102.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="征服C指针"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        kk
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-08 01:15" pubdate>
+          2022年10月8日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          6.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">征服C指针</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="征服C指针"><a href="#征服C指针" class="headerlink" title="征服C指针"></a>征服C指针</h1><h2 id="1-关于指针-初步"><a href="#1-关于指针-初步" class="headerlink" title="1. 关于指针 初步"></a>1. 关于指针 初步</h2><h3 id="1-1-指针类型定义"><a href="#1-1-指针类型定义" class="headerlink" title="1.1 指针类型定义"></a>1.1 指针类型定义</h3><blockquote>
+<p><strong>指针类型</strong> 可由函数类型、对象类型或不完全的类型派生。派生指针类型的类，称为&#x3D;&#x3D;引用类型&#x3D;&#x3D;。指针类型描述这样一个对象：该类对象的值，提供对该引用类型实体的引用。由引用类型 T 派生的指针类型，有时称为<em>“（指向）T的指针</em>。从引用类型构造指针类型的过程，称为*”指针类型的派生”*。这些构造派生类型的方法可以递归地应用。</p>
+</blockquote>
+<p>和基本类型一样，指针也有：指针类型，指针类型的变量，指针类型的值</p>
+<h3 id="1-2-指针与地址关系"><a href="#1-2-指针与地址关系" class="headerlink" title="1.2 指针与地址关系"></a>1.2 指针与地址关系</h3><blockquote>
+<p>指针就是地址。对么？</p>
+</blockquote>
+<ol>
+<li><p>无论是用<code>%d, %p, %x</code>,都能输出指针，指针就是<code>unsigned int</code>。似乎这样理解也不无道理。但是需要指出的是，这是与环境有关的。<strong>指针的长度是固定的，无论其是指向什么类型</strong>，可以参见下面的例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span>    *p1;<br><span class="hljs-type">double</span> *p1;<br><span class="hljs-type">char</span>   *p3;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d %d\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(p1), <span class="hljs-keyword">sizeof</span>(p2), <span class="hljs-keyword">sizeof</span>(p3));<br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">8</span> <span class="hljs-number">8</span> <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>既然指针是地址，那指向 int 指向 double 有必要区分么？有的。<strong>仅仅告知内存地址，不告知在那个地址上的数据类型，是无法正确取出值来的</strong>。<br>题外话，指针的&#x3D;&#x3D;强制类型转换&#x3D;&#x3D;，也只是改变对内容的解释方法，指针的长度是固定不变的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span>   x = <span class="hljs-number">0x00000041</span>;<br><span class="hljs-type">char</span> *p;<br>p = (<span class="hljs-type">char</span>*)&amp;x;<br>pintf(<span class="hljs-string">&quot;%c\n&quot;</span>, p);<br><span class="hljs-comment">// 输出：</span><br>A<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>指针就是地址，对指针 +1，指针不应该就前进一个字节么？<br>当然不是，对指针 +n，指针前进“当前指针指向的数据类型长度 $\times$n</p>
+</li>
+</ol>
+<h3 id="1-3-空指针"><a href="#1-3-空指针" class="headerlink" title="1.3 空指针"></a>1.3 空指针</h3><p><strong>空指针</strong> </p>
+<ol>
+<li><p>确保它和任何非空指针进行比较都不会相等</p>
+</li>
+<li><p>只有<code>NULL</code>，无论对方指向什么类型，都可以进行赋值和比较</p>
+</li>
+</ol>
+<h4 id="1-3-1-NULL，-0-和-‘-0’"><a href="#1-3-1-NULL，-0-和-‘-0’" class="headerlink" title="1.3.1 NULL， 0 和 ‘\0’"></a>1.3.1 NULL， 0 和 ‘\0’</h4><p>在<code>&lt;stdio.h&gt;</code>中，NULL定义如下：<code>#define NULL 0</code>，那么空指针不就是为 0 的地址么？大部分环境中确实是这样，但这么说是不准确的。（原作中说的我也没听懂要说什么，但为了便于阅读，还是写NULL吧，又不费劲？）不过有一点：<em>在C语言中，当常量 0 处于应该作为指针的上下文中时，他就作为空指针使用</em>，所以：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> *p = <span class="hljs-number">3</span>; <span class="hljs-comment">// error! 不能将 int 型赋值给 int* 型</span><br><span class="hljs-type">int</span> *q = <span class="hljs-number">0</span>; <span class="hljs-comment">// 可以，此时等价于， p == NULL</span><br></code></pre></td></tr></table></figure>
+
+<p>**’\0’<strong>即所有位均为 0 的空字符，也即其ASCII码为 00000000，空字符’\0’是常量，实际上它等同于 0，但同样的，仍建议不要这样写（</strong>C语言中，‘\0’呀’a’呀，其类型实际上是 int **而不是 char）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> alp = <span class="hljs-string">&#x27;a&#x27;</span>;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, <span class="hljs-keyword">sizeof</span>(alp), <span class="hljs-keyword">sizeof</span>(<span class="hljs-string">&#x27;a&#x27;</span>));<br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">1</span> <span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-4-指针和数组"><a href="#1-4-指针和数组" class="headerlink" title="1.4 指针和数组"></a>1.4 指针和数组</h3><p>&#x3D;&#x3D;这是本书最重要的“一”句话：&#x3D;&#x3D;</p>
+<ul>
+<li><p>**在表达式中，数组可以解读成”指向它的初始元素的指针”**，除了</p>
+<ol>
+<li>数组为 <code>sizeof</code> 运算符的操作数时，求出的时全体数组元素的大小（在函数中又例外，函数中形参传递的就是指向数组的指针）</li>
+<li>数组为 <code>&amp;</code> 运算符的操作数时，（ANSI C中)返回 指向数组的指针 </li>
+<li>初始化数组时的字符串常量<br>字符串常量是<em>char的数组</em>，在表达式中通常被解读成<em>指向char的指针</em>。但在初始化char数组时候的字符串常量会作为&#x3D;&#x3D;被花括号括起来的单个字符&#x3D;&#x3D;的&#x3D;&#x3D;省略形式&#x3D;&#x3D;，被编译器特别解释</li>
+</ol>
+</li>
+<li><p><strong>p[i] 只是 *(p + i) 的语法糖</strong>，下标运算符[]原本只有这种用法，它和数组无关，不是依赖数组才存在的<br>（所以哪怕你写成<code>i[p]</code>也是一样可以的。当然，请不要这样写）</p>
+</li>
+</ul>
+<p>一些实验：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-comment">// 对于点 1</span><br><span class="hljs-type">int</span> nums[N];<br><span class="hljs-type">int</span> len = <span class="hljs-keyword">sizeof</span>(nums) / sizof(<span class="hljs-type">int</span>); <span class="hljs-comment">//数组元素个数</span><br><br><span class="hljs-type">void</span>(<span class="hljs-type">int</span> nums[]);<br><span class="hljs-type">void</span>(<span class="hljs-type">int</span> *nums); <span class="hljs-comment">// 两种写法是等价的，所以此时nums就是个指针，sizeof(nums) == 8;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-comment">// 对于点 3</span><br><span class="hljs-type">char</span> str[<span class="hljs-number">4</span>] = <span class="hljs-string">&quot;abc&quot;</span>;<br>str[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 可以, 花括号形式赋值</span><br><br><span class="hljs-type">char</span> *str = <span class="hljs-string">&quot;abc&quot;</span>;<br>str[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 不可以，指针赋值，指向的是字符串常量（在只读区），常量能改么？</span><br><br><span class="hljs-type">char</span> *str[] = &#123;<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;ab&quot;</span>&#125;;<br>str[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 不可以，str是一个数组，里面存放的是指针，所以对应的”abc“是赋值给指针了</span><br><br><span class="hljs-type">char</span> str[][<span class="hljs-number">4</span>] = &#123;<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;ab&quot;</span>&#125;;<br>str[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 可以， str是数组的数组，所以”abc“是赋值给数组，也即花括号形式赋值</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="1-4-1-为什么C语言不做数组下标越界检查？"><a href="#1-4-1-为什么C语言不做数组下标越界检查？" class="headerlink" title="1.4.1 为什么C语言不做数组下标越界检查？"></a>1.4.1 为什么C语言不做数组下标越界检查？</h4><p>简单来说，C中访问数组元素，（即使你用的是下标访问法，）都是用指针来进行的。这样的指针可以有很多种，存在于多处、多个源文件中，他们还可以自由的进行加减运算。对编译器来说是很难追踪每一个指针的</p>
+<h3 id="1-5-函数指针"><a href="#1-5-函数指针" class="headerlink" title="1.5 函数指针"></a>1.5 函数指针</h3><p>正如数组在表达式中被解读成指针一样，<strong>函数，也同时是指向函数的指针，这个指针指向函数的初始地址</strong></p>
+<h4 id="1-5-1-ANSI-C标准"><a href="#1-5-1-ANSI-C标准" class="headerlink" title="1.5.1 ANSI C标准"></a>1.5.1 ANSI C标准</h4><ul>
+<li>表达式中的函数，自动转换成指向函数的指针，但是除了作为<code>sizeof</code>和<code>&amp;</code>的操作符时</li>
+<li>函数调用运算符<code>()</code>的操作数不是函数，而是函数的指针</li>
+</ul>
+<p>因此对于指向函数的指针，使用<code>*</code>对其解引用，变为函数，但是由于是在表达式中，因此立马又被解释成指向函数的指针，因此，下面这个也是能工作的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span>;<br><span class="hljs-type">void</span> (*func_p)(<span class="hljs-type">int</span>);<br>func_p = func; <span class="hljs-comment">// 此时 func 直接可以解释成指向函数的指针</span><br>func_p = &amp;func; <span class="hljs-comment">// 此时 func 不能再解释称函数指针了，因为是 &amp; 的操作数</span><br><br>(******<span class="hljs-built_in">printf</span>)(<span class="hljs-string">&quot;hello\n&quot;</span>); <span class="hljs-comment">// 一样正常工作</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="1-5-2-函数指针的用途"><a href="#1-5-2-函数指针的用途" class="headerlink" title="1.5.2 函数指针的用途"></a>1.5.2 函数指针的用途</h4><ul>
+<li>GUI中的按钮控件记忆“当自身被按下的时候需要调用的函数”</li>
+<li>“指向函数的指针，的数组”，可以避免用switch</li>
+</ul>
+<h2 id="2-C是如何使用内存的"><a href="#2-C是如何使用内存的" class="headerlink" title="2. C是如何使用内存的"></a>2. C是如何使用内存的</h2><h3 id="2-1-C的变量种类"><a href="#2-1-C的变量种类" class="headerlink" title="2.1 C的变量种类"></a>2.1 C的变量种类</h3><h4 id="2-1-1-作用域"><a href="#2-1-1-作用域" class="headerlink" title="2.1.1 作用域"></a>2.1.1 作用域</h4><ul>
+<li>全局变量：在函数之外声明，在任何地方可见。即使源文件被分割成多个文件编译，别的文件仍然可见</li>
+<li>文件内部的静态变量：只限定在当前源代码文件中，用<code>static</code>修饰</li>
+<li>局部变量：只在语句块内被引用</li>
+</ul>
+<h4 id="2-1-2-存储期"><a href="#2-1-2-存储期" class="headerlink" title="2.1.2 存储期"></a>2.1.2 存储期</h4><ul>
+<li>静态存储期：全局变量、文件内static变量、指定static的局部变量。从程序开始，到程序结束</li>
+<li>自动存储期：只在代码块{}内存活</li>
+<li><code>malloc()</code>动态分配的内存：直到用<code>free()</code>释放</li>
+</ul>
+<h3 id="2-2-各变量在内存中的位置"><a href="#2-2-各变量在内存中的位置" class="headerlink" title="2.2 各变量在内存中的位置"></a>2.2 各变量在内存中的位置</h3><h4 id="2-2-1-函数和字符串常量"><a href="#2-2-1-函数和字符串常量" class="headerlink" title="2.2.1 函数和字符串常量"></a>2.2.1 函数和字符串常量</h4><p>函数自身，和字符串常量，汇总配置在一个<strong>只读</strong>的内存区域</p>
+<h4 id="2-2-2-静态变量"><a href="#2-2-2-静态变量" class="headerlink" title="2.2.2 静态变量"></a>2.2.2 静态变量</h4><p><strong>静态变量</strong>：包括全局变量，文件内static变量，static指定的局部变量。它们总在<strong>虚拟地址</strong>空间中占有固定区域，从程序启动到结束持续存在。</p>
+<ul>
+<li><p>函数和全局变量，如果他们的名称相同，即使跨越了多个源代码文件，也被当作相同的对象来对待。这是由<strong>链接器</strong>负责的</p>
+</li>
+<li><p>为了在链接器中将名称结合起来，各个目标代码(.o)都具备一个<strong>符号表</strong>（可以用<code>nm</code>命令查看）</p>
+</li>
+<li><p>自动变量不会出现在符号表中，因为他们是在运行时被决定的，属于链接器管辖范围之外的</p>
+</li>
+</ul>
+<h4 id="2-2-3-自动变量"><a href="#2-2-3-自动变量" class="headerlink" title="2.2.3 自动变量"></a>2.2.3 自动变量</h4><p>自动变量重复使用内存区域（<strong>栈</strong>），创建、释放，他们的内存地址是不一定的</p>
+<h5 id="2-2-3-1-函数调用过程"><a href="#2-2-3-1-函数调用过程" class="headerlink" title="2.2.3.1 函数调用过程"></a>2.2.3.1 <strong>函数调用过程</strong></h5><ol>
+<li>在<strong>调用方</strong>，参数<strong>从后往前</strong>堆积在栈中【注：先进栈的是参数列表，从右往左！而且，此时由调用函数负责！】</li>
+<li>和调用有关的返回信息（<strong>返回地址</strong>等）进栈【注：返回地址在参数之上，因此先返回，参数释放由调用方操作】</li>
+<li>跳转到作为<strong>被调用</strong>对象的函数地址</li>
+<li>被调函数使用的<strong>自动变量</strong>进栈【注：1-4增长的栈区域，为被调函数的可引用区域】</li>
+<li>被调函数执行过程中，为了进行复杂的表达式运算，有时会向栈中放入结果</li>
+<li>被调函数结束，释放自动变量内存，使用返回信息返回【注：此时参数还在栈中】</li>
+<li>从栈中去掉调用方的参数【注：所谓传值，即这里的参数是copy的，还要被释放】</li>
+</ol>
+<h5 id="2-2-3-2-函数栈内存溢出"><a href="#2-2-3-2-函数栈内存溢出" class="headerlink" title="2.2.3.2 函数栈内存溢出"></a>2.2.3.2 函数栈内存溢出</h5><p>一旦破坏了自动变量的内存区域，一直往下，就是函数的返回信息。如果数组越界越到了这里，&#x3D;&#x3D;破坏了返回信息，那么函数将不能再正确返回&#x3D;&#x3D;。甚至可以通过越界在返回信息处填上别的内容，此即安全漏洞。</p>
+<h5 id="2-2-3-3-可变长参数"><a href="#2-2-3-3-可变长参数" class="headerlink" title="2.2.3.3 可变长参数"></a>2.2.3.3 <strong>可变长参数</strong></h5><p>在2.2.3.1中提到，C语言函数的参数进栈，是从后往前的，因此<strong>无论堆积多少参数，总是能知道第一个参数的地址</strong>。利用这点可以实现参数个数不固定的函数</p>
+<p><code>void func(char *format,...);</code></p>
+<p>函数原型中出现<code>...</code>，那么对这一部分是不会进行类型检查的。根据<code>format</code>中指出的参数格式，逐个对后面的参数进行处理即可。因为format是能找到的，然后只需往栈中向后读取参数就好了。</p>
+<h4 id="2-2-4-malloc-分配的内存"><a href="#2-2-4-malloc-分配的内存" class="headerlink" title="2.2.4 malloc()分配的内存"></a>2.2.4 malloc()分配的内存</h4><ol>
+<li><p>返回值为<code>void*</code>，即通用型指针，所以不需要进行强制类型转换；分配失败则返回<code>NULL</code></p>
+</li>
+<li><p>不是系统调用</p>
+</li>
+<li><p>在”利用<code>malloc()</code>分配的内存区域”下面，是一大块空的内存空间。多次调用<code>malloc()</code>会调用一次系统调用<br><code>brc()</code>，内存区域向地址较大的方向身长（栈是向小地址增长）</p>
+</li>
+</ol>
+<h5 id="2-2-4-1-malloc-分配过程"><a href="#2-2-4-1-malloc-分配过程" class="headerlink" title="2.2.4.1 malloc()分配过程"></a>2.2.4.1 malloc()分配过程</h5><ul>
+<li><code>malloc()</code>遍历链表寻找空的内存块，如果发现尺寸大小合适的块，就将其分割出来，把<strong>管理区域</strong>中的标记变成“使用中的块”，并向应用程序返回<strong>紧邻管理区域的后面</strong>的区域的地址；<code>free()</code>则将管理区域中的标记改为“空块”，并顺便将上下空块合并成一个块，防止碎片化。</li>
+<li>一旦发生<strong>越界</strong>，越过<code>malloc()</code>分配的内存区域向后写入数据，就会&#x3D;&#x3D;破坏后一个块的管理区域&#x3D;&#x3D;，此后使用malloc和free就容易出现崩溃了！</li>
+</ul>
+<h5 id="2-2-4-2-free-之后可能出现的错误"><a href="#2-2-4-2-free-之后可能出现的错误" class="headerlink" title="2.2.4.2 free()之后可能出现的错误"></a>2.2.4.2 free()之后可能出现的错误</h5><p>调用<code>free()</code>后，对应的内存块内容不会马上被破坏掉，要等到下次malloc–&gt;但有可能别的地儿还在使用这块内存（free早了），所以发现错误较晚–&gt;改写free，一旦free就破坏其中的内容–&gt;可是不知道内存的大小，怎么填充新东西呢？–&gt;再改写malloc，使得每次分配都预留一小块来设定区域大小信息–&gt;当然，只用于调试版本</p>
+<h2 id="3-解读C的声明"><a href="#3-解读C的声明" class="headerlink" title="3. 解读C的声明"></a>3. 解读C的声明</h2><h3 id="3-1-of-to-returning-读法"><a href="#3-1-of-to-returning-读法" class="headerlink" title="3.1 of-to-returning 读法"></a>3.1 of-to-returning 读法</h3><ol>
+<li><p>首先着眼于<strong>标识符</strong>（变量名或函数名）【先定性，xx是xx】</p>
+</li>
+<li><p>从距离标识符最近的地方开始，依照优先顺序解释派生类型（指针、数组、函数），优先顺序为：</p>
+<p>①用于整理声明的<strong>括弧</strong><code>()</code>②表示<strong>数组</strong>的<code>[]</code>，表示<strong>函数</strong>的<code>()</code>;③表示<strong>指针</strong>的<code>*</code></p>
+</li>
+<li><p>解释完成派生类型，使用 of to returning 将他们连接起来</p>
+</li>
+<li><p>最后，追加数据修饰类型修饰符（在左边，int double等）</p>
+</li>
+</ol>
+<p><code>void (*sinnal(int sig, void (*func)(int)))(int);</code></p>
+<p><strong>读法：</strong>singal is function[sig is int, func is pointer to function(int) <strong>returning</strong> void] <strong>returning</strong> pointer <strong>to</strong> function(int) <strong>returning</strong> void</p>
+<p>signal是一个函数（参数是int, 和指向返回值为void函数的指针），返回值为：指向一个返回值为void函数（参数为int）的指针；</p>
+<p><strong>简写：</strong></p>
+<p><code>typedef void(*sig_t)(int);</code> &#x2F;&#x2F; 给指向:参数为int,返回值为void,的函数 的指针类型,起个别名：sig_t</p>
+<p><code>sig_t signal(int sig, sig_t func);</code></p>
+<h4 id="3-1-1-const"><a href="#3-1-1-const" class="headerlink" title="3.1.1 const"></a>3.1.1 const</h4><p><code>const int *p</code>: p is a pointer to <em>read-only int</em>    指针常量</p>
+<p><code>int * const p</code>: p is a <em>read-only pointer</em> to int   常量指针</p>
+<h4 id="3-1-2-typedef"><a href="#3-1-2-typedef" class="headerlink" title="3.1.2 typedef"></a>3.1.2 typedef</h4><h3 id="3-2-C的数据类型的模型"><a href="#3-2-C的数据类型的模型" class="headerlink" title="3.2 C的数据类型的模型"></a>3.2 C的数据类型的模型</h3><h4 id="3-2-1-基本类型和派生类型"><a href="#3-2-1-基本类型和派生类型" class="headerlink" title="3.2.1 基本类型和派生类型"></a>3.2.1 基本类型和派生类型</h4><p><strong>基本类型：</strong>整形（char，int)、浮点型(float,double)<br>枚举类型：【定义的一些离散变量】【枚举类型 + 基本类型 &#x3D; 算数类型】<br>void类型：【void表示没有可用的值】<br><strong>派生类型：</strong>指针类型，数组类型（元素个数为属性），函数类型（指返回值类型，参数是属性），结构类型，共用体类型</p>
+<p>例如，有如下声明：</p>
+<p><code>int (*func_table[10])(int a);</code></p>
+<p>用链结构图表示类型，链的最前面的元素是基本类型：</p>
+<pre><code class=" mermaid">graph LR
+	A[数组]--&gt;|的元素为|B[指针]--&gt;|指向|C[函数]--&gt;|返回|D[int]
+	E(元素个数为10)
+	F(参数为int)
+	A-.-E
+	C-.-F
+	
+</code></pre>
+
+<ul>
+<li><p>最开始类型“数组（元素10）”整和了全体类型的意义，所以将其称为<strong>类型分类</strong>【即“定性”，你到底是个什么东西】</p>
+</li>
+<li><p>&#x3D;&#x3D;从基本类型开始，递归地粘附上派生类型，就可以生成无限类型&#x3D;&#x3D;</p>
+</li>
+</ul>
+<h4 id="3-2-2-类型的派生"><a href="#3-2-2-类型的派生" class="headerlink" title="3.2.2 类型的派生"></a>3.2.2 类型的派生</h4><h5 id="3-2-2-1-指针类型的派生"><a href="#3-2-2-1-指针类型的派生" class="headerlink" title="3.2.2.1 指针类型的派生"></a>3.2.2.1 指针类型的派生</h5><p>后面的T1 T2…统称为<strong>被引用类型T</strong></p>
+<pre><code class=" mermaid">graph RL
+	A[指针]--&gt;|指向|B[T1]--&gt;c[T2]--&gt;d[T3]--&gt;e[......]
+</code></pre>
+
+<h5 id="3-2-2-2-数组类型的派生"><a href="#3-2-2-2-数组类型的派生" class="headerlink" title="3.2.2.2 数组类型的派生"></a>3.2.2.2 数组类型的派生</h5><pre><code class=" mermaid">graph RL
+	A[指针]--包含--&gt;T1--&gt;T2--&gt;......
+	B[元素个数]
+	A-.-B
+</code></pre>
+
+<h5 id="3-2-2-3-函数类型的派生"><a href="#3-2-2-3-函数类型的派生" class="headerlink" title="3.2.2.3 函数类型的派生"></a>3.2.2.3 函数类型的派生</h5><pre><code class=" mermaid">flowchart LR
+	a[......]--&gt;T2--&gt;T1--&gt;|被返回|b[函数]-.-c[参数]
+	c--&gt;f[T1]--&gt;g[T2]--&gt;d[......]
+	c--&gt;h[T1]--&gt;i[T2]--&gt;e[......]
+</code></pre>
+
+<ul>
+<li>有特定长度的类型，称为<strong>对象类型</strong></li>
+<li>函数类型不是对象类型，因为其没有特定长度</li>
+<li>数组类型就是将几个派生类型排列而成的类型，其全体长度为<code>sizeof(T) * len;</code>,<br>因此无法从函数类型派生数组类型（以及其他任何类型），即没有函数的数组（但可以有指向函数的指针的数组）<br>也无法从数组类型派生函数类型，因为数组不是标量，不能返回</li>
+</ul>
+<h5 id="3-2-2-4-基本类型"><a href="#3-2-2-4-基本类型" class="headerlink" title="3.2.2.4 基本类型"></a>3.2.2.4 基本类型</h5><table>
+<thead>
+<tr>
+<th align="center">推荐</th>
+<th align="left">同义表现</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">char</td>
+<td align="left">与下面俩同义，默认是什么需要看具体处理环境</td>
+<td>%c  $\pm127$</td>
+</tr>
+<tr>
+<td align="center">signed char</td>
+<td align="left"></td>
+<td>%c</td>
+</tr>
+<tr>
+<td align="center">unsigned char</td>
+<td align="left"></td>
+<td>%c  0~255</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="left">signed short, short int, singed short int</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">unsigned short</td>
+<td align="left">unsigned short int</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="left">signed, signed int, 无指定类型</td>
+<td>%d</td>
+</tr>
+<tr>
+<td align="center">unsigned int</td>
+<td align="left">unsigned</td>
+<td>%u</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="left">signed long, long int, signed long int</td>
+<td>%ld</td>
+</tr>
+<tr>
+<td align="center">unsigned long</td>
+<td align="left">unsigned long int</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="left"></td>
+<td>%f</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="left"></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">long double</td>
+<td align="left"></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h2><ol>
+<li><p><code>assert()</code></p>
+</li>
+<li><p><code>scanf()</code>：返回读取到的字符数，对于未读取的字符，仍保留在流中，可被别的读取！</p>
+</li>
+<li><p><code>realloc()</code></p>
+</li>
+<li><p><strong>标量 &amp; 聚合类型</strong>：P15、P83</p>
+</li>
+<li><p>C++中可以将任意指针赋值给void*，但是反过来不行，所以malloc必须强制类型转换。不过人C++都用<code>new</code>了</p>
+</li>
+<li><p><strong>内存布局对齐</strong>：结构体中，一些数据类型可能会被配置到比如4&#x2F;8的倍数的地址上，即使它没有这么长。例如：</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span><br>    <span class="hljs-type">int</span>    a;<br>    <span class="hljs-type">double</span> b;<br>    <span class="hljs-type">char</span>   c;	<span class="hljs-comment">// 会被自动对齐到 4 的倍数的内存地址上</span><br>&#125;hoge;<br><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(hoge));<br><span class="hljs-comment">//输出：</span><br><span class="hljs-number">16</span><br></code></pre></td></tr></table></figure></li>
+<li><p><strong>大端、小端存储</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span>              hoge = <span class="hljs-number">0x12345678</span>;<br><span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *hoge_p = (<span class="hljs-type">unsigned</span>  <span class="hljs-type">char</span>*)&amp;hoge;<br><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%x %x %x %x\n&quot;</span>, hoge_p[<span class="hljs-number">0</span>], hoge_p[<span class="hljs-number">1</span>], hoge_p[<span class="hljs-number">2</span>], hoge_p[<span class="hljs-number">3</span>]);<br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">78</span> <span class="hljs-number">56</span> <span class="hljs-number">34</span> <span class="hljs-number">12</span>    <span class="hljs-comment">// 小端存储</span><br></code></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/knowledge/" class="category-chain-item">knowledge</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C-C/">#C/C++</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>征服C指针</div>
+      <div>https://captainwc.github.io/2022/10/08/征服C指针/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>kk</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/15/Ubuntu22.04%E5%AE%89%E8%A3%85Hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4/" title="Ubuntu22.04安装Hadoop完全分布式集群">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Ubuntu22.04安装Hadoop完全分布式集群</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/21/python%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E8%B7%B5/" title="python 从入门到实践（更新中）">
+                        <span class="hidden-mobile">python 从入门到实践（更新中）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/captainwc/captainwc.github.io" target="_blank" rel="nofollow noopener"><span>ForkMe</span></a> <i class="iconfont icon-love"></i> <a href="https://www.cnblogs.com/shuaikai" target="_blank" rel="nofollow noopener"><span>Myblogs</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

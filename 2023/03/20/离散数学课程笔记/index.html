@@ -1,0 +1,931 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo/0.png">
+  <link rel="icon" href="/img/logo/0.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="kk">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="离散数学的定义定理太多了，总结一下，方便日后查阅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="离散数学课程笔记">
+<meta property="og:url" content="https://captainwc.github.io/2023/03/20/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="开宝特攻">
+<meta property="og:description" content="离散数学的定义定理太多了，总结一下，方便日后查阅">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://captainwc.github.io/img/banner/128.jpg">
+<meta property="article:published_time" content="2023-03-19T17:15:57.000Z">
+<meta property="article:modified_time" content="2023-04-02T09:10:46.087Z">
+<meta property="article:author" content="kk">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://captainwc.github.io/img/banner/128.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>离散数学课程笔记 - 开宝特攻</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":90,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>shuaikai</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner/102.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="离散数学课程笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        kk
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-20 01:15" pubdate>
+          2023年3月20日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">离散数学课程笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="离散数学课程笔记"><a href="#离散数学课程笔记" class="headerlink" title="离散数学课程笔记"></a>离散数学课程笔记</h1><h2 id="Chapter1-命题逻辑的基本概念"><a href="#Chapter1-命题逻辑的基本概念" class="headerlink" title="Chapter1 命题逻辑的基本概念"></a>Chapter1 命题逻辑的基本概念</h2><h3 id="命题与连接词"><a href="#命题与连接词" class="headerlink" title="命题与连接词"></a>命题与连接词</h3><p>否定、析取、合取、蕴含、等价连接词</p>
+<h3 id="命题公式及其赋值"><a href="#命题公式及其赋值" class="headerlink" title="命题公式及其赋值"></a>命题公式及其赋值</h3><ul>
+<li>命题常项与命题变项</li>
+<li><strong>合式公式</strong>：命题变元用联结词和圆括号按照一定逻辑关系连接起来的符号串<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308193357562.png" srcset="/img/loading.gif" lazyload alt="image-20230308193357562" style="zoom:67%;" /></li>
+<li><strong>公式层次</strong>：单个命题算0层，运算一次加一层<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308193421302.png" srcset="/img/loading.gif" lazyload alt="image-20230308193421302" style="zoom:67%;" /></li>
+<li><strong>赋值</strong>：对公式A中的全部命题变项全部指定一个值，称为对A的赋值&#x2F;解释<br><strong>成真赋值</strong>：使得公式A值为1的赋值，称为成真赋值。成假赋值同理</li>
+<li><strong>真值表</strong>：公式A在所有赋值下的取值情况列成的表。<ul>
+<li>求真值表时，首先将公式中n个命题变项按下标或字母序排列好</li>
+<li>纵向是2^n^个赋值，从0000开始，到1111结束</li>
+<li>横向按层次列出各子公式，求出不同赋值下的子公式值，并进而得出公式A的值</li>
+</ul>
+</li>
+<li>重言式&#x2F;永真式、矛盾式&#x2F;永假式、可满足式</li>
+</ul>
+<h2 id="Chapter2-命题逻辑等值演算"><a href="#Chapter2-命题逻辑等值演算" class="headerlink" title="Chapter2 命题逻辑等值演算"></a>Chapter2 命题逻辑等值演算</h2><h3 id="等值式"><a href="#等值式" class="headerlink" title="等值式"></a>等值式</h3><ul>
+<li><p>等值：命题公式A、B构成的等价式$A\lrarr B$为永真式，则称A与B等价，记作$A\Leftrightarrow B$。注意区别等价联接与公式等价的区别，即后者要求的是永真，在所有赋值下均为真。</p>
+</li>
+<li><p><strong>16个等值模式</strong></p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308195413790.png" srcset="/img/loading.gif" lazyload alt="image-20230308195413790" style="zoom:67%;" />
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308195433705.png" srcset="/img/loading.gif" lazyload alt="image-20230308195433705" style="zoom:67%;" /></li>
+</ul>
+<h3 id="析取范式与合取范式"><a href="#析取范式与合取范式" class="headerlink" title="析取范式与合取范式"></a>析取范式与合取范式</h3><ul>
+<li><p>命题变项及其否定称为<strong>文字</strong>，仅由有限个文字构成的析取&#x2F;合取式称为<strong>简单析取&#x2F;合取式</strong></p>
+</li>
+<li><blockquote>
+<p>简单析取式是重言式，当且仅当其同时含有某个命题变项及其否定式</p>
+<p>简单合取式是重言式，当且仅当其同时含有某个命题的变项及其否定</p>
+</blockquote>
+</li>
+<li><p><strong>析取范式</strong>：有限个简单合取式，的析构，构成的命题公式<br><strong>合取范式</strong>：有限个简单析取式，的合取，构成的命题公式</p>
+</li>
+<li><blockquote>
+<p>析取范式是矛盾式，当且仅当每个简单合取式都是矛盾式</p>
+<p>合取范式是重言式式，当且仅当每个简单析取式都是重言式</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p><strong>范式存在定理</strong>：任一公式命题，都存在与之等值的析取范式与合取范式</p>
+</blockquote>
+</li>
+<li><p>求给定公式的范式步骤：</p>
+<ol>
+<li>消去联结词$\rarr;、\lrarr$</li>
+<li>使用双重否定率消除双重否定符，用德摩根率内移否定符</li>
+<li>使用分配律：求析取范式时，使用$\land$对$\lor$的分配率，求合取范式反之</li>
+</ol>
+</li>
+<li><p><strong>极小项</strong>：对有n个命题变项的简单合取式，对每个命题变相（或其否定式），均出现且仅出现一次，且按下标或字典序由小到大排列，则称其为一个 极小项。<br><strong>极大项</strong>：把极小项的定义中，简单合取式换位简单析取式即可。</p>
+</li>
+<li><p>极小项与极大项的性质：</p>
+<ul>
+<li>共有2^n^个极小项，且对每一个极小项，有且仅有一组成真赋值，根据成真赋值对应的十进制数，可以将其命名为m<del>i</del></li>
+<li>共有2^n^个极大项，且对每一个极大项，有且仅有一组成假赋值，根据成真赋值对应的十进制数，可以将其命名为M<del>i</del></li>
+<li>$\neg m_i \Leftrightarrow M_i\ ,\ \neg M_i \Leftrightarrow m_i$</li>
+</ul>
+</li>
+<li><p><strong>主析取范式</strong>：所有简单合取式都是最小项的析取范式，称为主析取范式<br><strong>主合取范式</strong>：所有简单析取式都是最大项的合取范式，称为主合取范式</p>
+</li>
+<li><blockquote>
+<p>任何命题公式，都存在唯一一个与之等值的主析取范式，与主合取范式<br>证明：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308202256525.png" srcset="/img/loading.gif" lazyload alt="image-20230308202256525"></p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308202343097.png" srcset="/img/loading.gif" lazyload alt="image-20230308202343097"></p>
+</blockquote>
+</li>
+<li><p><strong>求主析取范式的步骤</strong>：如上述存在性证明中所示，若某一简单合取式中，不含有命题变元$p_j$，则对其合取上$(p_i \lor\neg p_i)$，（同一律+排中律），重复这一过程，直至每一个简单合取式都包含全部的n个命题变元，然后将其排列为最小项形式，并用对应的m<del>i</del>代替<br><strong>求主合取范式的步骤</strong>：思想同上，区别在去，对每一个不合格的简单析取式，（同一律与矛盾律）都析取上一个$(p_i\land \neg p_i)$</p>
+</li>
+<li><p>主析取范式的<strong>用途</strong>：</p>
+<ul>
+<li>求公式的成真赋值与成假赋值：<br>若公式A的主析取范式中，有 s 个最小项，则A有 s 个成真赋值，对应极小项的下标。剩余 2^n^ - s 个成假赋值。（析取范式，有一个极小项为真就行）</li>
+<li>判断公式类型：<ul>
+<li>公式A为重言式，当且仅当A的主析取范式含有全部 2^n^ 个极小项</li>
+<li>公式A为矛盾式，当且仅当A的主析取范式含有 0 个极小项</li>
+<li>公式A为可满足式，当且仅当A的主析取范式至少含有一个极小项</li>
+</ul>
+</li>
+<li>判断两个命题公式是否等值：<br>假设命题公式A与B共含有 n 个命题变元，按 n 个命题变元求出其对应的主析取范式 $A^<code>、B^</code>$，若 $A^<code>\Lrarr B^</code>$，则$A \Lrarr B$，否则 $A \nLeftrightarrow B$</li>
+</ul>
+</li>
+<li><p>由主析取范式求主合取范式：找出所有未出现在主析取范式中的极小项，其下标对应的极大项合取，即为主合取范式。证明：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308204625153.png" srcset="/img/loading.gif" lazyload alt="image-20230308204625153"></p>
+</li>
+<li><p>n 个命题变项的主析取&#x2F;合取范式，共有 $2^{2^n}$ 个。（因为有 2^n^ 个最小项，组合数求和）</p>
+</li>
+<li><p>$A\Lrarr B$，当且仅当二者有相同的真值表，也当且仅当二者有相同的范式。因此，范式与真值表，就是描述命题的两种不同的、等价的标准形式，二者相互确定。</p>
+</li>
+<li><p>至此，判断两命题公式等价的方法有：真值表法、等值演算法、范式法</p>
+</li>
+</ul>
+<h3 id="联结词的完备集"><a href="#联结词的完备集" class="headerlink" title="联结词的完备集"></a>联结词的完备集</h3><ul>
+<li><p><strong>n 元真值函数</strong> $F:{0,1}^n\rarr {0,1}$，其中定义域 {0,1}^n^&#x3D;{00…0, 00…1, …, 11…1}，值域&#x3D;{0,1}</p>
+</li>
+<li><p>n 个命题变元可以构成 $2^{2^n}$ 个真值函数，即一元真值函数有 4 个，二元真值函数有 16 个</p>
+</li>
+<li><p>每个真值函数都可表示成唯一的一个主范式，每个主范式对应无穷个命题公式，每个命题公式有唯一的真值函数</p>
+</li>
+<li><p>如果 n 元真值函数，可以仅由集合S中含有的联结词构成的公式表示，则称S是一个联结词的完备集</p>
+</li>
+<li><p>${\neg,\ \land,\ \lor}$ 是联结词完备集</p>
+</li>
+<li><p>与非联结词 $\uparrow$ ，有 $p\uparrow q \Lrarr \neg(p \land q)$</p>
+<p>或非联结词 $\downarrow$ ，有 $p\downarrow q \Lrarr \neg(p \lor q)$</p>
+</li>
+<li><p>${\uparrow,\ \downarrow}$ 是一个联结词完备集</p>
+</li>
+</ul>
+<h2 id="Chapter3-命题逻辑的推理理论"><a href="#Chapter3-命题逻辑的推理理论" class="headerlink" title="Chapter3 命题逻辑的推理理论"></a>Chapter3 命题逻辑的推理理论</h2><h3 id="推理的形式结构"><a href="#推理的形式结构" class="headerlink" title="推理的形式结构"></a>推理的形式结构</h3><ul>
+<li><p>设 $A_1,A_2,…,A_k$ 和 B 都是命题公式，若对于 $A_1,A_2,…,A_k$ 和 B 中出现的所有命题变项的任意一组赋值，要么 $A_1,A_2,…,A_k$ 为假；要么为真，且 B 也为真。那么此时就称，从<strong>前提</strong> $A_1,A_2,…,A_k$ 推出<strong>结论</strong> B 的<strong>推理</strong>是<strong>有效的&#x2F;正确的</strong>，并称B为<strong>有效的结论</strong>。（&#x3D;&#x3D;注意，说的推理是正确的，并没有说结论是正确的&#x3D;&#x3D;）有几点说明：</p>
+<ol>
+<li>前提推出结论的正确与否，与诸前提的排列次序无关。</li>
+<li>前提是一个有限的公式集合，记为 $\varGamma$，由前提 $\varGamma$ 推出结论 B 的推理记为 $\varGamma \vdash B$，或${A_1,A_2,…,A_k}\vdash B$，叫做<strong>推理的形式结构</strong>。如果推理是正确的，则记为 $\varGamma \vDash B$，否则记为 $\varGamma \nvDash B$</li>
+<li>（类似蕴含），前提与结论共有四种可能取值情况，只要不是前提为真时结论为假，都称推理是正确的。</li>
+<li>此处的推理只是<strong>形式推理</strong>，推理正确并不能保证结论正确，因为前提可能不成立。前提为假的时候，我们也成推理是正确的。但是通常我们认为，只有正确的前提，才能推出正确的结论。</li>
+</ol>
+</li>
+<li><blockquote>
+<p>由命题公式 $A_1,A_2,…,A_k$ 推出 B 的推理是正确的，当且仅当  $A_1\land A_2\land …\land A_k\rarr B$ 是重言式</p>
+</blockquote>
+</li>
+<li><p>推理的形式结构 ${A_1,A_2,…,A_k}\vdash B$ 等同于蕴含式  $A_1,A_2,…,A_k\rarr B$<br>推理正确 ${A_1,A_2,…,A_k}\vDash B$ 等同于 $A_1\land A_2\land …\land A_k\Rightarrow B$，其中$\Rightarrow$表示蕴含式为重言式</p>
+</li>
+<li><p>判断蕴含式是否为重言式的方法：真值表法、等值演算法、主析取范式法</p>
+</li>
+</ul>
+<h3 id="自然推理系统-P"><a href="#自然推理系统-P" class="headerlink" title="自然推理系统 $P$"></a>自然推理系统 $P$</h3><ul>
+<li><p>定义一个<strong>形式系统 $I$</strong> 由四部分组成</p>
+<ol>
+<li>非空的字母表 $A(I)$</li>
+<li>$A(I)$ 中符号构成的合式公式集 $E(I)$</li>
+<li>$E(I)$ 中一些特殊的公式组成的公理集 $A_X(I)$</li>
+<li>推理规则集 $R(I)$</li>
+</ol>
+<p>将$I$ 记为四元组 $&lt;A(I),E(I),A_X(I),R(I)&gt;$，其中 $&lt;A(I),E(I)&gt;$ 是 $I$ 的<strong>形式语言系统</strong>， $A_X(I),R(I)&gt;$ 是$I$ 的<strong>形式演算系统</strong>。形式系统分为自然推理系统与公里推理系统</p>
+</li>
+<li><p><strong>自然推理系统</strong>：从任意给定的前提出发，运用系统中的推理规则进行演算，得到的命题即为推理的结论。结论是有效的，但是不一定为重言式<br><strong>公理推理系统</strong>：只能从若干条给定的公里出发，运用系统中的推理规则进行推理，得到的有效结论一定是重言式，称为系统中的公理。</p>
+</li>
+<li><p>自然推理系统的定义如下：</p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309132305844.png" srcset="/img/loading.gif" lazyload alt="image-20230309132305844" style="zoom: 60%;" />
+
+  <table style="border:none;text-align:center;">
+      <tr>
+          <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309132749699.png" srcset="/img/loading.gif" lazyload border="0"></td>
+          <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309132903003.png" srcset="/img/loading.gif" lazyload border="0"></td>
+      </tr>
+  </table>
+</li>
+<li><p><strong>证明</strong>的概念：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133237353.png" srcset="/img/loading.gif" lazyload alt="image-20230309133237353"></p>
+</li>
+<li><p>证明法：</p>
+<ol>
+<li><strong>附加前提证明法</strong>：把结论的前提，纳入到证明的前提中去，只需证明结论的结论有效性即可<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133341402.png" srcset="/img/loading.gif" lazyload alt="image-20230309133341402"></li>
+<li><strong>归谬法</strong>：将欲证明结论的否定作为前提，利用现有的条件推出矛盾式来，即可证明原结论的有效性。<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133531010.png" srcset="/img/loading.gif" lazyload alt="image-20230309133531010"></li>
+<li>反证法、穷举法、存在性与唯一性证明……</li>
+</ol>
+</li>
+</ul>
+<h2 id="Chapter4-一阶逻辑的基本概念"><a href="#Chapter4-一阶逻辑的基本概念" class="headerlink" title="Chapter4 一阶逻辑的基本概念"></a>Chapter4 一阶逻辑的基本概念</h2><p>​	命题逻辑具有局限性，因为它不能很好的描述个体与整体之间的内在联系与数量关系，因此引入量词的概念。这就是<strong>一阶逻辑</strong>所研究的内容。一阶逻辑又称一阶谓词逻辑或谓词逻辑。</p>
+<h3 id="一阶逻辑命题符号化"><a href="#一阶逻辑命题符号化" class="headerlink" title="一阶逻辑命题符号化"></a>一阶逻辑命题符号化</h3><p>个体词、谓词、量词是一阶逻辑命题符号化的三个基本要素</p>
+<ul>
+<li><strong>个体词</strong>：研究对象中可以独立存在的具体或抽象的客体。具体指代的叫<strong>个体常项</strong>，抽象泛指的叫<strong>个体变项</strong>。个体变项的取值范围称为<strong>个体域&#x2F;论域</strong>，他可以是有限集，也可以是无限集。表示宇宙间一切事物的叫<strong>全总个体域</strong>。</li>
+<li><strong>谓词</strong>：用来刻画个体词性质，及个体间关系的词，常用字母 $F、G、H$ 表示。同样的，表示具体关系的叫<strong>谓词常项</strong>，表示抽线关系的叫<strong>谓词变项</strong>，他们都用大写字母表示。有时为了做出一些区分，还需要引入<strong>特性谓词</strong><br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309164935791.png" srcset="/img/loading.gif" lazyload alt="image-20230309164935791"></li>
+<li><strong>量词</strong>：全称量词 $\forall$，存在量词 $\exists,\nexists$<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309165651519.png" srcset="/img/loading.gif" lazyload alt="image-20230309165651519"></li>
+<li>例子：<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309170304875.png" srcset="/img/loading.gif" lazyload alt="image-20230309170304875" style="zoom:50%;" /></li>
+<li>对于含有 n 元谓词的命题要注意：<ol>
+<li>命题中的性质谓词符号化为一元谓词，而表示关系的符号华为多元谓词</li>
+<li>根据实际意义选择全称或存在量词</li>
+<li>一般来说，多个量词出现时，他们的顺序不能互换</li>
+<li>命题的符号化形式不唯一</li>
+</ol>
+</li>
+</ul>
+<h3 id="一阶逻辑公式及解释"><a href="#一阶逻辑公式及解释" class="headerlink" title="一阶逻辑公式及解释"></a>一阶逻辑公式及解释</h3>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/course/" class="category-chain-item">course</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/math/">#math</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>离散数学课程笔记</div>
+      <div>https://captainwc.github.io/2023/03/20/离散数学课程笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>kk</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/01/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" title="Linux 系统编程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux 系统编程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/15/Leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/" title="Leetcode刷题指南">
+                        <span class="hidden-mobile">Leetcode刷题指南</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/captainwc/captainwc.github.io" target="_blank" rel="nofollow noopener"><span>ForkMe</span></a> <i class="iconfont icon-love"></i> <a href="https://www.cnblogs.com/shuaikai" target="_blank" rel="nofollow noopener"><span>Myblogs</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo/0.png">
+  <link rel="icon" href="/img/logo/0.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="kk">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="记录了一些leetcode做题笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode刷题指南">
+<meta property="og:url" content="https://captainwc.github.io/2023/03/15/Leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="开宝特攻">
+<meta property="og:description" content="记录了一些leetcode做题笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://captainwc.github.io/img/banner/beijing.png">
+<meta property="article:published_time" content="2023-03-15T08:15:57.000Z">
+<meta property="article:modified_time" content="2023-04-02T09:17:48.418Z">
+<meta property="article:author" content="kk">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://captainwc.github.io/img/banner/beijing.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Leetcode刷题指南 - 开宝特攻</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":90,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>shuaikai</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner/102.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Leetcode刷题指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        kk
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-15 16:15" pubdate>
+          2023年3月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Leetcode刷题指南</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Leetcode刷题指南"><a href="#Leetcode刷题指南" class="headerlink" title="Leetcode刷题指南"></a>Leetcode刷题指南</h1><h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><h3 id="盛水最多容器-11"><a href="#盛水最多容器-11" class="headerlink" title="盛水最多容器  11"></a>盛水最多容器  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/container-with-most-water/">11</a></h3><p><strong>题目</strong>：</p>
+<p>​	如下图，给你一个数组height，找出能“盛水”的最大值</p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230302185117003.png" srcset="/img/loading.gif" lazyload alt="image-20230302185117003" style="zoom:50%;" />
+
+<p><strong>分析</strong>：</p>
+<p>​	从两端扫一遍数组，则盛水量为：<br>$$<br>max_contain &#x3D; (right - left)\times \min{height[left],\ height[right]}<br>$$<br>​	现在考虑怎么个扫描法。反正只要移动，容器的“底”必然会变小，如果移动长板，那么容器的边最多不会超过原来的短板，因为边去的是最小值，移动后小于原来的短板，则变小，移动后大于，边也不会变大，因此移动长板，必然会使容量减小。那么就移动短边。</p>
+<p><strong>题解</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxArea</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; height)</span> </span>&#123;<br>    <span class="hljs-type">int</span> l = <span class="hljs-number">0</span>, r = height.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>    <span class="hljs-type">int</span> max_contain = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (l &lt; r) &#123;<br>        <span class="hljs-type">int</span> area = <span class="hljs-built_in">min</span>(height[l], height[r]) * (r - l);<br>        ans = <span class="hljs-built_in">max</span>(max_contain, area);<br>        <span class="hljs-keyword">if</span> (height[l] &lt;= height[r])<br>            ++l;<br>        <span class="hljs-keyword">else</span><br>            --r;<br>    &#125;<br>    <span class="hljs-keyword">return</span> max_contain;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="贪心-amp-动态规划"><a href="#贪心-amp-动态规划" class="headerlink" title="贪心 &amp; 动态规划"></a>贪心 &amp; 动态规划</h2><h3 id="股票最佳时机Ⅰ-121"><a href="#股票最佳时机Ⅰ-121" class="headerlink" title="股票最佳时机Ⅰ  121"></a>股票最佳时机Ⅰ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/">121</a></h3><p><strong>题目：</strong></p>
+<p>​	给一个prices数组表示每天股票的价格，只能某天买入，后面一天卖出，求能赚的最大利润。</p>
+<p><strong>分析：</strong></p>
+<p>​	今天的最大利润，等于昨天的最大利润，与之前最低时买入并在今天卖出所得利润，的最大值。即<br>$$<br>profit[i] &#x3D; max {\ profit[i - 1],\  prices[i] - min_prices\ }<br>$$<br>​	类比后面几种，也可以写成，<br>$$<br>\left {<br>\begin{aligned}<br>buy_0 &amp;&#x3D; 0,\ sell_0 &#x3D; 0 \<br>buy_1 &amp;&#x3D; max{\ buy_1^<code>,\ sell_0-prices[i]\ \&#125; \\ sell_1 &amp;= max \&#123;\ sell_1^</code>,\ buy_1+prices[i]\ }<br>\end{aligned}<br>\right .<br>$$</p>
+<p><strong>题解：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-type">int</span> inf = <span class="hljs-number">1e9</span>;<br>    <span class="hljs-type">int</span> minprice = inf, maxprofit = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> price: prices) &#123;<br>        maxprofit = <span class="hljs-built_in">max</span>(maxprofit, price - minprice);<br>        minprice = <span class="hljs-built_in">min</span>(price, minprice);<br>    &#125;<br>    <span class="hljs-keyword">return</span> maxprofit;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="股票最佳时机Ⅱ-122"><a href="#股票最佳时机Ⅱ-122" class="headerlink" title="股票最佳时机Ⅱ  122"></a>股票最佳时机Ⅱ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/">122</a></h3><p><strong>题目：</strong></p>
+<p>​	仍然是prices数组表示每日价格，区别是，可以进行多次买卖，但是每一天手里最多只能有一只股票。即买了就得卖，不卖不能再买。求最大利润。</p>
+<p>​	与 Ⅰ 的区别在于，能多次买卖，只不过必须是一买一卖，不能同时持有多支。</p>
+<p><strong>分析：</strong></p>
+<p>​	由于最多持有一只股票，因此第i天只有两种情况：持有一支和0支，分别用$dp[i][0]$和$dp[i][1]$表示。每天的最大利润等于，要么卖了更赚，要么前一天就最赚。则有状态转移方程如下：<br>$$<br>\left {<br>\begin{aligned}<br>dp[i][0] &amp;&#x3D; max{dp[i - 1][0],dp[i-1][1]+prices[i]} \<br>dp[i][1] &amp;&#x3D; max{dp[i - 1][1],dp[i-1][0]-prices[i]}<br>\end{aligned}<br>\right .<br>$$<br>​	初值，也即第一天时，$dp[0][0] &#x3D; 0,\ dp[0][1] &#x3D; -prices[0]$，最后卖了肯定比不卖赚，因此最大值即为$dp[n][0]$。</p>
+<p>​	同样的，类比一下，这里也可以不用二维数组。</p>
+<p><strong>题解：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-type">int</span> dp0 = <span class="hljs-number">0</span>, dp1 = -prices[<span class="hljs-number">0</span>];<br>    <span class="hljs-type">int</span> len = prices.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;<br>        <span class="hljs-comment">// 这里可以直接操作dp0即可</span><br>        dp0 = <span class="hljs-built_in">max</span>(dp0, dp1 + prices[i]);<br>        dp1 = <span class="hljs-built_in">max</span>(dp1, dp0 - prices[i]);<br>        <span class="hljs-comment">// int new_dp0 = max(dp0, dp1 + prices[i]);</span><br>        <span class="hljs-comment">// int new_dp1 = max(dp1, dp0 - prices[i]);</span><br>        <span class="hljs-comment">// dp0 = new_dp0;</span><br>        <span class="hljs-comment">// dp1 = new_dp1;</span><br>    &#125;<br><span class="hljs-keyword">return</span> dp0;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="股票最佳时机Ⅲ-123"><a href="#股票最佳时机Ⅲ-123" class="headerlink" title="股票最佳时机Ⅲ  123"></a>股票最佳时机Ⅲ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/">123</a></h3><p><strong>题目：</strong></p>
+<p>​	还是prices数组，但是最多只能进行两次买卖，且最多同时持有一支股票。</p>
+<p>​	与Ⅱ的区别在于，限制了交易次数，最多两次。</p>
+<p><strong>分析：</strong></p>
+<p>​	某一天，最多有五种操作：不买，买了一支，卖了一支，买了第二支，卖了第二支。对应的状态转移方程为：<br>$$<br>\left{<br>\begin{aligned}<br>buy_0 &amp;&#x3D; 0 ,\ sell_0&#x3D;0\<br>buy_1 &amp;&#x3D; max{\ buy_1^<code>,\ - price[i] \ \&#125; \\ sell_1 &amp;= max\&#123;\ sell_1^</code>,\ buy_1^<code>+prices[i]\ \&#125; \\ buy_2 &amp;= max\&#123;\ buy_2^</code>,\ sell_1^<code>-prices[i]\ \&#125; \\ sell_2 &amp;= max\&#123;\ sell_2^</code>,\ buy_2^<code>+prices[i]\ \&#125; \\ \end&#123;aligned&#125; \right . $$ ​	加上</code>‘&#96;表示前一天的值。buy<del>0</del>，不买肯定是0，不用考虑。最后最赚的，如果卖了两支那就两支最赚，返回sell<del>2</del>，如果买了一支，那么$sell_2 &#x3D; sell_1$，买了没卖一定比卖了赚的少。因此最后返回值为sell<del>2</del></p>
+<p>​	另外，这里直接对</p>
+<p><strong>题解：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-type">int</span> buy1 = -prices[<span class="hljs-number">0</span>], sell1 = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> buy2 = -prices[<span class="hljs-number">0</span>], sell2 = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.<span class="hljs-built_in">size</span>(); i++) &#123;<br>        buy1 = <span class="hljs-built_in">max</span>(buy1, <span class="hljs-number">0</span> - prices[i]);<br>        sell1 = <span class="hljs-built_in">max</span>(sell1, buy1 + prices[i]);<br>        buy2 = <span class="hljs-built_in">max</span>(buy2, sell1 - prices[i]);<br>        sell2 = <span class="hljs-built_in">max</span>(sell2, buy2 + prices[i]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> sell2;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="股票最佳时机-Ⅳ-188"><a href="#股票最佳时机-Ⅳ-188" class="headerlink" title="股票最佳时机 Ⅳ  188"></a>股票最佳时机 Ⅳ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/">188</a></h3><p><strong>题目：</strong></p>
+<p>​	还还还是那个prices数组，你可以进行<code>k</code>次交易，仍然是最多同时持有一支股票。</p>
+<p>​	与Ⅲ的区别在于，从2次改成了k次</p>
+<p><strong>分析：</strong></p>
+<p>​	解法同上，区别在于，限制买两次，每天是5种状态，限制买k次，每天还是那么分析状态，用一个for循环表示出来即可。要注意初始化时，buy要全部初始化为-p0，因为一天可以连续买卖。</p>
+<p><strong>题解：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-type">int</span> k, vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">buy</span><span class="hljs-params">(k+<span class="hljs-number">1</span>, -prices[<span class="hljs-number">0</span>])</span></span>;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">sell</span><span class="hljs-params">(k+<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;<br>    buy[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= k; ++j) &#123;<br>            buy[j] = <span class="hljs-built_in">max</span>(buy[j], sell[j - <span class="hljs-number">1</span>] - prices[i]);<br>            sell[j] = <span class="hljs-built_in">max</span>(sell[j], buy[j] + prices[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sell[k];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="停下思考-1"><a href="#停下思考-1" class="headerlink" title="停下思考 1"></a>停下思考 1</h3><blockquote>
+<p>上面这几个&#x3D;&#x3D;股票&#x3D;&#x3D;问题，采用了动态规划方法解决。那么他们的&#x3D;&#x3D;最优子结构&#x3D;&#x3D;是什么呢？</p>
+<p>可以举几个最优子结构的例子进行类比学习：</p>
+<ul>
+<li><p>最佳游艇租赁，<strong>假设</strong>最优路径有中间停靠站k，那左右两边的租赁价格都得是最小</p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303222443969.png" srcset="/img/loading.gif" lazyload alt="image-20230303222443969"></p>
+</li>
+<li><p>矩阵链乘，<strong>假设</strong>要从中间k处分割，那么左右的链乘代价都得是最小的<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303222527991.png" srcset="/img/loading.gif" lazyload alt="image-20230303222527991"></p>
+</li>
+<li><p>最长公共子序列，<strong>假设</strong>Z是X和Y的最长公共子序列，那么，如果三者末位元素相等，那么去掉一个，Z<del>k-1</del>还的是X<del>m-1</del>、Y<del>n-1</del>的最长子序列。如果末尾元素不同，那么去掉那个不同的（假设是X的末位），Z<del>k</del>还得是X<del>m-1</del>与Y<del>n</del>的最长子序列<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303223446862.png" srcset="/img/loading.gif" lazyload alt="image-20230303223446862"></p>
+</li>
+<li><p>基因编辑（字符串变为另一字符串所需的最小代价），<strong>假设</strong>X和Y的最短编辑距离是<code>d[i][j]</code>，那么对于X和Y的右侧，要么放得对齐：相同了不编辑，不同则编辑；要么不对齐：去掉长的，或给短的插入一个。反正均可以用d表示出来：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303224711576.png" srcset="/img/loading.gif" lazyload alt="image-20230303224711576"></p>
+</li>
+<li><p>0-1背包，</p>
+</li>
+</ul>
+</blockquote>
+<p>​	<strong>20230303：</strong>都是先假设最优解存在，将最优解设出来，然后去表示子问题的最优解（即递推）。我认为股票的最优子结构是，每一天买卖股票所能获得的最大利润。知道了前面每一天的，就能知道最后一天的答案。分析dp解题步骤：找状态转移方程$\rightarrow$分析初值，然后就可以写循环了</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/knowledge/" class="category-chain-item">knowledge</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/algorithm/">#algorithm</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Leetcode刷题指南</div>
+      <div>https://captainwc.github.io/2023/03/15/Leetcode刷题指南/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>kk</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/03/20/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="离散数学课程笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">离散数学课程笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/15/%E5%88%9B%E5%BB%BA%E6%96%B0%E7%B3%BB%E7%BB%9F/" title="配置新系统">
+                        <span class="hidden-mobile">配置新系统</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/captainwc/captainwc.github.io" target="_blank" rel="nofollow noopener"><span>ForkMe</span></a> <i class="iconfont icon-love"></i> <a href="https://www.cnblogs.com/shuaikai" target="_blank" rel="nofollow noopener"><span>Myblogs</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

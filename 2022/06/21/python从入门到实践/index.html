@@ -1,0 +1,857 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo/0.png">
+  <link rel="icon" href="/img/logo/0.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="kk">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="主要目的是总结一些python的常用法，给亲爱的曦曦查阅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 从入门到实践（更新中）">
+<meta property="og:url" content="https://captainwc.github.io/2022/06/21/python%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="开宝特攻">
+<meta property="og:description" content="主要目的是总结一些python的常用法，给亲爱的曦曦查阅">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://captainwc.github.io/img/banner/200.png">
+<meta property="article:published_time" content="2022-06-21T09:22:20.000Z">
+<meta property="article:modified_time" content="2023-04-02T09:09:54.852Z">
+<meta property="article:author" content="kk">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://captainwc.github.io/img/banner/200.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>python 从入门到实践（更新中） - 开宝特攻</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":90,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>shuaikai</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/banner/102.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="python 从入门到实践（更新中）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        kk
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-21 17:22" pubdate>
+          2022年6月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">python 从入门到实践（更新中）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="python-从入门到实践"><a href="#python-从入门到实践" class="headerlink" title="python 从入门到实践"></a>python 从入门到实践</h1><hr>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><p><code>import math</code><br>math.ceil(31.1)</p>
+<p><code>from math import sqrt</code><br>sqrt(3)</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p><code>str.upper() lower() title()</code>：大写 小写 首字母大写</p>
+<p><code>str.rstrip() lstrip() strip()</code>：删除 末尾 开头 两端 多余空格</p>
+<p><code>str(num)</code>：将 num 转换为字符串类型</p>
+<p><code>int(str)</code>：将字符型数字转换为整型</p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p><strong>列表：</strong>一系列按特定顺序排列的元素，如<code>fruits = [&#39;apple&#39;, &#39;banana&#39;, &#39;pear&#39;]</code></p>
+<h3 id="列表操作："><a href="#列表操作：" class="headerlink" title="列表操作："></a>列表操作：</h3><h4 id="访问-数列索引"><a href="#访问-数列索引" class="headerlink" title="访问 数列索引"></a>访问 <em>数列索引</em></h4><p><code>print(fruits)</code><br><code>print(fruits[0].title())</code><br><code>fruits[-2]</code></p>
+<h4 id="追加-append-元素"><a href="#追加-append-元素" class="headerlink" title="追加 .append(元素)"></a>追加 <em>.append(元素)</em></h4><p><code>fruit.append(watermelon)</code></p>
+<h4 id="插入-insert-位置，元素"><a href="#插入-insert-位置，元素" class="headerlink" title="插入 .insert(位置，元素)"></a>插入 .<em>insert(位置，元素)</em></h4><p><code>fruit.insert(0, watermelon)</code></p>
+<h4 id="删除-del-amp-pop-位置-amp-remove-元素"><a href="#删除-del-amp-pop-位置-amp-remove-元素" class="headerlink" title="删除 del &amp; .pop(位置) &amp; .remove(元素)"></a>删除 <em>del &amp; .pop(位置) &amp; .remove(元素)</em></h4><p><code>del fruit[-1]</code></p>
+<p><code>favorite = fruit.pop()</code></p>
+<p><code>temp = fruit.pop(2)</code></p>
+<p><code>fruits.remove(&#39;apple&#39;)</code></p>
+<h4 id="排序-永久-sort-amp-暂时sorted-表名"><a href="#排序-永久-sort-amp-暂时sorted-表名" class="headerlink" title="排序 永久.sort() &amp; 暂时sorted(表名)"></a>排序 永久.sort() &amp; 暂时sorted(表名)</h4><p>#方法与函数的区别</p>
+<p><code>sorted(fruits)</code></p>
+<p><code>fruit.sort(reverse = True)</code></p>
+<h4 id="倒序-reserve"><a href="#倒序-reserve" class="headerlink" title="倒序 .reserve()"></a>倒序 <em>.reserve()</em></h4><p><code>print(fruits.reverse())</code></p>
+<h4 id="表长-len-表名"><a href="#表长-len-表名" class="headerlink" title="表长 len(表名)"></a>表长 <em>len(表名)</em></h4><p><code>len(fruits)</code></p>
+<h4 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h4><p><code>fruits[a : b]</code> #下标为 a 到 b-1 的列表</p>
+<h3 id="操作列表"><a href="#操作列表" class="headerlink" title="操作列表"></a>操作列表</h3><h4 id="循环遍历"><a href="#循环遍历" class="headerlink" title="循环遍历"></a>循环遍历</h4><p><code>for item in list_of_items : print(item)</code></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">for</span> fruit <span class="hljs-keyword">in</span> fruits:<br>	<span class="hljs-built_in">print</span>(fruit)<br>	<span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(fruits))<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;that&#x27;s all!&quot;</span>)<br><br><span class="hljs-comment"># 没有缩进的是在for循环外面的</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="range-函数"><a href="#range-函数" class="headerlink" title="range() 函数"></a>range() 函数</h4><p>range(起点 a，终点+1 b，步长 c)：以步长 c 生成 a 到 b-1 的数字</p>
+<p><code>numbers = list(range(1, 10, 2))</code></p>
+<h4 id="列表复制"><a href="#列表复制" class="headerlink" title="列表复制"></a>列表复制</h4><p><del><code>fruits_2 = fruits_1</code></del>	#2是对1的一个引用，二者是同一个列表</p>
+<p><code>fruits_3 = fruits_1[:]</code>	#3是对1的一个复制，是两个列表</p>
+<h4 id="判断空"><a href="#判断空" class="headerlink" title="判断空"></a>判断空</h4><p><code>if(fruits) ：</code>	#空时返回False</p>
+<h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><p>**元组: **不能修改的值构成的列表，称为元组</p>
+<p><code>nums = (10, 20)</code></p>
+<p>#不能修改值，但可以重新定义并赋值</p>
+<h2 id="if表达式"><a href="#if表达式" class="headerlink" title="if表达式"></a>if表达式</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">if</span> a &gt; b <span class="hljs-keyword">or</span> c &lt; d:<br>	<span class="hljs-built_in">print</span>(a)<br><span class="hljs-keyword">elif</span> a = b <span class="hljs-keyword">and</span> c &gt; d:<br>	<span class="hljs-built_in">print</span>(b)<br><span class="hljs-keyword">else</span>:           <span class="hljs-comment">#不一定需要else模块</span><br>	<span class="hljs-built_in">print</span>(a + b)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><p><strong>字典：</strong>一系列键-值的集合。每个键都与值相关联，值可以是任何对象name &#x3D; {‘键’：值， ‘键’：‘值’}</p>
+<p><code>alien_0 = &#123;&#39;color&#39; : &#39;green&#39;, &#39;age&#39; : &#39;15&#39;, &#39;favorite&#39; : fruits&#125;</code></p>
+<h3 id="字典操作"><a href="#字典操作" class="headerlink" title="字典操作"></a>字典操作</h3><h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><p><code>alien_0[&#39;age&#39;]</code>	#键值带引号</p>
+<h4 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h4><p><code>alien_0[&#39;weight&#39;] = 50</code>	#直接添加</p>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p><code>del alien_0[&#39;weight&#39;]</code></p>
+<h4 id="一些方法-amp-函数"><a href="#一些方法-amp-函数" class="headerlink" title="一些方法 &amp; 函数"></a>一些方法 &amp; 函数</h4><p><code>.keys()</code>	#返回一个 键</p>
+<p><code>.values()</code>	#返回一个 值</p>
+<p><code>.items()</code>	#返回一对 键-值</p>
+<p><code>set(一堆值)</code>	#化为集合，&#x3D;&#x3D;没有重复元素&#x3D;&#x3D;</p>
+<h4 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h4><p>字典套字典， 字典套列表， 列表套字典</p>
+<h2 id="用户输入"><a href="#用户输入" class="headerlink" title="用户输入"></a>用户输入</h2><p><strong>用户输入：</strong>函数 <code>input(提示)</code>，让程序暂停，等待用户输入，并储存在一个变量中</p>
+<h2 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h2><p><del><code>while num in range(1, 10):</code></del></p>
+<p><code>for num in range(1, 10):</code></p>
+<p>while循环的判断语句变量要已经定义过，for循环可以现场定义</p>
+<h4 id="退出循环"><a href="#退出循环" class="headerlink" title="退出循环"></a>退出循环</h4><ol>
+<li>设置tag。<code>tag = false \n while !tag :</code></li>
+<li><code>break, continue</code></li>
+<li>用户输入</li>
+</ol>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">def</span> <span class="hljs-title function_">fun_name</span>(<span class="hljs-params">parameter</span>):<br>	<span class="hljs-string">&quot;&quot;&quot; 文档字符串 &quot;&quot;&quot;</span><br>	fun_body<br></code></pre></td></tr></table></figure>
+
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><ul>
+<li><p>位置实参 <code>fun(par_1, par_2)</code>	顺序不能变</p>
+</li>
+<li><p>关键字实参 <code>fun(par_1 = x, par_2 = y)</code>	顺序无所谓</p>
+</li>
+<li><p>默认参数 <code>def fun(par_1, par_2 = &#39;dog&#39;)</code>	可以缺省</p>
+</li>
+<li><p>列表参数</p>
+<p>​	<code>fun(names)</code>	直接改变</p>
+<p>​	<code>fun(names[:])</code>	传递副本，不改变原列表值</p>
+</li>
+<li><p>任意数量实参 <code>fun(*parametr)</code>	创建一个空元组，可以接收任意数量的参数</p>
+</li>
+<li><p>任意数量关键字实参 <code>fun(**parameter)</code>	创建一个空字典，可以接收任意数量的关键词参数</p>
+</li>
+</ul>
+<h4 id="导入-x3D-x3D-模块-x3D-x3D"><a href="#导入-x3D-x3D-模块-x3D-x3D" class="headerlink" title="导入&#x3D;&#x3D;模块&#x3D;&#x3D;"></a>导入&#x3D;&#x3D;模块&#x3D;&#x3D;</h4><p>即拓展名为<code>.py</code>的文件，<code>from abc.py import fun_name</code></p>
+<h4 id="指定别名"><a href="#指定别名" class="headerlink" title="指定别名"></a>指定别名</h4><p>用 as，即<code>from math import sqrt as f</code>，<code>import math as M</code></p>
+<h4 id="函数编写规范"><a href="#函数编写规范" class="headerlink" title="函数编写规范"></a>函数编写规范</h4><p>参数列表中等号两边&#x3D;&#x3D;不要&#x3D;&#x3D;有空格</p>
+<p>函数间用&#x3D;&#x3D;两个&#x3D;&#x3D;换行分隔开来</p>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs py"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span>():			<span class="hljs-comment">#一般大写的为类名，小写的为对象名</span><br>	<span class="hljs-string">&quot;&quot;&quot;......&quot;&quot;&quot;</span><br>	<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, name, age</span>):	<br>		<span class="hljs-string">&quot;&quot;&quot;......&quot;&quot;&quot;</span><br>		self.name = ...<br>	<br>	<span class="hljs-keyword">def</span> <span class="hljs-title function_">sit</span>(<span class="hljs-params">self</span>):<br>		...<br>		<span class="hljs-keyword">return</span> ...<br>	...<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>形参 self &#x3D;&#x3D;必不可少&#x3D;&#x3D;，还必须位于其他形参的&#x3D;&#x3D;前面&#x3D;&#x3D;。每个与类相关联的方法调用都自动传递实参self ，它是一个指向实例本身的引用，让实例能够访问类中的属性和方法。</p>
+</li>
+<li><p>初始化，mydog &#x3D; Dog(‘doudou’, 3)，此时python使用这两个实参&#x3D;&#x3D;自动调用&#x3D;&#x3D;__init()__方法</p>
+</li>
+<li><p>方法 _<em>init()</em>_ 并未显式地包含 return 语句， 但Python自动返回一个表示这个小狗的实例，我们将这个实例存储在声明的变量 my_dog 中</p>
+</li>
+</ul>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>如果编写的类是现有类的一个特殊版本，那么可以使用继承，而非再从空白新建一个</p>
+<p>一个类继承另一个类时，将自动获得另一个类的所有属性和方法，同时可以再定义自己的属性和方法</p>
+<ul>
+<li>父类必须在当前文件中，且在子类的前面</li>
+<li>子类类名后的括号里必须指明父类的名字，如父类为<code>class Father():</code> 则子类为<code>class Son(Father):</code></li>
+<li>子类的方法__init()__需要包含创建父类的所有参数</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/knowledge/" class="category-chain-item">knowledge</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/">#python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>python 从入门到实践（更新中）</div>
+      <div>https://captainwc.github.io/2022/06/21/python从入门到实践/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>kk</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年6月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/08/%E5%BE%81%E6%9C%8DC%E6%8C%87%E9%92%88/" title="征服C指针">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">征服C指针</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/09/14/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84latex%E8%A1%A8%E7%A4%BA/" title="常用数学符号的latex表示">
+                        <span class="hidden-mobile">常用数学符号的latex表示</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/captainwc/captainwc.github.io" target="_blank" rel="nofollow noopener"><span>ForkMe</span></a> <i class="iconfont icon-love"></i> <a href="https://www.cnblogs.com/shuaikai" target="_blank" rel="nofollow noopener"><span>Myblogs</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
