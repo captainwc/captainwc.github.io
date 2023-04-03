@@ -16,18 +16,18 @@
   <meta name="author" content="kk">
   <meta name="keywords" content="">
   
-    <meta name="description" content="课程作业：分析了一下回调函数的执行过程以及优势">
+    <meta name="description" content="课程作业：分析了menu中的一些设计思想和方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="回调函数执行过程分析">
-<meta property="og:url" content="https://captainwc.github.io/2023/04/02/HW2-callback%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/index.html">
+<meta property="og:title" content="meun程序设计方法分析">
+<meta property="og:url" content="https://captainwc.github.io/2023/04/02/HW2-meun%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="开宝特攻">
-<meta property="og:description" content="课程作业：分析了一下回调函数的执行过程以及优势">
+<meta property="og:description" content="课程作业：分析了menu中的一些设计思想和方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://captainwc.github.io/img/banner/spring.png">
 <meta property="article:published_time" content="2023-04-02T09:38:00.000Z">
-<meta property="article:modified_time" content="2023-04-02T09:40:35.333Z">
+<meta property="article:modified_time" content="2023-04-03T05:27:33.396Z">
 <meta property="article:author" content="kk">
-<meta property="article:tag" content="汇编">
+<meta property="article:tag" content="软件工程">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://captainwc.github.io/img/banner/spring.png">
   
@@ -35,7 +35,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>回调函数执行过程分析 - 开宝特攻</title>
+  <title>meun程序设计方法分析 - 开宝特攻</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="回调函数执行过程分析"></span>
+            <span id="subtitle" data-typed-text="meun程序设计方法分析"></span>
           
         </div>
 
@@ -245,7 +245,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1k 字
+          2.1k 字
         
       </span>
     
@@ -256,7 +256,7 @@
         
         
         
-          6 分钟
+          12 分钟
         
       </span>
     
@@ -302,21 +302,43 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">回调函数执行过程分析</h1>
+            <h1 style="display: none">meun程序设计方法分析</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="回调函数执行过程分析"><a href="#回调函数执行过程分析" class="headerlink" title="回调函数执行过程分析"></a>回调函数执行过程分析</h1><p>​																学号：SA*****200</p>
-<h2 id="回调的过程"><a href="#回调的过程" class="headerlink" title="回调的过程"></a>回调的过程</h2><p>​		将函数作为参数，传入某一外部函数，以便该外部函数可以调用此函数来完成某些任务，这样的函数就称为<strong>回调函数</strong>（CallBack，call-then-back）</p>
+                <h1 id="meun程序设计方法分析"><a href="#meun程序设计方法分析" class="headerlink" title="meun程序设计方法分析"></a>meun程序设计方法分析</h1><p>学号：SA*****200</p>
+<h2 id="1-menu-中解耦合的分析"><a href="#1-menu-中解耦合的分析" class="headerlink" title="1. menu 中解耦合的分析"></a>1. menu 中解耦合的分析</h2><p>​		menu 小程序的基本框架是，首先定义一个独立于数据的链表<code>linktable</code>，然后在 menu 程序中使用这个链表来存储和管理程序的指令和指令描述等信息，并通过回调函数的方式，来使得各个指令有自己的操作方式。其各个文件的作用如下：</p>
+<ol>
+<li><p>linktableinternal.h：定义链表和链表节点</p>
+</li>
+<li><p>linktable.h：定义链表的各种接口</p>
+</li>
+<li><p>linktable.c：实现链表接口</p>
+</li>
+<li><p>menu.c：主程序，在这里调用链表接口创建一条带有数据的链表，来管理程序命令</p>
+</li>
+</ol>
+<p>下图是 menu 的一些关键代码</p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230403122914392.png" srcset="/img/loading.gif" lazyload alt="image-20230403122914392"></p>
+<p>​		可以看出，首先定义链表节点 <code>LinkTableNode</code>，注意链表节点是<strong>不关心数据的</strong>，它只定义了一个指向下一个链表节点的指针；然后是链表 <code>LinkTable</code>，可以认为这是一个单独的节点，只负责管理链表的头尾位置和节点数，以及锁。然后 <code>tLinkTableNode</code> 以及 <code>tLinkTable</code> 就是用 <code>typedef</code> 起的别名罢了，为了标识这是一个类型。</p>
+<p>​		链表提供的操作函数，其参数均为：<code>tLinkTable</code> 类型（用于指明操作哪个链表）以及 <code>tLinkTableNode</code> 类型（用于标识操作哪个链表节点），而 <code>tLinkTableNode</code> 类型是不包含数据的，也即是说，我定义的这个链表，<strong>只提供存粹的操作链表，不操作数据</strong>，那么也就是说，<strong>因此，什么数据类型都可以使用我这个链表</strong>。这就是一种解耦合：接口只提供接口的操作，</p>
+<p>​		然后，<code>menu.c</code> 中定义了本程序所需要的数据结构——<code>DataNode</code>。其定义中包括了，本程序需要用到的数据：命令，命令描述，命令操作等，以及一个 链表节点类型的 <code>head</code>。然后调用初始化函数 <code>InitMenuData</code> 创建链表。该函数的参数是一个指向链表指针的指针。首先是创建链表，这一步是纯粹的链表操作；然后给 DataNode 分配内存并赋值，这一步是存粹的数据操作；然后，调用链表提供的 <code>AddLinkTableNode</code>接口，把数据节点加入到链表中，这里，<code>DataNode *</code> 类型的参数，被<strong>强制转换为了 <code>LinkTableNode *</code>  类型</strong>，这就是不关心数据类型的链表，能插入各种数据的实现方法：插入进来的数据，都是被强制转换成统一的，由链表接口定义的类型插入进来的。</p>
+<p>​		也就是说，使用上面提到的“抽象”链表，可以创建一个下面这样的带有数据的链表。数据就像是附着在链表节点上，而非属于接口中定义的链表本身。</p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230403131348122.png" srcset="/img/loading.gif" lazyload alt="image-20230403131348122" style="zoom: 50%;" />
+
+
+
+<h2 id="2-回调的概念"><a href="#2-回调的概念" class="headerlink" title="2. 回调的概念"></a>2. 回调的概念</h2><p>​		将函数作为参数，传入某一外部函数，以便该外部函数可以调用此函数来完成某些任务，这样的函数就称为<strong>回调函数</strong>（CallBack，call-then-back）</p>
 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/回调函数.png" srcset="/img/loading.gif" lazyload alt="回调函数"  />
 
 <p>​		上图是一个示例，应用程序在调用某一库函数时，通过将函数地址作为参数传递的方式，指定了一个回调函数。库函数执行过程中，会调用这一函数，来完成应用程序的请求。一般回调函数都是和应用程序处于同一抽象层，这样就形成了一个：高层调用底层，底层再反过来调用高层的过程。</p>
 <p>​		事实上，回调不仅可以用于在应用程序和库函数之间，把库函数换成别的中间函数也行。</p>
-<h2 id="回调的优势"><a href="#回调的优势" class="headerlink" title="回调的优势"></a>回调的优势</h2><p>​		回调函数为应用提供了很大的灵活性、可拓展性。</p>
+<h2 id="3-回调的优势"><a href="#3-回调的优势" class="headerlink" title="3. 回调的优势"></a>3. 回调的优势</h2><p>​		回调函数为应用提供了很大的灵活性、可拓展性。</p>
 <p>​		一方面，同一个接口（即中间函数），根据起始函数传入的参数（即回调函数地址）不同，可以表现出不同的行为，这体现了<strong>多态</strong>的思想。</p>
 <p>​		另一方面，采用这种方法，也满足了<strong>开闭原则</strong>，即你可以在不修改中间函数源代码的情况下，仅通过修改或者添加回调函数，便可以变更接口的行为。</p>
-<h2 id="一个回调函数执行的例子"><a href="#一个回调函数执行的例子" class="headerlink" title="一个回调函数执行的例子"></a>一个回调函数执行的例子</h2><p>​		下面是一个回调函数执行的例子（<code>meun.c</code> 中执行过程与此相仿）</p>
+<h2 id="4-回调函数执行分析"><a href="#4-回调函数执行分析" class="headerlink" title="4. 回调函数执行分析"></a>4. 回调函数执行分析</h2><p>​		menu中，通过传递参数一个函数 <code>handler</code> 做为参数，实现了同一段核心代码，对不同参数有不同表现的功能，且可以在不修改核心代码的前提下，添加新的指令。我们可以将这一思想提取出来，写一个更简单的例子，来对回调过程进行分析。</p>
+<p>​		下面是一个回调函数执行的例子（<code>meun.c</code> 中执行过程与此相仿）</p>
 <table style="border:none;text-align:center">
     <tr>
         <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230402141802815.png" srcset="/img/loading.gif" lazyload></td>
@@ -362,7 +384,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%B1%87%E7%BC%96/">#汇编</a>
+        <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">#软件工程</a>
       
     </div>
   
@@ -374,8 +396,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>回调函数执行过程分析</div>
-      <div>https://captainwc.github.io/2023/04/02/HW2-callback函数执行过程分析/</div>
+      <div>meun程序设计方法分析</div>
+      <div>https://captainwc.github.io/2023/04/02/HW2-meun程序设计方法分析/</div>
     </div>
     <div class="license-meta">
       
