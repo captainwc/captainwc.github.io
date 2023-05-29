@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://captainwc.github.io/img/banner/128.jpg">
 <meta property="article:published_time" content="2023-03-19T17:15:57.000Z">
-<meta property="article:modified_time" content="2023-04-02T09:10:46.087Z">
+<meta property="article:modified_time" content="2023-05-29T13:25:00.779Z">
 <meta property="article:author" content="kk">
 <meta property="article:tag" content="math">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,17 +35,17 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>离散数学课程笔记 - 开宝特攻</title>
+  <title>离散数学课程笔记 ヽ(✿ﾟ▽ﾟ)ノ 开宝特攻</title>
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
 
 
@@ -56,7 +56,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":90,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":40,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -114,7 +114,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>shuaikai</strong>
+      <strong>开开</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -256,7 +256,8 @@
         
         
         
-          23 分钟
+          <!-- compatible with older versions-->
+          34 分钟
         
       </span>
     
@@ -366,8 +367,8 @@
 <li><p><strong>主析取范式</strong>：所有简单合取式都是最小项的析取范式，称为主析取范式<br><strong>主合取范式</strong>：所有简单析取式都是最大项的合取范式，称为主合取范式</p>
 </li>
 <li><blockquote>
-<p>任何命题公式，都存在唯一一个与之等值的主析取范式，与主合取范式<br>证明：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308202256525.png" srcset="/img/loading.gif" lazyload alt="image-20230308202256525"></p>
-<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308202343097.png" srcset="/img/loading.gif" lazyload alt="image-20230308202343097"></p>
+<p>任何命题公式，都存在唯一一个与之等值的主析取范式，与主合取范式<br>证明：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308202256525.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308202343097.png" srcset="/img/loading.gif" lazyload></p>
 </blockquote>
 </li>
 <li><p><strong>求主析取范式的步骤</strong>：如上述存在性证明中所示，若某一简单合取式中，不含有命题变元$p_j$，则对其合取上$(p_i \lor\neg p_i)$，（同一律+排中律），重复这一过程，直至每一个简单合取式都包含全部的n个命题变元，然后将其排列为最小项形式，并用对应的m<del>i</del>代替<br><strong>求主合取范式的步骤</strong>：思想同上，区别在去，对每一个不合格的简单析取式，（同一律与矛盾律）都析取上一个$(p_i\land \neg p_i)$</p>
@@ -384,7 +385,7 @@
 <li>判断两个命题公式是否等值：<br>假设命题公式A与B共含有 n 个命题变元，按 n 个命题变元求出其对应的主析取范式 $A^<code>、B^</code>$，若 $A^<code>\Lrarr B^</code>$，则$A \Lrarr B$，否则 $A \nLeftrightarrow B$</li>
 </ul>
 </li>
-<li><p>由主析取范式求主合取范式：找出所有未出现在主析取范式中的极小项，其下标对应的极大项合取，即为主合取范式。证明：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308204625153.png" srcset="/img/loading.gif" lazyload alt="image-20230308204625153"></p>
+<li><p>由主析取范式求主合取范式：找出所有未出现在主析取范式中的极小项，其下标对应的极大项合取，即为主合取范式。证明：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308204625153.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>n 个命题变项的主析取&#x2F;合取范式，共有 $2^{2^n}$ 个。（因为有 2^n^ 个最小项，组合数求和）</p>
 </li>
@@ -450,12 +451,12 @@
       </tr>
   </table>
 </li>
-<li><p><strong>证明</strong>的概念：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133237353.png" srcset="/img/loading.gif" lazyload alt="image-20230309133237353"></p>
+<li><p><strong>证明</strong>的概念：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133237353.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>证明法：</p>
 <ol>
-<li><strong>附加前提证明法</strong>：把结论的前提，纳入到证明的前提中去，只需证明结论的结论有效性即可<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133341402.png" srcset="/img/loading.gif" lazyload alt="image-20230309133341402"></li>
-<li><strong>归谬法</strong>：将欲证明结论的否定作为前提，利用现有的条件推出矛盾式来，即可证明原结论的有效性。<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133531010.png" srcset="/img/loading.gif" lazyload alt="image-20230309133531010"></li>
+<li><strong>附加前提证明法</strong>：把结论的前提，纳入到证明的前提中去，只需证明结论的结论有效性即可<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133341402.png" srcset="/img/loading.gif" lazyload></li>
+<li><strong>归谬法</strong>：将欲证明结论的否定作为前提，利用现有的条件推出矛盾式来，即可证明原结论的有效性。<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133531010.png" srcset="/img/loading.gif" lazyload></li>
 <li>反证法、穷举法、存在性与唯一性证明……</li>
 </ol>
 </li>
@@ -464,8 +465,8 @@
 <h3 id="一阶逻辑命题符号化"><a href="#一阶逻辑命题符号化" class="headerlink" title="一阶逻辑命题符号化"></a>一阶逻辑命题符号化</h3><p>个体词、谓词、量词是一阶逻辑命题符号化的三个基本要素</p>
 <ul>
 <li><strong>个体词</strong>：研究对象中可以独立存在的具体或抽象的客体。具体指代的叫<strong>个体常项</strong>，抽象泛指的叫<strong>个体变项</strong>。个体变项的取值范围称为<strong>个体域&#x2F;论域</strong>，他可以是有限集，也可以是无限集。表示宇宙间一切事物的叫<strong>全总个体域</strong>。</li>
-<li><strong>谓词</strong>：用来刻画个体词性质，及个体间关系的词，常用字母 $F、G、H$ 表示。同样的，表示具体关系的叫<strong>谓词常项</strong>，表示抽线关系的叫<strong>谓词变项</strong>，他们都用大写字母表示。有时为了做出一些区分，还需要引入<strong>特性谓词</strong><br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309164935791.png" srcset="/img/loading.gif" lazyload alt="image-20230309164935791"></li>
-<li><strong>量词</strong>：全称量词 $\forall$，存在量词 $\exists,\nexists$<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309165651519.png" srcset="/img/loading.gif" lazyload alt="image-20230309165651519"></li>
+<li><strong>谓词</strong>：用来刻画个体词性质，及个体间关系的词，常用字母 $F、G、H$ 表示。同样的，表示具体关系的叫<strong>谓词常项</strong>，表示抽线关系的叫<strong>谓词变项</strong>，他们都用大写字母表示。有时为了做出一些区分，还需要引入<strong>特性谓词</strong><br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309164935791.png" srcset="/img/loading.gif" lazyload></li>
+<li><strong>量词</strong>：全称量词 $\forall$，存在量词 $\exists,\nexists$<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309165651519.png" srcset="/img/loading.gif" lazyload></li>
 <li>例子：<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309170304875.png" srcset="/img/loading.gif" lazyload alt="image-20230309170304875" style="zoom:50%;" /></li>
 <li>对于含有 n 元谓词的命题要注意：<ol>
 <li>命题中的性质谓词符号化为一元谓词，而表示关系的符号华为多元谓词</li>
@@ -730,8 +731,8 @@
 
   <!-- Scripts -->
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -742,13 +743,13 @@
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -775,7 +776,7 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
@@ -813,14 +814,14 @@
 </script>
 
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
 
   <script>Fluid.plugins.codeWidget();</script>
 
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
     window.anchors.options = {
       placement: CONFIG.anchorjs.placement,
       visible  : CONFIG.anchorjs.visible
@@ -858,7 +859,7 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
     Fluid.plugins.fancyBox();
   });
 </script>
@@ -874,7 +875,7 @@
               inlineMath: { '[+]': [['$', '$']] }
             },
             loader : {
-              load: ['ui/lazy']
+              
             },
             options: {
               renderActions: {
@@ -907,7 +908,7 @@
       </script>
     
 
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

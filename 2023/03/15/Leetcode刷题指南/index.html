@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://captainwc.github.io/img/banner/beijing.png">
 <meta property="article:published_time" content="2023-03-15T08:15:57.000Z">
-<meta property="article:modified_time" content="2023-04-02T09:17:48.418Z">
+<meta property="article:modified_time" content="2023-05-29T13:30:43.242Z">
 <meta property="article:author" content="kk">
 <meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,17 +35,17 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Leetcode刷题指南 - 开宝特攻</title>
+  <title>Leetcode刷题指南 ヽ(✿ﾟ▽ﾟ)ノ 开宝特攻</title>
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
 
 
@@ -56,7 +56,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":90,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":40,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -114,7 +114,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>shuaikai</strong>
+      <strong>开开</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -245,7 +245,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.8k 字
+          10k 字
         
       </span>
     
@@ -256,7 +256,8 @@
         
         
         
-          22 分钟
+          <!-- compatible with older versions-->
+          86 分钟
         
       </span>
     
@@ -307,64 +308,273 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Leetcode刷题指南"><a href="#Leetcode刷题指南" class="headerlink" title="Leetcode刷题指南"></a>Leetcode刷题指南</h1><h2 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h2><h3 id="盛水最多容器-11"><a href="#盛水最多容器-11" class="headerlink" title="盛水最多容器  11"></a>盛水最多容器  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/container-with-most-water/">11</a></h3><p><strong>题目</strong>：</p>
+                <h1 id="Leetcode刷题指南"><a href="#Leetcode刷题指南" class="headerlink" title="Leetcode刷题指南"></a>Leetcode刷题指南</h1><h2 id="1-数据结构"><a href="#1-数据结构" class="headerlink" title="1. 数据结构"></a>1. 数据结构</h2><h3 id="1-1-数组"><a href="#1-1-数组" class="headerlink" title="1.1 数组"></a>1.1 数组</h3><ul>
+<li><strong>循环数组问题</strong>：把数组扩大为两倍即可，但不是真的扩大两倍，而是通过索引取模的方式</li>
+</ul>
+<h3 id="1-2-链表"><a href="#1-2-链表" class="headerlink" title="1.2 链表"></a>1.2 链表</h3><p>链表可以通过引入虚拟头节点 <code>ListNode *dummy = new ListNode&#123;-1, nullptr&#125;</code> 来极大简化</p>
+<ol start="0">
+<li><p><strong>递归：</strong>要区分基础情况和跳出情况，即可以有两种return，比如：如果链表为空，那么返回。这时候的return并非是用来跳出递归的，而是一个base情况的判断，只有最基本的（最后一层递归）会用到。一系列操作，比如反转链表之后，再return，则时候是退出递归的return，即后面每一层递归想出栈都是走的这一条return。</p>
+</li>
+<li><p><strong>反转链表</strong>【递归】：反转从 <code>head-&gt;next</code> 开始的链表，然后拼接上第一个节点。<strong>base</strong>：单节点链表</p>
+</li>
+<li><p><strong>反转前 n 个元素</strong>：反转从 <code>head-&gt;next</code> 开始的 <code>n-1</code> 个元素，然后拼接。<strong>base</strong>：n &#x3D; 1</p>
+</li>
+<li><p><strong>反转 [m, n] 的元素</strong>：反转从 <code>head-&gt;next</code> 开始的 <code>[m-1, n - 1]</code> 的元素，然后拼接。<strong>base</strong>：m &#x3D; 1，同上</p>
+</li>
+<li><p><strong>倒序输出链表</strong>：对链表进行&#x3D;&#x3D;后序遍历&#x3D;&#x3D;，（递归的base是，head&#x3D;&#x3D;nil）</p>
+</li>
+</ol>
+<h3 id="1-3-栈与队列"><a href="#1-3-栈与队列" class="headerlink" title="1.3 栈与队列"></a>1.3 栈与队列</h3><h4 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h4><p>有这样一类问题：如何得到一个<strong>队列中的最值</strong>？遍历，然后维护一个最值就好了。但这会有一个问题：当最值出队之后，次最值无从得知，需要再次遍历。可以参考例题：</p>
+<p>【<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/">剑指Offer：队列最大值</a>】，【<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/">leetcode-1438. 绝对差不超过限制的最长连续子数组（解法二）</a>】</p>
+<p>如何快速得到一个队列中，<em>当前所有元素</em>的最值呢？维护一个单调队列 queueMax，对入队元素 Value，如果 <code>queueMax.back() &gt; value</code>，则直接入队，否则一直 <code>queueMax.pop_back()</code>，直至满足该条件。这样便可以保证：对原队列中所有元素，单调队列的队首，总是其最大值。如果原队列出队，使得最值出队，则单调队列中的下一个，仍是原队列中剩余元素的最值。</p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/单调队列.gif" srcset="/img/loading.gif" lazyload alt="单调队列" style="zoom:50%;" />
+
+<h4 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h4><p>类似的还有单调栈的问题 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/next-greater-element-ii/">503. 下一个更大元素 II - 力扣（LeetCode）</a>：给你一个数组，有什么办法返回一个数组res，使得res中存放原数组元素，其后面第一个比自己大的元素。也即利用单调栈寻找第一个大于自己的元素：</p>
+<p>（1）数组&#x3D;&#x3D;从后往前入栈&#x3D;&#x3D;（出栈时即是顺序），如果栈顶元素小于自己，则一直出栈，直至栈顶大于自己，此时即有 $res[i] &#x3D; stack.top()$ ，再把当前元素入栈。</p>
+<p>（2）&#x3D;&#x3D;从前入栈&#x3D;&#x3D;也可以（看题解写法）。从栈里的元素的角度看：元素先入栈，如果后面碰到比它大的元素，那它就会出栈；从要入栈的元素角度看，如果我比栈顶大，那就出栈，直到栈顶比我大我再入栈。这样一来，<strong>出栈就意味着，碰到了后面第一个比自己大的元素</strong>，而<strong>留在栈里的说明目前还没有比它大的</strong>。</p>
+<p>下面是示意图：</p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/单调栈.gif" srcset="/img/loading.gif" lazyload alt="单调栈" style="zoom:50%;" />
+
+<p>而我们仍需一个数组来记忆元素的下一个大哥，所以如果直接是元素入栈的话，你只是知道了2的下一个大哥是5，但是找不到2的索引，就没办法设置结果stack2.pop();数组。因此可以采取：索引入栈、pair入栈、哈希数组</p>
+<p>索引入栈的话，即 $if( nums[i] &gt; nums[s.top()])\rarr ret[s.top()]&#x3D;nums[i], s.pop()$，如果大于栈顶，那就一直出栈（出的是索引），并且把出栈元素的邻近大哥（即ret）标记为待入栈元素</p>
+<h2 id="2-双指针"><a href="#2-双指针" class="headerlink" title="2. 双指针"></a>2. 双指针</h2><p>双指针一般用于数组字串和链表，尤其是二者还有序的情况。有三种双指针：</p>
+<ol>
+<li>两指针：字面意义上的双指针，就是说有两个表需要遍历，你整俩指针出来</li>
+<li><strong>左右指针</strong>：左右分为，从两端往中间同时跑，和从中间往两边（最长回文子串）</li>
+<li><strong>快慢指针</strong>：又分为，同时出发一快一满，和速度相同，但其中一个先走（维持 k 间距）</li>
+<li><strong>滑动窗口</strong>：[left, right) 这么个区间，不断扩大right，直至这是一个满足要求的窗口，然后缩小 left，使得此窗口为一个紧确的窗口，然后再扩大 right 搜索新的窗口，满足了再紧确，直至抵达边界。<br>注意滑动窗口，要分清何为”valid window”，有时候这是一个大小不固定的，有时候又是固定大小的。</li>
+</ol>
+<p>下面是一些应用：</p>
+<p>（1）链表</p>
+<ul>
+<li><strong>求链表中点：</strong>二倍速指针走到末尾，一倍速走到中点</li>
+<li><strong>求链表倒数第 k 个节点</strong>：先走 k 步的离开末尾时，后面那个距离它为 k，即倒数第 k 个</li>
+<li><strong>判断链表有无环</strong>：地球是圆的的话，快慢指针终有相遇的一天</li>
+<li><strong>求出环的入口</strong>：快慢指针相遇之时，让一个重回起点再走，再次相遇即是在入口（列一下式子就出来了）</li>
+<li><strong>求两链表的交点</strong>：<br>① 两个指针各自遍历链表。在走到链表结尾的时候（p==nullptr），进入另一个链表。这样它们会走过相同的路程，即$a + b + c$，该处即为交点。如果不相交，则走过 $m+n$ 后会有： p==q==nullptr，也是相等<br>② 把其中一个链表的尾巴和另一个的头相连，就成了判断有无环，有就找到环入口的问题<br>③ 先求出两表的长度，让长的指针先走（long - short）步，这样链表就对齐了，对齐了就好办了</li>
+</ul>
+<p>（2）数组</p>
+<ul>
+<li><strong>数组原地删除相同元素</strong>：（有序数组）快指针在前面探路，遇到不同的赋值给slow++，这样前面的都不同</li>
+<li><strong>数组原地删除某一值</strong>：快指针在前面探路，只要不碰到 target，就赋值给 slow++</li>
+<li><strong>数组二分查找</strong>：（有序）最常见的双指针 low 和 high，或者叫 left 和 right</li>
+<li><strong>两数之和</strong>：（有序）两端开始，和大了就把大的缩点，和小了就把小的加点</li>
+<li><strong>原地反转数组</strong>：从两头开始互相交换【原地反转链表呢？&gt;&gt; 递归】</li>
+<li><strong>回文串判断</strong>：两头开始比较是否相等</li>
+<li><strong>求最大回文子串</strong>：从某一点或两点开始，往两边扩散求最长回文串；如此对全部元素都扩一遍，求最大值</li>
+<li></li>
+</ul>
+<h3 id="盛水最多容器-11"><a href="#盛水最多容器-11" class="headerlink" title="盛水最多容器  11"></a>盛水最多容器  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/container-with-most-water/">11</a></h3><p><strong>题目</strong>：</p>
 <p>​	如下图，给你一个数组height，找出能“盛水”的最大值</p>
 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230302185117003.png" srcset="/img/loading.gif" lazyload alt="image-20230302185117003" style="zoom:50%;" />
 
 <p><strong>分析</strong>：</p>
 <p>​	从两端扫一遍数组，则盛水量为：<br>$$<br>max_contain &#x3D; (right - left)\times \min{height[left],\ height[right]}<br>$$<br>​	现在考虑怎么个扫描法。反正只要移动，容器的“底”必然会变小，如果移动长板，那么容器的边最多不会超过原来的短板，因为边去的是最小值，移动后小于原来的短板，则变小，移动后大于，边也不会变大，因此移动长板，必然会使容量减小。那么就移动短边。</p>
 <p><strong>题解</strong>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxArea</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; height)</span> </span>&#123;<br>    <span class="hljs-type">int</span> l = <span class="hljs-number">0</span>, r = height.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;<br>    <span class="hljs-type">int</span> max_contain = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (l &lt; r) &#123;<br>        <span class="hljs-type">int</span> area = <span class="hljs-built_in">min</span>(height[l], height[r]) * (r - l);<br>        ans = <span class="hljs-built_in">max</span>(max_contain, area);<br>        <span class="hljs-keyword">if</span> (height[l] &lt;= height[r])<br>            ++l;<br>        <span class="hljs-keyword">else</span><br>            --r;<br>    &#125;<br>    <span class="hljs-keyword">return</span> max_contain;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxArea</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; height)</span> </span>&#123;
+    <span class="hljs-type">int</span> l = <span class="hljs-number">0</span>, r = height.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;
+    <span class="hljs-type">int</span> max_contain = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (l &lt; r) &#123;
+        <span class="hljs-type">int</span> area = <span class="hljs-built_in">min</span>(height[l], height[r]) * (r - l);
+        ans = <span class="hljs-built_in">max</span>(max_contain, area);
+        <span class="hljs-keyword">if</span> (height[l] &lt;= height[r])
+            ++l;
+        <span class="hljs-keyword">else</span>
+            --r;
+    &#125;
+    <span class="hljs-keyword">return</span> max_contain;
+&#125;</code></pre></div>
+
+<h2 id="3-二分法"><a href="#3-二分法" class="headerlink" title="3 二分法"></a>3 二分法</h2><p>对有序数组进行二分查找，有三种情况：只<strong>查找目标</strong>、查找目标元素序列<strong>左边界</strong>、<strong>右边界</strong>。</p>
+<p>二分查找思想很简单，关键在一些细节：比如 right 是等于 size 还是 size-1， while 循环 $\le$ 还是 $&lt;$，找着目标之后 right 是等于 mid 还是 mid-1。其实很好理解，只需要分清你的<strong>搜索区间</strong>是什么：</p>
+<p>如果 $left&#x3D;0, right &#x3D; len-1$，那搜索区间就是闭区间 $[left,right]$，while 循环如果写$l&lt;r$，则退出条件就是$left&#x3D;&#x3D;right$，此时闭区间 $[left,left]$ 里面还有一个元素，有元素还退出，那肯定是要漏了，所以应该选$left\le right$，如果搜索区间为左闭右开则同理。</p>
+<p>搜索目标的左右边界，与直接搜索目标区别在于：找到目标后不是直接返回，而是继续缩小区间。搜元素是命中时退出，搜边界一定是 <code>left &gt; right</code> 退出。那么：</p>
+<ol>
+<li>如果存在目标元素，则到最后一定是 $left \rarr target,\  right\rarr target-1$，只需 <code>return nums[left];</code></li>
+<li>如果目标不存在，则 $left\rarr nums.size()\  \or\ right\rarr -1$</li>
+</ol>
+<table styles="border:none;text-align:center;">
+    <tr>
+        <td width=50%><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230407123029070.png" srcset="/img/loading.gif" lazyload /></td>
+        <td width=50%><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230407123048473.png" srcset="/img/loading.gif" lazyload /></td>
+    </tr>
+</table>
 
 
+<p>模板如下</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">left_bound</span><span class="hljs-params">(<span class="hljs-type">int</span> nums[], <span class="hljs-type">int</span> target)</span> </span>&#123;
+    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = nums.length - <span class="hljs-number">1</span>;	 <span class="hljs-comment">//（0）</span>
+    <span class="hljs-keyword">while</span> (left &lt;= right) &#123; 				<span class="hljs-comment">//（1）</span>
+        <span class="hljs-comment">// 防止加法溢出</span>
+        <span class="hljs-type">int</span> mid = left + (right - left) / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">if</span> (nums[mid] &lt; target) &#123;
+            left = mid + <span class="hljs-number">1</span>;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] &gt; target) &#123;
+            right = mid - <span class="hljs-number">1</span>;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[mid] == target) &#123;
+            <span class="hljs-comment">// 别返回，锁定左侧边界</span>
+            right = mid - <span class="hljs-number">1</span>;				<span class="hljs-comment">//（2）</span>
+        &#125;
+    &#125;
+    <span class="hljs-comment">// 判断 target 是否存在于 nums 中</span>
+    <span class="hljs-comment">// 此时 target ⽐所有数都大/小，返回 -1</span>
+    <span class="hljs-keyword">if</span> (left == nums.length || right == <span class="hljs-number">-1</span>)	 <span class="hljs-comment">//（3）</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">return</span> left;
+&#125;</code></pre></div>
 
+<p>下面是一些应用：</p>
+<ul>
+<li><strong>查找峰值</strong>：【无序】也可以二分，即先比较mid和两边的元素大小，如果mid在上坡，则说明峰值在前方，left &#x3D; mid + 1，如果在下坡，说明在后方，right &#x3D; mid - 1，如果直接命中，则返回</li>
+</ul>
+<h2 id="4-贪心-amp-动态规划"><a href="#4-贪心-amp-动态规划" class="headerlink" title="4 贪心 &amp; 动态规划"></a>4 贪心 &amp; 动态规划</h2><h3 id="4-1-线性-DP"><a href="#4-1-线性-DP" class="headerlink" title="4.1 线性 DP"></a>4.1 线性 DP</h3><h4 id="1-斐波那契数列"><a href="#1-斐波那契数列" class="headerlink" title="1 斐波那契数列"></a>1 斐波那契数列</h4><p>$$<br>dp[i] &#x3D; dp[i-1]+dp[i-2]\ \xRightarrow{\text{优化}} \ r &#x3D; p + q<br>$$</p>
+<h5 id="矩阵快速幂"><a href="#矩阵快速幂" class="headerlink" title="矩阵快速幂"></a>矩阵快速幂</h5><p>其实斐波那契数列还有一个<code>O(log n)</code> 复杂度的做法：用矩阵快速幂，转换成求这么个矩阵的 n 次幂</p>
+<h1 id="begin-pmatrix-F-n-1-amp-F-n-end-pmatrix"><a href="#begin-pmatrix-F-n-1-amp-F-n-end-pmatrix" class="headerlink" title="$$\begin{pmatrix}    F_{n+1} &amp; F_n\end{pmatrix}"></a>$$<br>\begin{pmatrix}<br>    F_{n+1} &amp; F_n<br>\end{pmatrix}</h1><h1 id="begin-pmatrix-F-n-amp-F-n-1-end-pmatrix-begin-pmatrix-1-amp-1-1-amp-0-end-pmatrix"><a href="#begin-pmatrix-F-n-amp-F-n-1-end-pmatrix-begin-pmatrix-1-amp-1-1-amp-0-end-pmatrix" class="headerlink" title="\begin{pmatrix}    F_{n} &amp; F_{n-1}\end{pmatrix}\begin{pmatrix}    1 &amp; 1 \    1 &amp; 0\end{pmatrix}"></a>\begin{pmatrix}<br>    F_{n} &amp; F_{n-1}<br>\end{pmatrix}<br>\begin{pmatrix}<br>    1 &amp; 1 \<br>    1 &amp; 0<br>\end{pmatrix}</h1><p>\begin{pmatrix}<br>    F_{1} &amp; F_{0}<br>\end{pmatrix}<br>{\begin{pmatrix}<br>    1 &amp; 1 \<br>    1 &amp; 0<br>\end{pmatrix}}^n<br>$$</p>
+<p>而矩阵快速幂，跟一般的快速幂都是类似的，都是<strong>将幂分解为二进制表示</strong>，$a^n &#x3D; a^{2^i}a^{2^{i-1}}\cdots a^0$，然后运用累乘的思想。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> vector&lt;vector&lt;<span class="hljs-type">double</span>&gt;&gt; Matrix;
+<span class="hljs-function">Matrix <span class="hljs-title">MatrixMultiply</span><span class="hljs-params">(<span class="hljs-type">const</span> Matrix&amp; A, <span class="hljs-type">const</span> Matrix&amp; B)</span></span>; <span class="hljs-comment">// 自行实现矩阵相乘</span>
+<span class="hljs-function">Matrix <span class="hljs-title">MatrixPower</span><span class="hljs-params">(<span class="hljs-type">const</span> Matrix&amp; A, <span class="hljs-type">const</span> <span class="hljs-type">int</span> n)</span></span>&#123;
+    <span class="hljs-comment">// A^13 = A^8 * A^4 * A^1</span>
+    <span class="hljs-type">int</span> size = A.<span class="hljs-built_in">size</span>();
+    <span class="hljs-comment">// 创建一个结果矩阵，先初始化为 单位矩阵</span>
+    <span class="hljs-function">Matrix <span class="hljs-title">result</span><span class="hljs-params">(size, vector&lt;<span class="hljs-type">int</span>&gt;(size, <span class="hljs-number">0</span>))</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) &#123;
+        result[i][i] = <span class="hljs-number">1</span>;
+    &#125;
+    Matrix base = A;
+    <span class="hljs-keyword">while</span> (n &gt; <span class="hljs-number">0</span>) &#123;
+        <span class="hljs-comment">// 如果该位上为 1，说明有 2^i 这一项，则乘上</span>
+        <span class="hljs-keyword">if</span> (n &amp; <span class="hljs-number">1</span>) &#123;
+            result = <span class="hljs-built_in">multiply</span>(result, base);
+        &#125;
+        <span class="hljs-comment">// 将base自乘，用于下一位的计算</span>
+        base = <span class="hljs-built_in">MatrixMultiply</span>(base, base);
+        <span class="hljs-comment">// 右移一位</span>
+        n &gt;&gt;= <span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> result;
+&#125;</code></pre></div>
 
-
-<h2 id="贪心-amp-动态规划"><a href="#贪心-amp-动态规划" class="headerlink" title="贪心 &amp; 动态规划"></a>贪心 &amp; 动态规划</h2><h3 id="股票最佳时机Ⅰ-121"><a href="#股票最佳时机Ⅰ-121" class="headerlink" title="股票最佳时机Ⅰ  121"></a>股票最佳时机Ⅰ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/">121</a></h3><p><strong>题目：</strong></p>
+<p>O(log n) 的时间复杂度就是在<code>base = MatrixMultiply(base, base);</code> 这一步来的。因为将矩阵的幂换成了如干个 $2^i$ 个幂相乘，最高不会超过 $2^{log(n)}$ 次，而且每个更高级的幂都是用低级的平方上去的，不会有额外复杂度</p>
+<h4 id="2-BST-种类"><a href="#2-BST-种类" class="headerlink" title="2 BST 种类"></a>2 BST 种类</h4><blockquote>
+<p>求由 n 个节点构成的 二叉搜索树 有多少种？</p>
+</blockquote>
+<h5 id="thinking-两种方向："><a href="#thinking-两种方向：" class="headerlink" title=":thinking:两种方向："></a>:thinking:两种方向：</h5><p><strong>动态规划应当有两种思考方向：</strong></p>
+<p>（1）从 1 到 n（自下而上）：</p>
+<p>一个节点：有一种；</p>
+<p>两个节点：有两种，以小的为根，和以大的为根</p>
+<p>三个节点：有三种情况：最小的作为根，中间的作为根，最大的作为根。$dp[2] + dp[1]*dp[1]+dp[2]$</p>
+<p>更多节点：同上了，俺顺序，依次选取不同的根，元素就会被分成两部分。</p>
+<p>可得递推式：<br>$$<br>dp[n] &#x3D; dp[0]\times dp[n-1] + dp[1]\times dp[n-2] + \cdots + dp[n-1]\times dp[0]<br>$$<br>这里用到了乘法原理。这里的 0，要说空树也是树嘛，为了公式的整齐性，也应将其置为 1</p>
+<p>（2）从 n 到 1（自上而下）：</p>
+<p>n 个节点的树，肯定是要分为左右子树的，则自然有：$dp[n] &#x3D; dp[left] \times dp[right]$。而左右子树具体有多少个节点，那肯定也不一样嘛，因此：<br>$$<br>dp[n] &#x3D; \sum_{i &#x3D; 0}^{n-1}(dp[i]\times dp[n-1-i])<br>$$<br>殊途同归。具体问题的时候，可以往下想想，往上想想，就能把问题拆解清楚了。线性DP，还是比较简单的</p>
+<h4 id="3-最大子数组和"><a href="#3-最大子数组和" class="headerlink" title="3 最大子数组和"></a>3 最大子数组和</h4><h5 id="连续最大-和"><a href="#连续最大-和" class="headerlink" title="连续最大 和"></a>连续最大 和</h5><blockquote>
+<p> 给你一个数组有正有负，求连续的子数组，使得其和最大</p>
+</blockquote>
+<p><strong>把握核心：</strong>核心是什么？求最大&#x3D;&#x3D;子数组&#x3D;&#x3D;，核心当然是子数组。<strong>你只有分析子数组，才能找到最大的子数组</strong></p>
+<p>子数组怎么分呢？要动态规划，你肯定得从 0 做起，而且还要朝着一个方向坚定不移前进（往前推进），不能一会前一会后（前后可以考虑<strong>滑动窗口</strong>）。所以，要找一个朝着某一方向的，变化的子数组。所以：</p>
+<p><strong>以当前元素&#x3D;&#x3D;结尾&#x3D;&#x3D;的子数组的最大值，是 dp[i]</strong><br>$$<br>dp[i] &#x3D; max(dp[i - 1] + arr[i], arr[i])<br>$$<br>线性的，能不能优化为原地的呢？可以看到，<em>只用到了 dp[i-1]，完全可以用一个变量保存起来就好了</em></p>
+<h5 id="连续最大-积"><a href="#连续最大-积" class="headerlink" title="连续最大 积"></a>连续最大 积</h5><p>思考一下，积，跟和的区别，在哪里呢？</p>
+<p>&#x3D;&#x3D;积，会存在负负得正的情况&#x3D;&#x3D;。因此，当前结尾的最大子数组积，</p>
+<p>要么是前面的最大的正数，乘了一个大于1的正数，变大了；要么是前面最大的乘了一个正真分数，变小了；要么，是前面的负的最小值，乘了一个负数，变大了。</p>
+<p>因此最大值有三种来历：正正，负负，当前元素<br>$$<br>dp_max[i] &#x3D; \max(dp_max[i-1]\times arr[i],dp_min[i-1]\times arr[i],arr[i]) \<br>dp_min[i] &#x3D; \min(dp_min[i-1]\times arr[i],dp_max[i-1]\times arr[i],arr[i])<br>$$<br>显然，也是可以优化为原地 dp 的</p>
+<h5 id="连续最大-乘积为正"><a href="#连续最大-乘积为正" class="headerlink" title="连续最大 乘积为正"></a>连续最大 乘积为正</h5><p>乘积为正的子数组：要么负负得正，负数加一；要么正正，正的加一；要么归 0<br>$$<br>\begin{align*}<br>dp_pos[i] &#x3D;<br>\begin{cases}<br>dp_pos[i-1] + 1 &amp; arr[i]&gt;0 \<br>0 &amp; arr[i]&#x3D;0 \<br>dp_neg[i-1] + 1 &amp; arr[i] &lt; 0<br>\end{cases}<br>\\<br>dp_neg[i] &#x3D;<br>\begin{cases}<br>dp_neg[i-1] + 1 &amp; arr[i]&gt;0 \<br>0 &amp; arr[i]&#x3D;0 \<br>dp_pos[i-1] + 1 &amp; arr[i] &lt; 0<br>\end{cases}<br>\end{align*}<br>$$</p>
+<h5 id="环形数组-最大和"><a href="#环形数组-最大和" class="headerlink" title="环形数组 最大和"></a>环形数组 最大和</h5><p>&#x3D;&#x3D;环形数组，都可以转换成数组二倍&#x3D;&#x3D;。$arr[]$是环形数组，则遍历一遍 ${0,1,2\dots n, 0,1\dots n}$ 就相当于遍历了环</p>
+<p>因此照着这个遍历一遍就好了（不用真的扩充数组，到末尾的时候再回到开始就好了）。相当于得到了dp数组之后，又<strong>回过头来更新一遍</strong></p>
+<h4 id="4-字符串"><a href="#4-字符串" class="headerlink" title="4 字符串"></a>4 字符串</h4><h5 id="最长编辑距离"><a href="#最长编辑距离" class="headerlink" title="最长编辑距离"></a>最长编辑距离</h5><blockquote>
+<p>将一个字符串变成（增加、删除字符）另一个字符串，最少需要多少次操作？</p>
+</blockquote>
+<p>用 $dp[i][j]$ 表示字符串 $x_{1\dots i}$ 和 $y_{1\dots j}$ 的编辑的最少次数。则 $dp[i][j-1],\ dp[i-1][j],\ dp[i-1][j-1]$ 都是可“预知”的。 然后，添加一个或两个元素</p>
+<p>如图，共有一下三种对齐方式：最后一位补上，和最后一位不一样</p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230523131247380.png" srcset="/img/loading.gif" lazyload></p>
+<p>$$<br>dp[i][j] &#x3D; \max{dp[i-1][j]+1,\ dp[i][j-1]+1,\ dp[i-1][j-1]+diff(i,j)}<br>$$</p>
+<h3 id="股票最佳时机"><a href="#股票最佳时机" class="headerlink" title="股票最佳时机"></a>股票最佳时机</h3><h4 id="股票最佳时机Ⅰ-121"><a href="#股票最佳时机Ⅰ-121" class="headerlink" title="股票最佳时机Ⅰ  121"></a>股票最佳时机Ⅰ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/">121</a></h4><p><strong>题目：</strong></p>
 <p>​	给一个prices数组表示每天股票的价格，只能某天买入，后面一天卖出，求能赚的最大利润。</p>
 <p><strong>分析：</strong></p>
 <p>​	今天的最大利润，等于昨天的最大利润，与之前最低时买入并在今天卖出所得利润，的最大值。即<br>$$<br>profit[i] &#x3D; max {\ profit[i - 1],\  prices[i] - min_prices\ }<br>$$<br>​	类比后面几种，也可以写成，<br>$$<br>\left {<br>\begin{aligned}<br>buy_0 &amp;&#x3D; 0,\ sell_0 &#x3D; 0 \<br>buy_1 &amp;&#x3D; max{\ buy_1^<code>,\ sell_0-prices[i]\ \&#125; \\ sell_1 &amp;= max \&#123;\ sell_1^</code>,\ buy_1+prices[i]\ }<br>\end{aligned}<br>\right .<br>$$</p>
 <p><strong>题解：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-type">int</span> inf = <span class="hljs-number">1e9</span>;<br>    <span class="hljs-type">int</span> minprice = inf, maxprofit = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> price: prices) &#123;<br>        maxprofit = <span class="hljs-built_in">max</span>(maxprofit, price - minprice);<br>        minprice = <span class="hljs-built_in">min</span>(price, minprice);<br>    &#125;<br>    <span class="hljs-keyword">return</span> maxprofit;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
+    <span class="hljs-type">int</span> inf = <span class="hljs-number">1e9</span>;
+    <span class="hljs-type">int</span> minprice = inf, maxprofit = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> price: prices) &#123;
+        maxprofit = <span class="hljs-built_in">max</span>(maxprofit, price - minprice);
+        minprice = <span class="hljs-built_in">min</span>(price, minprice);
+    &#125;
+    <span class="hljs-keyword">return</span> maxprofit;
+&#125;</code></pre></div>
 
-<h3 id="股票最佳时机Ⅱ-122"><a href="#股票最佳时机Ⅱ-122" class="headerlink" title="股票最佳时机Ⅱ  122"></a>股票最佳时机Ⅱ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/">122</a></h3><p><strong>题目：</strong></p>
+<h4 id="股票最佳时机Ⅱ-122"><a href="#股票最佳时机Ⅱ-122" class="headerlink" title="股票最佳时机Ⅱ  122"></a>股票最佳时机Ⅱ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/">122</a></h4><p><strong>题目：</strong></p>
 <p>​	仍然是prices数组表示每日价格，区别是，可以进行多次买卖，但是每一天手里最多只能有一只股票。即买了就得卖，不卖不能再买。求最大利润。</p>
 <p>​	与 Ⅰ 的区别在于，能多次买卖，只不过必须是一买一卖，不能同时持有多支。</p>
 <p><strong>分析：</strong></p>
 <p>​	由于最多持有一只股票，因此第i天只有两种情况：持有一支和0支，分别用$dp[i][0]$和$dp[i][1]$表示。每天的最大利润等于，要么卖了更赚，要么前一天就最赚。则有状态转移方程如下：<br>$$<br>\left {<br>\begin{aligned}<br>dp[i][0] &amp;&#x3D; max{dp[i - 1][0],dp[i-1][1]+prices[i]} \<br>dp[i][1] &amp;&#x3D; max{dp[i - 1][1],dp[i-1][0]-prices[i]}<br>\end{aligned}<br>\right .<br>$$<br>​	初值，也即第一天时，$dp[0][0] &#x3D; 0,\ dp[0][1] &#x3D; -prices[0]$，最后卖了肯定比不卖赚，因此最大值即为$dp[n][0]$。</p>
 <p>​	同样的，类比一下，这里也可以不用二维数组。</p>
 <p><strong>题解：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-type">int</span> dp0 = <span class="hljs-number">0</span>, dp1 = -prices[<span class="hljs-number">0</span>];<br>    <span class="hljs-type">int</span> len = prices.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;<br>        <span class="hljs-comment">// 这里可以直接操作dp0即可</span><br>        dp0 = <span class="hljs-built_in">max</span>(dp0, dp1 + prices[i]);<br>        dp1 = <span class="hljs-built_in">max</span>(dp1, dp0 - prices[i]);<br>        <span class="hljs-comment">// int new_dp0 = max(dp0, dp1 + prices[i]);</span><br>        <span class="hljs-comment">// int new_dp1 = max(dp1, dp0 - prices[i]);</span><br>        <span class="hljs-comment">// dp0 = new_dp0;</span><br>        <span class="hljs-comment">// dp1 = new_dp1;</span><br>    &#125;<br><span class="hljs-keyword">return</span> dp0;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
+    <span class="hljs-type">int</span> dp0 = <span class="hljs-number">0</span>, dp1 = -prices[<span class="hljs-number">0</span>];
+    <span class="hljs-type">int</span> len = prices.<span class="hljs-built_in">size</span>();
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;
+        <span class="hljs-comment">// 这里可以直接操作dp0即可</span>
+        dp0 = <span class="hljs-built_in">max</span>(dp0, dp1 + prices[i]);
+        dp1 = <span class="hljs-built_in">max</span>(dp1, dp0 - prices[i]);
+        <span class="hljs-comment">// int new_dp0 = max(dp0, dp1 + prices[i]);</span>
+        <span class="hljs-comment">// int new_dp1 = max(dp1, dp0 - prices[i]);</span>
+        <span class="hljs-comment">// dp0 = new_dp0;</span>
+        <span class="hljs-comment">// dp1 = new_dp1;</span>
+    &#125;
+<span class="hljs-keyword">return</span> dp0;
+&#125;</code></pre></div>
 
-<h3 id="股票最佳时机Ⅲ-123"><a href="#股票最佳时机Ⅲ-123" class="headerlink" title="股票最佳时机Ⅲ  123"></a>股票最佳时机Ⅲ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/">123</a></h3><p><strong>题目：</strong></p>
+<h4 id="股票最佳时机Ⅲ-123"><a href="#股票最佳时机Ⅲ-123" class="headerlink" title="股票最佳时机Ⅲ  123"></a>股票最佳时机Ⅲ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/">123</a></h4><p><strong>题目：</strong></p>
 <p>​	还是prices数组，但是最多只能进行两次买卖，且最多同时持有一支股票。</p>
 <p>​	与Ⅱ的区别在于，限制了交易次数，最多两次。</p>
 <p><strong>分析：</strong></p>
 <p>​	某一天，最多有五种操作：不买，买了一支，卖了一支，买了第二支，卖了第二支。对应的状态转移方程为：<br>$$<br>\left{<br>\begin{aligned}<br>buy_0 &amp;&#x3D; 0 ,\ sell_0&#x3D;0\<br>buy_1 &amp;&#x3D; max{\ buy_1^<code>,\ - price[i] \ \&#125; \\ sell_1 &amp;= max\&#123;\ sell_1^</code>,\ buy_1^<code>+prices[i]\ \&#125; \\ buy_2 &amp;= max\&#123;\ buy_2^</code>,\ sell_1^<code>-prices[i]\ \&#125; \\ sell_2 &amp;= max\&#123;\ sell_2^</code>,\ buy_2^<code>+prices[i]\ \&#125; \\ \end&#123;aligned&#125; \right . $$ ​	加上</code>‘&#96;表示前一天的值。buy<del>0</del>，不买肯定是0，不用考虑。最后最赚的，如果卖了两支那就两支最赚，返回sell<del>2</del>，如果买了一支，那么$sell_2 &#x3D; sell_1$，买了没卖一定比卖了赚的少。因此最后返回值为sell<del>2</del></p>
 <p>​	另外，这里直接对</p>
 <p><strong>题解：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-type">int</span> buy1 = -prices[<span class="hljs-number">0</span>], sell1 = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> buy2 = -prices[<span class="hljs-number">0</span>], sell2 = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.<span class="hljs-built_in">size</span>(); i++) &#123;<br>        buy1 = <span class="hljs-built_in">max</span>(buy1, <span class="hljs-number">0</span> - prices[i]);<br>        sell1 = <span class="hljs-built_in">max</span>(sell1, buy1 + prices[i]);<br>        buy2 = <span class="hljs-built_in">max</span>(buy2, sell1 - prices[i]);<br>        sell2 = <span class="hljs-built_in">max</span>(sell2, buy2 + prices[i]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> sell2;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
+    <span class="hljs-type">int</span> buy1 = -prices[<span class="hljs-number">0</span>], sell1 = <span class="hljs-number">0</span>;
+    <span class="hljs-type">int</span> buy2 = -prices[<span class="hljs-number">0</span>], sell2 = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.<span class="hljs-built_in">size</span>(); i++) &#123;
+        buy1 = <span class="hljs-built_in">max</span>(buy1, <span class="hljs-number">0</span> - prices[i]);
+        sell1 = <span class="hljs-built_in">max</span>(sell1, buy1 + prices[i]);
+        buy2 = <span class="hljs-built_in">max</span>(buy2, sell1 - prices[i]);
+        sell2 = <span class="hljs-built_in">max</span>(sell2, buy2 + prices[i]);
+    &#125;
+    <span class="hljs-keyword">return</span> sell2;
+&#125;</code></pre></div>
 
-<h3 id="股票最佳时机-Ⅳ-188"><a href="#股票最佳时机-Ⅳ-188" class="headerlink" title="股票最佳时机 Ⅳ  188"></a>股票最佳时机 Ⅳ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/">188</a></h3><p><strong>题目：</strong></p>
+<h4 id="股票最佳时机-Ⅳ-188"><a href="#股票最佳时机-Ⅳ-188" class="headerlink" title="股票最佳时机 Ⅳ  188"></a>股票最佳时机 Ⅳ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/">188</a></h4><p><strong>题目：</strong></p>
 <p>​	还还还是那个prices数组，你可以进行<code>k</code>次交易，仍然是最多同时持有一支股票。</p>
 <p>​	与Ⅲ的区别在于，从2次改成了k次</p>
 <p><strong>分析：</strong></p>
 <p>​	解法同上，区别在于，限制买两次，每天是5种状态，限制买k次，每天还是那么分析状态，用一个for循环表示出来即可。要注意初始化时，buy要全部初始化为-p0，因为一天可以连续买卖。</p>
 <p><strong>题解：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-type">int</span> k, vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">buy</span><span class="hljs-params">(k+<span class="hljs-number">1</span>, -prices[<span class="hljs-number">0</span>])</span></span>;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">sell</span><span class="hljs-params">(k+<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;<br>    buy[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= k; ++j) &#123;<br>            buy[j] = <span class="hljs-built_in">max</span>(buy[j], sell[j - <span class="hljs-number">1</span>] - prices[i]);<br>            sell[j] = <span class="hljs-built_in">max</span>(sell[j], buy[j] + prices[i]);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> sell[k];<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-type">int</span> k, vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">buy</span><span class="hljs-params">(k+<span class="hljs-number">1</span>, -prices[<span class="hljs-number">0</span>])</span></span>;
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">sell</span><span class="hljs-params">(k+<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;
+    buy[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.<span class="hljs-built_in">size</span>(); ++i) &#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= k; ++j) &#123;
+            buy[j] = <span class="hljs-built_in">max</span>(buy[j], sell[j - <span class="hljs-number">1</span>] - prices[i]);
+            sell[j] = <span class="hljs-built_in">max</span>(sell[j], buy[j] + prices[i]);
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> sell[k];
+&#125;</code></pre></div>
 
 <h3 id="停下思考-1"><a href="#停下思考-1" class="headerlink" title="停下思考 1"></a>停下思考 1</h3><blockquote>
 <p>上面这几个&#x3D;&#x3D;股票&#x3D;&#x3D;问题，采用了动态规划方法解决。那么他们的&#x3D;&#x3D;最优子结构&#x3D;&#x3D;是什么呢？</p>
 <p>可以举几个最优子结构的例子进行类比学习：</p>
 <ul>
 <li><p>最佳游艇租赁，<strong>假设</strong>最优路径有中间停靠站k，那左右两边的租赁价格都得是最小</p>
-<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303222443969.png" srcset="/img/loading.gif" lazyload alt="image-20230303222443969"></p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303222443969.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li><p>矩阵链乘，<strong>假设</strong>要从中间k处分割，那么左右的链乘代价都得是最小的<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303222527991.png" srcset="/img/loading.gif" lazyload alt="image-20230303222527991"></p>
+<li><p>矩阵链乘，<strong>假设</strong>要从中间k处分割，那么左右的链乘代价都得是最小的<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303222527991.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li><p>最长公共子序列，<strong>假设</strong>Z是X和Y的最长公共子序列，那么，如果三者末位元素相等，那么去掉一个，Z<del>k-1</del>还的是X<del>m-1</del>、Y<del>n-1</del>的最长子序列。如果末尾元素不同，那么去掉那个不同的（假设是X的末位），Z<del>k</del>还得是X<del>m-1</del>与Y<del>n</del>的最长子序列<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303223446862.png" srcset="/img/loading.gif" lazyload alt="image-20230303223446862"></p>
+<li><p>最长公共子序列，<strong>假设</strong>Z是X和Y的最长公共子序列，那么，如果三者末位元素相等，那么去掉一个，Z<del>k-1</del>还的是X<del>m-1</del>、Y<del>n-1</del>的最长子序列。如果末尾元素不同，那么去掉那个不同的（假设是X的末位），Z<del>k</del>还得是X<del>m-1</del>与Y<del>n</del>的最长子序列<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303223446862.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li><p>基因编辑（字符串变为另一字符串所需的最小代价），<strong>假设</strong>X和Y的最短编辑距离是<code>d[i][j]</code>，那么对于X和Y的右侧，要么放得对齐：相同了不编辑，不同则编辑；要么不对齐：去掉长的，或给短的插入一个。反正均可以用d表示出来：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303224711576.png" srcset="/img/loading.gif" lazyload alt="image-20230303224711576"></p>
+<li><p>基因编辑（字符串变为另一字符串所需的最小代价），<strong>假设</strong>X和Y的最短编辑距离是<code>d[i][j]</code>，那么对于X和Y的右侧，要么放得对齐：相同了不编辑，不同则编辑；要么不对齐：去掉长的，或给短的插入一个。反正均可以用d表示出来：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303224711576.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>0-1背包，</p>
 </li>
@@ -626,8 +836,8 @@
 
   <!-- Scripts -->
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -638,13 +848,13 @@
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -671,7 +881,7 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
@@ -709,14 +919,14 @@
 </script>
 
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
 
   <script>Fluid.plugins.codeWidget();</script>
 
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
     window.anchors.options = {
       placement: CONFIG.anchorjs.placement,
       visible  : CONFIG.anchorjs.visible
@@ -754,7 +964,7 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
     Fluid.plugins.fancyBox();
   });
 </script>
@@ -770,7 +980,7 @@
               inlineMath: { '[+]': [['$', '$']] }
             },
             loader : {
-              load: ['ui/lazy']
+              
             },
             options: {
               renderActions: {
@@ -803,7 +1013,7 @@
       </script>
     
 
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 

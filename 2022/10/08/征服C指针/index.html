@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://captainwc.github.io/img/banner/114.jpg">
 <meta property="article:published_time" content="2022-10-07T17:15:57.000Z">
-<meta property="article:modified_time" content="2023-04-02T09:08:28.095Z">
+<meta property="article:modified_time" content="2023-05-29T13:25:00.756Z">
 <meta property="article:author" content="kk">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,17 +35,17 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>征服C指针 - 开宝特攻</title>
+  <title>征服C指针 ヽ(✿ﾟ▽ﾟ)ノ 开宝特攻</title>
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
 
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
 
 
@@ -56,7 +56,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":90,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"captainwc.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":40,"cursorChar":"","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -114,7 +114,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>shuaikai</strong>
+      <strong>开开</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -256,7 +256,8 @@
         
         
         
-          38 分钟
+          <!-- compatible with older versions-->
+          56 分钟
         
       </span>
     
@@ -316,10 +317,20 @@
 </blockquote>
 <ol>
 <li><p>无论是用<code>%d, %p, %x</code>,都能输出指针，指针就是<code>unsigned int</code>。似乎这样理解也不无道理。但是需要指出的是，这是与环境有关的。<strong>指针的长度是固定的，无论其是指向什么类型</strong>，可以参见下面的例子：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span>    *p1;<br><span class="hljs-type">double</span> *p1;<br><span class="hljs-type">char</span>   *p3;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d %d\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(p1), <span class="hljs-keyword">sizeof</span>(p2), <span class="hljs-keyword">sizeof</span>(p3));<br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">8</span> <span class="hljs-number">8</span> <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span>    *p1;
+<span class="hljs-type">double</span> *p1;
+<span class="hljs-type">char</span>   *p3;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d %d\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(p1), <span class="hljs-keyword">sizeof</span>(p2), <span class="hljs-keyword">sizeof</span>(p3));
+<span class="hljs-comment">// 输出：</span>
+<span class="hljs-number">8</span> <span class="hljs-number">8</span> <span class="hljs-number">8</span></code></pre></div>
 </li>
 <li><p>既然指针是地址，那指向 int 指向 double 有必要区分么？有的。<strong>仅仅告知内存地址，不告知在那个地址上的数据类型，是无法正确取出值来的</strong>。<br>题外话，指针的&#x3D;&#x3D;强制类型转换&#x3D;&#x3D;，也只是改变对内容的解释方法，指针的长度是固定不变的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span>   x = <span class="hljs-number">0x00000041</span>;<br><span class="hljs-type">char</span> *p;<br>p = (<span class="hljs-type">char</span>*)&amp;x;<br>pintf(<span class="hljs-string">&quot;%c\n&quot;</span>, p);<br><span class="hljs-comment">// 输出：</span><br>A<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span>   x = <span class="hljs-number">0x00000041</span>;
+<span class="hljs-type">char</span> *p;
+p = (<span class="hljs-type">char</span>*)&amp;x;
+pintf(<span class="hljs-string">&quot;%c\n&quot;</span>, p);
+<span class="hljs-comment">// 输出：</span>
+A</code></pre></div>
 </li>
 <li><p>指针就是地址，对指针 +1，指针不应该就前进一个字节么？<br>当然不是，对指针 +n，指针前进“当前指针指向的数据类型长度 $\times$n</p>
 </li>
@@ -332,10 +343,14 @@
 </li>
 </ol>
 <h4 id="1-3-1-NULL，-0-和-‘-0’"><a href="#1-3-1-NULL，-0-和-‘-0’" class="headerlink" title="1.3.1 NULL， 0 和 ‘\0’"></a>1.3.1 NULL， 0 和 ‘\0’</h4><p>在<code>&lt;stdio.h&gt;</code>中，NULL定义如下：<code>#define NULL 0</code>，那么空指针不就是为 0 的地址么？大部分环境中确实是这样，但这么说是不准确的。（原作中说的我也没听懂要说什么，但为了便于阅读，还是写NULL吧，又不费劲？）不过有一点：<em>在C语言中，当常量 0 处于应该作为指针的上下文中时，他就作为空指针使用</em>，所以：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> *p = <span class="hljs-number">3</span>; <span class="hljs-comment">// error! 不能将 int 型赋值给 int* 型</span><br><span class="hljs-type">int</span> *q = <span class="hljs-number">0</span>; <span class="hljs-comment">// 可以，此时等价于， p == NULL</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span> *p = <span class="hljs-number">3</span>; <span class="hljs-comment">// error! 不能将 int 型赋值给 int* 型</span>
+<span class="hljs-type">int</span> *q = <span class="hljs-number">0</span>; <span class="hljs-comment">// 可以，此时等价于， p == NULL</span></code></pre></div>
 
 <p>**’\0’<strong>即所有位均为 0 的空字符，也即其ASCII码为 00000000，空字符’\0’是常量，实际上它等同于 0，但同样的，仍建议不要这样写（</strong>C语言中，‘\0’呀’a’呀，其类型实际上是 int **而不是 char）</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">char</span> alp = <span class="hljs-string">&#x27;a&#x27;</span>;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, <span class="hljs-keyword">sizeof</span>(alp), <span class="hljs-keyword">sizeof</span>(<span class="hljs-string">&#x27;a&#x27;</span>));<br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">1</span> <span class="hljs-number">4</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">char</span> alp = <span class="hljs-string">&#x27;a&#x27;</span>;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, <span class="hljs-keyword">sizeof</span>(alp), <span class="hljs-keyword">sizeof</span>(<span class="hljs-string">&#x27;a&#x27;</span>));
+<span class="hljs-comment">// 输出：</span>
+<span class="hljs-number">1</span> <span class="hljs-number">4</span></code></pre></div>
 
 <h3 id="1-4-指针和数组"><a href="#1-4-指针和数组" class="headerlink" title="1.4 指针和数组"></a>1.4 指针和数组</h3><p>&#x3D;&#x3D;这是本书最重要的“一”句话：&#x3D;&#x3D;</p>
 <ul>
@@ -350,9 +365,25 @@
 </li>
 </ul>
 <p>一些实验：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-comment">// 对于点 1</span><br><span class="hljs-type">int</span> nums[N];<br><span class="hljs-type">int</span> len = <span class="hljs-keyword">sizeof</span>(nums) / sizof(<span class="hljs-type">int</span>); <span class="hljs-comment">//数组元素个数</span><br><br><span class="hljs-type">void</span>(<span class="hljs-type">int</span> nums[]);<br><span class="hljs-type">void</span>(<span class="hljs-type">int</span> *nums); <span class="hljs-comment">// 两种写法是等价的，所以此时nums就是个指针，sizeof(nums) == 8;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs C"><span class="hljs-comment">// 对于点 1</span>
+<span class="hljs-type">int</span> nums[N];
+<span class="hljs-type">int</span> len = <span class="hljs-keyword">sizeof</span>(nums) / sizof(<span class="hljs-type">int</span>); <span class="hljs-comment">//数组元素个数</span>
 
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-comment">// 对于点 3</span><br><span class="hljs-type">char</span> str[<span class="hljs-number">4</span>] = <span class="hljs-string">&quot;abc&quot;</span>;<br>str[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 可以, 花括号形式赋值</span><br><br><span class="hljs-type">char</span> *str = <span class="hljs-string">&quot;abc&quot;</span>;<br>str[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 不可以，指针赋值，指向的是字符串常量（在只读区），常量能改么？</span><br><br><span class="hljs-type">char</span> *str[] = &#123;<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;ab&quot;</span>&#125;;<br>str[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 不可以，str是一个数组，里面存放的是指针，所以对应的”abc“是赋值给指针了</span><br><br><span class="hljs-type">char</span> str[][<span class="hljs-number">4</span>] = &#123;<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;ab&quot;</span>&#125;;<br>str[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 可以， str是数组的数组，所以”abc“是赋值给数组，也即花括号形式赋值</span><br></code></pre></td></tr></table></figure>
+<span class="hljs-type">void</span>(<span class="hljs-type">int</span> nums[]);
+<span class="hljs-type">void</span>(<span class="hljs-type">int</span> *nums); <span class="hljs-comment">// 两种写法是等价的，所以此时nums就是个指针，sizeof(nums) == 8;</span></code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs C"><span class="hljs-comment">// 对于点 3</span>
+<span class="hljs-type">char</span> str[<span class="hljs-number">4</span>] = <span class="hljs-string">&quot;abc&quot;</span>;
+str[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 可以, 花括号形式赋值</span>
+
+<span class="hljs-type">char</span> *str = <span class="hljs-string">&quot;abc&quot;</span>;
+str[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 不可以，指针赋值，指向的是字符串常量（在只读区），常量能改么？</span>
+
+<span class="hljs-type">char</span> *str[] = &#123;<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;ab&quot;</span>&#125;;
+str[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 不可以，str是一个数组，里面存放的是指针，所以对应的”abc“是赋值给指针了</span>
+
+<span class="hljs-type">char</span> str[][<span class="hljs-number">4</span>] = &#123;<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;ab&quot;</span>&#125;;
+str[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;b&#x27;</span>; <span class="hljs-comment">// 可以， str是数组的数组，所以”abc“是赋值给数组，也即花括号形式赋值</span></code></pre></div>
 
 <h4 id="1-4-1-为什么C语言不做数组下标越界检查？"><a href="#1-4-1-为什么C语言不做数组下标越界检查？" class="headerlink" title="1.4.1 为什么C语言不做数组下标越界检查？"></a>1.4.1 为什么C语言不做数组下标越界检查？</h4><p>简单来说，C中访问数组元素，（即使你用的是下标访问法，）都是用指针来进行的。这样的指针可以有很多种，存在于多处、多个源文件中，他们还可以自由的进行加减运算。对编译器来说是很难追踪每一个指针的</p>
 <h3 id="1-5-函数指针"><a href="#1-5-函数指针" class="headerlink" title="1.5 函数指针"></a>1.5 函数指针</h3><p>正如数组在表达式中被解读成指针一样，<strong>函数，也同时是指向函数的指针，这个指针指向函数的初始地址</strong></p>
@@ -361,7 +392,12 @@
 <li>函数调用运算符<code>()</code>的操作数不是函数，而是函数的指针</li>
 </ul>
 <p>因此对于指向函数的指针，使用<code>*</code>对其解引用，变为函数，但是由于是在表达式中，因此立马又被解释成指向函数的指针，因此，下面这个也是能工作的</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span>;<br><span class="hljs-type">void</span> (*func_p)(<span class="hljs-type">int</span>);<br>func_p = func; <span class="hljs-comment">// 此时 func 直接可以解释成指向函数的指针</span><br>func_p = &amp;func; <span class="hljs-comment">// 此时 func 不能再解释称函数指针了，因为是 &amp; 的操作数</span><br><br>(******<span class="hljs-built_in">printf</span>)(<span class="hljs-string">&quot;hello\n&quot;</span>); <span class="hljs-comment">// 一样正常工作</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">func</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span>;
+<span class="hljs-type">void</span> (*func_p)(<span class="hljs-type">int</span>);
+func_p = func; <span class="hljs-comment">// 此时 func 直接可以解释成指向函数的指针</span>
+func_p = &amp;func; <span class="hljs-comment">// 此时 func 不能再解释称函数指针了，因为是 &amp; 的操作数</span>
+
+(******<span class="hljs-built_in">printf</span>)(<span class="hljs-string">&quot;hello\n&quot;</span>); <span class="hljs-comment">// 一样正常工作</span></code></pre></div>
 
 <h4 id="1-5-2-函数指针的用途"><a href="#1-5-2-函数指针的用途" class="headerlink" title="1.5.2 函数指针的用途"></a>1.5.2 函数指针的用途</h4><ul>
 <li>GUI中的按钮控件记忆“当自身被按下的时候需要调用的函数”</li>
@@ -442,9 +478,7 @@
 	E(元素个数为10)
 	F(参数为int)
 	A-.-E
-	C-.-F
-	
-</code></pre>
+	C-.-F</code></pre>
 
 <ul>
 <li><p>最开始类型“数组（元素10）”整和了全体类型的意义，所以将其称为<strong>类型分类</strong>【即“定性”，你到底是个什么东西】</p>
@@ -454,20 +488,17 @@
 </ul>
 <h4 id="3-2-2-类型的派生"><a href="#3-2-2-类型的派生" class="headerlink" title="3.2.2 类型的派生"></a>3.2.2 类型的派生</h4><h5 id="3-2-2-1-指针类型的派生"><a href="#3-2-2-1-指针类型的派生" class="headerlink" title="3.2.2.1 指针类型的派生"></a>3.2.2.1 指针类型的派生</h5><p>后面的T1 T2…统称为<strong>被引用类型T</strong></p>
 <pre><code class=" mermaid">graph RL
-	A[指针]--&gt;|指向|B[T1]--&gt;c[T2]--&gt;d[T3]--&gt;e[......]
-</code></pre>
+	A[指针]--&gt;|指向|B[T1]--&gt;c[T2]--&gt;d[T3]--&gt;e[......]</code></pre>
 
 <h5 id="3-2-2-2-数组类型的派生"><a href="#3-2-2-2-数组类型的派生" class="headerlink" title="3.2.2.2 数组类型的派生"></a>3.2.2.2 数组类型的派生</h5><pre><code class=" mermaid">graph RL
 	A[指针]--包含--&gt;T1--&gt;T2--&gt;......
 	B[元素个数]
-	A-.-B
-</code></pre>
+	A-.-B</code></pre>
 
 <h5 id="3-2-2-3-函数类型的派生"><a href="#3-2-2-3-函数类型的派生" class="headerlink" title="3.2.2.3 函数类型的派生"></a>3.2.2.3 函数类型的派生</h5><pre><code class=" mermaid">flowchart LR
 	a[......]--&gt;T2--&gt;T1--&gt;|被返回|b[函数]-.-c[参数]
 	c--&gt;f[T1]--&gt;g[T2]--&gt;d[......]
-	c--&gt;h[T1]--&gt;i[T2]--&gt;e[......]
-</code></pre>
+	c--&gt;h[T1]--&gt;i[T2]--&gt;e[......]</code></pre>
 
 <ul>
 <li>有特定长度的类型，称为<strong>对象类型</strong></li>
@@ -555,9 +586,22 @@
 <li><p>C++中可以将任意指针赋值给void*，但是反过来不行，所以malloc必须强制类型转换。不过人C++都用<code>new</code>了</p>
 </li>
 <li><p><strong>内存布局对齐</strong>：结构体中，一些数据类型可能会被配置到比如4&#x2F;8的倍数的地址上，即使它没有这么长。例如：</p>
- <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span><br>    <span class="hljs-type">int</span>    a;<br>    <span class="hljs-type">double</span> b;<br>    <span class="hljs-type">char</span>   c;	<span class="hljs-comment">// 会被自动对齐到 4 的倍数的内存地址上</span><br>&#125;hoge;<br><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(hoge));<br><span class="hljs-comment">//输出：</span><br><span class="hljs-number">16</span><br></code></pre></td></tr></table></figure></li>
+ <div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+    <span class="hljs-type">int</span>    a;
+    <span class="hljs-type">double</span> b;
+    <span class="hljs-type">char</span>   c;	<span class="hljs-comment">// 会被自动对齐到 4 的倍数的内存地址上</span>
+&#125;hoge;
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(hoge));
+<span class="hljs-comment">//输出：</span>
+<span class="hljs-number">16</span></code></pre></div></li>
 <li><p><strong>大端、小端存储</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span>              hoge = <span class="hljs-number">0x12345678</span>;<br><span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *hoge_p = (<span class="hljs-type">unsigned</span>  <span class="hljs-type">char</span>*)&amp;hoge;<br><br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%x %x %x %x\n&quot;</span>, hoge_p[<span class="hljs-number">0</span>], hoge_p[<span class="hljs-number">1</span>], hoge_p[<span class="hljs-number">2</span>], hoge_p[<span class="hljs-number">3</span>]);<br><span class="hljs-comment">// 输出：</span><br><span class="hljs-number">78</span> <span class="hljs-number">56</span> <span class="hljs-number">34</span> <span class="hljs-number">12</span>    <span class="hljs-comment">// 小端存储</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-type">int</span>              hoge = <span class="hljs-number">0x12345678</span>;
+<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *hoge_p = (<span class="hljs-type">unsigned</span>  <span class="hljs-type">char</span>*)&amp;hoge;
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%x %x %x %x\n&quot;</span>, hoge_p[<span class="hljs-number">0</span>], hoge_p[<span class="hljs-number">1</span>], hoge_p[<span class="hljs-number">2</span>], hoge_p[<span class="hljs-number">3</span>]);
+<span class="hljs-comment">// 输出：</span>
+<span class="hljs-number">78</span> <span class="hljs-number">56</span> <span class="hljs-number">34</span> <span class="hljs-number">12</span>    <span class="hljs-comment">// 小端存储</span></code></pre></div>
 </li>
 <li></li>
 </ol>
@@ -660,12 +704,6 @@
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2022/06/21/python%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E8%B7%B5/" title="python 从入门到实践（更新中）">
-                        <span class="hidden-mobile">python 从入门到实践（更新中）</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
@@ -816,8 +854,8 @@
 
   <!-- Scripts -->
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -828,13 +866,13 @@
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -861,7 +899,7 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
@@ -899,14 +937,14 @@
 </script>
 
 
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script>
 
   <script>Fluid.plugins.codeWidget();</script>
 
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js', function() {
     window.anchors.options = {
       placement: CONFIG.anchorjs.placement,
       visible  : CONFIG.anchorjs.visible
@@ -944,7 +982,7 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
     Fluid.plugins.fancyBox();
   });
 </script>
@@ -960,7 +998,7 @@
               inlineMath: { '[+]': [['$', '$']] }
             },
             loader : {
-              load: ['ui/lazy']
+              
             },
             options: {
               renderActions: {
@@ -993,7 +1031,7 @@
       </script>
     
 
-  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
