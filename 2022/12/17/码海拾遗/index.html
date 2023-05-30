@@ -214,7 +214,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/banner/102.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/banner/100.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
       <div class="banner-text text-center fade-in-up">
@@ -261,7 +261,7 @@
         
         
           <!-- compatible with older versions-->
-          126 分钟
+          125 分钟
         
       </span>
     
@@ -312,52 +312,44 @@
             
               <div class="markdown-body">
                 
-                <h1 id="码海拾遗"><a href="#码海拾遗" class="headerlink" title="码海拾遗"></a>码海拾遗</h1><blockquote>
-<p> <strong>前言</strong>：完整的总结总是劳神耗时的，已经熟稔的或者易于得到的部分也没有总结下来的必要。然遨游码海，总归有一些需要记忆的小点，好记性不如烂笔头，单开一篇又没必要，索性全归为一篇，作为手册。</p>
+                <h1 id="码海拾遗">码海拾遗</h1>
+<blockquote>
+<p><strong>前言</strong>：完整的总结总是劳神耗时的，已经熟稔的或者易于得到的部分也没有总结下来的必要。然遨游码海，总归有一些需要记忆的小点，好记性不如烂笔头，单开一篇又没必要，索性全归为一篇，作为手册。</p>
 </blockquote>
-<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><blockquote>
+<h2 id="linux">Linux</h2>
+<h3 id="常用命令">常用命令</h3>
+<h3 id="软件安装">软件安装</h3>
+<blockquote>
 <p>直接：sudo apt install <name></p>
 </blockquote>
-<ol>
-<li><p><code>tldr</code>：too long dont read，一个简单版本的man手册，记得先-u更新一下</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf"><code>fzf</code></a>：对输出列表进行模糊查询</p>
-</li>
-<li><p><code>colordiff</code>：彩色版diff，可以alias为diff</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/sharkdp/fd#installation"><code>fd-find</code></a>：更快的find命令，命令为<code>fdfind</code>，alias为fd，功能非常多，<code>-h</code>查看</p>
-</li>
-<li><p><code>htop</code>：更易于阅读的top命令</p>
-</li>
-<li><p><code>ncdu</code>：更易于阅读的du命令，可以直接排序，查看文件夹大小</p>
-</li>
-<li><p><code>ripgrep</code>：更强大的grep命令，命令为<code>rg</code></p>
-</li>
-<li><p><code>bat</code>：能高亮的cat命令，命令为<code>batcat</code>，alias为bat</p>
-</li>
-<li><p><code>diff-so-fancy</code>：下载后添加到PATH，chown和chgrp一下就好了，用法是<code>git diff --color | diff-so-fancy</code>，可以alias为gitd。能够让git diff显示的清晰一些，看情况用</p>
-</li>
-<li><p><code>manpages-zh</code>：中文man手册，用法：<code>man -M /usr/share/man/zh_CN</code>，alias为<code>cman</code><br><code>manpages-posix-dev</code>：POSIX的man手册</p>
+<ol type="1">
+<li><p><code>tldr</code>：too long dont read，一个简单版本的man手册，记得先-u更新一下</p></li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf"><code>fzf</code></a>：对输出列表进行模糊查询</p></li>
+<li><p><code>colordiff</code>：彩色版diff，可以alias为diff</p></li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/sharkdp/fd#installation"><code>fd-find</code></a>：更快的find命令，命令为<code>fdfind</code>，alias为fd，功能非常多，<code>-h</code>查看</p></li>
+<li><p><code>htop</code>：更易于阅读的top命令</p></li>
+<li><p><code>ncdu</code>：更易于阅读的du命令，可以直接排序，查看文件夹大小</p></li>
+<li><p><code>ripgrep</code>：更强大的grep命令，命令为<code>rg</code></p></li>
+<li><p><code>bat</code>：能高亮的cat命令，命令为<code>batcat</code>，alias为bat</p></li>
+<li><p><code>diff-so-fancy</code>：下载后添加到PATH，chown和chgrp一下就好了，用法是<code>git diff --color | diff-so-fancy</code>，可以alias为gitd。能够让git diff显示的清晰一些，看情况用</p></li>
+<li><p><code>manpages-zh</code>：中文man手册，用法：<code>man -M /usr/share/man/zh_CN</code>，alias为<code>cman</code> <code>manpages-posix-dev</code>：POSIX的man手册</p>
 <ul>
-<li>注意，vscode中有时不能识别一些函数如<code>sigaction</code>、<code>pthread_xxx</code>等，是因为没有”定义”<code>__USE_POSIX</code>这个宏（但实际上运行的时候是定义的），想要看补全的话，可以手动在，比如signal.h头文件前面define上</li>
-<li>听说 <code>c_cpp_properties.json</code>中定义<code>&quot;__USE_POSIX=1&quot;,</code>也行，但我的不行。但这不失为定义宏的好地方</li>
-</ul>
-</li>
-<li><p><code>cgdb</code>：可以随时预览代码的调试。:chains:<a target="_blank" rel="noopener" href="https://nowjava.com/docs/cgdb/cgdb-manual.html#2.6">命令参考</a> &#x2F; Esc(vim) i(cgdb) s(cgdb 翻页)</p>
+<li>注意，vscode中有时不能识别一些函数如<code>sigaction</code>、<code>pthread_xxx</code>等，是因为没有"定义"<code>__USE_POSIX</code>这个宏（但实际上运行的时候是定义的），想要看补全的话，可以手动在，比如signal.h头文件前面define上</li>
+<li>听说 <code>c_cpp_properties.json</code>中定义<code>"__USE_POSIX=1",</code>也行，但我的不行。但这不失为定义宏的好地方</li>
+</ul></li>
+<li><p><code>cgdb</code>：可以随时预览代码的调试。:chains:<a target="_blank" rel="noopener" href="https://nowjava.com/docs/cgdb/cgdb-manual.html#2.6">命令参考</a> / Esc(vim) i(cgdb) s(cgdb 翻页)</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment">#可能会缺少 curses.h 文件，可以先</span>
 sudo apt install libncurses5-dev libncursesw5-dev
 <span class="hljs-comment">#安装脚本：</span>
 wget https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/gdb/installCgdb.sh
 <span class="hljs-comment"># mkdir ~/.cgdb</span>
 wget -O ~/.cgdb/cgdbrc https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/gdb/cgdbrc
-wget -O ~/.gdbinit https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/gdb/.gdbinit</code></pre></div>
-</li>
-<li><p><code>expect</code>：交互的终端脚本工具，可以编写一些期待输入的脚本，<code>expect xxx   send xxx</code></p>
-</li>
+wget -O ~/.gdbinit https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/gdb/.gdbinit</code></pre></div></li>
+<li><p><code>expect</code>：交互的终端脚本工具，可以编写一些期待输入的脚本，<code>expect xxx   send xxx</code></p></li>
 <li></li>
 </ol>
 <p><strong>其他非必要：</strong></p>
-<ol>
+<ol type="1">
 <li><p><code>ossutil</code>：阿里云对象存储的<a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/50451.html?spm=a2c4g.120053.0.0.2b4f8887s2cqIs">命令行工具</a></p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment">#(1) 下载安装</span>
 wget https://gosspublic.alicdn.com/ossutil/install.sh &amp;&amp; sudo bash install.sh &amp;&amp; <span class="hljs-built_in">rm</span> install.sh
@@ -365,102 +357,96 @@ wget https://gosspublic.alicdn.com/ossutil/install.sh &amp;&amp; sudo bash insta
 ossutil config
 <span class="hljs-comment">#(3) 下载自定义配置文件</span>
 wget -O .ossutilconfig https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/others/.ossutilconfig
-wget -O .bash_aliases https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/bash/.bash_aliases</code></pre></div>
-</li>
-<li><p><code>man cpp</code>：cpp的man手册，包括一些浏览器检索的办法 :link: <a target="_blank" rel="noopener" href="https://www.yanbinghu.com/2019/11/03/59238.html">Linux自主安装C++man手册</a></p>
-</li>
+wget -O .bash_aliases https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/bash/.bash_aliases</code></pre></div></li>
+<li><p><code>man cpp</code>：cpp的man手册，包括一些浏览器检索的办法 :link: <a target="_blank" rel="noopener" href="https://www.yanbinghu.com/2019/11/03/59238.html">Linux自主安装C++man手册</a></p></li>
 </ol>
-<h3 id="shell编程"><a href="#shell编程" class="headerlink" title="shell编程"></a>shell编程</h3><ol>
-<li>变量都是字符串，即<code>&quot;%s&quot;</code>输出</li>
-<li><code>((var=var + 1)), var=$(expr &quot;var&quot; + 1)</code></li>
+<h3 id="shell编程">shell编程</h3>
+<ol type="1">
+<li>变量都是字符串，即<code>"%s"</code>输出</li>
+<li><code>((var=var + 1)), var=$(expr "var" + 1)</code></li>
 <li>$RANDOM 生成随机数</li>
-<li><code>ctrl-a/e</code>:行首&#x2F;行尾；  <code>Alt-b/f</code>:左&#x2F;右一个单词<br><code>crtl-w</code>:往左删一个词；  <code>Alt-d</code>:往右删一个词<br><code>ctrl-u/k</code>:删除光标左&#x2F;右所有字符<br><code>ctrl-y</code>:粘贴刚才删除的内容<br><code>ctrl shift &#39;-&#39;</code>:撤销操作</li>
-<li><code>^xxx</code>:删除上一条命令中的 xxx<br><code>^foo^bar</code>:把上一条命令中的 foo 替换为 bar</li>
-<li><code>find . -perm /111 -type f -delete</code>：linux下删除可执行文件（加个type可以略掉文件夹）（<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/779.html">find命令参考</a>）<ul>
-<li><code>-perm mode</code>：必须与mode指示的一样<br><code>-perm /mode</code>：mode中表示的，满足一个就好了，比如<code>111</code>，则只要有一个<code>1</code>满足就好了<br><code>-perm -mode</code>：mode中表示的，必须全部具有，<code>111</code>就是ugo都得可执行，缺一不可。别的属性不管</li>
-<li><code>find -iname readme -o -name *.c -not -size +100k -exec ls -i &#123;&#125; + -fprintf0 file.txt  </code>：<br>find查找是<strong>完全匹配</strong>；逻辑与或非；size的单位注意默认不是byte；exec结尾是<code>&#123;&#125; +</code>大括号表示结果</li>
-</ul>
-</li>
+<li><code>ctrl-a/e</code>:行首/行尾； <code>Alt-b/f</code>:左/右一个单词 <code>crtl-w</code>:往左删一个词； <code>Alt-d</code>:往右删一个词 <code>ctrl-u/k</code>:删除光标左/右所有字符 <code>ctrl-y</code>:粘贴刚才删除的内容 <code>ctrl shift '-'</code>:撤销操作</li>
+<li><code>^xxx</code>:删除上一条命令中的 xxx <code>^foo^bar</code>:把上一条命令中的 foo 替换为 bar</li>
+<li><code>find . -perm /111 -type f -delete</code>：linux下删除可执行文件（加个type可以略掉文件夹）（<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/779.html">find命令参考</a>）
+<ul>
+<li><code>-perm mode</code>：必须与mode指示的一样 <code>-perm /mode</code>：mode中表示的，满足一个就好了，比如<code>111</code>，则只要有一个<code>1</code>满足就好了 <code>-perm -mode</code>：mode中表示的，必须全部具有，<code>111</code>就是ugo都得可执行，缺一不可。别的属性不管</li>
+<li><code>find -iname readme -o -name *.c -not -size +100k -exec ls -i &#123;&#125; + -fprintf0 file.txt</code>： find查找是<strong>完全匹配</strong>；逻辑与或非；size的单位注意默认不是byte；exec结尾是<code>&#123;&#125; +</code>大括号表示结果</li>
+</ul></li>
 </ol>
-<h3 id="三剑客-grep-awk-sed"><a href="#三剑客-grep-awk-sed" class="headerlink" title="三剑客 grep awk sed"></a>三剑客 grep awk sed</h3><h4 id="例子-1"><a href="#例子-1" class="headerlink" title="例子(1)"></a>例子(1)</h4><p>&#x3D;&#x3D;用awk和sed迁移阿里云上的图片：&#x3D;&#x3D;</p>
-<ol>
-<li><p>找到阿里云oss仓库，选择批量导出url，导出后是一个.csv文件，格式为obj，url</p>
-</li>
+<h3 id="三剑客-grep-awk-sed">三剑客 grep awk sed</h3>
+<h4 id="例子1">例子(1)</h4>
+<p>==用awk和sed迁移阿里云上的图片：==</p>
+<ol type="1">
+<li><p>找到阿里云oss仓库，选择批量导出url，导出后是一个.csv文件，格式为obj，url</p></li>
 <li><p>找一个文件夹下载所有url</p>
-<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> export_urls.csv | awk -F, <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span> | xargs wget</code></pre></div>
-</li>
-<li><p>把下载的这些<strong>文件上传</strong>到新的oss上，得到新的链接。这会导致原来的笔记里面的图片链接全部失效，因此要更改链接。链接的区别只在前面的bucket地址，后面的图片名是完全一样的。因此只需要找到所有的笔记文件，把其中图片url中前面的bucket链接改成新的连接前缀即可</p>
-</li>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> export_urls.csv | awk -F, <span class="hljs-string">&#x27;&#123;print $2&#125;&#x27;</span> | xargs wget</code></pre></div></li>
+<li><p>把下载的这些<strong>文件上传</strong>到新的oss上，得到新的链接。这会导致原来的笔记里面的图片链接全部失效，因此要更改链接。链接的区别只在前面的bucket地址，后面的图片名是完全一样的。因此只需要找到所有的笔记文件，把其中图片url中前面的bucket链接改成新的连接前缀即可</p></li>
 <li><p>此处用到的fd命令要先下载，即fd-find。可以对文件夹进行递归正则查询。至此，就完成了对所有图片的迁移、更改链接操作。</p>
 <div class="code-wrapper"><pre><code class="hljs bash">fd <span class="hljs-string">&quot;.*\.md$&quot;</span> | xargs sed -i <span class="hljs-string">&#x27;s#https:\/\/xxx.xxx#https:\/\/yyy.yyy#g&#x27;</span></code></pre></div></li>
 </ol>
-<h2 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><h4 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h4><blockquote>
-<p>:book:<a target="_blank" rel="noopener" href="https://visualgdb.com/gdbreference/commands/">GDB Reference</a>   :link:<a target="_blank" rel="noopener" href="https://www.iteye.com/blog/daimajishu-1089741">调试器GDB常用功能</a></p>
+<h2 id="gdb">gdb</h2>
+<h3 id="命令">命令</h3>
+<h4 id="通用命令">通用命令</h4>
+<blockquote>
+<p>:book:<a target="_blank" rel="noopener" href="https://visualgdb.com/gdbreference/commands/">GDB Reference</a> :link:<a target="_blank" rel="noopener" href="https://www.iteye.com/blog/daimajishu-1089741">调试器GDB常用功能</a></p>
 </blockquote>
 <ul>
-<li><p><strong><code>x </code></strong>&#x2F; [<em>Length</em>][<em>Format</em>: t o d x f a c s] [<em>Address expression</em> b-8 h-16 w-32 g-64\ ]	:paperclip:<a target="_blank" rel="noopener" href="https://visualgdb.com/gdbreference/commands/x">GDB Command Reference : x</a></p>
-</li>
-<li><p>**<code>p</code>&#x2F;**t-2 o-8 d-10 x-16 f-loat a-ddress c-har s-tring [var]</p>
-<ol>
+<li><p><strong><code>x</code></strong>/ [<em>Length</em>][<em>Format</em>: t o d x f a c s] [<em>Address expression</em> b-8 h-16 w-32 g-64 ] :paperclip:<a target="_blank" rel="noopener" href="https://visualgdb.com/gdbreference/commands/x">GDB Command Reference : x</a></p></li>
+<li><p><strong><code>p</code>/</strong>t-2 o-8 d-10 x-16 f-loat a-ddress c-har s-tring [var]</p>
+<ol type="1">
 <li>:warning: 要注意区分，<strong>x</strong> 是扫描<strong>内存</strong>，因此后面跟的直接是内存地址， 而 <strong>p</strong> 是输出<strong>变量</strong>的值，因此后面想跟地址的话，需要取其内容，即加上<code>*</code></li>
 <li>关于 <code>*</code>，很多命令地址前面都要加星号，因为不加星号的一个地址，是被当成函数来看待的</li>
-</ol>
-</li>
-<li><p><strong><code>s n</code></strong> ：C语言级别的单步执行； **<code>si ni</code>**汇编级别的单步执行</p>
-</li>
-<li><p><strong><code>i [line] / [locals] / [vtbl] / [args] / [checkpoints] / [breakpoints] </code></strong></p>
-<ol>
-<li><p><code>info line [line] / [function] / [*addr]</code>：显示源码对应的内存中的起始结束地址</p>
-</li>
-<li><p><code>info vtbl [objs]</code>：直接查看对象的虚函数表（也可以类型转换的形式打印出来，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/bailang_zhizun/article/details/117124494">C++类的内存分配</a>，基本思想就是：对象的第一块内存放的就是虚表，虚表是一个函数指针数组，因此可以先将对象地址转换为指向指针的指针，然后对其取内容，就得到了虚表指针。把这个值转换为指向指针的指针，即得虚表）</p>
-</li>
-</ol>
-</li>
-<li><p><code>set print array-indexes on</code>：打印数组的时候显示 index</p>
-</li>
-<li><p><code>set disassemble next-line on</code>，<code>disassemble</code></p>
-</li>
-<li><p>**<code>set [args] / [register] / [*address] = [val]</code>**：设置参数、寄存器值、内存处值</p>
-</li>
-<li><p><code>jump [*address]</code>：跳转到指定地址处执行，<code>return [val]</code>：直接返回。都可以改变程序走向。</p>
-</li>
-<li><p><code>shell [cmd]</code>：运行 shell 命令</p>
-</li>
-<li><p><code>rbreak [regex]</code>：在所有满足正则表达式的函数处打断点</p>
-</li>
+</ol></li>
+<li><p><strong><code>s n</code></strong> ：C语言级别的单步执行； <strong><code>si ni</code></strong>汇编级别的单步执行</p></li>
+<li><p><strong><code>i [line] / [locals] / [vtbl] / [args] / [checkpoints] / [breakpoints]</code></strong></p>
+<ol type="1">
+<li><p><code>info line [line] / [function] / [*addr]</code>：显示源码对应的内存中的起始结束地址</p></li>
+<li><p><code>info vtbl [objs]</code>：直接查看对象的虚函数表（也可以类型转换的形式打印出来，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/bailang_zhizun/article/details/117124494">C++类的内存分配</a>，基本思想就是：对象的第一块内存放的就是虚表，虚表是一个函数指针数组，因此可以先将对象地址转换为指向指针的指针，然后对其取内容，就得到了虚表指针。把这个值转换为指向指针的指针，即得虚表）</p></li>
+</ol></li>
+<li><p><code>set print array-indexes on</code>：打印数组的时候显示 index</p></li>
+<li><p><code>set disassemble next-line on</code>，<code>disassemble</code></p></li>
+<li><p><strong><code>set [args] / [register] / [*address] = [val]</code></strong>：设置参数、寄存器值、内存处值</p></li>
+<li><p><code>jump [*address]</code>：跳转到指定地址处执行，<code>return [val]</code>：直接返回。都可以改变程序走向。</p></li>
+<li><p><code>shell [cmd]</code>：运行 shell 命令</p></li>
+<li><p><code>rbreak [regex]</code>：在所有满足正则表达式的函数处打断点</p></li>
 </ul>
-<h4 id="多进程-x2F-线程调试"><a href="#多进程-x2F-线程调试" class="headerlink" title="多进程&#x2F;线程调试"></a>多进程&#x2F;线程调试</h4><ul>
+<h4 id="多进程线程调试">多进程/线程调试</h4>
+<ul>
 <li><code>gdb [pid]</code>：调试正在运行的进程，或者进去后 <code>attch [pip]</code></li>
 </ul>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
-<li><strong>打印栈内容</strong>（你打数组肯定也行）：不妨设 $rsp 中存放的是 0x1234 <code>p $rsp =&gt; (void*)0x1234</code><ol>
-<li><code>x/10dw $rsp</code>   或  <code>x/10dw 0x1234</code>，即用 <code>x</code> 命令直接把栈那一块内存扫描出来</li>
+<h3 id="例子">例子</h3>
+<ul>
+<li><strong>打印栈内容</strong>（你打数组肯定也行）：不妨设 $rsp 中存放的是 0x1234 <code>p $rsp =&gt; (void*)0x1234</code>
+<ol type="1">
+<li><code>x/10dw $rsp</code> 或 <code>x/10dw 0x1234</code>，即用 <code>x</code> 命令直接把栈那一块内存扫描出来</li>
 <li><code>p *(int (*)[10])0x1234</code> 把栈顶<strong>地址</strong>类型转换为一个指向数组的指针，然后 print 这个数组 <strong>val</strong> 的值（所以要加<code>*</code>），即栈的内容</li>
 <li><code>p (int [10])*0x1234</code> 把栈顶的<strong>内容</strong>直接变成一个数组，然后输出</li>
-<li><code>p *0x1234@6</code> 注意<code>@</code>的用法，其左边必须是你想查看内存处的<strong>值</strong>，可以直接输出后面的六个变量<br>类似的 <code>p *argv@argc</code>，也是先取内容转换为变量，再输出</li>
+<li><code>p *0x1234@6</code> 注意<code>@</code>的用法，其左边必须是你想查看内存处的<strong>值</strong>，可以直接输出后面的六个变量 类似的 <code>p *argv@argc</code>，也是先取内容转换为变量，再输出</li>
 <li>总结一下，用 x 就是直接扫描内存了，简单粗暴；用 p 则是要把你想看的内存区域转化成一个变量，一个 val，不管是int还是int数组，不管是怎么类型转换，反正基本思想是把内存当成一个变量进行输出。最好还是用 x ，因为效果一样，用p你还需要先得到rsp里面的值</li>
-</ol>
-</li>
+</ol></li>
 <li><strong>查看虚表</strong> 略</li>
 <li><strong>运用core文件</strong>：<code>gdb debug core</code>进入之后，<code>disassemble</code>，可以看到 <code>=&gt;</code> 指向的就是运行出错的地方</li>
 </ul>
-<h3 id="性能分析工具"><a href="#性能分析工具" class="headerlink" title="性能分析工具"></a>性能分析工具</h3><p><code>Valgrind</code>：查看内存泄漏</p>
+<h3 id="性能分析工具">性能分析工具</h3>
+<p><code>Valgrind</code>：查看内存泄漏</p>
 <p><code>grof</code>：</p>
 <p>GPROF是一种性能分析工具，用于测量程序的运行时间和函数调用频率，以帮助开发人员找到程序中的<strong>性能瓶颈</strong>。它是GNU项目的一部分，通常与GCC（GNU编译器集合）一起使用。</p>
 <p>GPROF通过插入计时器代码和函数调用计数器代码来收集程序的运行时间和函数调用信息。它使用两个主要组件来生成性能分析报告：</p>
-<ol>
+<ol type="1">
 <li>gprof 编译器：这是一个特殊版本的GCC，用于在编译时在程序中插入性能分析代码。使用 <code>-pg</code> 选项编译程序时，会将性能分析代码插入到生成的可执行文件中。</li>
 <li>gprof 分析工具：这是一个独立的命令行工具，用于解析可执行文件中的性能分析代码，并生成详细的性能分析报告。它会记录程序的函数调用关系、每个函数的运行时间以及函数调用次数等信息，并以可读的格式输出。</li>
 </ol>
 <p>使用GPROF进行性能分析的一般流程如下：</p>
-<ol>
+<ol type="1">
 <li>在编译程序时，使用 <code>-pg</code> 选项告诉编译器插入性能分析代码。例如：<code>gcc -pg -o my_program my_source.c</code></li>
 <li><code>运行程序</code>，生成<code>gmon.out</code>文件。执行一系列典型的操作，以便GPROF能够收集足够的性能数据。</li>
 <li>程序运行结束后，在终端中运行 <code>gprof</code> 命令来生成性能分析报告。例如：<code>gprof my_program</code></li>
 <li>GPROF会分析程序执行期间收集到的数据，并生成一个报告，其中包含函数调用关系图、每个函数的运行时间百分比、函数调用次数等信息。</li>
 </ol>
 <p>通过分析GPROF生成的报告，开发人员可以确定程序中的热点函数（运行时间最长的函数）和瓶颈函数（被频繁调用的函数），以便进行性能优化。</p>
-<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><h3 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h3><ol>
+<h2 id="vim">vim</h2>
+<h3 id="零碎">零碎</h3>
+<ol type="1">
 <li>定义宏：<code>q + [a-zA-Z] + your_operation + q</code>，使用时<code>@ + [a-zA-Z]</code></li>
 <li><code>Ctrl + a</code>光标第一个数字加一，<code>Ctrl + x</code>光标第一个数字减一</li>
 <li>行内移动：<code>f w b e</code></li>
@@ -472,25 +458,26 @@ wget -O .bash_aliases https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/c
 <li><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230208121344239.png" srcset="/img/loading.gif" lazyload alt="image-20230208121344239" style="zoom: 67%;" /></li>
 <li><code>ctrl w ←↑↓→</code>切换窗口，<code>ctrl w HJKL</code>移动窗口</li>
 <li><code>:vertical resize +-n</code>：调整当前窗口宽度，去掉<code>vertical</code>调整高度</li>
-<li>默认的<code>map</code>是递归的，比如a映射b，b映射c，那么就等于是a映射了c。可以根据使用模式，做非递归的映射，即<code>nnoremap/inoremap/vnoremap/cnoremap</code>(normal&#x2F;insert&#x2F;visual&#x2F;comandline)</li>
-<li><a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast/blob/master/doc/help.md">doc&#x2F;help.md · chenxuan&#x2F;vim-fast - 码云 - 开源中国 (gitee.com)</a></li>
+<li>默认的<code>map</code>是递归的，比如a映射b，b映射c，那么就等于是a映射了c。可以根据使用模式，做非递归的映射，即<code>nnoremap/inoremap/vnoremap/cnoremap</code>(normal/insert/visual/comandline)</li>
+<li><a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast/blob/master/doc/help.md">doc/help.md · chenxuan/vim-fast - 码云 - 开源中国 (gitee.com)</a></li>
 </ol>
-<h3 id="myvimrc"><a href="#myvimrc" class="headerlink" title="myvimrc"></a>myvimrc</h3><p>快速配置：<a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast">vimfast</a> || 基于<a target="_blank" rel="noopener" href="https://github.com/chxuan/vimplus">vimplus </a>|| vim快捷键<a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast/blob/master/doc/help.md">help.md</a>  || 内置快捷键<a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast/blob/master/doc/key.md">key.md</a></p>
+<h3 id="myvimrc">myvimrc</h3>
+<p>快速配置：<a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast">vimfast</a> || 基于<a target="_blank" rel="noopener" href="https://github.com/chxuan/vimplus">vimplus</a>|| vim快捷键<a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast/blob/master/doc/help.md">help.md</a> || 内置快捷键<a target="_blank" rel="noopener" href="https://gitee.com/mirrorvim/vim-fast/blob/master/doc/key.md">key.md</a></p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 无插件快速配置 √</span>
 wget https://gitee.com/mirrorvim/vim-fast/raw/master/vimrc-no-plug -O ~/.vimrc</code></pre></div>
-
 <blockquote>
-<p>“&#x2F;&#x2F;“开头的不用添加到vimrc中，只是表说明作用</p>
+<p>"//"开头的不用添加到vimrc中，只是表说明作用</p>
 </blockquote>
-<h4 id="通用设置"><a href="#通用设置" class="headerlink" title="通用设置"></a>通用设置</h4><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">let</span> mapleader = <span class="hljs-string">&quot;,&quot;</span>      <span class="hljs-string">&quot; 定义&lt;leader&gt;键为逗号[，]</span>
+<h4 id="通用设置">通用设置</h4>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">let</span> mapleader = <span class="hljs-string">&quot;,&quot;</span>      <span class="hljs-string">&quot; 定义&lt;leader&gt;键为逗号[，]</span>
 <span class="hljs-string"></span>
 <span class="hljs-string">&quot;</span> 不必苦恼移动不到最后一个字符右边：A在行尾插入，I在行首插入；a在后一个
 nnoremap 0 $			<span class="hljs-string">&quot; 9移动到行首，0移动到行尾，从位置上更符合感受</span>
 <span class="hljs-string">nnoremap 9 0			&quot;</span> 下面这些在ming<span class="hljs-string">&#x27;li</span>
 <span class="hljs-string">nnoremap = w</span>
 <span class="hljs-string">nnoremap - b</span></code></pre></div>
-
-<h4 id="打开窗口"><a href="#打开窗口" class="headerlink" title="打开窗口"></a>打开窗口</h4><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-string">&quot;分屏与竖直分屏</span>
+<h4 id="打开窗口">打开窗口</h4>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-string">&quot;分屏与竖直分屏</span>
 <span class="hljs-string">// :split [file]</span>
 <span class="hljs-string">// :vsplit [file]</span>
 <span class="hljs-string">&quot;</span>vim中调试
@@ -500,8 +487,8 @@ nnoremap 0 $			<span class="hljs-string">&quot; 9移动到行首，0移动到行
 <span class="hljs-string">// :vert term	&quot;</span> vert，即打开竖直方向终端，去掉即水平方向分窗口
 nnoremap &lt;leader&gt;&lt;leader&gt;t :vert term	<span class="hljs-string">&quot; 打开竖直终端</span>
 <span class="hljs-string">nnoremap &lt;leader&gt;&lt;leader&gt;t :bo term ++rows=6	&quot;</span>六行水平终端</code></pre></div>
-
-<h4 id="窗口调整"><a href="#窗口调整" class="headerlink" title="窗口调整"></a>窗口调整</h4><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-string">&quot;改变窗口大小</span>
+<h4 id="窗口调整">窗口调整</h4>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-string">&quot;改变窗口大小</span>
 <span class="hljs-string">nnoremap &lt;c-up&gt; :resize+1&lt;cr&gt;</span>
 <span class="hljs-string">nnoremap &lt;c-down&gt; :resize-1&lt;cr&gt;</span>
 <span class="hljs-string">nnoremap &lt;c-left&gt; :vertical resize+1&lt;cr&gt;</span>
@@ -516,8 +503,8 @@ nnoremap &lt;s-right&gt; &lt;c-w&gt;l
 <span class="hljs-string">nnoremap &lt;c-s-down&gt; &lt;c-w&gt;J</span>
 <span class="hljs-string">nnoremap &lt;c-s-left&gt; &lt;c-w&gt;H</span>
 <span class="hljs-string">nnoremap &lt;c-s-right&gt; &lt;c-w&gt;L</span></code></pre></div>
-
-<h4 id="其他便捷操作"><a href="#其他便捷操作" class="headerlink" title="其他便捷操作"></a>其他便捷操作</h4><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-string">&quot; 自动括号</span>
+<h4 id="其他便捷操作">其他便捷操作</h4>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-string">&quot; 自动括号</span>
 <span class="hljs-string">inoremap ( ()&lt;left&gt;	&quot;</span>插入模式
 inoremap [ []&lt;left&gt;
 inoremap &#123; &#123;&#125;&lt;left&gt;
@@ -526,8 +513,8 @@ cnoremap ( ()&lt;left&gt;	<span class="hljs-string">&quot;命令行模式</span>
 <span class="hljs-string">cnoremap &#123; &#123;&#125;&lt;left&gt;</span>
 <span class="hljs-string">&quot;</span> 快捷编辑文件
 nnoremap e :edit&lt;space&gt;&lt;c-r&gt;=getcwd()&lt;cr&gt;/</code></pre></div>
-
-<h3 id="mybash-aliases"><a href="#mybash-aliases" class="headerlink" title="mybash_aliases"></a>mybash_aliases</h3><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># default</span>
+<h3 id="mybash_aliases">mybash_aliases</h3>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># default</span>
 <span class="hljs-built_in">alias</span> gdb=<span class="hljs-string">&#x27;gdb -q&#x27;</span>
 <span class="hljs-built_in">alias</span> ll=<span class="hljs-string">&#x27;ls -alhF --color=auto&#x27;</span>
 <span class="hljs-built_in">alias</span> python=<span class="hljs-string">&#x27;python3&#x27;</span>
@@ -571,23 +558,29 @@ nnoremap e :edit&lt;space&gt;&lt;c-r&gt;=getcwd()&lt;cr&gt;/</code></pre></div>
 <span class="hljs-comment"># alias windownload=&#x27;cd /mnt/c/Users/wddjwk/Downloads&#x27;</span>
 <span class="hljs-comment"># alias wintest=&#x27;cd /mnt/d/test&#x27;</span>
 <span class="hljs-comment"># alias win~=&#x27;cd /mnt/c/Users/wddjwk&#x27;</span></code></pre></div>
-
-<h2 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="C-x2F-C-环境"><a href="#C-x2F-C-环境" class="headerlink" title="C&#x2F;C++ 环境"></a>C&#x2F;C++ 环境</h4><p>各种 json 文件：（见备份）</p>
-<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><h4 id="inline-bookmark"><a href="#inline-bookmark" class="headerlink" title="inline bookmark"></a>inline bookmark</h4><p>可以对行进行标记，并在左侧列出</p>
+<h2 id="vscode">vscode</h2>
+<h3 id="配置">配置</h3>
+<h4 id="cc-环境">C/C++ 环境</h4>
+<p>各种 json 文件：（见备份）</p>
+<h3 id="插件">插件</h3>
+<h4 id="inline-bookmark">inline bookmark</h4>
+<p>可以对行进行标记，并在左侧列出</p>
 <div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-attr">&quot;inline-bookmarks.expert.custom.words.mapping&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;blue&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;&gt;mark[\\s]&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;@mark[\\s]&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;purple&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;&gt;panic[\\s]&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;@panic[\\s]&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;green&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;&gt;note[\\s]&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;@note[\\s]&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;red&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;&gt;warn[\\s]&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;&gt;why[\\s]&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;@warn[\\s]&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;@why[\\s]&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;warn&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;&gt;todo[\\s]&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;&gt;TODO[\\s]&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;@todo[\\s]&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;@TODO[\\s]&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span></code></pre></div>
-
-
-
-<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="零碎-1"><a href="#零碎-1" class="headerlink" title="零碎"></a>零碎</h3><ol>
+<h2 id="git">git</h2>
+<h3 id="零碎-1">零碎</h3>
+<ol type="1">
 <li><code>git config --global init.defaultBranch main</code></li>
 <li>找机会修改一下github用户名</li>
-<li><code>--global</code>: <code>~/.gitconfig</code><br><code>--system</code>:<code>/etc/gitconfig</code></li>
+<li><code>--global</code>: <code>~/.gitconfig</code> <code>--system</code>:<code>/etc/gitconfig</code></li>
 </ol>
-<h3 id="快捷git"><a href="#快捷git" class="headerlink" title="快捷git"></a>快捷git</h3><blockquote>
+<h3 id="快捷git">快捷git</h3>
+<blockquote>
 <p>可以直接创建一个<code>.bash_aliases</code>文件</p>
 <p>也可以<code>git global comfig alias.st status</code>，配置别名</p>
 </blockquote>
-<h2 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a>makefile</h2><h3 id="模板1"><a href="#模板1" class="headerlink" title="模板1"></a>模板1</h3><div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-comment"># 一个适合中小规模的makefile模版，基本上自己按照实际情况指定一下 源文件，目标文件，头文件目录，以及源文件后缀就行了。</span>
+<h2 id="makefile">makefile</h2>
+<h3 id="模板1">模板1</h3>
+<div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-comment"># 一个适合中小规模的makefile模版，基本上自己按照实际情况指定一下 源文件，目标文件，头文件目录，以及源文件后缀就行了。</span>
 
 <span class="hljs-comment"># ---------------------------------------------------------------------------</span>
 <span class="hljs-comment"># commands</span>
@@ -652,8 +645,8 @@ TARGET := loader
 
 <span class="hljs-variable">$(OBJS)</span>:<span class="hljs-variable">$(OBJ_DIR)</span>/%<span class="hljs-variable">$(OBJ_SUFFIX)</span>:<span class="hljs-variable">$(SRC_DIR)</span>/%<span class="hljs-variable">$(SRC_SUFFIX)</span>
 <span class="hljs-variable">$(CC)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$(INCS)</span> <span class="hljs-variable">$(OPT_OUT)</span><span class="hljs-variable">$@</span> <span class="hljs-variable">$&lt;</span></code></pre></div>
-
-<h3 id="模板2"><a href="#模板2" class="headerlink" title="模板2"></a>模板2</h3><div class="code-wrapper"><pre><code class="hljs makefile">CXX := g++
+<h3 id="模板2">模板2</h3>
+<div class="code-wrapper"><pre><code class="hljs makefile">CXX := g++
 
 SRC_DIR := ./src
 OBJ_DIR := ./build
@@ -704,8 +697,8 @@ all : <span class="hljs-variable">$(TARGET)</span>
 	@echo <span class="hljs-variable">$(SRCS)</span>
 	@echo --------------
 	@echo <span class="hljs-variable">$(OBJS)</span></code></pre></div>
-
-<h3 id="模板3"><a href="#模板3" class="headerlink" title="模板3"></a>模板3</h3><div class="code-wrapper"><pre><code class="hljs makefile">CC := gcc
+<h3 id="模板3">模板3</h3>
+<div class="code-wrapper"><pre><code class="hljs makefile">CC := gcc
 CC_INCLUDE_FLAGS := -I ./<span class="hljs-keyword">include</span>/
 CC_FLAGS := <span class="hljs-variable">$(CC_INCLUDE_FLAGS)</span> -g
 
@@ -749,46 +742,43 @@ target := <span class="hljs-variable">$(DIR_EXE)</span>/my_ls_pro
 	make
 	<span class="hljs-variable">$(target)</span> <span class="hljs-variable">$(ARGS)</span>
 </code></pre></div>
-
-<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><p><a target="_blank" rel="noopener" href="https://www.zhaixue.cc/makefile/makefile-text-func.html">REF1：makefile简明教程</a>,    <a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/90512346">REF2：如何输出到指定文件夹</a> ，<a target="_blank" rel="noopener" href="https://airguanz.github.io/2018/04/27/makefile-dept.html">REF3：关于自动生成依赖.d文件</a></p>
-<h4 id="模式替换"><a href="#模式替换" class="headerlink" title="模式替换"></a>模式替换</h4><p><code>$(patsubst &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt; ) </code><br>        查找<text>中的单词（单词以“空格”、“Tab”或“回车”“换行”分隔）是否符合模式<pattern>，如果匹配的话，则以<replacement>替换。</p>
-<p>​        这里，<pattern>可以包括通配符“%”，表示任意长度的字串。如果<replacement>中也包含“%”，那么，<replacement>中的这个“%”将是<pattern>中的那个“%”所代表的字串。（可以用“\”来转义，以“%”来表示真实含义的“%”字符）</p>
+<h3 id="教程">教程</h3>
+<p><a target="_blank" rel="noopener" href="https://www.zhaixue.cc/makefile/makefile-text-func.html">REF1：makefile简明教程</a>, <a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/90512346">REF2：如何输出到指定文件夹</a> ，<a target="_blank" rel="noopener" href="https://airguanz.github.io/2018/04/27/makefile-dept.html">REF3：关于自动生成依赖.d文件</a></p>
+<h4 id="模式替换">模式替换</h4>
+<p><code>$(patsubst &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt; )</code> 查找<text>中的单词（单词以“空格”、“Tab”或“回车”“换行”分隔）是否符合模式<pattern>，如果匹配的话，则以<replacement>替换。</p>
+<p>​ 这里，<pattern>可以包括通配符“%”，表示任意长度的字串。如果<replacement>中也包含“%”，那么，<replacement>中的这个“%”将是<pattern>中的那个“%”所代表的字串。（可以用“”来转义，以“%”来表示真实含义的“%”字符）</p>
 <div class="code-wrapper"><pre><code class="hljs makefile"><span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> %.c,%.o, a.c b.c)</span>
 <span class="hljs-comment"># 把字串 “a.c b.c” 符合模式[%.c]的单词替换成[%.o]，返回结果是 “a.o b.o”</span></code></pre></div>
-
-<h4 id="变量替换引用"><a href="#变量替换引用" class="headerlink" title="变量替换引用"></a>变量替换引用</h4><p>​		对于一个已经定义的变量，可以使用“替换引用”将其值中的后缀字符（串）使用指定的字符（字符串）替换。格式为<code>$(VAR:A=B)</code>或者<code>$&#123;VAR:A=B&#125;</code></p>
-<p>​		意思是，替换变量“VAR”中所有“A”字符结尾的字为“B”结尾的字。“结尾”的含义是空格之前（变量值多个字之间使用空格分开）。而对于变量其它部分的“A”字符不进行替换。</p>
+<h4 id="变量替换引用">变量替换引用</h4>
+<p>​ 对于一个已经定义的变量，可以使用“替换引用”将其值中的后缀字符（串）使用指定的字符（字符串）替换。格式为<code>$(VAR:A=B)</code>或者<code>$&#123;VAR:A=B&#125;</code></p>
+<p>​ 意思是，替换变量“VAR”中所有“A”字符结尾的字为“B”结尾的字。“结尾”的含义是空格之前（变量值多个字之间使用空格分开）。而对于变量其它部分的“A”字符不进行替换。</p>
 <div class="code-wrapper"><pre><code class="hljs makefile">foo := a.o b.o c.o
 bar := $(foo:.o=.c)
 <span class="hljs-comment"># 注意变量不要带 $</span>
 SRCS_NODIR := <span class="hljs-variable">$(<span class="hljs-built_in">notdir</span> $(<span class="hljs-built_in">wildcard</span> <span class="hljs-variable">$(SRC_DIR)</span>/*<span class="hljs-variable">$(SRC_SUFFIX)</span>)</span>)
 OBJS_NODIR := $(SRCS_NODIR:<span class="hljs-variable">$(SRC_SUFFIX)</span>=<span class="hljs-variable">$(OBJ_SUFFIX)</span>)</code></pre></div>
-
-
-
-<h2 id="编码风格"><a href="#编码风格" class="headerlink" title="编码风格"></a>编码风格</h2><h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><h4 id="普通变量"><a href="#普通变量" class="headerlink" title="普通变量"></a>普通变量</h4><ul>
-<li><p>推荐使用下划线隔开单词(<a target="_blank" rel="noopener" href="https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/naming/">Google开源风格指南</a>)，也可以使用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%A7%9D%E5%B3%B0%E5%BC%8F%E5%A4%A7%E5%B0%8F%E5%AF%AB">驼峰命名</a>法，但是不要使用无意义的字母！</p>
-</li>
-<li><p><code>tDataNode</code>：t 开头表示这是一个类型，type</p>
-</li>
-<li><p><code>kPI</code>：k 开头表示常量，在程序运行中不会被修改</p>
-</li>
+<h2 id="编码风格">编码风格</h2>
+<h3 id="命名">命名</h3>
+<h4 id="普通变量">普通变量</h4>
+<ul>
+<li><p>推荐使用下划线隔开单词(<a target="_blank" rel="noopener" href="https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/naming/">Google开源风格指南</a>)，也可以使用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%A7%9D%E5%B3%B0%E5%BC%8F%E5%A4%A7%E5%B0%8F%E5%AF%AB">驼峰命名</a>法，但是不要使用无意义的字母！</p></li>
+<li><p><code>tDataNode</code>：t 开头表示这是一个类型，type</p></li>
+<li><p><code>kPI</code>：k 开头表示常量，在程序运行中不会被修改</p></li>
 </ul>
-<h4 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h4><blockquote>
+<h4 id="成员变量">成员变量</h4>
+<blockquote>
 <p>以下内容准确性待考究。但首尾下划线一般都表示“私有”之意</p>
 </blockquote>
-<ol>
-<li><p>__foo__: 定义的是特殊方法，一般是系统定义名字，类似__init__()之类</p>
-</li>
-<li><p>_foo:以单划线开头的表示的是protected类型的变量或函数，即保护类型，只允许本身和子类访问。也有在后面加下划线的，同理。都是表达”私有”之意。</p>
-</li>
-<li><p>__foo:以双下划线开头的表示的是private类型的变量或函数，即私有类型，只允许本身访问。</p>
-</li>
-<li><p>C语言中，单下划线开头表示是标准库的变量，双下划线表示是编译器的变量</p>
-</li>
+<ol type="1">
+<li><p>__foo__: 定义的是特殊方法，一般是系统定义名字，类似__init__()之类</p></li>
+<li><p>_foo:以单划线开头的表示的是protected类型的变量或函数，即保护类型，只允许本身和子类访问。也有在后面加下划线的，同理。都是表达"私有"之意。</p></li>
+<li><p>__foo:以双下划线开头的表示的是private类型的变量或函数，即私有类型，只允许本身访问。</p></li>
+<li><p>C语言中，单下划线开头表示是标准库的变量，双下划线表示是编译器的变量</p></li>
 </ol>
-<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p><a href="(https://aijishu.com/a/1060000000228594)">参考</a></p>
-<h4 id="文件注释"><a href="#文件注释" class="headerlink" title="文件注释"></a>文件注释</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<h3 id="注释">注释</h3>
+<p><a href="(https://aijishu.com/a/1060000000228594)">参考</a></p>
+<h4 id="文件注释">文件注释</h4>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * @file 文件名</span>
 <span class="hljs-comment"> * @brief 简介</span>
 <span class="hljs-comment"> * @details 细节</span>
@@ -802,32 +792,30 @@ OBJS_NODIR := $(SRCS_NODIR:<span class="hljs-variable">$(SRC_SUFFIX)</span>=<spa
 <span class="hljs-comment"> * @pre 前提条件</span>
 <span class="hljs-comment"> * @see [参考]</span>
 <span class="hljs-comment"> */</span></code></pre></div>
-
-<h4 id="函数注释"><a href="#函数注释" class="headerlink" title="函数注释"></a>函数注释</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<h4 id="函数注释">函数注释</h4>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
 <span class="hljs-comment"> * @brief 函数描述</span>
 <span class="hljs-comment"> * @param 参数描述</span>
 <span class="hljs-comment"> * @return 返回描述</span>
 <span class="hljs-comment"> * @retval 返回值描述</span>
 <span class="hljs-comment"> */</span></code></pre></div>
-
-<h4 id="结构体注释"><a href="#结构体注释" class="headerlink" title="结构体注释"></a>结构体注释</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
+<h4 id="结构体注释">结构体注释</h4>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">/**</span>
 <span class="hljs-comment">* @brief 类的详细描述</span>
 <span class="hljs-comment">*/</span></code></pre></div>
-
-<h4 id="常变量注释"><a href="#常变量注释" class="headerlink" title="常变量注释"></a>常变量注释</h4><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//定义一个整型变量a</span>
+<h4 id="常变量注释">常变量注释</h4>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//定义一个整型变量a</span>
 <span class="hljs-type">int</span> a
 
 <span class="hljs-type">int</span> a; <span class="hljs-comment">/*!&lt; 定义一个整型变量a */</span>
 <span class="hljs-type">int</span> a; <span class="hljs-comment">/**&lt; 定义一个整型变量a */</span>
 <span class="hljs-type">int</span> a; <span class="hljs-comment">//!&lt; 定义一个整型变量a</span>
 <span class="hljs-type">int</span> a; <span class="hljs-comment">///&lt; 定义一个整型变量a</span></code></pre></div>
-
-
-
-
-
-<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="markdown"><a href="#markdown" class="headerlink" title="markdown"></a>markdown</h3><h4 id="表格的使用"><a href="#表格的使用" class="headerlink" title="表格的使用"></a>表格的使用</h4><p>​	并排插入图片，需要用到<strong>表格</strong>才能实现。插入图片不需要用到<code>&lt;a herf&gt;&lt;/a&gt;</code>，不然点一下就跳转也有些烦人。<code>html</code>标签不写在代码块内即生效。</p>
-<p>​	图片大小可以用<code>&lt;td style=&quot;width:50%&quot;&gt;&lt;/td&gt;</code>来调整，各占50%就好了</p>
+<h2 id="html">HTML</h2>
+<h3 id="markdown">markdown</h3>
+<h4 id="表格的使用">表格的使用</h4>
+<p>​ 并排插入图片，需要用到<strong>表格</strong>才能实现。插入图片不需要用到<code>&lt;a herf&gt;&lt;/a&gt;</code>，不然点一下就跳转也有些烦人。<code>html</code>标签不写在代码块内即生效。</p>
+<p>​ 图片大小可以用<code>&lt;td style="width:50%"&gt;&lt;/td&gt;</code>来调整，各占50%就好了</p>
 <div class="code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border:none;text-align:center;&quot;</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:50%&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">border</span>=<span class="hljs-string">&quot;0&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
@@ -839,8 +827,8 @@ OBJS_NODIR := $(SRCS_NODIR:<span class="hljs-variable">$(SRC_SUFFIX)</span>=<spa
 		<span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:50%&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>图2 <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></code></pre></div>
-
-<h4 id="音视频"><a href="#音视频" class="headerlink" title="音视频"></a>音视频</h4><div class="code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">controls</span>&gt;</span>
+<h4 id="音视频">音视频</h4>
+<div class="code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">audio</span> <span class="hljs-attr">controls</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.runoob.com/try/demo_source/horse.mp3&quot;</span> &gt;</span>
 您的浏览器不支持 audio 元素。
 <span class="hljs-tag">&lt;/<span class="hljs-name">audio</span>&gt;</span>
@@ -849,7 +837,6 @@ OBJS_NODIR := $(SRCS_NODIR:<span class="hljs-variable">$(SRC_SUFFIX)</span>=<spa
   <span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.runoob.com/try/demo_source/movie.mp4&quot;</span>  <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;video/mp4&quot;</span>&gt;</span>
   您的浏览器不支持 HTML5 video 标签。
 <span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span></code></pre></div>
-
 <p><strong>例子：创建一个只用来分享视频的页面</strong></p>
 <div class="code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!doctype <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -866,10 +853,8 @@ OBJS_NODIR := $(SRCS_NODIR:<span class="hljs-variable">$(SRC_SUFFIX)</span>=<spa
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-symbol">&amp;nbsp;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
-
-
-
-<h3 id="markdown-to-slide"><a href="#markdown-to-slide" class="headerlink" title="markdown to slide"></a>markdown to slide</h3><ul>
+<h3 id="markdown-to-slide">markdown to slide</h3>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://cn.sli.dev/guide/syntax.html">slidev</a>：更专业，更强大</li>
 <li><a target="_blank" rel="noopener" href="https://marp.app/">marp</a>：更贴合markdown语法，以md为中心</li>
 </ul>

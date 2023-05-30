@@ -203,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="枯藤 老树 昏鸦"></span>
+            <span id="subtitle" data-typed-text="雄关 漫道 真如铁，几度迈步从头越"></span>
           
         </div>
 
@@ -239,21 +239,88 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2023/04/02/HW2-meun%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90/" target="_self">
-          <img src="/img/banner/spring.png" srcset="/img/loading.gif" lazyload alt="meun程序设计方法分析">
+        <a href="/2023/05/29/ASE%20%E4%BD%9C%E4%B8%9A4/" target="_self">
+          <img src="/img/banner/summer.png" srcset="/img/loading.gif" lazyload alt="ASE作业4 从需求分析到软件设计">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2023/04/02/HW2-meun%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90/" target="_self">
-          meun程序设计方法分析
+        <a href="/2023/05/29/ASE%20%E4%BD%9C%E4%B8%9A4/" target="_self">
+          ASE作业4 从需求分析到软件设计
         </a>
       </h1>
 
       
-      <a class="index-excerpt " href="/2023/04/02/HW2-meun%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90/" target="_self">
+      <a class="index-excerpt " href="/2023/05/29/ASE%20%E4%BD%9C%E4%B8%9A4/" target="_self">
+        <div>
+          以VS Code Remote Development相关功能为例，选择一个用例进行需求分析和逆向工程。具体流程为：需求，用例，关键步骤，剧情描述，分析序列图，设计序列图，关键代码，软件设计
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-05-29 19:15" pubdate>
+              2023-05-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/course/" class="category-chain-item">course</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">#软件工程</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/04/02/ASE%20%E4%BD%9C%E4%B8%9A3/" target="_self">
+          <img src="/img/banner/spring.png" srcset="/img/loading.gif" lazyload alt="ASE作业3 深入理解Callback函数">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2023/04/02/ASE%20%E4%BD%9C%E4%B8%9A3/" target="_self">
+          ASE作业3 深入理解Callback函数
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2023/04/02/ASE%20%E4%BD%9C%E4%B8%9A3/" target="_self">
         <div>
           课程作业：分析了menu中的一些设计思想和方法
         </div>
@@ -669,7 +736,7 @@
       
       <a class="index-excerpt " href="/2022/10/15/Ubuntu22.04%E5%AE%89%E8%A3%85Hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4/" target="_self">
         <div>
-          Ubuntu22.04安装Hadoop完全分布式集群1. 网络配置需要修改四处，windows（宿主机），vmware，和虚拟机ubuntu（NAT模式）  windows，设置vmware8的ipv4选项即可  vmware的ip设置和windows是一样的，网关都是192.168.5.2，还有NAT网络设置  ubuntu的主要任务就是    把DHCP换成静态IP（这部分要看具体集群配置，比
+          Ubuntu22.04安装Hadoop完全分布式集群 1. 网络配置 需要修改四处，windows（宿主机），vmware，和虚拟机ubuntu（NAT模式）  windows，设置vmware8的ipv4选项即可 vmware的ip设置和windows是一样的，网关都是192.168.5.2，还有NAT网络设置 ubuntu的主要任务就是   把DHCP换成静态IP（这部分要看
         </div>
       </a>
 
@@ -897,7 +964,37 @@
       }
       var text = subtitle.getAttribute('data-typed-text');
       
-        typing(text);
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://v2.jinrishici.com/info',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = ''.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
+              }
+            }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://v2.jinrishici.com/info:', error);
+            }
+            typing(text);
+          }
+        })
       
     })(window, document);
   </script>

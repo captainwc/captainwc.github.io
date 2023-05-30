@@ -210,7 +210,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/banner/102.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/banner/100.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
       <div class="banner-text text-center fade-in-up">
@@ -245,7 +245,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          4k 字
+          4.1k 字
         
       </span>
     
@@ -257,7 +257,7 @@
         
         
           <!-- compatible with older versions-->
-          34 分钟
+          35 分钟
         
       </span>
     
@@ -308,175 +308,157 @@
             
               <div class="markdown-body">
                 
-                <h1 id="离散数学课程笔记"><a href="#离散数学课程笔记" class="headerlink" title="离散数学课程笔记"></a>离散数学课程笔记</h1><h2 id="Chapter1-命题逻辑的基本概念"><a href="#Chapter1-命题逻辑的基本概念" class="headerlink" title="Chapter1 命题逻辑的基本概念"></a>Chapter1 命题逻辑的基本概念</h2><h3 id="命题与连接词"><a href="#命题与连接词" class="headerlink" title="命题与连接词"></a>命题与连接词</h3><p>否定、析取、合取、蕴含、等价连接词</p>
-<h3 id="命题公式及其赋值"><a href="#命题公式及其赋值" class="headerlink" title="命题公式及其赋值"></a>命题公式及其赋值</h3><ul>
+                <h1 id="离散数学课程笔记">离散数学课程笔记</h1>
+<h2 id="chapter1-命题逻辑的基本概念">Chapter1 命题逻辑的基本概念</h2>
+<h3 id="命题与连接词">命题与连接词</h3>
+<p>否定、析取、合取、蕴含、等价连接词</p>
+<h3 id="命题公式及其赋值">命题公式及其赋值</h3>
+<ul>
 <li>命题常项与命题变项</li>
-<li><strong>合式公式</strong>：命题变元用联结词和圆括号按照一定逻辑关系连接起来的符号串<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308193357562.png" srcset="/img/loading.gif" lazyload alt="image-20230308193357562" style="zoom:67%;" /></li>
-<li><strong>公式层次</strong>：单个命题算0层，运算一次加一层<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308193421302.png" srcset="/img/loading.gif" lazyload alt="image-20230308193421302" style="zoom:67%;" /></li>
-<li><strong>赋值</strong>：对公式A中的全部命题变项全部指定一个值，称为对A的赋值&#x2F;解释<br><strong>成真赋值</strong>：使得公式A值为1的赋值，称为成真赋值。成假赋值同理</li>
-<li><strong>真值表</strong>：公式A在所有赋值下的取值情况列成的表。<ul>
+<li><strong>合式公式</strong>：命题变元用联结词和圆括号按照一定逻辑关系连接起来的符号串 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308193357562.png" srcset="/img/loading.gif" lazyload alt="image-20230308193357562" style="zoom:67%;" /></li>
+<li><strong>公式层次</strong>：单个命题算0层，运算一次加一层 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308193421302.png" srcset="/img/loading.gif" lazyload alt="image-20230308193421302" style="zoom:67%;" /></li>
+<li><strong>赋值</strong>：对公式A中的全部命题变项全部指定一个值，称为对A的赋值/解释 <strong>成真赋值</strong>：使得公式A值为1的赋值，称为成真赋值。成假赋值同理</li>
+<li><strong>真值表</strong>：公式A在所有赋值下的取值情况列成的表。
+<ul>
 <li>求真值表时，首先将公式中n个命题变项按下标或字母序排列好</li>
-<li>纵向是2^n^个赋值，从0000开始，到1111结束</li>
+<li>纵向是2<sup>n</sup>个赋值，从0000开始，到1111结束</li>
 <li>横向按层次列出各子公式，求出不同赋值下的子公式值，并进而得出公式A的值</li>
+</ul></li>
+<li>重言式/永真式、矛盾式/永假式、可满足式</li>
 </ul>
-</li>
-<li>重言式&#x2F;永真式、矛盾式&#x2F;永假式、可满足式</li>
-</ul>
-<h2 id="Chapter2-命题逻辑等值演算"><a href="#Chapter2-命题逻辑等值演算" class="headerlink" title="Chapter2 命题逻辑等值演算"></a>Chapter2 命题逻辑等值演算</h2><h3 id="等值式"><a href="#等值式" class="headerlink" title="等值式"></a>等值式</h3><ul>
-<li><p>等值：命题公式A、B构成的等价式$A\lrarr B$为永真式，则称A与B等价，记作$A\Leftrightarrow B$。注意区别等价联接与公式等价的区别，即后者要求的是永真，在所有赋值下均为真。</p>
-</li>
+<h2 id="chapter2-命题逻辑等值演算">Chapter2 命题逻辑等值演算</h2>
+<h3 id="等值式">等值式</h3>
+<ul>
+<li><p>等值：命题公式A、B构成的等价式<span class="math inline">\(A\lrarr B\)</span>为永真式，则称A与B等价，记作<span class="math inline">\(A\Leftrightarrow B\)</span>。注意区别等价联接与公式等价的区别，即后者要求的是永真，在所有赋值下均为真。</p></li>
 <li><p><strong>16个等值模式</strong></p>
-<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308195413790.png" srcset="/img/loading.gif" lazyload alt="image-20230308195413790" style="zoom:67%;" />
-<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308195433705.png" srcset="/img/loading.gif" lazyload alt="image-20230308195433705" style="zoom:67%;" /></li>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308195413790.png" srcset="/img/loading.gif" lazyload alt="image-20230308195413790" style="zoom:67%;" /> <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308195433705.png" srcset="/img/loading.gif" lazyload alt="image-20230308195433705" style="zoom:67%;" /></p></li>
 </ul>
-<h3 id="析取范式与合取范式"><a href="#析取范式与合取范式" class="headerlink" title="析取范式与合取范式"></a>析取范式与合取范式</h3><ul>
-<li><p>命题变项及其否定称为<strong>文字</strong>，仅由有限个文字构成的析取&#x2F;合取式称为<strong>简单析取&#x2F;合取式</strong></p>
-</li>
+<h3 id="析取范式与合取范式">析取范式与合取范式</h3>
+<ul>
+<li><p>命题变项及其否定称为<strong>文字</strong>，仅由有限个文字构成的析取/合取式称为<strong>简单析取/合取式</strong></p></li>
 <li><blockquote>
 <p>简单析取式是重言式，当且仅当其同时含有某个命题变项及其否定式</p>
 <p>简单合取式是重言式，当且仅当其同时含有某个命题的变项及其否定</p>
-</blockquote>
-</li>
-<li><p><strong>析取范式</strong>：有限个简单合取式，的析构，构成的命题公式<br><strong>合取范式</strong>：有限个简单析取式，的合取，构成的命题公式</p>
-</li>
+</blockquote></li>
+<li><p><strong>析取范式</strong>：有限个简单合取式，的析构，构成的命题公式 <strong>合取范式</strong>：有限个简单析取式，的合取，构成的命题公式</p></li>
 <li><blockquote>
 <p>析取范式是矛盾式，当且仅当每个简单合取式都是矛盾式</p>
 <p>合取范式是重言式式，当且仅当每个简单析取式都是重言式</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><blockquote>
 <p><strong>范式存在定理</strong>：任一公式命题，都存在与之等值的析取范式与合取范式</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>求给定公式的范式步骤：</p>
-<ol>
-<li>消去联结词$\rarr;、\lrarr$</li>
+<ol type="1">
+<li>消去联结词<span class="math inline">\(\rarr\;、\lrarr\)</span></li>
 <li>使用双重否定率消除双重否定符，用德摩根率内移否定符</li>
-<li>使用分配律：求析取范式时，使用$\land$对$\lor$的分配率，求合取范式反之</li>
-</ol>
-</li>
-<li><p><strong>极小项</strong>：对有n个命题变项的简单合取式，对每个命题变相（或其否定式），均出现且仅出现一次，且按下标或字典序由小到大排列，则称其为一个 极小项。<br><strong>极大项</strong>：把极小项的定义中，简单合取式换位简单析取式即可。</p>
-</li>
+<li>使用分配律：求析取范式时，使用<span class="math inline">\(\land\)</span>对<span class="math inline">\(\lor\)</span>的分配率，求合取范式反之</li>
+</ol></li>
+<li><p><strong>极小项</strong>：对有n个命题变项的简单合取式，对每个命题变相（或其否定式），均出现且仅出现一次，且按下标或字典序由小到大排列，则称其为一个 极小项。 <strong>极大项</strong>：把极小项的定义中，简单合取式换位简单析取式即可。</p></li>
 <li><p>极小项与极大项的性质：</p>
 <ul>
-<li>共有2^n^个极小项，且对每一个极小项，有且仅有一组成真赋值，根据成真赋值对应的十进制数，可以将其命名为m<del>i</del></li>
-<li>共有2^n^个极大项，且对每一个极大项，有且仅有一组成假赋值，根据成真赋值对应的十进制数，可以将其命名为M<del>i</del></li>
-<li>$\neg m_i \Leftrightarrow M_i\ ,\ \neg M_i \Leftrightarrow m_i$</li>
-</ul>
-</li>
-<li><p><strong>主析取范式</strong>：所有简单合取式都是最小项的析取范式，称为主析取范式<br><strong>主合取范式</strong>：所有简单析取式都是最大项的合取范式，称为主合取范式</p>
-</li>
+<li>共有2<sup>n</sup>个极小项，且对每一个极小项，有且仅有一组成真赋值，根据成真赋值对应的十进制数，可以将其命名为m<sub>i</sub></li>
+<li>共有2<sup>n</sup>个极大项，且对每一个极大项，有且仅有一组成假赋值，根据成真赋值对应的十进制数，可以将其命名为M<sub>i</sub></li>
+<li><span class="math inline">\(\neg m_i \Leftrightarrow M_i\ ,\ \neg M_i \Leftrightarrow m_i\)</span></li>
+</ul></li>
+<li><p><strong>主析取范式</strong>：所有简单合取式都是最小项的析取范式，称为主析取范式 <strong>主合取范式</strong>：所有简单析取式都是最大项的合取范式，称为主合取范式</p></li>
 <li><blockquote>
-<p>任何命题公式，都存在唯一一个与之等值的主析取范式，与主合取范式<br>证明：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308202256525.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308202343097.png" srcset="/img/loading.gif" lazyload></p>
-</blockquote>
-</li>
-<li><p><strong>求主析取范式的步骤</strong>：如上述存在性证明中所示，若某一简单合取式中，不含有命题变元$p_j$，则对其合取上$(p_i \lor\neg p_i)$，（同一律+排中律），重复这一过程，直至每一个简单合取式都包含全部的n个命题变元，然后将其排列为最小项形式，并用对应的m<del>i</del>代替<br><strong>求主合取范式的步骤</strong>：思想同上，区别在去，对每一个不合格的简单析取式，（同一律与矛盾律）都析取上一个$(p_i\land \neg p_i)$</p>
-</li>
+<p>任何命题公式，都存在唯一一个与之等值的主析取范式，与主合取范式 证明： <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308202256525.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308202343097.png" srcset="/img/loading.gif" lazyload /></p>
+</blockquote></li>
+<li><p><strong>求主析取范式的步骤</strong>：如上述存在性证明中所示，若某一简单合取式中，不含有命题变元<span class="math inline">\(p_j\)</span>，则对其合取上<span class="math inline">\((p_i \lor\neg p_i)\)</span>，（同一律+排中律），重复这一过程，直至每一个简单合取式都包含全部的n个命题变元，然后将其排列为最小项形式，并用对应的m<sub>i</sub>代替 <strong>求主合取范式的步骤</strong>：思想同上，区别在去，对每一个不合格的简单析取式，（同一律与矛盾律）都析取上一个<span class="math inline">\((p_i\land \neg p_i)\)</span></p></li>
 <li><p>主析取范式的<strong>用途</strong>：</p>
 <ul>
-<li>求公式的成真赋值与成假赋值：<br>若公式A的主析取范式中，有 s 个最小项，则A有 s 个成真赋值，对应极小项的下标。剩余 2^n^ - s 个成假赋值。（析取范式，有一个极小项为真就行）</li>
-<li>判断公式类型：<ul>
-<li>公式A为重言式，当且仅当A的主析取范式含有全部 2^n^ 个极小项</li>
+<li>求公式的成真赋值与成假赋值： 若公式A的主析取范式中，有 s 个最小项，则A有 s 个成真赋值，对应极小项的下标。剩余 2<sup>n</sup> - s 个成假赋值。（析取范式，有一个极小项为真就行）</li>
+<li>判断公式类型：
+<ul>
+<li>公式A为重言式，当且仅当A的主析取范式含有全部 2<sup>n</sup> 个极小项</li>
 <li>公式A为矛盾式，当且仅当A的主析取范式含有 0 个极小项</li>
 <li>公式A为可满足式，当且仅当A的主析取范式至少含有一个极小项</li>
+</ul></li>
+<li>判断两个命题公式是否等值： 假设命题公式A与B共含有 n 个命题变元，按 n 个命题变元求出其对应的主析取范式 <span class="math inline">\(A^`、B^`\)</span>，若 <span class="math inline">\(A^`\Lrarr B^`\)</span>，则<span class="math inline">\(A \Lrarr B\)</span>，否则 <span class="math inline">\(A \nLeftrightarrow B\)</span></li>
+</ul></li>
+<li><p>由主析取范式求主合取范式：找出所有未出现在主析取范式中的极小项，其下标对应的极大项合取，即为主合取范式。证明： <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308204625153.png" srcset="/img/loading.gif" lazyload /></p></li>
+<li><p>n 个命题变项的主析取/合取范式，共有 <span class="math inline">\(2^{2^n}\)</span> 个。（因为有 2<sup>n</sup> 个最小项，组合数求和）</p></li>
+<li><p><span class="math inline">\(A\Lrarr B\)</span>，当且仅当二者有相同的真值表，也当且仅当二者有相同的范式。因此，范式与真值表，就是描述命题的两种不同的、等价的标准形式，二者相互确定。</p></li>
+<li><p>至此，判断两命题公式等价的方法有：真值表法、等值演算法、范式法</p></li>
 </ul>
-</li>
-<li>判断两个命题公式是否等值：<br>假设命题公式A与B共含有 n 个命题变元，按 n 个命题变元求出其对应的主析取范式 $A^<code>、B^</code>$，若 $A^<code>\Lrarr B^</code>$，则$A \Lrarr B$，否则 $A \nLeftrightarrow B$</li>
+<h3 id="联结词的完备集">联结词的完备集</h3>
+<ul>
+<li><p><strong>n 元真值函数</strong> <span class="math inline">\(F:\{0,1\}^n\rarr \{0,1\}\)</span>，其中定义域 {0,1}<sup>n</sup>={00...0, 00...1, ..., 11...1}，值域={0,1}</p></li>
+<li><p>n 个命题变元可以构成 <span class="math inline">\(2^{2^n}\)</span> 个真值函数，即一元真值函数有 4 个，二元真值函数有 16 个</p></li>
+<li><p>每个真值函数都可表示成唯一的一个主范式，每个主范式对应无穷个命题公式，每个命题公式有唯一的真值函数</p></li>
+<li><p>如果 n 元真值函数，可以仅由集合S中含有的联结词构成的公式表示，则称S是一个联结词的完备集</p></li>
+<li><p><span class="math inline">\(\{\neg,\ \land,\ \lor\}\)</span> 是联结词完备集</p></li>
+<li><p>与非联结词 <span class="math inline">\(\uparrow\)</span> ，有 <span class="math inline">\(p\uparrow q \Lrarr \neg(p \land q)\)</span></p>
+<p>或非联结词 <span class="math inline">\(\downarrow\)</span> ，有 <span class="math inline">\(p\downarrow q \Lrarr \neg(p \lor q)\)</span></p></li>
+<li><p><span class="math inline">\(\{\uparrow,\ \downarrow\}\)</span> 是一个联结词完备集</p></li>
 </ul>
-</li>
-<li><p>由主析取范式求主合取范式：找出所有未出现在主析取范式中的极小项，其下标对应的极大项合取，即为主合取范式。证明：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230308204625153.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>n 个命题变项的主析取&#x2F;合取范式，共有 $2^{2^n}$ 个。（因为有 2^n^ 个最小项，组合数求和）</p>
-</li>
-<li><p>$A\Lrarr B$，当且仅当二者有相同的真值表，也当且仅当二者有相同的范式。因此，范式与真值表，就是描述命题的两种不同的、等价的标准形式，二者相互确定。</p>
-</li>
-<li><p>至此，判断两命题公式等价的方法有：真值表法、等值演算法、范式法</p>
-</li>
-</ul>
-<h3 id="联结词的完备集"><a href="#联结词的完备集" class="headerlink" title="联结词的完备集"></a>联结词的完备集</h3><ul>
-<li><p><strong>n 元真值函数</strong> $F:{0,1}^n\rarr {0,1}$，其中定义域 {0,1}^n^&#x3D;{00…0, 00…1, …, 11…1}，值域&#x3D;{0,1}</p>
-</li>
-<li><p>n 个命题变元可以构成 $2^{2^n}$ 个真值函数，即一元真值函数有 4 个，二元真值函数有 16 个</p>
-</li>
-<li><p>每个真值函数都可表示成唯一的一个主范式，每个主范式对应无穷个命题公式，每个命题公式有唯一的真值函数</p>
-</li>
-<li><p>如果 n 元真值函数，可以仅由集合S中含有的联结词构成的公式表示，则称S是一个联结词的完备集</p>
-</li>
-<li><p>${\neg,\ \land,\ \lor}$ 是联结词完备集</p>
-</li>
-<li><p>与非联结词 $\uparrow$ ，有 $p\uparrow q \Lrarr \neg(p \land q)$</p>
-<p>或非联结词 $\downarrow$ ，有 $p\downarrow q \Lrarr \neg(p \lor q)$</p>
-</li>
-<li><p>${\uparrow,\ \downarrow}$ 是一个联结词完备集</p>
-</li>
-</ul>
-<h2 id="Chapter3-命题逻辑的推理理论"><a href="#Chapter3-命题逻辑的推理理论" class="headerlink" title="Chapter3 命题逻辑的推理理论"></a>Chapter3 命题逻辑的推理理论</h2><h3 id="推理的形式结构"><a href="#推理的形式结构" class="headerlink" title="推理的形式结构"></a>推理的形式结构</h3><ul>
-<li><p>设 $A_1,A_2,…,A_k$ 和 B 都是命题公式，若对于 $A_1,A_2,…,A_k$ 和 B 中出现的所有命题变项的任意一组赋值，要么 $A_1,A_2,…,A_k$ 为假；要么为真，且 B 也为真。那么此时就称，从<strong>前提</strong> $A_1,A_2,…,A_k$ 推出<strong>结论</strong> B 的<strong>推理</strong>是<strong>有效的&#x2F;正确的</strong>，并称B为<strong>有效的结论</strong>。（&#x3D;&#x3D;注意，说的推理是正确的，并没有说结论是正确的&#x3D;&#x3D;）有几点说明：</p>
-<ol>
+<h2 id="chapter3-命题逻辑的推理理论">Chapter3 命题逻辑的推理理论</h2>
+<h3 id="推理的形式结构">推理的形式结构</h3>
+<ul>
+<li><p>设 <span class="math inline">\(A_1,A_2,...,A_k\)</span> 和 B 都是命题公式，若对于 <span class="math inline">\(A_1,A_2,...,A_k\)</span> 和 B 中出现的所有命题变项的任意一组赋值，要么 <span class="math inline">\(A_1,A_2,...,A_k\)</span> 为假；要么为真，且 B 也为真。那么此时就称，从<strong>前提</strong> <span class="math inline">\(A_1,A_2,...,A_k\)</span> 推出<strong>结论</strong> B 的<strong>推理</strong>是<strong>有效的/正确的</strong>，并称B为<strong>有效的结论</strong>。（==注意，说的推理是正确的，并没有说结论是正确的==）有几点说明：</p>
+<ol type="1">
 <li>前提推出结论的正确与否，与诸前提的排列次序无关。</li>
-<li>前提是一个有限的公式集合，记为 $\varGamma$，由前提 $\varGamma$ 推出结论 B 的推理记为 $\varGamma \vdash B$，或${A_1,A_2,…,A_k}\vdash B$，叫做<strong>推理的形式结构</strong>。如果推理是正确的，则记为 $\varGamma \vDash B$，否则记为 $\varGamma \nvDash B$</li>
+<li>前提是一个有限的公式集合，记为 <span class="math inline">\(\varGamma\)</span>，由前提 <span class="math inline">\(\varGamma\)</span> 推出结论 B 的推理记为 <span class="math inline">\(\varGamma \vdash B\)</span>，或<span class="math inline">\(\{A_1,A_2,...,A_k\}\vdash B\)</span>，叫做<strong>推理的形式结构</strong>。如果推理是正确的，则记为 <span class="math inline">\(\varGamma \vDash B\)</span>，否则记为 <span class="math inline">\(\varGamma \nvDash B\)</span></li>
 <li>（类似蕴含），前提与结论共有四种可能取值情况，只要不是前提为真时结论为假，都称推理是正确的。</li>
 <li>此处的推理只是<strong>形式推理</strong>，推理正确并不能保证结论正确，因为前提可能不成立。前提为假的时候，我们也成推理是正确的。但是通常我们认为，只有正确的前提，才能推出正确的结论。</li>
-</ol>
-</li>
+</ol></li>
 <li><blockquote>
-<p>由命题公式 $A_1,A_2,…,A_k$ 推出 B 的推理是正确的，当且仅当  $A_1\land A_2\land …\land A_k\rarr B$ 是重言式</p>
-</blockquote>
-</li>
-<li><p>推理的形式结构 ${A_1,A_2,…,A_k}\vdash B$ 等同于蕴含式  $A_1,A_2,…,A_k\rarr B$<br>推理正确 ${A_1,A_2,…,A_k}\vDash B$ 等同于 $A_1\land A_2\land …\land A_k\Rightarrow B$，其中$\Rightarrow$表示蕴含式为重言式</p>
-</li>
-<li><p>判断蕴含式是否为重言式的方法：真值表法、等值演算法、主析取范式法</p>
-</li>
+<p>由命题公式 <span class="math inline">\(A_1,A_2,...,A_k\)</span> 推出 B 的推理是正确的，当且仅当 <span class="math inline">\(A_1\land A_2\land ...\land A_k\rarr B\)</span> 是重言式</p>
+</blockquote></li>
+<li><p>推理的形式结构 <span class="math inline">\(\{A_1,A_2,...,A_k\}\vdash B\)</span> 等同于蕴含式 <span class="math inline">\(A_1,A_2,...,A_k\rarr B\)</span> 推理正确 <span class="math inline">\(\{A_1,A_2,...,A_k\}\vDash B\)</span> 等同于 <span class="math inline">\(A_1\land A_2\land ...\land A_k\Rightarrow B\)</span>，其中<span class="math inline">\(\Rightarrow\)</span>表示蕴含式为重言式</p></li>
+<li><p>判断蕴含式是否为重言式的方法：真值表法、等值演算法、主析取范式法</p></li>
 </ul>
-<h3 id="自然推理系统-P"><a href="#自然推理系统-P" class="headerlink" title="自然推理系统 $P$"></a>自然推理系统 $P$</h3><ul>
-<li><p>定义一个<strong>形式系统 $I$</strong> 由四部分组成</p>
-<ol>
-<li>非空的字母表 $A(I)$</li>
-<li>$A(I)$ 中符号构成的合式公式集 $E(I)$</li>
-<li>$E(I)$ 中一些特殊的公式组成的公理集 $A_X(I)$</li>
-<li>推理规则集 $R(I)$</li>
-</ol>
-<p>将$I$ 记为四元组 $&lt;A(I),E(I),A_X(I),R(I)&gt;$，其中 $&lt;A(I),E(I)&gt;$ 是 $I$ 的<strong>形式语言系统</strong>， $A_X(I),R(I)&gt;$ 是$I$ 的<strong>形式演算系统</strong>。形式系统分为自然推理系统与公里推理系统</p>
-</li>
-<li><p><strong>自然推理系统</strong>：从任意给定的前提出发，运用系统中的推理规则进行演算，得到的命题即为推理的结论。结论是有效的，但是不一定为重言式<br><strong>公理推理系统</strong>：只能从若干条给定的公里出发，运用系统中的推理规则进行推理，得到的有效结论一定是重言式，称为系统中的公理。</p>
-</li>
-<li><p>自然推理系统的定义如下：</p>
-<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309132305844.png" srcset="/img/loading.gif" lazyload alt="image-20230309132305844" style="zoom: 60%;" />
-
-  <table style="border:none;text-align:center;">
-      <tr>
-          <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309132749699.png" srcset="/img/loading.gif" lazyload border="0"></td>
-          <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309132903003.png" srcset="/img/loading.gif" lazyload border="0"></td>
-      </tr>
-  </table>
-</li>
-<li><p><strong>证明</strong>的概念：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133237353.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>证明法：</p>
-<ol>
-<li><strong>附加前提证明法</strong>：把结论的前提，纳入到证明的前提中去，只需证明结论的结论有效性即可<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133341402.png" srcset="/img/loading.gif" lazyload></li>
-<li><strong>归谬法</strong>：将欲证明结论的否定作为前提，利用现有的条件推出矛盾式来，即可证明原结论的有效性。<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133531010.png" srcset="/img/loading.gif" lazyload></li>
-<li>反证法、穷举法、存在性与唯一性证明……</li>
-</ol>
-</li>
-</ul>
-<h2 id="Chapter4-一阶逻辑的基本概念"><a href="#Chapter4-一阶逻辑的基本概念" class="headerlink" title="Chapter4 一阶逻辑的基本概念"></a>Chapter4 一阶逻辑的基本概念</h2><p>​	命题逻辑具有局限性，因为它不能很好的描述个体与整体之间的内在联系与数量关系，因此引入量词的概念。这就是<strong>一阶逻辑</strong>所研究的内容。一阶逻辑又称一阶谓词逻辑或谓词逻辑。</p>
-<h3 id="一阶逻辑命题符号化"><a href="#一阶逻辑命题符号化" class="headerlink" title="一阶逻辑命题符号化"></a>一阶逻辑命题符号化</h3><p>个体词、谓词、量词是一阶逻辑命题符号化的三个基本要素</p>
+<h3 id="自然推理系统-p">自然推理系统 <span class="math inline">\(P\)</span></h3>
 <ul>
-<li><strong>个体词</strong>：研究对象中可以独立存在的具体或抽象的客体。具体指代的叫<strong>个体常项</strong>，抽象泛指的叫<strong>个体变项</strong>。个体变项的取值范围称为<strong>个体域&#x2F;论域</strong>，他可以是有限集，也可以是无限集。表示宇宙间一切事物的叫<strong>全总个体域</strong>。</li>
-<li><strong>谓词</strong>：用来刻画个体词性质，及个体间关系的词，常用字母 $F、G、H$ 表示。同样的，表示具体关系的叫<strong>谓词常项</strong>，表示抽线关系的叫<strong>谓词变项</strong>，他们都用大写字母表示。有时为了做出一些区分，还需要引入<strong>特性谓词</strong><br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309164935791.png" srcset="/img/loading.gif" lazyload></li>
-<li><strong>量词</strong>：全称量词 $\forall$，存在量词 $\exists,\nexists$<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309165651519.png" srcset="/img/loading.gif" lazyload></li>
-<li>例子：<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309170304875.png" srcset="/img/loading.gif" lazyload alt="image-20230309170304875" style="zoom:50%;" /></li>
-<li>对于含有 n 元谓词的命题要注意：<ol>
+<li><p>定义一个<strong>形式系统 <span class="math inline">\(I\)</span></strong> 由四部分组成</p>
+<ol type="1">
+<li>非空的字母表 <span class="math inline">\(A(I)\)</span></li>
+<li><span class="math inline">\(A(I)\)</span> 中符号构成的合式公式集 <span class="math inline">\(E(I)\)</span></li>
+<li><span class="math inline">\(E(I)\)</span> 中一些特殊的公式组成的公理集 <span class="math inline">\(A_X(I)\)</span></li>
+<li>推理规则集 <span class="math inline">\(R(I)\)</span></li>
+</ol>
+<p>将<span class="math inline">\(I\)</span> 记为四元组 <span class="math inline">\(&lt;A(I),E(I),A_X(I),R(I)&gt;\)</span>，其中 <span class="math inline">\(&lt;A(I),E(I)&gt;\)</span> 是 <span class="math inline">\(I\)</span> 的<strong>形式语言系统</strong>， <span class="math inline">\(A_X(I),R(I)&gt;\)</span> 是<span class="math inline">\(I\)</span> 的<strong>形式演算系统</strong>。形式系统分为自然推理系统与公里推理系统</p></li>
+<li><p><strong>自然推理系统</strong>：从任意给定的前提出发，运用系统中的推理规则进行演算，得到的命题即为推理的结论。结论是有效的，但是不一定为重言式 <strong>公理推理系统</strong>：只能从若干条给定的公里出发，运用系统中的推理规则进行推理，得到的有效结论一定是重言式，称为系统中的公理。</p></li>
+<li><p>自然推理系统的定义如下： <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309132305844.png" srcset="/img/loading.gif" lazyload alt="image-20230309132305844" style="zoom: 60%;" /></p>
+<table style="border:none;text-align:center;">
+<tr>
+<td style="width:50%">
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309132749699.png" srcset="/img/loading.gif" lazyload border="0"></p>
+</td>
+<td style="width:50%">
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309132903003.png" srcset="/img/loading.gif" lazyload border="0"></p>
+</td>
+</tr>
+</table></li>
+<li><p><strong>证明</strong>的概念： <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133237353.png" srcset="/img/loading.gif" lazyload /></p></li>
+<li><p>证明法：</p>
+<ol type="1">
+<li><strong>附加前提证明法</strong>：把结论的前提，纳入到证明的前提中去，只需证明结论的结论有效性即可 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133341402.png" srcset="/img/loading.gif" lazyload /></li>
+<li><strong>归谬法</strong>：将欲证明结论的否定作为前提，利用现有的条件推出矛盾式来，即可证明原结论的有效性。 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309133531010.png" srcset="/img/loading.gif" lazyload /></li>
+<li>反证法、穷举法、存在性与唯一性证明……</li>
+</ol></li>
+</ul>
+<h2 id="chapter4-一阶逻辑的基本概念">Chapter4 一阶逻辑的基本概念</h2>
+<p>​ 命题逻辑具有局限性，因为它不能很好的描述个体与整体之间的内在联系与数量关系，因此引入量词的概念。这就是<strong>一阶逻辑</strong>所研究的内容。一阶逻辑又称一阶谓词逻辑或谓词逻辑。</p>
+<h3 id="一阶逻辑命题符号化">一阶逻辑命题符号化</h3>
+<p>个体词、谓词、量词是一阶逻辑命题符号化的三个基本要素</p>
+<ul>
+<li><strong>个体词</strong>：研究对象中可以独立存在的具体或抽象的客体。具体指代的叫<strong>个体常项</strong>，抽象泛指的叫<strong>个体变项</strong>。个体变项的取值范围称为<strong>个体域/论域</strong>，他可以是有限集，也可以是无限集。表示宇宙间一切事物的叫<strong>全总个体域</strong>。</li>
+<li><strong>谓词</strong>：用来刻画个体词性质，及个体间关系的词，常用字母 <span class="math inline">\(F、G、H\)</span> 表示。同样的，表示具体关系的叫<strong>谓词常项</strong>，表示抽线关系的叫<strong>谓词变项</strong>，他们都用大写字母表示。有时为了做出一些区分，还需要引入<strong>特性谓词</strong> <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309164935791.png" srcset="/img/loading.gif" lazyload /></li>
+<li><strong>量词</strong>：全称量词 <span class="math inline">\(\forall\)</span>，存在量词 <span class="math inline">\(\exists,\nexists\)</span> <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309165651519.png" srcset="/img/loading.gif" lazyload /></li>
+<li>例子： <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230309170304875.png" srcset="/img/loading.gif" lazyload alt="image-20230309170304875" style="zoom:50%;" /></li>
+<li>对于含有 n 元谓词的命题要注意：
+<ol type="1">
 <li>命题中的性质谓词符号化为一元谓词，而表示关系的符号华为多元谓词</li>
 <li>根据实际意义选择全称或存在量词</li>
 <li>一般来说，多个量词出现时，他们的顺序不能互换</li>
 <li>命题的符号化形式不唯一</li>
-</ol>
-</li>
+</ol></li>
 </ul>
-<h3 id="一阶逻辑公式及解释"><a href="#一阶逻辑公式及解释" class="headerlink" title="一阶逻辑公式及解释"></a>一阶逻辑公式及解释</h3>
+<h3 id="一阶逻辑公式及解释">一阶逻辑公式及解释</h3>
+
                 
               </div>
             

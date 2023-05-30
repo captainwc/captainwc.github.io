@@ -210,7 +210,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/banner/102.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/banner/100.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
       <div class="banner-text text-center fade-in-up">
@@ -245,7 +245,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          10k 字
+          9.9k 字
         
       </span>
     
@@ -257,7 +257,7 @@
         
         
           <!-- compatible with older versions-->
-          86 分钟
+          83 分钟
         
       </span>
     
@@ -308,41 +308,42 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Leetcode刷题指南"><a href="#Leetcode刷题指南" class="headerlink" title="Leetcode刷题指南"></a>Leetcode刷题指南</h1><h2 id="1-数据结构"><a href="#1-数据结构" class="headerlink" title="1. 数据结构"></a>1. 数据结构</h2><h3 id="1-1-数组"><a href="#1-1-数组" class="headerlink" title="1.1 数组"></a>1.1 数组</h3><ul>
+                <h1 id="leetcode刷题指南">Leetcode刷题指南</h1>
+<h2 id="数据结构">1. 数据结构</h2>
+<h3 id="数组">1.1 数组</h3>
+<ul>
 <li><strong>循环数组问题</strong>：把数组扩大为两倍即可，但不是真的扩大两倍，而是通过索引取模的方式</li>
 </ul>
-<h3 id="1-2-链表"><a href="#1-2-链表" class="headerlink" title="1.2 链表"></a>1.2 链表</h3><p>链表可以通过引入虚拟头节点 <code>ListNode *dummy = new ListNode&#123;-1, nullptr&#125;</code> 来极大简化</p>
-<ol start="0">
-<li><p><strong>递归：</strong>要区分基础情况和跳出情况，即可以有两种return，比如：如果链表为空，那么返回。这时候的return并非是用来跳出递归的，而是一个base情况的判断，只有最基本的（最后一层递归）会用到。一系列操作，比如反转链表之后，再return，则时候是退出递归的return，即后面每一层递归想出栈都是走的这一条return。</p>
-</li>
-<li><p><strong>反转链表</strong>【递归】：反转从 <code>head-&gt;next</code> 开始的链表，然后拼接上第一个节点。<strong>base</strong>：单节点链表</p>
-</li>
-<li><p><strong>反转前 n 个元素</strong>：反转从 <code>head-&gt;next</code> 开始的 <code>n-1</code> 个元素，然后拼接。<strong>base</strong>：n &#x3D; 1</p>
-</li>
-<li><p><strong>反转 [m, n] 的元素</strong>：反转从 <code>head-&gt;next</code> 开始的 <code>[m-1, n - 1]</code> 的元素，然后拼接。<strong>base</strong>：m &#x3D; 1，同上</p>
-</li>
-<li><p><strong>倒序输出链表</strong>：对链表进行&#x3D;&#x3D;后序遍历&#x3D;&#x3D;，（递归的base是，head&#x3D;&#x3D;nil）</p>
-</li>
+<h3 id="链表">1.2 链表</h3>
+<p>链表可以通过引入虚拟头节点 <code>ListNode *dummy = new ListNode&#123;-1, nullptr&#125;</code> 来极大简化</p>
+<ol start="0" type="1">
+<li><p><strong>递归：</strong>要区分基础情况和跳出情况，即可以有两种return，比如：如果链表为空，那么返回。这时候的return并非是用来跳出递归的，而是一个base情况的判断，只有最基本的（最后一层递归）会用到。一系列操作，比如反转链表之后，再return，则时候是退出递归的return，即后面每一层递归想出栈都是走的这一条return。</p></li>
+<li><p><strong>反转链表</strong>【递归】：反转从 <code>head-&gt;next</code> 开始的链表，然后拼接上第一个节点。<strong>base</strong>：单节点链表</p></li>
+<li><p><strong>反转前 n 个元素</strong>：反转从 <code>head-&gt;next</code> 开始的 <code>n-1</code> 个元素，然后拼接。<strong>base</strong>：n = 1</p></li>
+<li><p><strong>反转 [m, n] 的元素</strong>：反转从 <code>head-&gt;next</code> 开始的 <code>[m-1, n - 1]</code> 的元素，然后拼接。<strong>base</strong>：m = 1，同上</p></li>
+<li><p><strong>倒序输出链表</strong>：对链表进行==后序遍历==，（递归的base是，head==nil）</p></li>
 </ol>
-<h3 id="1-3-栈与队列"><a href="#1-3-栈与队列" class="headerlink" title="1.3 栈与队列"></a>1.3 栈与队列</h3><h4 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h4><p>有这样一类问题：如何得到一个<strong>队列中的最值</strong>？遍历，然后维护一个最值就好了。但这会有一个问题：当最值出队之后，次最值无从得知，需要再次遍历。可以参考例题：</p>
+<h3 id="栈与队列">1.3 栈与队列</h3>
+<h4 id="单调队列">单调队列</h4>
+<p>有这样一类问题：如何得到一个<strong>队列中的最值</strong>？遍历，然后维护一个最值就好了。但这会有一个问题：当最值出队之后，次最值无从得知，需要再次遍历。可以参考例题：</p>
 <p>【<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/">剑指Offer：队列最大值</a>】，【<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/">leetcode-1438. 绝对差不超过限制的最长连续子数组（解法二）</a>】</p>
 <p>如何快速得到一个队列中，<em>当前所有元素</em>的最值呢？维护一个单调队列 queueMax，对入队元素 Value，如果 <code>queueMax.back() &gt; value</code>，则直接入队，否则一直 <code>queueMax.pop_back()</code>，直至满足该条件。这样便可以保证：对原队列中所有元素，单调队列的队首，总是其最大值。如果原队列出队，使得最值出队，则单调队列中的下一个，仍是原队列中剩余元素的最值。</p>
-<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/单调队列.gif" srcset="/img/loading.gif" lazyload alt="单调队列" style="zoom:50%;" />
-
-<h4 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h4><p>类似的还有单调栈的问题 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/next-greater-element-ii/">503. 下一个更大元素 II - 力扣（LeetCode）</a>：给你一个数组，有什么办法返回一个数组res，使得res中存放原数组元素，其后面第一个比自己大的元素。也即利用单调栈寻找第一个大于自己的元素：</p>
-<p>（1）数组&#x3D;&#x3D;从后往前入栈&#x3D;&#x3D;（出栈时即是顺序），如果栈顶元素小于自己，则一直出栈，直至栈顶大于自己，此时即有 $res[i] &#x3D; stack.top()$ ，再把当前元素入栈。</p>
-<p>（2）&#x3D;&#x3D;从前入栈&#x3D;&#x3D;也可以（看题解写法）。从栈里的元素的角度看：元素先入栈，如果后面碰到比它大的元素，那它就会出栈；从要入栈的元素角度看，如果我比栈顶大，那就出栈，直到栈顶比我大我再入栈。这样一来，<strong>出栈就意味着，碰到了后面第一个比自己大的元素</strong>，而<strong>留在栈里的说明目前还没有比它大的</strong>。</p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/单调队列.gif" srcset="/img/loading.gif" lazyload alt="单调队列" style="zoom:50%;" /></p>
+<h4 id="单调栈">单调栈</h4>
+<p>类似的还有单调栈的问题 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/next-greater-element-ii/">503. 下一个更大元素 II - 力扣（LeetCode）</a>：给你一个数组，有什么办法返回一个数组res，使得res中存放原数组元素，其后面第一个比自己大的元素。也即利用单调栈寻找第一个大于自己的元素：</p>
+<p>（1）数组==从后往前入栈==（出栈时即是顺序），如果栈顶元素小于自己，则一直出栈，直至栈顶大于自己，此时即有 <span class="math inline">\(res[i] = stack.top()\)</span> ，再把当前元素入栈。</p>
+<p>（2）==从前入栈==也可以（看题解写法）。从栈里的元素的角度看：元素先入栈，如果后面碰到比它大的元素，那它就会出栈；从要入栈的元素角度看，如果我比栈顶大，那就出栈，直到栈顶比我大我再入栈。这样一来，<strong>出栈就意味着，碰到了后面第一个比自己大的元素</strong>，而<strong>留在栈里的说明目前还没有比它大的</strong>。</p>
 <p>下面是示意图：</p>
-<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/单调栈.gif" srcset="/img/loading.gif" lazyload alt="单调栈" style="zoom:50%;" />
-
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/单调栈.gif" srcset="/img/loading.gif" lazyload alt="单调栈" style="zoom:50%;" /></p>
 <p>而我们仍需一个数组来记忆元素的下一个大哥，所以如果直接是元素入栈的话，你只是知道了2的下一个大哥是5，但是找不到2的索引，就没办法设置结果stack2.pop();数组。因此可以采取：索引入栈、pair入栈、哈希数组</p>
-<p>索引入栈的话，即 $if( nums[i] &gt; nums[s.top()])\rarr ret[s.top()]&#x3D;nums[i], s.pop()$，如果大于栈顶，那就一直出栈（出的是索引），并且把出栈元素的邻近大哥（即ret）标记为待入栈元素</p>
-<h2 id="2-双指针"><a href="#2-双指针" class="headerlink" title="2. 双指针"></a>2. 双指针</h2><p>双指针一般用于数组字串和链表，尤其是二者还有序的情况。有三种双指针：</p>
-<ol>
+<p>索引入栈的话，即 <span class="math inline">\(if( nums[i] &gt; nums[s.top()])\rarr ret[s.top()]=nums[i], s.pop()\)</span>，如果大于栈顶，那就一直出栈（出的是索引），并且把出栈元素的邻近大哥（即ret）标记为待入栈元素</p>
+<h2 id="双指针">2. 双指针</h2>
+<p>双指针一般用于数组字串和链表，尤其是二者还有序的情况。有三种双指针：</p>
+<ol type="1">
 <li>两指针：字面意义上的双指针，就是说有两个表需要遍历，你整俩指针出来</li>
 <li><strong>左右指针</strong>：左右分为，从两端往中间同时跑，和从中间往两边（最长回文子串）</li>
 <li><strong>快慢指针</strong>：又分为，同时出发一快一满，和速度相同，但其中一个先走（维持 k 间距）</li>
-<li><strong>滑动窗口</strong>：[left, right) 这么个区间，不断扩大right，直至这是一个满足要求的窗口，然后缩小 left，使得此窗口为一个紧确的窗口，然后再扩大 right 搜索新的窗口，满足了再紧确，直至抵达边界。<br>注意滑动窗口，要分清何为”valid window”，有时候这是一个大小不固定的，有时候又是固定大小的。</li>
+<li><strong>滑动窗口</strong>：[left, right) 这么个区间，不断扩大right，直至这是一个满足要求的窗口，然后缩小 left，使得此窗口为一个紧确的窗口，然后再扩大 right 搜索新的窗口，满足了再紧确，直至抵达边界。 注意滑动窗口，要分清何为"valid window"，有时候这是一个大小不固定的，有时候又是固定大小的。</li>
 </ol>
 <p>下面是一些应用：</p>
 <p>（1）链表</p>
@@ -351,7 +352,7 @@
 <li><strong>求链表倒数第 k 个节点</strong>：先走 k 步的离开末尾时，后面那个距离它为 k，即倒数第 k 个</li>
 <li><strong>判断链表有无环</strong>：地球是圆的的话，快慢指针终有相遇的一天</li>
 <li><strong>求出环的入口</strong>：快慢指针相遇之时，让一个重回起点再走，再次相遇即是在入口（列一下式子就出来了）</li>
-<li><strong>求两链表的交点</strong>：<br>① 两个指针各自遍历链表。在走到链表结尾的时候（p==nullptr），进入另一个链表。这样它们会走过相同的路程，即$a + b + c$，该处即为交点。如果不相交，则走过 $m+n$ 后会有： p==q==nullptr，也是相等<br>② 把其中一个链表的尾巴和另一个的头相连，就成了判断有无环，有就找到环入口的问题<br>③ 先求出两表的长度，让长的指针先走（long - short）步，这样链表就对齐了，对齐了就好办了</li>
+<li><strong>求两链表的交点</strong>： ① 两个指针各自遍历链表。在走到链表结尾的时候（p==nullptr），进入另一个链表。这样它们会走过相同的路程，即<span class="math inline">\(a + b + c\)</span>，该处即为交点。如果不相交，则走过 <span class="math inline">\(m+n\)</span> 后会有： p==q==nullptr，也是相等 ② 把其中一个链表的尾巴和另一个的头相连，就成了判断有无环，有就找到环入口的问题 ③ 先求出两表的长度，让长的指针先走（long - short）步，这样链表就对齐了，对齐了就好办了</li>
 </ul>
 <p>（2）数组</p>
 <ul>
@@ -364,12 +365,14 @@
 <li><strong>求最大回文子串</strong>：从某一点或两点开始，往两边扩散求最长回文串；如此对全部元素都扩一遍，求最大值</li>
 <li></li>
 </ul>
-<h3 id="盛水最多容器-11"><a href="#盛水最多容器-11" class="headerlink" title="盛水最多容器  11"></a>盛水最多容器  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/container-with-most-water/">11</a></h3><p><strong>题目</strong>：</p>
-<p>​	如下图，给你一个数组height，找出能“盛水”的最大值</p>
-<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230302185117003.png" srcset="/img/loading.gif" lazyload alt="image-20230302185117003" style="zoom:50%;" />
-
+<h3 id="盛水最多容器-11">盛水最多容器 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/container-with-most-water/">11</a></h3>
+<p><strong>题目</strong>：</p>
+<p>​ 如下图，给你一个数组height，找出能“盛水”的最大值</p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230302185117003.png" srcset="/img/loading.gif" lazyload alt="image-20230302185117003" style="zoom:50%;" /></p>
 <p><strong>分析</strong>：</p>
-<p>​	从两端扫一遍数组，则盛水量为：<br>$$<br>max_contain &#x3D; (right - left)\times \min{height[left],\ height[right]}<br>$$<br>​	现在考虑怎么个扫描法。反正只要移动，容器的“底”必然会变小，如果移动长板，那么容器的边最多不会超过原来的短板，因为边去的是最小值，移动后小于原来的短板，则变小，移动后大于，边也不会变大，因此移动长板，必然会使容量减小。那么就移动短边。</p>
+<p>​ 从两端扫一遍数组，则盛水量为： <span class="math display">\[
+max\_contain = (right - left)\times \min\{height[left],\ height[right]\}
+\]</span> ​ 现在考虑怎么个扫描法。反正只要移动，容器的“底”必然会变小，如果移动长板，那么容器的边最多不会超过原来的短板，因为边去的是最小值，移动后小于原来的短板，则变小，移动后大于，边也不会变大，因此移动长板，必然会使容量减小。那么就移动短边。</p>
 <p><strong>题解</strong>：</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxArea</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; height)</span> </span>&#123;
     <span class="hljs-type">int</span> l = <span class="hljs-number">0</span>, r = height.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;
@@ -384,23 +387,25 @@
     &#125;
     <span class="hljs-keyword">return</span> max_contain;
 &#125;</code></pre></div>
-
-<h2 id="3-二分法"><a href="#3-二分法" class="headerlink" title="3 二分法"></a>3 二分法</h2><p>对有序数组进行二分查找，有三种情况：只<strong>查找目标</strong>、查找目标元素序列<strong>左边界</strong>、<strong>右边界</strong>。</p>
-<p>二分查找思想很简单，关键在一些细节：比如 right 是等于 size 还是 size-1， while 循环 $\le$ 还是 $&lt;$，找着目标之后 right 是等于 mid 还是 mid-1。其实很好理解，只需要分清你的<strong>搜索区间</strong>是什么：</p>
-<p>如果 $left&#x3D;0, right &#x3D; len-1$，那搜索区间就是闭区间 $[left,right]$，while 循环如果写$l&lt;r$，则退出条件就是$left&#x3D;&#x3D;right$，此时闭区间 $[left,left]$ 里面还有一个元素，有元素还退出，那肯定是要漏了，所以应该选$left\le right$，如果搜索区间为左闭右开则同理。</p>
+<h2 id="二分法">3 二分法</h2>
+<p>对有序数组进行二分查找，有三种情况：只<strong>查找目标</strong>、查找目标元素序列<strong>左边界</strong>、<strong>右边界</strong>。</p>
+<p>二分查找思想很简单，关键在一些细节：比如 right 是等于 size 还是 size-1， while 循环 <span class="math inline">\(\le\)</span> 还是 <span class="math inline">\(&lt;\)</span>，找着目标之后 right 是等于 mid 还是 mid-1。其实很好理解，只需要分清你的<strong>搜索区间</strong>是什么：</p>
+<p>如果 <span class="math inline">\(left=0, right = len-1\)</span>，那搜索区间就是闭区间 <span class="math inline">\([left,right]\)</span>，while 循环如果写<span class="math inline">\(l&lt;r\)</span>，则退出条件就是<span class="math inline">\(left==right\)</span>，此时闭区间 <span class="math inline">\([left,left]\)</span> 里面还有一个元素，有元素还退出，那肯定是要漏了，所以应该选<span class="math inline">\(left\le right\)</span>，如果搜索区间为左闭右开则同理。</p>
 <p>搜索目标的左右边界，与直接搜索目标区别在于：找到目标后不是直接返回，而是继续缩小区间。搜元素是命中时退出，搜边界一定是 <code>left &gt; right</code> 退出。那么：</p>
-<ol>
-<li>如果存在目标元素，则到最后一定是 $left \rarr target,\  right\rarr target-1$，只需 <code>return nums[left];</code></li>
-<li>如果目标不存在，则 $left\rarr nums.size()\  \or\ right\rarr -1$</li>
+<ol type="1">
+<li>如果存在目标元素，则到最后一定是 <span class="math inline">\(left \rarr target,\  right\rarr target-1\)</span>，只需 <code>return nums[left];</code></li>
+<li>如果目标不存在，则 <span class="math inline">\(left\rarr nums.size()\  \or\ right\rarr -1\)</span></li>
 </ol>
 <table styles="border:none;text-align:center;">
-    <tr>
-        <td width=50%><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230407123029070.png" srcset="/img/loading.gif" lazyload /></td>
-        <td width=50%><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230407123048473.png" srcset="/img/loading.gif" lazyload /></td>
-    </tr>
+<tr>
+<td width="50%">
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230407123029070.png" srcset="/img/loading.gif" lazyload />
+</td>
+<td width="50%">
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230407123048473.png" srcset="/img/loading.gif" lazyload />
+</td>
+</tr>
 </table>
-
-
 <p>模板如下</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">left_bound</span><span class="hljs-params">(<span class="hljs-type">int</span> nums[], <span class="hljs-type">int</span> target)</span> </span>&#123;
     <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = nums.length - <span class="hljs-number">1</span>;	 <span class="hljs-comment">//（0）</span>
@@ -422,15 +427,40 @@
         <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
     <span class="hljs-keyword">return</span> left;
 &#125;</code></pre></div>
-
 <p>下面是一些应用：</p>
 <ul>
-<li><strong>查找峰值</strong>：【无序】也可以二分，即先比较mid和两边的元素大小，如果mid在上坡，则说明峰值在前方，left &#x3D; mid + 1，如果在下坡，说明在后方，right &#x3D; mid - 1，如果直接命中，则返回</li>
+<li><strong>查找峰值</strong>：【无序】也可以二分，即先比较mid和两边的元素大小，如果mid在上坡，则说明峰值在前方，left = mid + 1，如果在下坡，说明在后方，right = mid - 1，如果直接命中，则返回</li>
 </ul>
-<h2 id="4-贪心-amp-动态规划"><a href="#4-贪心-amp-动态规划" class="headerlink" title="4 贪心 &amp; 动态规划"></a>4 贪心 &amp; 动态规划</h2><h3 id="4-1-线性-DP"><a href="#4-1-线性-DP" class="headerlink" title="4.1 线性 DP"></a>4.1 线性 DP</h3><h4 id="1-斐波那契数列"><a href="#1-斐波那契数列" class="headerlink" title="1 斐波那契数列"></a>1 斐波那契数列</h4><p>$$<br>dp[i] &#x3D; dp[i-1]+dp[i-2]\ \xRightarrow{\text{优化}} \ r &#x3D; p + q<br>$$</p>
-<h5 id="矩阵快速幂"><a href="#矩阵快速幂" class="headerlink" title="矩阵快速幂"></a>矩阵快速幂</h5><p>其实斐波那契数列还有一个<code>O(log n)</code> 复杂度的做法：用矩阵快速幂，转换成求这么个矩阵的 n 次幂</p>
-<h1 id="begin-pmatrix-F-n-1-amp-F-n-end-pmatrix"><a href="#begin-pmatrix-F-n-1-amp-F-n-end-pmatrix" class="headerlink" title="$$\begin{pmatrix}    F_{n+1} &amp; F_n\end{pmatrix}"></a>$$<br>\begin{pmatrix}<br>    F_{n+1} &amp; F_n<br>\end{pmatrix}</h1><h1 id="begin-pmatrix-F-n-amp-F-n-1-end-pmatrix-begin-pmatrix-1-amp-1-1-amp-0-end-pmatrix"><a href="#begin-pmatrix-F-n-amp-F-n-1-end-pmatrix-begin-pmatrix-1-amp-1-1-amp-0-end-pmatrix" class="headerlink" title="\begin{pmatrix}    F_{n} &amp; F_{n-1}\end{pmatrix}\begin{pmatrix}    1 &amp; 1 \    1 &amp; 0\end{pmatrix}"></a>\begin{pmatrix}<br>    F_{n} &amp; F_{n-1}<br>\end{pmatrix}<br>\begin{pmatrix}<br>    1 &amp; 1 \<br>    1 &amp; 0<br>\end{pmatrix}</h1><p>\begin{pmatrix}<br>    F_{1} &amp; F_{0}<br>\end{pmatrix}<br>{\begin{pmatrix}<br>    1 &amp; 1 \<br>    1 &amp; 0<br>\end{pmatrix}}^n<br>$$</p>
-<p>而矩阵快速幂，跟一般的快速幂都是类似的，都是<strong>将幂分解为二进制表示</strong>，$a^n &#x3D; a^{2^i}a^{2^{i-1}}\cdots a^0$，然后运用累乘的思想。</p>
+<h2 id="贪心-动态规划">4 贪心 &amp; 动态规划</h2>
+<h3 id="线性-dp">4.1 线性 DP</h3>
+<h4 id="斐波那契数列">1 斐波那契数列</h4>
+<p><span class="math display">\[
+dp[i] = dp[i-1]+dp[i-2]\ \xRightarrow{\text{优化}} \ r = p + q
+\]</span></p>
+<h5 id="矩阵快速幂">矩阵快速幂</h5>
+<p>其实斐波那契数列还有一个<code>O(log n)</code> 复杂度的做法：用矩阵快速幂，转换成求这么个矩阵的 n 次幂</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+    F_{n+1} &amp; F_n
+\end{pmatrix}
+=
+\begin{pmatrix}
+    F_{n} &amp; F_{n-1}
+\end{pmatrix}
+\begin{pmatrix}
+    1 &amp; 1 \\
+    1 &amp; 0
+\end{pmatrix}
+=
+\begin{pmatrix}
+    F_{1} &amp; F_{0}
+\end{pmatrix}
+{\begin{pmatrix}
+    1 &amp; 1 \\
+    1 &amp; 0
+\end{pmatrix}}^n
+\]</span></p>
+<p>而矩阵快速幂，跟一般的快速幂都是类似的，都是<strong>将幂分解为二进制表示</strong>，<span class="math inline">\(a^n = a^{2^i}a^{2^{i-1}}\cdots a^0\)</span>，然后运用累乘的思想。</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> vector&lt;vector&lt;<span class="hljs-type">double</span>&gt;&gt; Matrix;
 <span class="hljs-function">Matrix <span class="hljs-title">MatrixMultiply</span><span class="hljs-params">(<span class="hljs-type">const</span> Matrix&amp; A, <span class="hljs-type">const</span> Matrix&amp; B)</span></span>; <span class="hljs-comment">// 自行实现矩阵相乘</span>
 <span class="hljs-function">Matrix <span class="hljs-title">MatrixPower</span><span class="hljs-params">(<span class="hljs-type">const</span> Matrix&amp; A, <span class="hljs-type">const</span> <span class="hljs-type">int</span> n)</span></span>&#123;
@@ -454,44 +484,91 @@
     &#125;
     <span class="hljs-keyword">return</span> result;
 &#125;</code></pre></div>
-
-<p>O(log n) 的时间复杂度就是在<code>base = MatrixMultiply(base, base);</code> 这一步来的。因为将矩阵的幂换成了如干个 $2^i$ 个幂相乘，最高不会超过 $2^{log(n)}$ 次，而且每个更高级的幂都是用低级的平方上去的，不会有额外复杂度</p>
-<h4 id="2-BST-种类"><a href="#2-BST-种类" class="headerlink" title="2 BST 种类"></a>2 BST 种类</h4><blockquote>
+<p>O(log n) 的时间复杂度就是在<code>base = MatrixMultiply(base, base);</code> 这一步来的。因为将矩阵的幂换成了如干个 <span class="math inline">\(2^i\)</span> 个幂相乘，最高不会超过 <span class="math inline">\(2^{log(n)}\)</span> 次，而且每个更高级的幂都是用低级的平方上去的，不会有额外复杂度</p>
+<h4 id="bst-种类">2 BST 种类</h4>
+<blockquote>
 <p>求由 n 个节点构成的 二叉搜索树 有多少种？</p>
 </blockquote>
-<h5 id="thinking-两种方向："><a href="#thinking-两种方向：" class="headerlink" title=":thinking:两种方向："></a>:thinking:两种方向：</h5><p><strong>动态规划应当有两种思考方向：</strong></p>
+<h5 id="thinking两种方向">:thinking:两种方向：</h5>
+<p><strong>动态规划应当有两种思考方向：</strong></p>
 <p>（1）从 1 到 n（自下而上）：</p>
 <p>一个节点：有一种；</p>
 <p>两个节点：有两种，以小的为根，和以大的为根</p>
-<p>三个节点：有三种情况：最小的作为根，中间的作为根，最大的作为根。$dp[2] + dp[1]*dp[1]+dp[2]$</p>
+<p>三个节点：有三种情况：最小的作为根，中间的作为根，最大的作为根。<span class="math inline">\(dp[2] + dp[1]*dp[1]+dp[2]\)</span></p>
 <p>更多节点：同上了，俺顺序，依次选取不同的根，元素就会被分成两部分。</p>
-<p>可得递推式：<br>$$<br>dp[n] &#x3D; dp[0]\times dp[n-1] + dp[1]\times dp[n-2] + \cdots + dp[n-1]\times dp[0]<br>$$<br>这里用到了乘法原理。这里的 0，要说空树也是树嘛，为了公式的整齐性，也应将其置为 1</p>
+<p>可得递推式： <span class="math display">\[
+dp[n] = dp[0]\times dp[n-1] + dp[1]\times dp[n-2] + \cdots + dp[n-1]\times dp[0]
+\]</span> 这里用到了乘法原理。这里的 0，要说空树也是树嘛，为了公式的整齐性，也应将其置为 1</p>
 <p>（2）从 n 到 1（自上而下）：</p>
-<p>n 个节点的树，肯定是要分为左右子树的，则自然有：$dp[n] &#x3D; dp[left] \times dp[right]$。而左右子树具体有多少个节点，那肯定也不一样嘛，因此：<br>$$<br>dp[n] &#x3D; \sum_{i &#x3D; 0}^{n-1}(dp[i]\times dp[n-1-i])<br>$$<br>殊途同归。具体问题的时候，可以往下想想，往上想想，就能把问题拆解清楚了。线性DP，还是比较简单的</p>
-<h4 id="3-最大子数组和"><a href="#3-最大子数组和" class="headerlink" title="3 最大子数组和"></a>3 最大子数组和</h4><h5 id="连续最大-和"><a href="#连续最大-和" class="headerlink" title="连续最大 和"></a>连续最大 和</h5><blockquote>
-<p> 给你一个数组有正有负，求连续的子数组，使得其和最大</p>
+<p>n 个节点的树，肯定是要分为左右子树的，则自然有：<span class="math inline">\(dp[n] = dp[left] \times dp[right]\)</span>。而左右子树具体有多少个节点，那肯定也不一样嘛，因此： <span class="math display">\[
+dp[n] = \sum_{i = 0}^{n-1}(dp[i]\times dp[n-1-i])
+\]</span> 殊途同归。具体问题的时候，可以往下想想，往上想想，就能把问题拆解清楚了。线性DP，还是比较简单的</p>
+<h4 id="最大子数组和">3 最大子数组和</h4>
+<h5 id="连续最大-和">连续最大 和</h5>
+<blockquote>
+<p>给你一个数组有正有负，求连续的子数组，使得其和最大</p>
 </blockquote>
-<p><strong>把握核心：</strong>核心是什么？求最大&#x3D;&#x3D;子数组&#x3D;&#x3D;，核心当然是子数组。<strong>你只有分析子数组，才能找到最大的子数组</strong></p>
+<p><strong>把握核心：</strong>核心是什么？求最大==子数组==，核心当然是子数组。<strong>你只有分析子数组，才能找到最大的子数组</strong></p>
 <p>子数组怎么分呢？要动态规划，你肯定得从 0 做起，而且还要朝着一个方向坚定不移前进（往前推进），不能一会前一会后（前后可以考虑<strong>滑动窗口</strong>）。所以，要找一个朝着某一方向的，变化的子数组。所以：</p>
-<p><strong>以当前元素&#x3D;&#x3D;结尾&#x3D;&#x3D;的子数组的最大值，是 dp[i]</strong><br>$$<br>dp[i] &#x3D; max(dp[i - 1] + arr[i], arr[i])<br>$$<br>线性的，能不能优化为原地的呢？可以看到，<em>只用到了 dp[i-1]，完全可以用一个变量保存起来就好了</em></p>
-<h5 id="连续最大-积"><a href="#连续最大-积" class="headerlink" title="连续最大 积"></a>连续最大 积</h5><p>思考一下，积，跟和的区别，在哪里呢？</p>
-<p>&#x3D;&#x3D;积，会存在负负得正的情况&#x3D;&#x3D;。因此，当前结尾的最大子数组积，</p>
+<p><strong>以当前元素==结尾==的子数组的最大值，是 dp[i]</strong> <span class="math display">\[
+dp[i] = max(dp[i - 1] + arr[i], arr[i])
+\]</span> 线性的，能不能优化为原地的呢？可以看到，<em>只用到了 dp[i-1]，完全可以用一个变量保存起来就好了</em></p>
+<h5 id="连续最大-积">连续最大 积</h5>
+<p>思考一下，积，跟和的区别，在哪里呢？</p>
+<p>==积，会存在负负得正的情况==。因此，当前结尾的最大子数组积，</p>
 <p>要么是前面的最大的正数，乘了一个大于1的正数，变大了；要么是前面最大的乘了一个正真分数，变小了；要么，是前面的负的最小值，乘了一个负数，变大了。</p>
-<p>因此最大值有三种来历：正正，负负，当前元素<br>$$<br>dp_max[i] &#x3D; \max(dp_max[i-1]\times arr[i],dp_min[i-1]\times arr[i],arr[i]) \<br>dp_min[i] &#x3D; \min(dp_min[i-1]\times arr[i],dp_max[i-1]\times arr[i],arr[i])<br>$$<br>显然，也是可以优化为原地 dp 的</p>
-<h5 id="连续最大-乘积为正"><a href="#连续最大-乘积为正" class="headerlink" title="连续最大 乘积为正"></a>连续最大 乘积为正</h5><p>乘积为正的子数组：要么负负得正，负数加一；要么正正，正的加一；要么归 0<br>$$<br>\begin{align*}<br>dp_pos[i] &#x3D;<br>\begin{cases}<br>dp_pos[i-1] + 1 &amp; arr[i]&gt;0 \<br>0 &amp; arr[i]&#x3D;0 \<br>dp_neg[i-1] + 1 &amp; arr[i] &lt; 0<br>\end{cases}<br>\\<br>dp_neg[i] &#x3D;<br>\begin{cases}<br>dp_neg[i-1] + 1 &amp; arr[i]&gt;0 \<br>0 &amp; arr[i]&#x3D;0 \<br>dp_pos[i-1] + 1 &amp; arr[i] &lt; 0<br>\end{cases}<br>\end{align*}<br>$$</p>
-<h5 id="环形数组-最大和"><a href="#环形数组-最大和" class="headerlink" title="环形数组 最大和"></a>环形数组 最大和</h5><p>&#x3D;&#x3D;环形数组，都可以转换成数组二倍&#x3D;&#x3D;。$arr[]$是环形数组，则遍历一遍 ${0,1,2\dots n, 0,1\dots n}$ 就相当于遍历了环</p>
+<p>因此最大值有三种来历：正正，负负，当前元素 <span class="math display">\[
+dp\_max[i] = \max(dp\_max[i-1]\times arr[i],dp\_min[i-1]\times arr[i],arr[i]) \\
+dp\_min[i] = \min(dp\_min[i-1]\times arr[i],dp\_max[i-1]\times arr[i],arr[i])
+\]</span> 显然，也是可以优化为原地 dp 的</p>
+<h5 id="连续最大-乘积为正">连续最大 乘积为正</h5>
+<p>乘积为正的子数组：要么负负得正，负数加一；要么正正，正的加一；要么归 0 <span class="math display">\[
+\begin{align*}
+dp\_pos[i] =
+\begin{cases}
+dp\_pos[i-1] + 1 &amp; arr[i]&gt;0 \\
+0 &amp; arr[i]=0 \\
+dp\_neg[i-1] + 1 &amp; arr[i] &lt; 0
+\end{cases}
+\\\\
+dp\_neg[i] =
+\begin{cases}
+dp\_neg[i-1] + 1 &amp; arr[i]&gt;0 \\
+0 &amp; arr[i]=0 \\
+dp\_pos[i-1] + 1 &amp; arr[i] &lt; 0
+\end{cases}
+\end{align*}
+\]</span></p>
+<h5 id="环形数组-最大和">环形数组 最大和</h5>
+<p>==环形数组，都可以转换成数组二倍==。<span class="math inline">\(arr[]\)</span>是环形数组，则遍历一遍 <span class="math inline">\(\{0,1,2\dots n, 0,1\dots n\}\)</span> 就相当于遍历了环</p>
 <p>因此照着这个遍历一遍就好了（不用真的扩充数组，到末尾的时候再回到开始就好了）。相当于得到了dp数组之后，又<strong>回过头来更新一遍</strong></p>
-<h4 id="4-字符串"><a href="#4-字符串" class="headerlink" title="4 字符串"></a>4 字符串</h4><h5 id="最长编辑距离"><a href="#最长编辑距离" class="headerlink" title="最长编辑距离"></a>最长编辑距离</h5><blockquote>
+<h4 id="字符串">4 字符串</h4>
+<h5 id="最长编辑距离">最长编辑距离</h5>
+<blockquote>
 <p>将一个字符串变成（增加、删除字符）另一个字符串，最少需要多少次操作？</p>
 </blockquote>
-<p>用 $dp[i][j]$ 表示字符串 $x_{1\dots i}$ 和 $y_{1\dots j}$ 的编辑的最少次数。则 $dp[i][j-1],\ dp[i-1][j],\ dp[i-1][j-1]$ 都是可“预知”的。 然后，添加一个或两个元素</p>
+<p>用 <span class="math inline">\(dp[i][j]\)</span> 表示字符串 <span class="math inline">\(x_{1\dots i}\)</span> 和 <span class="math inline">\(y_{1\dots j}\)</span> 的编辑的最少次数。则 <span class="math inline">\(dp[i][j-1],\ dp[i-1][j],\ dp[i-1][j-1]\)</span> 都是可“预知”的。 然后，添加一个或两个元素</p>
 <p>如图，共有一下三种对齐方式：最后一位补上，和最后一位不一样</p>
-<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230523131247380.png" srcset="/img/loading.gif" lazyload></p>
-<p>$$<br>dp[i][j] &#x3D; \max{dp[i-1][j]+1,\ dp[i][j-1]+1,\ dp[i-1][j-1]+diff(i,j)}<br>$$</p>
-<h3 id="股票最佳时机"><a href="#股票最佳时机" class="headerlink" title="股票最佳时机"></a>股票最佳时机</h3><h4 id="股票最佳时机Ⅰ-121"><a href="#股票最佳时机Ⅰ-121" class="headerlink" title="股票最佳时机Ⅰ  121"></a>股票最佳时机Ⅰ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/">121</a></h4><p><strong>题目：</strong></p>
-<p>​	给一个prices数组表示每天股票的价格，只能某天买入，后面一天卖出，求能赚的最大利润。</p>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230523131247380.png" srcset="/img/loading.gif" lazyload /></p>
+<p><span class="math display">\[
+dp[i][j] = \max\{dp[i-1][j]+1,\ dp[i][j-1]+1,\ dp[i-1][j-1]+diff(i,j)\} 
+\]</span></p>
+<h3 id="股票最佳时机">股票最佳时机</h3>
+<h4 id="股票最佳时机ⅰ-121">股票最佳时机Ⅰ <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/">121</a></h4>
+<p><strong>题目：</strong></p>
+<p>​ 给一个prices数组表示每天股票的价格，只能某天买入，后面一天卖出，求能赚的最大利润。</p>
 <p><strong>分析：</strong></p>
-<p>​	今天的最大利润，等于昨天的最大利润，与之前最低时买入并在今天卖出所得利润，的最大值。即<br>$$<br>profit[i] &#x3D; max {\ profit[i - 1],\  prices[i] - min_prices\ }<br>$$<br>​	类比后面几种，也可以写成，<br>$$<br>\left {<br>\begin{aligned}<br>buy_0 &amp;&#x3D; 0,\ sell_0 &#x3D; 0 \<br>buy_1 &amp;&#x3D; max{\ buy_1^<code>,\ sell_0-prices[i]\ \&#125; \\ sell_1 &amp;= max \&#123;\ sell_1^</code>,\ buy_1+prices[i]\ }<br>\end{aligned}<br>\right .<br>$$</p>
+<p>​ 今天的最大利润，等于昨天的最大利润，与之前最低时买入并在今天卖出所得利润，的最大值。即 <span class="math display">\[
+profit[i] = max \{\ profit[i - 1],\  prices[i] - min\_prices\ \}
+\]</span> ​ 类比后面几种，也可以写成， <span class="math display">\[
+\left \{
+\begin{aligned}
+buy_0 &amp;= 0,\ sell_0 = 0 \\
+buy_1 &amp;= max\{\ buy_1^`,\ sell_0-prices[i]\ \} \\
+sell_1 &amp;= max \{\ sell_1^`,\ buy_1+prices[i]\ \}
+\end{aligned}
+\right .
+\]</span></p>
 <p><strong>题解：</strong></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
     <span class="hljs-type">int</span> inf = <span class="hljs-number">1e9</span>;
@@ -502,13 +579,20 @@
     &#125;
     <span class="hljs-keyword">return</span> maxprofit;
 &#125;</code></pre></div>
-
-<h4 id="股票最佳时机Ⅱ-122"><a href="#股票最佳时机Ⅱ-122" class="headerlink" title="股票最佳时机Ⅱ  122"></a>股票最佳时机Ⅱ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/">122</a></h4><p><strong>题目：</strong></p>
-<p>​	仍然是prices数组表示每日价格，区别是，可以进行多次买卖，但是每一天手里最多只能有一只股票。即买了就得卖，不卖不能再买。求最大利润。</p>
-<p>​	与 Ⅰ 的区别在于，能多次买卖，只不过必须是一买一卖，不能同时持有多支。</p>
+<h4 id="股票最佳时机ⅱ-122">股票最佳时机Ⅱ <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/">122</a></h4>
+<p><strong>题目：</strong></p>
+<p>​ 仍然是prices数组表示每日价格，区别是，可以进行多次买卖，但是每一天手里最多只能有一只股票。即买了就得卖，不卖不能再买。求最大利润。</p>
+<p>​ 与 Ⅰ 的区别在于，能多次买卖，只不过必须是一买一卖，不能同时持有多支。</p>
 <p><strong>分析：</strong></p>
-<p>​	由于最多持有一只股票，因此第i天只有两种情况：持有一支和0支，分别用$dp[i][0]$和$dp[i][1]$表示。每天的最大利润等于，要么卖了更赚，要么前一天就最赚。则有状态转移方程如下：<br>$$<br>\left {<br>\begin{aligned}<br>dp[i][0] &amp;&#x3D; max{dp[i - 1][0],dp[i-1][1]+prices[i]} \<br>dp[i][1] &amp;&#x3D; max{dp[i - 1][1],dp[i-1][0]-prices[i]}<br>\end{aligned}<br>\right .<br>$$<br>​	初值，也即第一天时，$dp[0][0] &#x3D; 0,\ dp[0][1] &#x3D; -prices[0]$，最后卖了肯定比不卖赚，因此最大值即为$dp[n][0]$。</p>
-<p>​	同样的，类比一下，这里也可以不用二维数组。</p>
+<p>​ 由于最多持有一只股票，因此第i天只有两种情况：持有一支和0支，分别用<span class="math inline">\(dp[i][0]\)</span>和<span class="math inline">\(dp[i][1]\)</span>表示。每天的最大利润等于，要么卖了更赚，要么前一天就最赚。则有状态转移方程如下： <span class="math display">\[
+\left \{
+\begin{aligned}
+dp[i][0] &amp;= max\{dp[i - 1][0],dp[i-1][1]+prices[i]\} \\
+dp[i][1] &amp;= max\{dp[i - 1][1],dp[i-1][0]-prices[i]\}
+\end{aligned}
+\right .
+\]</span> ​ 初值，也即第一天时，<span class="math inline">\(dp[0][0] = 0,\ dp[0][1] = -prices[0]\)</span>，最后卖了肯定比不卖赚，因此最大值即为<span class="math inline">\(dp[n][0]\)</span>。</p>
+<p>​ 同样的，类比一下，这里也可以不用二维数组。</p>
 <p><strong>题解：</strong></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
     <span class="hljs-type">int</span> dp0 = <span class="hljs-number">0</span>, dp1 = -prices[<span class="hljs-number">0</span>];
@@ -524,13 +608,23 @@
     &#125;
 <span class="hljs-keyword">return</span> dp0;
 &#125;</code></pre></div>
-
-<h4 id="股票最佳时机Ⅲ-123"><a href="#股票最佳时机Ⅲ-123" class="headerlink" title="股票最佳时机Ⅲ  123"></a>股票最佳时机Ⅲ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/">123</a></h4><p><strong>题目：</strong></p>
-<p>​	还是prices数组，但是最多只能进行两次买卖，且最多同时持有一支股票。</p>
-<p>​	与Ⅱ的区别在于，限制了交易次数，最多两次。</p>
+<h4 id="股票最佳时机ⅲ-123">股票最佳时机Ⅲ <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/">123</a></h4>
+<p><strong>题目：</strong></p>
+<p>​ 还是prices数组，但是最多只能进行两次买卖，且最多同时持有一支股票。</p>
+<p>​ 与Ⅱ的区别在于，限制了交易次数，最多两次。</p>
 <p><strong>分析：</strong></p>
-<p>​	某一天，最多有五种操作：不买，买了一支，卖了一支，买了第二支，卖了第二支。对应的状态转移方程为：<br>$$<br>\left{<br>\begin{aligned}<br>buy_0 &amp;&#x3D; 0 ,\ sell_0&#x3D;0\<br>buy_1 &amp;&#x3D; max{\ buy_1^<code>,\ - price[i] \ \&#125; \\ sell_1 &amp;= max\&#123;\ sell_1^</code>,\ buy_1^<code>+prices[i]\ \&#125; \\ buy_2 &amp;= max\&#123;\ buy_2^</code>,\ sell_1^<code>-prices[i]\ \&#125; \\ sell_2 &amp;= max\&#123;\ sell_2^</code>,\ buy_2^<code>+prices[i]\ \&#125; \\ \end&#123;aligned&#125; \right . $$ ​	加上</code>‘&#96;表示前一天的值。buy<del>0</del>，不买肯定是0，不用考虑。最后最赚的，如果卖了两支那就两支最赚，返回sell<del>2</del>，如果买了一支，那么$sell_2 &#x3D; sell_1$，买了没卖一定比卖了赚的少。因此最后返回值为sell<del>2</del></p>
-<p>​	另外，这里直接对</p>
+<p>​ 某一天，最多有五种操作：不买，买了一支，卖了一支，买了第二支，卖了第二支。对应的状态转移方程为： <span class="math display">\[
+\left\{
+\begin{aligned}
+buy_0 &amp;= 0 ,\ sell_0=0\\
+buy_1 &amp;= max\{\ buy_1^`,\ - price[i] \ \} \\
+sell_1 &amp;= max\{\ sell_1^`,\ buy_1^`+prices[i]\ \} \\
+buy_2 &amp;= max\{\ buy_2^`,\ sell_1^`-prices[i]\ \} \\
+sell_2 &amp;= max\{\ sell_2^`,\ buy_2^`+prices[i]\ \} \\
+\end{aligned}
+\right .
+\]</span> ​ 加上<code>'</code>表示前一天的值。buy<sub>0</sub>，不买肯定是0，不用考虑。最后最赚的，如果卖了两支那就两支最赚，返回sell<sub>2</sub>，如果买了一支，那么<span class="math inline">\(sell_2 = sell_1\)</span>，买了没卖一定比卖了赚的少。因此最后返回值为sell<sub>2</sub></p>
+<p>​ 另外，这里直接对</p>
 <p><strong>题解：</strong></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
     <span class="hljs-type">int</span> buy1 = -prices[<span class="hljs-number">0</span>], sell1 = <span class="hljs-number">0</span>;
@@ -543,12 +637,12 @@
     &#125;
     <span class="hljs-keyword">return</span> sell2;
 &#125;</code></pre></div>
-
-<h4 id="股票最佳时机-Ⅳ-188"><a href="#股票最佳时机-Ⅳ-188" class="headerlink" title="股票最佳时机 Ⅳ  188"></a>股票最佳时机 Ⅳ  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/">188</a></h4><p><strong>题目：</strong></p>
-<p>​	还还还是那个prices数组，你可以进行<code>k</code>次交易，仍然是最多同时持有一支股票。</p>
-<p>​	与Ⅲ的区别在于，从2次改成了k次</p>
+<h4 id="股票最佳时机-ⅳ-188">股票最佳时机 Ⅳ <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/">188</a></h4>
+<p><strong>题目：</strong></p>
+<p>​ 还还还是那个prices数组，你可以进行<code>k</code>次交易，仍然是最多同时持有一支股票。</p>
+<p>​ 与Ⅲ的区别在于，从2次改成了k次</p>
 <p><strong>分析：</strong></p>
-<p>​	解法同上，区别在于，限制买两次，每天是5种状态，限制买k次，每天还是那么分析状态，用一个for循环表示出来即可。要注意初始化时，buy要全部初始化为-p0，因为一天可以连续买卖。</p>
+<p>​ 解法同上，区别在于，限制买两次，每天是5种状态，限制买k次，每天还是那么分析状态，用一个for循环表示出来即可。要注意初始化时，buy要全部初始化为-p0，因为一天可以连续买卖。</p>
 <p><strong>题解：</strong></p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-type">int</span> k, vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;
     <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">buy</span><span class="hljs-params">(k+<span class="hljs-number">1</span>, -prices[<span class="hljs-number">0</span>])</span></span>;
@@ -562,25 +656,20 @@
     &#125;
     <span class="hljs-keyword">return</span> sell[k];
 &#125;</code></pre></div>
-
-<h3 id="停下思考-1"><a href="#停下思考-1" class="headerlink" title="停下思考 1"></a>停下思考 1</h3><blockquote>
-<p>上面这几个&#x3D;&#x3D;股票&#x3D;&#x3D;问题，采用了动态规划方法解决。那么他们的&#x3D;&#x3D;最优子结构&#x3D;&#x3D;是什么呢？</p>
+<h3 id="停下思考-1">停下思考 1</h3>
+<blockquote>
+<p>上面这几个==股票==问题，采用了动态规划方法解决。那么他们的==最优子结构==是什么呢？</p>
 <p>可以举几个最优子结构的例子进行类比学习：</p>
 <ul>
 <li><p>最佳游艇租赁，<strong>假设</strong>最优路径有中间停靠站k，那左右两边的租赁价格都得是最小</p>
-<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303222443969.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>矩阵链乘，<strong>假设</strong>要从中间k处分割，那么左右的链乘代价都得是最小的<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303222527991.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>最长公共子序列，<strong>假设</strong>Z是X和Y的最长公共子序列，那么，如果三者末位元素相等，那么去掉一个，Z<del>k-1</del>还的是X<del>m-1</del>、Y<del>n-1</del>的最长子序列。如果末尾元素不同，那么去掉那个不同的（假设是X的末位），Z<del>k</del>还得是X<del>m-1</del>与Y<del>n</del>的最长子序列<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303223446862.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>基因编辑（字符串变为另一字符串所需的最小代价），<strong>假设</strong>X和Y的最短编辑距离是<code>d[i][j]</code>，那么对于X和Y的右侧，要么放得对齐：相同了不编辑，不同则编辑；要么不对齐：去掉长的，或给短的插入一个。反正均可以用d表示出来：<br><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303224711576.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>0-1背包，</p>
-</li>
+<p><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303222443969.png" srcset="/img/loading.gif" lazyload /></p></li>
+<li><p>矩阵链乘，<strong>假设</strong>要从中间k处分割，那么左右的链乘代价都得是最小的 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303222527991.png" srcset="/img/loading.gif" lazyload /></p></li>
+<li><p>最长公共子序列，<strong>假设</strong>Z是X和Y的最长公共子序列，那么，如果三者末位元素相等，那么去掉一个，Z<sub>k-1</sub>还的是X<sub>m-1</sub>、Y<sub>n-1</sub>的最长子序列。如果末尾元素不同，那么去掉那个不同的（假设是X的末位），Z<sub>k</sub>还得是X<sub>m-1</sub>与Y<sub>n</sub>的最长子序列 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303223446862.png" srcset="/img/loading.gif" lazyload /></p></li>
+<li><p>基因编辑（字符串变为另一字符串所需的最小代价），<strong>假设</strong>X和Y的最短编辑距离是<code>d[i][j]</code>，那么对于X和Y的右侧，要么放得对齐：相同了不编辑，不同则编辑；要么不对齐：去掉长的，或给短的插入一个。反正均可以用d表示出来： <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230303224711576.png" srcset="/img/loading.gif" lazyload /></p></li>
+<li><p>0-1背包，</p></li>
 </ul>
 </blockquote>
-<p>​	<strong>20230303：</strong>都是先假设最优解存在，将最优解设出来，然后去表示子问题的最优解（即递推）。我认为股票的最优子结构是，每一天买卖股票所能获得的最大利润。知道了前面每一天的，就能知道最后一天的答案。分析dp解题步骤：找状态转移方程$\rightarrow$分析初值，然后就可以写循环了</p>
+<p>​ <strong>20230303：</strong>都是先假设最优解存在，将最优解设出来，然后去表示子问题的最优解（即递推）。我认为股票的最优子结构是，每一天买卖股票所能获得的最大利润。知道了前面每一天的，就能知道最后一天的答案。分析dp解题步骤：找状态转移方程<span class="math inline">\(\rightarrow\)</span>分析初值，然后就可以写循环了</p>
 
                 
               </div>

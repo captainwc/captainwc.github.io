@@ -16,12 +16,12 @@
   <meta name="author" content="kk">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Ubuntu22.04安装Hadoop完全分布式集群1. 网络配置需要修改四处，windows（宿主机），vmware，和虚拟机ubuntu（NAT模式）  windows，设置vmware8的ipv4选项即可  vmware的ip设置和windows是一样的，网关都是192.168.5.2，还有NAT网络设置  ubuntu的主要任务就是    把DHCP换成静态IP（这部分要看具体集群配置，比">
+    <meta name="description" content="Ubuntu22.04安装Hadoop完全分布式集群 1. 网络配置 需要修改四处，windows（宿主机），vmware，和虚拟机ubuntu（NAT模式）  windows，设置vmware8的ipv4选项即可 vmware的ip设置和windows是一样的，网关都是192.168.5.2，还有NAT网络设置 ubuntu的主要任务就是   把DHCP换成静态IP（这部分要看">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu22.04安装Hadoop完全分布式集群">
 <meta property="og:url" content="https://captainwc.github.io/2022/10/15/Ubuntu22.04%E5%AE%89%E8%A3%85Hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4/index.html">
 <meta property="og:site_name" content="开宝特攻">
-<meta property="og:description" content="Ubuntu22.04安装Hadoop完全分布式集群1. 网络配置需要修改四处，windows（宿主机），vmware，和虚拟机ubuntu（NAT模式）  windows，设置vmware8的ipv4选项即可  vmware的ip设置和windows是一样的，网关都是192.168.5.2，还有NAT网络设置  ubuntu的主要任务就是    把DHCP换成静态IP（这部分要看具体集群配置，比">
+<meta property="og:description" content="Ubuntu22.04安装Hadoop完全分布式集群 1. 网络配置 需要修改四处，windows（宿主机），vmware，和虚拟机ubuntu（NAT模式）  windows，设置vmware8的ipv4选项即可 vmware的ip设置和windows是一样的，网关都是192.168.5.2，还有NAT网络设置 ubuntu的主要任务就是   把DHCP换成静态IP（这部分要看">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://captainwc.github.io/img/banner/118.jpg">
 <meta property="article:published_time" content="2022-10-14T16:00:00.000Z">
@@ -211,7 +211,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/banner/102.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/banner/100.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
       <div class="banner-text text-center fade-in-up">
@@ -309,14 +309,13 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Ubuntu22-04安装Hadoop完全分布式集群"><a href="#Ubuntu22-04安装Hadoop完全分布式集群" class="headerlink" title="Ubuntu22.04安装Hadoop完全分布式集群"></a>Ubuntu22.04安装Hadoop完全分布式集群</h1><h2 id="1-网络配置"><a href="#1-网络配置" class="headerlink" title="1. 网络配置"></a>1. 网络配置</h2><p>需要修改四处，windows（宿主机），vmware，和虚拟机ubuntu<strong>（<code>NAT</code>模式）</strong></p>
-<ol>
-<li><p>windows，设置vmware8的ipv4选项即可</p>
-</li>
-<li><p>vmware的ip设置和windows是一样的，网关都是<code>192.168.5.2</code>，还有NAT网络设置</p>
-</li>
-<li><p>ubuntu的主要任务就是</p>
-</li>
+                <h1 id="ubuntu22.04安装hadoop完全分布式集群">Ubuntu22.04安装Hadoop完全分布式集群</h1>
+<h2 id="网络配置">1. 网络配置</h2>
+<p>需要修改四处，windows（宿主机），vmware，和虚拟机ubuntu<strong>（<code>NAT</code>模式）</strong></p>
+<ol type="1">
+<li><p>windows，设置vmware8的ipv4选项即可</p></li>
+<li><p>vmware的ip设置和windows是一样的，网关都是<code>192.168.5.2</code>，还有NAT网络设置</p></li>
+<li><p>ubuntu的主要任务就是</p></li>
 </ol>
 <ul>
 <li>把DHCP换成<code>静态IP</code>（这部分要看具体集群配置，比如设置master和slave1，slave2，则可以分别分配ip为<code>192.168.5.11</code>,<code>192.168.5.12</code>,<code>192.168.5.13</code>）</li>
@@ -325,7 +324,6 @@
 </ul>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/netplan/ &amp;&amp; ll
 vim 01-network-manager-all.yaml</code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 把以下内容粘贴上</span>
 <span class="hljs-comment"># Let NetworkManager manage all devices on this system</span>
 network:
@@ -340,7 +338,6 @@ network:
             nameservers:
               addresses: [8.8.8.8,8.8.4.4,192.168.3.1]
     version: 2</code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 开启systemd-networkd服务</span>
 sudo systemctl start systemd-networkd
 <span class="hljs-comment"># 查看状态</span>
@@ -353,7 +350,6 @@ ifconfig | <span class="hljs-built_in">head</span> -n 3
 
 <span class="hljs-comment"># 测试网络</span>
 ping -c 3 www.baidu.com</code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 修改hostname</span>
 sudo vim /etc/hostname
 <span class="hljs-comment"># 设置ip映射</span>
@@ -364,12 +360,13 @@ sudo vim /etc/hosts
 ...
 <span class="hljs-comment"># 在windows中也添加ip映射</span>
 /C:\windows\system32\drivers\etc\hosts</code></pre></div>
-
-<h2 id="2-安装JDK与Hadoop"><a href="#2-安装JDK与Hadoop" class="headerlink" title="2. 安装JDK与Hadoop"></a>2. 安装JDK与Hadoop</h2><h3 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h3><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 将下载的安装包解压到 /opt下新建的文件夹module中</span>
+<h2 id="安装jdk与hadoop">2. 安装JDK与Hadoop</h2>
+<h3 id="安装">2.1 安装</h3>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 将下载的安装包解压到 /opt下新建的文件夹module中</span>
 tar -zxvf jdk-XXXX-x64.tar.gz -C /opt/module
 tar -zxvf hadoop-XXXX-x64.tar.gz -C /opt/module</code></pre></div>
-
-<h3 id="2-2配置环境变量"><a href="#2-2配置环境变量" class="headerlink" title="2.2配置环境变量"></a>2.2配置环境变量</h3><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 新建.sh文件；因为\etc\profile会遍历\etc\profile.d文件夹下的所有.sh文件</span>
+<h3 id="配置环境变量">2.2配置环境变量</h3>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 新建.sh文件；因为\etc\profile会遍历\etc\profile.d文件夹下的所有.sh文件</span>
 sudo vim /etc/profile.d/my_env.sh
 <span class="hljs-comment"># 在文中添加如下内容：</span>
 <span class="hljs-comment"># set JAVA_HOME</span>
@@ -379,29 +376,33 @@ sudo vim /etc/profile.d/my_env.sh
 <span class="hljs-built_in">export</span> HADOOP_HOME=/opt/module/hadoop-3.1.3
 <span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$HADOOP_HOME</span>/bin
 <span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$HADOOP_HOME</span>/sbin</code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># source一下profie即可，因为他会自动遍历profile.d文件夹</span>
 <span class="hljs-built_in">source</span> /etc/profile
 <span class="hljs-comment"># 测试一下是否配置成功</span>
 java -version
 hadoop version
 <span class="hljs-comment"># 不行就reboot</span></code></pre></div>
-
-<h3 id="2-3-克隆虚拟机"><a href="#2-3-克隆虚拟机" class="headerlink" title="2.3 克隆虚拟机"></a>2.3 克隆虚拟机</h3><p>注意选则完全克隆，然后修改<code>静态ip地址</code>和<code>hostname</code></p>
-<h2 id="3-配置完全分布式"><a href="#3-配置完全分布式" class="headerlink" title="3. 配置完全分布式"></a>3. 配置完全分布式</h2><h3 id="3-1-配置SSH无密登录"><a href="#3-1-配置SSH无密登录" class="headerlink" title="3.1 配置SSH无密登录"></a>3.1 配置SSH无密登录</h3><div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># ssh-server是缺省的，注意安装一下</span>
+<h3 id="克隆虚拟机">2.3 克隆虚拟机</h3>
+<p>注意选则完全克隆，然后修改<code>静态ip地址</code>和<code>hostname</code></p>
+<h2 id="配置完全分布式">3. 配置完全分布式</h2>
+<h3 id="配置ssh无密登录">3.1 配置SSH无密登录</h3>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># ssh-server是缺省的，注意安装一下</span>
 sudo apt install openssh-server</code></pre></div>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 生成公钥和私钥，以rsa算法</span>
 ssh-keygen -t rsa
 <span class="hljs-comment"># 将公钥拷贝给别的机器</span>
 ssh-copyid [maser][slave1][slave2]</code></pre></div>
-
-<h3 id="3-2-常用命令"><a href="#3-2-常用命令" class="headerlink" title="3.2 常用命令"></a>3.2 常用命令</h3><h4 id="3-2-1-scp（secure-copy"><a href="#3-2-1-scp（secure-copy" class="headerlink" title="3.2.1 scp（secure copy)"></a>3.2.1 scp（secure copy)</h4><p><code>scp    -r     $pdir/$filename   $user@$host:$pdir/$filename</code></p>
-<p>拷贝   递归   要拷贝的文件     目标服务器:目的路径&#x2F;名称</p>
-<h4 id="3-2-2-rsync（远程同步工具）"><a href="#3-2-2-rsync（远程同步工具）" class="headerlink" title="3.2.2 rsync（远程同步工具）"></a>3.2.2 rsync（远程同步工具）</h4><p><code>rsync     -av     $pdir/$filename   $user@$host:$pdir/$filename</code></p>
-<p>远程同步   参数    要拷贝的文件      目标服务器:目的路径&#x2F;名称</p>
+<h3 id="常用命令">3.2 常用命令</h3>
+<h4 id="scpsecure-copy">3.2.1 scp（secure copy)</h4>
+<p><code>scp    -r     $pdir/$filename   $user@$host:$pdir/$filename</code></p>
+<p>拷贝 递归 要拷贝的文件 目标服务器:目的路径/名称</p>
+<h4 id="rsync远程同步工具">3.2.2 rsync（远程同步工具）</h4>
+<p><code>rsync     -av     $pdir/$filename   $user@$host:$pdir/$filename</code></p>
+<p>远程同步 参数 要拷贝的文件 目标服务器:目的路径/名称</p>
 <p>-a表示归档拷贝，-v表示显示过程</p>
 <p><strong><code>rsync</code>可以避免复制重复内容，所以比<code>scp</code>效率要高；同时支持符号链接</strong></p>
-<h4 id="3-2-3-xsync（自己编写的脚本）"><a href="#3-2-3-xsync（自己编写的脚本）" class="headerlink" title="3.2.3 xsync（自己编写的脚本）"></a>3.2.3 xsync（自己编写的脚本）</h4><p><strong><code>xsync</code>:将当前文件自动分发到集群中所有机器的相同位置</strong></p>
+<h4 id="xsync自己编写的脚本">3.2.3 xsync（自己编写的脚本）</h4>
+<p><strong><code>xsync</code>:将当前文件自动分发到集群中所有机器的相同位置</strong></p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 在~/bin目录下创建脚本文件，因为这个目录已经被添加到环境变量中，可以全局使用。当然也可以自己添加环境变量</span>
 sudo vim /home/usr/bin/xsync
 
@@ -435,41 +436,45 @@ sudo vim /home/usr/bin/xsync
     <span class="hljs-keyword">done</span>
 <span class="hljs-keyword">done</span>
 </code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 设置可执行权限</span>
 sudo <span class="hljs-built_in">chmod</span> 777 xsync
 <span class="hljs-built_in">source</span> /etc/profile</code></pre></div>
-
-<h3 id="3-3-集群配置"><a href="#3-3-集群配置" class="headerlink" title="3.3 集群配置"></a>3.3 集群配置</h3><h4 id="3-3-1-集群规划"><a href="#3-3-1-集群规划" class="headerlink" title="3.3.1 集群规划"></a>3.3.1 集群规划</h4><table>
+<h3 id="集群配置">3.3 集群配置</h3>
+<h4 id="集群规划">3.3.1 集群规划</h4>
+<table>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
 <th>master</th>
 <th>slave1</th>
 <th>slave2</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>HDFS</td>
 <td><strong>NameNode</strong><br />DataNode</td>
 <td><br />DataNode</td>
 <td><strong>SecondaryNamenode</strong><br/>DataNode</td>
 </tr>
-<tr>
+<tr class="even">
 <td>YARN</td>
 <td><br />NodeManager</td>
 <td><strong>ResourceManager</strong><br />Nodemanager</td>
 <td><br />NodeManager</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>历史服务器</td>
 <td><strong>HistoryServer</strong><br /><strong>日志聚集</strong></td>
 <td></td>
 <td></td>
 </tr>
-</tbody></table>
-<h4 id="3-3-2-配置集群"><a href="#3-3-2-配置集群" class="headerlink" title="3.3.2 配置集群"></a>3.3.2 配置集群</h4><p>共有四个用户自定义配置文件<code>core-site.xml</code>,<code>hdfs-site.xml</code>,<code>yarn-site.xml</code>,<code>mapred-site.xml</code>，都在路径<code>$HADOOP_HOME/etc/hadoop</code>下</p>
-<h5 id="3-3-2-1-core-site-xml"><a href="#3-3-2-1-core-site-xml" class="headerlink" title="3.3.2.1 core-site.xml"></a>3.3.2.1 core-site.xml</h5><div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+</tbody>
+</table>
+<h4 id="配置集群">3.3.2 配置集群</h4>
+<p>共有四个用户自定义配置文件<code>core-site.xml</code>,<code>hdfs-site.xml</code>,<code>yarn-site.xml</code>,<code>mapred-site.xml</code>，都在路径<code>$HADOOP_HOME/etc/hadoop</code>下</p>
+<h5 id="core-site.xml">3.3.2.1 core-site.xml</h5>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- 指定NameNode的地址 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>fs.defaultFS<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
@@ -486,8 +491,8 @@ sudo <span class="hljs-built_in">chmod</span> 777 xsync
         <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>shuaikai<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
-
-<h5 id="3-3-2-2-hdfs-site-xml"><a href="#3-3-2-2-hdfs-site-xml" class="headerlink" title="3.3.2.2 hdfs-site.xml"></a>3.3.2.2 hdfs-site.xml</h5><div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+<h5 id="hdfs-site.xml">3.3.2.2 hdfs-site.xml</h5>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
 	<span class="hljs-comment">&lt;!-- nn web端访问地址--&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>dfs.namenode.http-address<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
@@ -499,8 +504,8 @@ sudo <span class="hljs-built_in">chmod</span> 777 xsync
         <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>slave2:9868<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
-
-<h5 id="3-3-2-3-yarn-site-xml"><a href="#3-3-2-3-yarn-site-xml" class="headerlink" title="3.3.2.3 yarn-site.xml"></a>3.3.2.3 yarn-site.xml</h5><div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+<h5 id="yarn-site.xml">3.3.2.3 yarn-site.xml</h5>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- 指定MR走shuffle --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
@@ -533,8 +538,8 @@ sudo <span class="hljs-built_in">chmod</span> 777 xsync
         <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>604800<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
-
-<h5 id="3-3-2-4-mapred-site-xml"><a href="#3-3-2-4-mapred-site-xml" class="headerlink" title="3.3.2.4 mapred-site.xml"></a>3.3.2.4 mapred-site.xml</h5><div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+<h5 id="mapred-site.xml">3.3.2.4 mapred-site.xml</h5>
+<div class="code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
 	<span class="hljs-comment">&lt;!-- 指定MapReduce程序运行在Yarn上 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>mapreduce.framework.name<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
@@ -552,18 +557,19 @@ sudo <span class="hljs-built_in">chmod</span> 777 xsync
         <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>master:19888<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
-
-<h5 id="3-3-2-5-在集群上分发配置文件"><a href="#3-3-2-5-在集群上分发配置文件" class="headerlink" title="3.3.2.5 在集群上分发配置文件"></a>3.3.2.5 在集群上分发配置文件</h5><div class="code-wrapper"><pre><code class="hljs bash">xsync <span class="hljs-variable">$HADOOP_HOME</span>/etc/hadoop/</code></pre></div>
-
-<h2 id="4-群起集群"><a href="#4-群起集群" class="headerlink" title="4. 群起集群"></a>4. 群起集群</h2><h3 id="4-1-配置worker"><a href="#4-1-配置worker" class="headerlink" title="4.1 配置worker"></a>4.1 配置worker</h3><div class="code-wrapper"><pre><code class="hljs bash">vim <span class="hljs-variable">$HADOOP_NOME</span>/etc/hadoop/workers
+<h5 id="在集群上分发配置文件">3.3.2.5 在集群上分发配置文件</h5>
+<div class="code-wrapper"><pre><code class="hljs bash">xsync <span class="hljs-variable">$HADOOP_HOME</span>/etc/hadoop/</code></pre></div>
+<h2 id="群起集群">4. 群起集群</h2>
+<h3 id="配置worker">4.1 配置worker</h3>
+<div class="code-wrapper"><pre><code class="hljs bash">vim <span class="hljs-variable">$HADOOP_NOME</span>/etc/hadoop/workers
 <span class="hljs-comment"># 把所有主机名添加进去，不要有多余的空格、换行</span>
 master
 slave1
 slave2
 <span class="hljs-comment"># 分发</span>
 xsync <span class="hljs-variable">$HADOOP_NOME</span>/etc/hadoop/workers</code></pre></div>
-
-<h3 id="4-2-启动集群"><a href="#4-2-启动集群" class="headerlink" title="4.2 启动集群"></a>4.2 启动集群</h3><p>如果集群是<strong>第一次启动</strong>，需要<strong>在master节点格式化NameNode</strong></p>
+<h3 id="启动集群">4.2 启动集群</h3>
+<p>如果集群是<strong>第一次启动</strong>，需要<strong>在master节点格式化NameNode</strong></p>
 <p>:japanese_goblin:注意：格式化NameNode后，会产生新的集群id，导致NameNode和原来DataNode对应的集群id不一致，这样集群就找不到已往数据。如果集群在运行过程中报错，需要重新格式化NameNode的话，一定要先停止namenode和datanode进程，并且要删除所有机器的data和logs目录，然后再进行格式化。</p>
 <p>:japanese_ogre:要严格按照集群规划，启动对应的部分，hdfs，yarn，历史服务器等</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># (1) 格式化NameNode</span>
@@ -587,12 +593,14 @@ jps
 <span class="hljs-comment"># HistoryJob http://hadoop102:19888/jobhistory</span>
 
 <span class="hljs-comment"># (7) 关闭集群</span></code></pre></div>
-
-<h3 id="4-3-集群启动和关闭方法"><a href="#4-3-集群启动和关闭方法" class="headerlink" title="4.3 集群启动和关闭方法"></a>4.3 集群启动和关闭方法</h3><h4 id="4-3-1-各个模块分别启动-x2F-停止"><a href="#4-3-1-各个模块分别启动-x2F-停止" class="headerlink" title="4.3.1 各个模块分别启动&#x2F;停止"></a>4.3.1 各个模块分别启动&#x2F;停止</h4><p>HDFS:<code>start-dfs.sh</code>,<code>stop-dfs.sh</code><br>YARN:<code>start-yarn.sh</code>,<code>stop-yarn.sh</code></p>
-<h4 id="4-3-2-各个服务器组件逐一停止"><a href="#4-3-2-各个服务器组件逐一停止" class="headerlink" title="4.3.2 各个服务器组件逐一停止"></a>4.3.2 各个服务器组件逐一停止</h4><p>HDFS:<code>hdfs --daemon start/stop namenode/datanode/secondnamenode</code></p>
+<h3 id="集群启动和关闭方法">4.3 集群启动和关闭方法</h3>
+<h4 id="各个模块分别启动停止">4.3.1 各个模块分别启动/停止</h4>
+<p>HDFS:<code>start-dfs.sh</code>,<code>stop-dfs.sh</code> YARN:<code>start-yarn.sh</code>,<code>stop-yarn.sh</code></p>
+<h4 id="各个服务器组件逐一停止">4.3.2 各个服务器组件逐一停止</h4>
+<p>HDFS:<code>hdfs --daemon start/stop namenode/datanode/secondnamenode</code></p>
 <p>YARN:<code>yarn --daemon start/stop resourcemanager/nodemanager</code></p>
-<h4 id="4-3-3-编写脚本-集群整体启动-x2F-停止"><a href="#4-3-3-编写脚本-集群整体启动-x2F-停止" class="headerlink" title="4.3.3 编写脚本 集群整体启动&#x2F;停止"></a>4.3.3 编写脚本 集群整体启动&#x2F;停止</h4><div class="code-wrapper"><pre><code class="hljs bash">vim ~/bin/myhadoop.sh</code></pre></div>
-
+<h4 id="编写脚本-集群整体启动停止">4.3.3 编写脚本 集群整体启动/停止</h4>
+<div class="code-wrapper"><pre><code class="hljs bash">vim ~/bin/myhadoop.sh</code></pre></div>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 
 <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$#</span> -lt 1 ]
@@ -626,11 +634,9 @@ jps
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Input Args Error...&quot;</span>
 ;;
 <span class="hljs-keyword">esac</span></code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> 777 myhadoop.sh</code></pre></div>
-
-<h4 id="4-3-4-编写脚本-查看所有服务器运行的服务"><a href="#4-3-4-编写脚本-查看所有服务器运行的服务" class="headerlink" title="4.3.4 编写脚本 查看所有服务器运行的服务"></a>4.3.4 编写脚本 查看所有服务器运行的服务</h4> <div class="code-wrapper"><pre><code class="hljs bash">vim ~/bin/jpsall</code></pre></div>
-
+<h4 id="编写脚本-查看所有服务器运行的服务">4.3.4 编写脚本 查看所有服务器运行的服务</h4>
+<p><div class="code-wrapper"><pre><code class="hljs bash">vim ~/bin/jpsall</code></pre></div></p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 
 <span class="hljs-keyword">for</span> host <span class="hljs-keyword">in</span> master slave1 slave2
@@ -638,36 +644,38 @@ jps
         <span class="hljs-built_in">echo</span> =============== <span class="hljs-variable">$host</span> ===============
         ssh <span class="hljs-variable">$host</span> jps 
 <span class="hljs-keyword">done</span></code></pre></div>
-
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> 777 jpsall</code></pre></div>
-
-<h3 id="4-4-常用端口号"><a href="#4-4-常用端口号" class="headerlink" title="4.4 常用端口号"></a>4.4 常用端口号</h3><table>
+<h3 id="常用端口号">4.4 常用端口号</h3>
+<table>
 <thead>
-<tr>
+<tr class="header">
 <th>端口名称</th>
 <th>Hadoop3.x</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>NameNode内部通信</td>
-<td>8020&#x2F;9000&#x2F;9820</td>
+<td>8020/9000/9820</td>
 </tr>
-<tr>
+<tr class="even">
 <td>NameNode HTTP UI</td>
 <td>9870</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>MapReduce</td>
 <td>8088</td>
 </tr>
-<tr>
+<tr class="even">
 <td>HistoryServer</td>
 <td>19888</td>
 </tr>
-</tbody></table>
-<h2 id="5-集群基本测试"><a href="#5-集群基本测试" class="headerlink" title="5. 集群基本测试"></a>5. 集群基本测试</h2><p>官方案例wordcount（本地模式运行）</p>
+</tbody>
+</table>
+<h2 id="集群基本测试">5. 集群基本测试</h2>
+<p>官方案例wordcount（本地模式运行）</p>
 <p>上传下载，web浏览</p>
-<p>……</p>
+<p>......</p>
 
                 
               </div>
