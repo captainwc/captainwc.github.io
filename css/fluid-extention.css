@@ -31,3 +31,12 @@ html {
 	font-family: ; 
 	line-height: 1.15;
 }
+
+/* noto-serif-sc-regular - chinese-simplified_latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/SiYuanSongTi.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
