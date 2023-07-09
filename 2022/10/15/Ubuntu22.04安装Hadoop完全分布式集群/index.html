@@ -252,7 +252,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          7.6k 字
+          7.5k 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
           <!-- compatible with older versions-->
-          64 分钟
+          63 分钟
         
       </span>
     
@@ -576,8 +576,8 @@ slave2
 xsync <span class="hljs-variable">$HADOOP_NOME</span>/etc/hadoop/workers</code></pre></div>
 <h3 id="启动集群">4.2 启动集群</h3>
 <p>如果集群是<strong>第一次启动</strong>，需要<strong>在master节点格式化NameNode</strong></p>
-<p>:japanese_goblin:注意：格式化NameNode后，会产生新的集群id，导致NameNode和原来DataNode对应的集群id不一致，这样集群就找不到已往数据。如果集群在运行过程中报错，需要重新格式化NameNode的话，一定要先停止namenode和datanode进程，并且要删除所有机器的data和logs目录，然后再进行格式化。</p>
-<p>:japanese_ogre:要严格按照集群规划，启动对应的部分，hdfs，yarn，历史服务器等</p>
+<p><span class="github-emoji" data-alias="japanese_goblin" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f47a.png?v8">👺</span>注意：格式化NameNode后，会产生新的集群id，导致NameNode和原来DataNode对应的集群id不一致，这样集群就找不到已往数据。如果集群在运行过程中报错，需要重新格式化NameNode的话，一定要先停止namenode和datanode进程，并且要删除所有机器的data和logs目录，然后再进行格式化。</p>
+<p><span class="github-emoji" data-alias="japanese_ogre" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f479.png?v8">👹</span>要严格按照集群规划，启动对应的部分，hdfs，yarn，历史服务器等</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># (1) 格式化NameNode</span>
 hdfs namenode -format
 

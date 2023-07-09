@@ -267,7 +267,7 @@
         
         
           <!-- compatible with older versions-->
-          125 分钟
+          124 分钟
         
       </span>
     
@@ -343,7 +343,7 @@
 <li>注意，vscode中有时不能识别一些函数如<code>sigaction</code>、<code>pthread_xxx</code>等，是因为没有"定义"<code>__USE_POSIX</code>这个宏（但实际上运行的时候是定义的），想要看补全的话，可以手动在，比如signal.h头文件前面define上</li>
 <li>听说 <code>c_cpp_properties.json</code>中定义<code>"__USE_POSIX=1",</code>也行，但我的不行。但这不失为定义宏的好地方</li>
 </ul></li>
-<li><p><code>cgdb</code>：可以随时预览代码的调试。:chains:<a target="_blank" rel="noopener" href="https://nowjava.com/docs/cgdb/cgdb-manual.html#2.6">命令参考</a> / Esc(vim) i(cgdb) s(cgdb 翻页)</p>
+<li><p><code>cgdb</code>：可以随时预览代码的调试。<span class="github-emoji" data-alias="chains" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26d3.png?v8">⛓</span><a target="_blank" rel="noopener" href="https://nowjava.com/docs/cgdb/cgdb-manual.html#2.6">命令参考</a> / Esc(vim) i(cgdb) s(cgdb 翻页)</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment">#可能会缺少 curses.h 文件，可以先</span>
 sudo apt install libncurses5-dev libncursesw5-dev
 <span class="hljs-comment">#安装脚本：</span>
@@ -364,7 +364,7 @@ ossutil config
 <span class="hljs-comment">#(3) 下载自定义配置文件</span>
 wget -O .ossutilconfig https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/others/.ossutilconfig
 wget -O .bash_aliases https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/bash/.bash_aliases</code></pre></div></li>
-<li><p><code>man cpp</code>：cpp的man手册，包括一些浏览器检索的办法 :link: <a target="_blank" rel="noopener" href="https://www.yanbinghu.com/2019/11/03/59238.html">Linux自主安装C++man手册</a></p></li>
+<li><p><code>man cpp</code>：cpp的man手册，包括一些浏览器检索的办法 <span class="github-emoji" data-alias="link" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f517.png?v8">🔗</span> <a target="_blank" rel="noopener" href="https://www.yanbinghu.com/2019/11/03/59238.html">Linux自主安装C++man手册</a></p></li>
 </ol>
 <h3 id="shell编程">shell编程</h3>
 <ol type="1">
@@ -394,13 +394,13 @@ wget -O .bash_aliases https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/c
 <h3 id="命令">命令</h3>
 <h4 id="通用命令">通用命令</h4>
 <blockquote>
-<p>:book:<a target="_blank" rel="noopener" href="https://visualgdb.com/gdbreference/commands/">GDB Reference</a> :link:<a target="_blank" rel="noopener" href="https://www.iteye.com/blog/daimajishu-1089741">调试器GDB常用功能</a></p>
+<p><span class="github-emoji" data-alias="book" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d6.png?v8">📖</span><a target="_blank" rel="noopener" href="https://visualgdb.com/gdbreference/commands/">GDB Reference</a> <span class="github-emoji" data-alias="link" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f517.png?v8">🔗</span><a target="_blank" rel="noopener" href="https://www.iteye.com/blog/daimajishu-1089741">调试器GDB常用功能</a></p>
 </blockquote>
 <ul>
-<li><p><strong><code>x</code></strong>/ [<em>Length</em>][<em>Format</em>: t o d x f a c s] [<em>Address expression</em> b-8 h-16 w-32 g-64 ] :paperclip:<a target="_blank" rel="noopener" href="https://visualgdb.com/gdbreference/commands/x">GDB Command Reference : x</a></p></li>
+<li><p><strong><code>x</code></strong>/ [<em>Length</em>][<em>Format</em>: t o d x f a c s] [<em>Address expression</em> b-8 h-16 w-32 g-64 ] <span class="github-emoji" data-alias="paperclip" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4ce.png?v8">📎</span><a target="_blank" rel="noopener" href="https://visualgdb.com/gdbreference/commands/x">GDB Command Reference : x</a></p></li>
 <li><p><strong><code>p</code>/</strong>t-2 o-8 d-10 x-16 f-loat a-ddress c-har s-tring [var]</p>
 <ol type="1">
-<li>:warning: 要注意区分，<strong>x</strong> 是扫描<strong>内存</strong>，因此后面跟的直接是内存地址， 而 <strong>p</strong> 是输出<strong>变量</strong>的值，因此后面想跟地址的话，需要取其内容，即加上<code>*</code></li>
+<li><span class="github-emoji" data-alias="warning" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png?v8">⚠</span> 要注意区分，<strong>x</strong> 是扫描<strong>内存</strong>，因此后面跟的直接是内存地址， 而 <strong>p</strong> 是输出<strong>变量</strong>的值，因此后面想跟地址的话，需要取其内容，即加上<code>*</code></li>
 <li>关于 <code>*</code>，很多命令地址前面都要加星号，因为不加星号的一个地址，是被当成函数来看待的</li>
 </ol></li>
 <li><p><strong><code>s n</code></strong> ：C语言级别的单步执行； <strong><code>si ni</code></strong>汇编级别的单步执行</p></li>

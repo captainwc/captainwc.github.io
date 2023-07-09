@@ -472,7 +472,7 @@ sudo echo &#123;your_lib_directory&#125; &gt; /etc/ld.so.conf
 <p><code>void perror(const char *s)</code>：打印 errno 对应的错误描述，其中参数 s 是<strong>用户描述</strong>，输出的样子是 用户描述（s） ： errno 对应的错误</p>
 <h5 id="readv-writev">readv &amp; writev</h5>
 <blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39642794/article/details/108080722">:link: readv()和writev()函数</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39642794/article/details/108080722"><span class="github-emoji" data-alias="link" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f517.png?v8">🔗</span> readv()和writev()函数</a></p>
 </blockquote>
 <div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/uio.h&gt;</span></span>
 <span class="hljs-type">ssize_t</span> <span class="hljs-title function_">readv</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">const</span> <span class="hljs-keyword">struct</span> iovec *iov, <span class="hljs-type">int</span> iovcnt)</span>;
@@ -1698,7 +1698,7 @@ addr.sin_addr = INADDR_ANY;	<span class="hljs-comment">// 其实就是0.0.0.0，
 </ul>
 <h4 id="socket-函数">4.8.2 socket 函数</h4>
 <blockquote>
-<p>:star:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/traditional/p/11806454.html">Socket 缓冲区</a></p>
+<p><span class="github-emoji" data-alias="star" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8">⭐</span><a target="_blank" rel="noopener" href="https://www.cnblogs.com/traditional/p/11806454.html">Socket 缓冲区</a></p>
 </blockquote>
 <div class="code-wrapper"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/types.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/socket.h&gt;</span></span>
@@ -1816,7 +1816,7 @@ addr.sin_addr = INADDR_ANY;	<span class="hljs-comment">// 其实就是0.0.0.0，
 <li>optlen：optval 的长度，注意是否是指针。（因为 optval 不只是 int，还可以是 struct，参见 UNP）</li>
 </ol>
 <h3 id="io-模型">4.10 IO 模型</h3>
-<p>:star2:<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&amp;mid=2247483737&amp;idx=1&amp;sn=7ef3afbb54289c6e839eed724bb8a9d6&amp;chksm=ce77c71ef9004e08e3d164561e3a2708fc210c05408fa41f7fe338d8e85f39c1ad57519b614e#rd">从内核角度看IO模型</a></p>
+<p><span class="github-emoji" data-alias="star2" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f31f.png?v8">🌟</span><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&amp;mid=2247483737&amp;idx=1&amp;sn=7ef3afbb54289c6e839eed724bb8a9d6&amp;chksm=ce77c71ef9004e08e3d164561e3a2708fc210c05408fa41f7fe338d8e85f39c1ad57519b614e#rd">从内核角度看IO模型</a></p>
 <h4 id="bio阻塞">4.10.1 BIO(阻塞)</h4>
 <ul>
 <li>好处是不占用CPU资源，但是效率不高。accept会阻塞，read也会阻塞，服务器就干不了别的事了，一次一个</li>
@@ -2026,7 +2026,7 @@ addr.sin_addr = INADDR_ANY;	<span class="hljs-comment">// 其实就是0.0.0.0，
 <li>返回后用户不只谁变化，还需要遍历：创建一个就绪链表，返回的直接就是所有变化的</li>
 </ul>
 <blockquote>
-<p>:question: epoll的回调函数<code>ep_poll_callback</code>正是<code>epoll</code>同步IO事件通知机制的核心所在，也是区别于<code>select，poll</code>采用内核轮询方式的根本性能差异所在。（:chains:<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&amp;mid=2247483737&amp;idx=1&amp;sn=7ef3afbb54289c6e839eed724bb8a9d6&amp;chksm=ce77c71ef9004e08e3d164561e3a2708fc210c05408fa41f7fe338d8e85f39c1ad57519b614e#rd">内核角度看IO模型</a>，源码实现，以后再看）</p>
+<p><span class="github-emoji" data-alias="question" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8">❓</span> epoll的回调函数<code>ep_poll_callback</code>正是<code>epoll</code>同步IO事件通知机制的核心所在，也是区别于<code>select，poll</code>采用内核轮询方式的根本性能差异所在。（<span class="github-emoji" data-alias="chains" style="" data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26d3.png?v8">⛓</span><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&amp;mid=2247483737&amp;idx=1&amp;sn=7ef3afbb54289c6e839eed724bb8a9d6&amp;chksm=ce77c71ef9004e08e3d164561e3a2708fc210c05408fa41f7fe338d8e85f39c1ad57519b614e#rd">内核角度看IO模型</a>，源码实现，以后再看）</p>
 </blockquote>
 <h5 id="epoll-优势总结">epoll 优势总结</h5>
 <ol type="1">
