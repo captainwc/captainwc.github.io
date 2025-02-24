@@ -1,0 +1,15 @@
+name = "ksimple"
+license = "MIT"
+description = "A minimalist blog theme modified based on hugo-xmin and hugo-admonitions, hope you like it."
+homepage = "https://captainwc.github.io"
+demosite = "https://captainwc.github.io"
+tags = ["simple", "blog"]
+features = ["blog"]
+
+[author]
+  name = "SHUAIKAI"
+  homepage = "https://captainwc.github.io"
+
+[module.hugoVersion]
+extended = true
+min = '0.140.0'

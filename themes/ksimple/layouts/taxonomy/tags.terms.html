@@ -1,0 +1,21 @@
+{{ partial "header.html" . }}
+
+<h1>{{ .Title }}</h1>
+
+<div class="tag-cloud" style="text-align: center; line-height: 2.5;">
+{{ $tags := .Site.Taxonomies.tags }}
+{{ $maxCount := (index $tags.ByCount 0).Count }}
+{{ $minCount := (index $tags.ByCount.Reverse 0).Count }}
+{{ $spread := sub $maxCount $minCount }}
+{{ if eq $spread 0 }}{{ $spread = 1 }}{{ end }}
+
+{{ range $tags.ByCount }}
+  {{ $size := add 0.8 (mul (sub 1.8 0.8) (div (sub .Count $minCount) $spread)) }}
+  <a href="{{ .Page.RelPermalink }}"
+     style="font-size: {{ $size }}em; margin: 0 0.5em;">
+    {{ .Page.Title }} ({{ .Count }})
+  </a>
+{{ end }}
+</div>
+
+{{ partial "footer.html" . }}

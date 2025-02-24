@@ -1,0 +1,68 @@
+baseurl: "https://captainwc.github.io"
+languageCode: "zh-cn"
+title: "SHUAIKAI's Blog"
+theme: ["ksimple"]
+metaDataFormat: "yaml"
+googleAnalytics: ""
+disqusShortname: ""
+ignoreFiles: ["_cache$"]
+footnotereturnlinkcontents: "↩"
+
+params:
+  description: "Welcome to KaiKai's blog!"
+  footer: "&copy; [SHUAIKAI](https://captainwc.github.io) 2021 -- {Year} | [Github](https://github.com/captainwc)"
+  favicon: "https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_2/avator-shinubi.png"
+
+permalinks:
+  note: "/note/:year/:month/:day/:slug/"
+  post: "/post/:year/:month/:day/:slug/"
+
+taxonomies:
+  categories: categories
+  tags: tags
+  series: series
+  archives: archives
+
+menu:
+  main:
+    - name: 主页
+      url: ""
+      weight: 1
+    - name: 专栏
+      url: "series/"
+      weight: 2
+    - name: 分类
+      url: "categories/"
+      weight: 3
+    - name: 标签
+      url: "tags/"
+      weight: 4
+    - name: 归档
+      url: "archives/"
+      weight: 5
+    - name: 关于
+      url: "about/"
+      weight: 10
+
+markup:
+  highlight:
+    codeFences: false
+  goldmark:
+    parser:
+      attribute:
+        block: true
+    renderer:
+      unsafe: true
+    extensions:
+      typographer:
+        enable: false  # 禁用自动符号转换，防止干扰公式
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - ["\\[", "\\]"]  # 块级公式 \[...\]
+            - ["$$", "$$"]     # 块级公式 $$...$$
+          inline:
+            - ["\\(", "\\)"]  # 行内公式 \(...\)
+            - ["$", "$"]      # 行内公式 $...$
+            - ["==", "=="]    # 高亮语法 ==...==

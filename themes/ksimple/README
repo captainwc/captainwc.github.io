@@ -1,0 +1,14 @@
+## How to use this theme?
+
+Just copy this folder to your <blog_root>/themes/. I have no idea to publish this toy to github.
+
+## How to custom this theme?
+
+> refer to [hugo-xmin](https://github.com/yihui/hugo-xmin) and [hugo-admonitions](https://github.com/KKKZOZ/hugo-admonitions)
+
+- Put your [head_custom.html] and [foot_custom.html] to <blog_root>/layouts/paritals/
+- Put your [style_custom.css] to <blog_root>/asserts/css/, and edit your head_custom.html like this:
+```html
+{{ $customCSS := resources.Get "css/style_custom.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $customCSS.RelPermalink }}">
+```

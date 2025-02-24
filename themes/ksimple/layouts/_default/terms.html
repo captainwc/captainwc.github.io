@@ -1,0 +1,17 @@
+{{ partial "header.html" . }}
+
+<h1>{{ .Title }}</h1>
+
+{{ if eq .Type "tags" }}
+{{/* 标签使用tags.terms.html做云图 */}}
+{{ else }}
+<ul class="terms">
+  {{ range .Pages }}
+  <li>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ len .Pages }})
+  </li>
+  {{ end }}
+</ul>
+{{ end }}
+
+{{ partial "footer.html" . }}

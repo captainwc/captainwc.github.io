@@ -1,0 +1,52 @@
+{{ partial "header.html" . }}
+
+<!-- 指定layout:list时按照此样式展示。显示content，然后显示文章list -->
+
+{{ if not .IsHome }}
+  <h1>{{ .Title | markdownify }}</h1>
+{{ end }}
+
+{{ .Content }}
+
+{{ $pages := slice }}
+{{ if eq .Kind "page" }}
+  {{ $pages = .Site.RegularPages }} <!-- 普通页面只指定layout为list时才会显示列表，而只有archive.md指定了这一属性，因此这里为其指定为获取站点所有文章以实现archive功能 -->
+{{ else if eq .Kind "taxonomy" }}
+  {{ $pages = .Pages }} <!-- 分类页面只获取当前分类下的文章 -->
+{{ else }}
+  {{ $pages = .Pages }} <!-- 此else分支无用，只是为了区分上面的特殊 page -->
+{{ end }}
+
+{{ range ($pages.GroupByDate "2006-01") }}
+  <h2>{{ .Key }}</h2>
+  <ul>
+    {{ range .Pages }}
+      <li>
+        <span class="date">{{ .Date.Format "2006/01/02" }}</span>
+        <a href="{{ .RelPermalink }}"><strong>{{ .Title | markdownify }}</strong></a>
+        &emsp;
+        <!-- 在标题名称后面显示Series, Categories, Tags等信息 -->
+        {{ with .Params.series }}
+          [S]:
+          {{ range . }}
+            <a href="{{ "/series/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+          {{ end }}
+        {{ end }}
+        {{ with .Params.categories }}
+          [C]:
+          {{ range . }}
+            <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+          {{ end }}
+        {{ end }}
+        {{ with .Params.tags }}
+          [T]:
+          {{ range . }}
+            <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+          {{ end }}
+        {{ end }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
+
+{{ partial "footer.html" . }}
