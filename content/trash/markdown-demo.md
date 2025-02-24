@@ -21,6 +21,7 @@ Ksimple 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 和 [hugo-admonit
 Reference[^Ref001], Reference2[^x2y]
 
 ---
+> this is a blockquote
 
 $${\sqrt {n}}\left(\left({\frac {1}{n}}\sum _{i=1}^{n}X_{i}\right)-\mu \right)\ {\xrightarrow {d}}\ N\left(0,\sigma ^{2}\right)$$
 
@@ -31,6 +32,11 @@ int main(){
     cout<<"hello hugo\n";
     return 0;
 }
+```
+
+```diff
+- hallo
++ hello
 ```
 
 - list
