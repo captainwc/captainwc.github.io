@@ -7,6 +7,7 @@ googleAnalytics: ""
 disqusShortname: ""
 ignoreFiles: ["_cache$"]
 footnotereturnlinkcontents: "↩"
+enableEmoji: true
 
 params:
   description: "Welcome to KaiKai's blog!"
@@ -64,5 +65,3 @@ markup:
             - ["$$", "$$"]     # 块级公式 $$...$$
           inline:
             - ["\\(", "\\)"]  # 行内公式 \(...\)
-            - ["$", "$"]      # 行内公式 $...$
-            - ["==", "=="]    # 高亮语法 ==...==
