@@ -1,33 +1,65 @@
 body {
   width: 70% !important;
   max-width: 95% !important;
+  margin: -0.5rem;
   margin-left: auto !important;
   margin-right: auto !important;
   padding: 1em;
   line-height: 1.5;
+/*  background-color: #f5f2e9;*/
 }
 
-/* header and footer areas */
-.menu { padding: 0; }
-.menu li { display: inline-block; }
-.article-meta, .menu a {
-  text-decoration: none;
-  background: #eee;
-  padding: 5px;
-  border-radius: 5px;
+/* 菜单栏 */
+.menu {
+    padding: 0;
+/*    margin: 0.3rem;*/
+    text-align: center;
 }
-.menu, .article-meta, footer { text-align: center; }
-.title { font-size: 1.1em; }
-footer a { text-decoration: none; }
+.menu li {
+    display: inline-block;
+}
+.menu a {
+    text-decoration: none;
+    background: #eaeef1;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* 分割线 */
 hr {
   border-style: dashed;
   color: #ddd;
 }
 
+/* 文章元信息块 */
+.article-meta{
+    text-align: center;
+    text-decoration: none;
+    background: #eaeef1;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* 标题 */
+.title {
+    font-size: 1em;
+}
+
+/* 脚注 */
+footer {
+    text-align: center;
+}
+
+footer a {
+    text-decoration: none;
+}
+
 /* 超链接 */
 p a{
+    color: #2e59a7;
 }
 p a:visited{
+    color: #6f94cd;
 }
 a:hover {
 /*    margin: 5px;*/
@@ -48,10 +80,10 @@ pre {
   overflow-x: auto;
 }
 code {
-    background-color: rgba(221, 235, 213, 0.5);
-    color: #359d09;
+    color: #108b96;
+    background-color: #f5f6fa;
     font-family: "Maple Mono NF CN", "Fira Code", Consolas, "Lucida Console", "Courier", monospace, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 550;
     margin: 0 0px;
     padding: 3px 3px 1px;
@@ -61,9 +93,31 @@ code {
 }
 pre code { background: none; }
 
+/* 代码块复制按钮 TODO */
+
+/* 返回顶部按钮 */
+#backToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.3rem;
+    background-color: #f5f6fa;
+    color: #fff;
+    border: none;
+    border-radius: 100%;
+    padding: 5px 4px;
+    cursor: pointer;
+}
+#backToTopBtn:hover{
+    background-color: #bec2b3;
+}
+
+
 /* 引用 */
 blockquote {
     border-left: 4px solid #bdc3c7;
+    width: 97%;
     padding: 1px 15px;
     margin-left: 0px;
 /*    color: #494949;*/
@@ -93,7 +147,7 @@ mark {
 
 /* 粗体 */
 strong {
-    color: #4274bf;
+/*    color: #4274bf;*/
 }
 /* 斜体 */
 em {
@@ -104,13 +158,27 @@ em:hover {
 }
 
 /* misc elements */
-img, iframe, video { max-width: 90%; }
+img, iframe, video {
+    max-width: 81%;
+    margin: 0.6rem;
+/*    margin: 0.6rem auto;*/
+/*    padding: 1px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);*/
+}
 main { hyphens: auto; }
+
+/* PlantUML 图片样式（类名在footer中指定） */
+.plantuml-diagram {
+    max-width: 60%;
+}
 
 /* 手机端（< 768px） */
 @media (max-width: 767px) {
   body {
     width: 90% !important;
+    max-width: 100% !important;
     font-size: 100% !important;
   }
 }
