@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Skills on SHUAIKAI&#39;s Blog</title>
+    <link>https://captainwc.github.io/skills/</link>
+    <description>Recent content in Skills on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 24 Feb 2025 20:11:31 +0800</lastBuildDate>
+    <atom:link href="https://captainwc.github.io/skills/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一站式环境配置</title>
+      <link>https://captainwc.github.io/skills/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 24 Feb 2025 20:11:31 +0800</pubDate>
+      <guid>https://captainwc.github.io/skills/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;h1 id=&#34;配置万千&#34;&gt;配置万千&lt;/h1&gt;&#xA;&lt;h2 id=&#34;thinking-配置新系统&#34;&gt;&amp;#x1f914; 配置新系统&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-用户相关&#34;&gt;1. 用户相关&lt;/h3&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 1. 修改 root 密码&#xA;sudo passwd&#xA;&#xA;# 2. 创建新用户(adduser有交互；用useradd没有)&#xA;su root&#xA;## 2.1 用useradd&#xA;useradd [newuser]&#xA;passwd [newuser]&#xA;useradd -d /home/[newuser] [newuser]&#xA;## 2.2 用adduser&#xA;adduser [newuser]&#xA;&#xA;# 3. 设置 sudo 权限&#xA;## 3.1 更改文件&#xA;sudo vim /etc/sudoers/[newuser]&#xA;[newuser] ALL=(ALL) NOPASSWD: ALL&#xA;&#xA;# 4. 更改名字&#xA;sudo vim /etc/hostname&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h3 id=&#34;2-网络相关&#34;&gt;2. 网络相关&lt;/h3&gt;&#xA;&lt;h4 id=&#34;21-ssh&#34;&gt;2.1 ssh&lt;/h4&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 初始化rsa密钥&#xA;ssh-keygen -t rsa&#x9;# 三次回车（创建私钥，公钥）&#xA;# hostname自然是你想去登录的，别的主机名&#xA;ssh-copy-id hostname&#xA;&#xA;# 取消哈希已知hosts，不然后面删除的时候认不出来了&#xA;sudo vim /etc/ssh/ssh_config&#xA;- HashKnownHosts no&#xA;&#xA;# 如果出现 Permission denied (publickey) 记得检查这两项，取消其注释！&#xA;sudo vim /etc/ssh/sshd_config&#xA;- PubkeyAuthentication yes&#xA;- PasswordAuthentication yes&#xA;# 重启sshd服务&#xA;sudo systemctl stop sshd&#xA;sudo systemctl start sshd&#xA;sudo systemctl status sshd&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h3 id=&#34;3-安装&#34;&gt;3. 安装&lt;/h3&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo &#xA;sudo apt install build-essential gdb git cmake openjdk-11-jdk maven python -y&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h2 id=&#34;cat-系统配置&#34;&gt;&amp;#x1f431; 系统配置&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-网络&#34;&gt;1 网络&lt;/h3&gt;&#xA;&lt;h4 id=&#34;11-防火墙与-iptables&#34;&gt;1.1 防火墙与 iptables&lt;/h4&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 备份 iptables&#xA;iptables-save &amp;gt; /etc/iptables.rules&#xA;# 恢复&#xA;iptables-restore  &amp;lt; /etc/iptables.rules&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h2 id=&#34;ox-其它备忘&#34;&gt;&amp;#x1f402; 其它备忘&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-wsl-gdb-修改&#34;&gt;1. wsl-gdb 修改&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;如果是【wsl，ubuntu22.04，gdb12.1】也可以直接下载我修改好的替换/usr/bin/gdb &amp;#x1f517;&lt;a href=&#34;https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/gdb/gdb.12.1.wsl.ubuntu22.04&#34;&gt;gdb12.1&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
