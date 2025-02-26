@@ -16,7 +16,7 @@ Ksimple 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 和 [hugo-admonit
 
 ## 基本语法展示
 
-**Bold**， *Italic*， <mark>Highlight</mark>， ~~Delete~~，:smile:，😘， `Inline Code`， \(x^2 + y^2 = 1\)，
+**Bold**， *Italic*， <mark>Highlight</mark>， ~~Delete~~，:tent:，😘， `Inline Code`， \(x^2 + y^2 = 1\)，
 
 Reference[^Ref001], Reference2[^x2y]
 
@@ -43,6 +43,95 @@ int main(){
 1. item
 - [ ] todo
 - [x] todo
+
+## PlantUML 代码块自动渲染
+
+### 类图
+
+```plantuml
+@startuml
+interface Scriptable{
+    toSmtLib():String
+}
+
+class SmtScript{
+    -functions:List<Function>
+    -addFunction(Function):void
+}
+
+abstract class Expr{
+    -node:ASTRootNode
+    -children:List<Expr>
+}
+
+enum ConstExpr
+class CompoundExpr{
+    +getOp():String
+}
+struct ComplexExpr{
+    -format:String
+}
+
+class Function{
+    - funcName:string
+    - args:List<Pair<String,String>>
+    - returnType:String
+    - funcBody:Expr
+}
+
+Scriptable <|.. SmtScript
+Scriptable <|.. Function
+Scriptable <|.. Expr
+Expr <|-- ConstExpr
+Expr <|-- CompoundExpr
+Expr <|-- ComplexExpr
+
+Expr <-- Function
+
+SmtScript "1"-->"1..*" Function
+@enduml
+
+```
+
+### 活动图
+
+```plantuml
+@startuml
+actor 用户 as user
+participant PtolemyII as ptii
+participant 验证选项配置器 as config
+participant 模型解与预校验器 as parser
+participant 形式化验证器 as verifier
+
+user -> ptii++: 打开PtolemyII建模工具
+ptii->ptii: 打开/创建模型
+return 模型持久化XML文件
+
+user -> config++: 配置验证选项，启动验证过程
+config -> parser--++: 解析与校验模型
+
+alt 校验失败
+    parser --> user: 返回校验错误信息
+else 校验通过
+    parser -> verifier--++: 启动形式化验证
+    verifier -->user--: 返回验证结果
+end
+
+@enduml
+
+```
+
+### ebnf
+
+```plantuml
+@startebnf
+Type = PrimitiveType | ReferenceType;
+PrimitiveType = [Annotation], (NumericType | boolean );
+@endebnf
+
+```
+
+......
 
 ## 目录
 
