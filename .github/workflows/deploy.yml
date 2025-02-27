@@ -23,6 +23,9 @@ jobs:
       - name: Build Static Site
         run: hugo  # 构建
 
+      - name: Generate CNAME file
+        run: echo "kaikaixixi.xyz" > public/CNAME # 绑定域名
+
       - name: Deploy to Public Branch
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -30,4 +33,4 @@ jobs:
           publish_branch: public      # 目标分支名称
           publish_dir: ./public       # Hugo生成的静态文件目录
           external_repository: captainwc/captainwc.github.io  # 发布仓库名（若跨仓库需填写）
-          # force_orphan: true          # 强制清空目标分支历史（可选）
+          force_orphan: true          # 强制清空目标分支历史（可选）
