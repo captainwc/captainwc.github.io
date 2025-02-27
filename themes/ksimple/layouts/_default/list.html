@@ -21,29 +21,32 @@
   <h2>{{ .Key }}</h2>
   <ul>
     {{ range .Pages }}
-      <li>
-        <span class="date">{{ .Date.Format "2006/01/02" }}</span>
-        <a href="{{ .RelPermalink }}"><strong>{{ .Title | markdownify }}</strong></a>
-        &emsp;
-        <!-- 在标题名称后面显示Series, Categories, Tags等信息 -->
-        {{ with .Params.series }}
-          [S]:
-          {{ range . }}
-            <a href="{{ "/series/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+      <li class="archieve-list-item">
+        <div class="archieve-left-section">
+          <span class="date">{{ .Date.Format "2006/01/02" }}</span>
+          <a href="{{ .RelPermalink }}" class="title-link-a">{{ .Title | markdownify }}</a>
+        </div>
+
+        <div class="archieve-right-section">
+          {{ with .Params.series }}
+            [S]
+            {{ range . }}
+              <a href="{{ "/series/" | relLangURL }}{{ . | urlize }}" class="taxonomy-link-a">{{ . }}</a>
+            {{ end }}
           {{ end }}
-        {{ end }}
-        {{ with .Params.categories }}
-          [C]:
-          {{ range . }}
-            <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+          {{ with .Params.categories }}
+            [C]
+            {{ range . }}
+              <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="taxonomy-link-a">{{ . }}</a>
+            {{ end }}
           {{ end }}
-        {{ end }}
-        {{ with .Params.tags }}
-          [T]:
-          {{ range . }}
-            <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+          {{ with .Params.tags }}
+            [T]
+            {{ range . }}
+              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="taxonomy-link-a">{{ . }}</a>
+            {{ end }}
           {{ end }}
-        {{ end }}
+        </div>
       </li>
     {{ end }}
   </ul>
