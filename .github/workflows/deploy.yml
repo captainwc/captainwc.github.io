@@ -30,4 +30,4 @@ jobs:
           publish_branch: public      # 目标分支名称
           publish_dir: ./public       # Hugo生成的静态文件目录
           external_repository: captainwc/captainwc.github.io  # 发布仓库名（若跨仓库需填写）
-          force_orphan: true          # 强制清空目标分支历史（可选）
+          # force_orphan: true          # 强制清空目标分支历史（可选）
