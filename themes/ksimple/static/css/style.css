@@ -75,10 +75,12 @@ a:hover {
 /* 代码块 */
 pre {
   border: 1px solid #ddd;
-  box-shadow: 3px 3px 3px #eee;
+  border-radius: 6px;
+/*  box-shadow: 3px 3px 3px #eee;*/
   padding: -1em -1em;
   overflow-x: auto;
 }
+/* 嵌入代码块 */
 code {
     color: #108b96;
     background-color: #f5f6fa;
@@ -86,8 +88,8 @@ code {
     font-size: 1.1rem;
     font-weight: 550;
     margin: 0 0px;
-    padding: 3px 3px 1px;
-    border-radius: 7px;
+    padding: 1px 5px 1px;
+    border-radius: 8px;
     transition: all 0.3s ease;
     z-index: -1;
 }
@@ -151,15 +153,15 @@ strong {
 }
 /* 斜体 */
 em {
-    color: #dc871f;
+    color: #57606f;
 }
-em:hover {
+/*em:hover {
     color: #4fc08d;
-}
+}*/
 
 /* misc elements */
 img, iframe, video {
-    max-width: 81%;
+    max-width: 95%;
     margin: 0.6rem;
 /*    margin: 0.6rem auto;*/
 /*    padding: 1px;
@@ -170,7 +172,7 @@ img, iframe, video {
 main { hyphens: auto; }
 
 /* PlantUML 图片样式（类名在footer中指定） */
-.plantuml-diagram {
+.plantuml-diagram, .mermaid-diagram {
     max-width: 60%;
 }
 
