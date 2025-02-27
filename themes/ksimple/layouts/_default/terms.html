@@ -8,7 +8,7 @@
 <ul class="terms">
   {{ range .Pages }}
   <li>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a> ({{ len .Pages }})
+    <a href="{{ .RelPermalink }}" class="title-link-a">{{ .Title }}</a> ({{ len .Pages }})
   </li>
   {{ end }}
 </ul>

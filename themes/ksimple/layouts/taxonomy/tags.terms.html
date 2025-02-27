@@ -11,7 +11,7 @@
 
 {{ range $tags.ByCount }}
   {{ $size := add 0.8 (mul (sub 1.8 0.8) (div (sub .Count $minCount) $spread)) }}
-  <a href="{{ .Page.RelPermalink }}"
+  <a href="{{ .Page.RelPermalink }}" class="title-link-a"
      style="font-size: {{ $size }}em; margin: 0 0.5em;">
     {{ .Page.Title }} ({{ .Count }})
   </a>
