@@ -39,29 +39,30 @@ $dark-blockquote-border: #45475a;
 .admonition {
   margin: 1rem 0;
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   transition: all 0.3s ease;
 }
 
 .admonition-header {
-  padding: 0.5rem 1rem;
+  // 上 右 下 左
+  padding: 0.2rem 0rem 0.2rem 0.6rem;
   display: flex;
   align-items: center;
   font-weight: 600;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  font-size: 1.1rem;
+  // border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
   border-radius: 4px 4px 0 0;
   
   svg {
-    width: 1.1em;
-    height: 1.1em;
+    width: 1em;
+    height: 1em;
     margin-right: 0.5rem;
     fill: currentColor;
   }
 }
 
 .admonition-content {
-  padding: 1rem;
+  padding: 0rem 0rem 0.3rem 0.8rem;
   background-color: $light-bg;
   border-radius: 0 0 4px 4px;
   color: $light-text;
@@ -85,13 +86,13 @@ $dark-blockquote-border: #45475a;
     &:last-child { margin-bottom: 0; }
   }
 
-  code {
-    background-color: $light-code-bg;
-    color: $light-code-text;
-    padding: 0.2em 0.4em;
-    border-radius: 3px;
-    font-size: 0.9em;
-  }
+//  code {
+//    background-color: $light-code-bg;
+//    color: $light-code-text;
+//    padding: 0.2em 0.4em;
+//    border-radius: 3px;
+//    font-size: 0.9em;
+//  }
 }
 
 // Dark mode styles
@@ -136,7 +137,8 @@ body.dark {
     border-left: 4px solid $color;
     
     .admonition-header {
-      background: rgba($color, 0.1);
+      // background: rgba($color, 0.1);
+      background: transparent;
       color: $color;
     }
   }
