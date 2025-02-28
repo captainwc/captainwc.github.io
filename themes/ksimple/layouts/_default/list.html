@@ -18,7 +18,9 @@
 {{ end }}
 
 {{ range ($pages.GroupByDate "2006-01") }}
-{{ if not (eq .Key "0001-01") }}
+{{ if (eq .Key "0001-01") }}
+  <h2>🐒🐒-🐎</h2>
+{{ else }}
   <h2>{{ .Key }}</h2>
 {{ end }}
   <ul>
@@ -26,7 +28,9 @@
     {{ range (where .Pages "Section" "!=" "") }}
       <li class="archieve-list-item">
         <div class="archieve-left-section">
+          {{ if (gt .Params.date 0) }}
           <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+          {{ end }}
           🗞️<a href="{{ .RelPermalink }}" class="title-link-a">{{ .Title | markdownify }}</a>
         </div>
 
