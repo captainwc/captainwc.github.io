@@ -56,12 +56,12 @@ markup:
       unsafe: true
     extensions:
       typographer:
-        enable: false  # 禁用自动符号转换，防止干扰公式
+        enable: false # 禁用自动符号转换，防止干扰公式
       passthrough:
         enable: true
         delimiters:
           block:
-            - ["\\[", "\\]"]  # 块级公式 \[...\]
-            - ["$$", "$$"]     # 块级公式 $$...$$
+            - ["\\[", "\\]"] # 块级公式 \[...\]
+            - ["$$", "$$"] # 块级公式 $$...$$
           inline:
-            - ["\\(", "\\)"]  # 行内公式 \(...\)
+            - ["\\(", "\\)"] # 行内公式 \(...\)
