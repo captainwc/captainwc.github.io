@@ -14,7 +14,7 @@
 {{ else if eq .Kind "taxonomy" }}
   {{ $pages = .Pages }} <!-- 分类页面只获取当前分类下的文章 -->
 {{ else }}
-  {{ $pages = .Site.RegularPages }} <!-- 此else分支无用，只是为了区分上面的特殊 page -->
+  {{ $pages = .Pages }} <!-- 奇怪，为什么分类的页面会走到这里？ -->
 {{ end }}
 
 {{ range ($pages.GroupByDate "2006-01") }}
