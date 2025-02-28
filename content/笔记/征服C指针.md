@@ -271,24 +271,22 @@ int (*func_table[10])(int a);
 用链结构图表示类型，链的最前面的元素是基本类型：
 
 ```plantuml
-@startyaml
-title: gdb快速上手
-series: [快速上手]
-tags: [gdb, cmdline]
-categories: [工具使用]
-date: 2022-11-25
-@endyaml
-```
+@startuml
+left to right direction
 
+rectangle "数组" as A
+rectangle "指针" as B
+rectangle "函数" as C
+rectangle "int" as D
 
+note right of A #FFFFFF: 元素个数为10
+note right of C #FFFFFF: 参数为int
 
-```mermaid
-graph LR
-    A[数组]-->|的元素为|B[指针]-->|指向|C[函数]-->|返回|D[int]
-    E(元素个数为10)
-    F(参数为int)
-    A-.-E
-    C-.-F
+A --> B : 的元素为
+B --> C : 指向
+C --> D : 返回
+
+@enduml
 
 ```
 
@@ -302,27 +300,79 @@ graph LR
 
 后面的 T1 T2...统称为<strong>被引用类型 T</strong>
 
-```mermaid
-graph RL
-    A[指针]-->|指向|B[T1]-->c[T2]-->d[T3]-->e[......]
+```plantuml
+@startuml
+
+scale 1
+
+rectangle "指针" as A
+rectangle T1
+rectangle T2
+rectangle T3
+rectangle "..." as B
+
+A -left-> T1 : 指向
+T1 -left-> T2
+T2 -left-> T3
+T3 -left-> B
+
+@enduml
 ```
 
 ##### 3.2.2.2 数组类型的派生
 
-```mermaid
-graph RL
-    A[指针]--包含-->T1-->T2-->......
-    B[元素个数]
-    A-.-B
+```plantuml
+@startuml
+
+scale 1
+
+rectangle "指针" as A
+rectangle T1
+rectangle T2
+rectangle T3
+rectangle "..." as B
+
+A -left-> T1 : 包含
+T1 -left-> T2
+T2 -left-> T3
+T3 -left-> B
+
+note right of A #fff: 元素个数
+
+@enduml
 ```
 
 ##### 3.2.2.3 函数类型的派生
 
-```mermaid
-flowchart LR
-    a[......]-->T2-->T1-->|被返回|b[函数]-.-c[参数]
-    c-->f[T1]-->g[T2]-->d[......]
-    c-->h[T1]-->i[T2]-->e[......]
+```plantuml
+@startuml
+scale 1
+
+left to right direction
+
+rectangle T1 as E
+rectangle T2 as F
+rectangle T1 as G
+rectangle T2 as H
+rectangle T1 as I
+rectangle T2 as J
+rectangle "函数" as C
+rectangle "参数" as D
+rectangle "..." as B
+rectangle "..." as K
+rectangle "..." as L
+
+B --> F
+F --> E
+E --> C: 被返回
+C .. D
+D --> G
+G --> H
+H --> K
+D --> I
+I --> J
+J --> L
+@enduml
 ```
 
 - 有特定长度的类型，称为<strong>对象类型</strong>
