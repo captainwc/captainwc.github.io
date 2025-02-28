@@ -206,8 +206,9 @@ em {
     color: #4fc08d;
 }*/
 
-/* misc elements */
+/* 图片视频页帧等 */
 img,
+.common-markdown-diagram,
 iframe,
 video {
     max-width: 95%;
