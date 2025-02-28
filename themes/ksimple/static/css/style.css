@@ -23,6 +23,7 @@ body {
 .menu a {
     text-decoration: none;
     background: #eaeef1;
+    color: black !important;
     padding: 5px;
     border-radius: 5px;
 }
@@ -38,13 +39,21 @@ hr {
     text-align: center;
     text-decoration: none;
     background: #eaeef1;
-    padding: 5px;
+    padding: 1px;
     border-radius: 5px;
 }
 
 /* 标题 */
-.title {
+.article-meta-title {
     font-size: 1em;
+}
+
+.article-meta-series {
+    /*    font-size: 0.5rem;*/
+}
+
+.article-meta-date {
+    /*    font-size: 0.5rem;*/
 }
 
 /* 脚注 */
@@ -59,7 +68,7 @@ footer a {
 /* 超链接 */
 a {
     color: #2e59a7;
-    /* text-decoration: none; */
+    /*     text-decoration: none;*/
 }
 
 p a:visited {
@@ -67,11 +76,12 @@ p a:visited {
 }
 
 a:hover {
-    /* margin: 5px;*/
-    /* padding: 0.2px 0.5px 0.2px 0.5px; */
-    /* color: #747d8c; */
+    /*     margin: 5px;*/
+    /*     padding: 0.2px 0.5px 0.2px 0.5px;*/
+    /*     color: #747d8c;*/
     text-decoration: dotted;
-    background-color: #ffdd59;
+    background-color: #dcc7e1;
+    color: #2e59a7 !important;
     box-shadow: 6px 6px 6px #ddd;
     border-radius: 5px;
     transition-duration: 888ms;
@@ -142,7 +152,7 @@ pre code {
 /* 引用 */
 blockquote {
     border-left: 4px solid #bdc3c7;
-    width: 97%;
+    /*    width: 97%;*/
     padding: 1px 15px;
     margin-left: 0px;
     /* color: #494949; */
@@ -240,8 +250,8 @@ sup a.footnote-ref {
 .archieve-left-section {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
     /*元素间距*/
+    gap: 0.2rem;
     order: 1;
 }
 
