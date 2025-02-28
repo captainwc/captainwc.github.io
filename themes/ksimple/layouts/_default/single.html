@@ -2,7 +2,7 @@
 <div class="article-meta">
   <h1><span class="article-meta-title">{{ .Title | markdownify }}</span></h1>
   {{ with .Params.author }}<h2 class="article-meta-author">{{ . }}</h2>{{ end }}
-  {{ with .Params.series }}
+<!--   {{ with .Params.series }}
   <div class="article-meta-series">
     <h2>
       Series:
@@ -12,7 +12,7 @@
     </h2>
   </div>
   {{ end }}
-  {{ if (gt .Params.date 0) }}<h2 class="article-meta-date">{{ .Date.Format "2006/01/02" }}</h2>{{ end }}
+  {{ if (gt .Params.date 0) }}<h2 class="article-meta-date">{{ .Date.Format "2006/01/02" }}</h2>{{ end }} -->
 </div>
 
 <main>
@@ -21,7 +21,11 @@
   {{ .TableOfContents }}
   {{ end }}
 
-  {{ .Content }}
+  <!-- {{ .Content }} -->
+  <!-- 过滤掉一级标题（因为已经在页面meta-info中显示了） -->
+  {{ $content := .Content | replaceRE "(?s)<h1.*?</h1>" "" }}
+  {{ $content | safeHTML }}
+
 </main>
 
 {{ partial "footer.html" . }}
