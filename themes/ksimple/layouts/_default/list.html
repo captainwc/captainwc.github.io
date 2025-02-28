@@ -14,13 +14,16 @@
 {{ else if eq .Kind "taxonomy" }}
   {{ $pages = .Pages }} <!-- 分类页面只获取当前分类下的文章 -->
 {{ else }}
-  {{ $pages = .Pages }} <!-- 此else分支无用，只是为了区分上面的特殊 page -->
+  {{ $pages = .Site.RegularPages }} <!-- 此else分支无用，只是为了区分上面的特殊 page -->
 {{ end }}
 
 {{ range ($pages.GroupByDate "2006-01") }}
+{{ if not (eq .Key "0001-01") }}
   <h2>{{ .Key }}</h2>
+{{ end }}
   <ul>
     {{ range .Pages }}
+      {{ if (gt .Params.date 0) }}
       <li class="archieve-list-item">
         <div class="archieve-left-section">
           <span class="date">{{ .Date.Format "2006-01-02" }}</span>
@@ -48,6 +51,7 @@
             {{ end }}
           {{ end }}
         </div>
+      {{ end }}
       </li>
     {{ end }}
   </ul>
