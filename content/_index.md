@@ -10,11 +10,19 @@
 
 ## Welcome
 
+### In Progress
+
+> [!caution] 注意简洁，不要舍本逐末
+
 > [!task] TODO
 > - [ ] 文章元信息样式修改
 > - [ ] 系列文章添加折叠框
 > - [ ] `li` 往右缩进，特别是手机版
 > - [ ] `todo` 列表前面不要加圆点
 > - [ ] Series 页样式设计
+> - [ ] 参考 [hugo-papermod](https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite)的实现拓展功能
+> - [ ] 标题加上提示等级（比如编号、或者直接显示）
+
+
 
 ---
