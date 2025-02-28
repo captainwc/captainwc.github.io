@@ -22,8 +22,8 @@
   <h2>{{ .Key }}</h2>
 {{ end }}
   <ul>
-    {{ range .Pages }}
-      {{ if (gt .Params.date 0) }}
+    <!-- 只显示有"归属"的文章，也即content目录的子目录中的文章。每个子目录为一个section -->
+    {{ range (where .Pages "Section" "!=" "") }}
       <li class="archieve-list-item">
         <div class="archieve-left-section">
           <span class="date">{{ .Date.Format "2006-01-02" }}</span>
@@ -51,7 +51,6 @@
             {{ end }}
           {{ end }}
         </div>
-      {{ end }}
       </li>
     {{ end }}
   </ul>
