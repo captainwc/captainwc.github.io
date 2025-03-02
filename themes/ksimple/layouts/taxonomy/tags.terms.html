@@ -2,20 +2,49 @@
 
 <h1>{{ .Title }}</h1>
 
-<div class="tag-cloud" style="text-align: center; line-height: 2.5;">
-{{ $tags := .Site.Taxonomies.tags }}
-{{ $maxCount := (index $tags.ByCount 0).Count }}
-{{ $minCount := (index $tags.ByCount.Reverse 0).Count }}
-{{ $spread := sub $maxCount $minCount }}
-{{ if eq $spread 0 }}{{ $spread = 1 }}{{ end }}
+<canvas id="tag-cloud-canvas" width="1800" height="1000" style="width: 900px; height: 500px; margin-top: 20px;">
+    <p>Anything in here will be replaced on browsers that support the canvas element</p>
+</canvas>
 
-{{ range $tags.ByCount }}
-  {{ $size := add 0.8 (mul (sub 1.8 0.8) (div (sub .Count $minCount) $spread)) }}
-  <a href="{{ .Page.RelPermalink }}" class="title-link-a"
-     style="font-size: {{ $size }}em; margin: 0 0.5em;">
-    {{ .Page.Title }} ({{ .Count }})
-  </a>
-{{ end }}
-</div>
+<ul id="tag-cloud" style="display: none;">
+    {{ $tags := .Site.Taxonomies.tags }}
+    {{ range $tags.ByCount }}
+    <li><a href="{{ .Page.RelPermalink }}" data-weight="{{ .Count }}">{{ .Page.Title }}</a></li>
+    {{ end }}
+</ul>
 
 {{ partial "footer.html" . }}
+
+<script src="https://www.goat1000.com/tagcanvas.min.js"></script>
+<script>
+    window.onload = function () {
+        try {
+            TagCanvas.Start('tag-cloud-canvas', 'tag-cloud', {
+                textColour: '#555555',
+                outlineColour: '#ffffff',
+                reverse: true,
+                depth: 0.6,
+                maxSpeed: 0.01,
+                minBrightness: 0.2,
+                outlineMethod: 'block',
+                pulsateTo: 0.2,
+                initial: [0.1, -0.1],
+                decel: 0.98,
+                shadow: '#ccc',
+                shadowBlur: 3,
+                weight: true,
+                weightFrom: 'data-weight',
+                weightMode: 'both',
+                weightSize: 20.0,
+                weightGradient: {
+                    0: '#536976',
+                    1: '#292e49'
+                },
+                stretchX: 1.8, // 水平拉伸比例
+                stretchY: 1.0  // 垂直拉伸比例
+            });
+        } catch (e) {
+            document.getElementById('tag-cloud-canvas').style.display = 'none';
+        }
+    };
+</script>
