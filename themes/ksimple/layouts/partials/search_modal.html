@@ -7,10 +7,13 @@
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 
 <script>
-  // 调试辅助函数
   function debug(text) {
       document.getElementById('search-debug').textContent = text;
   }
+  function showpages() {
+    debug("当前本站共有 " + searchIndex.length + " 篇文章");
+  }
+  
   let searchIndex = [];
   {{ $pages := where site.RegularPages "Type" "posts" }}
   {{ if eq (len $pages) 0 }}
@@ -29,8 +32,7 @@
     });
   {{ end }}
 
-    debug("共索引 " + searchIndex.length + " 篇文章");
-    debug("搜索索引:", searchIndex);
+  showpages()
 
   const options = {
     includeScore: true,
@@ -76,12 +78,19 @@
     const resultsContainer = document.getElementById('search-results');
     resultsContainer.innerHTML = '';
 
-    if (searchTerm === '') return;
+    if (searchTerm === '') {
+      showpages()
+      return;
+    }
 
     const results = fuse.search(searchTerm);
+
     if (results.length === 0) {
+      showpages()
       resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
       return;
+    } else {
+      debug("共找到 " + results.length + " 篇匹配的文章")
     }
 
     results.forEach(result => {
