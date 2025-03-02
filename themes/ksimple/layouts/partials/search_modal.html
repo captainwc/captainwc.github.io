@@ -1,0 +1,106 @@
+<div id="search-modal">
+  <input type="text" id="search-input" placeholder="输入关键词搜索..." aria-label="搜索框">
+  <div id="search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="search-results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+  // 调试辅助函数
+  function debug(text) {
+      document.getElementById('search-debug').textContent = text;
+  }
+  let searchIndex = [];
+  {{ $pages := where site.RegularPages "Type" "posts" }}
+  {{ if eq (len $pages) 0 }}
+    {{ $pages = where site.RegularPages "Section" "!=" "" }}
+  {{ end }}
+
+  {{ range $pages }}
+    searchIndex.push({
+      title: {{ .Title | jsonify }},
+      permalink: {{ .RelPermalink | jsonify }},
+      content: {{ .Plain | jsonify }},
+      categories: {{ if .Params.categories }}{{ .Params.categories | jsonify }}{{ else }}[]{{ end }},
+      tags: {{ if .Params.tags }}{{ .Params.tags | jsonify }}{{ else }}[]{{ end }},
+      series: {{ if .Params.series }}{{ .Params.series | jsonify }}{{ else }}[]{{ end }},
+      date: {{ .Date.Format "2006-01-02" | jsonify }}
+    });
+  {{ end }}
+
+    debug("共索引 " + searchIndex.length + " 篇文章");
+    debug("搜索索引:", searchIndex);
+
+  const options = {
+    includeScore: true,
+    threshold: 0.6,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'content', weight: 0.3 },
+      { name: 'tags', weight: 0.5 },
+      { name: 'categories', weight: 0.5 },
+      { name: 'series', weight: 0.5 }
+    ]
+  };
+
+  const fuse = new Fuse(searchIndex, options);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'k') {
+      event.preventDefault();
+      toggleSearchModal();
+    } else if (event.key === 'Escape') {
+      document.getElementById('search-input').innerHTML= "";
+      closeSearchModal();
+    }
+  });
+
+  function toggleSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+      document.getElementById('search-input').focus();
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.trim();
+    const resultsContainer = document.getElementById('search-results');
+    resultsContainer.innerHTML = '';
+
+    if (searchTerm === '') return;
+
+    const results = fuse.search(searchTerm);
+    if (results.length === 0) {
+      resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
+      return;
+    }
+
+    results.forEach(result => {
+      const item = result.item;
+      const resultItem = document.createElement('div');
+      resultItem.className = 'search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date + ' - ';
+      date.className = 'search-result-date';
+
+      const link = document.createElement('a');
+      link.href = item.permalink.replace(/^"|"$/g, '');
+      link.textContent = item.title;
+      link.className = 'search-result-title';
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
+    });
+  });
+</script> 

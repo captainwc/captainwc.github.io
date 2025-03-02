@@ -296,8 +296,10 @@ sup a.footnote-ref {
         margin: 0 auto;
         margin-top: 20px;
         padding: 0;
-        transform: scale(0.8); /* 缩放词云图 */
-        transform-origin: top left; /* 缩放的基点 */
+        transform: scale(0.8);
+        /* 缩放词云图 */
+        transform-origin: top left;
+        /* 缩放的基点 */
     }
 }
 
@@ -310,7 +312,7 @@ sup a.footnote-ref {
     padding: 0;
 }
 
-/* 搜索框样式 */
+/* 搜索页面搜索框样式 */
 .search-container {
     margin: 2rem 0;
 }
@@ -351,4 +353,42 @@ sup a.footnote-ref {
 
 .search-result-title:hover {
     text-decoration: underline;
+}
+
+/* Ctrl+K 唤起浮动搜索框样式 */
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#search-results {
+    margin-top: 10px;
+}
+
+.search-result-item {
+    margin-bottom: 5px;
+}
+
+.search-result-date {
+    color: #999;
+}
+
+.search-result-title {
+    color: #007BFF;
+    text-decoration: none;
 }
