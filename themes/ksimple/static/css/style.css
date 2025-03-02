@@ -279,6 +279,26 @@ sup a.footnote-ref {
         justify-content: flex-end;
         margin-top: 0.5rem;
     }
+
+    /* 搜索框样式调整 */
+    #search-input {
+        width: 90% !important;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+
+    /* tags词云调整 */
+    #tag-cloud-canvas {
+        width: 100% !important;
+        margin: 0 auto;
+        margin-top: 20px;
+        padding: 0;
+        transform: scale(0.8); /* 缩放词云图 */
+        transform-origin: top left; /* 缩放的基点 */
+    }
 }
 
 /* tags词云 */
