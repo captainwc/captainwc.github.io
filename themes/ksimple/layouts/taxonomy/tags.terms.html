@@ -16,9 +16,10 @@
 {{ partial "footer.html" . }}
 
 <!-- <script src="https://www.goat1000.com/tagcanvas.min.js"></script> -->
-<script src="{{ "js/tagcanvas.min.js" | relURL }}"></script>
+<!-- <script src="{{ "js/tagcanvas.min.js" | relURL }}"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/tagcanvas.min.js"></script>
 <script>
-    window.onload = function () {
+    window.onload = function() {
         try {
             TagCanvas.Start('tag-cloud-canvas', 'tag-cloud', {
                 textColour: '#555555',
