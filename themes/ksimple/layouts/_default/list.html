@@ -37,7 +37,7 @@
         <div class="archieve-right-section">
           {{ with .Params.series }}
             <!-- 🗓️ 📚🎞️ 🎥 📺 📽️ 🎬 -->
-            📽️
+            🎖️
             {{ range . }}
               <a href="{{ "/series/" | relLangURL }}{{ . | urlize }}" class="taxonomy-link-a">{{ . }}</a>
             {{ end }}
@@ -51,7 +51,7 @@
           {{ with .Params.tags }}
             🏷️
             {{ range . }}
-              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="taxonomy-link-a">{{ . }}</a>
+              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="taxonomy-link-a">#{{ . }}</a>
             {{ end }}
           {{ end }}
         </div>

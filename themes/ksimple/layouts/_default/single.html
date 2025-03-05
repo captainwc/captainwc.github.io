@@ -1,31 +1,64 @@
 {{ partial "header.html" . }}
+
 <div class="article-meta">
-  <h1><span class="article-meta-title">{{ .Title | markdownify }}</span></h1>
-  {{ with .Params.author }}<h2 class="article-meta-author">{{ . }}</h2>{{ end }}
-<!--   {{ with .Params.series }}
-  <div class="article-meta-series">
-    <h2>
-      Series:
-      {{ range . }}
-      <a class="article-meta-series-each" href="{{ " /series/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a>
-      {{ end }}
-    </h2>
-  </div>
-  {{ end }}
-  {{ if (gt .Params.date 0) }}<h2 class="article-meta-date">{{ .Date.Format "2006/01/02" }}</h2>{{ end }} -->
+    <h1><span class="article-meta-title">{{ .Title | markdownify }}</span></h1>
+
+    <div class="article-meta-info">
+        {{ $metaParts := slice }}
+
+        {{/* 作者 */}}
+        {{ if .Params.author }}
+        {{ $metaParts = $metaParts | append (printf `🕺🏻 %s` (.Params.author)) }}
+        {{ end }}
+
+        {{/* 日期 */}}
+        {{ if .Date }}
+        {{ $metaParts = $metaParts | append (printf `🗓️ %s` (.Date.Format "2006-01-02")) }}
+        {{ end }}
+
+        {{/* 系列 */}}
+        {{ with .Params.series }}
+        {{ $links := slice }}
+        {{ range . }}
+        {{ $url := printf "/series/%s/" (. | urlize) | relLangURL }}
+        {{ $links = $links | append (printf `<a href="%s">%s</a>` $url .) }}
+        {{ end }}
+        {{ $metaParts = $metaParts | append (printf `🎖️ %s` (delimit $links ", ")) }}
+        {{ end }}
+
+        {{/* 分类 */}}
+        {{ with .Params.categories }}
+        {{ $links := slice }}
+        {{ range . }}
+        {{ $url := printf "/categories/%s/" (. | urlize) | relLangURL }}
+        {{ $links = $links | append (printf `<a href="%s">%s</a>` $url .) }}
+        {{ end }}
+        {{ $metaParts = $metaParts | append (printf `🗂️ %s` (delimit $links ", ")) }}
+        {{ end }}
+
+        {{/* 标签 */}}
+        {{ with .Params.tags }}
+        {{ $links := slice }}
+        {{ range . }}
+        {{ $url := printf "/tags/%s/" (. | urlize) | relLangURL }}
+        {{ $links = $links | append (printf `<a href="%s">#%s</a>` $url .) }}
+        {{ end }}
+        {{ $metaParts = $metaParts | append (printf `🏷️ %s` (delimit $links " ")) }}
+        {{ end }}
+
+        {{ delimit $metaParts " " | safeHTML }}
+    </div>
 </div>
 
 <main>
+    {{ if .Params.toc }}
+    {{ .TableOfContents }}
+    {{ end }}
 
-  {{ if .Params.toc }}
-  {{ .TableOfContents }}
-  {{ end }}
-
-  <!-- {{ .Content }} -->
-  <!-- 过滤掉一级标题（因为已经在页面meta-info中显示了） -->
-  {{ $content := .Content | replaceRE "(?s)<h1.*?</h1>" "" }}
-  {{ $content | safeHTML }}
-
+    <!-- {{ .Content }} -->
+    <!-- 过滤掉一级标题（因为已经在页面meta-info中显示了） -->
+    {{ $content := .Content | replaceRE "(?s)<h1.*?< /h1>" "" }}
+        {{ $content | safeHTML }}
 </main>
 
 {{ partial "footer.html" . }}
