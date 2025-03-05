@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SE on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/tags/se/</link>
+    <description>Recent content in SE on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 28 Feb 2025 00:19:19 +0800</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/tags/se/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>设计模式</title>
+      <link>https://kaikaixixi.xyz/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 28 Feb 2025 00:19:19 +0800</pubDate>
+      <guid>https://kaikaixixi.xyz/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description>&lt;h1 id=&#34;设计模式&#34;&gt;设计模式&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-关系&#34;&gt;1 关系&lt;/h2&gt;&#xA;&lt;h3 id=&#34;关联--依赖&#34;&gt;关联 &amp;amp; 依赖&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;依赖&lt;/strong&gt; 表示一种&lt;code&gt;使用&lt;/code&gt;关系，一个类的实现需要另一个类的协助，因此尽量使用单向的依赖。代码表现为参数依赖、局部变量、静态方法/变量依赖等&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;关联&lt;/strong&gt; 偏向一种&lt;code&gt;拥有&lt;/code&gt;关系，A拥有B，即 A 的某个成员，是 B 类的对象，也可以双向拥有，也可以仅仅是存在一种&lt;code&gt;关联&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-plantuml&#34;&gt;@startuml&#xA;scale 1&#xA;class Car {&#xA;    +run() void&#xA;}&#xA;class Driver {&#xA;    +Car car&#xA;    +drive() void&#xA;}&#xA;Driver &amp;quot;1&amp;quot;--&amp;gt;&amp;quot;n&amp;quot; Car&#xA;&#xA;class Bus {&#xA;    +run() void&#xA;}&#xA;class BusDriver {&#xA;    +drive(bus:Bus) void&#xA;}&#xA;class Passenger {&#xA;&#xA;}&#xA;BusDriver ..&amp;gt; Bus&#xA;Bus &amp;quot;n&amp;quot;--&amp;quot;n&amp;quot; Passenger&#xA;@enduml&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;          &lt;link rel=&#34;stylesheet&#34; href=&#34;https://kaikaixixi.xyz/css/vendors/admonitions.58739cb975b2c688bc603b80661ae4a59519c875ef73948214558f00eecec214.css&#34; integrity=&#34;sha256-WHOcuXWyxoi8YDuAZhrkpZUZyHXvc5SCFFWPAO7OwhQ=&#34; crossorigin=&#34;anonymous&#34;&gt;&#xA;  &lt;div class=&#34;admonition note&#34;&gt;&#xA;    &lt;div class=&#34;admonition-header&#34;&gt;&#xA;      &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 576 512&#34;&gt;&lt;path d=&#34;M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 125.7-86.8 86.8c-10.3 10.3-17.5 23.1-21 37.2l-18.7 74.9c-2.3 9.2-1.8 18.8 1.3 27.5L64 512c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128zM549.8 235.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-29.4 29.4-71-71 29.4-29.4c15.6-15.6 40.9-15.6 56.6 0zM311.9 417L441.1 287.8l71 71L382.9 487.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z&#34;/&gt;&lt;/svg&gt;&#xA;      &lt;span&gt;Note&lt;/span&gt;&#xA;    &lt;/div&gt;&#xA;      &lt;div class=&#34;admonition-content&#34;&gt;&#xA;        &lt;p&gt;依赖强调一方要使用另一方、依赖另一方而存在&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
