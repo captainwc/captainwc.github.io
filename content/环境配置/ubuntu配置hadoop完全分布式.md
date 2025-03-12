@@ -9,7 +9,7 @@ tags: [hadoop]
 
 ## 1. 网络配置
 
-需要修改四处，windows（宿主机），vmware，和虚拟机 ubuntu**（`NAT`模式）**
+需要修改四处，windows（宿主机），vmware，和虚拟机 ubuntu **（NAT模式）**
 
 1. windows，设置 vmware8 的 ipv4 选项即可
 
