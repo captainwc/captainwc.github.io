@@ -42,6 +42,32 @@ int main(){
 - [ ] todo
 - [x] todo
 
+## 图片排版
+
+### 借用超链接实现浮动
+
+```bash
+[<<img src="xxx" alt="" style="max-width: 50%; float:right;">>]()
+```
+
+效果看上面那个github头像即可
+
+### div flex
+
+```bash
+<div style="display: flex; gap: 2px; justify-content: center">
+    <img src="aaa" alt="" style="max-width: 50%;">
+    <img src="bbb" alt="" style="max-width: 50%;">
+</div>
+```
+
+<div style="display: flex; gap: 2px; justify-content: center">
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgblog_imgimage-20250312142314814.png" alt="cppzh" style="max-width: 50%;">
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgblog_imgimage-20250312141915556.png" alt="cpp" style="max-width: 50%;">
+</div>
+
+### TODO: 定制Shotcode
+
 ## PlantUML 代码块自动渲染
 
 ### 类图
