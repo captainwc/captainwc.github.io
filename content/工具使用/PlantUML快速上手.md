@@ -79,7 +79,7 @@ boundary 边界
 
 > [!tip]
 >
-> 有时候你可能只需要一个“框图”，而非严格的带有什么start和stop的活动图。那么“用例图”实际上可以完成一二。用例图自带小人和椭圆，以及一些箭头，通过`rectangle "xxx" as A`可以创建一个方框。
+> 有时候你可能只需要一个“框图”，而非严格的带有什么 start 和 stop 的活动图。那么“用例图”实际上可以完成一二。用例图自带小人和椭圆，以及一些箭头，通过`rectangle "xxx" as A`可以创建一个方框。
 
 ```plaint-plantuml
 @startuml
@@ -119,8 +119,6 @@ note left of A #fff: Comment
 @enduml
 ```
 
-
-
 ## 类图
 
 ![image-20231126235934810](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20231126235934810.png)
@@ -138,4 +136,3 @@ note left of A #fff: Comment
 ![image-20231129233022640](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20231129233022640.png)
 
 ![image-20231129233027292](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20231129233027292.png)
-

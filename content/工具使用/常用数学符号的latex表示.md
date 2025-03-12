@@ -5,38 +5,36 @@ tags: [latex, markdown]
 categories: [工具使用]
 ---
 
-
-
 ## 常用数学符号
 
-|           符号            | 语法                    |          符号          | 语法                |
-| :-----------------------: | ----------------------- | :--------------------: | ------------------- |
-|         \(\infty\)          | \infty                  |       \(\vec{s}\)        | \vec{s}             |
-|         \(\dot{a}\)         | \dot{a}                 |       \(\ddot{a}\)       | \ddot{a}            |
-|       \(\rightarrow\)       | \righrarrow             |     \(\Rightarrow\)      | \Rightarrow         |
-|         \(\ldots\)          | \ldots                  |        \(\cdots\)        | \cdots              |
-|         \(\vdots\)          | \vdots                  |        \(\ddots\)        | \ddots              |
-|          \(\geq\)           | \geq                    |         \(\leq\)         | \leq                |
-|          \(\neq\)           | \neq                    |       \(\approx\)        | \approx             |
-|         \(\equiv\)          | \equiv                  |         \(\in\)          | \in                 |
-|         \(\notin\)          | \notin                  |       \(\subset\)        | \subset             |
-|         \(\supset\)         | \supset                 |      \(\subseteq\)       | \subseteq           |
-|       \(\subsetneq\)        | \subsetneq              |         \(\cup\)         | \cup                |
-|          \(\cap\)           | \cap                    |       \(\bigodot\)       | \bigodot            |
-|       \(\bigotimes\)        | \bigotimes              |      \(\emptyset\)       | \emptyset           |
-|           \(\R\)            | \R                      |          \(\Z\)          | \Z                  |
-|         \(\times\)          | \times                  |         \(\div\)         | \div                |
-|           \(\pm\)           | \pm                     |         \(\mp\)          | \mp                 |
-|          \(\cdot\)          | \cdot                   |         \(\ast\)         | \ast                |
-|    \(\underline{apple}\)    | \underline{apple}       |    \(\overline{x+y}\)    | \overline{x+y}      |
-| \(\overbrace{a+b+c}^{3.0}\) | \overbrace{a+b+c}^{3.0} | \(\underbrace{a+b}_{2}\) | \underbrace{a+b}\_2 |
-|       \(\mbox{汉字}\)       | \mbox{汉字}             |        \(\prime\)        | \prime              |
-|          \(\iint\)          | \iint                   |        \(\iiint\)        | \iiint              |
-|          \(\oint\)          | \oint                   |       \(\partial\)       | \partial            |
-|     \(\lceil{a}\rceil\)     | \lceil {a} \rceil       |  \(\lfloor{b}\rfloor\)   | \lfloor {b} \rfloor |
-|        \(a\quad b\)         | a\quad b                |      \(a\qquad b\)       | a\qquad b           |
-|          \(a\;b\)           | a\;b                    |  \(\bigg(\quad \Bigg]\)  | \bigg( \quad \Bigg] |
-|   \(\langle{a,b}\rangle\)   | \langle{a,b}\rangle     |                        |                     |
+|            符号             | 语法                    |           符号            | 语法                |
+| :-------------------------: | ----------------------- | :-----------------------: | ------------------- |
+|         \(\infty\)          | \infty                  |        \(\vec{s}\)        | \vec{s}             |
+|         \(\dot{a}\)         | \dot{a}                 |       \(\ddot{a}\)        | \ddot{a}            |
+|       \(\rightarrow\)       | \righrarrow             |      \(\Rightarrow\)      | \Rightarrow         |
+|         \(\ldots\)          | \ldots                  |        \(\cdots\)         | \cdots              |
+|         \(\vdots\)          | \vdots                  |        \(\ddots\)         | \ddots              |
+|          \(\geq\)           | \geq                    |         \(\leq\)          | \leq                |
+|          \(\neq\)           | \neq                    |        \(\approx\)        | \approx             |
+|         \(\equiv\)          | \equiv                  |          \(\in\)          | \in                 |
+|         \(\notin\)          | \notin                  |        \(\subset\)        | \subset             |
+|         \(\supset\)         | \supset                 |       \(\subseteq\)       | \subseteq           |
+|       \(\subsetneq\)        | \subsetneq              |         \(\cup\)          | \cup                |
+|          \(\cap\)           | \cap                    |       \(\bigodot\)        | \bigodot            |
+|       \(\bigotimes\)        | \bigotimes              |       \(\emptyset\)       | \emptyset           |
+|           \(\R\)            | \R                      |          \(\Z\)           | \Z                  |
+|         \(\times\)          | \times                  |         \(\div\)          | \div                |
+|           \(\pm\)           | \pm                     |          \(\mp\)          | \mp                 |
+|          \(\cdot\)          | \cdot                   |         \(\ast\)          | \ast                |
+|    \(\underline{apple}\)    | \underline{apple}       |    \(\overline{x+y}\)     | \overline{x+y}      |
+| \(\overbrace{a+b+c}^{3.0}\) | \overbrace{a+b+c}^{3.0} | \(\underbrace{a+b}\_{2}\) | \underbrace{a+b}\_2 |
+|       \(\mbox{汉字}\)       | \mbox{汉字}             |        \(\prime\)         | \prime              |
+|          \(\iint\)          | \iint                   |        \(\iiint\)         | \iiint              |
+|          \(\oint\)          | \oint                   |       \(\partial\)        | \partial            |
+|     \(\lceil{a}\rceil\)     | \lceil {a} \rceil       |   \(\lfloor{b}\rfloor\)   | \lfloor {b} \rfloor |
+|        \(a\quad b\)         | a\quad b                |       \(a\qquad b\)       | a\qquad b           |
+|          \(a\;b\)           | a\;b                    |  \(\bigg(\quad \Bigg]\)   | \bigg( \quad \Bigg] |
+|   \(\langle{a,b}\rangle\)   | \langle{a,b}\rangle     |                           |                     |
 
 ## 常用运算
 

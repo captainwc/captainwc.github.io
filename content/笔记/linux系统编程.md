@@ -4,7 +4,6 @@ date: 2023-04-02
 tags: [linux, 网络编程]
 series: [面筋, 快速上手]
 toc: true
-
 ---
 
 # Linux 系统编程
@@ -56,9 +55,9 @@ gcc -shared -o libxxx.so tes1.o tes2.o
 # ！！还要确保能找到库的绝对路径
 ```
 
- 可以使用`ldd`命令来查看可执行文件所依赖的动态库，找不到的会提示"not found"。
+可以使用`ldd`命令来查看可执行文件所依赖的动态库，找不到的会提示"not found"。
 
- 程序执行时，加载动态库的过程是由动态加载器`ld-linux.so`来完成的。他会依次寻找 elf 文件的 DT-RPATH 段（进程内存空间，改不了不用管）--->环境变量 `LD_DIRECTORY_PATH`--->`/etc/ld.so.cache`--->`/lib /usr/lib`，找不到就报错。因此可以有以下方式指定路径：
+程序执行时，加载动态库的过程是由动态加载器`ld-linux.so`来完成的。他会依次寻找 elf 文件的 DT-RPATH 段（进程内存空间，改不了不用管）--->环境变量 `LD_DIRECTORY_PATH`--->`/etc/ld.so.cache`--->`/lib /usr/lib`，找不到就报错。因此可以有以下方式指定路径：
 
 ```shell
 #(1)更改环境变量
@@ -104,7 +103,6 @@ GDB 的功能，一般来说有：
         <td style="width:20%;text-align:left"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230312190519841.png"></td>
     </tr>
 </table>
-
 
 ---
 
@@ -172,17 +170,17 @@ GDB 的功能，一般来说有：
 
 #### 1.5.1 标准 C 库与系统 IO
 
- C 库的 IO 函数是可以跨平台的。跨平台，要么是像 java 那样不同平台开发不同的虚拟机，要么是调用不同平台的系统 API，从而统一接口。
+C 库的 IO 函数是可以跨平台的。跨平台，要么是像 java 那样不同平台开发不同的虚拟机，要么是调用不同平台的系统 API，从而统一接口。
 
- 标准 C 库带有缓冲区，因此效率是更高的
+标准 C 库带有缓冲区，因此效率是更高的
 
- C 库函数的 man 手册等级是 3，可以`man 3 fwrite`
+C 库函数的 man 手册等级是 3，可以`man 3 fwrite`
 
 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230313190840235.png" alt="image-20230313190840235" style="zoom: 67%;" />
 
 UNIX 系统 IO
 
- C 库有缓冲区，可以提高读写效率，但注意，是效率，而不是速度。在网络通信情境中，我们希望能迅速收到对方发来的消息，那么此时应该使用系统 IO，即时读写。总不能我发来的信息，等半天了你还在缓冲区里呢
+C 库有缓冲区，可以提高读写效率，但注意，是效率，而不是速度。在网络通信情境中，我们希望能迅速收到对方发来的消息，那么此时应该使用系统 IO，即时读写。总不能我发来的信息，等半天了你还在缓冲区里呢
 
 #### 1.5.2 虚存与文件描述符
 
@@ -190,11 +188,11 @@ UNIX 系统 IO
 
 ![image-20230313205248025](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230313205248025.png)
 
- 一个应用程序可以打开很多文件，因此需要一个数组，来存储其打开的文件描述符
+一个应用程序可以打开很多文件，因此需要一个数组，来存储其打开的文件描述符
 
- 所谓一切皆文件，0 1 2 是默认打开的，对应的就是当前终端，终端也是一个“文件”。
+所谓一切皆文件，0 1 2 是默认打开的，对应的就是当前终端，终端也是一个“文件”。
 
- 同一文件可以被打开多次，相互之间的文件描述符是不相同的，比如不同用途，一个只读，一个只写。文件释放掉时文件描述符才会释放。分配文件描述符时，就从尚未分配的数子中选择一个最小的。
+同一文件可以被打开多次，相互之间的文件描述符是不相同的，比如不同用途，一个只读，一个只写。文件释放掉时文件描述符才会释放。分配文件描述符时，就从尚未分配的数子中选择一个最小的。
 
 #### 1.5.3 Linux 系统 IO 函数
 
@@ -217,7 +215,7 @@ UNIX 系统 IO
 
 ##### readv & writev
 
-> [:link: readv()和writev()函数](https://blog.csdn.net/qq_39642794/article/details/108080722)
+> [:link: readv()和 writev()函数](https://blog.csdn.net/qq_39642794/article/details/108080722)
 
 ```c
 #include <sys/uio.h>
@@ -283,7 +281,7 @@ struct stat {
 
 ![shadow-image-20230314200802550](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230314200802550.png)
 
- 判断各区段的值，只需要按位与，即`st.st_mode & S_FLAGS`，得到的结果与各种宏进行比较即可。也正因如此，这些 FLAGS 的值看起来才这么“长”，因为它们都是 16 位的，直接与整个 st_mode 相与的，其余无关的位都置 0，起到一个过滤的作用。
+判断各区段的值，只需要按位与，即`st.st_mode & S_FLAGS`，得到的结果与各种宏进行比较即可。也正因如此，这些 FLAGS 的值看起来才这么“长”，因为它们都是 16 位的，直接与整个 st_mode 相与的，其余无关的位都置 0，起到一个过滤的作用。
 
 ##### 文件属性 access...
 
@@ -424,7 +422,6 @@ int ret = fcntl(fd, F_SETFL, flag);	// 失败返回-1，成功返回0
     </tr>
 </table>
 
-
 `{cmd} &`：在命令后面加上一个`&`可以让其在后台运行（会定时将结果输出到前台来，但不影响输入输出）
 
 #### 2.1.5 进程号和相关函数
@@ -538,8 +535,8 @@ int execl(const char *path, const char *args1, ...);
 
 - 区别在于，调用`exit()`时，会先调用退出处理函数、刷新 IO 缓冲、关闭文件描述符等工作，然后再调用系统调用`_exit()`退出进程。
 - 举个例子，`printf("hello\nworld");`然后调用`exit(0)`，这是是能输出 hello\\nworld 的。但是如果调用的是`_exit()`，那就只会输出一个 hello。因为 C 库的 IO 是带有缓冲区的，\\n 会刷新缓冲，因此 hello 一定能输出。但是调用\_exit()，此时 world 尚在缓冲区里，但进程直接就退出了，没有输出
-- exit()会把 status 返回给父进程，就跟 main 的 return 一样，main 是被系统调用的，return 也是把状态返回给上一级。但只是对main而言，这两个一样的。
-- 区分exit与return，只需要品味他们的名字即可。exit是进程退出，而return是返回，在main函数中调用别的函数，func，func和main都是在同一个进程中。这时return是返回，也即堆栈弹栈，是返回到调用者main，main还在；而exit是终结进程，main也没了。
+- exit()会把 status 返回给父进程，就跟 main 的 return 一样，main 是被系统调用的，return 也是把状态返回给上一级。但只是对 main 而言，这两个一样的。
+- 区分 exit 与 return，只需要品味他们的名字即可。exit 是进程退出，而 return 是返回，在 main 函数中调用别的函数，func，func 和 main 都是在同一个进程中。这时 return 是返回，也即堆栈弹栈，是返回到调用者 main，main 还在；而 exit 是终结进程，main 也没了。
 
 #### 2.4.2 孤儿进程
 
@@ -606,13 +603,9 @@ pid_t waitpid(pid_t pid, int *wstatus, int options);
 
 进程是独立的，但不是孤立的
 
-
-
 #### 2.5.2 进程间通信方式
 
 ![shadow-image-20230321155521700](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230321155521700.png)
-
-
 
 #### 2.5.3 匿名管道（管道）
 
@@ -645,7 +638,6 @@ pid_t waitpid(pid_t pid, int *wstatus, int options);
     </tr>
 </table>
 
-
 ##### 匿名管道创建
 
 ```c
@@ -666,7 +658,7 @@ int pipe(int pipefd[2]);
 ##### 插播一些有用的函数
 
 1. `long fpathconf(int fd, int name);`：用于获取文件的一些信息，比如最大链接数、最长名字、最大管道尺寸等等，通过 name 传递一个宏值来指定功能。如`_PC_LINNK_MAX, _PC_PAYH_MAX, _PC_PIPE_BUF`等等等
-2. `void bzero(void *s, size_t n);`：将 s 指针指向位置开头的 n 字节用`\0`填充（可能会受，头文件是string.h还是strings.h的影响）
+2. `void bzero(void *s, size_t n);`：将 s 指针指向位置开头的 n 字节用`\0`填充（可能会受，头文件是 string.h 还是 strings.h 的影响）
 3. `void *memset(void *s, int c, size_t n);`：将 s 指针指向位置开头的 n 字节用常字符`(int)c`填充，并返回一个指向 s 区域的指针
 4. `void *memcpy(void *dest, const void *src, size_t n);`：内存拷贝（利用内存映射来拷贝文件时可以用）
 
@@ -680,8 +672,6 @@ int pipe(int pipefd[2]);
 4. **读端没有全部关闭**，此时往里**写**，写满的时候，write()会`被阻塞`
 
 那么，管道也是一个文件，因此自然也可以设置管道文件的文件描述符的属性 ==> `fcntl()`，将其设为非阻塞
-
-
 
 #### 2.5.4 有名管道
 
@@ -814,8 +804,6 @@ void munmap(void *addr, size_t length);
 
 内存映射不只可以进行进程通信，还可以实现比如文件复制等功能。牢记其原理：把文件映射到内存中，并且建立内存与文件之间的同步，把文件操作变成内存操作即可。
 
-
-
 #### 2.5.6 信号
 
 ##### 信号概述
@@ -826,7 +814,6 @@ void munmap(void *addr, size_t length);
         <td style="width:40%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230324154204356.png"></td>
     </tr>
 </table>
-
 
 - 查看信号详细信息：`man 7 signal`
 
@@ -851,8 +838,6 @@ void munmap(void *addr, size_t length);
         <td style="width:49%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230324165012060.png"></td>
     </tr>
 </table>
-
-
 
 #### 2.5.7 信号相关函数
 
@@ -901,7 +886,7 @@ int setitimer(int which, const struct itimerval *new_val, struct itimerval *old_
      struct timeval it_value;    /* Time until next expiration，延迟多久开始执行定时器 */
   };
   /* 就是说，只有第一次闹钟是等待it_value值后“响”，后面每隔it_interval值“响”一下 */
-  
+
   struct timeval {			  /*时间的结构*/
      time_t      tv_sec;         /* seconds */
      suseconds_t tv_usec;        /* microseconds ，两个都要设置，否则可能是随机值*/
@@ -957,7 +942,6 @@ struct sigaction {
         <td style="width:42%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325134014997.png"></td>
     </tr>
 </table>
-
 
 - 信号集在 PCB 中其实就是一个 01 数组（位图），信号尚未被处理，那就在未决信号集里面，值 1；阻塞了，那就在阻塞信号集里面值 1。
 
@@ -1022,12 +1006,10 @@ int  sigpending(sigset_t *set);
 
 - **问题 0**，之前解决僵尸进程的办法是，不断循环 wait，这显然是不合理的，怎么优雅回收子进程资源呢？
   - **解决 0**思路很简单，可以在父进程中捕捉 SIGCHILD 信号，等子进程结束时再调用 wait 回收它就好了
-- 这里会有一个**问题1**，假如子进程很多，它们都在同一时间结束，前面提到过，常规信号是不支持排队的，因此，收到第一个 SIGCHILD 信号去执行 handler 的过程中，会到达很多别的 SIGCHILD 信号，他们最终都只是未决队列里的同一个 1，等 handler 结束再回来的时候，再把这个“一个”未决的信号送达。等于是，_一堆子进程就执行了两次 handler_。
+- 这里会有一个**问题 1**，假如子进程很多，它们都在同一时间结束，前面提到过，常规信号是不支持排队的，因此，收到第一个 SIGCHILD 信号去执行 handler 的过程中，会到达很多别的 SIGCHILD 信号，他们最终都只是未决队列里的同一个 1，等 handler 结束再回来的时候，再把这个“一个”未决的信号送达。等于是，_一堆子进程就执行了两次 handler_。
   - **解决 1**方法也很简单，在 handler 中**循环调用非阻塞的`waitpid`函数**，当前有终止的子进程就回收，如果没有（返回值为 0 或-1）就 break 结束 handler，返回主控函数，不影响父进程的正常工作。这样就可以实现，收到一次信号，就可以回收当前所有已经终止的子进程。
 - 然后又有一个**问题 2**：如果子进程很快就结束了，快到父进程注册信号捕捉这个系统调用还没结束，那岂不是就不能回收掉这个子进程了？因为这个子进程发送的 SIGCHILD 信号是被父进程默认忽略掉的
   - 是的，**解决 2**办法是，在父进程中，先设置一个信号集，阻塞掉 SIGCHILD 信号，然后注册信号捕捉，等注册成功，在对 SIGCHILD 信号接触阻塞，即可。
-
-
 
 #### 2.5.8 共享内存
 
@@ -1041,7 +1023,6 @@ int  sigpending(sigset_t *set);
         <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325170332765.png"></td>
     </tr>
 </table>
-
 
 ##### 共享内存操作函数
 
@@ -1167,8 +1148,6 @@ ipcrm -s {semid}	# 移除用 serid  标识的 信号
    2. 电脑断电，没电了内存自然是消失了，但是由于磁盘文件还在，因此内存映射区的数据还在
 5. 生命周期，共享内存需要手动删除，且进程关联数为 0 时，才会真正被删除。而内存映射区，进程退出后就自动销毁了
 
-
-
 #### 2.5.9 守护进程
 
 ##### 控制终端
@@ -1179,8 +1158,6 @@ ipcrm -s {semid}	# 移除用 serid  标识的 信号
 
 可以在控制终端输入一些命令来控制进程，但这只对前台进程有效。因为后台进程（在启动命令后面加一个`$`或者用`Ctrl + Z`即可得到后台进程）是没有控制终端的。
 
-
-
 ##### 进程组 & 会话
 
 <table style="border:none;text-align:center">
@@ -1189,7 +1166,6 @@ ipcrm -s {semid}	# 移除用 serid  标识的 信号
         <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325201431246.png"></td>
     </tr>
 </table>
-
 
 - 相关进程放在同一个组里，方便管理，比如修改进程优先级，直接把组的改了就行了
 - **创建会话的两步**，第一步会话首进程创建一个进程组，组号等于自己的进程号；第二步，会话首进程创建一个会话，会话号等于自己的进程号。因为会话是进程组的集合嘛，得先创建一个组
@@ -1207,8 +1183,6 @@ sort < longlist | uniq -c
         <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325202405135.png"></td>
     </tr>
 </table>
-
-
 
 ##### 守护进程概念
 
@@ -1244,12 +1218,9 @@ sort < longlist | uniq -c
     </tr>
 </table>
 
-
 > 插播一段别的知识：
 >
 > [未初始化数据段](https://zhuanlan.zhihu.com/p/28659560)，即`.bss`里面存放的是，未初始化，或初始化为 0 的，全局变量或静态变量。而`.data`数据段，里面存放的是初始化为 非 0 的全局变量或静态变量。在程序运行起来之后，这俩是合在一块的，统称为数据区。之所以弄这个区别，是因为，bss 段里面的变量只有个符号，其实并没有实际分配内存，只有在运行起来后，连接器才会把后面跟着的这一块 bss 区，全部清零。而 data 段里面的，你初始化了 1000 个 int 的数组，它就真真切切的占用了 1000\*4B 的空间，可执行程序就会大一些。
-
-
 
 #### 3.1.2 共享与非共享
 
@@ -1262,8 +1233,6 @@ sort < longlist | uniq -c
 ### 3.2 线程操作
 
 ![image-20230326150628923](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230326150628923.png)
-
-
 
 #### 3.2.1 创建线程
 
@@ -1288,8 +1257,6 @@ int pthread_equal(pthread_t t1, pthread_t t2);
 
 - `pthread`不是标准库，因此有时编译不成功时，记得加上`-pthread`选项（或者加`-lpthread`指定也一样）
 
-
-
 #### 3.2.2 终止线程
 
 ```c
@@ -1308,8 +1275,6 @@ void pthread_exit(void *retval);
 
 换言之，join 的工作过程其实就是，如果 retval 非空，则把目标线程的返回值（一个 void\* 类型的数据），拷贝到 retval 指向的地址。（这里不要钻牛角尖，指向指针的指针，还是个指针，也还是指向一块存放数据的内存。只不过对这块内存的解读是，又是一个指针。类型不就是标记怎么解读比特数据的么）看出区别了没，其实跟之前传出参数一样，之前是用指针传出（而不是传值），现在也是用指针传出。区别就在，这次要传的参数，是一个指针。
 
-
-
 #### 3.2.3 回收线程
 
 ```c
@@ -1326,8 +1291,6 @@ int pthread_join(pthread_t thread, void **retval);
   - `retval`：回收子线程的返回值（不管是 return 返回的，还是调用 pthread_exit() 返回的，一样）
   - `返回值`：成功返回 0， 失败返回错误号
 
-
-
 #### 3.2.4 线程分离
 
 ```c
@@ -1338,8 +1301,6 @@ int pthread_detach(pthread_t thread);
 - 被分离标记的线程，其结束的时候，会自动把资源归还给操作系统，不需要回收
 - 不能 detach 一个已经被 detach 的线程（unspecified behavior）
 - 也不能 join 一个已经被 detach 的线程（ivalid argument）
-
-
 
 #### 3.2.5 线程取消
 
@@ -1352,8 +1313,6 @@ int pthread_cancel(pthread_t thread);
 
 - 被取消的线程，不是立马终止的，而是要运行到一些被定义好的**取消点**（cancellation point，可以`man 7 pthreads`查看）时，才会被终止。大致上可以理解为，要运行到某些系统调用处，发生内核与用户态切换时，才会被终止。
 
-
-
 #### 3.2.6 线程属性
 
 <table style="border:none;text-align:center">
@@ -1363,7 +1322,6 @@ int pthread_cancel(pthread_t thread);
     </tr>
 </table>
 
-
 ```c
 // 设置/获取线程的分离属性
 int pthread_attr_setdetachstate(pthread_attr_t *attr, int detachstate);
@@ -1371,7 +1329,7 @@ int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
 // PTHREAD_CREATE_DETACHED   PTHREAD_CREATE_JOINABLE
 ```
 
-首先要创建线程属性变量，然后对其进行**初始化**`pthread_attr_init`，然后设置其属性。设置了分离状态`PTHREAD_CREATE_DETACHED`就说明，不需要别的进程来join我，我结束了自己会释放。然后`pthread_create`创建线程，把 attr 传进去就好了。
+首先要创建线程属性变量，然后对其进行**初始化**`pthread_attr_init`，然后设置其属性。设置了分离状态`PTHREAD_CREATE_DETACHED`就说明，不需要别的进程来 join 我，我结束了自己会释放。然后`pthread_create`创建线程，把 attr 传进去就好了。
 
 设置了 detach 属性，就不能再去 `pthread_detach` 或者 `pthread_join` 了，跟执行一次`pthread_detach()`一样
 
@@ -1386,24 +1344,19 @@ int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
     </tr>
 </table>
 
-
 #### 3.3.2 互斥锁 mutex
 
 ![image-20230328152847746](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328152847746.png)
 
-`restrict`：C语言修饰符，被修饰的指针，不能被别的指针操作
+`restrict`：C 语言修饰符，被修饰的指针，不能被别的指针操作
 
 锁的使用步骤：创建锁(全局) $\Rarr$ 初始化锁(使用前) $\Rarr$ 加锁(阻塞)或尝试加锁(非阻塞) $\Rarr$ 操作 $\Rarr$ 解锁
 
-初始化一个已经被初始化的锁，和销毁正在被用着的锁，都是未定义行为。但是一个锁被销毁后，是可以再被重新初始化的。合理的去destory锁，反正在主线程退出之后destory，和退出之前，但是别的线程还在用着呢的时候destory，都是不合适的。个人认为，本身他也就是一个栈上的变量而已，全局的联合体变量。你destroy它，它也不会释放空间，只是变得可以再被init了而已。没有需要就不destroy了
-
-
+初始化一个已经被初始化的锁，和销毁正在被用着的锁，都是未定义行为。但是一个锁被销毁后，是可以再被重新初始化的。合理的去 destory 锁，反正在主线程退出之后 destory，和退出之前，但是别的线程还在用着呢的时候 destory，都是不合适的。个人认为，本身他也就是一个栈上的变量而已，全局的联合体变量。你 destroy 它，它也不会释放空间，只是变得可以再被 init 了而已。没有需要就不 destroy 了
 
 #### 3.3.3 死锁
 
 ![image-20230328154547333](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328154547333.png)
-
-
 
 #### 3.3.4 读写锁 rwlock
 
@@ -1413,24 +1366,20 @@ int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
 - 写是独占的
 - 写的优先级更高
 
-
-
 #### 3.3.5 条件变量
 
 ![image-20230328183345466](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328183345466.png)
 
 - 条件变量不是锁，是配合锁来更好实现线程同步的。可以实现，**满足某个条件**时通知线程来做，不满足时就阻塞。至于互斥的访问临界区，那还是得锁来做。
 - `wait`是一直等待，直到被通知，`timedwait`是等待指定时间，如果没收到通知就不等了
-- **注意**，当`pthread_cond_wait(&cond, &mutex)`等待cond被阻塞的时候，系统会**自动解锁**，等到信号，准备就绪的时候，mutex这个锁**又会被加上**
+- **注意**，当`pthread_cond_wait(&cond, &mutex)`等待 cond 被阻塞的时候，系统会**自动解锁**，等到信号，准备就绪的时候，mutex 这个锁**又会被加上**
 - `signal`是至少通知一个正在等待的，`broadcast`是通知阻塞队列里的全部
-
-
 
 #### 3.3.6 信号量
 
 ![image-20230328191035375](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328191035375.png)
 
-- 同样的，信号量也是用来阻塞线程的，可以实现同步互斥前驱关系等，并不能保证线程安全，也即，想要保证多线程数据安全，仍然需要配合锁来实现（当然，单个信号量，值取01，那跟锁一样了）
+- 同样的，信号量也是用来阻塞线程的，可以实现同步互斥前驱关系等，并不能保证线程安全，也即，想要保证多线程数据安全，仍然需要配合锁来实现（当然，单个信号量，值取 01，那跟锁一样了）
 
 - 信号量是有值的，条件变量是没有值的，是看满不满足条件
 
@@ -1442,9 +1391,7 @@ int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
 
 - `sem_wait`：V 对信号量加锁，使信号量值减一，如果 value 大于零则直接返回；如果 value 小于 0 则**阻塞**
 
-- `sem_post`：P 对信号量解锁，使信号量值加一，如果让信号量的值大于0，则唤醒一个被 wait 阻塞的线程
-
-  
+- `sem_post`：P 对信号量解锁，使信号量值加一，如果让信号量的值大于 0，则唤醒一个被 wait 阻塞的线程
 
 #### 3.3.7 同步模型
 
@@ -1460,15 +1407,13 @@ int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
 
 ![image-20230329190025012](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329190025012.png)
 
-
-
-#### 4.1.2 Browser/Server 
+#### 4.1.2 Browser/Server
 
 ![image-20230329190240817](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329190240817.png)
 
 #### 4.1.3 MAC IP
 
-每个网卡的mac地址是全球唯一的，由制造商烧录在网卡中
+每个网卡的 mac 地址是全球唯一的，由制造商烧录在网卡中
 
 IP，`Internet Protocal Address`，分配一个逻辑地址，屏蔽物理地址的差异
 
@@ -1481,8 +1426,6 @@ IP，`Internet Protocal Address`，分配一个逻辑地址，屏蔽物理地址
 #### 4.2.1 OSI 七层模型
 
 ![image-20230329192136672](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329192136672.png)
-
-
 
 #### 4.2.2 TCP/IP 四层协议
 
@@ -1514,14 +1457,13 @@ IP，`Internet Protocal Address`，分配一个逻辑地址，屏蔽物理地址
     </tr>
 </table>
 
-
 ### 4.4 网络通信的过程
 
 #### 4.4.1 封装与分用
 
-	上层协议是如何便用下层协议提供的服务的呢？其实这是通过**封装** (encapsulation) 实现的。应用程序数据在发送到物理网络上之前，将沿**着协议栈从上往下依次传递**。每层协议都将在上层数据的基础上加上自己的头部信息（有时还包括尾部信息）以实现该层的功能，这个过程就称为封装。
-	
-	当帧到达目的主机时，将沿着协议栈自底向上依次传递。各层协议依次处理帧中本层负责的头部数据，以获取所需的信息，并是终将处理后的帧交给目标应用程序。这个过程称为**分用** (demultiplexing)。分用是**依靠头部信息中的类型字段实现的**。
+    上层协议是如何便用下层协议提供的服务的呢？其实这是通过**封装** (encapsulation) 实现的。应用程序数据在发送到物理网络上之前，将沿**着协议栈从上往下依次传递**。每层协议都将在上层数据的基础上加上自己的头部信息（有时还包括尾部信息）以实现该层的功能，这个过程就称为封装。
+
+    当帧到达目的主机时，将沿着协议栈自底向上依次传递。各层协议依次处理帧中本层负责的头部数据，以获取所需的信息，并是终将处理后的帧交给目标应用程序。这个过程称为**分用** (demultiplexing)。分用是**依靠头部信息中的类型字段实现的**。
 
 <table style="border:none;text-align:center">
     <tr>
@@ -1530,10 +1472,7 @@ IP，`Internet Protocal Address`，分配一个逻辑地址，屏蔽物理地址
     </tr>
 </table>
 
-
 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329195959288.png" alt="image-20230329195959288" style="zoom:50%;" />
-
-
 
 #### 4.4.2 ARP 协议
 
@@ -1549,23 +1488,21 @@ IP，`Internet Protocal Address`，分配一个逻辑地址，屏蔽物理地址
 
 即大端小端。大端指：整数的高位在低地址，输出是“顺”的；小端指：低位在高地址，输出是“反”的。
 
-举个例子，0x112233，最高字节是11，最低字节是33，则大端时输出其字节（访存是从低地址开始，往高地址读取），最高位在低地址，所以是0x11，0x22，0x33；即与人读的顺序（从左往右）一致，人先看先读的就是高位。小端则相反，先拿到的是低位数据，因为低位放在低地址。
+举个例子，0x112233，最高字节是 11，最低字节是 33，则大端时输出其字节（访存是从低地址开始，往高地址读取），最高位在低地址，所以是 0x11，0x22，0x33；即与人读的顺序（从左往右）一致，人先看先读的就是高位。小端则相反，先拿到的是低位数据，因为低位放在低地址。
 
-可以通过强制转为`unsigned char *`输出每一 byte，也可以创建一个 `union`，里面定义一个数据类型 x，一个**char数组**，这样输出char数组就可以得知 x 的字节序
-
-
+可以通过强制转为`unsigned char *`输出每一 byte，也可以创建一个 `union`，里面定义一个数据类型 x，一个**char 数组**，这样输出 char 数组就可以得知 x 的字节序
 
 #### 4.6.2 字节序转换函数
 
-TCP/IP中将**网络字节序**规定为：<mark>大端</mark>序。发送端如果是小端机则要先转换为大端序，接收端按大端序解释，后面随便（转换成你的*主机字节序*）。
+TCP/IP 中将**网络字节序**规定为：<mark>大端</mark>序。发送端如果是小端机则要先转换为大端序，接收端按大端序解释，后面随便（转换成你的*主机字节序*）。
 
-网络中端口、IP都没有负数，都采用 `unsigned` 格式。【注意是整数类型之间的转换，与`inet_pton()`等函数区别】
+网络中端口、IP 都没有负数，都采用 `unsigned` 格式。【注意是整数类型之间的转换，与`inet_pton()`等函数区别】
 
 ```C
 #include <arpa/inet.h>
 /* h->host; n->net; s->short(unsigned short: 2B); l->long(unsigned int: 4B) */
 uint16_t htons(uint16_t hostshort);	// short 一般用来转换 端口 地址（2B）
-uint16_t ntohs(uint16_t netshort);	
+uint16_t ntohs(uint16_t netshort);
 uint32_t htonl(uint32_t hostlong);	// long  一般用来转换  IP 地址（4B）
 uint32_t ntohl(uint32_t netlong);
 ```
@@ -1588,7 +1525,7 @@ printf("y: %d.%d.%d.%d\n", *q, *(q + 1), *(q + 2), *(q + 3));
 
 作用：格式转换
 
-1. 点分十进制 IP 地址/16进制IPv6地址（即字符串） $\Leftrightarrow$  网络字节序整数（二进制数）
+1. 点分十进制 IP 地址/16 进制 IPv6 地址（即字符串） $\Leftrightarrow$ 网络字节序整数（二进制数）
 2. 主机字节序 $\Leftrightarrow$ 网络字节序
 
 ```c
@@ -1597,7 +1534,7 @@ printf("y: %d.%d.%d.%d\n", *q, *(q + 1), *(q + 2), *(q + 3));
 #include<arpa/inet.h>
 // 【不推荐使用】
 in_addr_t inet_addr(const char *cp); // 字符串IP 转换为 大端 整数 IP
-int       inet_aton(const char *cp, struct in_addr *inp); 
+int       inet_aton(const char *cp, struct in_addr *inp);
 char     *inet_ntoa(struct in_addr in);
 
 // 下面俩同时适用IPv4和IPv6【推荐使用】
@@ -1606,16 +1543,17 @@ const char *inet_ntop(int af, const void *src, char *dst, socklen_t size);
 ```
 
 - `af`：地址族，`AF_INET`，`AF_INET6` 二选一
-- `src`：点分十进制IP字符串 or 网络字节序的二进制整数
-- `dst`：【传出参数】网络字节序的二进制整数 or 点分十进制IP字符串
-- `size`：指定 dst 的大小（dst字符数组的大小）
-- `返回值`：转换后的地址，与 `dst` 中内容一样（整数to字符串的情况）
+- `src`：点分十进制 IP 字符串 or 网络字节序的二进制整数
+- `dst`：【传出参数】网络字节序的二进制整数 or 点分十进制 IP 字符串
+- `size`：指定 dst 的大小（dst 字符数组的大小）
+- `返回值`：转换后的地址，与 `dst` 中内容一样（整数 to 字符串的情况）
 
 ### 4.7 TCP 介绍
 
 #### 4.7.1 三握&四挥
 
 - 为什么要三次握手而不是两次？
+
   1. 因为如果 A 第一次请求连接时，发生了超时重传，重传的与 B 建立并完成了连接。但是第一次超时的连接请求，兜兜转转又传到了 B，如果采用的两次握手，则 B 又一次与 A 建立了连接，在 A 不知情的情况下，这显然是不合适的。如果采用三次握手，则 B 收到这个迟到的请求后，会向 A 进行确认，而 A 直到这是一个过期的请求，因此不予理会，那么建立连接失败。（被动方重传的是它的 FIN，直到收到主动方的 ACK 为止）
 
 - 为什么主动断开的一方，要等待 2MSL（Maximum Segment Lifetime：两倍的最长报文段寿命）才能关闭
@@ -1637,8 +1575,6 @@ const char *inet_ntop(int af, const void *src, char *dst, socklen_t size);
     </tr>
 </table>
 
-
-
 #### 4.7.5 TCP 状态转换
 
 <table style="border:none;text-align:center">
@@ -1647,8 +1583,6 @@ const char *inet_ntop(int af, const void *src, char *dst, socklen_t size);
         <td style="width:45%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230401173050493.png"></td>
     </tr>
 </table>
-
-
 
 #### 4.7.6 半关闭状态
 
@@ -1698,16 +1632,15 @@ struct sockaddr_storege {
     </tr>
 </table>
 
-
 ![image-20230330191720582](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230330191720582.png)
 
-上图可见，`sockaddr` 中的 14B 的data是不够容纳所有协议的地址的，因此又新定义了一个 `sockaddr_storage`，以便容纳更长的地址，并且它是**内存对齐**的。
+上图可见，`sockaddr` 中的 14B 的 data 是不够容纳所有协议的地址的，因此又新定义了一个 `sockaddr_storage`，以便容纳更长的地址，并且它是**内存对齐**的。
 
 **（2）专用 socket 地址**
 
-很多网络编程的函数诞生是早于IPv4协议的，当时用的都是 `sockaddr` 结构体，为了向前兼容，现在sockaddr 退化成了，类似 `void*` 的作用，就是说，不管你是什么地址，统统转为 sockaddr 类型传给函数。至于这个地址到底怎么解释，是`sockaddr_in`还是`sockaddr_in6`，由协议族字段确定，然后函数内部再强制类型转换为相应的地址。
+很多网络编程的函数诞生是早于 IPv4 协议的，当时用的都是 `sockaddr` 结构体，为了向前兼容，现在 sockaddr 退化成了，类似 `void*` 的作用，就是说，不管你是什么地址，统统转为 sockaddr 类型传给函数。至于这个地址到底怎么解释，是`sockaddr_in`还是`sockaddr_in6`，由协议族字段确定，然后函数内部再强制类型转换为相应的地址。
 
-所有的专用socket地址（包括socket_storage）都要强制转换为通用socket地址类型（即sockaddr），因为所有socket编程接口的地址参数类型都是`sockaddr`
+所有的专用 socket 地址（包括 socket_storage）都要强制转换为通用 socket 地址类型（即 sockaddr），因为所有 socket 编程接口的地址参数类型都是`sockaddr`
 
 <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230330192425946.png" alt="image-20230330192425946" style="zoom: 60%;" />
 
@@ -1724,7 +1657,7 @@ struct sockaddr_in {
 };
 // 类型参考
 struct in_addr {
-	in_addr_t s_addr;	
+	in_addr_t s_addr;
 };
 typedef uint16_t in_port_t;
 typedef uint32_t in_addr_t;
@@ -1742,8 +1675,6 @@ typedef uint32_t in_addr_t;
   // 也可以采用下面偷懒的写法。客户端不行，客户端一定要指定你想连接哪个服务器
   addr.sin_addr = INADDR_ANY;	// 其实就是0.0.0.0，表示客户端进来任意地址都可以绑定
   ```
-
-
 
 #### 4.8.2 socket 函数
 
@@ -1789,7 +1720,7 @@ int setsockopt(int sockfd, int level, int optname,const void *optval, socklen_t 
    - `返回值`：成功 0， 失败 -1
 3. **listen()：**监听指定 socket 上的链接。listen 时有**两个队列**：已连接的和未连接的
    - `sockfd`：要监听的 socket，即刚通过 `socket()` 获得的那个
-   - `backlog`：两个套接字队列的总最大长度（似乎与man手册不一样，查）（在somaxconn中定义）
+   - `backlog`：两个套接字队列的总最大长度（似乎与 man 手册不一样，查）（在 somaxconn 中定义）
 4. **accept()：**从用于 listen 的那个 socket 获取进来的客户端信息，然后返回一个用于通信的新 socket【阻塞】
    - `sockfd`：用于监听的那个 socket（即`listen()`用的那个），因为要从里面的缓冲区读取客户端的数据
    - `addr`：传出参数，记录连接成功后，链进来的 **客户端的** IP 和 端口
@@ -1801,14 +1732,14 @@ int setsockopt(int sockfd, int level, int optname,const void *optval, socklen_t 
    - `addrlen`：addr 的 size
    - `返回值`：成功 0，失败 -1
 6. **recv()：**从指定 sockfd 中接收消息到 buf 中，其 `flags` 取值如下：[recv(2)](https://man.freebsd.org/cgi/man.cgi?query=recv&apropos=0&sektion=0&manpath=FreeBSD+13.1-RELEASE+and+Ports&arch=default&format=html)
-   - `MSG_WAITALL`：阻塞，直到所有的request都满足才返回，除非中间出现错误或异常（信号、断连）
+   - `MSG_WAITALL`：阻塞，直到所有的 request 都满足才返回，除非中间出现错误或异常（信号、断连）
    - `MSG_DONTWAIT`：不阻塞，不能读就直接返回
    - `MSG_CMSG_CLOEXEC`：一执行，就把接受的 fd 关闭（只接收一次呗）
    - `0`：啥也不干，跟 read 一样
 7. **send()：**给指定 sockfd 发送 buf 中的内容，其 `flags` 取值如下：[send(2)](https://man.freebsd.org/cgi/man.cgi?query=send&apropos=0&sektion=0&manpath=FreeBSD+13.1-RELEASE+and+Ports&arch=default&format=html)
    - `MSG_DONTWAIT`：不阻塞，不给发就返回
    - `MSG_NOSIGNAL`：不产生 `SIGPIPE` 信号
-   - `MSG_EOF`：shutdown 发送方向的连接，并发送一个数据尾标识（仅对IPv4的TCP有效）
+   - `MSG_EOF`：shutdown 发送方向的连接，并发送一个数据尾标识（仅对 IPv4 的 TCP 有效）
    - `0`：啥也不干，跟 write 一样
 
 ### 4.9 并发服务器开发
@@ -1818,40 +1749,36 @@ int setsockopt(int sockfd, int level, int optname,const void *optval, socklen_t 
 基本模型：
 
 1. 父进程循环 accept()，阻塞等待。有客户端链接进来，则创建一个子进程去与之通信，父进程继续回去阻塞等待 accept。
-2. 父进程中应注册信号捕捉函数捕捉`SIGCHILD`信号，以便在子进程完成通信后回收它。回收的处理函数应当是一个非阻塞的循环waitpid，有子进程在工作就返回父进程，使其得以继续监听。
-3. **注意**，执行回调函数回收子进程，相当于一次软中断。而<mark>accept() 是会被系统中断打断的</mark>，也就是说，等回调函数返回时，accpet会被打断，返回 -1，并设置`errno` 为 `EINTR`。要解决这个问题，便要在 accept 的返回值为 -1 时进行一次判断，如果`errno == EINTR`，则 continue 即可。
-
-
+2. 父进程中应注册信号捕捉函数捕捉`SIGCHILD`信号，以便在子进程完成通信后回收它。回收的处理函数应当是一个非阻塞的循环 waitpid，有子进程在工作就返回父进程，使其得以继续监听。
+3. **注意**，执行回调函数回收子进程，相当于一次软中断。而<mark>accept() 是会被系统中断打断的</mark>，也就是说，等回调函数返回时，accpet 会被打断，返回 -1，并设置`errno` 为 `EINTR`。要解决这个问题，便要在 accept 的返回值为 -1 时进行一次判断，如果`errno == EINTR`，则 continue 即可。
 
 #### 4.9.2 多线程并发
 
-		多线程的思想同多进程类似，也是主线程负责监听，接收到一个就创建一个子线程去处理。这里有一些关于<mark>传参</mark>的问题：
+    	多线程的思想同多进程类似，也是主线程负责监听，接收到一个就创建一个子线程去处理。这里有一些关于<mark>传参</mark>的问题：
 
 1. 创建线程，我有多个参数：客户端信息、线程号、通信文件描述符......，如何把这些参数传递给线程的回调函数呢？
    $\Rightarrow$ 很简单，只需要创建一个结构体，然后**传递结构体指针**即可。
 
 2. 创建的结构体，如果放在主线程的 while 循环中，即一个局部变量，那肯定是不行滴，传参不能传局部变量的指针，因为下一个循环它就没有了。
 
-   $\Rightarrow$ 法一：给结构体在**堆上分配**内存（用malloc或new），缺点是需要自己管理内存
+   $\Rightarrow$ 法一：给结构体在**堆上分配**内存（用 malloc 或 new），缺点是需要自己管理内存
    $\Rightarrow$ 法二：把结构体创建成一个全局变量。但是既然是多线程环境，如果要同时提供多个服务，都要传参，那肯定是需要一个**结构体数组**了。
 
 3. 既然要预先创建数组，那你得指定大小呀。指定了大小，就会有不够用的问题。也即，首先要确定，怎么从数组中找出当前可以用的结构体呢？如果找不到（用完了）又该怎么办呢？
    $\Rightarrow$ 首先是怎么找：当然是循环遍历了。如果是遍历结构体数组，那么开始时要对结构体数组进行初始化，将其中的客户端文件描述符置为-1，线程使用完后同样置为-1。这样，遍历找 client_fd 不是 -1 的结构体就好了
    $\Rightarrow$ 也可以设置一个可用数组，甚至可以采用位图的方法，专门描述哪些结构体数组可用。
-   $\Rightarrow$ 比如结构体数组大小设置为128，那意思就是，我这个服务器，最多只能并发128个线程。那多的请求呢？比如遍历到最后没找着，那就让其先睡一会儿，然后再去从头或者别的地儿遍历一下。找不着接着睡
+   $\Rightarrow$ 比如结构体数组大小设置为 128，那意思就是，我这个服务器，最多只能并发 128 个线程。那多的请求呢？比如遍历到最后没找着，那就让其先睡一会儿，然后再去从头或者别的地儿遍历一下。找不着接着睡
 
 另外，对子线程采用`pthread_join`来回收显然也是不可取的，因为它会阻塞主线程。设置分离属性即可。
 
-
-
 #### 4.9.3 端口复用
 
-1. 防止服务器重启时，之前绑定的端口还没释放
-2. 程序突然退出系统而没有释放端口
+1.  防止服务器重启时，之前绑定的端口还没释放
+2.  程序突然退出系统而没有释放端口
 
-		比如正在运行的 server 和 client，突然 server 被关掉了，此时使用 `netstat -anp` 命令会发现，client处于 `close_wait` 状态，服务器不存在了，监听端口状态也没了，但是这条连接的，服务器端口还在，并处于 `fin_wait_2` 状态，此时再结束客户端，服务器端口则处于 `time_wait` 状态（过一会就结束了）
-		
-		就是说，服务器关闭了，但是 TCP 协议的任务还没完成，端口还被占用着。如果在这个 2MSL 的时间内，我想重启服务器，那么会发现，端口被占用了启动不了。为了避免这种情况，我们可以在绑定端口之前，指定端口复用属性。
+        比如正在运行的 server 和 client，突然 server 被关掉了，此时使用 `netstat -anp` 命令会发现，client处于 `close_wait` 状态，服务器不存在了，监听端口状态也没了，但是这条连接的，服务器端口还在，并处于 `fin_wait_2` 状态，此时再结束客户端，服务器端口则处于 `time_wait` 状态（过一会就结束了）
+
+        就是说，服务器关闭了，但是 TCP 协议的任务还没完成，端口还被占用着。如果在这个 2MSL 的时间内，我想重启服务器，那么会发现，端口被占用了启动不了。为了避免这种情况，我们可以在绑定端口之前，指定端口复用属性。
 
 ```bash
 netstat -anp
@@ -1875,15 +1802,13 @@ int setsockopt(int sockfd, int level, int optname,const void *optval, socklen_t 
 4. optval：端口复用的值，`0`表示不可以复用，`1`表示可以复用【int 型】
 5. optlen：optval 的长度，注意是否是指针。（因为 optval 不只是 int，还可以是 struct，参见 UNP）
 
-
-
 ### 4.10 IO 模型
 
-:star2:[从内核角度看IO模型](https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&mid=2247483737&idx=1&sn=7ef3afbb54289c6e839eed724bb8a9d6&chksm=ce77c71ef9004e08e3d164561e3a2708fc210c05408fa41f7fe338d8e85f39c1ad57519b614e#rd)
+:star2:[从内核角度看 IO 模型](https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&mid=2247483737&idx=1&sn=7ef3afbb54289c6e839eed724bb8a9d6&chksm=ce77c71ef9004e08e3d164561e3a2708fc210c05408fa41f7fe338d8e85f39c1ad57519b614e#rd)
 
 #### 4.10.1 BIO(阻塞)
 
-- 好处是不占用CPU资源，但是效率不高。accept会阻塞，read也会阻塞，服务器就干不了别的事了，一次一个
+- 好处是不占用 CPU 资源，但是效率不高。accept 会阻塞，read 也会阻塞，服务器就干不了别的事了，一次一个
 
 解决方法是，创建多个线程，让别的线程去进行交互，这样主线程一直监听，就可以实现并发。
 
@@ -1895,11 +1820,11 @@ int setsockopt(int sockfd, int level, int optname,const void *optval, socklen_t 
 
 要遍历去询问准备好了没（O(n))。这种模型已经可以做到：用很少的线程去处理多个连接了。
 
-- 但是仍有弊端：每一次遍历寻找就绪的socket，都是一次系统调用，不断调用非常浪费CPU资源。那不系统调用了，这轮询的工作直接让内核去做不就行了？
+- 但是仍有弊端：每一次遍历寻找就绪的 socket，都是一次系统调用，不断调用非常浪费 CPU 资源。那不系统调用了，这轮询的工作直接让内核去做不就行了？
 
 => IO 多路转接/复用技术，
-	 委托内核去帮我们做轮询 => select ，但是select只告诉你到了几个，不会说具体哪一个
-	 内核直接帮你把谁到了都检测出来 => epoll
+委托内核去帮我们做轮询 => select ，但是 select 只告诉你到了几个，不会说具体哪一个
+内核直接帮你把谁到了都检测出来 => epoll
 
 <table>
     <tr>
@@ -1926,14 +1851,13 @@ int setsockopt(int sockfd, int level, int optname,const void *optval, socklen_t 
     </tr>
 </table>
 
-
 阻塞 IO ，就是会在第一阶段，数据准备阶段 阻塞，非阻塞 IO 就是在第一阶段不阻塞，如果读不到，就直接返回。而无论阻塞非阻塞，在第二阶段都是阻塞的。在第二阶段阻塞的叫同步 IO，在第二阶段不阻塞的叫异步 IO
 
 #### 4.10.4 同步与异步 IO
 
 `同步模式`在数据准备好后，是由`用户线程`的`内核态`来执行`第二阶段`。所以应用程序会在第二阶段发生`阻塞`，直到数据从`内核空间`拷贝到`用户空间`，系统调用才会返回。
 
-`异步模式`下是由`内核`来执行第二阶段的数据拷贝操作，当`内核`执行完第二阶段，会通知用户线程IO操作已经完成，并将数据回调给用户线程。所以在`异步模式`下 `数据准备阶段`和`数据拷贝阶段`均是由`内核`来完成，不会对应用程序造成任何阻塞。
+`异步模式`下是由`内核`来执行第二阶段的数据拷贝操作，当`内核`执行完第二阶段，会通知用户线程 IO 操作已经完成，并将数据回调给用户线程。所以在`异步模式`下 `数据准备阶段`和`数据拷贝阶段`均是由`内核`来完成，不会对应用程序造成任何阻塞。
 
 基于以上特征，我们可以看到`异步模式`需要内核的支持，比较依赖操作系统底层的支持。
 
@@ -1953,7 +1877,7 @@ I/O 多路复用使得程序能够同时监听多个文件描述，能够提高�
 #include <sys/select.h>
 /* 让内核监听列表中的文件描述符 */
 /* sizeof(fd_set) = 128B = 1024 位，用位来表示对应的文件描述符 */
-int select   (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, 
+int select   (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
               struct timeval *timeout);
 void FD_CLR  (int fd,   fd_set *set);	 // 将 fd 对应的标志位置 0
 void FD_SET  (int fd,   fd_set *set);	 // 将 fd 对应的标志为置 1
@@ -1961,12 +1885,12 @@ int  FD_ISSET(int fd,   fd_set *set);	 // 判断 fd 对应的标志位是否为 
 void FD_ZERO (fd_set *set);				// 将 set 中标志位全置为 0
 ```
 
-- `nfds`：委托内核进行检测的文件描述符 最大数量 + 1（加 1 才能遍历到max，因为从0开始嘛）
-- `readfds`：【传入传出参数】设置位，让内核检查读缓冲，看对应文件描述符上是否有谁发来数据**可读**，有的话不变，没有的话，就会把对应的位置为0，再从内核拷贝回用户态
+- `nfds`：委托内核进行检测的文件描述符 最大数量 + 1（加 1 才能遍历到 max，因为从 0 开始嘛）
+- `readfds`：【传入传出参数】设置位，让内核检查读缓冲，看对应文件描述符上是否有谁发来数据**可读**，有的话不变，没有的话，就会把对应的位置为 0，再从内核拷贝回用户态
 - `writefds`：让内核检查写缓冲，看是否有空余位置**可写**
 - `exceptfds`：检查异常
 - `timeout`：设置等待多久；如果为 0 表示不阻塞，为 NULL 表示永久阻塞
-- `返回值`：大于 0 表示有 n 个文件描述符发生了变化，0表示超时了且没有检测到，-1表示失败
+- `返回值`：大于 0 表示有 n 个文件描述符发生了变化，0 表示超时了且没有检测到，-1 表示失败
 
 ##### 工作原理
 
@@ -1980,28 +1904,26 @@ void FD_ZERO (fd_set *set);				// 将 set 中标志位全置为 0
 
 ##### 编写代码
 
-1. 在 accept 之前，先定义一个 fdset，把**监听**的文件描述符加进去，然后传给 select，让内核去遍历这个set
-   - 这里有一个细节：传给select的，应当是一个中间值（即新建一个temp_set）因为内核会修改传入的set，这显然是我们不希望的。定义一个中间值，每次循环都把我们定义的set赋值给它
-2. select 返回，如果返回的tempset里面，listen_fd 是 1，这个文件描述符上有数据，就说明有新的客户端进来了，需要去进行链接，即accept，得到客户端的文件描述符，之后，将它添加到 set 中，更新 maxfd，然后传给内核继续 select 遍历
+1. 在 accept 之前，先定义一个 fdset，把**监听**的文件描述符加进去，然后传给 select，让内核去遍历这个 set
+   - 这里有一个细节：传给 select 的，应当是一个中间值（即新建一个 temp_set）因为内核会修改传入的 set，这显然是我们不希望的。定义一个中间值，每次循环都把我们定义的 set 赋值给它
+2. select 返回，如果返回的 tempset 里面，listen_fd 是 1，这个文件描述符上有数据，就说明有新的客户端进来了，需要去进行链接，即 accept，得到客户端的文件描述符，之后，将它添加到 set 中，更新 maxfd，然后传给内核继续 select 遍历
 3. 循环遍历 select 返回的 set，找到所有返回的文件描述符，然后处理上面的数据
 4. 如果处理数据时发现客户端断开连接，那么也应该清除其 set 位
 
-【问题来了】，select 怎么多线程呢？新客户端进来之后，如果要创建新线程，那么新线程不还是要BIO
+【问题来了】，select 怎么多线程呢？新客户端进来之后，如果要创建新线程，那么新线程不还是要 BIO
 
-##### select的缺点：
+##### select 的缺点：
 
-1. 需要在内核态和用户态来回拷贝fdset（两次拷贝）（当然还有两次切换）
+1. 需要在内核态和用户态来回拷贝 fdset（两次拷贝）（当然还有两次切换）
 2. 每次对内核返回的 set 都要进行遍历，O(n)
-3. select支持的文件描述符太少了，就1024
-4. fset集合不能重用，每次都需要重置（内核会修改传入的 fdset，虽然有别的办法，但总归是机制不方便）
-
-
+3. select 支持的文件描述符太少了，就 1024
+4. fset 集合不能重用，每次都需要重置（内核会修改传入的 fdset，虽然有别的办法，但总归是机制不方便）
 
 #### 4.11.2 poll
 
-poll 和 select 没有本质上的区别，只不过是，select 用的是 fdset 这么个**位数组**来传给内核，而 poll 用的是一个 pollfd **结构体数组**来和内核传递消息。这就没有了fd最多1024的限制（但仍受限于系统的fd上限，这是显然的）。结构体数组中同时包括了*文件描述符* 和*读写事件的区分*，因此不需要分成三个 fdset 来传参
+poll 和 select 没有本质上的区别，只不过是，select 用的是 fdset 这么个**位数组**来传给内核，而 poll 用的是一个 pollfd **结构体数组**来和内核传递消息。这就没有了 fd 最多 1024 的限制（但仍受限于系统的 fd 上限，这是显然的）。结构体数组中同时包括了*文件描述符* 和*读写事件的区分*，因此不需要分成三个 fdset 来传参
 
-至于工作的过程，仍然需要拷贝，仍然需要轮询，仍不是能解决[ C10k 问题](https://jaminzhang.github.io/web/C10K-problem/)（处理10k个并发连接）的好调度
+至于工作的过程，仍然需要拷贝，仍然需要轮询，仍不是能解决[ C10k 问题](https://jaminzhang.github.io/web/C10K-problem/)（处理 10k 个并发连接）的好调度
 
 ```c
 #include <poll.h>
@@ -2017,25 +1939,23 @@ int poll(struct pollfd *fds, nfds_t nfds, int timeout);
 - `fds`：同文件描述符表，只不过换成了结构体数组，没有 1024 的限制了
 - `nfds`：fds 数组的有效下标 + 1
 - `timeout`：0 不阻塞，-1 阻塞，>1 表示要阻塞的 毫秒 数
-- `返回值`：-1失败，n：fds中有n个文件描述符有变化
+- `返回值`：-1 失败，n：fds 中有 n 个文件描述符有变化
 - `宏取值`：使用多个用 `|` ，**判断是否相等用 `&`**【注意，不能用 == 判断与某个宏值相等】
 
 ![image-20230412201544996](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230412201544996.png)
 
 ##### 代码编写
 
-1. 创建一个fds结构体数组，初始化第一个元素为监听文件描述符，nfds先置为0，调用 poll
-2. 检查 poll 返回的数组，如果 `fds[0].revents & PILLIN`，说明有新客户端，则进行 accept；然后将新的客户端文件描述符加入到fds数组中，要用for循环遍历找空位，以免浪费，更新 nfds
-3. 然后遍历 fds 数组，查找`revents & POLLIN`的fd，进行通信
+1. 创建一个 fds 结构体数组，初始化第一个元素为监听文件描述符，nfds 先置为 0，调用 poll
+2. 检查 poll 返回的数组，如果 `fds[0].revents & PILLIN`，说明有新客户端，则进行 accept；然后将新的客户端文件描述符加入到 fds 数组中，要用 for 循环遍历找空位，以免浪费，更新 nfds
+3. 然后遍历 fds 数组，查找`revents & POLLIN`的 fd，进行通信
 
-##### poll缺点
+##### poll 缺点
 
-poll 改进了 select 的3 4缺点，即使用了一个结构数组，数组项可以重用了，也没有上限了。但仍有缺点：
+poll 改进了 select 的 3 4 缺点，即使用了一个结构数组，数组项可以重用了，也没有上限了。但仍有缺点：
 
 1. 仍然需要在内核态和用户态拷贝
 2. 仍然需要遍历。虽然告诉了你那几个发生了改变，但是并没有指出到底是谁，还是需要遍历
-
-
 
 #### 4.11.3 epoll
 
@@ -2047,7 +1967,7 @@ poll 改进了 select 的3 4缺点，即使用了一个结构数组，数组项�
 2. 内核不会通知具体是哪些 fd 就绪，只是在他们的数组位上打上标记，用户需要遍历才能找到$\rarr$**双链表**
 3. 内核也是通过遍历来寻找就绪的 socket fd 的$\rarr$**回调函数**
 
-epoll 对这三个问题都进行了解决。它会在内核中创建一个epoll对象，这里面包括一个**红黑树**`rbr`：用来存放用户需要监听的文件描述符，和一个**双向链表**`rdlist`：用来保存内核找到的就绪描述符，并返回给用户。当然还有别的数据，比如一个**阻塞队列**`wq`：存放的是阻塞在epoll上的用户进程，在IO就绪的时候epoll可以通过这个队列找到这些阻塞的进程并唤醒它们，从而执行IO调用读写Socket的数据。
+epoll 对这三个问题都进行了解决。它会在内核中创建一个 epoll 对象，这里面包括一个**红黑树**`rbr`：用来存放用户需要监听的文件描述符，和一个**双向链表**`rdlist`：用来保存内核找到的就绪描述符，并返回给用户。当然还有别的数据，比如一个**阻塞队列**`wq`：存放的是阻塞在 epoll 上的用户进程，在 IO 就绪的时候 epoll 可以通过这个队列找到这些阻塞的进程并唤醒它们，从而执行 IO 调用读写 Socket 的数据。
 
 下面先看 epoll 的 API
 
@@ -2059,7 +1979,7 @@ epoll 对这三个问题都进行了解决。它会在内核中创建一个epoll
 /**epoll_create
  * @brief : 创建一个新的 epoll 实例（即内核中创建了一块数据结构）
  * - 需要检测的文件描述符信息（红黑树）
- * - 和就绪列表，存放内核检测到发生变化的文件描述符（双链表） 
+ * - 和就绪列表，存放内核检测到发生变化的文件描述符（双链表）
  * @parameter:
  *  A size: 没有意义，随便指定。（历史遗留问题，因为之前是用hash实现的）
  * @return: -1失败，>0 指向内核实例的文件描述符*/
@@ -2111,37 +2031,37 @@ int epoll_wait  (int epfd, struct epoll_event *events, int maxevents, int timeou
 
 ![image-20230412203706983](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230412203706983.png)
 
-可见epoll解决了如下问题：
+可见 epoll 解决了如下问题：
 
 - 内核态和用户态来回拷贝的问题：直接在内核态创建一个数据结构
 - 内核态增删：创建一个红黑树，高效增删
 - 内核态查找就绪：注册回调函数，就绪了直接定位
 - 返回后用户不只谁变化，还需要遍历：创建一个就绪链表，返回的直接就是所有变化的
 
->  :question: epoll的回调函数`ep_poll_callback`正是`epoll`同步IO事件通知机制的核心所在，也是区别于`select，poll`采用内核轮询方式的根本性能差异所在。（:chains:[内核角度看IO模型](https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&mid=2247483737&idx=1&sn=7ef3afbb54289c6e839eed724bb8a9d6&chksm=ce77c71ef9004e08e3d164561e3a2708fc210c05408fa41f7fe338d8e85f39c1ad57519b614e#rd)，源码实现，以后再看）
+> :question: epoll 的回调函数`ep_poll_callback`正是`epoll`同步 IO 事件通知机制的核心所在，也是区别于`select，poll`采用内核轮询方式的根本性能差异所在。（:chains:[内核角度看 IO 模型](https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&mid=2247483737&idx=1&sn=7ef3afbb54289c6e839eed724bb8a9d6&chksm=ce77c71ef9004e08e3d164561e3a2708fc210c05408fa41f7fe338d8e85f39c1ad57519b614e#rd)，源码实现，以后再看）
 
 ##### epoll 优势总结
 
-1. 内核中通过`红黑树`管理海量的连接，所以在调用`epoll_wait`获取`IO就绪`的socket时，不需要传入监听的socket文件描述符。从而避免了海量的文件描述符集合在`用户空间`和`内核空间`中来回复制。
+1. 内核中通过`红黑树`管理海量的连接，所以在调用`epoll_wait`获取`IO就绪`的 socket 时，不需要传入监听的 socket 文件描述符。从而避免了海量的文件描述符集合在`用户空间`和`内核空间`中来回复制。
 2. epoll 仅会通知`IO就绪`的 socket。避免了在用户空间遍历的开销
-3. epoll通过在 socket 的 等待队列 上注册**回调函数**`ep_poll_callback`通知用户程序`IO就绪`的socket。避免了在内核中轮询的开销。
+3. epoll 通过在 socket 的 等待队列 上注册**回调函数**`ep_poll_callback`通知用户程序`IO就绪`的 socket。避免了在内核中轮询的开销。
 
 ##### 代码编写
 
 1. 调用`epoll_create`，直接在**内核**创建一个数据结构（红黑树），返回文件描述符。通过文件描述符可以去操作这个内核区的实例
 2. 调用`epoll_ctl`把监听文件描述符添加`EPOLL_CTL_ADD`进内核的红黑树中
 3. 调用`epoll_wait`来让内核干活，返回一个发生变化的文件描述符列表`epoll_event`结构体数组
-4. 遍历结构体数组的**每一个**，如果是监听的变了，就accept，同时把新客户ADD进去；如果是别的，就进行数据传输，如果传输完了就把该客户DEL掉
+4. 遍历结构体数组的**每一个**，如果是监听的变了，就 accept，同时把新客户 ADD 进去；如果是别的，就进行数据传输，如果传输完了就把该客户 DEL 掉
 
 ##### 两种工作模式
 
 **（1）LT 模式（水平触发）**
 
-`EPOLLLT`，缺省即为此模式，可以同时支持阻塞和非阻塞 socket。这种模式下，内核会告诉你一个文件描述符是否就绪了，然后你可以对此就绪的 fd 进行 IO操作。如果你不操作，或者没操作完（没读完），内核下一次还是会继续通知你这个 fd 可操作。
+`EPOLLLT`，缺省即为此模式，可以同时支持阻塞和非阻塞 socket。这种模式下，内核会告诉你一个文件描述符是否就绪了，然后你可以对此就绪的 fd 进行 IO 操作。如果你不操作，或者没操作完（没读完），内核下一次还是会继续通知你这个 fd 可操作。
 
 即：只要 fd 缓冲区中有数据，epoll 就会一直通知（每一轮），直到读完
 
-**（2）ET模式（边缘触发）**
+**（2）ET 模式（边缘触发）**
 
 `EPOLLET`，一种高速的工作方式，只支持 non-block socket，描述符变为就绪状态的时候，内核会通知你一次，后面就不会再为这个 fd 发送更多的信息了，直到某些操作导致其变为非就绪状态
 
@@ -2153,23 +2073,23 @@ ET 很大程度上减少了 epoll 时间被重复出发的次数，因此效率�
 
 本质区别就在于：
 
-- LT 模式下，线程调用 epoll_wait 操作一通 sockfd 之后，**再次调用 epoll_wait 的时候**，epoll_wait 会检查socket缓冲区中是否还有数据，是否读干净了。如果没读干净，那么就会把这个 sockfd 再次放进 `rdlist` 中，然后下次调用的时候还会返回这个 sockfd，还能接着读
-- 而 ET 模式下，这一次调用了 epoll_wait 之后，直接就**把就绪队列 `rdlist` 清空**了，因此，不管你读没读，完没完，你下次都读不到这个 sockfd 了。**除非，这个socket上有新的IO数据到达**，根据epoll的工作过程，该 socket 会被再次放入 `rdllist` 中。
+- LT 模式下，线程调用 epoll_wait 操作一通 sockfd 之后，**再次调用 epoll_wait 的时候**，epoll_wait 会检查 socket 缓冲区中是否还有数据，是否读干净了。如果没读干净，那么就会把这个 sockfd 再次放进 `rdlist` 中，然后下次调用的时候还会返回这个 sockfd，还能接着读
+- 而 ET 模式下，这一次调用了 epoll_wait 之后，直接就**把就绪队列 `rdlist` 清空**了，因此，不管你读没读，完没完，你下次都读不到这个 sockfd 了。**除非，这个 socket 上有新的 IO 数据到达**，根据 epoll 的工作过程，该 socket 会被再次放入 `rdllist` 中。
 
 ### 4.12 IO 线程模型
 
-5 种 IO 模型是从内核空间的视角，来剖析网络数据的收发模型。而站在用户空间的视角，即可得到两种IO线程模型。即 Reactor 模型和 Proactor 模型
+5 种 IO 模型是从内核空间的视角，来剖析网络数据的收发模型。而站在用户空间的视角，即可得到两种 IO 线程模型。即 Reactor 模型和 Proactor 模型
 
-这些用户空间的`IO线程模型`都是在讨论当多线程一起配合工作时谁负责接收连接，谁负责响应IO 读写、谁负责计算、谁负责发送和接收，仅仅是用户IO线程的不同分工模式罢了。
+这些用户空间的`IO线程模型`都是在讨论当多线程一起配合工作时谁负责接收连接，谁负责响应 IO 读写、谁负责计算、谁负责发送和接收，仅仅是用户 IO 线程的不同分工模式罢了。
 
 #### 4.12.1 Reactor
 
 `Reactor`是利用`NIO`（非阻塞）对`IO线程`进行不同的分工
 
-- 使用IO多路复用模型比如`select, poll, epoll, kqueue`，进行IO事件的注册和监听。
-- 将监听到就绪的IO事件分发`dispatch`到各个具体的处理`Handler`中进行相应的IO事件处理。
+- 使用 IO 多路复用模型比如`select, poll, epoll, kqueue`，进行 IO 事件的注册和监听。
+- 将监听到就绪的 IO 事件分发`dispatch`到各个具体的处理`Handler`中进行相应的 IO 事件处理。
 
-Reactor 模型依赖 **IO 多路复用技术(epoll)**，来实现监听 IO 事件，不断的分发`dispatch`，就像一个`反应堆`一样，看起来像不断的产生IO事件，因此我们称这种模式为`Reactor`模型。
+Reactor 模型依赖 **IO 多路复用技术(epoll)**，来实现监听 IO 事件，不断的分发`dispatch`，就像一个`反应堆`一样，看起来像不断的产生 IO 事件，因此我们称这种模式为`Reactor`模型。
 
 具体分为三类：
 
@@ -2186,13 +2106,12 @@ Reactor 模型依赖 **IO 多路复用技术(epoll)**，来实现监听 IO 事�
     </tr>
 </table>
 
-
 ##### 单 Reactor 单线程
 
 - 单 Reactor 意味着只有**一个 epoll 对象**，用来监听所有的事件，比如连接事件，读写事件。
-- 单线程 意味着只有**一个线程**来调用 `epoll_wait`，获取IO就绪的Socket，然后对这些就绪的Socket执行读写，以及后边的业务处理也依然是这个线程。
+- 单线程 意味着只有**一个线程**来调用 `epoll_wait`，获取 IO 就绪的 Socket，然后对这些就绪的 Socket 执行读写，以及后边的业务处理也依然是这个线程。
 
-相当于一个线程（小老板）要完成 accept事件（迎客） 、接受IO请求（顾客点菜）、业务处理（做菜）、IO响应（上菜）、断开连接（送客） 
+相当于一个线程（小老板）要完成 accept 事件（迎客） 、接受 IO 请求（顾客点菜）、业务处理（做菜）、IO 响应（上菜）、断开连接（送客）
 
 ##### 单 Reactor 多线程
 
@@ -2202,7 +2121,7 @@ Reactor 模型依赖 **IO 多路复用技术(epoll)**，来实现监听 IO 事�
 ##### 主从 Reactor
 
 - 主 Reactor 专门用来迎接客人（接受新连接），对应的 Handler 就是 acceptor
-- 从 Reactor 则负责招待客人（后续业务），在 acceptor 中将要监听的`read 事件`注册到`从 Reactor`中，由从Reactor来监听 socket 上的读写事件 
+- 从 Reactor 则负责招待客人（后续业务），在 acceptor 中将要监听的`read 事件`注册到`从 Reactor`中，由从 Reactor 来监听 socket 上的读写事件
 
 > **注意**：这里向`从Reactor`注册的只是`read事件`，并没有注册`write事件`，因为`read事件`是由`epoll内核`触发的，而`write事件`则是由`用户业务线程`触发的（`什么时候发送数据是由具体业务线程决定的`），所以`write事件`理应是由`用户业务线程`去注册。
 
@@ -2218,8 +2137,8 @@ ProactorIO 线程模型将 `IO事件的监听`，`IO操作的执行`，`IO结果
 
 ##### 模型组件介绍
 
-- `completion handler` 为用户程序定义的异步IO操作回调函数，在异步IO操作完成时会被内核回调并通知IO结果。
-- `Completion Event Queue` 异步IO操作完成后，会产生对应的`IO完成事件`，将`IO完成事件`放入该队列中。
+- `completion handler` 为用户程序定义的异步 IO 操作回调函数，在异步 IO 操作完成时会被内核回调并通知 IO 结果。
+- `Completion Event Queue` 异步 IO 操作完成后，会产生对应的`IO完成事件`，将`IO完成事件`放入该队列中。
 - `Asynchronous Operation Processor` 负责`异步IO`的执行。执行完成后产生`IO完成事件`放入`Completion Event Queue` 队列中。
 - `Proactor` 是一个事件循环派发器，负责从`Completion Event Queue`中获取`IO完成事件`，并回调与`IO完成事件`关联的`completion handler`。
 - `Initiator` 初始化异步操作（`asynchronous operation`）并通过`Asynchronous Operation Processor`将`completion handler`和`proactor`注册到内核。
@@ -2231,15 +2150,13 @@ ProactorIO 线程模型将 `IO事件的监听`，`IO操作的执行`，`IO结果
 
 > 在`Proactor`中我们关心的`IO完成事件`：内核已经帮我们读好数据并放入我们指定的读缓冲区，用户线程可以直接读取。在`Reactor`中我们关心的是`IO就绪事件`：数据已经到来，但是需要用户线程自己去读取。
 
-- 此时用户线程就可以做其他事情了，无需等待IO结果。而内核与此同时开始异步执行IO操作。当`IO操作`完成时会产生一个`completion event`事件，将这个`IO完成事件`放入`completion event queue`中。
+- 此时用户线程就可以做其他事情了，无需等待 IO 结果。而内核与此同时开始异步执行 IO 操作。当`IO操作`完成时会产生一个`completion event`事件，将这个`IO完成事件`放入`completion event queue`中。
 - `Proactor`从`completion event queue`中取出`completion event`，并回调与`IO完成事件`关联的`completion handler`。
 - 在`completion handler`中完成业务逻辑处理。
 
-
-
 #### 4.12.3 两线程模型比较
 
-- `Reactor`是基于`NIO`实现的一种IO线程模型，`Proactor`是基于`AIO`实现的IO线程模型。
+- `Reactor`是基于`NIO`实现的一种 IO 线程模型，`Proactor`是基于`AIO`实现的 IO 线程模型。
 - `Reactor`关心的是`IO 就绪事件`，`Proactor`关心的是`IO 完成事件`。
 - `Proactor`中，用户程序需要向内核传递`用户空间的读缓冲区地址`。`Reactor`则不需要。这也就导致了在`Proactor`中每个并发操作都要求有独立的缓存区，在内存上有一定的开销。
 - `Proactor` 的实现逻辑复杂，编码成本较 `Reactor`要高很多。

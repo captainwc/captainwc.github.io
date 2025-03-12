@@ -1,24 +1,23 @@
 ---
-date: '2021-02-15T18:08:01+08:00'
-title: 'Markdown Demo'
+date: "2021-02-15T18:08:01+08:00"
+title: "Markdown Demo"
 tags: ["markdown"]
 ---
-
 
 [<img src="https://simpleicons.org/icons/github.svg" style="max-width:10%;min-width:40px;float:right;" alt="Github repo" />](https://github.com/captainwc)
 
 # KSimple
 
-Ksimple 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 和 [hugo-admonitions](https://github.com/KKKZOZ/hugo-admonitions) 基础上稍作修改的一个hugo主题。比较简单，可能更适合个人使用，因此没有单独发布的打算。
-
+Ksimple 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 和 [hugo-admonitions](https://github.com/KKKZOZ/hugo-admonitions) 基础上稍作修改的一个 hugo 主题。比较简单，可能更适合个人使用，因此没有单独发布的打算。
 
 ## 基本语法展示
 
-**Bold**， *Italic*， <mark>Highlight</mark>， ~~Delete~~，:tent:，😘， `Inline Code`， \(x^2 + y^2 = 1\)，
+**Bold**， _Italic_， <mark>Highlight</mark>， ~~Delete~~，:tent:，😘， `Inline Code`， \(x^2 + y^2 = 1\)，
 
 Reference[^Ref001], Reference2[^x2y]
 
 ---
+
 > this is a blockquote
 
 $${\sqrt {n}}\left(\left({\frac {1}{n}}\sum _{i=1}^{n}X_{i}\right)-\mu \right)\ {\xrightarrow {d}}\ N\left(0,\sigma ^{2}\right)$$
@@ -38,7 +37,9 @@ int main(){
 ```
 
 - list
+
 1. item
+
 - [ ] todo
 - [x] todo
 
@@ -50,7 +51,7 @@ int main(){
 [<<img src="xxx" alt="" style="max-width: 50%; float:right;">>]()
 ```
 
-效果看上面那个github头像即可
+效果看上面那个 github 头像即可
 
 ### div flex
 
@@ -66,7 +67,7 @@ int main(){
     <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgblog_imgimage-20250312141915556.png" alt="cpp" style="max-width: 50%;">
 </div>
 
-### TODO: 定制Shotcode
+### TODO: 定制 Shotcode
 
 ## PlantUML 代码块自动渲染
 
@@ -162,7 +163,7 @@ PrimitiveType = [Annotation], (NumericType | boolean );
 暂时不打算给博客添加目录
 
 > [!tip]
-可以考虑使用浏览器插件[OneToc](https://microsoftedge.microsoft.com/addons/detail/onetoc/jkgapfniamkoblbmbhdjlnfklihlpjmc)，有快捷键Toggle的功能，效果已经非常不错了。
+> 可以考虑使用浏览器插件[OneToc](https://microsoftedge.microsoft.com/addons/detail/onetoc/jkgapfniamkoblbmbhdjlnfklihlpjmc)，有快捷键 Toggle 的功能，效果已经非常不错了。
 
 [^Ref001]: This is the first reference。Alought it placed at the middle of markdown source, it will be move to the end of the html.
 [^x2y]: And this is the second one
@@ -170,9 +171,9 @@ PrimitiveType = [Annotation], (NumericType | boolean );
 ---
 
 > [!WARNING] 版权声明
-以下callout块相关的内容（包括本博客的实现）全部来自具有`MIT`开源协议的[hugo-admonitions](https://github.com/KKKZOZ/hugo-admonitions)主题，详情请参考原主题！
+> 以下 callout 块相关的内容（包括本博客的实现）全部来自具有`MIT`开源协议的[hugo-admonitions](https://github.com/KKKZOZ/hugo-admonitions)主题，详情请参考原主题！
 
-## Callout块展示
+## Callout 块展示
 
 > [!NOSUPPORT]
 > Helpful advice for doing things better or more easily.
@@ -207,7 +208,7 @@ PrimitiveType = [Annotation], (NumericType | boolean );
 >
 > ```javascript
 > function fetchData() {
->     return axios.get('/api/data');
+>   return axios.get("/api/data");
 > }
 > ```
 
@@ -328,4 +329,3 @@ You can choose to only to show the header!
 > [!TIP] Use `Ctrl + C` to quickly terminate a running program
 
 > [!WARNING] Warning: This operation will delete all data
-

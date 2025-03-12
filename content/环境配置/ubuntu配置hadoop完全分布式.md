@@ -5,20 +5,21 @@ categories: [环境配置]
 tags: [hadoop]
 ---
 
-# Ubuntu22.04安装Hadoop完全分布式集群
+# Ubuntu22.04 安装 Hadoop 完全分布式集群
 
 ## 1. 网络配置
 
-需要修改四处，windows（宿主机），vmware，和虚拟机ubuntu**（`NAT`模式）**
+需要修改四处，windows（宿主机），vmware，和虚拟机 ubuntu**（`NAT`模式）**
 
-1. windows，设置vmware8的ipv4选项即可
+1. windows，设置 vmware8 的 ipv4 选项即可
 
-2. vmware的ip设置和windows是一样的，网关都是`192.168.5.2`，还有NAT网络设置
+2. vmware 的 ip 设置和 windows 是一样的，网关都是`192.168.5.2`，还有 NAT 网络设置
 
-3. ubuntu的主要任务就是
-- 把DHCP换成`静态IP`（这部分要看具体集群配置，比如设置master和slave1，slave2，则可以分别分配ip为`192.168.5.11`,`192.168.5.12`,`192.168.5.13`）
-- 再改改网关gateway和DNS（这部分和上面是一样的）
-- 然后为ip地址起个别名，即修改`hosts`，添加映射
+3. ubuntu 的主要任务就是
+
+- 把 DHCP 换成`静态IP`（这部分要看具体集群配置，比如设置 master 和 slave1，slave2，则可以分别分配 ip 为`192.168.5.11`,`192.168.5.12`,`192.168.5.13`）
+- 再改改网关 gateway 和 DNS（这部分和上面是一样的）
+- 然后为 ip 地址起个别名，即修改`hosts`，添加映射
 
 ```bash
 cd /etc/netplan/ && ll
@@ -57,8 +58,6 @@ ifconfig | head -n 3
 ping -c 3 www.baidu.com
 ```
 
-
-
 ```bash
 # 修改hostname
 sudo vim /etc/hostname
@@ -69,9 +68,11 @@ sudo vim /etc/hosts
 192.168.5.12 slave1
 ```
 
-# 在windows中也添加ip映射
+# 在 windows 中也添加 ip 映射
+
 /C:\windows\system32\drivers\etc\hosts
-```
+
+````
 
 ## 2. 安装JDK与Hadoop
 
@@ -81,9 +82,9 @@ sudo vim /etc/hosts
 # 将下载的安装包解压到 /opt下新建的文件夹module中
 tar -zxvf jdk-XXXX-x64.tar.gz -C /opt/module
 tar -zxvf hadoop-XXXX-x64.tar.gz -C /opt/module
-```
+````
 
-### 2.2配置环境变量
+### 2.2 配置环境变量
 
 ```bash
 # 新建.sh文件；因为\etc\profile会遍历\etc\profile.d文件夹下的所有.sh文件
@@ -113,12 +114,13 @@ hadoop version
 
 ## 3. 配置完全分布式
 
-### 3.1 配置SSH无密登录
+### 3.1 配置 SSH 无密登录
 
 ```bash
 # ssh-server是缺省的，注意安装一下
 sudo apt install openssh-server
 ```
+
 ```bash
 # 生成公钥和私钥，以rsa算法
 ssh-keygen -t rsa
@@ -132,15 +134,15 @@ ssh-copyid [maser][slave1][slave2]
 
 `scp    -r     $pdir/$filename   $user@$host:$pdir/$filename`
 
-拷贝   递归   要拷贝的文件     目标服务器:目的路径/名称
+拷贝 递归 要拷贝的文件 目标服务器:目的路径/名称
 
 #### 3.2.2 rsync（远程同步工具）
 
 `rsync     -av     $pdir/$filename   $user@$host:$pdir/$filename`
 
-远程同步   参数    要拷贝的文件      目标服务器:目的路径/名称
+远程同步 参数 要拷贝的文件 目标服务器:目的路径/名称
 
--a表示归档拷贝，-v表示显示过程
+-a 表示归档拷贝，-v 表示显示过程
 
 **`rsync`可以避免复制重复内容，所以比`scp`效率要高；同时支持符号链接**
 
@@ -262,15 +264,15 @@ source /etc/profile
         <name>yarn.nodemanager.env-whitelist</name>
                      <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
     </property>
-    
+
     <!-- 开启日志聚集功能 -->
     <property>
         <name>yarn.log-aggregation-enable</name>
         <value>true</value>
     </property>
     <!-- 设置日志聚集服务器地址 -->
-    <property>  
-        <name>yarn.log.server.url</name>  
+    <property>
+        <name>yarn.log.server.url</name>
         <value>http://master:19888/jobhistory/logs</value>
     </property>
     <!-- 设置日志保留时间为7天 -->
@@ -290,7 +292,7 @@ source /etc/profile
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
     </property>
-    
+
     <!-- 历史服务器端地址 -->
     <property>
         <name>mapreduce.jobhistory.address</name>
@@ -312,7 +314,7 @@ xsync $HADOOP_HOME/etc/hadoop/
 
 ## 4. 群起集群
 
-### 4.1 配置worker
+### 4.1 配置 worker
 
 ```bash
 vim $HADOOP_NOME/etc/hadoop/workers
@@ -326,9 +328,9 @@ xsync $HADOOP_NOME/etc/hadoop/workers
 
 ### 4.2 启动集群
 
-如果集群是**第一次启动**，需要**在master节点格式化NameNode**
+如果集群是**第一次启动**，需要**在 master 节点格式化 NameNode**
 
-:japanese_goblin:注意：格式化NameNode后，会产生新的集群id，导致NameNode和原来DataNode对应的集群id不一致，这样集群就找不到已往数据。如果集群在运行过程中报错，需要重新格式化NameNode的话，一定要先停止namenode和datanode进程，并且要删除所有机器的data和logs目录，然后再进行格式化。
+:japanese_goblin:注意：格式化 NameNode 后，会产生新的集群 id，导致 NameNode 和原来 DataNode 对应的集群 id 不一致，这样集群就找不到已往数据。如果集群在运行过程中报错，需要重新格式化 NameNode 的话，一定要先停止 namenode 和 datanode 进程，并且要删除所有机器的 data 和 logs 目录，然后再进行格式化。
 
 :japanese_ogre:要严格按照集群规划，启动对应的部分，hdfs，yarn，历史服务器等
 
@@ -417,9 +419,9 @@ chmod 777 myhadoop.sh
 
 #### 4.3.4 编写脚本 查看所有服务器运行的服务
 
- ```bash
- vim ~/bin/jpsall
- ```
+```bash
+vim ~/bin/jpsall
+```
 
 ```bash
 #!/bin/bash
@@ -427,7 +429,7 @@ chmod 777 myhadoop.sh
 for host in master slave1 slave2
 do
         echo =============== $host ===============
-        ssh $host jps 
+        ssh $host jps
 done
 ```
 
@@ -437,17 +439,17 @@ chmod 777 jpsall
 
 ### 4.4 常用端口号
 
-| 端口名称         | Hadoop3.x      |
-| ---------------- | -------------- |
-| NameNode内部通信 | 8020/9000/9820 |
-| NameNode HTTP UI | 9870           |
-| MapReduce        | 8088           |
-| HistoryServer    | 19888          |
+| 端口名称          | Hadoop3.x      |
+| ----------------- | -------------- |
+| NameNode 内部通信 | 8020/9000/9820 |
+| NameNode HTTP UI  | 9870           |
+| MapReduce         | 8088           |
+| HistoryServer     | 19888          |
 
 ## 5. 集群基本测试
 
-官方案例wordcount（本地模式运行）
+官方案例 wordcount（本地模式运行）
 
-上传下载，web浏览
+上传下载，web 浏览
 
 ......
