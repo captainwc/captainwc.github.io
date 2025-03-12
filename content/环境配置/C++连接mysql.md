@@ -5,18 +5,18 @@ tags: []
 categories: [环境配置]
 ---
 
-# C++连接mysql
+# C++连接 mysql
 
 > [!info]
-MySQL是[社区版](https://dev.mysql.com/downloads/mysql/)，8.0.31；clion 2022.2.3；ubuntu22.04
+> MySQL 是[社区版](https://dev.mysql.com/downloads/mysql/)，8.0.31；clion 2022.2.3；ubuntu22.04
 
-## 1）Windows下，clion连接
+## 1）Windows 下，clion 连接
 
-mysql是用的直接解压版，主要图一个方便。假定已经成功[配置好mysql](https://www.cnblogs.com/shuaikai/p/16899955.html)
+mysql 是用的直接解压版，主要图一个方便。假定已经成功[配置好 mysql](https://www.cnblogs.com/shuaikai/p/16899955.html)
 
-把`%MySQL_HOME%/lib`下的`libmysql.dll`和`libmysqllib`两个文件拷贝到clion工程的`cmake-build-debug`文件夹下
+把`%MySQL_HOME%/lib`下的`libmysql.dll`和`libmysqllib`两个文件拷贝到 clion 工程的`cmake-build-debug`文件夹下
 
-然后在Cmakelist.txt中添加：
+然后在 Cmakelist.txt 中添加：
 
 ```cmake
 # 自动生成
@@ -42,7 +42,7 @@ target_link_libraries(connect_mysql libmysql)
 
 然后直接`#include<mysql.h>`就好了
 
-## 2）ubuntu下
+## 2）ubuntu 下
 
 ```bash
 # 三步走
@@ -55,17 +55,17 @@ sudo apt install libmysqlclient-dev
 
 补充知识点：
 
-### gcc编译选项
+### gcc 编译选项
 
-**`-I`:** (大写的I）指定引用头文件路径，如`-I/usr/include/mysql`
+**`-I`:** (大写的 I）指定引用头文件路径，如`-I/usr/include/mysql`
 
-**`-l`:**（小写的l） 手动添加链接库，这里gcc是到默认链接库下搜索的，如`/usr/lib`。
+**`-l`:**（小写的 l） 手动添加链接库，这里 gcc 是到默认链接库下搜索的，如`/usr/lib`。
 
-- 库文件标准文件名为`libxxx.a`，在使用时前缀`lib`和后缀`.a`是省略的，即直接`-lxxx`，l是自己添加的
+- 库文件标准文件名为`libxxx.a`，在使用时前缀`lib`和后缀`.a`是省略的，即直接`-lxxx`，l 是自己添加的
 
-- 举个例子，数学库<math.h>默认是不链接的，因此即使你包含了这个头文件，编译时仍然会报错 undefined reference。正确的编译命令是`gcc test.c -o test.out -lm`【数学库的名称为libm.a】
+- 举个例子，数学库<math.h>默认是不链接的，因此即使你包含了这个头文件，编译时仍然会报错 undefined reference。正确的编译命令是`gcc test.c -o test.out -lm`【数学库的名称为 libm.a】
 
-**`-L`:**（大写的L） 指定一个搜索链接库的目录，如`-L/usr/lib/x86_64-linux-gnu -lmysqlclient`，后面再跟你指定的库文件
+**`-L`:**（大写的 L） 指定一个搜索链接库的目录，如`-L/usr/lib/x86_64-linux-gnu -lmysqlclient`，后面再跟你指定的库文件
 
 ### mysql_config
 
@@ -82,7 +82,7 @@ mysql_conig --libs
 #OUT: -L/usr/lib/x86_64-linux-gnu -lmysqlclient -lzstd -lssl -lcrypto -lresolv -lm
 ```
 
-可以看出，这是一个专门为编译mysql文件提供编译选项的脚本。因此，可以通过这个脚本方便的对写的文件进行编译
+可以看出，这是一个专门为编译 mysql 文件提供编译选项的脚本。因此，可以通过这个脚本方便的对写的文件进行编译
 
 ```bash
 gcc connect_mysql -o demo.out `mysql_config --include --libs` -Wall
@@ -90,15 +90,15 @@ gcc connect_mysql -o demo.out `mysql_config --include --libs` -Wall
 
 这样头文件和链接库都指定好了，只需要`#include<mysql.h>`就好了
 
-## mysql接口
+## mysql 接口
 
-- `mysql_init()`         获取或初始化MYSQL结构
-- `mysql_real_connect()` 连接到MySQL服务器。
-- `mysql_query()`        执行指定为“以Null终结的字符串”的SQL查询。
-- `mysql_use_result()`   初始化逐行的结果集检索。
-- `mysql_field_count()`  返回上次执行语句的结果集的列数。
-- `mysql_fetch_row()`    从结果集中获取下一行
-- `mysql_num_fields()`   返回结果集中的字段数
+- `mysql_init()` 获取或初始化 MYSQL 结构
+- `mysql_real_connect()` 连接到 MySQL 服务器。
+- `mysql_query()` 执行指定为“以 Null 终结的字符串”的 SQL 查询。
+- `mysql_use_result()` 初始化逐行的结果集检索。
+- `mysql_field_count()` 返回上次执行语句的结果集的列数。
+- `mysql_fetch_row()` 从结果集中获取下一行
+- `mysql_num_fields()` 返回结果集中的字段数
 
 ## 测试用例
 
@@ -237,6 +237,3 @@ int main()
         return 0;
 }
 ```
-
-
-

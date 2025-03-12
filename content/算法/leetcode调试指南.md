@@ -4,36 +4,37 @@ date: 2024-03-14
 tags: [leetcode]
 ---
 
-
-
 # leetcode 调试
 
-## 方法2
-> 代码拷贝到本地，用ide/gdb调试。
-比如使用 vim + floaterm + cgdb，效果见后图
+## 方法 2
 
-对于此法，提供一个 **header-only** 的头文件 📜[《lc.h》](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2024_7/lc.h)，只需要引用此头文件，然后将Class Solution复制到本地，加上main函数即可运行
+> 代码拷贝到本地，用 ide/gdb 调试。
+> 比如使用 vim + floaterm + cgdb，效果见后图
+
+对于此法，提供一个 **header-only** 的头文件 📜[《lc.h》](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2024_7/lc.h)，只需要引用此头文件，然后将 Class Solution 复制到本地，加上 main 函数即可运行
 
 ### 功能简介
-- 常用头文件（类似<bits/stdc++.h>，但是win上没有）以及 `using namespace std;`
-- leetcode的链表和二叉树的定义，以及快速构建函数
-- 随机数库封装，可以直接获取随机vector、字符串等
+
+- 常用头文件（类似<bits/stdc++.h>，但是 win 上没有）以及 `using namespace std;`
+- leetcode 的链表和二叉树的定义，以及快速构建函数
+- 随机数库封装，可以直接获取随机 vector、字符串等
 - Logger，可以打印包括**容器**、**嵌套容器**、**自定义类型**在内的各种类型
-- Assert, 一些断言。是的，这跟leetcode无关，可以在你编写自己的小算法的时候提供一些测试套件。效果如图：
-- benchmark，简单的性能测试（测试运行n次用时、平均每次用时）
-- 其他的，大杂烩。（比如对ppm位图的封装，你可以由此实现一个对可视化的排序算法...）
+- Assert, 一些断言。是的，这跟 leetcode 无关，可以在你编写自己的小算法的时候提供一些测试套件。效果如图：
+- benchmark，简单的性能测试（测试运行 n 次用时、平均每次用时）
+- 其他的，大杂烩。（比如对 ppm 位图的封装，你可以由此实现一个对可视化的排序算法...）
 
 ### 效果图
+
 ![image](https://img2024.cnblogs.com/blog/1578652/202407/1578652-20240719183806684-1731724980.png)
 
-另外，推荐使用 **vim + floaterm + cgdb** 的方式，配合此头文件对leetcode代码进行调试，喜欢的点是比较轻量，随时随地能调一下子。效果如下
+另外，推荐使用 **vim + floaterm + cgdb** 的方式，配合此头文件对 leetcode 代码进行调试，喜欢的点是比较轻量，随时随地能调一下子。效果如下
 ![image](https://img2024.cnblogs.com/blog/1578652/202407/1578652-20240719184145994-538062460.png)
 
-
 ## 方法 1
-> 在leetcode代码头上定义测试宏，使用print大法来调试。
 
-这里我把代码用vscode的join line合并成一行了，不然有些喧宾夺主。记得**提交的时候把DEBUG宏关闭**就好。格式化后的代码见后文
+> 在 leetcode 代码头上定义测试宏，使用 print 大法来调试。
+
+这里我把代码用 vscode 的 join line 合并成一行了，不然有些喧宾夺主。记得**提交的时候把 DEBUG 宏关闭**就好。格式化后的代码见后文
 
 ```c++
 #define DEBUG 1
@@ -62,19 +63,21 @@ template <typename T> struct ListType { template <typename Ptr> static auto test
 ```
 
 ### 功能简介
+
 - LOG(X) 输出 [#x] X \n 的效果
-- LOGF(...) 即format，可以实现 `LOGF("This's my var: list:{}, map:{}, vector:{}, string:{}, int:{} ...", l, mp, vc, str, i)`等类型的输出
-- 对leetcode涉及到类型（无非就是容器，链表，和基本类型）进行toString()转换。（正因为有此假设，所以实现时重点在于简洁而不在鲁棒，不支持类型可能会segment fault）
+- LOGF(...) 即 format，可以实现 `LOGF("This's my var: list:{}, map:{}, vector:{}, string:{}, int:{} ...", l, mp, vc, str, i)`等类型的输出
+- 对 leetcode 涉及到类型（无非就是容器，链表，和基本类型）进行 toString()转换。（正因为有此假设，所以实现时重点在于简洁而不在鲁棒，不支持类型可能会 segment fault）
 
 ### 效果图
+
 ![image](https://img2024.cnblogs.com/blog/1578652/202407/1578652-20240719184408739-392283445.png)
-**进行了一波小更新**，DUMP可以将传入的变量（最多8个）按照【name】: value的格式打印出来，省去了写format字串的麻烦，更方便一些。
+**进行了一波小更新**，DUMP 可以将传入的变量（最多 8 个）按照【name】: value 的格式打印出来，省去了写 format 字串的麻烦，更方便一些。
 ![image](https://img2024.cnblogs.com/blog/1578652/202408/1578652-20240817163141183-257422433.png)
 
-
-
 ### 附：
+
 格式化后的代码，供诸君参考
+
 ```c++
 #define DEBUG 1
 #if DEBUG

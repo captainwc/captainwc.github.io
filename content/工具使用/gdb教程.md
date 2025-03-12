@@ -14,16 +14,16 @@ date: 2022-11-25
 
 > :book:[GDB Reference](https://visualgdb.com/gdbreference/commands/) :link:[调试器 GDB 常用功能](https://www.iteye.com/blog/daimajishu-1089741)
 
-- **`x `**/ \[_Length_\]\[_Format_: t o d x f a c s\] \[_Address expression_ b-8 h-16 w-32 g-64\ ] :paperclip:[GDB Command Reference : x](https://visualgdb.com/gdbreference/commands/x)
+- `x` / [_Length_] [_Format_: t o d x f a c s] [_Address expression_ b-8 h-16 w-32 g-64 ] :paperclip:[GDB Command Reference : x](https://visualgdb.com/gdbreference/commands/x)
 
-- **`p`/**t-2 o-8 d-10 x-16 f-loat a-ddress c-har s-tring [var]
+- `p` / t-2 o-8 d-10 x-16 f-loat a-ddress c-har s-tring [var]
 
   1. :warning: 要注意区分，**x** 是扫描**内存**，因此后面跟的直接是内存地址， 而 **p** 是输出**变量**的值，因此后面想跟地址的话，需要取其内容，即加上`*`
   1. 关于 `*`，很多命令地址前面都要加星号，因为不加星号的一个地址，是被当成函数来看待的
 
-- **`s n`** ：C 语言级别的单步执行； **`si ni`**汇编级别的单步执行
+- `s n` ：C 语言级别的单步执行； `si ni`汇编级别的单步执行
 
-- **`i [line] / [locals] / [vtbl] / [args] / [checkpoints] / [breakpoints] `**
+- `i [line] / [locals] / [vtbl] / [args] / [checkpoints] / [breakpoints] `
 
   1. `info line [line] / [function] / [*addr]`：显示源码对应的内存中的起始结束地址
 
@@ -33,7 +33,7 @@ date: 2022-11-25
 
 - `set disassemble next-line on`，`disassemble`
 
-- **`set [args] / [register] / [*address] = [val]`**：设置参数、寄存器值、内存处值
+- `set [args] / [register] / [*address] = [val]`：设置参数、寄存器值、内存处值
 
 - `jump [*address]`：跳转到指定地址处执行，`return [val]`：直接返回。都可以改变程序走向。
 

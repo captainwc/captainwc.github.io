@@ -6,8 +6,6 @@ tags: [linux, cmdline]
 categories: [工具使用]
 ---
 
-
-
 # 常用 Linux 命令
 
 ## find & fd
@@ -113,7 +111,7 @@ awk '[pattern] BAEGIN{print"我要开始了"} {action...} END{print"我结束了
 
 ## 例子
 
-**例 1** ==用 awk 和 sed 迁移阿里云上的图片：==
+**例 1** <mark>用 awk 和 sed 迁移阿里云上的图片：</mark>
 
 1. 找到阿里云 oss 仓库，选择批量导出 url，导出后是一个.csv 文件，格式为 obj，url
 
