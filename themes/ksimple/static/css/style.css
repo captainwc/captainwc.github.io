@@ -265,7 +265,7 @@ img,
 iframe,
 video {
     max-width: 95%;
-    margin: 0.6rem;
+    /*     margin: 0.6rem;*/
     /* margin: 0.6rem auto; */
     /* padding: 1px;
     border: 1px solid #ddd;
@@ -276,6 +276,20 @@ video {
 main {
     hyphens: auto;
 }
+
+/* 自动排版图片 */
+.img-align {
+    width: 100%;
+    display: flex;
+}
+
+.img-align>* {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    object-fit: contain;
+}
+
 
 /* 脚注引用样式 */
 sup a.footnote-ref {
