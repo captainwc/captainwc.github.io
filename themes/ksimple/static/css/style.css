@@ -350,6 +350,11 @@ sup a.footnote-ref {
         align-items: center;
     }
 
+    .plantuml-diagram,
+    .mermaid-diagram {
+        max-width: 95% !important;
+    }
+
     /* 搜索框样式调整 */
     #search-input {
         width: 90% !important;
