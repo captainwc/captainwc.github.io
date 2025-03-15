@@ -6,7 +6,17 @@ body {
     margin-right: auto !important;
     padding: 1em;
     line-height: 1.5;
-    /* background-color: #f5f2e9; */
+
+    /*
+      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cows.jpg)',
+      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-snow.jpg)',
+      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-river_p.png)',
+      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-green.jpg)',*/
+
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.96) 16%, rgba(255, 255, 255, 0.96) 85%, rgba(255, 255, 255, 0.7) 100%), url('https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cows.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 /* 菜单栏 */
@@ -285,6 +295,7 @@ sup a.footnote-ref {
         width: 90% !important;
         max-width: 100% !important;
         font-size: 100% !important;
+        background-image: none !important;
     }
 
     .archieve-right-section {
