@@ -10,17 +10,32 @@ tags: ["markdown"]
 
 Ksimple 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 和 [hugo-admonitions](https://github.com/KKKZOZ/hugo-admonitions) 基础上稍作修改的一个 hugo 主题。比较简单，可能更适合个人使用，因此没有单独发布的打算。
 
-## 基本语法展示
+## 样式一览
 
-**Bold**， _Italic_， <mark>Highlight</mark>， ~~Delete~~，:tent:，😘， `Inline Code`， \(x^2 + y^2 = 1\)，
+### 基本元素
+
+**Bold**， _Italic_， <mark>Highlight</mark>， ~~Delete~~，:tent:，😘， `Inline Code`
 
 Reference[^Ref001], Reference2[^x2y]
 
----
-
 > this is a blockquote
 
+---
+
+### 公式与内联公式
+
+> [!tip]
+> ```
+> 内联公式支持 \(...\) 和 $...$ 两种写法；
+> 单行公式支持 $$...$$、\[...\]、\begin{equation}...\end{equation} 等等多种写法
+> 具体定制参见 https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js
+> ```
+
+\(x^2 + y^2 = 1\)，$ \frac{x^2}{5} + \frac{y^2}{3} = 1$
+
 $${\sqrt {n}}\left(\left({\frac {1}{n}}\sum _{i=1}^{n}X_{i}\right)-\mu \right)\ {\xrightarrow {d}}\ N\left(0,\sigma ^{2}\right)$$
+
+### 代码块
 
 ```cpp copy
 #include<iostream>
@@ -36,6 +51,8 @@ int main(){
 + hello
 ```
 
+### 列表
+
 - list
 
 1. item
@@ -43,9 +60,9 @@ int main(){
 - [ ] todo
 - [x] todo
 
-## 图片排版
+### 图片排版
 
-### 借用超链接实现浮动
+#### 借用超链接实现浮动
 
 ```bash
 [<<img src="xxx" alt="" style="max-width: 50%; float:right;">>]()
@@ -53,7 +70,7 @@ int main(){
 
 效果看上面那个 github 头像即可
 
-### div flex
+#### div flex
 
 ```bash
 <div style="display: flex; gap: 2px; justify-content: center">
@@ -62,16 +79,16 @@ int main(){
 </div>
 ```
 
-<div style="display: flex; gap: 2px; justify-content: center">
+<div style="display: flex; gap: 2px; justify-content: center; max-width: 90%; text-align: center;">
     <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgblog_imgimage-20250312142314814.png" alt="cppzh" style="max-width: 50%;">
     <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgblog_imgimage-20250312141915556.png" alt="cpp" style="max-width: 50%;">
 </div>
 
-### TODO: 定制 Shotcode
+#### TODO: 定制 Shotcode
 
-## PlantUML 代码块自动渲染
+### PlantUML 代码块自动渲染
 
-### 类图
+#### 类图
 
 ```plantuml
 @startuml
@@ -118,7 +135,7 @@ SmtScript "1"-->"1..*" Function
 
 ```
 
-### 活动图
+#### 活动图
 
 ```plantuml
 @startuml
@@ -146,7 +163,7 @@ end
 
 ```
 
-### ebnf
+#### ebnf
 
 ```plantuml
 @startebnf
@@ -158,7 +175,7 @@ PrimitiveType = [Annotation], (NumericType | boolean );
 
 ......
 
-## 目录
+### 目录
 
 暂时不打算给博客添加目录
 
@@ -173,12 +190,12 @@ PrimitiveType = [Annotation], (NumericType | boolean );
 > [!WARNING] 版权声明
 > 以下 callout 块相关的内容（包括本博客的实现）全部来自具有`MIT`开源协议的[hugo-admonitions](https://github.com/KKKZOZ/hugo-admonitions)主题，详情请参考原主题！
 
-## Callout 块展示
+### Callout 块展示
 
 > [!NOSUPPORT]
 > Helpful advice for doing things better or more easily.
 
-### GitHub Test
+#### GitHub Test
 
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
@@ -195,7 +212,7 @@ PrimitiveType = [Annotation], (NumericType | boolean );
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
 
-### Callout Overview
+#### Callout Overview
 
 > [!ABSTRACT]
 > Abstract: This paper discusses the advantages and challenges of microservice architecture.
@@ -274,7 +291,7 @@ PrimitiveType = [Annotation], (NumericType | boolean );
 > [!WARNING]
 > Urgent info that needs immediate user attention to avoid problems.
 
-### Customization
+#### Customization
 
 Choose a callout you prefer and add a title
 
@@ -284,7 +301,7 @@ Choose a callout you prefer and add a title
 > [!IDEA] Summary
 > This is a summary using the `IDEA` callout!
 
-### Header Only Mode
+#### Header Only Mode
 
 You can choose to only to show the header!
 
