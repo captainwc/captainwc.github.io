@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>自动驾驶 on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/</link>
+    <description>Recent content in 自动驾驶 on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 01 Mar 2025 18:08:37 +0000</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CyberRT中的代码和工程技巧</title>
+      <link>https://kaikaixixi.xyz/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Sat, 01 Mar 2025 18:08:37 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/</guid>
+      <description>&lt;h1 id=&#34;cyberrt-中的代码和工程技巧&#34;&gt;CyberRT 中的代码和工程技巧&lt;/h1&gt;&#xA;&lt;h2 id=&#34;c规范&#34;&gt;C++规范&lt;/h2&gt;&#xA;&#xA;          &lt;link rel=&#34;stylesheet&#34; href=&#34;https://kaikaixixi.xyz/css/vendors/admonitions.3e5d3f6d4a5d28b26a4eadeccbbcb3c7fb4983e84476f488d6e5e5d4d5208b60.css&#34; integrity=&#34;sha256-Pl0/bUpdKLJqTq3sy7yzx/tJg&amp;#43;hEdvSI1uXl1NUgi2A=&#34; crossorigin=&#34;anonymous&#34;&gt;&#xA;  &lt;div class=&#34;admonition tip&#34;&gt;&#xA;    &lt;div class=&#34;admonition-header&#34;&gt;&#xA;      &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 384 512&#34;&gt;&lt;path d=&#34;M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2l160 0zM192 512c44.2 0 80-35.8 80-80l0-16-160 0 0 16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z&#34;/&gt;&lt;/svg&gt;&#xA;      &lt;span&gt;Tip&lt;/span&gt;&#xA;    &lt;/div&gt;&#xA;      &lt;div class=&#34;admonition-content&#34;&gt;&#xA;        &lt;p&gt;C++设计类时总有一些不确定的写法，这里列举出 CyberRT 中的一些设计，作为参考&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
