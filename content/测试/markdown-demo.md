@@ -72,6 +72,8 @@ int main(){
 
 #### div flex
 
+##### 直接指定样式
+
 ```bash
 <div style="display: flex; gap: 2px; justify-content: center">
     <img src="aaa" alt="" style="max-width: 50%;">
@@ -79,9 +81,34 @@ int main(){
 </div>
 ```
 
-<div style="display: flex; gap: 2px; justify-content: center; max-width: 90%; text-align: center;">
-    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgblog_imgimage-20250312142314814.png" alt="cppzh" style="max-width: 50%;">
-    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgblog_imgimage-20250312141915556.png" alt="cpp" style="max-width: 50%;">
+##### 使用预定义样式 `img-align`
+
+只需指定div的class为`img-align`，它会自动将元素<mark>均分</mark>为n份填充，横向排版。
+
+僵硬的地方在于，固定是均分的，所以更适合几张图片大小差不多的情况，否则可能不太协调。
+
+```bash
+<div class='img-align'>
+    <img src="aaa">
+    <img src="bbb">
+</div>
+```
+
+<div class='img-align'>
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cows.jpg"  />
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-green.jpg"  />
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-river_p.png"  />
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-snow.jpg"  />
+</div>
+
+<div class='img-align'>
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/link.png"  />
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/link2.png"  />
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/link3.png"  />
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/link4.png"  />
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/link5.png"  />
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/link6.png"  />
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/link7.png"  />
 </div>
 
 #### TODO: 定制 Shotcode
