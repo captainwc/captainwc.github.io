@@ -1,17 +1,28 @@
 {{ partial "header.html" . }}
 
-<h1>{{ .Title }}</h1>
+<main class="terms-container">
+  <h1>{{ .Title }}</h1>
 
-{{ if eq .Type "tags" }}
-{{/* 标签使用tags.terms.html做云图 */}}
-{{ else }}
-<ul class="terms">
-  {{ range .Pages }}
-  <li>
-    <a href="{{ .RelPermalink }}" class="title-link-a">{{ .Title }}</a> ({{ len .Pages }})
-  </li>
-  {{ end }}
-</ul>
-{{ end }}
+  <div class="taxonomy-grid">
+    {{ $terms := .Pages }}
+    {{ $sortedTerms := slice }}
+    {{ range $terms }}
+      {{ $count := len .Pages }}
+      {{ $sortedTerms = $sortedTerms | append (dict "term" . "count" $count) }}
+    {{ end }}
+    {{ $sortedTerms = sort $sortedTerms "count" "desc" }}
+
+    {{ range $sortedTerms }}
+      <article class="taxonomy-card">
+        <a href="{{ .term.RelPermalink }}" class="card-link">
+          <h1 class="card-title">{{ .term.Title }}</h1>
+          <div class="card-meta">
+            <span class="post-count">{{ .count }} 篇文章</span>
+          </div>
+        </a>
+      </article>
+    {{ end }}
+  </div>
+</main>
 
 {{ partial "footer.html" . }}
