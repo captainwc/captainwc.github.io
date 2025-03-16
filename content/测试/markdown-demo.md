@@ -60,6 +60,176 @@ int main(){
 - [ ] todo
 - [x] todo
 
+### PlantUML 代码块自动渲染
+
+#### 类图
+
+```plantuml
+@startuml
+interface Scriptable{
+    toSmtLib():String
+}
+
+class SmtScript{
+    -functions:List<Function>
+    -addFunction(Function):void
+}
+
+abstract class Expr{
+    -node:ASTRootNode
+    -children:List<Expr>
+}
+
+enum ConstExpr
+class CompoundExpr{
+    +getOp():String
+}
+struct ComplexExpr{
+    -format:String
+}
+
+class Function{
+    - funcName:string
+    - args:List<Pair<String,String>>
+    - returnType:String
+    - funcBody:Expr
+}
+
+Scriptable <|.. SmtScript
+Scriptable <|.. Function
+Scriptable <|.. Expr
+Expr <|-- ConstExpr
+Expr <|-- CompoundExpr
+Expr <|-- ComplexExpr
+
+Expr <-- Function
+
+SmtScript "1"-->"1..*" Function
+@enduml
+
+```
+
+#### 时序图
+
+```plantuml
+@startuml
+actor 用户 as user
+participant PtolemyII as ptii
+participant 验证选项配置器 as config
+participant 模型解与预校验器 as parser
+participant 形式化验证器 as verifier
+
+user -> ptii++: 打开PtolemyII建模工具
+ptii->ptii: 打开/创建模型
+return 模型持久化XML文件
+
+user -> config++: 配置验证选项，启动验证过程
+config -> parser--++: 解析与校验模型
+
+alt 校验失败
+    parser --> user: 返回校验错误信息
+else 校验通过
+    parser -> verifier--++: 启动形式化验证
+    verifier -->user--: 返回验证结果
+end
+
+@enduml
+
+```
+
+#### ebnf
+
+```uml
+@startebnf
+Type = PrimitiveType | ReferenceType;
+PrimitiveType = [Annotation], (NumericType | boolean );
+@endebnf
+
+```
+
+......
+
+
+### kroki渲染（支持mermaid, graphviz, dbml ...）
+
+具体的例子参考 [kroki-examples](https://kroki.io/examples.html)
+
+[<img src="https://kroki.io/assets/kroki_cheatsheet_20210515_v1.1_EN.jpeg" />](https://kroki.io)
+
+#### graphviz
+```graphviz
+digraph D {
+  subgraph cluster_p {
+    label = "Kroki";
+    subgraph cluster_c1 {
+      label = "Server";
+      Filebeat;
+      subgraph cluster_gc_1 {
+        label = "Docker/Server";
+        Java;
+      }
+      subgraph cluster_gc_2 {
+        label = "Docker/Mermaid";
+        "Node.js";
+        "Puppeteer";
+        "Chrome";
+      }
+    }
+    subgraph cluster_c2 {
+      label = "CLI";
+      Golang;
+    }
+  }
+}
+```
+
+#### mermaid
+```mermaid
+pie title 示例饼图
+    "类别A" : 40
+    "类别B" : 30
+    "类别C" : 20
+    "类别D" : 10
+```
+
+#### 流程图
+```blockdiag
+blockdiag {
+  Kroki -> generates -> "Block diagrams";
+  Kroki -> is -> "very easy!";
+
+}
+```
+
+#### 时序图
+```seqdiag
+seqdiag {
+  browser  -> webserver [label = "GET /seqdiag/svg/base64"];
+  webserver  -> processor [label = "Convert text to image"];
+  webserver <-- processor;
+  browser <-- webserver;
+}
+```
+
+#### 泳道图
+```actdiag
+actdiag {
+  write -> convert -> image
+
+  lane user {
+    label = "User"
+    write [label = "Writing text"];
+    image [label = "Get diagram image"];
+  }
+  lane Kroki {
+    convert [label = "Convert text to image"];
+  }
+}
+```
+
+#### 词云图(vega实现)
+![](https://kroki.io/vega/svg/eNqlWN2O3LYVvvdTEJMCYxez643tdWMDuTCQoilQtEXSxhfOXnBEzoiNJCokNVrZ2iCvkdfrk_T7DjU_mt0N0haYESXy8PD8fudIn54otfhdLEpb68VbtShTauPb5893dqsvty6V3frS-eeZQGaf764v_xV9s1hxa-9MKrHxi6sreS6t25YJE6-miVYb45otZvDMCaMTT_qAe6U-yRWzja4tz096XVlhLdM7XXU2Hshl7itbVDro5HZW7VzsdOU-4sk3aht0XesQVaEbpYvCVhZ0Vhm7s5Vva9ukldrowlUucT7YpMPWJsgH8uBjVG2l08aHOq6UbozSVeV7Velm2-mtvajISPk2uXo6M16qr32P6bBS9tZF4WUelXDPKSodrGqDg7iuGlThm8KGxhrVw-bTJmWbwtN4WZZgQQgerm7txBznNkmVWIWmUUFw5ZqE1UKW17bUO-cDhPxzg_2xhcB2pXpLsuBNV1ilVe0NtdrM5D7wwYnGRrdthD29N9cJzN8ZmgSK1zaV3kCQ4GucN4nRBi-eEU1wdj4Php3sKVrAIvCbr1sfGQL5oJjApJ749aUrSu6nf1SJOLNh4hARnE1yhaKcuoJI3-YbtbGwaRuscQU8HsWQsdAVFYTTIhVYTayzs7uokldb20B96GhnFo0IKbEJOCWVSqumkNgol2yNbR42CIN62rpbW8Vn3O1nLH7sbHCQxON44SCaGl9r11yqv4tXxOqhq0AGigYyWd7E424whcqu7SoGMtnMnPLvn3-BhG1r4U5E1qX6h58HPjmKLUoEIP2S2SMOYXMIkHNobRmDuo1yjKGLmKjmoBBi6y28BE668g1Cq-0kTE8jKba2cBvaX-xGU53EVrJF2TioBae9h0wxWqSh70IOE1FkY3V0awo_iND2Fh6N0e04sR7AjyIkpyUIXcpJZG-TbcTBtBZN9B3g62HIgIHK4LstgkAZx8CAkZCrluLaW1238IUEr7G12IhmLOhDTSL6EvaykfjlYgkTJX3rG18P5DA_8xH1D6gHjHvPrIFDkN3f7NOI0gMJVBwiQ02HokTMFQkWh3YIR-TZzpkcM2rjQkwq-HWHgUZjbgVb0iRgxsRKBMTzvJ-ghzt-MwQg3QCkYnzJVMiIeybxY2Gwmqt1GndaDtgwFeGctoQYU366pu2SrK6Qw0jQiQA5SU0myD6Veo8ssBCSOyudw1jMcwHpEGwZZQS4BXQQfAXDETkTu7b1IR0jbg4HcyDMXqg1A3LnK1rZ1fZip8NA5oQdjTKBBBF6Xa0UzFk6sKMvsTwpN7ONZMCZSZibZkAqchPSLdiLPiAYEPtAqA2xKXQNT2d6SCKwjvC4Fgu8XRMYkPM0bzb5hQk4Ez7WsRSnIgiNi0UHE609EooR5Cp7katR11zIAbNqSMyp3FTGwPk8eCfEyYgFi3ZVEkRYA2ZK5OEPcEZnBOBoS9dk3KYfgHtn5Q1TLAUEOGa4yPjVSzmE7H1wWydWbnxzEWbxlnPosZQjycVfYE-mGwvNVGYmsMiy2YZ1KgImWmfm0T3DuJ19uGgeDqFd165hcUKEauNycBxOAzPxuisQ4TnH6cCzHmEqF9K0THVUGCHwtxbOltSt9GADEwBUNWzvLnbO9vQy-p6BAEfg1DDYqbpzxL5U_4xsNrLGw1l5zHU4MuwmIRj5h6opjcjMvIc15Si90muC6wSOtLOxGzFOzv7c8cAKBdORhav1rknHsgIInlq3Y9lXm67JHHOHVFRdzOAr_Rrg61jWW-AVSjii7aM9t7GoBeV30jDGGSCJmPs0tznnCEk4EJuYWlwEzh38W_mtK1h47DwWmGOoJl1CS5CmBI9DwwINmRBw9sfORRJLXAksSFU8NoM8StjvW5tOXEbYYKkKqBJiik0XwDYo5DhOO6A5fARB4QaUDiTWoa895NC8pK9O5D9pkAD-EgFsNB6qJdIZsfF17Elt09WgYOt36OaAVCm3BZYvAvTk8aR0KNgPFOpjlRaXdEUBr6f7WZpxbdLezovHvpmdimc9q9bkWTIGWt00Eocfva8PvTo88APYHaxxuZiA5ubwagPhmkj8mr3dfDrckWRo5aWo8ADzVifI1pxAFig2zlaGJPJWNVsqdJTNqGA2zJf2rLD64fvv--XNp5eruzkJLNL2Phi-ey2eurG2Yz3gx_Iy9nbs4ogyyb_cYHpn4zj4jv8gl5iv3DAcSUo7lq7GP3KU1cg5G_iPcuGkS_jFMRe0EVE68FLz4kK-RpmZ-PbAilGCHVfPf81LtCBypMSy9Li4clbXI6ZRisZeYzeAY1zzZxtc4McRr04QC2ulNnzgnPH44TDjDG4407uqGnvfVQZqyIAkGwu5Y3hCi2VN_ZeBSi4jtV1SryVP5Sx14-iWOJCUGLCym1Z2XDGyYMjBCAdDEpMpDAggBSkwYBHXmIderkKF0cVmmagzB6gtg82PZX6k1nk0HKhtHuXqZLL3-QodeYOCnof9RKGna-NTNgWfa2QZx8pSdfqDFij9MvtuKa63spTHHr1qHqbHgTS-x1WPMDLoMJhx3cHIm9EHOK7QHX0bR3Y_FeOhsqPfjHD-ehiRbSMr3KjXHpv0VvPNAdtST78TkMYJVkbT8b0Ia9gEjhskDLftGCNA3BGk7HXHrsXPN7BQTw4jGePRbyARoBaCGO7kUeMEt5QcFGhbROWssKiblaWqVHQE9EPDYSRKjcDectzYfqwpUO0huBduEa-cI-FobDx-YaTZfVMNI0WKmqvUiybzfoRQA2blj2jUjgGFk54tDvl_t_p1PCJq4Y1wsVILLQCh2e3PAYQdswDMxavrlbpaqVfXNx9--ukpUA_vuk-fqd-rl89u_o8z-_yl6cFD3eYpALGrLxPq8JdfLr_745_eLVfq9RXkeHl1darqHpef7J9u8mcqKePx8Q9Vha_8EVYPYgIy2XMeF_KLPZY-7b987b9xnaA3xVwcLLCQgsajF5-Za_3mxRck_uz19YvizZXcvnn55vrNHxb3hGYH_YDMe-HkmMMpDN8H5DqKIW0PNx4dgjkkwmxKTXzJ6RGFhAi97zbbQT7qiQ0ztzndGnUL5dPOSXXVlhqJ6ooz8g0AWEjFYSeeuWfeh0IN1RHa23OFyPRvrS5cGmZifP4wk5KZ_lt5XF1e390Lv7v_pS1gfS4q35mz0o1Ohpv5SZafYW9W_7Wvgk-TVWYdBhIqZ_qZC9ArkuJrVmJ2rOqvtkNL9y64k0w4kH6b5bvHWrqcB1i_339SvrdjgoC7B4_4Zp9En79YqevXN2cd0P6r9Itfg4Ind_8BeFv4-A==)
+
 ### 图片排版
 
 #### 借用超链接实现浮动
@@ -112,95 +282,6 @@ int main(){
 </div>
 
 #### TODO: 定制 Shotcode
-
-### PlantUML 代码块自动渲染
-
-#### 类图
-
-```plantuml
-@startuml
-interface Scriptable{
-    toSmtLib():String
-}
-
-class SmtScript{
-    -functions:List<Function>
-    -addFunction(Function):void
-}
-
-abstract class Expr{
-    -node:ASTRootNode
-    -children:List<Expr>
-}
-
-enum ConstExpr
-class CompoundExpr{
-    +getOp():String
-}
-struct ComplexExpr{
-    -format:String
-}
-
-class Function{
-    - funcName:string
-    - args:List<Pair<String,String>>
-    - returnType:String
-    - funcBody:Expr
-}
-
-Scriptable <|.. SmtScript
-Scriptable <|.. Function
-Scriptable <|.. Expr
-Expr <|-- ConstExpr
-Expr <|-- CompoundExpr
-Expr <|-- ComplexExpr
-
-Expr <-- Function
-
-SmtScript "1"-->"1..*" Function
-@enduml
-
-```
-
-#### 活动图
-
-```plantuml
-@startuml
-actor 用户 as user
-participant PtolemyII as ptii
-participant 验证选项配置器 as config
-participant 模型解与预校验器 as parser
-participant 形式化验证器 as verifier
-
-user -> ptii++: 打开PtolemyII建模工具
-ptii->ptii: 打开/创建模型
-return 模型持久化XML文件
-
-user -> config++: 配置验证选项，启动验证过程
-config -> parser--++: 解析与校验模型
-
-alt 校验失败
-    parser --> user: 返回校验错误信息
-else 校验通过
-    parser -> verifier--++: 启动形式化验证
-    verifier -->user--: 返回验证结果
-end
-
-@enduml
-
-```
-
-#### ebnf
-
-```plantuml
-@startebnf
-Type = PrimitiveType | ReferenceType;
-PrimitiveType = [Annotation], (NumericType | boolean );
-@endebnf
-
-```
-
-......
 
 ### 目录
 
