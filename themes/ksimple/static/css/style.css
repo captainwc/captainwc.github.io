@@ -304,7 +304,7 @@ sup a.footnote-ref {
 
 /* PlantUML 图片样式（类名在footer中指定） */
 .plantuml-diagram,
-.mermaid-diagram {
+.kroki-diagram {
     max-width: 60%;
 }
 
@@ -351,7 +351,7 @@ sup a.footnote-ref {
     }
 
     .plantuml-diagram,
-    .mermaid-diagram {
+    .kroki-diagram {
         max-width: 95% !important;
     }
 

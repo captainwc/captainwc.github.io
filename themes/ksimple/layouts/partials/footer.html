@@ -1,89 +1,22 @@
 <footer>
+  <!-- 默认直接渲染公式文本 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
   <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/math-code.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/render-katex.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/center-img.min.js"></script>
 
-  <!-- Language Highlight -->
+  {{ partial "code_highlight.html" . }}
 
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/atom-one-light.min.css"> -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+  {{ partial "plantuml_render.html" . }}
+  {{ partial "kroki_graph_render.html" . }}
 
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/bash.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/c.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/cmake.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/cpp.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/diff.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/go.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/java.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/json.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/makefile.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/python.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/shell.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/yaml.min.js"></script>
-
-  <script>hljs.highlightAll();</script>
-
-  <!-- PlantUML -->
-  <script src="https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const plantuml_theme = `
-scale 5
-'skin rose
-skinparam shadowing false
-skinparam shadowing false
-skinparam BackgroundColor #white
-skinparam BackgroundColor transparent
-skinparam UsecaseBackgroundColor #white
-skinparam classBackgroundColor #white
-skinparam ActivityBackgroundColor #white
-skinparam ActorBackgroundColor #white
-skinparam participantBackgroundColor #white
-      `;
-      document.querySelectorAll('pre code.language-plantuml').forEach(function(codeBlock) {
-        const img = document.createElement('img');
-        img.className = 'plantuml-diagram';
-        img.style.display = 'block';
-        img.alt = 'PlantUML Diagram';
-        const plantumlCode = plantuml_theme + '\n\n' + codeBlock.textContent;
-        const encoded = plantumlEncoder.encode(plantumlCode);
-        img.src = 'https://www.plantuml.com/plantuml/svg/' + encoded;
-        const pre = codeBlock.parentElement;
-        pre.parentElement.replaceChild(img, pre);
-      });
-    });
-  </script>
-
-  <!-- 代码块复制按钮 TODO -->
-
-  <!-- 返回顶部按钮 -->
-  <button id="backToTopBtn">🔝</button>
-  <script>
-    var backToTopBtn = document.getElementById("backToTopBtn");
-    backToTopBtn.addEventListener("click", function() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    });
-    window.addEventListener("scroll", function() {
-      if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-        backToTopBtn.style.display = "block";
-      } else {
-        backToTopBtn.style.display = "none";
-      }
-    });
-  </script>
-
-  <!-- 脚注 -->
-
+  {{ partial "to_top_btn.html" . }}
 
   {{ partial "foot_custom.html" . }}
+
   {{ with .Site.Params.footer }}
   <hr />
   {{ replace . "{Year}" now.Year | markdownify }}

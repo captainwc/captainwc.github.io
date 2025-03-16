@@ -1,0 +1,18 @@
+<!-- 返回顶部按钮 -->
+<button id="backToTopBtn">🔝</button>
+<script>
+  var backToTopBtn = document.getElementById("backToTopBtn");
+  backToTopBtn.addEventListener("click", function() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+  window.addEventListener("scroll", function() {
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  });
+</script>
