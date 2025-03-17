@@ -55,6 +55,11 @@
     } else if (event.key === 'Escape') {
       document.getElementById('search-input').value = "";
       closeSearchModal();
+      var res = document.getElementById('search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      showpages();
     }
   });
 
