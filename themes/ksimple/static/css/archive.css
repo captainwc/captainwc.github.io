@@ -1,0 +1,23 @@
+/* 归档页文章链接列表布局 */
+.archieve-list-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.archieve-left-section {
+    display: flex;
+    align-items: center;
+    /*元素间距*/
+    gap: 0.2rem;
+    order: 1;
+}
+
+.archieve-right-section {
+    margin-left: auto;
+    display: flex;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+    order: 2;
+    align-items: center;
+}

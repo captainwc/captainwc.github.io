@@ -6,69 +6,20 @@ body {
     margin-right: auto !important;
     padding: 1em;
     line-height: 1.5;
-
-    /*
-      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cows.jpg)',
-      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cow.jpg)',
-      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-snow.jpg)',
-      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-river_p.png)',
-      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-green.jpg)',*/
-
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.96) 16%, rgba(255, 255, 255, 0.96) 85%, rgba(255, 255, 255, 0.7) 100%), url('https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cow.jpg');
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
 }
 
-/* 菜单栏 */
-.menu {
-    padding: 0;
-    /* margin: 0.3rem; */
-    text-align: center;
-}
-
-.menu li {
-    display: inline-block;
-}
-
-.menu a {
-    text-decoration: none;
-    background: #efefef;
-    color: black !important;
-    padding: 5px;
-    border-radius: 5px;
+main {
+    hyphens: auto;
 }
 
 /* 分割线 */
 hr {
     border-style: dashed;
     color: #ddd;
-}
-
-/* 文章元信息块 */
-.article-meta {
-    text-align: center;
-    text-decoration: none;
-    background: #efefef;
-    padding: 1px;
-    border-radius: 5px;
-}
-
-.article-meta-title {
-    font-size: 1em;
-}
-
-.article-meta-info {
-    color: #666;
-    font-size: 0.9rem;
-    margin: -0.6rem 0 0.2rem 10px;
-    text-align: left;
-}
-
-.article-meta-info a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.3s ease;
 }
 
 /* 脚注 */
@@ -94,7 +45,6 @@ p a:not([class]):not([style])::before {
     width: 1rem;
     height: 1rem;
     margin: 0px 2px 2px 0px;
-    /*  You can try 'link-link7.png'  */
     background-image: url('https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/link.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -106,15 +56,9 @@ p a:visited {
 }
 
 a:not([class]):not([style]):hover {
-    /*     margin: 5px;*/
-    /*     padding: 0.2px 0.5px 0.2px 0.5px;*/
-    /*     color: #747d8c;*/
     color: #2e59a7 !important;
     text-decoration: dotted;
     background-color: rgb(220, 199, 225);
-    /*    box-shadow: 6px 6px 6px #ddd;*/
-    /*    border-radius: 5px;*/
-    /*    transition-duration: 888ms;*/
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='%23aed0ee' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E") repeat-x 0 100%;
     background-size: 20px auto;
     animation: waveMove 1s infinite linear;
@@ -129,20 +73,6 @@ a:not([class]):not([style]):hover {
         background-position: -20px 100%;
     }
 }
-
-/* 标题和分类类型的link（自定义样式） */
-.title-link-a {
-    color: #3c4654;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.taxonomy-link-a {
-    text-align: right;
-    color: #7d929f;
-    text-decoration: none;
-}
-
 
 /* 代码块 */
 pre {
@@ -169,91 +99,63 @@ code {
     z-index: -1;
 }
 
-/* 代码块复制按钮部分 */
-.code-tools {
-    position: absolute;
-    right: 10px;
-    top: 20px;
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.2s ease;
-    pointer-events: none;
-    font-family: "Maple Mono NF CN";
-}
-
-.fold-btn {
-    cursor: pointer;
-    border: none;
-    color: #666;
-    background: none;
-    font-family: "Maple Mono NF CN";
-    font-size: 0.9rem;
-    line-height: 1.2;
-    margin: 0 0 0 0.45rem;
-    transition: all 0.2s ease;
-}
-
-/* 代码框语言标签 */
-.lang-label {
-    /*    border-radius: 3px;*/
-    color: #666;
-    font-size: 1.2rem;
-    line-height: 1.2;
-}
-
-/* 代码复制按钮 */
-.copy-btn {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 0 0.3rem;
-    margin: 0 0 0 0.6rem;
-    color: #333;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    font-size: 0.6rem;
-    line-height: 1.8;
-    cursor: pointer;
-    font-family: "Maple Mono NF CN";
-}
-
-/* 悬浮时显示 */
-pre:hover .code-tools {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-
-/* 返回顶部按钮 */
-#backToTopBtn {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 1.3rem;
-    background-color: #f5f6fa;
-    color: #fff;
-    border: none;
-    border-radius: 100%;
-    padding: 5px 4px;
-    cursor: pointer;
-}
-
-#backToTopBtn:hover {
-    background-color: #bec2b3;
-}
-
 /* 引用 */
 blockquote {
     border-left: 4px solid #bdc3c7;
-    /*    width: 97%;*/
     padding: 1px 15px;
     margin-left: 0px;
-    /* color: #494949; */
     background-color: rgb(250, 250, 250);
     border-radius: 3px;
     line-height: 1.4;
+}
+
+/* 按键 */
+kbd {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 2px 4px;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 高亮 */
+mark {
+    background: #def3d1 !important;
+    border-bottom: 0.5px solid #c6c5c5;
+    border-radius: 3px;
+    padding: 0.2px 0.5px 0.2px 0.5px;
+    margin: 0.2px 0.5px 0.2px 0.5px;
+}
+
+/* 斜体 */
+em {
+    color: #57606f;
+}
+
+/* 图片视频页帧等 */
+img,
+.common-markdown-diagram,
+iframe,
+video {
+    max-width: 95%;
+}
+
+/* PlantUML 图片样式（类名在footer中指定） */
+.plantuml-diagram,
+.kroki-diagram {
+    max-width: 60%;
+}
+
+/* 脚注引用样式 */
+sup a.footnote-ref {
+    background: #aed0ee;
+    color: white;
+    border-radius: 36%;
+    margin: 0.2rem;
+    padding: 0.06rem 0.2rem;
+    font-size: 0.6em;
+    text-decoration: none;
 }
 
 /* 表格 */
@@ -276,356 +178,4 @@ thead,
 tfoot,
 tr:nth-child(even) {
     background: #eee;
-}
-
-/* 按键 */
-kbd {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    padding: 2px 4px;
-    color: #333;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-/* 高亮 */
-mark {
-    background: #def3d1 !important;
-    border-bottom: 0.5px solid #c6c5c5;
-    border-radius: 3px;
-    padding: 0.2px 0.5px 0.2px 0.5px;
-    margin: 0.2px 0.5px 0.2px 0.5px;
-}
-
-/* 粗体 */
-strong {
-    /* color: #4274bf; */
-}
-
-/* 斜体 */
-em {
-    color: #57606f;
-}
-
-/*em:hover {
-    color: #4fc08d;
-}*/
-
-/* 图片视频页帧等 */
-img,
-.common-markdown-diagram,
-iframe,
-video {
-    max-width: 95%;
-    /*     margin: 0.6rem;*/
-    /* margin: 0.6rem auto; */
-    /* padding: 1px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
-}
-
-main {
-    hyphens: auto;
-}
-
-/* 自动排版图片 */
-.img-align {
-    width: 100%;
-    display: flex;
-}
-
-.img-align>* {
-    flex: 1;
-    min-width: 0;
-    text-align: center;
-    object-fit: contain;
-}
-
-
-/* 脚注引用样式 */
-sup a.footnote-ref {
-    background: #aed0ee;
-    color: white;
-    border-radius: 36%;
-    margin: 0.2rem;
-    padding: 0.06rem 0.2rem;
-    font-size: 0.6em;
-    text-decoration: none;
-}
-
-/* PlantUML 图片样式（类名在footer中指定） */
-.plantuml-diagram,
-.kroki-diagram {
-    max-width: 60%;
-}
-
-/* 归档页文章链接列表布局 */
-.archieve-list-item {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.archieve-left-section {
-    display: flex;
-    align-items: center;
-    /*元素间距*/
-    gap: 0.2rem;
-    order: 1;
-}
-
-.archieve-right-section {
-    margin-left: auto;
-    display: flex;
-    gap: 0.2rem;
-    flex-wrap: wrap;
-    order: 2;
-    align-items: center;
-}
-
-
-/* 手机端（< 768px） */
-@media (max-width: 768px) {
-    body {
-        width: 90% !important;
-        max-width: 100% !important;
-        font-size: 100% !important;
-        background-image: none !important;
-    }
-
-    .archieve-right-section {
-        margin-left: 0;
-        width: 100%;
-        justify-content: flex-end;
-        margin-top: 0.5rem;
-        align-items: center;
-    }
-
-    .plantuml-diagram,
-    .kroki-diagram {
-        max-width: 95% !important;
-    }
-
-    .taxonomy-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    /* 搜索框样式调整 */
-    #search-input {
-        width: 90% !important;
-        padding: 0.8rem;
-        font-size: 1rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        margin-bottom: 1rem;
-    }
-
-    /* tags词云调整 */
-    #tag-cloud-canvas {
-        width: 100% !important;
-        margin: 0 auto;
-        padding: 0;
-        transform-origin: center;
-    }
-}
-
-/* tags词云 */
-#tag-cloud-canvas {
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    /* 调整上边距以将词云上移 */
-    padding: 0;
-}
-
-/* 搜索页面搜索框样式 */
-.search-container {
-    margin: 2rem 0;
-}
-
-#search-input {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-}
-
-.search-results-list {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
-}
-
-.search-result-item {
-    padding: 0.7rem;
-    margin-bottom: 0.5rem;
-    border-bottom: 1px solid #eee;
-    display: block;
-}
-
-.search-result-date {
-    color: #666;
-    font-size: 0.9rem;
-    margin-right: 0.5rem;
-}
-
-.search-result-title {
-    font-weight: bold;
-    color: #1a73e8;
-    text-decoration: none;
-}
-
-.search-result-title:hover {
-    text-decoration: underline;
-}
-
-/* Ctrl+K 唤起浮动搜索框样式 */
-#search-modal {
-    display: none;
-    position: fixed;
-    top: 6%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
-    border-radius: 6px;
-    z-index: 1000;
-    width: 80%;
-    max-width: 600px;
-}
-
-#search-input {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-#search-results {
-    margin-top: 10px;
-}
-
-.search-result-item {
-    margin-bottom: 5px;
-}
-
-.search-result-date {
-    color: #999;
-}
-
-.search-result-title {
-    color: #007BFF;
-    text-decoration: none;
-}
-
-/* 标题自动编号 */
-h2::before,
-h3::before,
-h4::before,
-h5::before,
-h6::before {
-    color: rgb(196, 194, 194);
-    font-size: small;
-    vertical-align: central;
-    margin: 0 6px 0 0;
-    /* box-shadow: 0 0 6px rgba(222, 222, 222, 0.5); */
-    /* border-radius: 6px; */
-    /* padding: 0.05rem; */
-}
-
-body {
-    counter-reset: section2;
-}
-
-h2 {
-    counter-increment: section2;
-    counter-reset: section3;
-}
-
-h2::before {
-    content: counter(section2);
-}
-
-h3 {
-    counter-increment: section3;
-    counter-reset: section4;
-}
-
-h3::before {
-    content: counter(section2) "." counter(section3);
-}
-
-h4 {
-    counter-increment: section4;
-    counter-reset: section5;
-}
-
-h4::before {
-    content: counter(section2) "." counter(section3) "." counter(section4);
-}
-
-h5 {
-    counter-increment: section5;
-    counter-reset: section6;
-}
-
-h5::before {
-    content: counter(section2) "." counter(section3) "." counter(section4) "." counter(section5);
-}
-
-h6 {
-    counter-increment: section6;
-}
-
-h6::before {
-    content: counter(section2) "." counter(section3) "." counter(section4) "." counter(section5) "." counter(section6);
-}
-
-/* 分类页样式 */
-.taxonomy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.2rem;
-    padding: 0 0 2rem;
-}
-
-.taxonomy-card {
-    /*    background: #fff;*/
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-    overflow: hidden;
-    border: 1px solid #eee;
-}
-
-.taxonomy-card:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-}
-
-.card-link {
-    display: block;
-    padding: 0.8rem;
-    color: inherit;
-    text-decoration: none;
-}
-
-.card-title {
-    margin: 0 0 0.6rem 0.5rem;
-    color: #2d3842;
-    font-size: 1.2rem;
-}
-
-.post-count {
-    display: inline-block;
-    background: #F6F6F6;
-    padding: 0.2rem 0.5rem;
-    margin: 0 0 0.15rem 0.5rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    color: #666;
 }

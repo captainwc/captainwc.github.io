@@ -1,0 +1,18 @@
+/* 菜单栏 */
+.menu {
+    padding: 0;
+    /* margin: 0.3rem; */
+    text-align: center;
+}
+
+.menu li {
+    display: inline-block;
+}
+
+.menu a {
+    text-decoration: none;
+    background: #efefef;
+    color: black !important;
+    padding: 5px;
+    border-radius: 5px;
+}

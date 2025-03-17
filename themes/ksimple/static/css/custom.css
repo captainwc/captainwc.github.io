@@ -1,0 +1,25 @@
+/* 文章标题和分类类型的超链接样式 */
+.title-link-a {
+    color: #3c4654;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.taxonomy-link-a {
+    text-align: right;
+    color: #7d929f;
+    text-decoration: none;
+}
+
+/* 自动排版图片 */
+.img-align {
+    width: 100%;
+    display: flex;
+}
+
+.img-align>* {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    object-fit: contain;
+}

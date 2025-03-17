@@ -115,3 +115,87 @@
     });
   });
 </script> 
+
+<style>
+/* 搜索页面搜索框样式 */
+.search-container {
+    margin: 2rem 0;
+}
+
+#search-input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.search-results-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: block;
+}
+
+.search-result-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+}
+
+.search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.search-result-title:hover {
+    text-decoration: underline;
+}
+
+/* Ctrl+K 唤起浮动搜索框样式 */
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
+    border-radius: 6px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#search-results {
+    margin-top: 10px;
+}
+
+.search-result-item {
+    margin-bottom: 5px;
+}
+
+.search-result-date {
+    color: #999;
+}
+
+.search-result-title {
+    color: #007BFF;
+    text-decoration: none;
+}
+</style>
