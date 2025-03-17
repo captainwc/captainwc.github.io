@@ -5,14 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .Title }} | {{ .Site.Title }}</title>
     <link rel="icon" href= {{ .Site.Params.favicon }} />
-    <link rel="stylesheet" href="{{ "css/archive.css" | relURL }}" />
-    <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}" />
-    <link rel="stylesheet" href="{{ "css/fonts.css" | relURL }}" />
-    <link rel="stylesheet" href="{{ "css/menu.css" | relURL }}" />
-    <link rel="stylesheet" href="{{ "css/meta_info.css" | relURL }}" />
     <link rel="stylesheet" href="{{ "css/style.css" | relURL }}" />
-    <link rel="stylesheet" href="{{ "css/style_narrow_screen.css" | relURL }}" />
-    <link rel="stylesheet" href="{{ "css/title_serial.css" | relURL }}" />
+    <link rel="stylesheet" href="{{ "css/fonts.css" | relURL }}" />
     {{ partial "head_custom.html" . }}
     {{ partial "search_modal.html" . }}
   </head>
