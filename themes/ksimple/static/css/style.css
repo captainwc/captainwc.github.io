@@ -148,30 +148,68 @@ a:not([class]):not([style]):hover {
 pre {
     border: 1px solid #ddd;
     border-radius: 6px;
-    /* box-shadow: 3px 3px 3px #eee; */
-    padding: -1em -1em;
+    /*    box-shadow: 3px 3px 3px #eee;*/
     overflow-x: auto;
+    position: relative;
+    overflow: hidden;
 }
 
 /* 嵌入代码块 */
 code {
-    color: #108b96;
+    color: #2c3e50;
     background-color: #f5f6fa;
     font-family: "Maple Mono NF CN", "Fira Code", Consolas, "Lucida Console", "Courier", monospace, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1.1rem;
     font-weight: 550;
     margin: 0 0px;
-    padding: 1px 5px 1px;
-    border-radius: 8px;
+    padding: 1px 6px 1px 6px;
+    border-radius: 6px;
     transition: all 0.3s ease;
     z-index: -1;
 }
 
-pre code {
-    background: none;
+/* 代码块复制按钮部分 */
+.code-tools {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-family: "Maple Mono NF CN";
 }
 
-/* 代码块复制按钮 TODO */
+/* 代码框语言标签 */
+.lang-label {
+    color: #666 !important;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    border-radius: 3px;
+}
+
+/* 代码复制按钮 */
+.copy-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+}
+
+/* 悬浮时显示 */
+pre:hover .code-tools {
+    opacity: 1;
+    pointer-events: auto;
+}
 
 /* 返回顶部按钮 */
 #backToTopBtn {

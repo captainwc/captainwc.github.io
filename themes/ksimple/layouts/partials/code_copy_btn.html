@@ -1,0 +1,67 @@
+<script>
+    const langToNerdFontMap = {
+        bash: '\ue760',
+        bazel: '\ue63a',
+        c: '\ue61e',
+        cmake: '\ue794',
+        cpp: '\ue61d',
+        'c++': '\ue61d',
+        css: '\ue749',
+        go: '\udb81\udfd3',
+        html: '\ue736',
+        java: '\uedaf',
+        javascript: '\ue781',
+        json: '\ueb0f',
+        makefile: '\ue673',
+        plantuml: '\ue8cb',
+        python: '\ued1b',
+        rust: '\udb85\ude17',
+        shell: '\udb84\udd83',
+        typescript: '\ue8ca',
+        uml: '\ue8cb',
+        xml: '\udb81\uddc0',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            // 创建工具条容器
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+
+            // 语言标签
+            const langLabel = document.createElement('div');
+            langLabel.className = 'lang-label';
+            const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
+            langLabel.className = 'lang-label';
+            const icon = langToNerdFontMap[lang];
+            if (!icon) {
+                langLabel.style.fontSize = '0.8rem';
+                langLabel.textContent = lang.toUpperCase();
+            } else {
+                langLabel.textContent = icon;
+            }
+
+            // 生成复制按钮
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = '\uf4bb COPY';
+
+            // 组装元素
+            tools.appendChild(langLabel);
+            tools.appendChild(copyBtn);
+            codeBlock.parentElement.prepend(tools);
+
+            // 复制功能
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    const text = codeBlock.textContent;
+                    await navigator.clipboard.writeText(text);
+                    copyBtn.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyBtn.textContent = 'COPY', 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                }
+            })
+        })
+    });
+</script>
