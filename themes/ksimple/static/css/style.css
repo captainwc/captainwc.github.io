@@ -33,7 +33,7 @@ body {
 
 .menu a {
     text-decoration: none;
-    background: #eaeef1;
+    background: #efefef;
     color: black !important;
     padding: 5px;
     border-radius: 5px;
@@ -49,7 +49,7 @@ hr {
 .article-meta {
     text-align: center;
     text-decoration: none;
-    background: #eaeef1;
+    background: #efefef;
     padding: 1px;
     border-radius: 5px;
 }
