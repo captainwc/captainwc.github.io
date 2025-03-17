@@ -51,9 +51,8 @@
 </div>
 
 <main>
-    {{ if .Params.toc }}
-    {{ .TableOfContents }}
-    {{ end }}
+
+    {{ partial "toc.html" . }}
 
     <!-- {{ .Content }} -->
     <!-- 过滤掉一级标题（因为已经在页面meta-info中显示了） -->
