@@ -152,6 +152,7 @@ pre {
     overflow-x: auto;
     position: relative;
     overflow: hidden;
+    transition: max-height 0.3s ease-out;
 }
 
 /* 嵌入代码块 */
@@ -182,12 +183,24 @@ code {
     font-family: "Maple Mono NF CN";
 }
 
+.fold-btn {
+    cursor: pointer;
+    border: none;
+    color: #666;
+    background: none;
+    font-family: "Maple Mono NF CN";
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0 0.45rem;
+    transition: all 0.2s ease;
+}
+
 /* 代码框语言标签 */
 .lang-label {
-    color: #666 !important;
+    /*    border-radius: 3px;*/
+    color: #666;
     font-size: 1.2rem;
     line-height: 1.2;
-    border-radius: 3px;
 }
 
 /* 代码复制按钮 */
@@ -210,6 +223,7 @@ pre:hover .code-tools {
     opacity: 1;
     pointer-events: auto;
 }
+
 
 /* 返回顶部按钮 */
 #backToTopBtn {

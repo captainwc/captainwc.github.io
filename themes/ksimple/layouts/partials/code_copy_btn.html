@@ -24,44 +24,75 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('pre > code').forEach(codeBlock => {
+            const parentElement = codeBlock.parentElement;
+
             // 创建工具条容器
             const tools = document.createElement('div');
             tools.className = 'code-tools';
+
+            // 折叠按钮
+            const foldBtn = document.createElement('button');
+            foldBtn.className = 'fold-btn';
+            foldBtn.innerHTML = '\uf48c';
+            foldBtn.style.display = 'none';
 
             // 语言标签
             const langLabel = document.createElement('div');
             langLabel.className = 'lang-label';
             const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
-            langLabel.className = 'lang-label';
-            const icon = langToNerdFontMap[lang];
-            if (!icon) {
-                langLabel.style.fontSize = '0.8rem';
-                langLabel.textContent = lang.toUpperCase();
-            } else {
-                langLabel.textContent = icon;
-            }
+            const icon = langToNerdFontMap[lang.toLowerCase()];
+            langLabel.textContent = icon || lang.toUpperCase();
+            if (!icon) langLabel.style.fontSize = '0.8rem';
 
-            // 生成复制按钮
+            // 复制按钮
             const copyBtn = document.createElement('button');
             copyBtn.className = 'copy-btn';
             copyBtn.textContent = '\uf4bb COPY';
 
-            // 组装元素
-            tools.appendChild(langLabel);
-            tools.appendChild(copyBtn);
-            codeBlock.parentElement.prepend(tools);
+            // 高度检测
+            const scale_height = 500;       // 临界的可折叠高度
+            const collapsed_height = 100;   // 折叠后的高度
+            const checkHeight = () => {
+                const originalDisplay = parentElement.style.display;
+                parentElement.style.display = 'block';
+                const fullHeight = parentElement.scrollHeight;
+                parentElement.style.display = originalDisplay;
+                return fullHeight > scale_height;
+            };
+
+            // 折叠功能
+            if (checkHeight()) {
+                foldBtn.style.display = 'flex';
+                parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                foldBtn.addEventListener('click', () => {
+                    const isCollapsed = parentElement.classList.toggle('collapsed');
+                    foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
+
+                    if (isCollapsed) {
+                        parentElement.style.maxHeight = `${collapsed_height}px`;
+                        parentElement.style.overflowX = 'auto';
+                    } else {
+                        parentElement.style.maxHeight = 'none';
+                        void parentElement.offsetHeight;
+                        parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                    }
+                });
+            }
 
             // 复制功能
             copyBtn.addEventListener('click', async () => {
                 try {
-                    const text = codeBlock.textContent;
-                    await navigator.clipboard.writeText(text);
+                    await navigator.clipboard.writeText(codeBlock.textContent);
                     copyBtn.textContent = '\uf00c COPIED!';
-                    setTimeout(() => copyBtn.textContent = 'COPY', 2000);
+                    setTimeout(() => copyBtn.textContent = '\uf4bb COPY', 2000);
                 } catch (err) {
                     console.error('复制失败:', err);
                 }
-            })
-        })
+            });
+
+            // 组装元素
+            tools.append(langLabel, foldBtn, copyBtn);
+            parentElement.prepend(tools);
+        });
     });
 </script>
