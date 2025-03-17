@@ -51,7 +51,7 @@
 
             // 高度检测
             const scale_height = 500;       // 临界的可折叠高度
-            const collapsed_height = 100;   // 折叠后的高度
+            const collapsed_height = 300;   // 折叠后的高度
             const checkHeight = () => {
                 const originalDisplay = parentElement.style.display;
                 parentElement.style.display = 'block';
@@ -64,6 +64,14 @@
             if (checkHeight()) {
                 foldBtn.style.display = 'flex';
                 parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+
+                // 默认自动折叠
+                parentElement.classList.add('collapsed');
+                parentElement.style.maxHeight = `${collapsed_height}px`;
+                foldBtn.innerHTML = '\uf4d9';
+
+                parentElement.style.overflowY = 'auto'; // 支持纵向滚动
+
                 foldBtn.addEventListener('click', () => {
                     const isCollapsed = parentElement.classList.toggle('collapsed');
                     foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
