@@ -25,10 +25,12 @@ tags: [leetcode]
 
 ### 效果图
 
-![image](https://img2024.cnblogs.com/blog/1578652/202407/1578652-20240719183806684-1731724980.png)
-
 另外，推荐使用 **vim + floaterm + cgdb** 的方式，配合此头文件对 leetcode 代码进行调试，喜欢的点是比较轻量，随时随地能调一下子。效果如下
-![image](https://img2024.cnblogs.com/blog/1578652/202407/1578652-20240719184145994-538062460.png)
+
+<div class="img-align">
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/1742197049941.png">
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/1742197079944.png">
+</div>
 
 ## 方法 1
 
@@ -70,9 +72,15 @@ template <typename T> struct ListType { template <typename Ptr> static auto test
 
 ### 效果图
 
-![image](https://img2024.cnblogs.com/blog/1578652/202407/1578652-20240719184408739-392283445.png)
 **进行了一波小更新**，DUMP 可以将传入的变量（最多 8 个）按照【name】: value 的格式打印出来，省去了写 format 字串的麻烦，更方便一些。
-![image](https://img2024.cnblogs.com/blog/1578652/202408/1578652-20240817163141183-257422433.png)
+
+(LOGF就是现在的宏OUTV，下面的图是更新前的老名字。这里只是为了展示可以支持哪些类型)
+
+<div class="img-align">
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/1742197103675.png">
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/1742197135405.png">
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/1742197175581.png">
+</div>
 
 ### 附：
 
