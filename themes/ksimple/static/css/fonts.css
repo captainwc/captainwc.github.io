@@ -1,0 +1,13 @@
+@import url("https://static.zeoseven.com/zsft/442/main/result.css"); /* Maple Mono NF CN */
+@import url("https://static.zeoseven.com/zsft/292/main/result.css"); /* LXGW WenKai */
+
+body {
+  font-family: "华文中宋", "LXGW WenKai", Optima, Candara, Calibri, Arial, sans-serif;
+  font-size: 95%;
+}
+
+code {
+  font-family: "Maple Mono NF CN", "LXGW WenKai", "Lucida Console", Monaco, monospace;
+  font-size: 90%;
+  font-weight: normal;
+}
