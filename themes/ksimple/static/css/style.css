@@ -510,27 +510,41 @@ sup a.footnote-ref {
     max-width: 600px;
 }
 
-#search-input {
+#modal-search-input {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
 }
 
-#search-results {
+#modal-search-results {
     margin-top: 10px;
 }
 
-.search-result-item {
-    margin-bottom: 5px;
+.modal-search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: block;
 }
 
-.search-result-date {
-    color: #999;
+.modal-search-result-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
 }
 
-.search-result-title {
-    color: #007BFF;
+.modal-search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
     text-decoration: none;
+}
+
+.modal-search-result-title:hover {
+    text-decoration: underline;
 }
 
 /* 标题自动编号 */

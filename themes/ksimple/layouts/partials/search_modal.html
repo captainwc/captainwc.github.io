@@ -1,19 +1,19 @@
 <div id="search-modal">
-  <input type="text" id="search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
-  <div id="search-debug" style="margin-bottom: 10px; color: #999;"></div>
-  <div id="search-results"></div>
+  <input type="text" id="modal-search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
+  <div id="modal-search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="modal-search-results"></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 
 <script>
   function debug(text) {
-      document.getElementById('search-debug').textContent = text;
+      document.getElementById('modal-search-debug').textContent = text;
   }
   function showpages() {
     debug("当前本站共有 " + searchIndex.length + " 篇文章");
   }
-  
+
   let searchIndex = [];
   {{ $pages := where site.RegularPages "Type" "posts" }}
   {{ if eq (len $pages) 0 }}
@@ -53,9 +53,9 @@
       event.preventDefault();
       toggleSearchModal();
     } else if (event.key === 'Escape') {
-      document.getElementById('search-input').value = "";
+      document.getElementById('modal-search-input').value = "";
       closeSearchModal();
-      var res = document.getElementById('search-results');
+      var res = document.getElementById('modal-search-results');
       while (res.firstChild) {
         res.removeChild(res.firstChild);
       }
@@ -67,7 +67,7 @@
     const modal = document.getElementById('search-modal');
     if (modal.style.display === 'none') {
       modal.style.display = 'block';
-      document.getElementById('search-input').focus();
+      document.getElementById('modal-search-input').focus();
     } else {
       modal.style.display = 'none';
     }
@@ -78,9 +78,9 @@
     modal.style.display = 'none';
   }
 
-  document.getElementById('search-input').addEventListener('input', function(e) {
+  document.getElementById('modal-search-input').addEventListener('input', function(e) {
     const searchTerm = e.target.value.trim();
-    const resultsContainer = document.getElementById('search-results');
+    const resultsContainer = document.getElementById('modal-search-results');
     resultsContainer.innerHTML = '';
 
     if (searchTerm === '') {
@@ -103,20 +103,20 @@
     results.forEach(result => {
       const item = result.item;
       const resultItem = document.createElement('div');
-      resultItem.className = 'search-result-item';
+      resultItem.className = 'modal-search-result-item';
 
       const date = document.createElement('span');
       date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
-      date.className = 'search-result-date';
+      date.className = 'modal-search-result-date';
 
       const link = document.createElement('a');
       link.href = item.permalink.replace(/^"|"$/g, '');
       link.textContent = item.title.replace(/^"|"$/g, '');
-      link.className = 'search-result-title';
+      link.className = 'modal-search-result-title';
 
       resultItem.appendChild(date);
       resultItem.appendChild(link);
       resultsContainer.appendChild(resultItem);
     });
   });
-</script> 
+</script>
