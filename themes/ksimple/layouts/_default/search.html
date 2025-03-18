@@ -1,11 +1,29 @@
-{{ partial "header.html" . }}
+<!-- 这里使用 partial header.html 的话，会与 search_moda.html 冲突导致不显示结果 -->
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    <link rel="icon" href= {{ .Site.Params.favicon }} />
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}" />
+    <link rel="stylesheet" href="{{ "css/fonts.css" | relURL }}" />
+  </head>
 
-<h1>{{ .Title | markdownify }}</h1>
+  <body>
+    <nav>
+    <ul class="menu">
+      {{ range .Site.Menus.main }}
+      <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+    <hr/>
+    </nav>
 
-{{ .Content }}
+<p style="margin: 1.8rem 0 -1rem 0; color: #191919;">可以根据标题、分类、标签、系列等条目检索本站文章</p>
 
 <div class="search-container">
-  <input type="text" id="search-input" placeholder="输入关键词搜索..." aria-label="搜索框">
+  <input type="text" id="search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
   <div id="search-debug" style="margin-bottom: 10px; color: #999;"></div>
   <div id="search-results"></div>
 </div>
@@ -22,15 +40,15 @@
 
   // 获取所有文章数据
   let searchIndex = [];
-  
+
   // 使用Hugo的数据模板生成搜索索引
   {{ $pages := where site.RegularPages "Type" "posts" }}
   {{ if eq (len $pages) 0 }}
     {{ $pages = where site.RegularPages "Section" "!=" "" }}
   {{ end }}
-  
+
   debug("索引初始化中...");
-  
+
   {{ range $pages }}
     searchIndex.push({
       title: {{ .Title | jsonify }},
@@ -42,10 +60,10 @@
       date: {{ .Date.Format "2006-01-02" | jsonify }}
     });
   {{ end }}
-  
-  debug("共索引 " + searchIndex.length + " 篇文章");
+
+  debug("当前本站共有 " + searchIndex.length + " 篇文章");
   console.log("搜索索引:", searchIndex);
-  
+
   // 配置Fuse.js搜索选项
   const options = {
     includeScore: true,
@@ -58,68 +76,75 @@
       { name: 'series', weight: 0.5 }
     ]
   };
-  
+
   // 初始化Fuse搜索实例
   const fuse = new Fuse(searchIndex, options);
-  
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      document.getElementById('search-input').value = "";
+      var res = document.getElementById('search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      debug("当前本站共有 " + searchIndex.length + " 篇文章");
+      document.getElementById('search-input').focus();
+    }
+  });
+
   // 监听搜索框输入
   document.getElementById('search-input').addEventListener('input', function(e) {
     const searchTerm = e.target.value.trim();
     const resultsContainer = document.getElementById('search-results');
-    
+
     // 清空搜索结果
     resultsContainer.innerHTML = '';
-    
+
     if (searchTerm === '') {
-        debug("共索引 " + searchIndex.length + " 篇文章");
+        debug("当前本站共有 " + searchIndex.length + " 篇文章");
       return;
     }
-    
+
     debug("搜索词: '" + searchTerm + "'");
-    
+
     // 执行搜索
     const results = fuse.search(searchTerm);
     debug("找到 " + results.length + " 条结果");
     console.log("搜索结果:", results);
-    
+
     if (results.length === 0) {
       resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
       return;
     }
-    
-    // 简化结果展示逻辑
-    const resultsList = document.createElement('ul');
-    resultsList.className = 'search-results-list';
-    
+
     results.forEach(result => {
       const item = result.item;
-      const listItem = document.createElement('li');
-      listItem.className = 'search-result-item';
-      
-      // 创建链接
+      const resultItem = document.createElement('div');
+      resultItem.className = 'search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
+      date.className = 'search-result-date';
+
       const link = document.createElement('a');
       link.href = item.permalink.replace(/^"|"$/g, '');
-      link.textContent = item.title;
+      link.textContent = item.title.replace(/^"|"$/g, '');
       link.className = 'search-result-title';
-      
-      // 创建日期
-      const date = document.createElement('span');
-      date.className = 'search-result-date';
-      date.textContent = item.date;
-      
-      // 添加到列表项
-      listItem.appendChild(date);
-      listItem.appendChild(document.createTextNode(' - '));
-      listItem.appendChild(link);
-      
-      // 添加到结果列表
-      resultsList.appendChild(listItem);
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
     });
-    
-    // 清空并添加结果
-    resultsContainer.innerHTML = '';
-    resultsContainer.appendChild(resultsList);
   });
 </script>
 
-{{ partial "footer.html" . }}
+<footer>
+  {{ with .Site.Params.footer }}
+  <hr />
+  {{ replace . "{Year}" now.Year | markdownify }}
+  {{ end }}
+
+</footer>
+</body>
+
+</html>
