@@ -256,6 +256,17 @@ blockquote {
     line-height: 1.4;
 }
 
+/* 列表 */
+li p {
+    margin: 0;
+}
+
+ul:not([class]):not([style]),
+ol:not([class]):not([style]) li:not([class]):not([style]) {
+    margin-bottom: 0.1rem;
+    margin-left: -0.3rem;
+}
+
 /* 表格 */
 table {
     margin: auto;
