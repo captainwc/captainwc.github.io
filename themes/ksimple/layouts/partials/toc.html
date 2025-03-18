@@ -48,7 +48,7 @@
         // 创建链接
         const link = document.createElement('a');
         link.href = `#${header.id}`;
-        link.style.paddingLeft = `${level * 20}px`;
+        link.style.paddingLeft = `${level * 12}px`;
 
         // 组合编号和标题
         link.appendChild(numberSpan);
@@ -88,6 +88,7 @@
 
   /* 目录条目 */
   .toc-panel {
+    border-radius: 8px;
     display: none;
     position: fixed;
     top: 66px;
