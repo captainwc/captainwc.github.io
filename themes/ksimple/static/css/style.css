@@ -45,32 +45,6 @@ hr {
     color: #ddd;
 }
 
-/* 文章元信息块 */
-.article-meta {
-    text-align: center;
-    text-decoration: none;
-    background: #efefef;
-    padding: 1px;
-    border-radius: 5px;
-}
-
-.article-meta-title {
-    font-size: 1em;
-}
-
-.article-meta-info {
-    color: #666;
-    font-size: 0.9rem;
-    margin: -0.6rem 0 0.2rem 10px;
-    text-align: left;
-}
-
-.article-meta-info a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
 /* 脚注 */
 footer {
     text-align: center;
@@ -129,24 +103,6 @@ a:not([class]):not([style]):hover {
         background-position: -20px 100%;
     }
 }
-
-/* 标题和分类类型的link（自定义样式） */
-.archive-date {
-    text-wrap: nowrap;
-}
-
-.title-link-a {
-    color: #3c4654;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.taxonomy-link-a {
-    text-align: right;
-    color: #7d929f;
-    text-decoration: none;
-}
-
 
 /* 代码块 */
 pre {
@@ -282,7 +238,6 @@ main {
     object-fit: contain;
 }
 
-
 /* 脚注引用样式 */
 sup a.footnote-ref {
     background: #aed0ee;
@@ -299,31 +254,6 @@ sup a.footnote-ref {
 .kroki-diagram {
     max-width: 60%;
 }
-
-/* 归档页文章链接列表布局 */
-.archieve-list-item {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.archieve-left-section {
-    display: flex;
-    align-items: center;
-    /*元素间距*/
-    gap: 0.2rem;
-    order: 1;
-}
-
-.archieve-right-section {
-    margin-left: auto;
-    display: flex;
-    gap: 0.2rem;
-    flex-wrap: wrap;
-    order: 2;
-    align-items: center;
-}
-
 
 /* 手机端（< 768px） */
 @media (max-width: 768px) {
