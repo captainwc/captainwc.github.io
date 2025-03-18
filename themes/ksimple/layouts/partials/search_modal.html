@@ -136,6 +136,7 @@
     z-index: 1000;
     width: 80%;
     max-width: 600px;
+    text-align: left;
 }
 
 #modal-search-input {
@@ -150,19 +151,23 @@
 
 #modal-search-results {
     margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 .modal-search-result-item {
     padding: 0.7rem;
     margin-bottom: 0.5rem;
     border-bottom: 1px solid #eee;
-    display: block;
+    display: flex;
+    align-items: center;
 }
 
 .modal-search-result-date {
     color: #666;
     font-size: 0.9rem;
     margin-right: 0.5rem;
+    text-wrap: nowrap;
 }
 
 .modal-search-result-title {
