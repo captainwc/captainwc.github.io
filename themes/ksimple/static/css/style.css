@@ -338,6 +338,15 @@ sup a.footnote-ref {
         align-items: center;
     }
 
+    .archieve-list-item {
+        margin-left: -1.2rem;
+    }
+
+    .archieve-left-section {
+        flex-shrink: 0;
+        min-width: max-content;
+    }
+
     .plantuml-diagram,
     .kroki-diagram {
         max-width: 95% !important;
