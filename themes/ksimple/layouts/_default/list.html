@@ -29,7 +29,7 @@
       <li class="archieve-list-item">
         <div class="archieve-left-section">
           {{ if (gt .Params.date 0) }}
-          <span class="date">{{ .Date.Format "2006-01-02" }}</span>
+          <span class="archive-date">{{ .Date.Format "2006-01-02" }}</span>
           {{ end }}
           🗞️<a href="{{ .RelPermalink }}" class="title-link-a">{{ .Title | markdownify }}</a>
         </div>

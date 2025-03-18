@@ -131,6 +131,10 @@ a:not([class]):not([style]):hover {
 }
 
 /* 标题和分类类型的link（自定义样式） */
+.archive-date {
+    text-wrap: nowrap;
+}
+
 .title-link-a {
     color: #3c4654;
     text-decoration: none;
@@ -340,11 +344,6 @@ sup a.footnote-ref {
 
     .archieve-list-item {
         margin-left: -1.2rem;
-    }
-
-    .archieve-left-section {
-        flex-shrink: 0;
-        min-width: max-content;
     }
 
     .plantuml-diagram,
