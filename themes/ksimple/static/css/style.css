@@ -333,4 +333,10 @@ h6::before {
         padding: 0;
         transform-origin: center;
     }
+
+    /* 目录最大宽度限制 */
+    .toc-panel {
+        max-width: 260px !important;
+        max-height: 70vh !important;
+    }
 }
