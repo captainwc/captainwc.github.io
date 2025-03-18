@@ -19,6 +19,8 @@
 
   {{ partial "foot_custom.html" . }}
 
+  {{ partial "search_modal.html" . }}
+
   {{ with .Site.Params.footer }}
   <hr />
   {{ replace . "{Year}" now.Year | markdownify }}
