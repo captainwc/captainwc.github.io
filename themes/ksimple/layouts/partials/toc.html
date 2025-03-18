@@ -13,6 +13,39 @@
       clearTimeout(hoverTimeout);
       generateToc();
       panel.classList.add('show');
+
+      // 自动将当前标题对应的目录条目滚动到目录中间位置：在下一帧执行确保面板已渲染
+      requestAnimationFrame(() => {
+        const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+        let activeHeader = null;
+        let minDistance = Infinity;
+
+        // 寻找离视口顶部最近的标题
+        headers.forEach(header => {
+          const rect = header.getBoundingClientRect();
+          const distance = Math.abs(rect.top);
+          if (distance < minDistance) {
+            minDistance = distance;
+            activeHeader = header;
+          }
+        });
+
+        // 滚动到对应目录项
+        if (activeHeader) {
+          const activeLink = panel.querySelector(`a[href="#${activeHeader.id}"]`);
+          if (activeLink) {
+            // 计算滚动位置
+            const panelHeight = panel.offsetHeight;
+            const linkOffset = activeLink.offsetTop;
+            const centerPosition = linkOffset - (panelHeight / 2) + (activeLink.offsetHeight / 2);
+            // 使用平滑滚动
+            panel.scrollTo({
+              top: centerPosition,
+              behavior: 'auto'
+            });
+          }
+        }
+      });
     });
 
     panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
