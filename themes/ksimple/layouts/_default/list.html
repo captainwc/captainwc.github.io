@@ -19,9 +19,9 @@
 
 {{ range ($pages.GroupByDate "2006-01") }}
 {{ if (eq .Key "0001-01") }}
-  <h2>🐒🐒-🐎</h2>
+  <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: -0.8rem;">🐒🐒-🐎</p>
 {{ else }}
-  <h2>{{ .Key }}</h2>
+  <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: -0.8rem;">{{ .Key }}</p>
 {{ end }}
   <ul>
     <!-- 只显示有"归属"的文章，也即content目录的子目录中的文章。每个子目录为一个section -->
