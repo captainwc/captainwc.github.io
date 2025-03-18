@@ -6,24 +6,20 @@ body {
     margin-right: auto !important;
     padding: 1em;
     line-height: 1.5;
-
-    /*
-      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cows.jpg)',
-      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cow.jpg)',
-      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-snow.jpg)',
-      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-river_p.png)',
-      'url(https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/forest-green.jpg)',*/
-
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.85) 10%, rgba(255, 255, 255, 0.96) 21%, rgba(255, 255, 255, 0.96) 80%, rgba(255, 255, 255, 0.85) 90%, rgba(255, 255, 255, 0.75) 100%), url('https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cow.jpg');
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
 }
 
-/* 菜单栏 */
+/* 文本换行添加连字符 */
+main {
+    hyphens: auto;
+}
+
+/* ================= 菜单栏 ================= */
 .menu {
     padding: 0;
-    /* margin: 0.3rem; */
     text-align: center;
 }
 
@@ -38,6 +34,8 @@ body {
     padding: 5px;
     border-radius: 5px;
 }
+
+/* ================= 网页基本元素 ================= */
 
 /* 分割线 */
 hr {
@@ -68,7 +66,6 @@ p a:not([class]):not([style])::before {
     width: 1rem;
     height: 1rem;
     margin: 0px 2px 2px 0px;
-    /*  You can try 'link-link7.png'  */
     background-image: url('https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/link.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -80,15 +77,9 @@ p a:visited {
 }
 
 a:not([class]):not([style]):hover {
-    /*     margin: 5px;*/
-    /*     padding: 0.2px 0.5px 0.2px 0.5px;*/
-    /*     color: #747d8c;*/
     color: #2e59a7 !important;
     text-decoration: dotted;
     background-color: rgb(220, 199, 225);
-    /*    box-shadow: 6px 6px 6px #ddd;*/
-    /*    border-radius: 5px;*/
-    /*    transition-duration: 888ms;*/
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='%23aed0ee' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E") repeat-x 0 100%;
     background-size: 20px auto;
     animation: waveMove 1s infinite linear;
@@ -108,7 +99,6 @@ a:not([class]):not([style]):hover {
 pre {
     border: 1px solid #ddd;
     border-radius: 6px;
-    /*    box-shadow: 3px 3px 3px #eee;*/
     overflow-x: auto;
     position: relative;
     overflow: hidden;
@@ -132,10 +122,8 @@ code {
 /* 引用 */
 blockquote {
     border-left: 4px solid #bdc3c7;
-    /*    width: 97%;*/
     padding: 1px 15px;
     margin-left: 0px;
-    /* color: #494949; */
     background-color: rgb(250, 250, 250);
     border-radius: 3px;
     line-height: 1.4;
@@ -150,28 +138,6 @@ ul:not([class]):not([style]),
 ol:not([class]):not([style]) li:not([class]):not([style]) {
     margin-bottom: 0.1rem;
     margin-left: -0.3rem;
-}
-
-/* 表格 */
-table {
-    margin: auto;
-    border-top: 1px solid #666;
-    border-bottom: 1px solid #666;
-}
-
-table thead th {
-    border-bottom: 1px solid #ddd;
-}
-
-th,
-td {
-    padding: 5px;
-}
-
-thead,
-tfoot,
-tr:nth-child(even) {
-    background: #eee;
 }
 
 /* 按键 */
@@ -193,49 +159,9 @@ mark {
     margin: 0.2px 0.5px 0.2px 0.5px;
 }
 
-/* 粗体 */
-strong {
-    /* color: #4274bf; */
-}
-
 /* 斜体 */
 em {
     color: #57606f;
-}
-
-/*em:hover {
-    color: #4fc08d;
-}*/
-
-/* 图片视频页帧等 */
-img,
-.common-markdown-diagram,
-iframe,
-video {
-    max-width: 95%;
-    /*     margin: 0.6rem;*/
-    /* margin: 0.6rem auto; */
-    /* padding: 1px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
-}
-
-main {
-    hyphens: auto;
-}
-
-/* 自动排版图片 */
-.img-align {
-    width: 100%;
-    display: flex;
-}
-
-.img-align>* {
-    flex: 1;
-    min-width: 0;
-    text-align: center;
-    object-fit: contain;
 }
 
 /* 脚注引用样式 */
@@ -249,63 +175,56 @@ sup a.footnote-ref {
     text-decoration: none;
 }
 
+/* ================= 表格 ================= */
+table {
+    margin: auto;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+}
+
+table thead th {
+    border-bottom: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 5px;
+}
+
+thead,
+tfoot,
+tr:nth-child(even) {
+    background: #eee;
+}
+
+/* ================= 图片视频等多媒体 ================= */
+img,
+.common-markdown-diagram,
+iframe,
+video {
+    max-width: 95%;
+}
+
 /* PlantUML 图片样式（类名在footer中指定） */
 .plantuml-diagram,
 .kroki-diagram {
     max-width: 60%;
 }
 
-/* 手机端（< 768px） */
-@media (max-width: 768px) {
-    body {
-        width: 90% !important;
-        max-width: 100% !important;
-        font-size: 100% !important;
-        background-image: none !important;
-    }
-
-    .archieve-right-section {
-        margin-left: 0;
-        width: 100%;
-        justify-content: flex-end;
-        margin-top: 0.5rem;
-        align-items: center;
-    }
-
-    .archieve-list-item {
-        margin-left: -1.2rem;
-    }
-
-    .plantuml-diagram,
-    .kroki-diagram {
-        max-width: 95% !important;
-    }
-
-    .taxonomy-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    /* 搜索框样式调整 */
-    #search-input {
-        width: 90% !important;
-        padding: 0.8rem;
-        font-size: 1rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        margin-bottom: 1rem;
-    }
-
-    /* tags词云调整 */
-    #tag-cloud-canvas {
-        width: 100% !important;
-        margin: 0 auto;
-        padding: 0;
-        transform-origin: center;
-    }
+/* ================= 自动排版图片样式 ================= */
+.img-align {
+    width: 100%;
+    display: flex;
 }
 
-/* 标题自动编号 */
+.img-align>* {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    object-fit: contain;
+}
+
+/* ================= 标题自动编号 ================= */
 h2::before,
 h3::before,
 h4::before,
@@ -315,9 +234,6 @@ h6::before {
     font-size: small;
     vertical-align: central;
     margin: 0 6px 0 0;
-    /* box-shadow: 0 0 6px rgba(222, 222, 222, 0.5); */
-    /* border-radius: 6px; */
-    /* padding: 0.05rem; */
 }
 
 body {
@@ -366,4 +282,55 @@ h6 {
 
 h6::before {
     content: counter(section2) "." counter(section3) "." counter(section4) "." counter(section5) "." counter(section6);
+}
+
+/* ================= 手机端（< 768px）=================  */
+@media (max-width: 768px) {
+    body {
+        width: 90% !important;
+        max-width: 100% !important;
+        font-size: 100% !important;
+        background-image: none !important;
+    }
+
+    .archieve-right-section {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 0.5rem;
+        align-items: center;
+    }
+
+    .archieve-list-item {
+        margin-left: -1.2rem;
+    }
+
+    .plantuml-diagram,
+    .kroki-diagram {
+        max-width: 95% !important;
+    }
+
+    /* 分类页排版 */
+    .taxonomy-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* 搜索框样式调整 */
+    #search-input {
+        width: 90% !important;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+
+    /* tags词云调整 */
+    #tag-cloud-canvas {
+        width: 100% !important;
+        margin: 0 auto;
+        padding: 0;
+        transform-origin: center;
+    }
 }
