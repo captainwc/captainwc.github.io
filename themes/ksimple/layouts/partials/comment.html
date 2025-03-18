@@ -1,0 +1,25 @@
+<!-- layouts/partials/comments/cusdis.html -->
+
+<h1 style="font-size: 1.2rem; margin: 2.5rem 0 0.1rem 0;">Comment</h1>
+<div class="cusdis-comments">
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id="697d528d-b618-4ee1-a6fe-403c81a646ac"
+    data-page-id="{{ .File.UniqueID }}"
+    data-page-url="{{ .Permalink }}"
+    data-page-title="{{ .Title }}"
+  ></div>
+  <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+</div>
+
+<style>
+.cusdis-comments {
+  border-top: 2px dashed #cfcfcf;
+  padding-top: 1.3rem;
+}
+
+#cusdis_thread iframe {
+  min-height: 500px !important;
+  overflow: visible !important;
+}
+</style>
