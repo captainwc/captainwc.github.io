@@ -13,6 +13,7 @@ params:
   description: "Welcome to KaiKai's blog!"
   footer: "&copy; [SHUAIKAI](https://kaikaixixi.xyz) 2021 -- {Year} | 🎨[KSimple](https://github.com/captainwc/captainwc.github.io/tree/main/themes/ksimple)"
   favicon: "https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_2/avator-shinubi.png"
+  githubUserName: "captainwc"
 
 permalinks:
   note: "/note/:year/:month/:day/:slug/"
