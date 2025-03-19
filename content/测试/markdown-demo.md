@@ -283,12 +283,33 @@ actdiag {
 
 #### TODO: 定制 Shotcode
 
+### ShortCodes
+
+#### 内嵌多媒体
+
+##### 内嵌网页 emb-web
+
+用法及效果如下。第二个参数是iframe的宽度，默认值是 `50vh`
+
+```html
+<!--实际上应该用{，但是在代码块里的也会被解析，所以用[示意-->
+[[< emb-web "https://kaikaixixi.xyz" 36 >]]
+```
+
+{{< emb-web "https://kaikaixixi.xyz" 36 >}}
+
+##### 内嵌图片 emb-img
+
+可以嵌入一些长图。原理是先用图片填充满一个临时html，然后将这个html嵌入到iframe中
+
+{{< emb-img "https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cow.jpg" 30 >}}
+
 ### 目录
 
-暂时不打算给博客添加目录
+~暂时不打算给博客添加目录~ 还是做目录了，鼠标悬浮右上角目录按钮，自动弹出目录框并将当前标题滚动到中间位置
 
 > [!tip]
-> 可以考虑使用浏览器插件[OneToc](https://microsoftedge.microsoft.com/addons/detail/onetoc/jkgapfniamkoblbmbhdjlnfklihlpjmc)，有快捷键 Toggle 的功能，效果已经非常不错了。
+> ~可以考虑~推荐使用浏览器插件[OneToc](https://microsoftedge.microsoft.com/addons/detail/onetoc/jkgapfniamkoblbmbhdjlnfklihlpjmc)，有快捷键 Toggle 的功能，效果~已经非常不错了~也还可以。
 
 [^Ref001]: This is the first reference。Alought it placed at the middle of markdown source, it will be move to the end of the html.
 [^x2y]: And this is the second one
