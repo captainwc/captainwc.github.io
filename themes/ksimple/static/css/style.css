@@ -208,7 +208,13 @@ video {
 /* PlantUML 图片样式（类名在footer中指定） */
 .plantuml-diagram,
 .kroki-diagram {
-    max-width: 60%;
+    max-width: 66% !important;
+    height: auto;
+
+    svg {
+        max-width: 100%;
+        height: auto;
+    }
 }
 
 /* ================= 自动排版图片样式 ================= */
