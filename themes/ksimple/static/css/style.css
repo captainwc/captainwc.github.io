@@ -276,7 +276,7 @@ body {
 
 h2 {
     counter-increment: section2;
-    counter-reset: section3;
+    counter-reset: section3 section4 section5 section6;
 }
 
 h2::before {
@@ -285,7 +285,7 @@ h2::before {
 
 h3 {
     counter-increment: section3;
-    counter-reset: section4;
+    counter-reset: section4 section5 section6;
 }
 
 h3::before {
@@ -294,7 +294,7 @@ h3::before {
 
 h4 {
     counter-increment: section4;
-    counter-reset: section5;
+    counter-reset: section5 section6;
 }
 
 h4::before {
