@@ -1,0 +1,8 @@
+<iframe 
+    src="{{ .Get 0 | safeURL }}" 
+    style="width: 100% !important; height: {{ .Get 1 | default 50 }}vh ; border: none; align-content: center;"
+    allowfullscreen="true" 
+    frameborder="0" 
+    scrolling="auto"
+    loading="lazy"
+></iframe>

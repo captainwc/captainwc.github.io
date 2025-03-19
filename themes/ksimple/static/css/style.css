@@ -202,7 +202,7 @@ img,
 .common-markdown-diagram,
 iframe,
 video {
-    max-width: 95%;
+    max-width: 100%;
 }
 
 /* PlantUML 图片样式（类名在footer中指定） */
