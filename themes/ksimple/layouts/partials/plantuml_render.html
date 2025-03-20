@@ -22,8 +22,13 @@ skinparam participantBackgroundColor #white
     `.trim();
 
       plantumlBlocks.forEach(codeBlock => {
+        // 创建容器
+        const container = document.createElement('div');
+        container.className = 'code-rendered-diagram';
+
+        // 创建图片元素
         const img = document.createElement('img');
-        img.className = 'plantuml-diagram';
+        img.className = 'code-rendered-diagram-img';
         img.style.display = 'block';
         img.alt = 'PlantUML Diagram';
 
@@ -31,8 +36,30 @@ skinparam participantBackgroundColor #white
         const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
         img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
 
-        // 替换原始pre标签
-        codeBlock.parentElement.replaceWith(img);
+        // 创建复制按钮
+        const copyButton = document.createElement('button');
+        copyButton.className = 'code-rendered-diagram-copy-button';
+        copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+
+        // 存储原始代码
+        container.dataset.originalCode = fullCode;
+
+        // 复制逻辑
+        copyButton.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(container.dataset.originalCode);
+            copyButton.textContent = 'COPIED!';
+            setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+          } catch (err) {
+            copyButton.textContent = 'FAILED';
+            console.error('复制失败:', err);
+          }
+        });
+
+        // 组装元素
+        container.appendChild(img);
+        container.appendChild(copyButton);
+        codeBlock.parentElement.replaceWith(container);
       });
     };
 

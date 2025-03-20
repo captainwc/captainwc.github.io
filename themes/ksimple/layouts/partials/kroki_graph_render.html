@@ -71,11 +71,31 @@
         if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
 
         const svg = document.createElement('div');
-        svg.className = 'kroki-diagram';
+        svg.className = 'code-rendered-diagram';
         svg.innerHTML = makeSVGTransparent(await res.text());
 
+        // 添加复制原始代码按钮
+        const copyButton = document.createElement('button');
+        copyButton.className = 'code-rendered-diagram-copy-button';
+        copyButton.textContent = '\uf4bb COPY-SRC';
+        svg.dataset.originalCode = code;
+
+        copyButton.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(svg.dataset.originalCode);
+            copyButton.textContent = '\uf00c COPIED!';
+            setTimeout(() => copyButton.textContent = '\uf4bb COPY-SRC', 2000);
+          } catch (err) {
+            copyButton.textContent = 'FAILED';
+            console.error('复制失败:', err);
+          }
+        });
+        svg.appendChild(copyButton);
+
         pre.insertAdjacentElement('afterend', svg);
-        pre.style.display = 'none';
+
+        // 删除原始pre块
+        pre.remove();
       } catch (err) {
         console.error(`[Kroki] 渲染失败: ${err.message}`);
         pre.style.border = '2px solid red';

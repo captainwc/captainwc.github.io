@@ -233,16 +233,41 @@ video {
     max-width: 100%;
 }
 
-/* PlantUML 图片样式（类名在footer中指定） */
-.plantuml-diagram,
-.kroki-diagram {
+/* 从代码渲染而来的图片，比如plantuml、kroki等 */
+.code-rendered-diagram {
     max-width: 66% !important;
     height: auto;
+    position: relative;
 
     svg {
         max-width: 100%;
         height: auto;
     }
+}
+
+.code-rendered-diagram-copy-button {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+    opacity: 0;
+}
+
+.code-rendered-diagram:hover .code-rendered-diagram-copy-button {
+    opacity: 1;
 }
 
 /* ================= 自动排版图片样式 ================= */
