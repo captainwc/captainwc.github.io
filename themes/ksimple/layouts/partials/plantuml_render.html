@@ -48,7 +48,7 @@ skinparam participantBackgroundColor #white
         copyButton.addEventListener('click', async () => {
           try {
             await navigator.clipboard.writeText(container.dataset.originalCode);
-            copyButton.textContent = 'COPIED!';
+            copyButton.textContent = '\uf00c COPIED!';
             setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
           } catch (err) {
             copyButton.textContent = 'FAILED';
