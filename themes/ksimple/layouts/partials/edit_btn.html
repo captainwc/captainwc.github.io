@@ -1,6 +1,6 @@
 {{ if .File }}
 <div class="edit-button">
-  <a href="https://github.com/{{ .Site.Params.githubUserName }}/{{ .Site.Params.githubUserName }}.github.io/edit/main/content/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener">&#xF1A7D;</a>
+  <a href="https://github.com/{{ .Site.Params.githubUserName }}/{{ .Site.Params.githubUserName }}.github.io/edit/main/content/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener"><i class="fa-solid fa-square-pen"></i></a>
 </div>
 
 <style>
@@ -11,24 +11,28 @@
     bottom: 20px;
     cursor: pointer;
     font-family: "Maple Mono NF CN";
-    font-size: 1.3rem;
-    padding: 1px 10px 0px 6px;
+    font-size: 1.2rem;
+    padding: 1px 6.6px 0px 6.6px;
     position: fixed;
     transition: background 0.3s;
     z-index: 9999;
-    color: #555;
+    color: #ccc;
+    opacity: 0.5;
 }
 
 .edit-button a {
-    color: #555;
+    color: #ccc;
     text-decoration: none;
     background: none !important;
     transition: opacity 0.2s;
+    padding: 0;
+    margin: 0;
 }
 
 .edit-button:hover,
 .edit-button a:hover {
     background: #BEC2B3;
+    opacity: 1;
 }
 </style>
 {{ end }}
