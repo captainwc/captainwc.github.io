@@ -81,25 +81,6 @@ boundary 边界
 >
 > 有时候你可能只需要一个“框图”，而非严格的带有什么 start 和 stop 的活动图。那么“用例图”实际上可以完成一二。用例图自带小人和椭圆，以及一些箭头，通过`rectangle "xxx" as A`可以创建一个方框。
 
-```plaint-plantuml
-@startuml
-
-rectangle "AAA" as A
-rectangle T1
-rectangle T2
-rectangle T3
-rectangle "..." as B
-
-A -> T1 : sth
-T1 -> T2
-T2 -> T3
-T3 -> B
-
-note left of A #fff: Comment
-
-@enduml
-```
-
 ```plantuml
 @startuml
 
