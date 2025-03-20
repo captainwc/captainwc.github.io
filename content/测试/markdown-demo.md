@@ -423,6 +423,18 @@ actdiag {
 > [!TODO] TODO
 > This is a todo list
 
+> [!flag] FLAG
+> This is a flag
+
+> [!bug] BUG
+> This is a bug
+
+> [!reference]
+> Here are all the references
+
+> [!message]
+> Please read these message
+
 #### Customization
 
 Choose a callout you prefer and add a title
@@ -480,3 +492,11 @@ You can choose to only to show the header!
 > [!WARNING] Warning: This operation will delete all data
 
 > [!todo] This is a todo list
+
+> [!flag] This is a flag
+
+> [!bug] You found a bug
+
+> [!reference] Refer to wikipieda
+
+> [!message] A message for my readers
