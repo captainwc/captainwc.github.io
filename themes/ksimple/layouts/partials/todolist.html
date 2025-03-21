@@ -12,6 +12,9 @@
         const todolistContainer = document.createElement('div');
         todolistContainer.className = 'todolist';
 
+        // 添加进度条
+        addTaskProgressBar(ul, todolistContainer);
+
         // 转换每个列表项
         ul.querySelectorAll('li').forEach(li => {
           const todoItemDiv = document.createElement('div');
@@ -45,16 +48,50 @@
         ul.parentNode.replaceChild(todolistContainer, ul);
       }
     });
+
+    function addTaskProgressBar(ul, todolistContainer) {
+      // 任务完成计数
+      const totalTasks = ul.children.length;
+      const finishedTasks = Array.from(ul.children).filter(li => li.innerHTML.includes('checked')).length;
+
+      // 创建进度条容器
+      const progressContainer = document.createElement('div');
+      progressContainer.className = 'todo-progress';
+
+      // 左侧计数
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'todo-progress-counter';
+      counterSpan.textContent = `${finishedTasks}/${totalTasks}`;
+
+      // 进度条轨道
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'todo-progress-bar';
+
+      // 进度条填充
+      const progressFill = document.createElement('div');
+      progressFill.className = 'todo-progress-bar-fill';
+      progressFill.style.width = `${(finishedTasks / totalTasks) * 100}%`;
+
+      // 右侧旗帜
+      const flagSpan = document.createElement('span');
+      flagSpan.className = 'todo-progress-flag';
+      flagSpan.innerHTML = `${finishedTasks === totalTasks ? '🌟' : '🚧'}`;
+
+      // 组装进度条
+      progressTrack.appendChild(progressFill);
+      progressContainer.append(flagSpan, progressTrack, counterSpan);
+      todolistContainer.appendChild(progressContainer);
+    }
   });
 </script>
 
 <style>
+  /* todolist样式 */
   .todolist {
     padding-left: 0.6rem;
   }
 
   .todo-item {
-    margin: -0.2rem -0.5rem;
     padding: 0.2rem;
     display: flex;
     align-items: center;
@@ -91,5 +128,49 @@
   .todo-item-content {
     flex: 1;
     word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  /* 进度条样式 */
+  .todo-progress {
+    display: flex;
+    /*    display: none;*/
+    align-items: center;
+    gap: 0.3rem;
+    /*    margin: -0.1rem 0 -0.5rem -0.3rem;*/
+    margin: 0.1rem 0 0 0.7rem;
+  }
+
+  .todo-progress-counter {
+    /*    font-family: "Maple Mono NF CN";*/
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+    color: #707070;
+  }
+
+  .todo-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #a64036;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 20%;
+  }
+
+  .todo-progress-bar-fill {
+    height: 100%;
+    background: #84a729;
+    transition: width 0.3s ease;
+  }
+
+  .todo-progress-flag {
+    display: none;
+    position: relative;
+    font-size: 0.9rem;
   }
 </style>
