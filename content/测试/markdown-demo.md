@@ -57,8 +57,25 @@ int main(){
 
 1. item
 
-- [ ] todo
-- [x] todo
+### Todo List
+
+- [ ] todo1
+- todo2
+
+- [x]todo3
+
+更推荐下面的用法：
+
+> [!todo] How to use this theme？
+> - [x] git clone
+> - [ ] modify the `hugo.yaml`
+> - [x] create notes
+> - [ ] push and public
+
+> [!task] 未来三天计划：
+> - [x] 玩一天
+> - [x] 玩两天
+> - [x] 玩三天
 
 ### PlantUML 代码块自动渲染
 
