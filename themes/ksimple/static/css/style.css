@@ -192,6 +192,11 @@ em {
     color: #57606f;
 }
 
+/* 删除 */
+del {
+    opacity: 0.3;
+}
+
 /* 脚注引用样式 */
 sup a.footnote-ref {
     background: #aed0ee;
