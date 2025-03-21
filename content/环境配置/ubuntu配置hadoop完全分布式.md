@@ -26,7 +26,7 @@ cd /etc/netplan/ && ll
 vim 01-network-manager-all.yaml
 ```
 
-```bash
+```yaml
 # 把以下内容粘贴上
 # Let NetworkManager manage all devices on this system
 network:
@@ -150,7 +150,7 @@ ssh-copyid [maser][slave1][slave2]
 
 **`xsync`:将当前文件自动分发到集群中所有机器的相同位置**
 
-```bash
+```shell
 # 在~/bin目录下创建脚本文件，因为这个目录已经被添加到环境变量中，可以全局使用。当然也可以自己添加环境变量
 sudo vim /home/usr/bin/xsync
 
