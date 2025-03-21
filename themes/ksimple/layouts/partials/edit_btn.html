@@ -1,6 +1,9 @@
-{{ if .File }}
+{{ if or .File .IsHome }}
 <div class="edit-button">
-  <a href="https://github.com/{{ .Site.Params.githubUserName }}/{{ .Site.Params.githubUserName }}.github.io/edit/main/content/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener"><i class="fa-solid fa-square-pen"></i></a>
+    <a href='{{ if .IsHome }}https://github.com/{{ .Site.Params.githubUserName }}/{{ .Site.Params.githubUserName }}.github.io/new/main/content/测试{{ else }}https://github.com/{{ .Site.Params.githubUserName }}/{{ .Site.Params.githubUserName }}.github.io/edit/main/content/{{ replace .File.Path "\\" "/" }}{{ end }}'
+       target="_blank" rel="noopener">
+        <i class="fa-solid fa-square-pen"></i>
+    </a>
 </div>
 
 <style>
