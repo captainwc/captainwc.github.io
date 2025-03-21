@@ -24,7 +24,7 @@
     searchIndex.push({
       title: {{ .Title | jsonify }},
       permalink: {{ .RelPermalink | jsonify }},
-      content: {{ .Plain | jsonify }},
+      // content: {{ .Plain | jsonify }},
       categories: {{ if .Params.categories }}{{ .Params.categories | jsonify }}{{ else }}[]{{ end }},
       tags: {{ if .Params.tags }}{{ .Params.tags | jsonify }}{{ else }}[]{{ end }},
       series: {{ if .Params.series }}{{ .Params.series | jsonify }}{{ else }}[]{{ end }},
