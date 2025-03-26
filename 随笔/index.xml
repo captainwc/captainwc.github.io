@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>随笔s on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/%E9%9A%8F%E7%AC%94/</link>
+    <description>Recent content in 随笔s on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <atom:link href="https://kaikaixixi.xyz/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>带着目的学习——以CyberRT为例</title>
+      <link>https://kaikaixixi.xyz/%E9%9A%8F%E7%AC%94/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0%E4%BB%A5cyberrt%E4%B8%BA%E4%BE%8B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/%E9%9A%8F%E7%AC%94/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6%E4%B9%A0%E4%BB%A5cyberrt%E4%B8%BA%E4%BE%8B/</guid>
+      <description>&lt;h1 id=&#34;带着目的学cyberrt&#34;&gt;带着目的学：CyberRT&lt;/h1&gt;&#xA;&lt;h2 id=&#34;故事背景&#34;&gt;故事背景&lt;/h2&gt;&#xA;&lt;p&gt;最近处在上学与退学，上班与无业的叠加态，想学点CyberRT、Ros2、DDS这些大型项目为工作做准备。虽说之前实习时也算接触过大型项目了，但是毕竟现在时间更充裕，也没有一个明确的任务催着、针对性的去解决，所以看了好几天代码，给环境配得极其顺手，但是实际上对项目的了解始终停留在0。这也值得小小反思以下：&lt;/p&gt;&#xA;&#xA;          &lt;link rel=&#34;stylesheet&#34; href=&#34;https://kaikaixixi.xyz/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css&#34; integrity=&#34;sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=&#34; crossorigin=&#34;anonymous&#34;&gt;&#xA;  &lt;div class=&#34;admonition question&#34;&gt;&#xA;    &lt;div class=&#34;admonition-header&#34;&gt;&#xA;      &lt;svg t=&#34;1742883601984&#34; class=&#34;icon&#34; viewBox=&#34;0 0 1024 1024&#34; version=&#34;1.1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; p-id=&#34;6738&#34; width=&#34;200&#34; height=&#34;200&#34;&gt;&lt;path d=&#34;M512 32C247.04 32 32 224 32 464A410.24 410.24 0 0 0 172.48 768L160 965.12a25.28 25.28 0 0 0 39.04 22.4l168-112A528.64 528.64 0 0 0 512 896c264.96 0 480-192 480-432S776.96 32 512 32z m-21.12 716.16a70.08 70.08 0 1 1 70.4-70.4 70.08 70.08 0 0 1-70.4 70.4z m104.32-280.32c-28.16 22.4-42.88 35.2-42.88 57.28a60.16 60.16 0 0 1-120.32 0c0-77.12 48-116.16 83.2-144.64 22.08-17.92 35.2-29.44 35.2-40.32s0-37.76-59.52-37.76a128 128 0 0 0-64 16.32 64 64 0 0 1-32 9.92 57.6 57.6 0 0 1-57.6-57.6 58.88 58.88 0 0 1 32-51.52 231.04 231.04 0 0 1 128-35.52c105.28 0 176 61.44 176 152.96a160 160 0 0 1-78.08 131.2z&#34; p-id=&#34;6739&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;&#xA;      &lt;span&gt;为什么时间越多反而越看不好项目呢？&lt;/span&gt;&#xA;    &lt;/div&gt;&#xA;  &lt;/div&gt;&#xA;&lt;p&gt;比较一下，实习的时候看代码，是带着一个明确的目标看的。先有业务场景，比如是一个表达式解析错误的bug，当输入表达式是什么的时候，出现什么样的bug。然后我就专找表达式解析部分的代码，专找相应的case处理逻辑，理解起来就很快。表达式解析的case见多了（业务场景见多了），自然也能理解解析部分的代码，&lt;strong&gt;为什么&lt;/strong&gt; 要那样写。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
