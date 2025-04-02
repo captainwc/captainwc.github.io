@@ -102,6 +102,14 @@
                 fullscreenButton.addEventListener('click', () => {
                     const clonedContent = svg.querySelector('svg').cloneNode(true);
                     fullscreenOverlay.innerHTML = '';
+
+                    // 添加退出按钮
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => fullscreenOverlay.classList.remove('active');
+
+                    fullscreenOverlay.appendChild(exitButton);
                     fullscreenOverlay.appendChild(clonedContent);
                     fullscreenOverlay.classList.add('active');
 

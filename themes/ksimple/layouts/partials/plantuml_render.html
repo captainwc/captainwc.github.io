@@ -69,6 +69,14 @@ skinparam participantBackgroundColor #white
         fullscreenButton.addEventListener('click', () => {
           const clonedImg = img.cloneNode(true);
           fullscreenOverlay.innerHTML = '';
+
+          // 退出按钮
+          const exitButton = document.createElement('button');
+          exitButton.className = 'fullscreen-exit-button';
+          exitButton.innerHTML = 'ESC';
+          exitButton.onclick = () => fullscreenOverlay.classList.remove('active');
+
+          fullscreenOverlay.appendChild(exitButton);
           fullscreenOverlay.appendChild(clonedImg);
           fullscreenOverlay.classList.add('active');
 
