@@ -41,6 +41,37 @@ skinparam participantBackgroundColor #white
         copyButton.className = 'code-rendered-diagram-copy-button';
         copyButton.innerHTML = '&#xf4bb; COPY-SRC';
 
+        // 创建全屏按钮
+        const fullscreenButton = document.createElement('button');
+        fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+        fullscreenButton.innerHTML = '&#xf065; FULL';
+
+        // 创建全屏覆盖层
+        const overlay = document.createElement('div');
+        overlay.className = 'fullscreen-overlay';
+        document.body.appendChild(overlay);
+
+        fullscreenButton.addEventListener('click', () => {
+          const clonedImg = img.cloneNode(true);
+          overlay.innerHTML = '';
+          overlay.appendChild(clonedImg);
+          overlay.classList.add('active');
+        });
+
+        // ESC 键退出全屏
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            overlay.classList.remove('active');
+          }
+        });
+
+        // 点击背景退出全屏
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) {
+            overlay.classList.remove('active');
+          }
+        });
+
         // 存储原始代码
         container.dataset.originalCode = fullCode;
 
@@ -58,6 +89,7 @@ skinparam participantBackgroundColor #white
 
         // 组装元素
         container.appendChild(img);
+        container.appendChild(fullscreenButton);
         container.appendChild(copyButton);
         codeBlock.parentElement.replaceWith(container);
       });
