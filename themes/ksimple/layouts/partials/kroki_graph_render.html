@@ -80,28 +80,83 @@
                 fullscreenButton.textContent = '\uf065 FULL';
 
                 // 创建全屏覆盖层
-                const overlay = document.createElement('div');
-                overlay.className = 'fullscreen-overlay';
-                document.body.appendChild(overlay);
+                const fullscreenOverlay = document.createElement('div');
+                fullscreenOverlay.className = 'fullscreen-overlay';
+                document.body.appendChild(fullscreenOverlay);
 
-                fullscreenButton.addEventListener('click', () => {
-                    const clonedContent = svg.querySelector('svg').cloneNode(true);
-                    overlay.innerHTML = '';
-                    overlay.appendChild(clonedContent);
-                    overlay.classList.add('active');
+                // 双击退出全屏
+                fullscreenOverlay.addEventListener('dblclick', (e) => {
+                    if (e.target === fullscreenOverlay) {
+                        fullscreenOverlay.classList.remove('active');
+                    }
                 });
 
                 // ESC 键退出全屏
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                        overlay.classList.remove('active');
+                    if (e.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
+                        fullscreenOverlay.classList.remove('active');
                     }
                 });
 
-                // 点击背景退出全屏
-                overlay.addEventListener('click', (e) => {
-                    if (e.target === overlay) {
-                        overlay.classList.remove('active');
+                // 缩放和拖动
+                fullscreenButton.addEventListener('click', () => {
+                    const clonedContent = svg.querySelector('svg').cloneNode(true);
+                    fullscreenOverlay.innerHTML = '';
+                    fullscreenOverlay.appendChild(clonedContent);
+                    fullscreenOverlay.classList.add('active');
+
+                    // 初始化缩放和位置状态
+                    let scale = 1;
+                    let posX = 0;
+                    let posY = 0;
+                    let isDragging = false;
+                    let startX = 0;
+                    let startY = 0;
+
+                    const svgElement = fullscreenOverlay.querySelector('svg');
+
+                    // 缩放处理
+                    fullscreenOverlay.addEventListener('wheel', (e) => {
+                        e.preventDefault();
+                        const delta = e.deltaY * -0.002;
+                        const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                        // 计算鼠标相对于图片的位置
+                        const rect = svgElement.getBoundingClientRect();
+                        const mouseX = e.clientX - rect.left;
+                        const mouseY = e.clientY - rect.top;
+
+                        // 计算新的位置，保持鼠标指向的点不变
+                        posX += mouseX * (1 - newScale / scale);
+                        posY += mouseY * (1 - newScale / scale);
+
+                        scale = newScale;
+                        updateTransform();
+                    });
+
+                    // 拖动处理
+                    fullscreenOverlay.addEventListener('mousedown', (e) => {
+                        if (e.target === fullscreenOverlay) return;
+                        isDragging = true;
+                        startX = e.clientX - posX;
+                        startY = e.clientY - posY;
+                        fullscreenOverlay.classList.add('dragging');
+                    });
+
+                    window.addEventListener('mousemove', (e) => {
+                        if (!isDragging) return;
+                        posX = e.clientX - startX;
+                        posY = e.clientY - startY;
+                        updateTransform();
+                    });
+
+                    window.addEventListener('mouseup', () => {
+                        isDragging = false;
+                        fullscreenOverlay.classList.remove('dragging');
+                    });
+
+                    function updateTransform() {
+                        svgElement.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
                     }
                 });
 

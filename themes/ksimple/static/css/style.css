@@ -238,7 +238,7 @@ video {
     max-width: 100%;
 }
 
-/* 从代码渲染而来的图片，比如plantuml、kroki等 */
+/* ================= 从代码渲染而来的图片，比如plantuml、kroki等 ================= */
 .code-rendered-diagram {
     max-width: 66% !important;
     height: auto;
@@ -291,7 +291,8 @@ video {
     width: 100%;
     height: 100%;
     background: #FBFBFB;
-    z-index: 9999;
+    /*    opacity: 0.98;*/
+    z-index: 99999;
     justify-content: center;
     align-items: center;
 }
@@ -305,6 +306,13 @@ video {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
+    cursor: move;
+    transition: transform 0.1s ease-out;
+    transform-origin: center center;
+}
+
+.fullscreen-overlay.dragging {
+    cursor: move;
 }
 
 /* ================= 自动排版图片样式 ================= */
