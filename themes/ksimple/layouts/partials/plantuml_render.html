@@ -1,16 +1,16 @@
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // 1. 检测是否存在PlantUML代码块
-    const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
-    if (!plantumlBlocks.length) return;
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. 检测是否存在PlantUML代码块
+        const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
+        if (!plantumlBlocks.length) return;
 
-    // 2. 动态加载plantuml-encoder.js
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
+        // 2. 动态加载plantuml-encoder.js
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
 
-    // 3. 加载完成后执行渲染
-    script.onload = () => {
-      const plantuml_theme = `
+        // 3. 加载完成后执行渲染
+        script.onload = () => {
+            const plantuml_theme = `
 scale 5
 skinparam shadowing false
 skinparam BackgroundColor transparent
@@ -21,144 +21,144 @@ skinparam ActorBackgroundColor #white
 skinparam participantBackgroundColor #white
     `.trim();
 
-      plantumlBlocks.forEach(codeBlock => {
-        // 创建容器
-        const container = document.createElement('div');
-        container.className = 'code-rendered-diagram';
+            plantumlBlocks.forEach(codeBlock => {
+                // 创建容器
+                const container = document.createElement('div');
+                container.className = 'code-rendered-diagram';
 
-        // 创建图片元素
-        const img = document.createElement('img');
-        img.className = 'code-rendered-diagram-img';
-        img.style.display = 'block';
-        img.alt = 'PlantUML Diagram';
+                // 创建图片元素
+                const img = document.createElement('img');
+                img.className = 'code-rendered-diagram-img';
+                img.style.display = 'block';
+                img.alt = 'PlantUML Diagram';
 
-        // 合并主题配置和用户代码
-        const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
-        img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
+                // 合并主题配置和用户代码
+                const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
+                img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
 
-        // 创建复制按钮
-        const copyButton = document.createElement('button');
-        copyButton.className = 'code-rendered-diagram-copy-button';
-        copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+                // 创建复制按钮
+                const copyButton = document.createElement('button');
+                copyButton.className = 'code-rendered-diagram-copy-button';
+                copyButton.innerHTML = '&#xf4bb; COPY-SRC';
 
-        // 创建全屏按钮
-        const fullscreenButton = document.createElement('button');
-        fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
-        fullscreenButton.innerHTML = '&#xf065; FULL';
+                // 创建全屏按钮
+                const fullscreenButton = document.createElement('button');
+                fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+                fullscreenButton.innerHTML = '&#xf065; FULL';
 
-        // 创建全屏覆盖层
-        const fullscreenOverlay = document.createElement('div');
-        fullscreenOverlay.className = 'fullscreen-overlay';
-        document.body.appendChild(fullscreenOverlay);
+                // 创建全屏覆盖层
+                const fullscreenOverlay = document.createElement('div');
+                fullscreenOverlay.className = 'fullscreen-overlay';
+                document.body.appendChild(fullscreenOverlay);
 
-        // 双击退出全屏
-        fullscreenOverlay.addEventListener('dblclick', (e) => {
-          if (e.target === fullscreenOverlay) {
-            fullscreenOverlay.classList.remove('active');
-          }
-        });
+                // 双击退出全屏
+                fullscreenOverlay.addEventListener('dblclick', (e) => {
+                    if (e.target === fullscreenOverlay) {
+                        fullscreenOverlay.classList.remove('active');
+                    }
+                });
 
-        // ESC 键退出全屏
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
-            fullscreenOverlay.classList.remove('active');
-          }
-        });
+                // ESC 键退出全屏
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
+                        fullscreenOverlay.classList.remove('active');
+                    }
+                });
 
-        // 缩放和拖动
-        fullscreenButton.addEventListener('click', () => {
-          const clonedImg = img.cloneNode(true);
-          fullscreenOverlay.innerHTML = '';
+                // 缩放和拖动
+                fullscreenButton.addEventListener('click', () => {
+                    const clonedImg = img.cloneNode(true);
+                    fullscreenOverlay.innerHTML = '';
 
-          // 退出按钮
-          const exitButton = document.createElement('button');
-          exitButton.className = 'fullscreen-exit-button';
-          exitButton.innerHTML = 'ESC';
-          exitButton.onclick = () => fullscreenOverlay.classList.remove('active');
+                    // 退出按钮
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => fullscreenOverlay.classList.remove('active');
 
-          fullscreenOverlay.appendChild(exitButton);
-          fullscreenOverlay.appendChild(clonedImg);
-          fullscreenOverlay.classList.add('active');
+                    fullscreenOverlay.appendChild(exitButton);
+                    fullscreenOverlay.appendChild(clonedImg);
+                    fullscreenOverlay.classList.add('active');
 
-          // 初始化缩放和位置状态
-          let scale = 1;
-          let posX = 0;
-          let posY = 0;
-          let isDragging = false;
-          let startX = 0;
-          let startY = 0;
+                    // 初始化缩放和位置状态
+                    let scale = 1;
+                    let posX = 0;
+                    let posY = 0;
+                    let isDragging = false;
+                    let startX = 0;
+                    let startY = 0;
 
-          const imgElement = fullscreenOverlay.querySelector('img');
+                    const imgElement = fullscreenOverlay.querySelector('img');
 
-          // 缩放处理
-          fullscreenOverlay.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            const delta = e.deltaY * -0.002;
-            const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+                    // 缩放处理
+                    fullscreenOverlay.addEventListener('wheel', (e) => {
+                        e.preventDefault();
+                        const delta = e.deltaY * -0.002;
+                        const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
 
-            // 计算鼠标相对于图片的位置
-            const rect = imgElement.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
+                        // 计算鼠标相对于图片的位置
+                        const rect = imgElement.getBoundingClientRect();
+                        const mouseX = e.clientX - rect.left;
+                        const mouseY = e.clientY - rect.top;
 
-            // 计算新的位置，保持鼠标指向的点不变
-            posX += mouseX * (1 - newScale / scale);
-            posY += mouseY * (1 - newScale / scale);
+                        // 计算新的位置，保持鼠标指向的点不变
+                        posX += mouseX * (1 - newScale / scale);
+                        posY += mouseY * (1 - newScale / scale);
 
-            scale = newScale;
-            updateTransform();
-          });
+                        scale = newScale;
+                        updateTransform();
+                    });
 
-          // 拖动处理
-          fullscreenOverlay.addEventListener('mousedown', (e) => {
-            if (e.target === fullscreenOverlay) return;
-            isDragging = true;
-            startX = e.clientX - posX;
-            startY = e.clientY - posY;
-            fullscreenOverlay.classList.add('dragging');
-          });
+                    // 拖动处理
+                    fullscreenOverlay.addEventListener('mousedown', (e) => {
+                        if (e.target === fullscreenOverlay) return;
+                        isDragging = true;
+                        startX = e.clientX - posX;
+                        startY = e.clientY - posY;
+                        fullscreenOverlay.classList.add('dragging');
+                    });
 
-          window.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            posX = e.clientX - startX;
-            posY = e.clientY - startY;
-            updateTransform();
-          });
+                    window.addEventListener('mousemove', (e) => {
+                        if (!isDragging) return;
+                        posX = e.clientX - startX;
+                        posY = e.clientY - startY;
+                        updateTransform();
+                    });
 
-          window.addEventListener('mouseup', () => {
-            isDragging = false;
-            fullscreenOverlay.classList.remove('dragging');
-          });
+                    window.addEventListener('mouseup', () => {
+                        isDragging = false;
+                        fullscreenOverlay.classList.remove('dragging');
+                    });
 
-          function updateTransform() {
-            imgElement.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
-          }
-        });
+                    function updateTransform() {
+                        imgElement.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+                    }
+                });
 
-        // 存储原始代码
-        container.dataset.originalCode = fullCode;
+                // 存储原始代码
+                container.dataset.originalCode = fullCode;
 
-        // 复制逻辑
-        copyButton.addEventListener('click', async () => {
-          try {
-            await navigator.clipboard.writeText(container.dataset.originalCode);
-            copyButton.textContent = '\uf00c COPIED!';
-            setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
-          } catch (err) {
-            copyButton.textContent = 'FAILED';
-            console.error('复制失败:', err);
-          }
-        });
+                // 复制逻辑
+                copyButton.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(container.dataset.originalCode);
+                        copyButton.textContent = '\uf00c COPIED!';
+                        setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                    } catch (err) {
+                        copyButton.textContent = 'FAILED';
+                        console.error('复制失败:', err);
+                    }
+                });
 
-        // 组装元素
-        container.appendChild(img);
-        container.appendChild(fullscreenButton);
-        container.appendChild(copyButton);
-        codeBlock.parentElement.replaceWith(container);
-      });
-    };
+                // 组装元素
+                container.appendChild(img);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+                codeBlock.parentElement.replaceWith(container);
+            });
+        };
 
-    // 4. 注入脚本到页面
-    document.head.appendChild(script);
-  });
+        // 4. 注入脚本到页面
+        document.head.appendChild(script);
+    });
 </script>
