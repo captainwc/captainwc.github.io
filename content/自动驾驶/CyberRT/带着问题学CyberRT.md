@@ -1,6 +1,7 @@
 ---
-title: 带着目的学习——以CyberRT为例
-categories: ["自动驾驶", "随笔"]
+title: 带着目的学：CyberRT
+date: 2025-03-25
+categories: ["自动驾驶"]
 tags: ["CyberRT"]
 series: ["CyberRT专项总结"]
 ---

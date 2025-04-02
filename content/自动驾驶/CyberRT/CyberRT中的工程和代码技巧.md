@@ -1,7 +1,7 @@
 ---
 title: CyberRT中的代码和工程技巧
 date: 2025-03-01 18:08:37
-tags: [自动驾驶, CyberRT, C++]
+tags: [CyberRT, C++]
 categories: [自动驾驶]
 series: [CyberRT专项总结]
 ---
@@ -32,7 +32,7 @@ series: [CyberRT专项总结]
    	int x = 10;
    }
    int foo(){return x;} // 当前文件内正常访问
-
+   
    // 等价于：
    static int x = 10;
    ```
