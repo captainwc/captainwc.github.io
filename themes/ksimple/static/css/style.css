@@ -88,6 +88,8 @@ a {
     position: relative;
 }
 
+ol:not([class]):not([style]) a:not([class]):not([style])::before,
+ul:not([class]):not([style]) a:not([class]):not([style])::before,
 p a:not([class]):not([style])::before {
     content: "";
     display: inline-block;
