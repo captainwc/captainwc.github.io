@@ -1038,68 +1038,68 @@ int  shmctl(int shmid, int cmd, struct shmid_ds *buf); // 读取或设置共享�
 key_t ftok(const char *pathname, int proj_id);
 ```
 
-1. **`ftok()`：**根据文件名和给定的 int 值，生成一个共享内存的 key。**如果文件和 int 值不变，那 key 值在哪生成都是一样的**。所以可以由此实现不同进程用同一个 key 来创建/获取共享内存。
+1. **`ftok()`：** 根据文件名和给定的 int 值，生成一个共享内存的 key。**如果文件和 int 值不变，那 key 值在哪生成都是一样的**。所以可以由此实现不同进程用同一个 key 来创建/获取共享内存。
 
-   - **pathname：**必须是一个已经存在的可以访问的文件
-   - **proj_id：**只会使用低八位，因此可以传入一个字符 'a', 'b'
+   - **pathname：** 必须是一个已经存在的可以访问的文件
+   - **proj_id：** 只会使用低八位，因此可以传入一个字符 'a', 'b'
 
    ```c
    int shmget(key_t key, size_t size, int shmflg);
    ```
 
-2. **`shmget()`：**创建或获取共享内存标识，默认内存全部清 0
+2. **`shmget()`：** 创建或获取共享内存标识，默认内存全部清 0
 
-   - **key：**key_t 类型（整形），共享内存的标识符，一般用 16 进制表示，非 0。A 进程开辟了一段共享内存，获取这段内存的 ID。但是 B 怎么找到这块内存呢？所以 key，就是“暗号”，让 AB 可以定位到同一段物理共享内存，当然，他们返回的 shmid 也是一样的。
+   - **key：** key_t 类型（整形），共享内存的标识符，一般用 16 进制表示，非 0。A 进程开辟了一段共享内存，获取这段内存的 ID。但是 B 怎么找到这块内存呢？所以 key，就是“暗号”，让 AB 可以定位到同一段物理共享内存，当然，他们返回的 shmid 也是一样的。
 
-   - **size：**共享内存的大小，向上取整到分页大小，即按页对齐。如果是获取，那置为 0 就行了
+   - **size：** 共享内存的大小，向上取整到分页大小，即按页对齐。如果是获取，那置为 0 就行了
 
-   - **shmflg：**指定属性，如内存权限（八进制），和附加属性（创建|存在与否）
+   - **shmflg：** 指定属性，如内存权限（八进制），和附加属性（创建|存在与否）
 
      用法：`IPC_CREAT | IPC_EXCL | 0664`。存在判断必须要与创建连用才行
 
-   - **返回值：**成功返回共享内存引用的 ID（不是 key），失败返回 -1
+   - **返回值：** 成功返回共享内存引用的 ID（不是 key），失败返回 -1
 
    ```c
    void *shmat(int shmid, const void *shmaddr, int shmflg);
    ```
 
-3. **`shmat()`：**将一个物理的共享内存和当前进程关联（放进自己的虚拟地址空间中，在共享区）
+3. **`shmat()`：** 将一个物理的共享内存和当前进程关联（放进自己的虚拟地址空间中，在共享区）
 
-   - **shmid：**共享内存的标识 ID，由`shmget`返回值获取
+   - **shmid：** 共享内存的标识 ID，由`shmget`返回值获取
 
-   - **shmaddr：**共享内存在虚拟地址空间的起始地址，指定`NULL`，让内核去指定。自己指定有可能出错
+   - **shmaddr：** 共享内存在虚拟地址空间的起始地址，指定`NULL`，让内核去指定。自己指定有可能出错
 
-   - **shmflg：**对共享内存的操作，无非是读写等权限，注意，必须要有读权限
+   - **shmflg：** 对共享内存的操作，无非是读写等权限，注意，必须要有读权限
 
      `SHM_RDONLY`指定只读，`0`默认是读写都有
 
-   - **返回值：**成功返回共享内存虚拟地址空间的起始地址，失败返回((void\*)-1)
+   - **返回值：** 成功返回共享内存虚拟地址空间的起始地址，失败返回((void\*)-1)
 
-   - **写入**的时候可以用`memcpy()`，来把你想写的东西拷贝进去
+   - **写入** 的时候可以用`memcpy()`，来把你想写的东西拷贝进去
 
-   - **读出**的时候，也可以用`memcpy()`，还可以把`void *`类型指针转换成`char *`读取
+   - **读出** 的时候，也可以用`memcpy()`，还可以把`void *`类型指针转换成`char *`读取
 
    ```c
    int shmdt(const void *shmaddr);
    ```
 
-4. **`shmdt()`：**解除共享内存和当前进程的关联，参数即虚拟共享内存的起始地址，成功返回 0，失败返回-1
+4. **`shmdt()`：** 解除共享内存和当前进程的关联，参数即虚拟共享内存的起始地址，成功返回 0，失败返回-1
 
    ```c
    int shmctl(int shmid, int cmd, struct shmid_ds *buf);
    ```
 
-5. **`shmctl()`：**操作共享内存，常用来删除。内存只有主动删除才消失，与创建进程存在与否无关。
+5. **`shmctl()`：** 操作共享内存，常用来删除。内存只有主动删除才消失，与创建进程存在与否无关。
 
-   - **shmid：**共享内存的 ID
+   - **shmid：** 共享内存的 ID
 
-   - **cmd：**要进行的操作
+   - **cmd：** 要进行的操作
 
      1. `IPC_STAT`：获取共享内存当前状态，此时参数 `buf` 是传出参数
      2. `IPC_SET`：设置共享内存状态，此时参数 `buf` 是传入参数
      3. `IPC_RMID`：标记共享内存为待删除，此时参数 `buf` 没有用，设置`NULL`
 
-   - **buf：**一个`shmid_ds`结构体指针，存放需要设置或读出的参数，作用与`cmd`的选择有关
+   - **buf：** 一个`shmid_ds`结构体指针，存放需要设置或读出的参数，作用与`cmd`的选择有关
 
      ```c
      struct shmid_ds {
@@ -1708,7 +1708,7 @@ int getsockopt(int sockfd, int level, int optname,      void *optval, socklen_t*
 int setsockopt(int sockfd, int level, int optname,const void *optval, socklen_t optlen);
 ```
 
-1. **socket()：**获取一个套接字（`cman 2 socket`）
+1. **socket()：** 获取一个套接字（`cman 2 socket`）
    - `domain`：协议族，`AF_INET ， AF_INET6， AF_UNIX/AF_LOCAL...`
    - `type`：通信过程中使用的协议类型（流 报...)，`SOCK_STREAM，SOCK_DGRAM，SOCK_SEQPACKET...`
    - `protocal`：具体的协议，一般传 `0`。流式协议默认`TCP`，报式默认`UDP`
@@ -1718,25 +1718,25 @@ int setsockopt(int sockfd, int level, int optname,const void *optval, socklen_t 
    - `addr`：本地（**服务器的**） IP 和 端口 结构体
    - `addrlen`：addr 的大小
    - `返回值`：成功 0， 失败 -1
-3. **listen()：**监听指定 socket 上的链接。listen 时有**两个队列**：已连接的和未连接的
+3. **listen()：** 监听指定 socket 上的链接。listen 时有**两个队列**：已连接的和未连接的
    - `sockfd`：要监听的 socket，即刚通过 `socket()` 获得的那个
    - `backlog`：两个套接字队列的总最大长度（似乎与 man 手册不一样，查）（在 somaxconn 中定义）
-4. **accept()：**从用于 listen 的那个 socket 获取进来的客户端信息，然后返回一个用于通信的新 socket【阻塞】
+4. **accept()：** 从用于 listen 的那个 socket 获取进来的客户端信息，然后返回一个用于通信的新 socket【阻塞】
    - `sockfd`：用于监听的那个 socket（即`listen()`用的那个），因为要从里面的缓冲区读取客户端的数据
    - `addr`：传出参数，记录连接成功后，链进来的 **客户端的** IP 和 端口
    - `addrlen`：是**指针**！！！，不能直接 sizeof 了，先定义一个变量。
    - `返回值`：成功返回用于通信的 socket 描述符，失败返回 -1
-5. **connect()：**客户端调用，用于连接服务器
+5. **connect()：** 客户端调用，用于连接服务器
    - `sockfd`：客户端自己创建的，用于通信的文件描述符
    - `addr`：要连接的服务器的 IP 和 端口
    - `addrlen`：addr 的 size
    - `返回值`：成功 0，失败 -1
-6. **recv()：**从指定 sockfd 中接收消息到 buf 中，其 `flags` 取值如下：[recv(2)](https://man.freebsd.org/cgi/man.cgi?query=recv&apropos=0&sektion=0&manpath=FreeBSD+13.1-RELEASE+and+Ports&arch=default&format=html)
+6. **recv()：** 从指定 sockfd 中接收消息到 buf 中，其 `flags` 取值如下：[recv(2)](https://man.freebsd.org/cgi/man.cgi?query=recv&apropos=0&sektion=0&manpath=FreeBSD+13.1-RELEASE+and+Ports&arch=default&format=html)
    - `MSG_WAITALL`：阻塞，直到所有的 request 都满足才返回，除非中间出现错误或异常（信号、断连）
    - `MSG_DONTWAIT`：不阻塞，不能读就直接返回
    - `MSG_CMSG_CLOEXEC`：一执行，就把接受的 fd 关闭（只接收一次呗）
    - `0`：啥也不干，跟 read 一样
-7. **send()：**给指定 sockfd 发送 buf 中的内容，其 `flags` 取值如下：[send(2)](https://man.freebsd.org/cgi/man.cgi?query=send&apropos=0&sektion=0&manpath=FreeBSD+13.1-RELEASE+and+Ports&arch=default&format=html)
+7. **send()：** 给指定 sockfd 发送 buf 中的内容，其 `flags` 取值如下：[send(2)](https://man.freebsd.org/cgi/man.cgi?query=send&apropos=0&sektion=0&manpath=FreeBSD+13.1-RELEASE+and+Ports&arch=default&format=html)
    - `MSG_DONTWAIT`：不阻塞，不给发就返回
    - `MSG_NOSIGNAL`：不产生 `SIGPIPE` 信号
    - `MSG_EOF`：shutdown 发送方向的连接，并发送一个数据尾标识（仅对 IPv4 的 TCP 有效）
