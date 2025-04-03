@@ -360,13 +360,22 @@ video {
 }
 
 /* ================= 标题自动编号 ================= */
+
+h5 {
+    font-size: 0.88rem;
+}
+
+h6 {
+    font-size: 0.8rem;
+}
+
 h2::before,
 h3::before,
 h4::before,
 h5::before,
 h6::before {
     color: rgb(196, 194, 194);
-    font-size: small;
+    font-size: 0.8rem;
     vertical-align: central;
     margin: 0 6px 0 0;
 }
