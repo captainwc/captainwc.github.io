@@ -7,7 +7,7 @@
 
 文章列表：
 
-<ul>
+<ul class="home-page-blog-list">
     {{ $pages := .Pages }}
     {{ if .IsHome }}{{ $pages = .Site.RegularPages }}{{ end }}
     {{ range (where $pages "Section" "!=" "") }}
