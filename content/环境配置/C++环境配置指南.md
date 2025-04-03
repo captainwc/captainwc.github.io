@@ -48,7 +48,7 @@ series: ["环境配置专栏"]
 
 #### 配置
 
-clangd也可以进行配置，参考[官方手册](https://clangd.llvm.org/config)，比如可以指定在后台索引、指定对待源文件的方式、指定语法检查的工具Diagnostics（就是后文中clang-tidy的配置）等等。
+clangd也可以进行配置，参考[官方手册](https://clangd.llvm.org/config)，比如可以指定在后台索引、指定对待源文件的方式、指定语法检查的工具Diagnostics（就是后文中[clang-tidy](#错误告警lint)的配置）等等。
 
 配置文件的路径，Linux在 `$HOME/.config/clangd/config.yaml`，windows在 `%APPDATALOCAL%/clangd/config.yaml`。（如果有不对的，可以直接打开vscode，安装clangd插件，然后 ctrl+shift+p 搜索 clangd open user config 即可找到）
 
