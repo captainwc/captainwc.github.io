@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>设计模式专项总结 | SHUAIKAI&#39;s Blog</title>
+    <link rel="icon" href= https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_2/avator-shinubi.png />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    
+
+
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">主页</a></li>
+      
+      <li><a href="/series/">专栏</a></li>
+      
+      <li><a href="/categories/">分类</a></li>
+      
+      <li><a href="/tags/">标签</a></li>
+      
+      <li><a href="/archives/">归档</a></li>
+      
+      <li><a href="/search/">搜索</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+
+
+
+
+  <h1>设计模式专项总结</h1>
+
+
+
+
+
+
+   
+
+
+
+
+  <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: -0.8rem;">2025-02</p>
+
+  <ul>
+    
+    
+      <li class="archieve-list-item">
+        <div class="archieve-left-section">
+          
+          <span class="archive-date">2025-02-28</span>
+          
+          🗞️<a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-title-link-a">设计模式</a>
+        </div>
+
+        <div class="archieve-right-section">
+          
+            
+            🎖️
+            
+              <a href="/series/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A1%B9%E6%80%BB%E7%BB%93" class="archive-taxonomy-link-a">设计模式专项总结</a>
+            
+          
+          
+            🗂️
+            
+              <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B" class="archive-taxonomy-link-a">软件工程</a>
+            
+          
+          
+            🏷️
+            
+              <a href="/tags/se" class="archive-taxonomy-link-a">#SE</a>
+            
+          
+        </div>
+      </li>
+    
+  </ul>
+
+
+<style>
+ 
+.archieve-list-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.archieve-left-section {
+    display: flex;
+    align-items: center;
+     
+    gap: 0.2rem;
+    order: 1;
+}
+
+.archieve-right-section {
+    margin-left: auto;
+    display: flex;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+    order: 2;
+    align-items: center;
+}
+
+.archive-date {
+    text-wrap: nowrap;
+}
+
+.archive-title-link-a {
+    color: #3c4654;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.archive-taxonomy-link-a {
+    text-align: right;
+    color: #7d929f;
+    text-decoration: none;
+}
+</style>
+
+<footer>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/math-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/render-katex.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/center-img.min.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    document.querySelectorAll('ul').forEach(ul => {
+      
+      const isTodoList = Array.from(ul.children).some(li => {
+        return li.innerHTML.includes('type="checkbox"')
+      });
+
+      if (isTodoList) {
+        
+        const todolistContainer = document.createElement('div');
+        todolistContainer.className = 'todolist';
+
+        
+        addTaskProgressBar(ul, todolistContainer);
+
+        
+        ul.querySelectorAll('li').forEach(li => {
+          const todoItemDiv = document.createElement('div');
+          todoItemDiv.className = 'todo-item';
+
+          
+          const isChecked = li.innerHTML.includes('checked');
+          const content = li.innerHTML
+            .replace(/<input[^>]+>/g, '') 
+            .trim();
+
+          
+          const checkedIcon = `<svg t="1742522457277" class="todo-item-checked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12342"><path d="M512 938.688A426.624 426.624 0 1 1 512 85.376a426.624 426.624 0 0 1 0 853.312z m0-85.312A341.312 341.312 0 1 0 512 170.688a341.312 341.312 0 0 0 0 682.688z m-42.56-170.688L288.448 501.632l60.288-60.288L469.44 561.92l241.28-241.28 60.416 60.288-301.696 301.696z" p-id="12343"></path></svg>`;
+          const uncheckedIcon = `<svg t="1742522354856" class="todo-item-unchecked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11882"><path d="M512 938.666667C276.352 938.666667 85.333333 747.648 85.333333 512S276.352 85.333333 512 85.333333s426.666667 191.018667 426.666667 426.666667-191.018667 426.666667-426.666667 426.666667z m0-85.333334a341.333333 341.333333 0 1 0 0-682.709333A341.333333 341.333333 0 0 0 512 853.333333z" p-id="11883"></path></svg>`;
+
+          
+          todoItemDiv.innerHTML = `
+            <span class="todo-item-checkbox">
+              ${isChecked ? checkedIcon : uncheckedIcon}
+            </span>
+            <span class="todo-item-content">
+              ${isChecked ? `<del>${content}</del>` : content}
+            </span>
+          `;
+
+          
+          todolistContainer.appendChild(todoItemDiv);
+        });
+
+        
+        ul.parentNode.replaceChild(todolistContainer, ul);
+      }
+    });
+
+    function addTaskProgressBar(ul, todolistContainer) {
+      
+      const totalTasks = ul.children.length;
+      const finishedTasks = Array.from(ul.children).filter(li => li.innerHTML.includes('checked')).length;
+
+      
+      const progressContainer = document.createElement('div');
+      progressContainer.className = 'todo-progress';
+
+      
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'todo-progress-counter';
+      counterSpan.textContent = `${finishedTasks}/${totalTasks}`;
+
+      
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'todo-progress-bar';
+
+      
+      const progressFill = document.createElement('div');
+      progressFill.className = 'todo-progress-bar-fill';
+      progressFill.style.width = `${(finishedTasks / totalTasks) * 100}%`;
+
+      
+      const flagSpan = document.createElement('span');
+      flagSpan.className = 'todo-progress-flag';
+      flagSpan.innerHTML = `${finishedTasks === totalTasks ? '🌟' : '🚧'}`;
+
+      
+      progressTrack.appendChild(progressFill);
+      progressContainer.append(flagSpan, progressTrack, counterSpan);
+      todolistContainer.appendChild(progressContainer);
+    }
+  });
+</script>
+
+<style>
+   
+  .todolist {
+    padding-left: 0.6rem;
+  }
+
+  .todo-item {
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: -0.5rem 0 -0.5rem -0.7rem;
+    line-height: 1.3;
+  }
+
+  .todo-item-checkbox {
+    flex-shrink: 0;
+    font-size: 1.2em;
+
+    svg {
+      margin-top: 0.46rem;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .todo-item-checked-icon {
+    fill: #707070;
+  }
+
+  .todo-item-unchecked-icon {
+    fill: #1A61CC;
+  }
+
+  .todo-item-unchecked-icon:hover {
+    fill: red;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .todo-item-content {
+    flex: 1;
+    word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+   
+  .todo-progress {
+    display: flex;
+     
+    align-items: center;
+    gap: 0.3rem;
+     
+    margin: 0.1rem 0 0 0.7rem;
+  }
+
+  .todo-progress-counter {
+     
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+    color: #707070;
+  }
+
+  .todo-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #a64036;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 20%;
+  }
+
+  .todo-progress-bar-fill {
+    height: 100%;
+    background: #84a729;
+    transition: width 0.3s ease;
+  }
+
+  .todo-progress-flag {
+    display: none;
+    position: relative;
+    font-size: 0.9rem;
+  }
+</style>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+
+
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/highlightjs-cnblogs.min.js"></script>
+
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll())</script>
+
+
+  <script>
+    const langToNerdFontMap = {
+        bash: '\ue760',
+        bazel: '\ue63a',
+        c: '\ue61e',
+        cmake: '\ue794',
+        cpp: '\ue61d',
+        'c++': '\ue61d',
+        css: '\ue749',
+        diff: '\ueae1',
+        go: '\udb81\udfd3',
+        html: '\ue736',
+        java: '\uedaf',
+        javascript: '\ue781',
+        json: '\ueb0f',
+        lua: '\ue620',
+        makefile: '\ue673',
+        plantuml: '\ue8cb',
+        python: '\ued1b',
+        rust: '\udb85\ude17',
+        shell: '\udb84\udd83',
+        sql: '\udb82\udc66',
+        typescript: '\ue8ca',
+        uml: '\ue8cb',
+        xml: '\udb81\uddc0',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            const parentElement = codeBlock.parentElement;
+
+            
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+
+            
+            const foldBtn = document.createElement('button');
+            foldBtn.className = 'fold-btn';
+            foldBtn.innerHTML = '\uf48c';
+            foldBtn.style.display = 'none';
+
+            
+            const langLabel = document.createElement('div');
+            langLabel.className = 'lang-label';
+            const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
+            const icon = langToNerdFontMap[lang.toLowerCase()];
+            langLabel.textContent = icon || lang.toUpperCase();
+            if (!icon) langLabel.style.fontSize = '0.8rem';
+
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = '\uf4bb COPY';
+
+            
+            const scale_height = 500;       
+            const collapsed_height = 300;   
+            const checkHeight = () => {
+                const originalDisplay = parentElement.style.display;
+                parentElement.style.display = 'block';
+                const fullHeight = parentElement.scrollHeight;
+                parentElement.style.display = originalDisplay;
+                return fullHeight > scale_height;
+            };
+
+            
+            if (checkHeight()) {
+                foldBtn.style.display = 'flex';
+                parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+
+                
+                parentElement.classList.add('collapsed');
+                parentElement.style.maxHeight = `${collapsed_height}px`;
+                foldBtn.innerHTML = '\uf4d9';
+
+                parentElement.style.overflowY = 'auto'; 
+
+                foldBtn.addEventListener('click', () => {
+                    const isCollapsed = parentElement.classList.toggle('collapsed');
+                    foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
+
+                    if (isCollapsed) {
+                        parentElement.style.maxHeight = `${collapsed_height}px`;
+                        parentElement.style.overflowX = 'auto';
+                    } else {
+                        parentElement.style.maxHeight = 'none';
+                        void parentElement.offsetHeight;
+                        parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                    }
+                });
+            }
+
+            
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeBlock.textContent);
+                    copyBtn.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyBtn.textContent = '\uf4bb COPY', 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                }
+            });
+
+            
+            tools.append(langLabel, foldBtn, copyBtn);
+            parentElement.prepend(tools);
+        });
+    });
+</script>
+
+<style>
+ 
+.code-tools {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-family: "Maple Mono NF CN";
+}
+
+.fold-btn {
+    cursor: pointer;
+    border: none;
+    color: #666;
+    background: none;
+    font-family: "Maple Mono NF CN";
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0 0.45rem;
+    transition: all 0.2s ease;
+}
+
+ 
+.lang-label {
+     
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+ 
+.copy-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+}
+
+ 
+pre:hover .code-tools {
+    opacity: 1;
+    pointer-events: auto;
+}
+</style>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
+        if (!plantumlBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
+
+        
+        script.onload = () => {
+            const plantuml_theme = `
+scale 5
+skinparam shadowing false
+skinparam BackgroundColor transparent
+skinparam UsecaseBackgroundColor #white
+skinparam classBackgroundColor #white
+skinparam ActivityBackgroundColor #white
+skinparam ActorBackgroundColor #white
+skinparam participantBackgroundColor #white
+    `.trim();
+
+            plantumlBlocks.forEach(codeBlock => {
+                
+                const container = document.createElement('div');
+                container.className = 'code-rendered-diagram';
+
+                
+                const img = document.createElement('img');
+                img.className = 'code-rendered-diagram-img';
+                img.style.display = 'block';
+                img.alt = 'PlantUML Diagram';
+
+                
+                const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
+                img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
+
+                
+                const copyButton = document.createElement('button');
+                copyButton.className = 'code-rendered-diagram-copy-button';
+                copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+
+                
+                const fullscreenButton = document.createElement('button');
+                fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+                fullscreenButton.innerHTML = '&#xf065; FULL';
+
+                
+                const fullscreenOverlay = document.createElement('div');
+                fullscreenOverlay.className = 'fullscreen-overlay';
+                document.body.appendChild(fullscreenOverlay);
+
+                
+                fullscreenOverlay.addEventListener('dblclick', (e) => {
+                    if (e.target === fullscreenOverlay) {
+                        fullscreenOverlay.classList.remove('active');
+                    }
+                });
+
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
+                        fullscreenOverlay.classList.remove('active');
+                    }
+                });
+
+                
+                fullscreenButton.addEventListener('click', () => {
+                    const clonedImg = img.cloneNode(true);
+                    fullscreenOverlay.innerHTML = '';
+
+                    
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => fullscreenOverlay.classList.remove('active');
+
+                    fullscreenOverlay.appendChild(exitButton);
+                    fullscreenOverlay.appendChild(clonedImg);
+                    fullscreenOverlay.classList.add('active');
+
+                    
+                    let scale = 1;
+                    let posX = 0;
+                    let posY = 0;
+                    let isDragging = false;
+                    let startX = 0;
+                    let startY = 0;
+
+                    const imgElement = fullscreenOverlay.querySelector('img');
+
+                    
+                    fullscreenOverlay.addEventListener('wheel', (e) => {
+                        e.preventDefault();
+                        const delta = e.deltaY * -0.002;
+                        const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                        
+                        const rect = imgElement.getBoundingClientRect();
+                        const mouseX = e.clientX - rect.left;
+                        const mouseY = e.clientY - rect.top;
+
+                        
+                        posX += mouseX * (1 - newScale / scale);
+                        posY += mouseY * (1 - newScale / scale);
+
+                        scale = newScale;
+                        updateTransform();
+                    });
+
+                    
+                    fullscreenOverlay.addEventListener('mousedown', (e) => {
+                        if (e.target === fullscreenOverlay) return;
+                        isDragging = true;
+                        startX = e.clientX - posX;
+                        startY = e.clientY - posY;
+                        fullscreenOverlay.classList.add('dragging');
+                    });
+
+                    window.addEventListener('mousemove', (e) => {
+                        if (!isDragging) return;
+                        posX = e.clientX - startX;
+                        posY = e.clientY - startY;
+                        updateTransform();
+                    });
+
+                    window.addEventListener('mouseup', () => {
+                        isDragging = false;
+                        fullscreenOverlay.classList.remove('dragging');
+                    });
+
+                    function updateTransform() {
+                        imgElement.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+                    }
+                });
+
+                
+                container.dataset.originalCode = fullCode;
+
+                
+                copyButton.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(container.dataset.originalCode);
+                        copyButton.textContent = '\uf00c COPIED!';
+                        setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                    } catch (err) {
+                        copyButton.textContent = 'FAILED';
+                        console.error('复制失败:', err);
+                    }
+                });
+
+                
+                container.appendChild(img);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+                codeBlock.parentElement.replaceWith(container);
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const DIAGRAM_MAP = new Map([
+            ['mermaid', 'mermaid'],
+            ['graphviz', 'graphviz'],
+            ['uml', 'plantuml'],
+            ['blockdiag', 'blockdiag'],
+            ['seqdiag', 'seqdiag'],
+            ['actdiag', 'actdiag'],
+            ['packetdiag', 'packetdiag'],
+            ['database', 'dbml'],
+            ['dbml', 'dbml'],
+            ['vega', 'vega']
+        ]);
+
+        
+        const blocks = [];
+        document.querySelectorAll('pre code[class]').forEach(block => {
+            if (block.dataset.kroki) return;
+            const lang = [...block.classList].find(c => DIAGRAM_MAP.has(c.split('-')[1]));
+            if (lang) {
+                block.dataset.kroki = 'processed';
+                blocks.push({ block, api: DIAGRAM_MAP.get(lang.split('-')[1]) });
+            }
+        });
+
+        if (!blocks.length) return;
+
+        
+        const makeSVGTransparent = svgText => {
+            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                .forEach(el => el.remove());
+            doc.documentElement.style.backgroundColor = 'transparent';
+            return new XMLSerializer().serializeToString(doc);
+        };
+
+        
+        const CONCURRENCY = 6;
+        const queue = blocks.slice();
+
+        (async function processQueue() {
+            const workers = Array(Math.min(CONCURRENCY, queue.length))
+                .fill()
+                .map(async () => {
+                    while (queue.length) {
+                        const { block, api } = queue.pop();
+                        await renderBlock(block, api);
+                    }
+                });
+            await Promise.all(workers);
+        })();
+
+        async function renderBlock(block, api) {
+            const pre = block.closest('pre');
+            try {
+                const code = block.textContent.trim();
+                if (!code) {
+                    pre.style.border = '2px solid orange';
+                    return;
+                }
+
+                const res = await fetch(`https://kroki.io/${api}/svg`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: code
+                });
+
+                if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
+
+                const svg = document.createElement('div');
+                svg.className = 'code-rendered-diagram';
+                svg.innerHTML = makeSVGTransparent(await res.text());
+
+                
+                const fullscreenButton = document.createElement('button');
+                fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+                fullscreenButton.textContent = '\uf065 FULL';
+
+                
+                const fullscreenOverlay = document.createElement('div');
+                fullscreenOverlay.className = 'fullscreen-overlay';
+                document.body.appendChild(fullscreenOverlay);
+
+                
+                fullscreenOverlay.addEventListener('dblclick', (e) => {
+                    if (e.target === fullscreenOverlay) {
+                        fullscreenOverlay.classList.remove('active');
+                    }
+                });
+
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
+                        fullscreenOverlay.classList.remove('active');
+                    }
+                });
+
+                
+                fullscreenButton.addEventListener('click', () => {
+                    const clonedContent = svg.querySelector('svg').cloneNode(true);
+                    fullscreenOverlay.innerHTML = '';
+
+                    
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => fullscreenOverlay.classList.remove('active');
+
+                    fullscreenOverlay.appendChild(exitButton);
+                    fullscreenOverlay.appendChild(clonedContent);
+                    fullscreenOverlay.classList.add('active');
+
+                    
+                    let scale = 1;
+                    let posX = 0;
+                    let posY = 0;
+                    let isDragging = false;
+                    let startX = 0;
+                    let startY = 0;
+
+                    const svgElement = fullscreenOverlay.querySelector('svg');
+
+                    
+                    fullscreenOverlay.addEventListener('wheel', (e) => {
+                        e.preventDefault();
+                        const delta = e.deltaY * -0.002;
+                        const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                        
+                        const rect = svgElement.getBoundingClientRect();
+                        const mouseX = e.clientX - rect.left;
+                        const mouseY = e.clientY - rect.top;
+
+                        
+                        posX += mouseX * (1 - newScale / scale);
+                        posY += mouseY * (1 - newScale / scale);
+
+                        scale = newScale;
+                        updateTransform();
+                    });
+
+                    
+                    fullscreenOverlay.addEventListener('mousedown', (e) => {
+                        if (e.target === fullscreenOverlay) return;
+                        isDragging = true;
+                        startX = e.clientX - posX;
+                        startY = e.clientY - posY;
+                        fullscreenOverlay.classList.add('dragging');
+                    });
+
+                    window.addEventListener('mousemove', (e) => {
+                        if (!isDragging) return;
+                        posX = e.clientX - startX;
+                        posY = e.clientY - startY;
+                        updateTransform();
+                    });
+
+                    window.addEventListener('mouseup', () => {
+                        isDragging = false;
+                        fullscreenOverlay.classList.remove('dragging');
+                    });
+
+                    function updateTransform() {
+                        svgElement.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+                    }
+                });
+
+                svg.appendChild(fullscreenButton);
+
+                
+                const copyButton = document.createElement('button');
+                copyButton.className = 'code-rendered-diagram-copy-button';
+                copyButton.textContent = '\uf4bb COPY-SRC';
+                svg.dataset.originalCode = code;
+
+                copyButton.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(svg.dataset.originalCode);
+                        copyButton.textContent = '\uf00c COPIED!';
+                        setTimeout(() => copyButton.textContent = '\uf4bb COPY-SRC', 2000);
+                    } catch (err) {
+                        copyButton.textContent = 'FAILED';
+                        console.error('复制失败:', err);
+                    }
+                });
+                svg.appendChild(copyButton);
+
+                pre.insertAdjacentElement('afterend', svg);
+
+                
+                pre.remove();
+            } catch (err) {
+                console.error(`[Kroki] 渲染失败: ${err.message}`);
+                pre.style.border = '2px solid red';
+                pre.title = err.message;
+            }
+        }
+    });
+</script>
+
+
+  
+<button id="backToTopBtn"><i class="fa-solid fa-square-caret-up"></i></button>
+<script>
+  var backToTopBtn = document.getElementById("backToTopBtn");
+  backToTopBtn.addEventListener("click", function() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+  window.addEventListener("scroll", function() {
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  });
+</script>
+
+<style>
+ 
+#backToTopBtn {
+    border-radius: 8px;
+    border: none;
+    right: 20px;
+    bottom: 20px;
+    color: #aaa;
+    font-family: "Maple Mono NF CN";
+    font-size: 1.3rem;
+    position: fixed;
+    transition: background 0.3s;
+    z-index: 999;
+    opacity: 0.7;
+}
+
+#backToTopBtn:hover {
+    background: #BEC2B3;
+    opacity: 1;
+    color: #666;
+}
+</style>
+
+
+  
+
+  <div id="search-modal">
+  <input type="text" id="modal-search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
+  <div id="modal-search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="modal-search-results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+  function debug(text) {
+      document.getElementById('modal-search-debug').textContent = text;
+  }
+  function showpages() {
+    debug("当前本站共有 " + searchIndex.length + " 篇文章");
+  }
+
+  let searchIndex = [];
+  
+  
+    
+  
+
+  
+    searchIndex.push({
+      title: "\"CyberRT框架总览\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"通信中间件术语表\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E6%9C%AF%E8%AF%AD%E8%A1%A8/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: [],
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-27\""
+    });
+  
+    searchIndex.push({
+      title: "\"现代C++开发环境配置指南\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"c++\"]",
+      series: "[\"环境配置专栏\"]",
+      date: "\"2025-03-26\""
+    });
+  
+    searchIndex.push({
+      title: "\"带着目的学：CyberRT\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6cyberrt/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Linux环境变量加载顺序分析\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E5%88%86%E6%9E%90/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"linux\"]",
+      series: [],
+      date: "\"2025-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"手册速查方案（如cppreference）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"cppreference\"]",
+      series: [],
+      date: "\"2025-03-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT中的代码和工程技巧\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\",\"C++\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"设计模式\"",
+      permalink: "\"/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/\"",
+      
+      categories: "[\"软件工程\"]",
+      tags: "[\"SE\"]",
+      series: "[\"设计模式专项总结\"]",
+      date: "\"2025-02-28\""
+    });
+  
+    searchIndex.push({
+      title: "\"一站式环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: "[\"环境配置专栏\"]",
+      date: "\"2025-02-24\""
+    });
+  
+    searchIndex.push({
+      title: "\"leetcode调试指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/\"",
+      
+      categories: [],
+      tags: "[\"leetcode\"]",
+      series: [],
+      date: "\"2024-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"linux命令行大记忆恢复术\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"linux\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"番茄鸡蛋面\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E8%8F%9C%E8%B0%B1/%E7%95%AA%E8%8C%84%E9%B8%A1%E8%9B%8B%E9%9D%A2/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: [],
+      series: "[\"快速做饭\"]",
+      date: "\"2023-10-22\""
+    });
+  
+    searchIndex.push({
+      title: "\"plantuml快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"uml\",\"plantuml\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-10-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"windows安装wsl\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/wsl%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2023-09-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"c++网络编程入门概念及api总结\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/\"",
+      
+      categories: [],
+      tags: "[\"linux\",\"网络编程\"]",
+      series: "[\"面筋\",\"快速上手\"]",
+      date: "\"2023-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"苏州旅行计划\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/%E8%8B%8F%E5%B7%9E/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: "[\"旅行\"]",
+      series: [],
+      date: "\"2023-04-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"gdb快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"gdb\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2022-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Ubuntu22.04安装Hadoop完全分布式集群\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"hadoop\"]",
+      series: [],
+      date: "\"2022-11-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++连接mysql\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E8%BF%9E%E6%8E%A5mysql/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2022-11-20\""
+    });
+  
+    searchIndex.push({
+      title: "\"征服C指针笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/\"",
+      
+      categories: [],
+      tags: [],
+      series: [],
+      date: "\"2022-10-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Leetcode刷题指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"算法\"]",
+      tags: "[\"leetcode\"]",
+      series: "[\"leetcode刷题指南\"]",
+      date: "\"2022-09-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"word 页眉页脚设置\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/word%E9%A1%B5%E7%9C%89%E9%A1%B5%E8%84%9A%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: [],
+      series: [],
+      date: "\"2021-04-03\""
+    });
+  
+    searchIndex.push({
+      title: "\"Markdown Demo\"",
+      permalink: "\"/%E6%B5%8B%E8%AF%95/markdown-demo/\"",
+      
+      categories: [],
+      tags: "[\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"常用数学符号的latex表示\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84latex%E8%A1%A8%E7%A4%BA/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"latex\",\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+
+  showpages()
+
+  const options = {
+    includeScore: true,
+    threshold: 0.6,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'content', weight: 0.3 },
+      { name: 'tags', weight: 0.5 },
+      { name: 'categories', weight: 0.5 },
+      { name: 'series', weight: 0.5 }
+    ]
+  };
+
+  const fuse = new Fuse(searchIndex, options);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'k') {
+      event.preventDefault();
+      toggleSearchModal();
+    } else if (event.key === 'Escape') {
+      document.getElementById('modal-search-input').value = "";
+      closeSearchModal();
+      var res = document.getElementById('modal-search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      showpages();
+    }
+  });
+
+  function toggleSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+      document.getElementById('modal-search-input').focus();
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('modal-search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.trim();
+    const resultsContainer = document.getElementById('modal-search-results');
+    resultsContainer.innerHTML = '';
+
+    if (searchTerm === '') {
+      showpages()
+      return;
+    }
+
+    const results = fuse.search(searchTerm);
+
+    results.sort((a, b) => new Date(b.item.date) - new Date(a.item.date));
+
+    if (results.length === 0) {
+      showpages()
+      resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
+      return;
+    } else {
+      debug("共找到 " + results.length + " 篇匹配的文章")
+    }
+
+    results.forEach(result => {
+      const item = result.item;
+      const resultItem = document.createElement('div');
+      resultItem.className = 'modal-search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
+      date.className = 'modal-search-result-date';
+
+      const link = document.createElement('a');
+      link.href = item.permalink.replace(/^"|"$/g, '');
+      link.textContent = item.title.replace(/^"|"$/g, '');
+      link.className = 'modal-search-result-title';
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
+    });
+  });
+</script>
+
+<style>
+ 
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
+    border-radius: 6px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+}
+
+#modal-search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#modal-search-results {
+    margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.modal-search-result-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    text-wrap: nowrap;
+}
+
+.modal-search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.modal-search-result-title:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+  
+  <hr />
+  © 
+<a href="https://kaikaixixi.xyz"  target="_blank" rel="noopener noreferrer" >SHUAIKAI</a>
+ 2021 &ndash; 2025 | 🎨
+<a href="https://github.com/captainwc/captainwc.github.io/tree/main/themes/ksimple"  target="_blank" rel="noopener noreferrer" >KSimple</a>
+  
+
+</footer>
+</body>
+
+</html>
+

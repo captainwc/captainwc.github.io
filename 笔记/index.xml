@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>笔记s on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 笔记s on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 02 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>c&#43;&#43;网络编程入门概念及api总结</title>
+      <link>https://kaikaixixi.xyz/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/</guid>
+      <description>&lt;h1 id=&#34;linux-系统编程&#34;&gt;Linux 系统编程&lt;/h1&gt;&#xA;&lt;h2 id=&#34;chapter-1-系统编程入门&#34;&gt;Chapter 1 系统编程入门&lt;/h2&gt;&#xA;&lt;h3 id=&#34;gcc&#34;&gt;GCC&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;区别 GCC 与 G++&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;gcc 既能编译 c，也能编译 c++。只不过 gcc 在链接的时候，不能自动链接 C++的库。在编译阶段，g++会调用 gcc，二者是等价的。&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;__cplusplus&lt;/code&gt;宏：g++编译 .c 文件时会定义，按照严谨的 cpp 语法去执行；gcc 编译 .cpp 文件时也会定义。&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;gcc -lstdc++&lt;/code&gt;即可解决 gcc 链接不了 c++库的问题&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;-D&lt;/code&gt;选项，可以指定一个编译时后的宏，可以方便调试。比如调试版本和 release 版本，就不用删除 log 了&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;静态库与动态库&#34;&gt;静态库与动态库&lt;/h3&gt;&#xA;&lt;h4 id=&#34;静态库&#34;&gt;静态库&lt;/h4&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# 编译,得到目标文件&#xA;gcc -c tes1.c tes2.c&#xA;# 打包成静态库: -r插入  -c  -s起名&#xA;ar -rcs libxxx.a tes1.o tes2.o&#xA;# 使用：指定库名、库位置、头文件&#xA;gcc -o demo tes1.o tes2.o -l xxx -L ./lib -I ./include&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;优点：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;加载速度快，因为打包到程序里面了&lt;/li&gt;&#xA;&lt;li&gt;发布无需额外提供库，方便移植&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;缺点：&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>征服C指针笔记</title>
+      <link>https://kaikaixixi.xyz/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/</link>
+      <pubDate>Tue, 04 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/</guid>
+      <description>&lt;h1 id=&#34;征服-c-指针&#34;&gt;征服 C 指针&lt;/h1&gt;&#xA;&lt;h2 id=&#34;关于指针-初步&#34;&gt;关于指针 初步&lt;/h2&gt;&#xA;&lt;h3 id=&#34;指针类型定义&#34;&gt;指针类型定义&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;指针类型&lt;/strong&gt; 可由函数类型、对象类型或不完全的类型派生。派生指针类型的类，称为&lt;mark&gt;引用类型&lt;/mark&gt;。指针类型描述这样一个对象：该类对象的值，提供对该引用类型实体的引用。由引用类型 T 派生的指针类型，有时称为*“（指向）T 的指针*。从引用类型构造指针类型的过程，称为*&amp;ldquo;指针类型的派生”*。这些构造派生类型的方法可以递归地应用。&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;和基本类型一样，指针也有：指针类型，指针类型的变量，指针类型的值&lt;/p&gt;&#xA;&lt;h3 id=&#34;指针与地址关系&#34;&gt;指针与地址关系&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;指针就是地址。对么？&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;无论是用&lt;code&gt;%d, %p, %x&lt;/code&gt;,都能输出指针，指针就是&lt;code&gt;unsigned int&lt;/code&gt;。似乎这样理解也不无道理。但是需要指出的是，这是与环境有关的。&lt;strong&gt;指针的长度是固定的，无论其是指向什么类型&lt;/strong&gt;，可以参见下面的例子：&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;int    *p1;&#xA;double *p1;&#xA;char   *p3;&#xA;printf(&amp;quot;%d %d %d\n&amp;quot;, sizeof(p1), sizeof(p2), sizeof(p3));&#xA;// 输出：&#xA;8 8 8&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;既然指针是地址，那指向 int 指向 double 有必要区分么？有的。&lt;strong&gt;仅仅告知内存地址，不告知在那个地址上的数据类型，是无法正确取出值来的&lt;/strong&gt;。&#xA;题外话，指针的&lt;mark&gt;强制类型转换&lt;/mark&gt;，也只是改变对内容的解释方法，指针的长度是固定不变的&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;int   x = 0x00000041;&#xA;char *p;&#xA;p = (char*)&amp;amp;x;&#xA;pintf(&amp;quot;%c\n&amp;quot;, p);&#xA;// 输出：&#xA;A&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;指针就是地址，对指针 +1，指针不应该就前进一个字节么？&#xA;当然不是，对指针 +n，指针前进“当前指针指向的数据类型长度 $\times$n&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;空指针&#34;&gt;空指针&lt;/h3&gt;&#xA;&lt;p&gt;&lt;strong&gt;空指针&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;确保它和任何非空指针进行比较都不会相等&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;只有&lt;code&gt;NULL&lt;/code&gt;，无论对方指向什么类型，都可以进行赋值和比较&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h4 id=&#34;null-0-和-0&#34;&gt;NULL， 0 和 &amp;lsquo;\0&amp;rsquo;&lt;/h4&gt;&#xA;&lt;p&gt;在&lt;code&gt;&amp;lt;stdio.h&amp;gt;&lt;/code&gt;中，NULL 定义如下：&lt;code&gt;#define NULL 0&lt;/code&gt;，那么空指针不就是为 0 的地址么？大部分环境中确实是这样，但这么说是不准确的。（原作中说的我也没听懂要说什么，但为了便于阅读，还是写 NULL 吧，又不费劲？）不过有一点：&lt;em&gt;在 C 语言中，当常量 0 处于应该作为指针的上下文中时，他就作为空指针使用&lt;/em&gt;，所以：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
