@@ -526,22 +526,30 @@ CheckOptions:
 
 最简单的命令就是 `g++ demo.cpp -o demo`，得到的demo就是可执行文件（-o， output，用于指定输出文件的名字）。这背后有很多过程，如果想了解，或者编译出错了，那么就再进一步去了解相关的编译选项。
 
+---
+
 编译的流程是: 源文件 -> 预处理 -> 汇编 -> 编译 -> 链接，这些流程都有对应的编译选项，也就是说你可以只编译到任意的中间步骤去查看整成什么样子了。
 - `g++ -E demo.cpp -o demo.i`：-E 是说只进行预处理（把你include的头文件展开、宏展开等）
 - `g++ -S demo.cpp -o demo.s`: -S 是说只进行汇编，不编译链接，得到的是汇编码
 - `g++ -c demo.cpp -o demo.o`: -c 是说只编译得到目标文件，不进行链接
+  
+---
 
 当然有时候需要处理一些跟头文件库文件相关的内容
 - `g++ demo.cpp -o demo -I../include -lmylib -L/home/usr/mylib`：-I指定头文件查找位置，-L指定库文件查找位置，-l指定你想链接的库。`-lmylib`对应的库文件全名实际上是 `libmylib.so` 或者 `libmylib.a`，即-l跟的名字是掐头去尾得到的
   - `g++ -static demo.cpp -o demo -lmylib`: -static 指定了静态链接（简单来说就是把库文件打包进可执行文件里面，动态链接的库是在别的地方，程序运行的时候才加载），既然是静态链接，要注意你必须得有 `libmylib.a`这个文件，.so只没办法让你静态链接得。
   - `g++ -fPIC -shared mylib.cpp -o libmylib.so`: 这个用于生成动态库，-fPIC指定生成与位置无关的代码，-shared 说要生成动态库
   - `ar rcs libmylib.a demo1.o demo2.o`: 那么这个就是生成静态库的方法了，这里使用的不是g++，而是`ar`这个工具。静态库类似一种压缩包把，ar是个打包工具，你要先用g++生成目标文件，然后再将他们打包成静态库。rcs中，r表示添加文件到归档中，如果存在则替换；c表示归档不存在则创建；s表示创建索引
+ 
+---
 
 然后是，调试、优化、告警、标准这些，还算常用，但不知道怎么归类了，就叫做风格化吧：
 - `g++ demo.cpp -o demo -g`: -g 是说要生成一个可以调试的文件，也就是说这个会在可执行文件中保留一些符号信息，用途就是调试，文件体积和性能相对不带的自然会弱一些。
 - `g++ demo.cpp -o demo -O3`：-O3 是一个优化选项，让编译器采用最激进的方式对你的源文件进行优化，以得到更好的性能（据说有可能有不稳定的情况，反正我没碰到过，相信编译器了），当然自然也有 -O2 -O1 -O0 优化越来越保守，-O0是不做任何优化，保留原汁原味的代码体验，一般调试的时候用
 - `g++ demo.cpp -o demo -Wall -Werror`: W就是warn，所以Wall就是把所有的警告都报告出来，Werror就是把告警看作是一种错误，这俩放一块要求代码中不能有一处告警，否则就是编译出错直接中止，适合对代码有追求的人和项目。
 - `g++ demo.cpp -o demo -std=c++20`: -std指定了你使用的c++标准
+
+---
 
 此外还有很多编译选项，各有应用场景
 - `g++ -MM demo.cpp > demo.d`: -MM 用于生成文件的所有依赖关系（除了标准库，-M则包括标准库头文件），一般用于Makefile中，可以做到头文件变动时也重新编译文件（否则只有源文件变动才重新编译，可能会出问题）。.d文件长这样demo.o: demo.cpp /usr/include/cstdio ...
@@ -550,13 +558,15 @@ CheckOptions:
 - `g++ -v -E c++ -`: 这个用于打印编译c++时的依赖搜索路径，可能个人比上面的用的多些。常见的场景：我已经安装了某个库了，或者我已经修改了某个头文件了，但是编译器里不符合预期，可以看看是不是压根没查找到它，查找的是别的同名的（比如在wsl中编译，链接的却是windows上msys2中的库）
 - `g++ -print-file-name=libmylib.a`: 直接打印出，如果让g++去找这个库的话，它的查找路径
 
+---
+
 性能优化的值得单开一部分
 - `g++ -ftime-trace demo.cpp -o demo`: -ftime-trace 用于显示分析编译耗时
 - `Sanitizer`: 是 LLVM/Clang 和 GCC 编译器提供的一套工具，用于在运行时检测程序中的各种错误。它的核心思想是通过在编译时插入额外的检查代码，来捕获内存错误、未定义行为、数据竞争等问题。编译完**直接运行程序**，然后会给你输出错误。
   - `g++ -fsanitize=address -o demo demo.cpp`: address 启用 AddressSanitizer，这是一个内存错误检测工具，能够检测内存泄漏、缓冲区溢出、使用未初始化的内存等问题
-  - fsanitize=leak：仅检测内存泄漏
-  - fsanitize=undefined：检测未定义行为
-  - fsanitize=thread：检测多线程问题
+  - `fsanitize=leak`：仅检测内存泄漏
+  - `fsanitize=undefined`：检测未定义行为
+  - `fsanitize=thread`：检测多线程问题
 
 #### 项目构建
 
@@ -564,13 +574,13 @@ CheckOptions:
 
 项目构建就要使用到构建工具了，常见的有 Make，Ninja，CMake，XMake，QMake, Bazel，VSProject ...
 
-- Make: make是一个，怎么说呢，原始而强大的东西，可以很简单，比如你嫌弃用几个g++命令构建出目标文件，再手动链接比较麻烦，就把他们写进makefile中，然后make一下就可以了。这个时候的makefile就像一个shell脚本一样，你直接写shell脚本构建也是一样的。（所以有时候拿makefile当一个脚本启动器也是很不错的）但是它也可以像邪恶的古神一样很复杂，有很多高级配置，依赖查找balabala，复杂到维护这个项目Makefile的人奔溃到谁改一下下就吼谁（只是耳闻）
-- Ninja：ninja和make类似，它是为了快速构建而生的。我见过手写makefile的，但是见识浅薄，身边没有手写ninja.build的，ninja更多是只负责快速编译，至于如何编译还是使用CMake直接生成的多一些。
-- CMake：c++的事实构建标准，这一句评价就够了。你可以会很多花里呼哨的构建方式构建器，你可以听很多人说它不好，xxx比它友好一万倍快十万倍，但是你最好还是要会使用它，因为它是事实标准。它的使用我知道一些，但是这里的空间太小了，写不下
-- XMake：这就是一个CMake的替代品，不过人家作者说了，无意取代CMake，只是在构建什么个人项目、小项目的时候提供一种更友好更快速的选择。它使用lua来写构建脚本，会lua的有福了。同时自带包管理（加分项）。然后就是，可能更新快一些吧，比如比CMake更支持c++20的Modules。
-- QMake：Qt的构建器，没用过，也没用过Qt。不过现在Qt已经拥抱CMake了，所以，没有必要也没有兴趣的话应该不用管。
-- Bazel：谷歌做的构建器，使用一种类似python的语法写构建脚本。优势是使用了分布式缓存，构建更快；然后是考虑到了构建环境，可以做到相同环境必定能复现构建；然后还有就是分析目标更精准吧，并行化好、重复构建最少。等等吧，反正就是又快又对。百度的Apollo项目使用的是这个，当然还有很多别的项目也都用了。
-- VSProject：使用Visual Studio开发的话默认这个，听说很方便，但是我用VS不多，对这个不甚了解
+- **Make**: make是一个，怎么说呢，原始而强大的东西，可以很简单，比如你嫌弃用几个g++命令构建出目标文件，再手动链接比较麻烦，就把他们写进makefile中，然后make一下就可以了。这个时候的makefile就像一个shell脚本一样，你直接写shell脚本构建也是一样的。（所以有时候拿makefile当一个脚本启动器也是很不错的）但是它也可以像邪恶的古神一样很复杂，有很多高级配置，依赖查找balabala，复杂到维护这个项目Makefile的人奔溃到谁改一下下就吼谁（只是耳闻）
+- **Ninja**：ninja和make类似，它是为了快速构建而生的。我见过手写makefile的，但是见识浅薄，身边没有手写ninja.build的，ninja更多是只负责快速编译，至于如何编译还是使用CMake直接生成的多一些。
+- **CMake**：c++的事实构建标准，这一句评价就够了。你可以会很多花里呼哨的构建方式构建器，你可以听很多人说它不好，xxx比它友好一万倍快十万倍，但是你最好还是要会使用它，因为它是事实标准。它的使用我知道一些，但是这里的空间太小了，写不下
+- **XMake**：这就是一个CMake的替代品，不过人家作者说了，无意取代CMake，只是在构建什么个人项目、小项目的时候提供一种更友好更快速的选择。它使用lua来写构建脚本，会lua的有福了。同时自带包管理（加分项）。然后就是，可能更新快一些吧，比如比CMake更支持c++20的Modules。
+- **QMake**：Qt的构建器，没用过，也没用过Qt。不过现在Qt已经拥抱CMake了，所以，没有必要也没有兴趣的话应该不用管。
+- **Bazel**：谷歌做的构建器，使用一种类似python的语法写构建脚本。优势是使用了分布式缓存，构建更快；然后是考虑到了构建环境，可以做到相同环境必定能复现构建；然后还有就是分析目标更精准吧，并行化好、重复构建最少。等等吧，反正就是又快又对。百度的Apollo项目使用的是这个，当然还有很多别的项目也都用了。
+- **VSProject**：使用Visual Studio开发的话默认这个，听说很方便，但是我用VS不多，对这个不甚了解
 
 下面就简单介绍下Make、CMake、Bazel，是真的简单介绍，深入学习的话还是要进一步深入学习的。
 
@@ -587,7 +597,8 @@ rebuild:
 ```
 这里我指定了目标是rebuild，依赖是空，得到目标的办法是执行那一长串命令。这实际上不是编译，只是给那一长串命令起了个名字叫 `make rebuild`。makefile不只可以用来构建，也可以当作脚本启动器。
 
-> [!warning] 不过需要注意的是，makefile中的命令是新启动一个shell来做的，你可以指定使用shell还是使用bash，但你没法指定它不启动一个新的。所以想在makefile中设置当前的环境变量是不可以的
+> [!warning]
+> 不过需要注意的是，makefile中的命令是新启动一个shell来做的，你可以指定使用shell还是使用bash，但你没法指定它不启动一个新的。所以想在makefile中设置当前的环境变量是不可以的
 
 当然它的主业还是构建，简单介绍一些特性，然后直接给几个例子揣摩一下吧
 
@@ -801,7 +812,7 @@ run:
 
 ###### CMake
 
-这里只说基本的，拷下来一个cmake项目怎么运行。
+这里只说基本的，拷下来一个cmake项目怎么运行。具体的CMake项目怎么写怎么组织，可以参考项目 [quick-cmake GitHub](https://github.com/captainwc/quick-cmake)
 
 一般来说分为三步：
 1. 项目根目录创建一个build文件夹，然后cd进去。在build文件夹中进行构建，cmake生成的文件就会都在build文件夹内，不会污染源项目，所以十分推荐这种方式。（当然不cd进去直接用 -B build 指定也可以）
@@ -844,8 +855,8 @@ bazel我还在学，这里只说环境怎么配置就好了。想学习第一手
 
 具体到 C/C++ 来说一般是生成 `compile_commands.json` 文件，官方推荐有两种方式：
 
-1. [`kiron1/bazel-compile-commands`](https://github.com/kiron1/bazel-compile-commands) ：在 Bazel 工作区中运行 `bazel-compile-commands //...` 以生成 `compile_commands.json` 文件。`compile_commands.json` 文件可让 `clang-tidy`、`clangd` (LSP) 和其他 IDE 等工具提供自动补全、智能导航、快速修复等功能。该工具使用 C++ 编写，并使用 Bazel 的 Protobuf 输出来提取编译命令。
-2. [`hedronvision/bazel-compile-commands-extractor`](https://github.com/hedronvision/bazel-compile-commands-extractor) ：可在各种可扩展的编辑器（包括 VSCode、Vim、Emacs、Atom 和 Sublime）中启用自动补全、智能导航、快速修复等功能。它可让 clangd 和 ccls 等语言服务器以及其他类型的工具利用 Bazel 对 `cc` 和 `objc` 代码编译方式的理解，包括它如何为其他平台配置交叉编译。
+1. [kiron1/bazel-compile-commands](https://github.com/kiron1/bazel-compile-commands) ：在 Bazel 工作区中运行 `bazel-compile-commands //...` 以生成 `compile_commands.json` 文件。`compile_commands.json` 文件可让 `clang-tidy`、`clangd` (LSP) 和其他 IDE 等工具提供自动补全、智能导航、快速修复等功能。该工具使用 C++ 编写，并使用 Bazel 的 Protobuf 输出来提取编译命令。
+2. [hedronvision/bazel-compile-commands-extractor](https://github.com/hedronvision/bazel-compile-commands-extractor) ：可在各种可扩展的编辑器（包括 VSCode、Vim、Emacs、Atom 和 Sublime）中启用自动补全、智能导航、快速修复等功能。它可让 clangd 和 ccls 等语言服务器以及其他类型的工具利用 Bazel 对 `cc` 和 `objc` 代码编译方式的理解，包括它如何为其他平台配置交叉编译。
 
 #### 依赖管理
 
