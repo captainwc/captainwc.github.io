@@ -14,11 +14,13 @@
             // 初始化mermaid配置
             mermaid.initialize({
                 startOnLoad: false,
-                // themes: 'default' 'neutral', 'dark', 'forest', 'base'
-                theme: 'default',
                 securityLevel: 'loose',
                 // fontFamily: 'Maple Mono Normal NF CN',
-                // Other configs ==REF=> https://mermaid.nodejs.cn/config/usage.html
+                // look: 'handDrawn',
+                // themes: 'default' 'neutral', 'dark', 'forest', 'base'
+                // theme: 'default',
+                // Other configs: [https://mermaid.nodejs.cn/config/usage.html, https://mermaid.nodejs.cn/intro/syntax-reference.html]
+                // Front Yaml in mermaid like ```mermaid --- config: xxx: xxx ---``` is allowed too
             });
 
             // 处理每个mermaid代码块
