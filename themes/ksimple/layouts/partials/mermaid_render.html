@@ -1,0 +1,193 @@
+<!-- mermaid 渲染图表 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. 检测是否存在Mermaid代码块
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+        if (!mermaidBlocks.length) return;
+
+        // 2. 加载mermaid.min.js
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js';
+
+        // 3. 加载完成后执行渲染
+        script.onload = () => {
+            // 初始化mermaid配置
+            mermaid.initialize({
+                startOnLoad: false,
+                // themes: 'default' 'neutral', 'dark', 'forest', 'base'
+                theme: 'default',
+                securityLevel: 'loose',
+                // fontFamily: 'Maple Mono Normal NF CN',
+                // Other configs ==REF=> https://mermaid.nodejs.cn/config/usage.html
+            });
+
+            // 处理每个mermaid代码块
+            mermaidBlocks.forEach((codeBlock, index) => {
+                // 创建容器
+                const container = document.createElement('div');
+                container.className = 'code-rendered-diagram';
+
+                // 创建渲染容器
+                const renderDiv = document.createElement('div');
+                renderDiv.id = `mermaid-diagram-${index}`;
+                renderDiv.style.background = 'transparent';
+
+                // 获取原始代码
+                const code = codeBlock.textContent.trim();
+                container.dataset.originalCode = code;
+
+                try {
+                    // 使用mermaid渲染
+                    mermaid.render(`mermaid-svg-${index}`, code).then(result => {
+                        renderDiv.innerHTML = result.svg;
+
+                        // 确保SVG背景透明
+                        const svg = renderDiv.querySelector('svg');
+                        if (svg) {
+                            svg.style.backgroundColor = 'transparent';
+                            // 移除白色背景元素
+                            svg.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                                .forEach(el => {
+                                    if (el.tagName !== 'svg') {
+                                        el.setAttribute('fill', 'transparent');
+                                    }
+                                });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Mermaid渲染错误:', error);
+                    renderDiv.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Mermaid渲染错误: ${error.message}
+                    </div>`;
+                }
+
+                // 创建复制按钮
+                const copyButton = document.createElement('button');
+                copyButton.className = 'code-rendered-diagram-copy-button';
+                copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+
+                // 创建全屏按钮
+                const fullscreenButton = document.createElement('button');
+                fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+                fullscreenButton.innerHTML = '&#xf065; FULL';
+
+                // 创建全屏覆盖层
+                const fullscreenOverlay = document.createElement('div');
+                fullscreenOverlay.className = 'fullscreen-overlay';
+                document.body.appendChild(fullscreenOverlay);
+
+                // 双击退出全屏
+                fullscreenOverlay.addEventListener('dblclick', (e) => {
+                    if (e.target === fullscreenOverlay) {
+                        fullscreenOverlay.classList.remove('active');
+                    }
+                });
+
+                // ESC 键退出全屏
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
+                        fullscreenOverlay.classList.remove('active');
+                    }
+                });
+
+                // 缩放和拖动
+                fullscreenButton.addEventListener('click', () => {
+                    const svgElement = renderDiv.querySelector('svg');
+                    if (!svgElement) return;
+
+                    const clonedContent = svgElement.cloneNode(true);
+                    fullscreenOverlay.innerHTML = '';
+
+                    // 添加退出按钮
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => fullscreenOverlay.classList.remove('active');
+
+                    fullscreenOverlay.appendChild(exitButton);
+                    fullscreenOverlay.appendChild(clonedContent);
+                    fullscreenOverlay.classList.add('active');
+
+                    // 初始化缩放和位置状态
+                    let scale = 1;
+                    let posX = 0;
+                    let posY = 0;
+                    let isDragging = false;
+                    let startX = 0;
+                    let startY = 0;
+
+                    const fullscreenSvg = fullscreenOverlay.querySelector('svg');
+
+                    // 缩放处理
+                    fullscreenOverlay.addEventListener('wheel', (e) => {
+                        e.preventDefault();
+                        const delta = e.deltaY * -0.002;
+                        const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                        // 计算鼠标相对于图片的位置
+                        const rect = fullscreenSvg.getBoundingClientRect();
+                        const mouseX = e.clientX - rect.left;
+                        const mouseY = e.clientY - rect.top;
+
+                        // 计算新的位置，保持鼠标指向的点不变
+                        posX += mouseX * (1 - newScale / scale);
+                        posY += mouseY * (1 - newScale / scale);
+
+                        scale = newScale;
+                        updateTransform();
+                    });
+
+                    // 拖动处理
+                    fullscreenOverlay.addEventListener('mousedown', (e) => {
+                        if (e.target === fullscreenOverlay) return;
+                        isDragging = true;
+                        startX = e.clientX - posX;
+                        startY = e.clientY - posY;
+                        fullscreenOverlay.classList.add('dragging');
+                    });
+
+                    window.addEventListener('mousemove', (e) => {
+                        if (!isDragging) return;
+                        posX = e.clientX - startX;
+                        posY = e.clientY - startY;
+                        updateTransform();
+                    });
+
+                    window.addEventListener('mouseup', () => {
+                        isDragging = false;
+                        fullscreenOverlay.classList.remove('dragging');
+                    });
+
+                    function updateTransform() {
+                        fullscreenSvg.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+                    }
+                });
+
+                // 复制逻辑
+                copyButton.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(container.dataset.originalCode);
+                        copyButton.textContent = '\uf00c COPIED!';
+                        setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                    } catch (err) {
+                        copyButton.textContent = 'FAILED';
+                        console.error('复制失败:', err);
+                    }
+                });
+
+                // 组装元素
+                container.appendChild(renderDiv);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                // 替换原始代码块
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+            });
+        };
+
+        // 4. 注入脚本到页面
+        document.head.appendChild(script);
+    });
+</script>
