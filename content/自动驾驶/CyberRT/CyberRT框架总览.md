@@ -104,27 +104,27 @@ flowchart TD
     classDef third fill:#f0e68c,stroke:#b8860b,stroke-width:2px;
 
     %% Click Events
-    click A "https://github.com/captainwc/cyberrt/blob/master/cyber/cyber.cc"
-    click config "https://github.com/captainwc/cyberrt/tree/master/cyber/conf"
-    click B1 "https://github.com/captainwc/cyberrt/tree/master/cyber/transport"
-    click B2 "https://github.com/captainwc/cyberrt/tree/master/cyber/message"
-    click B3 "https://github.com/captainwc/cyberrt/tree/master/cyber/data"
-    click B4 "https://github.com/captainwc/cyberrt/tree/master/cyber/io"
-    click C1 "https://github.com/captainwc/cyberrt/tree/master/cyber/scheduler"
-    click C2 "https://github.com/captainwc/cyberrt/tree/master/cyber/task"
-    click C3 "https://github.com/captainwc/cyberrt/tree/master/cyber/timer"
-    click C4 "https://github.com/captainwc/cyberrt/tree/master/cyber/croutine"
-    click D1 "https://github.com/captainwc/cyberrt/tree/master/cyber/node"
-    click D2 "https://github.com/captainwc/cyberrt/tree/master/cyber/service"
-    click D3 "https://github.com/captainwc/cyberrt/tree/master/cyber/parameter"
-    click D4 "https://github.com/captainwc/cyberrt/tree/master/cyber/component"
-    click E1 "https://github.com/captainwc/cyberrt/tree/master/cyber/service_discovery"
-    click E2 "https://github.com/captainwc/cyberrt/tree/master/cyber/class_loader"
-    click F1 "https://github.com/captainwc/cyberrt/tree/master/cyber/logger"
-    click F2 "https://github.com/captainwc/cyberrt/tree/master/cyber/record"
-    click G1 "https://github.com/captainwc/cyberrt/tree/master/cyber_py3"
-    click G2 "https://github.com/captainwc/cyberrt/tree/master/cyber/tools"
-    click H1 "https://github.com/captainwc/cyberrt/tree/master/third_party"
+    click A "https://github.com/captainwc/cyberrt/blob/master/cyber/cyber.cc" _blank
+    click config "https://github.com/captainwc/cyberrt/tree/master/cyber/conf" _blank
+    click B1 "https://github.com/captainwc/cyberrt/tree/master/cyber/transport" _blank
+    click B2 "https://github.com/captainwc/cyberrt/tree/master/cyber/message" _blank
+    click B3 "https://github.com/captainwc/cyberrt/tree/master/cyber/data" _blank
+    click B4 "https://github.com/captainwc/cyberrt/tree/master/cyber/io" _blank
+    click C1 "https://github.com/captainwc/cyberrt/tree/master/cyber/scheduler" _blank
+    click C2 "https://github.com/captainwc/cyberrt/tree/master/cyber/task" _blank
+    click C3 "https://github.com/captainwc/cyberrt/tree/master/cyber/timer" _blank
+    click C4 "https://github.com/captainwc/cyberrt/tree/master/cyber/croutine" _blank
+    click D1 "https://github.com/captainwc/cyberrt/tree/master/cyber/node" _blank
+    click D2 "https://github.com/captainwc/cyberrt/tree/master/cyber/service" _blank
+    click D3 "https://github.com/captainwc/cyberrt/tree/master/cyber/parameter" _blank
+    click D4 "https://github.com/captainwc/cyberrt/tree/master/cyber/component" _blank
+    click E1 "https://github.com/captainwc/cyberrt/tree/master/cyber/service_discovery" _blank
+    click E2 "https://github.com/captainwc/cyberrt/tree/master/cyber/class_loader" _blank
+    click F1 "https://github.com/captainwc/cyberrt/tree/master/cyber/logger" _blank
+    click F2 "https://github.com/captainwc/cyberrt/tree/master/cyber/record" _blank
+    click G1 "https://github.com/captainwc/cyberrt/tree/master/cyber_py3" _blank
+    click G2 "https://github.com/captainwc/cyberrt/tree/master/cyber/tools" _blank
+    click H1 "https://github.com/captainwc/cyberrt/tree/master/third_party" _blank
 
 ```
 

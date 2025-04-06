@@ -175,7 +175,7 @@ end
 
 #### ebnf
 
-```uml
+```plantuml_kroki
 @startebnf
 Type = PrimitiveType | ReferenceType;
 PrimitiveType = [Annotation], (NumericType | boolean );
