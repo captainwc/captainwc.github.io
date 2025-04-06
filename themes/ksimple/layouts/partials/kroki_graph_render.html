@@ -28,15 +28,6 @@
 
         if (!blocks.length) return;
 
-        // SVG透明处理
-        const makeSVGTransparent = svgText => {
-            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
-            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
-                .forEach(el => el.remove());
-            doc.documentElement.style.backgroundColor = 'transparent';
-            return new XMLSerializer().serializeToString(doc);
-        };
-
         // 并发渲染
         const CONCURRENCY = 6;
         const queue = blocks.slice();
@@ -55,13 +46,13 @@
 
         async function renderBlock(block, api) {
             const pre = block.closest('pre');
-            try {
-                const code = block.textContent.trim();
-                if (!code) {
-                    pre.style.border = '2px solid orange';
-                    return;
-                }
+            const code = block.textContent.trim();
+            if (!code) {
+                pre.style.border = '2px solid orange';
+                return;
+            }
 
+            try {
                 const res = await fetch(`https://kroki.io/${api}/svg`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain' },
@@ -70,133 +61,32 @@
 
                 if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
 
-                const svg = document.createElement('div');
-                svg.className = 'code-rendered-diagram';
-                svg.innerHTML = makeSVGTransparent(await res.text());
-
-                // 添加全屏按钮
-                const fullscreenButton = document.createElement('button');
-                fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
-                fullscreenButton.textContent = '\uf065 FULL';
-
-                // 创建全屏覆盖层
-                const fullscreenOverlay = document.createElement('div');
-                fullscreenOverlay.className = 'fullscreen-overlay';
-                document.body.appendChild(fullscreenOverlay);
-
-                // 双击退出全屏
-                fullscreenOverlay.addEventListener('dblclick', (e) => {
-                    if (e.target === fullscreenOverlay) {
-                        fullscreenOverlay.classList.remove('active');
-                    }
-                });
-
-                // ESC 键退出全屏
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
-                        fullscreenOverlay.classList.remove('active');
-                    }
-                });
-
-                // 缩放和拖动
-                fullscreenButton.addEventListener('click', () => {
-                    const clonedContent = svg.querySelector('svg').cloneNode(true);
-                    fullscreenOverlay.innerHTML = '';
-
-                    // 添加退出按钮
-                    const exitButton = document.createElement('button');
-                    exitButton.className = 'fullscreen-exit-button';
-                    exitButton.innerHTML = 'ESC';
-                    exitButton.onclick = () => fullscreenOverlay.classList.remove('active');
-
-                    fullscreenOverlay.appendChild(exitButton);
-                    fullscreenOverlay.appendChild(clonedContent);
-                    fullscreenOverlay.classList.add('active');
-
-                    // 初始化缩放和位置状态
-                    let scale = 1;
-                    let posX = 0;
-                    let posY = 0;
-                    let isDragging = false;
-                    let startX = 0;
-                    let startY = 0;
-
-                    const svgElement = fullscreenOverlay.querySelector('svg');
-
-                    // 缩放处理
-                    fullscreenOverlay.addEventListener('wheel', (e) => {
-                        e.preventDefault();
-                        const delta = e.deltaY * -0.002;
-                        const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
-
-                        // 计算鼠标相对于图片的位置
-                        const rect = svgElement.getBoundingClientRect();
-                        const mouseX = e.clientX - rect.left;
-                        const mouseY = e.clientY - rect.top;
-
-                        // 计算新的位置，保持鼠标指向的点不变
-                        posX += mouseX * (1 - newScale / scale);
-                        posY += mouseY * (1 - newScale / scale);
-
-                        scale = newScale;
-                        updateTransform();
-                    });
-
-                    // 拖动处理
-                    fullscreenOverlay.addEventListener('mousedown', (e) => {
-                        if (e.target === fullscreenOverlay) return;
-                        isDragging = true;
-                        startX = e.clientX - posX;
-                        startY = e.clientY - posY;
-                        fullscreenOverlay.classList.add('dragging');
-                    });
-
-                    window.addEventListener('mousemove', (e) => {
-                        if (!isDragging) return;
-                        posX = e.clientX - startX;
-                        posY = e.clientY - startY;
-                        updateTransform();
-                    });
-
-                    window.addEventListener('mouseup', () => {
-                        isDragging = false;
-                        fullscreenOverlay.classList.remove('dragging');
-                    });
-
-                    function updateTransform() {
-                        svgElement.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
-                    }
-                });
-
-                svg.appendChild(fullscreenButton);
-
-                // 添加复制原始代码按钮
-                const copyButton = document.createElement('button');
-                copyButton.className = 'code-rendered-diagram-copy-button';
-                copyButton.textContent = '\uf4bb COPY-SRC';
-                svg.dataset.originalCode = code;
-
-                copyButton.addEventListener('click', async () => {
-                    try {
-                        await navigator.clipboard.writeText(svg.dataset.originalCode);
-                        copyButton.textContent = '\uf00c COPIED!';
-                        setTimeout(() => copyButton.textContent = '\uf4bb COPY-SRC', 2000);
-                    } catch (err) {
-                        copyButton.textContent = 'FAILED';
-                        console.error('复制失败:', err);
-                    }
-                });
-                svg.appendChild(copyButton);
-
-                pre.insertAdjacentElement('afterend', svg);
-
-                // 删除原始pre块
-                pre.remove();
             } catch (err) {
                 console.error(`[Kroki] 渲染失败: ${err.message}`);
                 pre.style.border = '2px solid red';
                 pre.title = err.message;
             }
+
+            // 创建容器
+            const svg = window.diagramRenderUtils.createDiagramContainer();
+            svg.innerHTML = window.diagramRenderUtils.makeSVGTransparent(await res.text());
+            svg.dataset.originalCode = code;
+
+            // 添加全屏按钮
+            const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+            window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, svg, false);
+
+            // 添加复制原始代码按钮
+            const copyButton = window.diagramRenderUtils.createCopyButton();
+            window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+            // 组装按钮
+            svg.appendChild(fullscreenButton);
+            svg.appendChild(copyButton);
+
+            // 删除原始pre块
+            pre.insertAdjacentElement('afterend', svg);
+            pre.remove();
         }
     });
 </script>

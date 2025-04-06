@@ -1,0 +1,276 @@
+<!-- 图表渲染公共功能 -->
+<script>
+    // 在全局范围内定义公共功能
+    window.diagramRenderUtils = {
+        // 创建全屏覆盖层（如果不存在）
+        getOrCreateFullscreenOverlay: function() {
+            let overlay = document.querySelector('.fullscreen-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'fullscreen-overlay';
+                document.body.appendChild(overlay);
+
+                // 双击退出全屏
+                overlay.addEventListener('dblclick', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+
+                // ESC 键退出全屏
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            }
+            return overlay;
+        },
+
+        // 创建渲染容器
+        createDiagramContainer: function() {
+            const container = document.createElement('div');
+            container.className = 'code-rendered-diagram';
+            return container;
+        },
+
+        // 创建复制按钮
+        createCopyButton: function() {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'code-rendered-diagram-copy-button';
+            copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+            return copyButton;
+        },
+
+        // 创建全屏按钮
+        createFullscreenButton: function() {
+            const fullscreenButton = document.createElement('button');
+            fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+            fullscreenButton.innerHTML = '&#xf065; FULL';
+            return fullscreenButton;
+        },
+
+        // SVG透明处理
+        makeSVGTransparent: function(svgText) {
+            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                .forEach(el => {
+                    if (el.tagName !== 'svg') {
+                        el.setAttribute('fill', 'transparent');
+                    }
+                });
+            doc.documentElement.style.backgroundColor = 'transparent';
+            return new XMLSerializer().serializeToString(doc);
+        },
+
+        // 添加复制功能
+        setupCopyButton: function(copyButton, codeContent) {
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeContent);
+                    copyButton.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                } catch (err) {
+                    copyButton.textContent = 'FAILED';
+                    console.error('复制失败:', err);
+                }
+            });
+        },
+
+        // 设置全屏功能
+        setupFullscreenButton: function(fullscreenButton, contentElement, isImage = false) {
+            fullscreenButton.addEventListener('click', () => {
+                const overlay = this.getOrCreateFullscreenOverlay();
+                let clonedContent;
+
+                if (isImage) {
+                    // 处理图片元素
+                    clonedContent = contentElement.cloneNode(true);
+                } else {
+                    // 处理SVG元素
+                    const svgElement = contentElement.querySelector('svg');
+                    if (!svgElement) return;
+                    clonedContent = svgElement.cloneNode(true);
+                }
+
+                overlay.innerHTML = '';
+
+                // 添加退出按钮
+                const exitButton = document.createElement('button');
+                exitButton.className = 'fullscreen-exit-button';
+                exitButton.innerHTML = 'ESC';
+                exitButton.onclick = () => overlay.classList.remove('active');
+
+                overlay.appendChild(exitButton);
+                overlay.appendChild(clonedContent);
+                overlay.classList.add('active');
+
+                // 初始化缩放和位置状态
+                this.setupZoomAndDrag(overlay, isImage ? 'img' : 'svg');
+            });
+        },
+
+        // 设置缩放和拖动功能
+        setupZoomAndDrag: function(overlay, selector) {
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            const element = overlay.querySelector(selector);
+
+            // 缩放处理
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY * -0.002;
+                const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                // 计算鼠标相对于元素的位置
+                const rect = element.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                // 计算新的位置，保持鼠标指向的点不变
+                posX += mouseX * (1 - newScale / scale);
+                posY += mouseY * (1 - newScale / scale);
+
+                scale = newScale;
+                updateTransform();
+            });
+
+            // 拖动处理
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === overlay) return;
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                overlay.classList.add('dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                overlay.classList.remove('dragging');
+            });
+
+            function updateTransform() {
+                element.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+        }
+    };
+</script>
+<style>
+    /* ================= 从代码渲染而来的图片，比如plantuml、mermaid、kroki等 ================= */
+    .code-rendered-diagram {
+        max-width: 80% !important;
+        height: auto;
+        position: relative;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .code-rendered-diagram-copy-button,
+    .code-rendered-diagram-fullscreen-button {
+        position: absolute;
+        top: 20px;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 0.3rem;
+        margin: 0 0 0 0.6rem;
+        color: #333;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.6rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        opacity: 0;
+    }
+
+    .code-rendered-diagram-copy-button {
+        right: 10px;
+    }
+
+    .code-rendered-diagram-fullscreen-button {
+        right: 100px;
+    }
+
+    .code-rendered-diagram:hover .code-rendered-diagram-copy-button,
+    .code-rendered-diagram:hover .code-rendered-diagram-fullscreen-button {
+        opacity: 1;
+    }
+
+    .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FBFBFB;
+        /*    opacity: 0.98;*/
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fullscreen-overlay.active {
+        display: flex;
+    }
+
+    .fullscreen-overlay img,
+    .fullscreen-overlay svg {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        cursor: move;
+        transition: transform 0.1s ease-out;
+        transform-origin: center center;
+    }
+
+    .fullscreen-overlay svg {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .fullscreen-overlay.dragging {
+        cursor: move;
+    }
+
+    .fullscreen-exit-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        color: #666;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        transition: all 0.2s ease;
+        z-index: 100000;
+    }
+
+    .fullscreen-exit-button:hover {
+        background-color: #e0e0e0;
+        color: #333;
+    }
+</style>
