@@ -11,8 +11,9 @@ Ksimple 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 基础上修改�
 > [!note]
 > - 项目整体从 [hugo-xmin](https://github.com/yihui/hugo-xmin) 基础上发展而来，做了很多修改和拓展，保留了导航栏、文章头部以及页脚的样式
 > - 使用并修改项目 [hugo-admonitions](https://github.com/KKKZOZ/hugo-admonitions) 实现了callout块
-> - 使用 kroki api 渲染 mermaid、词云图、流程图等等
-> - 使用 plantuml api 渲染 plantuml
+> - 使用 mermaid.js 渲染 mermaid 图表
+> - 使用 plantuml-encoder.js 渲染 plantuml
+> - 使用 kroki api 渲染词云图、流程图等等（除了plantuml和mermaid之外的所有。也可渲染此二者，但不够快）
 > - 使用并定制 cusdis，实现评论区
 > - 使用 katex.js 实现公式渲染
 > - 使用 highlight.js 实现代码高亮
