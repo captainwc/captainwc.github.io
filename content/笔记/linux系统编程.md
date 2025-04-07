@@ -1,5 +1,5 @@
 ---
-title: c++网络编程入门概念及api总结
+title: C++网络编程入门概念及api总结
 date: 2023-04-02
 tags: [linux, 网络编程]
 series: [面筋, 快速上手]

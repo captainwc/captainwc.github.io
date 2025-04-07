@@ -96,7 +96,7 @@ int main(){
 > - [x] 玩两天
 > - [x] 玩三天
 
-### PlantUML 代码块自动渲染
+### PlantUML
 
 #### 类图
 
@@ -185,10 +185,222 @@ PrimitiveType = [Annotation], (NumericType | boolean );
 
 ......
 
+### Mermaid
 
-### kroki渲染（支持mermaid, graphviz, dbml ...）
+Mermaid图表使用 mermaid.js 进行渲染
 
-具体的例子参考 [kroki-examples](https://kroki.io/examples.html)
+> [!reference]
+> 语法参考 [MermaidIntro-ZH](https://mermaid.nodejs.cn/intro/)
+
+#### 流程图 (graph/flowchart)
+
+```mermaid
+---
+title: 流程图示例
+---
+graph TB
+    subgraph subgraph1
+        direction LR
+        A[A] e1@-->|comment| B(B) & C((C)) -.-> D{{D}} & E[(E)] ==> F{F}
+    end
+    subgraph subgraph2
+        direction LR
+        O[/O\] -- comment2 --o G[\G/] -. comment3 .-x H[\H\]
+        G <---> I>I]
+    end
+
+    subgraph1 edge002@==> subgraph2
+
+    e1@{ animate: true }
+    edge002@{ animate: true }
+```
+
+#### 时序图 (sequenceDiagram)
+
+```mermaid
+sequenceDiagram
+    Alice->>+Bob: Hello Bob, how are you ?
+    Bob-->>-Alice: Fine, thank you. And you?
+    create participant Carl
+    Alice->>Carl: Hi Carl!
+    create actor D as Donald
+    Carl-)D: Hi!
+    destroy Carl
+    Alice-xCarl: We are too many
+    destroy Bob
+    Bob--)Alice: I agree
+
+```
+
+#### 状态图 (stateDiagram-v2)
+
+```mermaid
+---
+config:
+    theme: forest
+---
+stateDiagram
+    direction LR
+    [*] --> Still
+    Still --> [*]
+
+    Still --> Moving
+    Moving --> Still
+    Moving --> Crash
+    Crash --> [*]
+
+    Moving: Moving
+    Moving: Move to A
+    Moving: Move to B
+```
+
+#### 框图 (block-beta)
+
+```mermaid
+---
+config:
+    theme: default
+---
+block-beta
+    %% 总列数
+    columns 3
+
+    %% 指定某一元素占据多少列
+    a b("b"):2
+
+    %% 可以将多个元素组合成一个块，指定块占据的列数，块内再次细分列数
+    block:group1:2
+        columns 3
+        h i j down<[" "]>(down) space:2 k
+    end
+
+    %% 框图里面的lable必须加上双引号
+    g((("This is a circle")))
+
+    block:group2:3
+        %% columns auto (default)
+        l left<[" "]>(left) m n space o p blockArrowId6<[" "]>(right) q r
+    end
+
+    m --> o
+```
+
+#### 思维导图 (mindmap)
+
+```mermaid
+---
+config:
+    theme: default
+---
+mindmap
+    A((root))
+        B{{B}}
+            C
+            D
+        E
+        F
+        G
+```
+
+#### 雷达图 (radar-beta)
+
+```mermaid
+---
+title: "Grades"
+config:
+    theme: default
+---
+radar-beta
+  axis m["C++"], s["Python"], e["Java"]
+  axis h["C#"], g["Shell"], a["JavaScript"]
+  curve a["Alice"]{99, 90, 50, 10, 80, 30}
+  curve b["Bob"]{20, 70, 20, 60, 20, 99}
+  curve b["Mike"]{0, 90, 10, 30, 70, 90}
+
+  max 100
+  min 0
+
+```
+
+#### 饼图 (pie)
+```mermaid
+---
+config:
+    theme: default
+---
+pie title 示例饼图
+    "类别A" : 40
+    "类别B" : 30
+    "类别C" : 20
+    "类别D" : 10
+```
+
+#### 看板图 (kanban)
+
+```mermaid
+---
+config:
+    theme: default
+---
+kanban
+    todo
+        A[task A]@{ticket: 2025-04-11, priority: 'Very Low', assigned: 'zhangsan'}
+        B[task B is a task named B, which is a quiet normal name]@{ticket: 2025-04-12, priority: 'Very High', assigned: 'lisi'}
+    progress
+        C[task C]@{ticket: 2025-04-07, assigned: 'wangermazi'}
+    done
+        D[task D]@{ticket: 2025-04-01, priority: 'Low', assigned: 'wangermazi'}
+        D[task D]@{ticket: 2025-04-03, priority: 'High'}
+
+
+```
+
+#### 甘特图 (gantt)
+
+```mermaid
+---
+config:
+    theme: forest
+---
+gantt
+    dateFormat  YYYY-MM-DD
+    title       Adding GANTT diagram functionality to mermaid
+    excludes    weekends
+
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
+
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+
+    section Critical tasks
+    Completed task in the critical line :crit, done, 2014-01-06,24h
+    Implement parser and jison          :crit, done, after des1, 2d
+    Create tests for parser             :crit, active, 3d
+    Future task in critical line        :crit, 5d
+    Create tests for renderer           :2d
+    Add to mermaid                      :until isadded
+    Functionality added                 :milestone, isadded, 2014-01-25, 0d
+
+    section Documentation
+    Describe gantt syntax               :active, a1, after des1, 3d
+    Add gantt diagram to demo page      :after a1  , 20h
+    Add another diagram to demo page    :doc1, after a1  , 48h
+
+    section Last section
+    Describe gantt syntax               :after doc1, 3d
+    Add gantt diagram to demo page      :20h
+    Add another diagram to demo page    :48h
+
+```
+
+### Kroki渲染
+
+Kroki 支持mermaid, plantuml, graphviz, dbml ... 等很多图表，具体的例子参考 [kroki-examples](https://kroki.io/examples.html)。
+
+（不过本站 mermaid 由 mermaid.js 进行渲染，支持更多类型、更多定制、更快；plantuml 使用 plantuml-encoder.js 获取直链，更原汁原味。）
 
 [<img src="https://kroki.io/assets/kroki_cheatsheet_20210515_v1.1_EN.jpeg" />](https://kroki.io)
 
@@ -217,15 +429,6 @@ digraph D {
     }
   }
 }
-```
-
-#### mermaid
-```mermaid
-pie title 示例饼图
-    "类别A" : 40
-    "类别B" : 30
-    "类别C" : 20
-    "类别D" : 10
 ```
 
 #### 流程图
