@@ -1,10 +1,9 @@
 ---
-title: plantuml快速上手
+title: PlantUML快速上手
 categories: [工具使用]
 date: 2023-10-11
 series: [快速上手]
 tags: [uml, plantuml]
-toc: true
 ---
 
 # PlantUML 快速上手
