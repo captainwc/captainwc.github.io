@@ -37,6 +37,19 @@ series: ["环境配置专栏"]
 
 ![image-20250326163516854](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgimage-20250326163516854.png)
 
+什么是CPP开发环境呢？其实就是，你现在想阅读C++代码，或者想写C++代码，或者想把一个C++代码/项目跑起来，或者你想修改一个C++代码/项目，但是直接用记事本看/写你有不乐意，干看呢代码也不会自己运行。所以你需要在你的电脑上安装一系列的东西，来让这个看代码写代码改代码的过程，首先是能走通，然后是走得更舒服、更规范，这个就是配C++环境。
+
+那么C++程序需要什么环境呢？看你的需求。
+1. 如果你想看代码，那么有个高亮、点击函数能自动跳转就可以了（这个需要lsp（不用管是啥，反正就是一个能理解你代码，还能让你跳转的东西））；
+2. 如果你想编辑代码，那么最好还要有自动补全（这个也是需要lsp），写的过程中还得有错误提示（这个动作叫做lint），告诉你这样写不对/不规范，写着写着还想格式化一下（format），不然看着不舒服；
+3. 如果你还想把代码跑起来，那你害得安装个编译器（就是gcc、clang、msvc之类的），编译器就是负责把你看到的.cpp或者.c这种文件，转变成.exe的可执行程序的东西（你看代码用的vscode/记事本这些，叫做编辑器）；
+4. 如果你想跑的代码，还不是单个文件，是一个正儿八经的项目，那么一般就需要安装下构建工具了（也就是makefile、cmake、xmake、bazel这些，具体是啥看你的项目用的啥）
+5. 如果一跑发现，哎呀出错了，那这个时候就需要调试了。调试就是找到程序中哪里写的不对，然后改正。你可以瞪眼调试，也可以通过一些调试器来做（也就是gdb，或者你用什么clion、visual studio来做）
+6. 如果是你自己写项目，标准库不够你用了，你迫切地想使用别人写好的一些库，可是怎么整到自己的项目中来呢？从哪整进来呢？整进来了怎么运行呢？（这也算是构建的内容，但也有一部分包管理的部分。c++虽然以没有统一的包管理而饱受诟病，但不代表它就没有，比如用查cmake，或者专业的vcpkg、conan）
+7. 还是你写的项目，千辛万苦，程序终于跑起来了！但是跑起来了就算没问题了吗？会不会只是暂时没有执行到有错的地方，跑一会儿或者多跑几次就出错了呢？当然会，比如大名鼎鼎的错误：内存泄漏、指针问题等。那么这个时候还需要用到一些工具来帮助你扫描这些潜在的漏洞（也就是valgrind、sanitizer、cppcheck等等等）
+8. 正确性满足了，但是程序只是能正确地跑，跑得快不快呢？跑得慢具体是哪一部分拖慢了程序呢？有追求的化，还要对性能进行优化，找到性能的瓶颈，这时候可能会用到一些性能分析工具（比如perf）
+9. 终于，一切就绪了，你写好了，也跑好了，现在就差拿去给别人用了。但是别人一用，缺少库文件！格式不兼容！或者我怎么编译不通过！！这时候你发现：~~哎早知道不学C嘎嘎了。。。~~
+
 下面对各个步骤的推荐工具配置进行注意介绍：
 
 ### 高亮、补全、跳转
@@ -1126,13 +1139,13 @@ scan-view /tmp/scan-build-2025-04-08-130150-171264-1
 
 ###### CBMC 
 
-CBMC(C Bounded Model Checker)是一个有界模型检查器，专门用于C和C++程序。它通过将程序转换为逻辑公式，并使用SAT求解器来验证这些公式，从而检测程序中的错误。CBMC特别适用于验证嵌入式系统和安全关键软件。
+[CBMC(C Bounded Model Checker)](https://www.cprover.org/cbmc/)是一个有界模型检查器，专门用于C和C++程序。它通过将程序转换为逻辑公式，并使用SAT求解器来验证这些公式，从而检测程序中的错误。CBMC特别适用于验证嵌入式系统和安全关键软件。
 
 **使用**：`cbmc [opt] file.cpp`，可添加选项如`--bounds-check`。支持生成验证报告（`--xml-ui`）。
 
 ###### ESBMC
 
-ESBMC(Efficient SMT-Based Context-Bounded Model Checker)是一个基于SMT（可满足性模理论）的有界模型检查器，支持C、C++和Java程序。它使用SMT求解器来验证程序的属性，能够处理更复杂的逻辑和数据结构。ESBMC在验证并发程序和实时系统方面表现出色。
+[ESBMC(Efficient SMT-Based Context-Bounded Model Checker)](https://ssvlab.github.io/esbmc/)是一个基于SMT（可满足性模理论）的有界模型检查器，支持C、C++和Java程序。它使用SMT求解器来验证程序的属性，能够处理更复杂的逻辑和数据结构。ESBMC在验证并发程序和实时系统方面表现出色。
 
 **使用**：`esbmc [opt] file.cpp`，输入C++代码并指定属性（如`--memory-leak-check`）。通过`esbmc file.cpp`执行验证，输出反例路径或确认安全性。
 
@@ -1176,18 +1189,18 @@ sudo ldconfig  # 刷新缓存
 
 ### 手册类
 
-[zh.cppreference.com](https://zh.cppreference.com/w/首页) and [cppreference.com](https://en.cppreference.com/w/)：最经典、最好用、最全面的c++在线手册，建议有问题直接去这上面查。怎么更方便的使用可以参考[手册速查方案（如cppreference） | SHUAIKAI's Blog](https://kaikaixixi.xyz/环境配置/zeal-dataset中文cppreference配置/)
+- [zh.cppreference.com](https://zh.cppreference.com/w/首页) and [cppreference.com](https://en.cppreference.com/w/)：最经典、最好用、最全面的c++在线手册，建议有问题直接去这上面查。怎么更方便的使用可以参考[手册速查方案（如cppreference） | SHUAIKAI's Blog](https://kaikaixixi.xyz/环境配置/zeal-dataset中文cppreference配置/)
 
-[Learn Contemporary C++ | Concise&Visual Examples | hacking C++](https://hackingcpp.com/)：图形化展示各种c++标准库组件，非常非常直观理解、记忆、回忆各种api
+- [Learn Contemporary C++ | Concise&Visual Examples | hacking C++](https://hackingcpp.com/)：图形化展示各种c++标准库组件，非常非常直观理解、记忆、回忆各种api
 
-[Google C++项目风格指南](https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents.html)：谷歌的C++项目风格指导
+- [Google C++项目风格指南](https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents.html)：谷歌的C++项目风格指导
 
 ### 工具类
 
-[Compiler Explorer - Goldbolt](https://godbolt.org/)：一个非常有名的C++在线编辑器/IDE。它可以（1）用各种版本的编译器，编译运行你的c++代码或者cmake项目。（2）也能让你实时查看你写的c++代码每一段每一行对应的汇编，方便理解底层。（3）还可以作为一个代码分享工具，向别人原汁原味的展示你的代码。
+- [Compiler Explorer - Goldbolt](https://godbolt.org/)：一个非常有名的C++在线编辑器/IDE。它可以（1）用各种版本的编译器，编译运行你的c++代码或者cmake项目。（2）也能让你实时查看你写的c++代码每一段每一行对应的汇编，方便理解底层。（3）还可以作为一个代码分享工具，向别人原汁原味的展示你的代码。
 
-[CppInsight](https://cppinsights.io/)：让你查看c++代码预处理后的样子。比如头文件展开、lambda表达式实现等等
+- [CppInsight](https://cppinsights.io/)：让你查看c++代码预处理后的样子。比如头文件展开、lambda表达式实现等等
 
 ### 其他
 
-[ISO/IEC JTC1/SC22/WG21 - The C++ Standards Committee - ISOCPP](https://open-std.org/JTC1/SC22/WG21/)：C++话事人
+- [ISO/IEC JTC1/SC22/WG21 - The C++ Standards Committee - ISOCPP](https://open-std.org/JTC1/SC22/WG21/)：C++话事人
