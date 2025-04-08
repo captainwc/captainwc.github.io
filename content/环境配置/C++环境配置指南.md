@@ -1126,13 +1126,13 @@ scan-view /tmp/scan-build-2025-04-08-130150-171264-1
 
 ###### CBMC 
 
-CBMC(C Bounded Model Checker)是一个有界模型检查器，专门用于C和C++程序。它通过将程序转换为逻辑公式，并使用SAT求解器来验证这些公式，从而检测程序中的错误。CBMC特别适用于验证嵌入式系统和安全关键软件。
+[CBMC(C Bounded Model Checker)](https://www.cprover.org/cbmc/)是一个有界模型检查器，专门用于C和C++程序。它通过将程序转换为逻辑公式，并使用SAT求解器来验证这些公式，从而检测程序中的错误。CBMC特别适用于验证嵌入式系统和安全关键软件。
 
 **使用**：`cbmc [opt] file.cpp`，可添加选项如`--bounds-check`。支持生成验证报告（`--xml-ui`）。
 
 ###### ESBMC
 
-ESBMC(Efficient SMT-Based Context-Bounded Model Checker)是一个基于SMT（可满足性模理论）的有界模型检查器，支持C、C++和Java程序。它使用SMT求解器来验证程序的属性，能够处理更复杂的逻辑和数据结构。ESBMC在验证并发程序和实时系统方面表现出色。
+[ESBMC(Efficient SMT-Based Context-Bounded Model Checker)](https://ssvlab.github.io/esbmc/)是一个基于SMT（可满足性模理论）的有界模型检查器，支持C、C++和Java程序。它使用SMT求解器来验证程序的属性，能够处理更复杂的逻辑和数据结构。ESBMC在验证并发程序和实时系统方面表现出色。
 
 **使用**：`esbmc [opt] file.cpp`，输入C++代码并指定属性（如`--memory-leak-check`）。通过`esbmc file.cpp`执行验证，输出反例路径或确认安全性。
 
@@ -1176,18 +1176,18 @@ sudo ldconfig  # 刷新缓存
 
 ### 手册类
 
-[zh.cppreference.com](https://zh.cppreference.com/w/首页) and [cppreference.com](https://en.cppreference.com/w/)：最经典、最好用、最全面的c++在线手册，建议有问题直接去这上面查。怎么更方便的使用可以参考[手册速查方案（如cppreference） | SHUAIKAI's Blog](https://kaikaixixi.xyz/环境配置/zeal-dataset中文cppreference配置/)
+- [zh.cppreference.com](https://zh.cppreference.com/w/首页) and [cppreference.com](https://en.cppreference.com/w/)：最经典、最好用、最全面的c++在线手册，建议有问题直接去这上面查。怎么更方便的使用可以参考[手册速查方案（如cppreference） | SHUAIKAI's Blog](https://kaikaixixi.xyz/环境配置/zeal-dataset中文cppreference配置/)
 
-[Learn Contemporary C++ | Concise&Visual Examples | hacking C++](https://hackingcpp.com/)：图形化展示各种c++标准库组件，非常非常直观理解、记忆、回忆各种api
+- [Learn Contemporary C++ | Concise&Visual Examples | hacking C++](https://hackingcpp.com/)：图形化展示各种c++标准库组件，非常非常直观理解、记忆、回忆各种api
 
-[Google C++项目风格指南](https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents.html)：谷歌的C++项目风格指导
+- [Google C++项目风格指南](https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents.html)：谷歌的C++项目风格指导
 
 ### 工具类
 
-[Compiler Explorer - Goldbolt](https://godbolt.org/)：一个非常有名的C++在线编辑器/IDE。它可以（1）用各种版本的编译器，编译运行你的c++代码或者cmake项目。（2）也能让你实时查看你写的c++代码每一段每一行对应的汇编，方便理解底层。（3）还可以作为一个代码分享工具，向别人原汁原味的展示你的代码。
+- [Compiler Explorer - Goldbolt](https://godbolt.org/)：一个非常有名的C++在线编辑器/IDE。它可以（1）用各种版本的编译器，编译运行你的c++代码或者cmake项目。（2）也能让你实时查看你写的c++代码每一段每一行对应的汇编，方便理解底层。（3）还可以作为一个代码分享工具，向别人原汁原味的展示你的代码。
 
-[CppInsight](https://cppinsights.io/)：让你查看c++代码预处理后的样子。比如头文件展开、lambda表达式实现等等
+- [CppInsight](https://cppinsights.io/)：让你查看c++代码预处理后的样子。比如头文件展开、lambda表达式实现等等
 
 ### 其他
 
-[ISO/IEC JTC1/SC22/WG21 - The C++ Standards Committee - ISOCPP](https://open-std.org/JTC1/SC22/WG21/)：C++话事人
+- [ISO/IEC JTC1/SC22/WG21 - The C++ Standards Committee - ISOCPP](https://open-std.org/JTC1/SC22/WG21/)：C++话事人
