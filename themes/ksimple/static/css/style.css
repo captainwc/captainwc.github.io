@@ -12,6 +12,17 @@ body {
     background-attachment: fixed;
 }
 
+/* ================= 强制换行 ================= */
+p,
+li,
+a,
+span:not(pre span):not([class]):not([style]),
+span.article-meta-title,
+code:not(pre code) {
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
 /* 文本换行添加连字符 */
 main {
     hyphens: auto;
