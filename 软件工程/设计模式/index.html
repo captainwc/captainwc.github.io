@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>设计模式 | SHUAIKAI&#39;s Blog</title>
+    <link rel="icon" href= https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_2/avator-shinubi.png />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    
+<div class="edit-button">
+    <a href='https://github.com/captainwc/captainwc.github.io/edit/main/content/%e8%bd%af%e4%bb%b6%e5%b7%a5%e7%a8%8b/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f.md'
+       target="_blank" rel="noopener">
+        <i class="fa-solid fa-square-pen"></i>
+    </a>
+</div>
+
+<style>
+.edit-button {
+    background: #EFEFEF;
+    border-radius: 8px;
+    left: 20px;
+    bottom: 20px;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+    font-size: 1.2rem;
+    padding: 1px 6.6px 0px 6.6px;
+    position: fixed;
+    transition: background 0.3s;
+    z-index: 9999;
+    color: #ccc;
+    opacity: 0.5;
+}
+
+.edit-button a {
+    color: #ccc;
+    text-decoration: none;
+    background: none !important;
+    transition: opacity 0.2s;
+    padding: 0;
+    margin: 0;
+}
+
+.edit-button:hover,
+.edit-button a:hover {
+    background: #BEC2B3;
+    opacity: 1;
+}
+</style>
+
+
+
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">主页</a></li>
+      
+      <li><a href="/series/">专栏</a></li>
+      
+      <li><a href="/categories/">分类</a></li>
+      
+      <li><a href="/tags/">标签</a></li>
+      
+      <li><a href="/archives/">归档</a></li>
+      
+      <li><a href="/search/">搜索</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+
+<div class="article-meta">
+    <h1><span class="article-meta-title">设计模式</span></h1>
+
+    <div class="article-meta-info">
+        
+
+        
+        
+
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        🗓️ 2025-02-28 🎖️ <a href="/series/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A1%B9%E6%80%BB%E7%BB%93/">设计模式专项总结</a> 🗂️ <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a> 🏷️ <a href="/tags/se/">#SE</a>
+    </div>
+</div>
+
+<main>
+
+    
+<div class="toc-btn" id="tocBtn">☰</div>
+<div class="toc-panel" id="tocPanel"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('tocBtn');
+    const panel = document.getElementById('tocPanel');
+    let hoverTimeout;
+
+    
+    btn.addEventListener('mouseenter', () => {
+      clearTimeout(hoverTimeout);
+      generateToc();
+      panel.classList.add('show');
+
+      
+      requestAnimationFrame(() => {
+        const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+        let activeHeader = null;
+        let minDistance = Infinity;
+
+        
+        headers.forEach(header => {
+          const rect = header.getBoundingClientRect();
+          const distance = Math.abs(rect.top);
+          if (distance < minDistance) {
+            minDistance = distance;
+            activeHeader = header;
+          }
+        });
+
+        
+        if (activeHeader) {
+          const activeLink = panel.querySelector(`a[href="#${activeHeader.id}"]`);
+          if (activeLink) {
+            
+            const panelHeight = panel.offsetHeight;
+            const linkOffset = activeLink.offsetTop;
+            const centerPosition = linkOffset - (panelHeight / 2) + (activeLink.offsetHeight / 2);
+            
+            panel.scrollTo({
+              top: centerPosition,
+              behavior: 'auto'
+            });
+          }
+        }
+      });
+    });
+
+    panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+    [btn, panel].forEach(el => {
+      el.addEventListener('mouseleave', () => {
+        hoverTimeout = setTimeout(() => {
+          panel.classList.remove('show');
+        }, 200);
+      });
+    });
+
+    
+    function generateToc() {
+      if (panel.children.length > 0) return;
+
+      const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+      const counts = [0, 0, 0, 0, 0]; 
+
+      headers.forEach(header => {
+        const level = parseInt(header.tagName[1]) - 2;
+        if (level < 0) return;
+
+        counts[level]++;
+        for (let i = level + 1; i < counts.length; i++) counts[i] = 0;
+        const number = counts.slice(0, level + 1).join('.');
+
+        
+        const numberSpan = document.createElement('span');
+        numberSpan.className = 'toc-number';
+        numberSpan.textContent = number;
+
+        
+        const link = document.createElement('a');
+        link.href = `#${header.id}`;
+        link.style.paddingLeft = `${level * 12}px`;
+
+        
+        link.appendChild(numberSpan);
+        link.appendChild(document.createTextNode(header.textContent));
+
+        panel.appendChild(link);
+      });
+    }
+  });
+</script>
+
+<style>
+   
+  .toc-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    cursor: pointer;
+    padding: 6px 10px;
+    background: #EFEFEF;
+    border-radius: 8px;
+    transition: background 0.3s;
+  }
+
+  .toc-btn:hover {
+    background: #BEC2B3;
+  }
+
+   
+  .toc-number {
+    vertical-align: middle;
+    margin-right: 8px;
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+  }
+
+   
+  .toc-panel {
+    border-radius: 8px;
+    display: none;
+    position: fixed;
+    top: 66px;
+    right: 20px;
+    max-width: 360px;
+    min-width: 200px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #eee;
+    padding: 10px 5px 10px 15px;
+    z-index: 9998;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+     
+    list-style: none;
+  }
+
+  .toc-panel a {
+    display: block;
+    padding: 4px 0;
+    text-decoration: none;
+    color: #333;
+    white-space: nowrap;
+     
+     
+     
+  }
+
+  .toc-panel a:hover {
+    color: #007bff;
+  }
+
+   
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .toc-panel.show {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+  }
+</style>
+
+
+    
+    
+    
+        <h1 id="设计模式">设计模式</h1>
+<h2 id="1-关系">1 关系</h2>
+<h3 id="关联--依赖">关联 &amp; 依赖</h3>
+<ul>
+<li><strong>依赖</strong> 表示一种<code>使用</code>关系，一个类的实现需要另一个类的协助，因此尽量使用单向的依赖。代码表现为参数依赖、局部变量、静态方法/变量依赖等</li>
+<li><strong>关联</strong> 偏向一种<code>拥有</code>关系，A 拥有 B，即 A 的某个成员，是 B 类的对象，也可以双向拥有，也可以仅仅是存在一种<code>关联</code></li>
+</ul>
+<pre><code class="language-plantuml">@startuml
+scale 1
+class Car {
+    +run() void
+}
+class Driver {
+    +Car car
+    +drive() void
+}
+Driver &quot;1&quot;--&gt;&quot;n&quot; Car
+
+class Bus {
+    +run() void
+}
+class BusDriver {
+    +drive(bus:Bus) void
+}
+class Passenger {
+
+}
+BusDriver ..&gt; Bus
+Bus &quot;n&quot;--&quot;n&quot; Passenger
+@enduml
+</code></pre>
+
+          <link rel="stylesheet" href="/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css" integrity="sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=" crossorigin="anonymous">
+  <div class="admonition note">
+    <div class="admonition-header">
+      <svg t="1742459666649" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6550" width="200" height="200"><path d="M575.99996 576.00028l319.9998-319.9998-127.99992-127.99992L448.00004 448.00036 575.99996 576.00028zM959.99972 192.00052l63.99996 0c0-193.983879-191.99988-191.99988-191.99988-191.99988l0 63.99996 63.99996 63.99996L959.99972 192.00052zM895.99976 832.00012c0 35.327978-28.671982 63.99996-63.99996 63.99996L192.0002 896.00008c-35.327978 0-63.99996-28.671982-63.99996-63.99996L128.00024 192.00052c0-35.327978 28.671982-63.99996 63.99996-63.99996l383.99976 0 127.99992-127.99992L128.00024 0.00064C57.280284 0.00064 0.00032 57.280604 0.00032 128.00056l0 767.99952c0 70.719956 57.279964 127.99992 127.99992 127.99992l767.99952 0c70.719956 0 127.99992-57.279964 127.99992-127.99992L1023.99968 320.00044l-127.99992 127.99992L895.99976 832.00012zM320.00012 512.00032l0 191.99988 191.99988 0 0-63.99996L384.00008 512.00032 320.00012 512.00032z" p-id="6551"></path></svg>
+
+      <span>Note</span>
+    </div>
+      <div class="admonition-content">
+        <p>依赖强调一方要使用另一方、依赖另一方而存在</p>
+      </div>
+  </div>
+<ul>
+<li>
+<p>司机拥有了汽车，二者存在关联。</p>
+</li>
+<li>
+<p>公交司机使用公交车进行开车工作，他依赖公交车，但是不拥有公交车。</p>
+</li>
+<li>
+<p>乘客与公交车之间互不依赖互不拥有，但是他们之间确实存在多对多的关系</p>
+</li>
+</ul>
+
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>Warning</span>
+    </div>
+      <div class="admonition-content">
+        <p>动物依赖氧气而活，这是依赖关系。动物活着也会与气候发生关系，但是动物不是直接依赖气候而活，因此是关联关系。公交司机之所以是公交司机，是因为有公交车存在，这是依赖关系。</p>
+      </div>
+  </div>
+<h3 id="组合--聚合">组合 &amp; 聚合</h3>
+<p>聚合和组合都是强调<code>整体与部分的关系</code>，也都可以视为一种<code>关联</code>关系</p>
+<ul>
+<li><strong>组合</strong> 是一种<code>强拥有</code>关系，部分组装成整体，失去了整体，组装的零件也就没有了存在的意义</li>
+<li><strong>聚合</strong> 是一种<code>弱拥有</code>关系，部分聚集成整体，但是整体解散了部分存在依然有意义</li>
+</ul>
+<pre><code class="language-plantuml">@startuml
+scale 1
+class Bird {
+    - Wing[2] wings
+    + fly():void
+}
+class Wing {
+    - double size
+}
+Bird &quot;1&quot;*--&quot;2&quot; Wing : 组合关系
+
+class Class {
+    + Student** stus
+}
+class Student {
+    - string name
+}
+Class &quot;1&quot; o-- &quot;n&quot; Student : 聚合关系
+@enduml
+</code></pre>
+
+  <div class="admonition note">
+    <div class="admonition-header">
+      <svg t="1742459666649" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6550" width="200" height="200"><path d="M575.99996 576.00028l319.9998-319.9998-127.99992-127.99992L448.00004 448.00036 575.99996 576.00028zM959.99972 192.00052l63.99996 0c0-193.983879-191.99988-191.99988-191.99988-191.99988l0 63.99996 63.99996 63.99996L959.99972 192.00052zM895.99976 832.00012c0 35.327978-28.671982 63.99996-63.99996 63.99996L192.0002 896.00008c-35.327978 0-63.99996-28.671982-63.99996-63.99996L128.00024 192.00052c0-35.327978 28.671982-63.99996 63.99996-63.99996l383.99976 0 127.99992-127.99992L128.00024 0.00064C57.280284 0.00064 0.00032 57.280604 0.00032 128.00056l0 767.99952c0 70.719956 57.279964 127.99992 127.99992 127.99992l767.99952 0c70.719956 0 127.99992-57.279964 127.99992-127.99992L1023.99968 320.00044l-127.99992 127.99992L895.99976 832.00012zM320.00012 512.00032l0 191.99988 191.99988 0 0-63.99996L384.00008 512.00032 320.00012 512.00032z" p-id="6551"></path></svg>
+
+      <span>Note</span>
+    </div>
+      <div class="admonition-content">
+        <p>聚合的部分可以脱离整体而存在，而组合的部分不能脱离整体而存在</p>
+      </div>
+  </div>
+<ul>
+<li>翅膀是鸟的组成部分，脱离了鸟，翅膀便不是一个完整的功能部分</li>
+<li>学生是班级的组成部分，班级解散了，不影响这批学生存在的意义</li>
+</ul>
+
+  <div class="admonition note">
+    <div class="admonition-header">
+      <svg t="1742459666649" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6550" width="200" height="200"><path d="M575.99996 576.00028l319.9998-319.9998-127.99992-127.99992L448.00004 448.00036 575.99996 576.00028zM959.99972 192.00052l63.99996 0c0-193.983879-191.99988-191.99988-191.99988-191.99988l0 63.99996 63.99996 63.99996L959.99972 192.00052zM895.99976 832.00012c0 35.327978-28.671982 63.99996-63.99996 63.99996L192.0002 896.00008c-35.327978 0-63.99996-28.671982-63.99996-63.99996L128.00024 192.00052c0-35.327978 28.671982-63.99996 63.99996-63.99996l383.99976 0 127.99992-127.99992L128.00024 0.00064C57.280284 0.00064 0.00032 57.280604 0.00032 128.00056l0 767.99952c0 70.719956 57.279964 127.99992 127.99992 127.99992l767.99952 0c70.719956 0 127.99992-57.279964 127.99992-127.99992L1023.99968 320.00044l-127.99992 127.99992L895.99976 832.00012zM320.00012 512.00032l0 191.99988 191.99988 0 0-63.99996L384.00008 512.00032 320.00012 512.00032z" p-id="6551"></path></svg>
+
+      <span>Note</span>
+    </div>
+      <div class="admonition-content">
+        <p>二者与关联关系的区别就在于，聚合与组合，更强调整体与部分之间的关系。鸟与翅膀、班级与学生之间自然存在关联，但他们之间有更进一步的整体部分关系，而非仅仅是关联关系。</p>
+      </div>
+  </div>
+<h3 id="泛化--实现">泛化 &amp; 实现</h3>
+<ul>
+<li><strong>泛化/继承</strong> 是一种类之间的关系，子类继承父类属性和方法，各自有自己的新特性，父类是子类的泛化。</li>
+<li><strong>实现</strong> 是<code>接口与实现类</code>之间的关系。接口是一种抽象的规范，定义了一组方法的签名。一个类通过实现接口来表明它提供了接口中定义的所有方法。实现关系使得<strong>类之间的依赖基于接口而不是具体的实现</strong>。</li>
+</ul>
+<pre><code class="language-plantuml">@startuml
+scale 1
+class Person {
+    # string name
+    + eat():void
+}
+class Student {
+    - string sid
+    + work():void
+}
+class Teacher {
+    - string tid
+    + work():void
+}
+Student --|&gt; Person
+Teacher --|&gt; Person
+
+class work {
+    &lt;&lt;interface&gt;&gt;
+    + work():void
+}
+Student ..|&gt; work
+Teacher ..|&gt; work
+@enduml
+</code></pre>
+<ul>
+<li>学生和老师都是人，都从 Person 那里继承了属性和方法</li>
+<li>学生和老师都需要工作，工作的方式和内容五花八门，但是他们都实现了统一的接口 work</li>
+</ul>
+
+  <div class="admonition note">
+    <div class="admonition-header">
+      <svg t="1742459666649" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6550" width="200" height="200"><path d="M575.99996 576.00028l319.9998-319.9998-127.99992-127.99992L448.00004 448.00036 575.99996 576.00028zM959.99972 192.00052l63.99996 0c0-193.983879-191.99988-191.99988-191.99988-191.99988l0 63.99996 63.99996 63.99996L959.99972 192.00052zM895.99976 832.00012c0 35.327978-28.671982 63.99996-63.99996 63.99996L192.0002 896.00008c-35.327978 0-63.99996-28.671982-63.99996-63.99996L128.00024 192.00052c0-35.327978 28.671982-63.99996 63.99996-63.99996l383.99976 0 127.99992-127.99992L128.00024 0.00064C57.280284 0.00064 0.00032 57.280604 0.00032 128.00056l0 767.99952c0 70.719956 57.279964 127.99992 127.99992 127.99992l767.99952 0c70.719956 0 127.99992-57.279964 127.99992-127.99992L1023.99968 320.00044l-127.99992 127.99992L895.99976 832.00012zM320.00012 512.00032l0 191.99988 191.99988 0 0-63.99996L384.00008 512.00032 320.00012 512.00032z" p-id="6551"></path></svg>
+
+      <span>Note</span>
+    </div>
+      <div class="admonition-content">
+        <p>继承强调类的层次关系，上层是下层的泛化，下层是上层的派生。实现强调的是方法，即定义一组规范接口，让别的类去实现，并没有泛化派生的意味</p>
+      </div>
+  </div>
+<p>下图是一张经典的 UML 图：</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230606151207245.png" alt="UML示例" />
+</div>
+</p>
+<h2 id="2-solid-原则">2 SOLID 原则</h2>
+<h3 id="里氏替换原则-lsp">里氏替换原则 LSP</h3>
+<h4 id="概念">概念</h4>
+<p><em>开闭原则(OCP)背后的主要机制是抽象(abstraction)和多态(polymorphism)。在静态类型语言中，比如 C+和 Java,支持抽象和多态的关键机制之一是继承(inheritance)。正是使用了继承，我们才可以创建实现其基类(base class)中抽象方法的派生类。
+是什么设计规则在支配着这种特殊的继承用法呢？最佳的继承层次的特征又是什么呢？怎样的情况会使我们创建的类层次结构掉进不符合 OCP 的陷阱中去呢？这些正是 Liskov 替换原则(LSP)要解答的问题。 ——《敏捷软件开发：原则、模式和设计》</em></p>
+<blockquote>
+<p>Let q(x) be a property provable about objects x of type T . Then q(y) should be true for objects y of type S where S is a subtype of T .</p></blockquote>
+
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>Warning</span>
+    </div>
+      <div class="admonition-content">
+        <p>这里需要如下替换性质：若对每个类型 S 的对象 O1，都存在一个 T 类型的对象 O2，使得在针对 T 类型编写的程序 P 中，用 O1 替换 O2 后，程序 p 的行为功能保持不变，则 S 是 T 的子类型</p>
+      </div>
+  </div>
+<p>总之就是一句话：</p>
+
+  <div class="admonition note">
+    <div class="admonition-header">
+      <svg t="1742459666649" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6550" width="200" height="200"><path d="M575.99996 576.00028l319.9998-319.9998-127.99992-127.99992L448.00004 448.00036 575.99996 576.00028zM959.99972 192.00052l63.99996 0c0-193.983879-191.99988-191.99988-191.99988-191.99988l0 63.99996 63.99996 63.99996L959.99972 192.00052zM895.99976 832.00012c0 35.327978-28.671982 63.99996-63.99996 63.99996L192.0002 896.00008c-35.327978 0-63.99996-28.671982-63.99996-63.99996L128.00024 192.00052c0-35.327978 28.671982-63.99996 63.99996-63.99996l383.99976 0 127.99992-127.99992L128.00024 0.00064C57.280284 0.00064 0.00032 57.280604 0.00032 128.00056l0 767.99952c0 70.719956 57.279964 127.99992 127.99992 127.99992l767.99952 0c70.719956 0 127.99992-57.279964 127.99992-127.99992L1023.99968 320.00044l-127.99992 127.99992L895.99976 832.00012zM320.00012 512.00032l0 191.99988 191.99988 0 0-63.99996L384.00008 512.00032 320.00012 512.00032z" p-id="6551"></path></svg>
+
+      <span>Note</span>
+    </div>
+      <div class="admonition-content">
+        <p>子类型必须能够替换掉它们的基类型。说得长一点：当你扩展一个类时， 记住你应该要能在不修改客户端代码的情况下将子类的对象作为父类对象进行传递。</p>
+      </div>
+  </div>
+<h4 id="核心理解">核心理解</h4>
+<p>在 OOP 中，我们通常是把表现出相同<strong>行为</strong>的一类对象，抽象为一个类。这里要特别注意，也就是说，我们真正看重的，用以标志区分类的，是对象/类的<code>行为</code>。</p>
+<p>继承是一种<code>is-a</code>关系，“派生类，是一种基类”。但是 IS-A 的含义太过宽泛了，在实际编程中可能会与真正的“行为”角度要求有抵触。看两个例子：</p>
+<ul>
+<li>
+<p>aka 正方形是一种矩形，这个与我们的经验相符，因此矩形类派生出正方形类应该是顺理成章的。但实际上这里也有一些小细节：我们说正方形是矩形，是从内角角度说的，矩形是内角和为 360° 且内角都是 90° 的四边形，正方形也是，因此从内角的行为上来看，正方形是矩形无疑。
+但是如果我<strong>考察的行为是边而不是内角</strong>呢？矩形的长宽是独立变化的，而正方形的长宽是相等的，变化是联动的。也就是说从边的行为上来说，正方形和长方形已经不同了，行为不同，还能说是一类么？这就是经典的<mark>“正方形不是长方形”</mark></p>
+</li>
+<li>
+<p>同样的，鸵鸟（不会飞）和鸟（会飞），如果我考察的就是飞行能力，比如我要做一个鸟类飞行模拟器，那鸵鸟能继承自鸟类么？显然不能，因为二者行为不一样。但是如果我不看飞行能力，比如做一个鸟类养殖模拟器，那鸵鸟和鸟，都有羽毛都有两个爪子&hellip;，鸵鸟又可以从鸟类派生出了，此时鸵鸟是鸟。</p>
+</li>
+</ul>
+<p>正方形是矩形，也不是矩形；鸵鸟是鸟，也不是鸟。这种悖论产生的原因有二<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>：</p>
+<ol>
+<li>
+<p>继承关系的定义没搞清楚：面向对象的设计关注的是对象的行为，它是使用“行为”来对对象进行分类的，只有行为一致的对象才能抽象出一个类来，而不是拍脑袋决定 is-a</p>
+</li>
+<li>
+<p>设计要依赖于用户需求和具体环境：需求、关注点不同，关系自然也会不同</p>
+</li>
+</ol>
+<p>LSP 就是一种描述如何设计类继承结构最好，不会出现上述问题的原则。它告诉我们：</p>
+
+  <div class="admonition note">
+    <div class="admonition-header">
+      <svg t="1742459666649" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6550" width="200" height="200"><path d="M575.99996 576.00028l319.9998-319.9998-127.99992-127.99992L448.00004 448.00036 575.99996 576.00028zM959.99972 192.00052l63.99996 0c0-193.983879-191.99988-191.99988-191.99988-191.99988l0 63.99996 63.99996 63.99996L959.99972 192.00052zM895.99976 832.00012c0 35.327978-28.671982 63.99996-63.99996 63.99996L192.0002 896.00008c-35.327978 0-63.99996-28.671982-63.99996-63.99996L128.00024 192.00052c0-35.327978 28.671982-63.99996 63.99996-63.99996l383.99976 0 127.99992-127.99992L128.00024 0.00064C57.280284 0.00064 0.00032 57.280604 0.00032 128.00056l0 767.99952c0 70.719956 57.279964 127.99992 127.99992 127.99992l767.99952 0c70.719956 0 127.99992-57.279964 127.99992-127.99992L1023.99968 320.00044l-127.99992 127.99992L895.99976 832.00012zM320.00012 512.00032l0 191.99988 191.99988 0 0-63.99996L384.00008 512.00032 320.00012 512.00032z" p-id="6551"></path></svg>
+
+      <span>Note</span>
+    </div>
+      <div class="admonition-content">
+        <p>子类型的正确定义是“可替换性的”，子类对象是可以替换父类对象而保持功能正常的。这里的可替换性可以通过显示或隐式的契约来定义</p>
+      </div>
+  </div>
+<p>不满足可替换性，也能写出符合语法的继承结构，也可以工作，但是不总是能正确工作。也即，违背 LSP 的代码，可以正确实现继承、多态等语法功能，但是不见得能满足我们的预期。具体看后面的例子</p>
+<h4 id="代码示例">代码示例</h4>
+<p>“正方形不是矩形”</p>
+<table style="border:none;text-align:center"><tr><td style="width:45%"><img src = "https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230608202354630.png"></td><td style="width:55%"><img src = "https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230608203442202.png"></td></tr></table>
+<p>这里多态是能满足的，继承体系从语法上讲是没问题的，但是从预期行为上看是有毛病的。在这里，在边的行为上，Square 不能替换掉 Rectangle，违背了 LSP。</p>
+<p>事实上可以重新设计类层次：提取公共部分，创建一个四边形抽象类。关于提取公共部分：</p>
+<p><em>如果一组类都支持一个公共的职责，那么它们应该从一个公共的超类(superclass)继承该职责。如果公共的超类还不存在，那么就剑建一个，并把公共的职责放入其中。毕竟，这样一个类的有用性是确定无疑的—你已经展示了一些类会继承这些职责。然而稍后对系统的扩展也许会加入一个新的子类，该子类很可能会以新的方式来支持同样的职责。此时，这个新创建的超类可能会是一个抽象类。</em></p>
+<p>有公共部分，就应当考虑提取出来创建一个新的抽象类。不然就意味着代码面临重复的问题</p>
+<p>除了提取公共部分，还有一个原则：</p>
+<p>*继承体系中，应当总是从抽象类继承。也就是说，继承树应该是这么一棵树：<strong>所有有子节点的类都是抽象类，所有具体类都应当是叶子节点*</strong></p>
+<h4 id="具体要求">具体要求</h4>
+<p><strong>基于契约设计（DBC Design By Contract）</strong></p>
+<p>类的编写者可以显示的规定针对该类（父类）的<strong>契约</strong>，客户端的编写者（写子类扩展的人）可以通过契约获悉值得信赖的行为方式。契约即：</p>
+
+  <div class="admonition note">
+    <div class="admonition-header">
+      <svg t="1742459666649" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6550" width="200" height="200"><path d="M575.99996 576.00028l319.9998-319.9998-127.99992-127.99992L448.00004 448.00036 575.99996 576.00028zM959.99972 192.00052l63.99996 0c0-193.983879-191.99988-191.99988-191.99988-191.99988l0 63.99996 63.99996 63.99996L959.99972 192.00052zM895.99976 832.00012c0 35.327978-28.671982 63.99996-63.99996 63.99996L192.0002 896.00008c-35.327978 0-63.99996-28.671982-63.99996-63.99996L128.00024 192.00052c0-35.327978 28.671982-63.99996 63.99996-63.99996l383.99976 0 127.99992-127.99992L128.00024 0.00064C57.280284 0.00064 0.00032 57.280604 0.00032 128.00056l0 767.99952c0 70.719956 57.279964 127.99992 127.99992 127.99992l767.99952 0c70.719956 0 127.99992-57.279964 127.99992-127.99992L1023.99968 320.00044l-127.99992 127.99992L895.99976 832.00012zM320.00012 512.00032l0 191.99988 191.99988 0 0-63.99996L384.00008 512.00032 320.00012 512.00032z" p-id="6551"></path></svg>
+
+      <span>Note</span>
+    </div>
+      <div class="admonition-content">
+        <p>为每个方法声明前置条件和后置条件。要正确执行一个方法，前置条件必须为真，且执行完之后，要保证后置条件也为真。<br>前置条件和后置条件的规则是：重新声明的派生类中，只能使用相等或更弱(≤)的前置条件替换原始前置条件，只能使用相等或更强(≥)的后置条件来替换原始后置条件</p>
+      </div>
+  </div>
+<p>换句话说，<strong>通过基类接口使用对象的时候，用户只知道前置条件和后置条件</strong>。因此你不能期望用户遵从比基类前置条件更强的前置条件，同时你的行为方式和输出也要跟基类确立的限制一样。</p>
+<ul>
+<li>参数要广：子类方法的参数类型必须（≥）与其超类的参数类型相匹配或更加抽象</li>
+<li>返回要细：子类方法的返回值类型必须（≤）与超类方法的返回值类型或是其子类别相匹配</li>
+<li>子类中的方法不应抛出基础方法预期之外的异常类型</li>
+<li>子类不应该加强其前置条件，不能削弱其后置条件</li>
+<li>超类的不变量必须保留</li>
+<li>子类不能修改超类中私有成员变量的值</li>
+</ul>
+<p>比如接口定义输入为整数，那你写的子类就不能要求输入是正整数；接口规定输出是整数，你可以输出正整数，但不能输出浮点数。</p>
+
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>Warning</span>
+    </div>
+      <div class="admonition-content">
+        <p>父类中的虚函数你可以重写，注意要满足前置条件与后置条件的要求。父类中的别的内容你最好不要修改，因为那个可以理解为是一种规范、约定。</p>
+      </div>
+  </div>
+<h4 id="例子">例子</h4>
+<p>所谓“子承父业”，我现在想为所有<strong>木工</strong>编写一个<code>Father</code>类，类中有一个接口叫<code>earnMoney(Carpentry c1)</code>，也就是说要挣钱，挣钱的参数是做木工。现在 Father 派生除了子类<code>Son</code>和女儿类<code>Daughter</code>。</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230608214837632.png" alt="" />
+</div>
+</p>
+<p>儿子女儿都更新了父亲挣钱的方式，但是这个继承都是很脆弱的。儿子不仅会木工，还会搬砖，当然可以替代父亲（<strong>参数扩大 √</strong>）。但是当妈妈问父亲要钱的时候，她期待的是人民币，换成儿子之后给的可能是 Q 币（<strong>返回值扩大 ×</strong>），那肯定不行。女儿交的是人民币现金，没问题，但是她只会刨木头，仍然替换不了父亲。因此二者都违背了 LSP</p>
+<p>后来儿子生了个孙子。孙子会干的活对，拿的钱也没问题，但是孙子有个讲究：工资低于 5000 的话不干（<strong>强化前置条件 ×</strong>），可他爹是不挑剔的。因此孙子替代他爹去干活的时候，也可能会出问题（找不到活儿）。孙女也有个讲究：干完活只收拾锤子，别的不管（<strong>弱化后置条件 ×</strong>)。可惜，工地上贼比较多，孙女不明白他爹这么做的血泪教训。因此代替他爹去干活的第二天，就只剩下个锤子能用了。【以后涨了记性，教育从外孙子干完活不仅收拾自己的家伙儿，连工友的也给收拾了。工地上再也没有丢过东西。(<strong>强化后置条件 √</strong>)】不过这是后话，反正孙子辈也全部违背了 LSP</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>
+<a href="https://zhuanlan.zhihu.com/p/158386715"  target="_blank" rel="noopener noreferrer" >面向对象基础设计原则：3.里氏替换原则 - 知乎 (zhihu.com)</a>
+&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+</main>
+
+<style>
+ 
+.article-meta {
+    text-align: center;
+    text-decoration: none;
+    background: #efefef;
+    padding: 1px;
+    border-radius: 5px;
+}
+
+.article-meta-title {
+    font-size: 1em;
+}
+
+.article-meta-info {
+    color: #666;
+    font-size: 0.9rem;
+    margin: -0.6rem 0 0.2rem 10px;
+    text-align: left;
+}
+
+.article-meta-info a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+</style>
+
+
+
+<h1 style="font-size: 1.2rem; margin: 2.5rem 0 0.1rem 0;">Comment</h1>
+<div class="cusdis-comments">
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id="697d528d-b618-4ee1-a6fe-403c81a646ac"
+    data-page-id="39d31bf6d91ab88c7866de803a7d87d4"
+    data-page-url="https://kaikaixixi.xyz/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"
+    data-page-title="设计模式"
+  ></div>
+  <script async defer src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/cusdis/cusdis.es.min.js"></script>
+</div>
+
+<style>
+.cusdis-comments {
+  border-top: 2px dashed #cfcfcf;
+  padding-top: 1.3rem;
+}
+
+#cusdis_thread iframe {
+  min-height: 500px !important;
+  overflow: visible !important;
+}
+</style>
+
+
+<footer>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/math-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/render-katex.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/center-img.min.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    document.querySelectorAll('ul').forEach(ul => {
+      
+      const isTodoList = Array.from(ul.children).some(li => {
+        return li.innerHTML.includes('type="checkbox"')
+      });
+
+      if (isTodoList) {
+        
+        const todolistContainer = document.createElement('div');
+        todolistContainer.className = 'todolist';
+
+        
+        addTaskProgressBar(ul, todolistContainer);
+
+        
+        ul.querySelectorAll('li').forEach(li => {
+          const todoItemDiv = document.createElement('div');
+          todoItemDiv.className = 'todo-item';
+
+          
+          const isChecked = li.innerHTML.includes('checked');
+          const content = li.innerHTML
+            .replace(/<input[^>]+>/g, '') 
+            .trim();
+
+          
+          const checkedIcon = `<svg t="1742522457277" class="todo-item-checked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12342"><path d="M512 938.688A426.624 426.624 0 1 1 512 85.376a426.624 426.624 0 0 1 0 853.312z m0-85.312A341.312 341.312 0 1 0 512 170.688a341.312 341.312 0 0 0 0 682.688z m-42.56-170.688L288.448 501.632l60.288-60.288L469.44 561.92l241.28-241.28 60.416 60.288-301.696 301.696z" p-id="12343"></path></svg>`;
+          const uncheckedIcon = `<svg t="1742522354856" class="todo-item-unchecked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11882"><path d="M512 938.666667C276.352 938.666667 85.333333 747.648 85.333333 512S276.352 85.333333 512 85.333333s426.666667 191.018667 426.666667 426.666667-191.018667 426.666667-426.666667 426.666667z m0-85.333334a341.333333 341.333333 0 1 0 0-682.709333A341.333333 341.333333 0 0 0 512 853.333333z" p-id="11883"></path></svg>`;
+
+          
+          todoItemDiv.innerHTML = `
+            <span class="todo-item-checkbox">
+              ${isChecked ? checkedIcon : uncheckedIcon}
+            </span>
+            <span class="todo-item-content">
+              ${isChecked ? `<del>${content}</del>` : content}
+            </span>
+          `;
+
+          
+          todolistContainer.appendChild(todoItemDiv);
+        });
+
+        
+        ul.parentNode.replaceChild(todolistContainer, ul);
+      }
+    });
+
+    function addTaskProgressBar(ul, todolistContainer) {
+      
+      const totalTasks = ul.children.length;
+      const finishedTasks = Array.from(ul.children).filter(li => li.innerHTML.includes('checked')).length;
+
+      
+      const progressContainer = document.createElement('div');
+      progressContainer.className = 'todo-progress';
+
+      
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'todo-progress-counter';
+      counterSpan.textContent = `${finishedTasks}/${totalTasks}`;
+
+      
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'todo-progress-bar';
+
+      
+      const progressFill = document.createElement('div');
+      progressFill.className = 'todo-progress-bar-fill';
+      progressFill.style.width = `${(finishedTasks / totalTasks) * 100}%`;
+
+      
+      const flagSpan = document.createElement('span');
+      flagSpan.className = 'todo-progress-flag';
+      flagSpan.innerHTML = `${finishedTasks === totalTasks ? '🌟' : '🚧'}`;
+
+      
+      progressTrack.appendChild(progressFill);
+      progressContainer.append(flagSpan, progressTrack, counterSpan);
+      todolistContainer.appendChild(progressContainer);
+    }
+  });
+</script>
+
+<style>
+   
+  .todolist {
+    padding-left: 0.6rem;
+  }
+
+  .todo-item {
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: -0.5rem 0 -0.5rem -0.7rem;
+    line-height: 1.3;
+  }
+
+  .todo-item-checkbox {
+    flex-shrink: 0;
+    font-size: 1.2em;
+
+    svg {
+      margin-top: 0.46rem;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .todo-item-checked-icon {
+    fill: #707070;
+  }
+
+  .todo-item-unchecked-icon {
+    fill: #1A61CC;
+  }
+
+  .todo-item-unchecked-icon:hover {
+    fill: red;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .todo-item-content {
+    flex: 1;
+    word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+   
+  .todo-progress {
+    display: flex;
+     
+    align-items: center;
+    gap: 0.3rem;
+     
+    margin: 0.1rem 0 0 0.7rem;
+  }
+
+  .todo-progress-counter {
+     
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+    color: #707070;
+  }
+
+  .todo-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #a64036;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 20%;
+  }
+
+  .todo-progress-bar-fill {
+    height: 100%;
+    background: #84a729;
+    transition: width 0.3s ease;
+  }
+
+  .todo-progress-flag {
+    display: none;
+    position: relative;
+    font-size: 0.9rem;
+  }
+</style>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+
+
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/highlightjs-cnblogs.min.js"></script>
+
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll())</script>
+
+
+  <script>
+    const langToNerdFontMap = {
+        bash: '\ue760',
+        bazel: '\ue63a',
+        c: '\ue61e',
+        cmake: '\ue794',
+        cpp: '\ue61d',
+        'c++': '\ue61d',
+        css: '\ue749',
+        diff: '\ueae1',
+        go: '\udb81\udfd3',
+        html: '\ue736',
+        java: '\uedaf',
+        javascript: '\ue781',
+        json: '\ueb0f',
+        lua: '\ue620',
+        makefile: '\ue673',
+        plantuml: '\ue8cb',
+        python: '\ued1b',
+        rust: '\udb85\ude17',
+        shell: '\udb84\udd83',
+        sql: '\udb82\udc66',
+        typescript: '\ue8ca',
+        uml: '\ue8cb',
+        xml: '\udb81\uddc0',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            const parentElement = codeBlock.parentElement;
+
+            
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+
+            
+            const foldBtn = document.createElement('button');
+            foldBtn.className = 'fold-btn';
+            foldBtn.innerHTML = '\uf48c';
+            foldBtn.style.display = 'none';
+
+            
+            const langLabel = document.createElement('div');
+            langLabel.className = 'lang-label';
+            const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
+            const icon = langToNerdFontMap[lang.toLowerCase()];
+            langLabel.textContent = icon || lang.toUpperCase();
+            if (!icon) langLabel.style.fontSize = '0.8rem';
+
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = '\uf4bb COPY';
+
+            
+            const scale_height = 500;       
+            const collapsed_height = 300;   
+            const checkHeight = () => {
+                const originalDisplay = parentElement.style.display;
+                parentElement.style.display = 'block';
+                const fullHeight = parentElement.scrollHeight;
+                parentElement.style.display = originalDisplay;
+                return fullHeight > scale_height;
+            };
+
+            
+            if (checkHeight()) {
+                foldBtn.style.display = 'flex';
+                parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+
+                
+                parentElement.classList.add('collapsed');
+                parentElement.style.maxHeight = `${collapsed_height}px`;
+                foldBtn.innerHTML = '\uf4d9';
+
+                parentElement.style.overflowY = 'auto'; 
+
+                foldBtn.addEventListener('click', () => {
+                    const isCollapsed = parentElement.classList.toggle('collapsed');
+                    foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
+
+                    if (isCollapsed) {
+                        parentElement.style.maxHeight = `${collapsed_height}px`;
+                        parentElement.style.overflowX = 'auto';
+                    } else {
+                        parentElement.style.maxHeight = 'none';
+                        void parentElement.offsetHeight;
+                        parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                    }
+                });
+            }
+
+            
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeBlock.textContent);
+                    copyBtn.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyBtn.textContent = '\uf4bb COPY', 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                }
+            });
+
+            
+            tools.append(langLabel, foldBtn, copyBtn);
+            parentElement.prepend(tools);
+        });
+    });
+</script>
+
+<style>
+ 
+.code-tools {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-family: "Maple Mono NF CN";
+}
+
+.fold-btn {
+    cursor: pointer;
+    border: none;
+    color: #666;
+    background: none;
+    font-family: "Maple Mono NF CN";
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0 0.45rem;
+    transition: all 0.2s ease;
+}
+
+ 
+.lang-label {
+     
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+ 
+.copy-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+}
+
+ 
+pre:hover .code-tools {
+    opacity: 1;
+    pointer-events: auto;
+}
+</style>
+
+
+  
+<script>
+    
+    window.diagramRenderUtils = {
+        
+        getOrCreateFullscreenOverlay: function() {
+            let overlay = document.querySelector('.fullscreen-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'fullscreen-overlay';
+                document.body.appendChild(overlay);
+
+                
+                overlay.addEventListener('dblclick', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            }
+            return overlay;
+        },
+
+        
+        createDiagramContainer: function() {
+            const container = document.createElement('div');
+            container.className = 'code-rendered-diagram';
+            return container;
+        },
+
+        
+        createCopyButton: function() {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'code-rendered-diagram-copy-button';
+            copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+            return copyButton;
+        },
+
+        
+        createFullscreenButton: function() {
+            const fullscreenButton = document.createElement('button');
+            fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+            fullscreenButton.innerHTML = '&#xf065; FULL';
+            return fullscreenButton;
+        },
+
+        
+        makeSVGTransparent: function(svgText) {
+            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                .forEach(el => {
+                    if (el.tagName !== 'svg') {
+                        el.setAttribute('fill', 'transparent');
+                    }
+                });
+            doc.documentElement.style.backgroundColor = 'transparent';
+            return new XMLSerializer().serializeToString(doc);
+        },
+
+        
+        setupCopyButton: function(copyButton, codeContent) {
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeContent);
+                    copyButton.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                } catch (err) {
+                    copyButton.textContent = 'FAILED';
+                    console.error('复制失败:', err);
+                }
+            });
+        },
+
+        
+        setupFullscreenButton: function(fullscreenButton, contentElement, isImage = false) {
+            fullscreenButton.addEventListener('click', () => {
+                const overlay = this.getOrCreateFullscreenOverlay();
+                let clonedContent;
+
+                if (isImage) {
+                    
+                    clonedContent = contentElement.cloneNode(true);
+                } else {
+                    
+                    const svgElement = contentElement.querySelector('svg');
+                    if (!svgElement) return;
+                    clonedContent = svgElement.cloneNode(true);
+                }
+
+                overlay.innerHTML = '';
+
+                
+                const exitButton = document.createElement('button');
+                exitButton.className = 'fullscreen-exit-button';
+                exitButton.innerHTML = 'ESC';
+                exitButton.onclick = () => overlay.classList.remove('active');
+
+                overlay.appendChild(exitButton);
+                overlay.appendChild(clonedContent);
+                overlay.classList.add('active');
+
+                
+                this.setupZoomAndDrag(overlay, isImage ? 'img' : 'svg');
+            });
+        },
+
+        
+        setupZoomAndDrag: function(overlay, selector) {
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            const element = overlay.querySelector(selector);
+
+            
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY * -0.002;
+                const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                
+                const rect = element.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                
+                posX += mouseX * (1 - newScale / scale);
+                posY += mouseY * (1 - newScale / scale);
+
+                scale = newScale;
+                updateTransform();
+            });
+
+            
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === overlay) return;
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                overlay.classList.add('dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                overlay.classList.remove('dragging');
+            });
+
+            function updateTransform() {
+                element.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+        }
+    };
+</script>
+<style>
+     
+    .code-rendered-diagram {
+        max-width: 80% !important;
+        height: auto;
+        position: relative;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .code-rendered-diagram-copy-button,
+    .code-rendered-diagram-fullscreen-button {
+        position: absolute;
+        top: 20px;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 0.3rem;
+        margin: 0 0 0 0.6rem;
+        color: #333;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.6rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        opacity: 0;
+    }
+
+    .code-rendered-diagram-copy-button {
+        right: 10px;
+    }
+
+    .code-rendered-diagram-fullscreen-button {
+        right: 100px;
+    }
+
+    .code-rendered-diagram:hover .code-rendered-diagram-copy-button,
+    .code-rendered-diagram:hover .code-rendered-diagram-fullscreen-button {
+        opacity: 1;
+    }
+
+    .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FBFBFB;
+         
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fullscreen-overlay.active {
+        display: flex;
+    }
+
+    .fullscreen-overlay img,
+    .fullscreen-overlay svg {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        cursor: move;
+        transition: transform 0.1s ease-out;
+        transform-origin: center center;
+    }
+
+    .fullscreen-overlay svg {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .fullscreen-overlay.dragging {
+        cursor: move;
+    }
+
+    .fullscreen-exit-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        color: #666;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        transition: all 0.2s ease;
+        z-index: 100000;
+    }
+
+    .fullscreen-exit-button:hover {
+        background-color: #e0e0e0;
+        color: #333;
+    }
+</style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
+        if (!plantumlBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
+
+        
+        script.onload = () => {
+            const plantuml_theme = `
+scale 5
+skinparam shadowing false
+skinparam BackgroundColor transparent
+skinparam UsecaseBackgroundColor #white
+skinparam classBackgroundColor #white
+skinparam ActivityBackgroundColor #white
+skinparam ActorBackgroundColor #white
+skinparam participantBackgroundColor #white
+    `.trim();
+
+            plantumlBlocks.forEach(codeBlock => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const img = document.createElement('img');
+                img.className = 'code-rendered-diagram-img';
+                img.style.display = 'block';
+                img.alt = 'PlantUML Diagram';
+
+                
+                const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
+                img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, fullCode);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, img, true);
+
+                
+                container.dataset.originalCode = fullCode;
+
+                
+                container.appendChild(img);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+                codeBlock.parentElement.replaceWith(container);
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+        if (!mermaidBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js';
+
+        
+        script.onload = () => {
+            
+            mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                
+                
+                
+                theme: 'neutral',
+                
+                
+            });
+
+            
+            mermaidBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const renderDiv = document.createElement('div');
+                renderDiv.id = `mermaid-diagram-${index}`;
+                renderDiv.style.background = 'transparent';
+
+                
+                const code = codeBlock.textContent.trim();
+                container.dataset.originalCode = code;
+
+                try {
+                    
+                    mermaid.render(`mermaid-svg-${index}`, code).then(result => {
+                        renderDiv.innerHTML = result.svg;
+
+                        
+                        const svg = renderDiv.querySelector('svg');
+                        if (svg) {
+                            svg.style.backgroundColor = 'transparent';
+                            
+                            svg.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                                .forEach(el => {
+                                    if (el.tagName !== 'svg') {
+                                        el.setAttribute('fill', 'transparent');
+                                    }
+                                });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Mermaid渲染错误:', error);
+                    renderDiv.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Mermaid渲染错误: ${error.message}
+                    </div>`;
+                }
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, renderDiv, false);
+
+                
+                container.appendChild(renderDiv);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const DIAGRAM_MAP = new Map([
+            ['plantuml_kroki', 'plantuml'],
+            ['mermaid_kroki', 'mermaid'],
+            ['graphviz', 'graphviz'],
+            ['blockdiag', 'blockdiag'],
+            ['seqdiag', 'seqdiag'],
+            ['actdiag', 'actdiag'],
+            ['packetdiag', 'packetdiag'],
+            ['database', 'dbml'],
+            ['dbml', 'dbml'],
+            ['vega', 'vega']
+        ]);
+
+        
+        const blocks = [];
+        document.querySelectorAll('pre code[class]').forEach(block => {
+            if (block.dataset.kroki) return;
+            const lang = [...block.classList].find(c => DIAGRAM_MAP.has(c.split('-')[1]));
+            if (lang) {
+                block.dataset.kroki = 'processed';
+                blocks.push({ block, api: DIAGRAM_MAP.get(lang.split('-')[1]) });
+            }
+        });
+
+        if (!blocks.length) return;
+
+        
+        const CONCURRENCY = 6;
+        const queue = blocks.slice();
+
+        (async function processQueue() {
+            const workers = Array(Math.min(CONCURRENCY, queue.length))
+                .fill()
+                .map(async () => {
+                    while (queue.length) {
+                        const { block, api } = queue.pop();
+                        await renderBlock(block, api);
+                    }
+                });
+            await Promise.all(workers);
+        })();
+
+        async function renderBlock(block, api) {
+            const pre = block.closest('pre');
+            try {
+                const code = block.textContent.trim();
+                if (!code) {
+                    pre.style.border = '2px solid orange';
+                    return;
+                }
+
+                const res = await fetch(`https://kroki.io/${api}/svg`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: code
+                });
+
+                if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
+
+                
+                const svg = window.diagramRenderUtils.createDiagramContainer();
+                svg.innerHTML = window.diagramRenderUtils.makeSVGTransparent(await res.text());
+                svg.dataset.originalCode = code;
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, svg, false);
+                svg.appendChild(fullscreenButton);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+                svg.appendChild(copyButton);
+
+                pre.insertAdjacentElement('afterend', svg);
+
+                
+                pre.remove();
+            } catch (err) {
+                console.error(`[Kroki] 渲染失败: ${err.message}`);
+                pre.style.border = '2px solid red';
+                pre.title = err.message;
+            }
+        }
+    });
+</script>
+
+
+  
+<button id="backToTopBtn"><i class="fa-solid fa-square-caret-up"></i></button>
+<script>
+  var backToTopBtn = document.getElementById("backToTopBtn");
+  backToTopBtn.addEventListener("click", function() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+  window.addEventListener("scroll", function() {
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+      backToTopBtn.style.display = "block";
+    } else {
+      backToTopBtn.style.display = "none";
+    }
+  });
+</script>
+
+<style>
+ 
+#backToTopBtn {
+    border-radius: 8px;
+    border: none;
+    right: 20px;
+    bottom: 20px;
+    color: #aaa;
+    font-family: "Maple Mono NF CN";
+    font-size: 1.3rem;
+    position: fixed;
+    transition: background 0.3s;
+    z-index: 999;
+    opacity: 0.7;
+}
+
+#backToTopBtn:hover {
+    background: #BEC2B3;
+    opacity: 1;
+    color: #666;
+}
+</style>
+
+
+  
+
+  <div id="search-modal">
+  <input type="text" id="modal-search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
+  <div id="modal-search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="modal-search-results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+  function debug(text) {
+      document.getElementById('modal-search-debug').textContent = text;
+  }
+  function showpages() {
+    debug("当前本站共有 " + searchIndex.length + " 篇文章");
+  }
+
+  let searchIndex = [];
+  
+  
+    
+  
+
+  
+    searchIndex.push({
+      title: "\"tmux 快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"tmux\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Valgrind快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/valgrind%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"valgrind\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Mermaid快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/mermaid%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"mermaid\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-07\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT框架总览\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"通信中间件术语表\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E6%9C%AF%E8%AF%AD%E8%A1%A8/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: [],
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-27\""
+    });
+  
+    searchIndex.push({
+      title: "\"现代C++开发环境配置指南\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"c++\"]",
+      series: "[\"环境配置专栏\"]",
+      date: "\"2025-03-26\""
+    });
+  
+    searchIndex.push({
+      title: "\"带着目的学：CyberRT\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6cyberrt/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Linux环境变量加载顺序分析\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E5%88%86%E6%9E%90/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"linux\"]",
+      series: [],
+      date: "\"2025-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"手册速查方案（如cppreference）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"cppreference\"]",
+      series: [],
+      date: "\"2025-03-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT中的代码和工程技巧\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\",\"C++\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"设计模式\"",
+      permalink: "\"/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/\"",
+      
+      categories: "[\"软件工程\"]",
+      tags: "[\"SE\"]",
+      series: "[\"设计模式专项总结\"]",
+      date: "\"2025-02-28\""
+    });
+  
+    searchIndex.push({
+      title: "\"一站式环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: "[\"环境配置专栏\"]",
+      date: "\"2025-02-24\""
+    });
+  
+    searchIndex.push({
+      title: "\"leetcode调试指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/\"",
+      
+      categories: [],
+      tags: "[\"leetcode\"]",
+      series: [],
+      date: "\"2024-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"linux命令行大记忆恢复术\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"linux\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"番茄鸡蛋面\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E8%8F%9C%E8%B0%B1/%E7%95%AA%E8%8C%84%E9%B8%A1%E8%9B%8B%E9%9D%A2/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: [],
+      series: "[\"快速做饭\"]",
+      date: "\"2023-10-22\""
+    });
+  
+    searchIndex.push({
+      title: "\"PlantUML快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"uml\",\"plantuml\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-10-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"windows安装wsl\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/wsl%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2023-09-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++网络编程入门概念及api总结\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/\"",
+      
+      categories: [],
+      tags: "[\"linux\",\"网络编程\"]",
+      series: "[\"面筋\",\"快速上手\"]",
+      date: "\"2023-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"苏州旅行计划\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/%E8%8B%8F%E5%B7%9E/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: "[\"旅行\"]",
+      series: [],
+      date: "\"2023-04-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"gdb快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"gdb\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2022-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Ubuntu22.04安装Hadoop完全分布式集群\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"hadoop\"]",
+      series: [],
+      date: "\"2022-11-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++连接mysql\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E8%BF%9E%E6%8E%A5mysql/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2022-11-20\""
+    });
+  
+    searchIndex.push({
+      title: "\"征服C指针笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/\"",
+      
+      categories: [],
+      tags: [],
+      series: [],
+      date: "\"2022-10-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Leetcode刷题指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"算法\"]",
+      tags: "[\"leetcode\"]",
+      series: "[\"leetcode刷题指南\"]",
+      date: "\"2022-09-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"word 页眉页脚设置\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/word%E9%A1%B5%E7%9C%89%E9%A1%B5%E8%84%9A%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: [],
+      series: [],
+      date: "\"2021-04-03\""
+    });
+  
+    searchIndex.push({
+      title: "\"Markdown Demo\"",
+      permalink: "\"/%E6%B5%8B%E8%AF%95/markdown-demo/\"",
+      
+      categories: [],
+      tags: "[\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"常用数学符号的latex表示\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84latex%E8%A1%A8%E7%A4%BA/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"latex\",\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+
+  showpages()
+
+  const options = {
+    includeScore: true,
+    threshold: 0.6,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'content', weight: 0.3 },
+      { name: 'tags', weight: 0.5 },
+      { name: 'categories', weight: 0.5 },
+      { name: 'series', weight: 0.5 }
+    ]
+  };
+
+  const fuse = new Fuse(searchIndex, options);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'k') {
+      event.preventDefault();
+      toggleSearchModal();
+    } else if (event.key === 'Escape') {
+      document.getElementById('modal-search-input').value = "";
+      closeSearchModal();
+      var res = document.getElementById('modal-search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      showpages();
+    }
+  });
+
+  function toggleSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+      document.getElementById('modal-search-input').focus();
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('modal-search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.trim();
+    const resultsContainer = document.getElementById('modal-search-results');
+    resultsContainer.innerHTML = '';
+
+    if (searchTerm === '') {
+      showpages()
+      return;
+    }
+
+    const results = fuse.search(searchTerm);
+
+    results.sort((a, b) => new Date(b.item.date) - new Date(a.item.date));
+
+    if (results.length === 0) {
+      showpages()
+      resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
+      return;
+    } else {
+      debug("共找到 " + results.length + " 篇匹配的文章")
+    }
+
+    results.forEach(result => {
+      const item = result.item;
+      const resultItem = document.createElement('div');
+      resultItem.className = 'modal-search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
+      date.className = 'modal-search-result-date';
+
+      const link = document.createElement('a');
+      link.href = item.permalink.replace(/^"|"$/g, '');
+      link.textContent = item.title.replace(/^"|"$/g, '');
+      link.className = 'modal-search-result-title';
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
+    });
+  });
+</script>
+
+<style>
+ 
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
+    border-radius: 6px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+}
+
+#modal-search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#modal-search-results {
+    margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.modal-search-result-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    text-wrap: nowrap;
+}
+
+.modal-search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.modal-search-result-title:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+  
+  <hr />
+  © 
+<a href="https://kaikaixixi.xyz"  target="_blank" rel="noopener noreferrer" >SHUAIKAI</a>
+ 2021 &ndash; 2025 | 🎨
+<a href="https://github.com/captainwc/captainwc.github.io/tree/main/themes/ksimple"  target="_blank" rel="noopener noreferrer" >KSimple</a>
+  
+
+</footer>
+</body>
+
+</html>
+
