@@ -64,7 +64,6 @@
                 // 使用公共方法创建容器
                 const svg = window.diagramRenderUtils.createDiagramContainer();
                 svg.innerHTML = window.diagramRenderUtils.makeSVGTransparent(await res.text());
-                svg.dataset.originalCode = code;
 
                 // 添加全屏按钮
                 const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
@@ -75,6 +74,9 @@
                 const copyButton = window.diagramRenderUtils.createCopyButton();
                 window.diagramRenderUtils.setupCopyButton(copyButton, code);
                 svg.appendChild(copyButton);
+
+                // 右键浮窗展示源码
+                window.diagramRenderUtils.setupShowSourceCode(svg, code);
 
                 pre.insertAdjacentElement('afterend', svg);
 

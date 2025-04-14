@@ -35,7 +35,6 @@
 
                 // 获取原始代码
                 const code = codeBlock.textContent.trim();
-                container.dataset.originalCode = code;
 
                 try {
                     // 使用mermaid渲染
@@ -65,6 +64,9 @@
                 // 创建复制按钮
                 const copyButton = window.diagramRenderUtils.createCopyButton();
                 window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                // 右键浮窗展示源码
+                window.diagramRenderUtils.setupShowSourceCode(renderDiv, code);
 
                 // 创建全屏按钮
                 const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();

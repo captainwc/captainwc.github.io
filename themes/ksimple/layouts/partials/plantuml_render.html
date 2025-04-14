@@ -39,12 +39,15 @@ skinparam participantBackgroundColor #white
                 const copyButton = window.diagramRenderUtils.createCopyButton();
                 window.diagramRenderUtils.setupCopyButton(copyButton, fullCode);
 
+                // 右键浮窗展示源码
+                window.diagramRenderUtils.setupShowSourceCode(img, fullCode);
+
                 // 创建全屏按钮
                 const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
                 window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, img, true);
 
-                // 存储原始代码
-                container.dataset.originalCode = fullCode;
+                // 不存储原始代码了，徒增html体积
+                // container.dataset.originalCode = fullCode;
 
                 // 组装元素
                 container.appendChild(img);
