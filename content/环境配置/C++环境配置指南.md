@@ -35,7 +35,7 @@ series: ["环境配置专栏"]
 
 ## CPP开发环境都包括哪些？
 
-![image-20250326163516854](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgimage-20250326163516854.png)
+![image-20250326163516854](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20250326163516854-cpp-workflow.png)
 
 什么是CPP开发环境呢？其实就是，你现在想阅读C++代码，或者想写C++代码，或者想把一个C++代码/项目跑起来，或者你想修改一个C++代码/项目，但是直接用记事本看/写你有不乐意，干看呢代码也不会自己运行。所以你需要在你的电脑上安装一系列的东西，来让这个看代码写代码改代码的过程，首先是能走通，然后是走得更舒服、更规范，这个就是配C++环境。
 
@@ -1033,7 +1033,7 @@ gdb是一个命令行运行的黑窗口工具，作用是可以让你在程序�
 
 调试的工具有很多，但是基本的原理都一样，就是打断点，分析断点，分析变量取值，分析调用栈等等。这里简单罗列一下：
 
-[<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img1742197079944.png" style="max-width:40%;float:right">](#gdb)
+[<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/1742197079944.png" style="max-width:40%;float:right">](#gdb)
 
 - **gdb**：原汁原味，说开就开。缺点是命令行使用不够直观，程序是运行了是断点了，但是看不到对应的源代码是什么，很难受。不过gdb也有一个`tui`模式，可以呈现简单的界面。可以通过`layout src/split/asm`等切换布局，一定程度上解决了看不了源码的问题。
 - **lldb**：llvm项目的，和gdb的关系，大概就像是clang和gcc的关系吧
