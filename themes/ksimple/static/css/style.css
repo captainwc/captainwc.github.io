@@ -101,7 +101,7 @@ a {
 
 ol:not([class]):not([style]) a:not([class]):not([style])::before,
 ul:not([class]):not([style]) a:not([class]):not([style])::before,
-p a:not([class]):not([style])::before {
+p a:not([class]):not([style]):not(:has(img))::before {
     content: "";
     display: inline-block;
     width: 1rem;
@@ -117,7 +117,7 @@ p a:visited {
     color: #6f94cd;
 }
 
-a:not([class]):not([style]):hover {
+a:not([class]):not([style]):not(:has(img)):hover {
     color: #2e59a7 !important;
     text-decoration: dotted;
     background-color: rgb(220, 199, 225);
