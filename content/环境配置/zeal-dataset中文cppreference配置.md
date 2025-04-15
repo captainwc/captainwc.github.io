@@ -6,7 +6,7 @@ tags: [cppreference]
 series: []
 ---
 
-[<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgimage-20250312141139881.png" style="float: right; zoom: 16%;"/>](https://zealdocs.org/)
+[<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20250312141139881.png" style="float: right; zoom: 16%;"/>](https://zealdocs.org/)
 
 ## zeal
 
@@ -39,9 +39,10 @@ mklink /d %LOCALAPPDATA%\Zeal\Zeal\docsets\zh_C.docset\Contents\Resources\Docume
 这里我想同时保留中英文，没有直接修改 _%LOCALAPPDATA%\Zeal\Zeal\docsets\C++.docset_ ，而是创建了 _%LOCALAPPDATA%\Zeal\Zeal\docsets\zh-C++.docset_ 和 _%LOCALAPPDATA%\Zeal\Zeal\docsets\zh-C.docset_ 两个作为副本，然后同时保持`cpp`和`cppzh`两条命令作为区分。这样不影响 zeal 更新
 
 <div class="img-align">
-    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgblog_imgimage-20250312142314814.png">
-    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_imgblog_imgimage-20250312141915556.png">
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20250312142314814.png">
+    <img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20250312141915556.png">
 </div>
+
 
 ### 样式
 
