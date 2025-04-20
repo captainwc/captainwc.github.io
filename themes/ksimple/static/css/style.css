@@ -6,7 +6,7 @@ body {
     margin-right: auto !important;
     padding: 1em;
     line-height: 1.5;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.85) 10%, rgba(255, 255, 255, 0.96) 21%, rgba(255, 255, 255, 0.96) 80%, rgba(255, 255, 255, 0.85) 90%, rgba(255, 255, 255, 0.75) 100%), url('https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/cow.jpg');
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.85) 10%, rgba(255, 255, 255, 0.96) 21%, rgba(255, 255, 255, 0.96) 80%, rgba(255, 255, 255, 0.85) 90%, rgba(255, 255, 255, 0.75) 100%), url('/images/background.jpg');
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -107,7 +107,7 @@ p a:not([class]):not([style]):not(:has(img))::before {
     width: 1rem;
     height: 1rem;
     margin: 0px 2px 2px 0px;
-    background-image: url('https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/link.png');
+    background-image: url('/images/link.png');
     background-size: contain;
     background-repeat: no-repeat;
     vertical-align: middle;
