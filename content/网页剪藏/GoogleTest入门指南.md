@@ -123,21 +123,22 @@ EXPECT_PRED_FORMAT2(DoubleLE, val1, val2);
 
 #### 匹配器断言[#](https://www.cnblogs.com/jinyunshaobing/p/16717123.html#2179868448)
 
--   X\_THAT(value, matcher)：value的值满足matcher的要求
+`X_THAT(value, matcher)`：value的值满足matcher的要求
 
-    #include "gmock/gmock.h"
+```cpp
+#include "gmock/gmock.h"
 
-    using ::testing::AllOf;
-    using ::testing::Gt;
-    using ::testing::Lt;
-    using ::testing::MatchesRegex;
-    using ::testing::StartsWith;
+using ::testing::AllOf;
+using ::testing::Gt;
+using ::testing::Lt;
+using ::testing::MatchesRegex;
+using ::testing::StartsWith;
 
-    ...
-    EXPECT\_THAT(value1, StartsWith("Hello"));
-    EXPECT\_THAT(value2, MatchesRegex("Line \\d+"));
-    ASSERT\_THAT(value3, AllOf(Gt(5), Lt(10)));
-
+...
+EXPECT\_THAT(value1, StartsWith("Hello"));
+EXPECT\_THAT(value2, MatchesRegex("Line \\d+"));
+ASSERT\_THAT(value3, AllOf(Gt(5), Lt(10)));
+```
 
 关于matcher的具体接口文档，详见[matchers](https://google.github.io/googletest/reference/matchers.html)
 
