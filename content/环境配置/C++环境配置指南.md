@@ -1057,7 +1057,7 @@ gdb是一个命令行运行的黑窗口工具，作用是可以让你在程序�
 
 C++有很多单测框架，著名而全面的有`GoogleTest`，它还带了一个可以模仿接口的`GoogleMock`，这个一般是绝对够用了的。你只会嫌弃它太重了而想换到更轻量的，比如`catch2`，`doctest`等这种单个头文件的。
 
-（这一节其实是后面才想起来，随便写写填个坑了）具体的参考这篇总结 [https://www.cnblogs.com/seapo/p/18796800](https://www.cnblogs.com/seapo/p/18796800) 
+（这一节其实是后面才想起来，随便写写填个坑了）具体的参考这篇总结 [C++ 单测框架Catch2、doctest、CppTest、GTest、CppUnit 和 CppUTest](https://www.cnblogs.com/seapo/p/18796800) 
 
 #### 安全检查
 
