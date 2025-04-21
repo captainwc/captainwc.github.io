@@ -1,0 +1,56 @@
+/* 笔记相关样式 */
+.note-context-menu {
+    min-width: 150px;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.popup-window.note-editor .popup-window-content {
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.popup-window.notes-list .popup-window-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.note-textarea:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.note-save-button:hover,
+.note-edit-button:hover,
+.note-delete-button:hover {
+    opacity: 0.9;
+}
+
+/* 可调整大小的浮窗 */
+.popup-window.resizable {
+    resize: both;
+    overflow: auto;
+    min-height: 200px;
+}
+
+/* 确保内容区域适应窗口大小 */
+.popup-window.resizable .popup-window-content {
+    height: calc(100% - 40px);
+    /* 减去标题栏高度 */
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 调整文本区域在可调整大小的窗口中的行为 */
+.popup-window.resizable .note-textarea {
+    flex-grow: 1;
+    min-height: 100px;
+}
+
+/* 调整按钮在可调整大小的窗口中的位置 */
+.popup-window.resizable .note-save-button,
+.popup-window.resizable button[class*="note-"] {
+    margin-top: 10px;
+}

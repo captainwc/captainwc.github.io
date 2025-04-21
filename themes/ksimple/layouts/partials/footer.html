@@ -16,8 +16,6 @@
   
   {{ partial "code_copy_btn.html" . }}
 
-  {{ partial "note_down.html" . }}
-  
   {{ partial "diagram_render_utils.html" . }}
   {{ partial "plantuml_render.html" . }}
   {{ partial "mermaid_render.html" . }}
@@ -26,6 +24,8 @@
   {{ partial "foot_custom.html" . }}
 
   {{ partial "search_modal.html" . }}
+
+  {{ partial "note_down.html" . }}
 
   {{ with .Site.Params.footer }}
   <hr />
