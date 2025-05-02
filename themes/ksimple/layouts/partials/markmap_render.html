@@ -1,0 +1,66 @@
+<!-- markmap 渲染思维导图 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 1. 检测是否存在Markmap代码块
+        const markmapBlocks = document.querySelectorAll('pre code.language-map, pre code.language-mindmap');
+        if (!markmapBlocks.length) return;
+
+        // 2. 将代码块转换为markmap可以处理的格式
+        markmapBlocks.forEach((codeBlock, index) => {
+            // 使用公共方法创建容器
+            const container = window.diagramRenderUtils.createDiagramContainer();
+
+            // 创建markmap容器
+            const markmapContainer = document.createElement('div');
+            markmapContainer.className = 'markmap';
+            markmapContainer.style.minHeight = '300px';
+            markmapContainer.style.width = '100%';
+            markmapContainer.style.position = 'relative';
+
+            // 获取原始代码并创建模板脚本
+            const code = codeBlock.textContent.trim();
+            const templateScript = document.createElement('script');
+            templateScript.type = 'text/template';
+            templateScript.textContent = code;
+            markmapContainer.appendChild(templateScript);
+
+            // 创建复制按钮
+            const copyButton = window.diagramRenderUtils.createCopyButton();
+            window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+            // 右键浮窗展示源码
+            window.diagramRenderUtils.setupShowSourceCode(markmapContainer, code);
+
+            // 创建全屏按钮
+            const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+            window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, markmapContainer, false);
+
+            // 组装元素
+            container.appendChild(markmapContainer);
+            container.appendChild(fullscreenButton);
+            container.appendChild(copyButton);
+
+            // 替换原始代码块
+            const pre = codeBlock.closest('pre');
+            pre.insertAdjacentElement('afterend', container);
+            pre.remove();
+        });
+
+        // 3. 加载markmap-autoloader
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/markmap-autoloader@latest';
+        document.head.appendChild(script);
+    });
+</script>
+
+<!-- 添加markmap所需的全局样式 -->
+<style>
+    .markmap {
+        position: relative;
+    }
+
+    .markmap>svg {
+        width: 100%;
+        height: 400px;
+    }
+</style>
