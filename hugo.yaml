@@ -59,6 +59,18 @@ markup:
     renderer:
       unsafe: true
     extensions:
+      strikethrough: false
+      extras:
+        mark:
+          enable: true
+        insert:
+          enable: true
+        delete:
+          enable: true
+        subscript:
+          enable: true
+        superscript:
+          enable: true
       typographer:
         enable: false # 禁用自动符号转换，防止干扰公式
       passthrough:
