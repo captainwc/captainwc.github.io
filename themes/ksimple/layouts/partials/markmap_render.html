@@ -80,6 +80,15 @@
                         root: root,
                         features: features
                     });
+
+                    // 设置链接在新标签页中打开
+                    setTimeout(() => {
+                        const links = svgElement.querySelectorAll('a');
+                        links.forEach(link => {
+                            link.setAttribute('target', '_blank');
+                            link.setAttribute('rel', 'noopener noreferrer');
+                        });
+                    }, 100);
                 } catch (error) {
                     console.error('Markmap渲染错误:', error);
                     markmapContainer.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
@@ -103,25 +112,6 @@
         }
     });
 </script>
-
-<!-- 添加markmap所需的全局样式 -->
-<style>
-    .markmap {
-        position: relative;
-    }
-
-    .markmap svg {
-        width: 100%;
-        height: 400px;
-        background-color: transparent;
-    }
-
-    /* 全屏模式下的样式 */
-    .fullscreen-overlay .markmap svg {
-        width: 100%;
-        height: 100%;
-    }
-</style>
 
 <!-- 扩展diagram_render_utils以支持markmap全屏 -->
 <script>
@@ -178,6 +168,15 @@
                             // 渲染markmap
                             mm.setData(markmapData.root, markmapData.features);
                             mm.fit();
+
+                            // 设置链接在新标签页中打开
+                            setTimeout(() => {
+                                const links = svgElement.querySelectorAll('a');
+                                links.forEach(link => {
+                                    link.setAttribute('target', '_blank');
+                                    link.setAttribute('rel', 'noopener noreferrer');
+                                });
+                            }, 100);
                         }
                     } catch (error) {
                         console.error('全屏模式下渲染markmap失败:', error);
