@@ -14,6 +14,7 @@ Ksimple 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 基础上修改�
 > - 使用 mermaid.js 渲染 mermaid 图表
 > - 使用 plantuml-encoder.js 渲染 plantuml
 > - 使用 kroki api 渲染词云图、流程图等等（除了plantuml和mermaid之外的所有。也可渲染此二者，但不够快）
+> - 使用 markmind.js 渲染思维导图
 > - 使用并定制 cusdis，实现评论区
 > - 使用 katex.js 实现公式渲染
 > - 使用 highlight.js 实现代码高亮

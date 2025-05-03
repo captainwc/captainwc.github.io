@@ -18,6 +18,7 @@ Ksimple 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 基础上修改�
 > - 使用 mermaid.js 渲染 mermaid 图表
 > - 使用 plantuml-encoder.js 渲染 plantuml
 > - 使用 kroki api 渲染词云图、流程图等等（除了plantuml和mermaid之外的所有。也可渲染此二者，但不够快）
+> - 使用 markmind.js 渲染思维导图
 > - 使用并定制 cusdis，实现评论区
 > - 使用 katex.js 实现公式渲染
 > - 使用 highlight.js 实现代码高亮
@@ -30,7 +31,7 @@ Ksimple 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 基础上修改�
 
 ### 基本元素
 
-**Bold**， _Italic_， <mark>Highlight</mark>， ~~Delete~~，:tent:，😘， `Inline Code`
+**Bold**， _Italic_， <mark>Highlight</mark>，==highlight==，H~2~O~2~，X^2^，++insert++，~~Delete~~，:tent:，😘， `Inline Code`
 
 Reference[^Ref001], Reference2[^x2y]
 
@@ -395,6 +396,59 @@ gantt
     Add another diagram to demo page    :48h
 
 ```
+
+### MarkMap渲染
+
+使用 [Markmap.js](https://markmap.js.org/api/) 渲染思维导图，效果如下：
+
+```mindmap
+---
+title: markmap
+markmap:
+  colorFreezeLevel: 2
+---
+
+## Links
+
+- [Website](https://markmap.js.org/)
+- [GitHub](https://github.com/gera2ld/markmap)
+
+## Related Projects
+
+- [coc-markmap](https://github.com/gera2ld/coc-markmap) for Neovim
+- [markmap-vscode](https://marketplace.visualstudio.com/items?itemName=gera2ld.markmap-vscode) for VSCode
+- [eaf-markmap](https://github.com/emacs-eaf/eaf-markmap) for Emacs
+
+## Features
+
+Note that if blocks and lists appear at the same level, the lists will be ignored.
+
+### Lists
+
+- **strong** ~~del~~ *italic* ==highlight==
+- `inline code`
+- [x] checkbox-selected
+- [ ] checkbox-nonselected
+- Katex: $x = {-b \pm \sqrt{b^2-4ac} \over 2a}$ <!-- markmap: fold -->
+  - [More Katex Examples](#?d=gist:af76a4c245b302206b16aec503dbe07b:katex.md)
+- Now we can wrap very very very very long text based on `maxWidth` option
+- Ordered list
+  1. item 1
+  2. item 2
+
+### Blocks
+
+`console.log('hello, JavaScript')`
+
+| Products | Price |
+|-|-|
+| Apple | 4 |
+| Banana | 2 |
+
+![](https://markmap.js.org/favicon.png)
+```
+
+至此，已有三种方式实现思维导图：使用Plantuml(效果太简单，但是语法也很简单直观)，使用Mermaid(效果太花哨，像脑图云图之类的)，以及使用Markmind（效果最好的思维导图）
 
 ### Kroki渲染
 
