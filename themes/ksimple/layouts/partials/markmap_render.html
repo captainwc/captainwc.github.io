@@ -1,55 +1,106 @@
 <!-- markmap 渲染思维导图 -->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         // 1. 检测是否存在Markmap代码块
         const markmapBlocks = document.querySelectorAll('pre code.language-map, pre code.language-mindmap');
         if (!markmapBlocks.length) return;
 
-        // 2. 将代码块转换为markmap可以处理的格式
-        markmapBlocks.forEach((codeBlock, index) => {
-            // 使用公共方法创建容器
-            const container = window.diagramRenderUtils.createDiagramContainer();
+        // 2. 加载所需的markmap库
+        Promise.all([
+            loadScript('https://cdn.jsdelivr.net/npm/d3@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-view@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-lib@latest')
+        ]).then(() => {
+            // 3. 处理每个markmap代码块
+            markmapBlocks.forEach((codeBlock, index) => {
+                // 使用公共方法创建容器
+                const container = window.diagramRenderUtils.createDiagramContainer();
 
-            // 创建markmap容器
-            const markmapContainer = document.createElement('div');
-            markmapContainer.className = 'markmap';
-            markmapContainer.style.minHeight = '300px';
-            markmapContainer.style.width = '100%';
-            markmapContainer.style.position = 'relative';
+                // 创建markmap容器
+                const markmapContainer = document.createElement('div');
+                markmapContainer.className = 'markmap';
+                markmapContainer.id = `markmap-${index}`;
+                markmapContainer.style.minHeight = '300px';
+                markmapContainer.style.width = '100%';
+                markmapContainer.style.position = 'relative';
 
-            // 获取原始代码并创建模板脚本
-            const code = codeBlock.textContent.trim();
-            const templateScript = document.createElement('script');
-            templateScript.type = 'text/template';
-            templateScript.textContent = code;
-            markmapContainer.appendChild(templateScript);
+                // 获取原始代码
+                const code = codeBlock.textContent.trim();
 
-            // 创建复制按钮
-            const copyButton = window.diagramRenderUtils.createCopyButton();
-            window.diagramRenderUtils.setupCopyButton(copyButton, code);
+                // 创建SVG元素
+                const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.style.width = '100%';
+                svgElement.style.height = '400px';
+                markmapContainer.appendChild(svgElement);
 
-            // 右键浮窗展示源码
-            window.diagramRenderUtils.setupShowSourceCode(markmapContainer, code);
+                // 创建复制按钮
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
 
-            // 创建全屏按钮
-            const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
-            window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, markmapContainer, false);
+                // 右键浮窗展示源码
+                window.diagramRenderUtils.setupShowSourceCode(markmapContainer, code);
 
-            // 组装元素
-            container.appendChild(markmapContainer);
-            container.appendChild(fullscreenButton);
-            container.appendChild(copyButton);
+                // 创建全屏按钮
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, markmapContainer, false);
 
-            // 替换原始代码块
-            const pre = codeBlock.closest('pre');
-            pre.insertAdjacentElement('afterend', container);
-            pre.remove();
+                // 组装元素
+                container.appendChild(markmapContainer);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                // 替换原始代码块
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+
+                // 使用markmap-lib和markmap-view渲染
+                try {
+                    // 创建Transformer实例
+                    const { Transformer } = window.markmap;
+                    const transformer = new Transformer();
+
+                    // 转换Markdown为markmap数据
+                    const { root, features } = transformer.transform(code);
+
+                    // 创建Markmap实例并渲染
+                    const { Markmap } = window.markmap;
+                    const mm = new Markmap(svgElement, {
+                        autoFit: true,
+                        duration: 500,
+                        zoom: true,
+                    });
+
+                    // 渲染markmap
+                    mm.setData(root, features);
+                    mm.fit();
+
+                    // 存储markmap实例，以便在全屏模式下使用
+                    markmapContainer.dataset.markmapData = JSON.stringify({
+                        root: root,
+                        features: features
+                    });
+                } catch (error) {
+                    console.error('Markmap渲染错误:', error);
+                    markmapContainer.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Markmap渲染错误: ${error.message}
+                    </div>`;
+                }
+            });
+        }).catch(error => {
+            console.error('加载markmap库失败:', error);
         });
 
-        // 3. 加载markmap-autoloader
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/markmap-autoloader@latest';
-        document.head.appendChild(script);
+        // 辅助函数：加载脚本
+        function loadScript(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
     });
 </script>
 
@@ -59,8 +110,86 @@
         position: relative;
     }
 
-    .markmap>svg {
+    .markmap svg {
         width: 100%;
         height: 400px;
+        background-color: transparent;
+    }
+
+    /* 全屏模式下的样式 */
+    .fullscreen-overlay .markmap svg {
+        width: 100%;
+        height: 100%;
     }
 </style>
+
+<!-- 扩展diagram_render_utils以支持markmap全屏 -->
+<script>
+    // 扩展全屏功能以支持markmap
+    document.addEventListener('DOMContentLoaded', function() {
+        // 确保diagramRenderUtils已加载
+        if (!window.diagramRenderUtils) return;
+
+        // 扩展setupFullscreenButton方法
+        const originalSetupFullscreenButton = window.diagramRenderUtils.setupFullscreenButton;
+        window.diagramRenderUtils.setupFullscreenButton = function(fullscreenButton, contentElement, isImage = false) {
+            // 检查是否为markmap容器
+            const isMarkmap = contentElement.classList.contains('markmap');
+
+            if (isMarkmap) {
+                fullscreenButton.addEventListener('click', () => {
+                    const overlay = this.getOrCreateFullscreenOverlay();
+                    overlay.innerHTML = '';
+
+                    // 添加退出按钮
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => overlay.classList.remove('active');
+                    overlay.appendChild(exitButton);
+
+                    // 创建新的markmap容器
+                    const fullscreenContainer = document.createElement('div');
+                    fullscreenContainer.className = 'markmap';
+                    fullscreenContainer.style.width = '100%';
+                    fullscreenContainer.style.height = '100%';
+
+                    // 创建新的SVG元素
+                    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svgElement.style.width = '100%';
+                    svgElement.style.height = '100%';
+                    fullscreenContainer.appendChild(svgElement);
+
+                    overlay.appendChild(fullscreenContainer);
+                    overlay.classList.add('active');
+
+                    // 获取原始markmap数据并重新渲染
+                    try {
+                        const markmapData = JSON.parse(contentElement.dataset.markmapData || '{}');
+                        if (markmapData.root) {
+                            // 创建新的Markmap实例并渲染
+                            const { Markmap } = window.markmap;
+                            const mm = new Markmap(svgElement, {
+                                autoFit: true,
+                                duration: 500,
+                                zoom: true,
+                            });
+
+                            // 渲染markmap
+                            mm.setData(markmapData.root, markmapData.features);
+                            mm.fit();
+                        }
+                    } catch (error) {
+                        console.error('全屏模式下渲染markmap失败:', error);
+                    }
+
+                    // 初始化缩放和位置状态
+                    this.setupZoomAndDrag(overlay, 'svg');
+                });
+            } else {
+                // 使用原始方法处理非markmap元素
+                originalSetupFullscreenButton.call(this, fullscreenButton, contentElement, isImage);
+            }
+        };
+    });
+</script>
