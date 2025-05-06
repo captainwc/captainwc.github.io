@@ -1,0 +1,3038 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>一站式环境配置 | SHUAIKAI&#39;s Blog</title>
+    <link rel="icon" href= /images/favicon.png />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">主页</a></li>
+      
+      <li><a href="/series/">专栏</a></li>
+      
+      <li><a href="/categories/">分类</a></li>
+      
+      <li><a href="/tags/">标签</a></li>
+      
+      <li><a href="/archives/">归档</a></li>
+      
+      <li><a href="/search/">搜索</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+
+<div class="article-meta">
+    <h1><span class="article-meta-title">一站式环境配置</span></h1>
+
+    <div class="article-meta-info">
+        
+
+        
+        
+
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+
+        🗓️ 2025-02-24 🎖️ <a href="/series/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%93%E6%A0%8F/">环境配置专栏</a> 🗂️ <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a>
+    </div>
+</div>
+
+<main>
+
+    
+
+<div class="toc-btn" id="tocBtn"><i class="fa-solid fa-bars-staggered"></i></div>
+<div class="toc-panel" id="tocPanel"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('tocBtn');
+    const panel = document.getElementById('tocPanel');
+    let hoverTimeout;
+
+    
+    btn.addEventListener('mouseenter', () => {
+      clearTimeout(hoverTimeout);
+      generateToc();
+      panel.classList.add('show');
+
+      
+      requestAnimationFrame(() => {
+        const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+        let activeHeader = null;
+        let minDistance = Infinity;
+
+        
+        headers.forEach(header => {
+          const rect = header.getBoundingClientRect();
+          const distance = Math.abs(rect.top);
+          if (distance < minDistance) {
+            minDistance = distance;
+            activeHeader = header;
+          }
+        });
+
+        
+        if (activeHeader) {
+          const activeLink = panel.querySelector(`a[href="#${activeHeader.id}"]`);
+          if (activeLink) {
+            
+            const panelHeight = panel.offsetHeight;
+            const linkOffset = activeLink.offsetTop;
+            const centerPosition = linkOffset - (panelHeight / 2) + (activeLink.offsetHeight / 2);
+            
+            panel.scrollTo({
+              top: centerPosition,
+              behavior: 'auto'
+            });
+          }
+        }
+      });
+    });
+
+    panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+    [btn, panel].forEach(el => {
+      el.addEventListener('mouseleave', () => {
+        hoverTimeout = setTimeout(() => {
+          panel.classList.remove('show');
+        }, 200);
+      });
+    });
+
+    
+    function generateToc() {
+      if (panel.children.length > 0) return;
+
+      const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+      const counts = [0, 0, 0, 0, 0]; 
+
+      headers.forEach(header => {
+        const level = parseInt(header.tagName[1]) - 2;
+        if (level < 0) return;
+
+        counts[level]++;
+        for (let i = level + 1; i < counts.length; i++) counts[i] = 0;
+        const number = counts.slice(0, level + 1).join('.');
+
+        
+        const numberSpan = document.createElement('span');
+        numberSpan.className = 'toc-number';
+        numberSpan.textContent = number;
+
+        
+        const link = document.createElement('a');
+        link.href = `#${header.id}`;
+        link.style.paddingLeft = `${level * 12}px`;
+
+        
+        link.appendChild(numberSpan);
+        link.appendChild(document.createTextNode(header.textContent));
+
+        panel.appendChild(link);
+      });
+    }
+  });
+</script>
+
+<style>
+   
+  .toc-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    cursor: pointer;
+    padding: 6px 10px;
+    background: #EFEFEF;
+    border-radius: 8px;
+    transition: background 0.3s;
+    color: #999;
+    opacity: 0.7;
+  }
+
+  .toc-btn:hover {
+    background: #BEC2B3;
+  }
+
+   
+  .toc-number {
+    vertical-align: middle;
+    margin-right: 8px;
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+  }
+
+   
+  .toc-panel {
+    border-radius: 8px;
+    display: none;
+    position: fixed;
+    top: 66px;
+    right: 20px;
+    max-width: 360px;
+    min-width: 200px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #eee;
+    padding: 10px 5px 10px 15px;
+    z-index: 9998;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+     
+    list-style: none;
+  }
+
+  .toc-panel a {
+    display: block;
+    padding: 4px 0;
+    text-decoration: none;
+    color: #333;
+    white-space: nowrap;
+     
+     
+     
+  }
+
+  .toc-panel a:hover {
+    color: #007bff;
+  }
+
+   
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .toc-panel.show {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+  }
+</style>
+
+
+    
+    
+    
+        <h1 id="配置万千">配置万千</h1>
+<h2 id="thinking-配置新系统">&#x1f914; 配置新系统</h2>
+<h3 id="1-用户相关">1. 用户相关</h3>
+<pre><code class="language-bash"># 1. 修改 root 密码
+sudo passwd
+
+# 2. 创建新用户(adduser有交互；用useradd没有)
+su root
+## 2.1 用useradd
+useradd [newuser]
+passwd [newuser]
+useradd -d /home/[newuser] [newuser]
+## 2.2 用adduser
+adduser [newuser]
+
+# 3. 设置 sudo 权限
+## 3.1 更改文件
+sudo vim /etc/sudoers/[newuser]
+[newuser] ALL=(ALL) NOPASSWD: ALL
+
+# 4. 更改名字
+sudo vim /etc/hostname
+</code></pre>
+<h3 id="2-网络相关">2. 网络相关</h3>
+<h4 id="21-ssh">2.1 ssh</h4>
+<pre><code class="language-bash"># 初始化rsa密钥
+ssh-keygen -t rsa	# 三次回车（创建私钥，公钥）
+# hostname自然是你想去登录的，别的主机名
+ssh-copy-id hostname
+
+# 取消哈希已知hosts，不然后面删除的时候认不出来了
+sudo vim /etc/ssh/ssh_config
+- HashKnownHosts no
+
+# 如果出现 Permission denied (publickey) 记得检查这两项，取消其注释！
+sudo vim /etc/ssh/sshd_config
+- PubkeyAuthentication yes
+- PasswordAuthentication yes
+# 重启sshd服务
+sudo systemctl stop sshd
+sudo systemctl start sshd
+sudo systemctl status sshd
+</code></pre>
+<h3 id="3-安装">3. 安装</h3>
+<pre><code class="language-bash">sudo
+sudo apt install build-essential gdb git cmake openjdk-11-jdk maven python -y
+</code></pre>
+<h2 id="cat-系统配置">&#x1f431; 系统配置</h2>
+<h3 id="1-网络">1 网络</h3>
+<h4 id="11-防火墙与-iptables">1.1 防火墙与 iptables</h4>
+<pre><code class="language-bash"># 备份 iptables
+iptables-save &gt; /etc/iptables.rules
+# 恢复
+iptables-restore  &lt; /etc/iptables.rules
+</code></pre>
+<h2 id="ox-其它备忘">&#x1f402; 其它备忘</h2>
+<h3 id="1-wsl-gdb-修改">1. wsl-gdb 修改</h3>
+<blockquote>
+<p>如果是【wsl，ubuntu22.04，gdb12.1】也可以直接下载我修改好的替换/usr/bin/gdb &#x1f517;
+<a href="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/config/gdb/gdb.12.1.wsl.ubuntu22.04"  target="_blank" rel="noopener noreferrer" >gdb12.1</a>
+</p></blockquote>
+<p>WSL 中的 gdb 不能用，对其进行一定的修改：参考
+<a href="https://www.bilibili.com/read/cv20701507"  target="_blank" rel="noopener noreferrer" >这里</a>
+，以及
+<a href="https://github.com/microsoft/WSL/issues/8356"  target="_blank" rel="noopener noreferrer" >这里</a>
+</p>
+<p>首先定位到 wsl 中 gdb 的位置（我这时 gdb 版本是 12.1），然后 <code>explorer.exe .</code> ，将 gdb 复制出来</p>
+<p>然后利用反汇编工具 
+<a href="https://www.hex-rays.com/ida-free/"  target="_blank" rel="noopener noreferrer" >IDA</a>
+ 打开 wsl 的 gdb，用 Search-for-text （左上角一个小望远镜带个 T) 搜索 <code>linux_proc_xfer_memory_partial</code>，看它的 function 地址（使用 <mark>text-view</mark>)</p>
+<p>然后定位到 function 地址查看这函数的汇编码</p>
+<p>前面一堆堆栈处理不用管，找一条指令叫 <code>cmp esi 1</code>，然后<code>jz short loc_xxxxxx</code>，即发现内存不存在就跳转到错误处理去了。记住 <code>jz</code> 指令的地址：0x335C7D</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20231216181950012.png" alt="image-20231216181950012" />
+</div>
+</p>
+<p>回到 WSL，运行：（注意用你上面的地址替换掉 XXX 部分）</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20231216182158734.png" alt="image-20231216182158734" />
+</div>
+</p>
+<pre><code class="language-bash">echo -ne '\x90\x90' | sudo dd of=/usr/bin/gdb seek=$((0xXXX)) bs=1 count=2 conv=notrunc
+</code></pre>
+<p>然后运行 gdb 打断点调试一个你的文件，跟着走即可正常运行。</p>
+<p>让上面的设置永久生效只需：</p>
+<pre><code class="language-bash">vim .gdbinit
+# 写入：set debuginfod enabled on
+</code></pre>
+<h3 id="2-各种换源">2. 各种换源</h3>
+<h4 id="21-ubuntu-换源">2.1 ubuntu 换源</h4>
+<p>源就在 <code>/etc/apt/sources.list</code> 文件里面写着。备份一下，重写文件，然后 <code>sudo apt update</code> 就好了</p>
+<ul>
+<li>
+<p>不同 ubuntu 版本之间，区别就在一个小动物上（就是默认桌面的壁纸），改个名字就好了</p>
+<ol>
+<li>
+<p>Ubuntu 22.04：jammy</p>
+</li>
+<li>
+<p>Ubuntu 20.04：focal</p>
+</li>
+<li>
+<p>Ubuntu 18.04：bionic</p>
+</li>
+<li>
+<p>Ubuntu 16.04：xenial</p>
+</li>
+</ol>
+</li>
+<li>
+<p>默认注释了代码源以提高速度，注释了预发布软件源（可能不稳定），如有需要可以取消注释。</p>
+</li>
+<li>
+<p>建议将所有常用镜像源保存在<code>/etc/apt/</code>目录下，并命名为类似<code>source.list.aliyun</code>的形式，需要使用时直接复制替换<code>source.list</code>文件即可。(
+<a href="https://midoq.github.io/2022/05/30/Ubuntu20-04%e6%9b%b4%e6%8d%a2%e5%9b%bd%e5%86%85%e9%95%9c%e5%83%8f%e6%ba%90/"  target="_blank" rel="noopener noreferrer" >国内镜像源</a>
+)</p>
+</li>
+</ul>
+<pre><code class="language-shell"># 中科大源
+deb https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+deb https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse
+## Pre-released source, not recommended.
+# deb https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+# deb-src https://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse
+</code></pre>
+<h4 id="22-pip-换源">2.2 pip 换源</h4>
+<pre><code class="language-bash"># USTC
+pip config set global.index-url https://pypi.mirrors.ustc.edu.cn/simple/
+
+# 阿里云 https://mirrors.aliyun.com/pypi/simple/
+# 科技大学 https://pypi.mirrors.ustc.edu.cn/simple/
+# 豆瓣(douban) https://pypi.douban.com/simple/
+# 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/
+# 中国科学技术大学 https://pypi.mirrors.ustc.edu.cn/simple/
+</code></pre>
+<h4 id="23-npm-换源">2.3 npm 换源</h4>
+<pre><code class="language-shell">npm config get registry # 查看当前源地址
+# 临时使用
+npm install [xxx] --registry https://registry.npm.taobao.org
+# 永久更换
+npm config set registry https://registry.npm.taobao.org # 淘宝
+npm config set registry https://mirrors.huaweicloud.com/repository/npm # 华为
+</code></pre>
+<h3 id="3-云服务器">3. 云服务器</h3>
+<h4 id="31-安全组">3.1 安全组</h4>
+<ul>
+<li>放通端口的时候注意，看你更改的是
+<a href="https://console.cloud.tencent.com/vpc/security-group?rid=1&amp;rid=1"  target="_blank" rel="noopener noreferrer" >安全组</a>
+，还是实例的防火墙(
+<a href="https://console.cloud.tencent.com/lighthouse/instance/index?rid=1"  target="_blank" rel="noopener noreferrer" >轻量应用服务器</a>
+)。这俩是不一样的，别对着安全组一顿放通，结果发现实例没关联上安全组</li>
+</ul>
+<h4 id="32-对象存储">3.2 对象存储</h4>
+<h2 id="dog-糊口家伙儿">&#x1f436; 糊口家伙儿</h2>
+<h3 id="1-vscode">1 vscode</h3>
+<ul>
+<li><code>code-runner</code>：在 <code>settings.json</code> 中，可以在当前工作目录下重写一部分，比如对 C++ 文件，单独指定编译命令 <code>-lpthread -lhiredis -D _DEBUG</code> 等等 。可以通过 <code>ctrl p</code> 打开设置然后搜索 code runner 找到</li>
+</ul>
+<h3 id="2-redis">2 redis</h3>
+<blockquote>
+<p>
+<a href="https://juejin.cn/post/6975159240910438437"  target="_blank" rel="noopener noreferrer" >使用 docker 操作 redis</a>
+</p></blockquote>
+<h4 id="21-安装">2.1 安装</h4>
+<pre><code class="language-bash"># 只有这一个版本，就是最新的，不用点进去看了
+wget http://download.redis.io/redis-stable.tar.gz &amp;&amp; tar xzf redis-stable.tar.gz
+cd redis-stable
+make -j4
+make test # 电脑可能会很吵，不知道它受不受得鸟。一般情况下是不用test的
+sudo make install # 把可执行文件拷贝到 /usr/local/bin 目录下
+</code></pre>
+<h4 id="22-运行">2.2 运行</h4>
+<pre><code class="language-bash"># 启动服务，可以选择加上你的配置文件
+redis-server [{directory}/redis.conf]
+# 停止服务
+redis-cli shutdown
+
+# 启动命令行
+redis-cli -h [hostname] -p [port] -a [passwd]
+# 可以 --no-auth-warning，或者不加 -a，进去之后写密码
+auth [passwd]
+
+# 修改设置
+CONFIG SET/GET loglevel warning
+CONFIG SET requirepass ''
+</code></pre>
+<h4 id="23-配置">2.3 配置</h4>
+<p><strong>（1）配置文件：</strong></p>
+<p>初始在<code>redis-stable/redis.conf</code>(rw-rw-r&ndash;664)，可以给它拷贝到<code>~/.redis/</code>，然后修改的有：</p>
+<pre><code class="language-bash">daemonize yes		# 以守护进程形式启动
+port 6379			# 端口号，默认是 6379
+appendonly yes		# 打开 AOF 持久化（默认RDB也是打开的）
+dir     {~/.redis/6379}		 # 放置持久化文件的位置   rwxrwxr-x 775
+logfile {.redis/redis.log}	 # 日志文件			    rw-rw-rw- 666
+# 允许远程lian'jie
+bind 0.0.0.0		# 任意主机连接
+protected-mode no	 # 关闭保护模式
+</code></pre>
+<p><strong>（2）设置开机自启</strong></p>
+<p>初始有一个脚本：<code>redis-stable/utils/redis_init_script</code>，把它放到 <code>/etc/init.d/</code> 目录下，而后</p>
+<pre><code class="language-bash"># 先备份一下，别等下删了 cp ./utils/redis_init_script ~/.redis/
+sudo cp ./utils/redis_init_script /etc/init.d/
+# chmod 774 /etc/init.d/redis_init_script
+sudo update-rc.d redis_init_script defaults
+</code></pre>
+<p><strong>（3）常见错误</strong></p>
+<ol>
+<li>
+<p><strong>(error) ERR Errors trying to SHUTDOWN. Check logs</strong></p>
+<ul>
+<li>主要检查：持久化文件路径和日志文件路径的<strong>权限</strong>，最起码当前用户要有读写权限。特别是设置在系统目录的时候。（如果设置在<code>etc var</code>等目录，除非把这些目录设为可写，不然好像一直退出不了，所以我建议在 home 路径下设置这两个）</li>
+</ul>
+</li>
+<li>
+<p><strong>Could not connect to Redis at 127.0.0.1:6379: Connection refused</strong></p>
+<ul>
+<li>笨蛋，快看看是不是已经停止掉 redis 服务了，还想着 <code>redis-cli shutdown</code> 呢？&#x1f604;</li>
+</ul>
+</li>
+<li>
+<p><strong>不能远程连接</strong></p>
+<ul>
+<li>
+<p>检查下 <code>redis.conf</code>，看看 <code>bind</code> 的是谁</p>
+</li>
+<li>
+<p>试试 <code>telnet</code>，看是不是端口没放通</p>
+</li>
+<li>
+<p>
+<a href="https://cloud.tencent.com/developer/article/2030508?from=article.detail.1097161&amp;areaSource=106000.14&amp;traceId=dvSiPmCId3ADBh7wl9hfa"  target="_blank" rel="noopener noreferrer" >redis 通过 6379 端口无法连接服务器</a>
+</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="24-使用">2.4 使用</h4>
+<h5 id="python-连接">python 连接</h5>
+<p><code>pip install redis</code></p>
+<pre><code class="language-py">import redis
+r = redis.StrictRedis(host='127.0.0.1', port=6379, db=0)
+r.set('foo', 'bar')  # True
+r.get('foo') 		# 'bar'
+# 哈希表
+r.hmset('dict', {'name': 'Bob'})
+people = r.hgetall('dict')
+print people # {'name': 'Bob'}
+# 事务与管道
+pipe = r.pipeline()
+pipe.set('foo', 'bar')
+pipe.get('foo')
+result = pipe.execute()
+print result # [True, 'bar']
+# 管道
+pipe = r.pipeline(transaction=False)
+result = r.pipeline().set('foo', 'bar').get('foo').execute()
+# [True, 'bar']
+</code></pre>
+<h5 id="c-连接">C++ 连接</h5>
+<p><code>hredis</code></p>
+<pre><code class="language-bash">git clone https://github.com/redis/hiredis
+cd hiredis
+make -j4
+sudo make install                #仍然是复制可执行文件
+sudo ldconfig /usr/local/lib	# 更新链接库缓存
+g++ redis.cc -lhiredis -o myredisclient # 记得指定库文件
+</code></pre>
+<pre><code class="language-c++">/* 示例代码
+#include &lt;hiredis/hiredis.h&gt;
+redisConnect(...);
+redisCommand(...);
+*/
+#include &lt;iostream&gt;
+#include &lt;hiredis/hiredis.h&gt;
+
+const char *AUTH_KEYS = &quot;shuaikaisredis&quot;;
+
+int main()
+{
+    // 连接到 Redis 服务器
+    redisContext *c = redisConnect(&quot;43.139.137.123&quot;, 6379);
+    if (c-&gt;err)
+    {
+        std::cout &lt;&lt; &quot;连接失败: &quot; &lt;&lt; c-&gt;errstr &lt;&lt; std::endl;
+        return -1;
+    }
+    std::cout &lt;&lt; &quot;连接成功&quot; &lt;&lt; std::endl;
+
+    // 使用密码进行身份验证
+    redisReply *reply = (redisReply *)redisCommand(c, &quot;AUTH %s&quot;, AUTH_KEYS);
+    if (reply-&gt;type == REDIS_REPLY_ERROR)
+    {
+        std::cout &lt;&lt; &quot;身份验证失败: &quot; &lt;&lt; reply-&gt;str &lt;&lt; std::endl;
+        freeReplyObject(reply);
+        redisFree(c);
+        return -1;
+    }
+    std::cout &lt;&lt; &quot;身份验证成功&quot; &lt;&lt; std::endl;
+    freeReplyObject(reply);
+
+    // 列出所有的键值
+    reply = (redisReply *)redisCommand(c, &quot;KEYS *&quot;);
+    if (reply-&gt;type == REDIS_REPLY_ARRAY)
+    {
+        for (int i = 0; i &lt; reply-&gt;elements; i++)
+        {
+            std::cout &lt;&lt; &quot;key: &quot; &lt;&lt; reply-&gt;element[i]-&gt;str &lt;&lt; std::endl;
+        }
+    }
+    freeReplyObject(reply);
+
+    // 获取某一键的值
+    const char *key2get = &quot;name&quot;;
+    reply = (redisReply *)redisCommand(c, &quot;GET %s&quot;, key2get);
+    if (reply-&gt;type == REDIS_REPLY_STRING)
+    {
+        printf(&quot;%s: %s\n&quot;, key2get, reply-&gt;str);
+    }
+    else
+    {
+        printf(&quot;There is NO %s EXITS!\n&quot;, key2get);
+    }
+    freeReplyObject(reply);
+
+    // 设置一个新的键值对
+    const char *key1 = &quot;editor&quot;;
+    const char *value1 = &quot;vscode&quot;;
+    reply = (redisReply *)redisCommand(c, &quot;SET %s %s&quot;, key1, value1);
+    std::cout &lt;&lt; &quot;RESULT: &quot; &lt;&lt; reply-&gt;str &lt;&lt; std::endl;
+    freeReplyObject(reply);
+
+    // 断开连接
+    redisFree(c);
+
+    return 0;
+}
+</code></pre>
+<h3 id="3-docker">3 docker</h3>
+<blockquote>
+<p>
+<a href="https://yeasy.gitbook.io/docker_practice/"  target="_blank" rel="noopener noreferrer" >Docker — 从入门到实践 </a>
+ 
+<a href="https://www.runoob.com/docker/docker-container-usage.html"  target="_blank" rel="noopener noreferrer" >Docker 容器使用 | 菜鸟教程</a>
+</p></blockquote>
+<h4 id="31-安装">3.1 安装</h4>
+<p>官方脚本快速安装</p>
+<pre><code class="language-bash"># 安装
+curl -fsSL get.docker.com -o get-docker.sh
+sudo sh get-docker.sh --mirror Aliyun
+# 启动
+sudo systemctl enable docker
+sudo systemctl start docker
+# 创建用户组并添加当前用户，否则可能会 Permission Deny
+sudo groupadd docker
+sudo usermod -aG docker shuaikai
+# 配置镜像加速
+sudo vim /etc/docker/daemon.json
+# 写入如下配置
+{
+  &quot;registry-mirrors&quot;: [
+    &quot;https://hub-mirror.c.163.com&quot;,
+    &quot;https://mirror.baidubce.com&quot;
+  ]
+}
+# 重启服务，并查看是否配置成功
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+docker info | tail -5
+# 如果这里显示权限不够：
+## 首先检查一下你的用户是否在docker用户组中
+groups
+gropus [shuaikai]
+## 如果两条命令显示不一致（后者显示你已经在docker组里面了），则需要退出重连一下
+</code></pre>
+<h4 id="32-常用指令">3.2 常用指令</h4>
+<pre><code class="language-bash"># 列出所有镜像
+docker images
+# 列出所有的容器
+docker container ls -a
+docker ps -a
+
+# pull 下载镜像
+## docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]
+docker pull ubuntu:18.04
+# 从镜像创建一个容器并运行
+docker run -it --rm --hostname {hostname} ubuntu:18.04 bash
+## -i 交互操作; -t 终端;  --rm 容器退出之后将其删除; ubuntu:18.04 启动容器的基础镜像
+## bash 启动容器后运行的命令，因为是想要一个终端
+
+# 启动一个停止的容器
+docker start [id/name]
+docker attach [id/name]
+# 进入一个容器，且exit不会导致容器退出的方法
+docker exec -it [kkdocker01] bash
+# 删除一个/所有已终止的容器
+docker rm [id/name]
+docker container prune
+# 向容器传递内容
+docker cp {local_path} &lt;dockerid&gt;:{docker_path}
+
+# 查看整个docker占用的磁盘空间详细信息
+docker system df -v
+
+# 网络：映射本地端口到docker的端口，从而实现外部访问docker
+# 导入导出：将容器打包成tar文件导出，也可从别的方式导入容器
+</code></pre>
+<h4 id="33-docker---redis">3.3 docker - redis</h4>
+<pre><code class="language-bash">docker run -p 6379:6379 --name redis1 -v /opt/docker_redis/redis.conf:/etc/redis/redis.conf -v /opt/docker_redis/data:/data -d redis  redis-server /etc/redis/redis.conf --appendonly yes --requirepass 123456
+# 命令说明                                                                                 # -p 6379:6379 端口映射：前面表示主机的端口，后面表示容器的端口。
+# --name redis01 指定该容器名称，查看和进行操作都比较方便。
+# -v 挂载文件或目录 ：前表示主机部分，：后表示容器部分。
+# -d redis 表示后台启动redis
+# redis-server /etc/redis/redis.conf 以配置文件启动redis，加载容器内的conf文件，最终找到的是挂载的目录/usr/local/docker/redis.conf
+# --appendonly yes  开启redis 持久化
+# --requirepass 123456 设置密码为123456
+#
+# 进入： docker exec -it redis /bin/bash
+# redis-cli -p 6379
+# 获取密码：config get requirepass
+# 输入密码： auth 123456
+</code></pre>
+<h2 id="horse_racing-消遣玩意儿">&#x1f3c7; 消遣玩意儿</h2>
+<h3 id="1-wox">1 wox</h3>
+<p>插件：</p>
+<ul>
+<li>[][Plugin Detail (wox.one)]
+<a href="http://www.wox.one/plugin/184"  target="_blank" rel="noopener noreferrer" >directory</a>
+，查词翻译，<code>!t, !d, !e</code></li>
+<li>自带的一些，比如查文件夹，查书签，显示十六进制颜色，进制转换等</li>
+<li>可以是 everything 的关键词查找，如果采用 glob 匹配，则注意匹配全名</li>
+</ul>
+<h3 id="2-typora">2 typora</h3>
+<blockquote>
+<p>&#x1fab2; 
+<a href="https://foxirj.com/typora-win.html"  target="_blank" rel="noopener noreferrer" >Typora 1.4.8 </a>
+</p></blockquote>
+<p><strong>(1) 设置自动上传阿里云图床</strong></p>
+<p>图片$\Rarr$上传服务设定：选择 <code>PicGo-Core(command line)</code>，没下载的记得下载。使用方法参考 
+<a href="https://support.typora.io/Upload-Image/"  target="_blank" rel="noopener noreferrer" >Upload Images - Typora Support</a>
+ 和 
+<a href="https://picgo.github.io/PicGo-Core-Doc/zh/guide/config.html"  target="_blank" rel="noopener noreferrer" > PicGo-Core</a>
+</p>
+<p>然后申请你的阿里&#x2601;&#xfe0f;腾讯云这云那云的，更新配置文件（在 <code>C:\Users\[username]\.picgo\</code>）：</p>
+<pre><code class="language-json">{
+  &quot;picBed&quot;: {
+    &quot;uploader&quot;: &quot;aliyun&quot;, // 指定当前默认的图床为 aliyun,
+    &quot;aliyun&quot;: {
+      &quot;accessKeyId&quot;: &quot;&quot;, //创建用户时生成的accessKeyId，替换为自己的
+      &quot;accessKeySecret&quot;: &quot;&quot;, //创建用户时生成的accessKeySecret，替换为自己的
+      &quot;bucket&quot;: &quot;shuaikai-bucket0001&quot;, // 存储空间名，也就是我们创建的Bucket的名字
+      &quot;area&quot;: &quot;oss-cn-shanghai&quot;, // 存储区域代号，课通过bucket概览查看，替换为自己的
+      &quot;path&quot;: &quot;blog_img/&quot;, // 自定义存储路径，一定要以&quot;/&quot;结尾！，根据自己需求修改
+      &quot;customUrl&quot;: &quot;&quot;, // 自定义域名，注意要加http://或者https:// ，根据自己实际情况修改
+      &quot;options&quot;: &quot;&quot; // 针对图片的一些后缀处理参数 PicGo 2.2.0+ PicGo-Core 1.4.0+ 不用修改
+    }
+  },
+  &quot;picgoPlugins&quot;: {}
+}
+</code></pre>
+<p><strong>(2) CSS 已经备份</strong>，&#x1f914; 等待上传云上</p>
+<h3 id="3-sharpkeys">3 sharpkeys</h3>
+<ul>
+<li>映射按键，下载解压版的就够了</li>
+</ul>
+<h3 id="4-snipaste">4 snipaste</h3>
+<ul>
+<li><code>Alt + S</code> 截图，<code> Alt + Z</code> 贴图， Ctrl + T 固定到屏幕上（直接点击就好）</li>
+<li><code>,</code>和 <code>.</code> 能在历史记录中移动，历史记录保存着整个屏幕</li>
+<li><code>1 2 3 4</code>可以对贴图进行旋转以及镜像。如果想要看一部分镜像的样子，这或许很有用</li>
+<li>双击左键关闭贴图，对贴图 shift+左键双击：得到缩略图， 鼠标中间单击：从缩略图恢复原样</li>
+<li>shift+上下左右/WASD：以像素为单位缩小截图区域；ctrl + 上下左右/WASD：放大</li>
+</ul>
+<h3 id="5-nginx">5 nginx</h3>
+<ul>
+<li>
+<p><code>sudo apt install nginx</code></p>
+</li>
+<li>
+<p><code>sudo systemctl status nginx</code></p>
+</li>
+<li>
+<p>配置文件在 <code>sudo vim /etc/nginx/nginx.conf</code> 中 (&#x1f517;
+<a href="https://www.cnblogs.com/54chensongxia/p/12938929.html"  target="_blank" rel="noopener noreferrer" >Nginx 配置文件详解</a>
+)</p>
+</li>
+<li>
+<p>在<code>http{}</code>里面添加上<code>server{...}</code></p>
+<pre><code class="language-bash">user shuaikai;
+...
+server {
+        listen 80;
+        server_name xxx.xxx.xxx.xxx;
+        root /home/shuaikai/web/;
+        index index.html;
+        access_log /home/shuaikai/web/log/kkcloud.access.log;
+        error_log /home/shuaikai/web/log/kkcloud.error.log;
+}
+</code></pre>
+</li>
+<li>
+<p><code>nginx -t</code> 测试配置文件有没有毛病</p>
+</li>
+</ul>
+<p>
+<a href="https://juejin.cn/post/6883701837879967752#heading-9"  target="_blank" rel="noopener noreferrer" >超详细图解：从 0 搭建一个个人网站</a>
+</p>
+<h3 id="6-lazyvim">6 lazyvim</h3>
+<pre><code class="language-bash"># 1. 首先安装最新版neovim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux64.tar.gz
+export PATH=&quot;$PATH:/opt/nvim-linux64/bin&quot;
+
+# 2. 安装 Lazyvim
+## 可以选择备份一下 (这里用了bash的大括号扩展语法)
+mv ~/.config/nvim{,.bak}
+mv ~/.local/share/nvim{,.bak}
+mv ~/.local/state/nvim{,.bak}
+mv ~/.cache/nvim{,.bak}
+
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+
+# 3. 启动neovim，让lazyvim自动下载
+nvim
+## 这时候，Mason可能会有一些lsp下载不下来。主要原因是系统没有相关环境，安装上即可
+## 3.1 安装node，有些插件需要npm
+wget https://nodejs.org/dist/v22.3.0/node-v22.3.0-linux-x64.tar.xz
+sudo tar -C /opt -xJf node-v22.3.0-linux-x64.tar.xz
+export PATH=&quot;$PATH:/opt/node-v22.3.0-linux-x64/bin&quot;
+## 3.2 安装go
+wget https://go.dev/dl/go1.22.4.linux-amd64.tar.gz
+sudo tar -C /opt -xzf go1.22.4.linux-amd64.tar.gz
+export PATH=&quot;$PATH:/opt/go/bin&quot;
+### 注意 go 还要配置一下国内源
+go env -w GO111MODULE=auto
+go env -w GOPROXY=https://goproxy.cn,direct
+## 3.3 安装 rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+## 3.5 安装 ruff(一个号称最快的python检查工具，类似pylint，但是更快)
+### 有pip直接用pip，如果是debain12，可以使用pipx
+sudo apt install pipx
+pipx install ruff
+## 3.6 一般情况下，我都会准备好C/C++/clangd等内容，所以不会缺
+
+# 4. 其他可选项，如lazygit，tmux，剪切板支持等
+## LazyGit: https://github.com/jesseduffield/lazygit/releases
+## Tmux: sudo apt install tmux -y
+</code></pre>
+<p>自定义配置可以参考 
+<a href="https://fanlumaster.github.io/2023/11/25/Lazyvim-configure-from-scratch/#options.lua"  target="_blank" rel="noopener noreferrer" >lazyvim 配置文件参考</a>
+</p>
+<h2 id="chicken-奇技淫巧">&#x1f414; 奇技淫巧</h2>
+<h3 id="1-windows-技巧">1 windows 技巧</h3>
+<ol>
+<li><code>Systeminfo.exe</code> 查看系统信息，包括基本信息、BIOS 版本、网卡、Hyper-V 等</li>
+</ol>
+
+</main>
+
+<style>
+ 
+.article-meta {
+    text-align: center;
+    text-decoration: none;
+    background: #efefef;
+    padding: 1px;
+    border-radius: 5px;
+}
+
+.article-meta-title {
+    font-size: 1em;
+}
+
+.article-meta-info {
+    color: #666;
+    font-size: 0.9rem;
+    margin: -0.6rem 0 0.2rem 10px;
+    text-align: left;
+}
+
+.article-meta-info a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+</style>
+
+
+
+<h1 style="font-size: 1.2rem; margin: 2.5rem 0 0.1rem 0;">Comment</h1>
+<div class="cusdis-comments">
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id="697d528d-b618-4ee1-a6fe-403c81a646ac"
+    data-page-id="eec67a8f30b309fb63602cd525165f31"
+    data-page-url="https://kaikaixixi.xyz/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"
+    data-page-title="一站式环境配置"
+  ></div>
+  <script async defer src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/cusdis/cusdis.es.min.js"></script>
+</div>
+
+<style>
+.cusdis-comments {
+  border-top: 2px dashed #cfcfcf;
+  padding-top: 1.3rem;
+}
+
+#cusdis_thread iframe {
+  min-height: 500px !important;
+  overflow: visible !important;
+}
+</style>
+
+
+<footer>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/math-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/render-katex.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/center-img.min.js"></script>
+  
+  
+
+<div id="menuBtnContainer">
+    
+    <button id="menuBtn"><i class="fa-solid fa-screwdriver-wrench"></i></button>
+
+    
+    <button id="backToBottomBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-down"></i></button>
+    <button id="backToTopBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-up"></i></button>
+
+    
+    <div class="menu-popup-btn edit-btn">
+        <a href='https://github.com/captainwc/captainwc.github.io/edit/main/content/%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae/%e4%b8%80%e7%ab%99%e5%bc%8f%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae.md'
+            target="_blank" rel="noopener">
+            <i class="fa-solid fa-square-pen"></i>
+        </a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuBtn = document.getElementById('menuBtn');
+        var menuBtnContainer = document.getElementById('menuBtnContainer');
+        var backToTopBtn = document.getElementById('backToTopBtn');
+        var backToBottomBtn = document.getElementById('backToBottomBtn');
+        var popupBtns = document.querySelectorAll('.menu-popup-btn');
+        var hoverTimeout;
+
+        
+        menuBtnContainer.classList.add('visible');
+
+        
+        function showPopupBtns() {
+            clearTimeout(hoverTimeout);
+            menuBtnContainer.classList.add('active');
+        }
+
+        
+        function hidePopupBtns() {
+            hoverTimeout = setTimeout(function() {
+                menuBtnContainer.classList.remove('active');
+            }, 300);
+        }
+
+        
+        menuBtnContainer.addEventListener('mouseenter', showPopupBtns);
+        menuBtnContainer.addEventListener('mouseleave', hidePopupBtns);
+
+        
+        menuBtn.addEventListener('click', function() {
+            if (menuBtnContainer.classList.contains('active')) {
+                menuBtnContainer.classList.remove('active');
+            } else {
+                showPopupBtns();
+            }
+        });
+
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        
+        backToBottomBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+<style>
+     
+    #menuBtnContainer {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 999;
+        opacity: 0.6;
+        visibility: visible;
+        transition: opacity 0.3s;
+    }
+
+    #menuBtnContainer:hover {
+        opacity: 1;
+    }
+
+     
+    #menuBtn {
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.2rem;
+        transition: background 0.3s;
+        cursor: pointer;
+        background: #EFEFEF;
+        z-index: 1000;
+        position: relative;
+    }
+
+    #menuBtn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+     
+    .menu-popup-btn {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        background: #EFEFEF;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+     
+    .menu-popup-btn.top-btn {
+        right: 0;
+        transform: translateY(0) scale(0.8);
+    }
+
+     
+    .menu-popup-btn.edit-btn {
+        bottom: 0;
+        transform: translateX(0) scale(0.8);
+        padding: 1px 6.6px 0px 6.6px;
+    }
+
+    .menu-popup-btn.edit-btn a {
+        color: #ccc;
+        text-decoration: none;
+        background: none !important;
+        transition: opacity 0.2s;
+        padding: 0;
+        margin: 0;
+    }
+
+     
+    #menuBtnContainer.active .menu-popup-btn {
+        opacity: 1;
+        visibility: visible;
+    }
+
+     
+    #menuBtnContainer.active #backToBottomBtn {
+        transform: translateY(-60px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active #backToTopBtn {
+        transform: translateY(-110px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active .edit-btn {
+        transform: translateX(-60px) scale(1);
+    }
+
+     
+    .menu-popup-btn:hover,
+    .menu-popup-btn.edit-btn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+    .menu-popup-btn.edit-btn:hover a {
+        color: #666;
+    }
+
+     
+    @media (max-width: 768px) {
+        #menuBtnContainer {
+            right: 15px;
+            bottom: 15px;
+        }
+
+        #menuBtnContainer.active #backToBottomBtn {
+            transform: translateY(-50px) scale(1);
+        }
+
+        #menuBtnContainer.active #backToTopBtn {
+            transform: translateY(-90px) scale(1);
+        }
+
+        #menuBtnContainer.active .edit-btn {
+            transform: translateX(-50px) scale(1);
+        }
+    }
+</style>
+
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    document.querySelectorAll('ul').forEach(ul => {
+      
+      const isTodoList = Array.from(ul.children).some(li => {
+        return li.innerHTML.includes('type="checkbox"')
+      });
+
+      if (isTodoList) {
+        
+        const todolistContainer = document.createElement('div');
+        todolistContainer.className = 'todolist';
+
+        
+        addTaskProgressBar(ul, todolistContainer);
+
+        
+        ul.querySelectorAll('li').forEach(li => {
+          const todoItemDiv = document.createElement('div');
+          todoItemDiv.className = 'todo-item';
+
+          
+          const isChecked = li.innerHTML.includes('checked');
+          const content = li.innerHTML
+            .replace(/<input[^>]+>/g, '') 
+            .trim();
+
+          
+          const checkedIcon = `<svg t="1742522457277" class="todo-item-checked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12342"><path d="M512 938.688A426.624 426.624 0 1 1 512 85.376a426.624 426.624 0 0 1 0 853.312z m0-85.312A341.312 341.312 0 1 0 512 170.688a341.312 341.312 0 0 0 0 682.688z m-42.56-170.688L288.448 501.632l60.288-60.288L469.44 561.92l241.28-241.28 60.416 60.288-301.696 301.696z" p-id="12343"></path></svg>`;
+          const uncheckedIcon = `<svg t="1742522354856" class="todo-item-unchecked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11882"><path d="M512 938.666667C276.352 938.666667 85.333333 747.648 85.333333 512S276.352 85.333333 512 85.333333s426.666667 191.018667 426.666667 426.666667-191.018667 426.666667-426.666667 426.666667z m0-85.333334a341.333333 341.333333 0 1 0 0-682.709333A341.333333 341.333333 0 0 0 512 853.333333z" p-id="11883"></path></svg>`;
+
+          
+          todoItemDiv.innerHTML = `
+            <span class="todo-item-checkbox">
+              ${isChecked ? checkedIcon : uncheckedIcon}
+            </span>
+            <span class="todo-item-content">
+              ${isChecked ? `<del>${content}</del>` : content}
+            </span>
+          `;
+
+          
+          todolistContainer.appendChild(todoItemDiv);
+        });
+
+        
+        ul.parentNode.replaceChild(todolistContainer, ul);
+      }
+    });
+
+    function addTaskProgressBar(ul, todolistContainer) {
+      
+      const totalTasks = ul.children.length;
+      const finishedTasks = Array.from(ul.children).filter(li => li.innerHTML.includes('checked')).length;
+
+      
+      const progressContainer = document.createElement('div');
+      progressContainer.className = 'todo-progress';
+
+      
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'todo-progress-counter';
+      counterSpan.textContent = `${finishedTasks}/${totalTasks}`;
+
+      
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'todo-progress-bar';
+
+      
+      const progressFill = document.createElement('div');
+      progressFill.className = 'todo-progress-bar-fill';
+      progressFill.style.width = `${(finishedTasks / totalTasks) * 100}%`;
+
+      
+      const flagSpan = document.createElement('span');
+      flagSpan.className = 'todo-progress-flag';
+      flagSpan.innerHTML = `${finishedTasks === totalTasks ? '🌟' : '🚧'}`;
+
+      
+      progressTrack.appendChild(progressFill);
+      progressContainer.append(flagSpan, progressTrack, counterSpan);
+      todolistContainer.appendChild(progressContainer);
+    }
+  });
+</script>
+
+<style>
+   
+  .todolist {
+    padding-left: 0.6rem;
+  }
+
+  .todo-item {
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: -0.5rem 0 -0.5rem -0.7rem;
+    line-height: 1.3;
+  }
+
+  .todo-item-checkbox {
+    flex-shrink: 0;
+    font-size: 1.2em;
+
+    svg {
+      margin-top: 0.46rem;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .todo-item-checked-icon {
+    fill: #707070;
+  }
+
+  .todo-item-unchecked-icon {
+    fill: #1A61CC;
+  }
+
+  .todo-item-unchecked-icon:hover {
+    fill: red;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .todo-item-content {
+    flex: 1;
+    word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+   
+  .todo-progress {
+    display: flex;
+     
+    align-items: center;
+    gap: 0.3rem;
+     
+    margin: 0.1rem 0 0 0.7rem;
+  }
+
+  .todo-progress-counter {
+     
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+    color: #707070;
+  }
+
+  .todo-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #a64036;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 20%;
+  }
+
+  .todo-progress-bar-fill {
+    height: 100%;
+    background: #84a729;
+    transition: width 0.3s ease;
+  }
+
+  .todo-progress-flag {
+    display: none;
+    position: relative;
+    font-size: 0.9rem;
+  }
+</style>
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/highlight.min.js"></script>
+
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll())</script>
+
+  
+  <script>
+    const langToNerdFontMap = {
+        asm: '\ue6ab',
+        bash: '\ue760',
+        bazel: '\ue63a',
+        c: '\ue61e',
+        cmake: '\ue794',
+        cmd: '\uebc4',
+        cpp: '\ue61d',
+        'c++': '\ue61d',
+        csharp: '\ue7b2',
+        css: '\ue749',
+        diff: '\ueae1',
+        dockerfile: '\uf21f',
+        go: '\udb81\udfd3',
+        gradle: '\ue7f2',
+        html: '\ue736',
+        java: '\uedaf',
+        javascript: '\ue781',
+        json: '\ueb0f',
+        latex: '\ue81f',
+        llvm: '\ue823',
+        lua: '\ue826',
+        makefile: '\ue673',
+        markdown: '\uf48a',
+        maven: '\ue82c',
+        plaintext: '\udb80\udd4d',
+        plantuml: '\ue8cb',
+        powershell: '\ue86c',
+        python: '\ued1b',
+        rust: '\udb85\ude17',
+        shell: '\ue760',
+        sql: '\udb82\udc66',
+        text: '\udb80\udd4d',
+        toml: '\ue6b2',
+        txt: '\udb80\udd4d',
+        typescript: '\ue8ca',
+        uml: '\ue8cb',
+        vim: '\ue7c5',
+        wasm: '\ue8e0',
+        xml: '\ue8ea',
+        yaml: '\ue8eb',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            const parentElement = codeBlock.parentElement;
+
+            
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+
+            
+            const foldBtn = document.createElement('button');
+            foldBtn.className = 'fold-btn';
+            foldBtn.innerHTML = '\uf48c';
+            foldBtn.style.display = 'none';
+
+            
+            const langLabel = document.createElement('div');
+            langLabel.className = 'lang-label';
+            const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
+            const icon = langToNerdFontMap[lang.toLowerCase()];
+            langLabel.textContent = icon || lang.toUpperCase();
+            if (!icon) langLabel.style.fontSize = '0.8rem';
+
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = '\uf4bb COPY';
+
+            
+            const scale_height = 500;       
+            const collapsed_height = 300;   
+            const checkHeight = () => {
+                const originalDisplay = parentElement.style.display;
+                parentElement.style.display = 'block';
+                const fullHeight = parentElement.scrollHeight;
+                parentElement.style.display = originalDisplay;
+                return fullHeight > scale_height;
+            };
+
+            
+            if (checkHeight()) {
+                foldBtn.style.display = 'flex';
+                parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+
+                
+                parentElement.classList.add('collapsed');
+                parentElement.style.maxHeight = `${collapsed_height}px`;
+                foldBtn.innerHTML = '\uf4d9';
+
+                parentElement.style.overflowY = 'auto'; 
+
+                foldBtn.addEventListener('click', () => {
+                    const isCollapsed = parentElement.classList.toggle('collapsed');
+                    foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
+
+                    if (isCollapsed) {
+                        parentElement.style.maxHeight = `${collapsed_height}px`;
+                        parentElement.style.overflowX = 'auto';
+                    } else {
+                        parentElement.style.maxHeight = 'none';
+                        void parentElement.offsetHeight;
+                        parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                    }
+                });
+            }
+
+            
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeBlock.textContent);
+                    copyBtn.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyBtn.textContent = '\uf4bb COPY', 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                }
+            });
+
+            
+            tools.append(langLabel, foldBtn, copyBtn);
+            parentElement.prepend(tools);
+        });
+    });
+</script>
+
+<style>
+ 
+.code-tools {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-family: "Maple Mono NF CN";
+}
+
+.fold-btn {
+    cursor: pointer;
+    border: none;
+    color: #666;
+    background: none;
+    font-family: "Maple Mono NF CN";
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0 0.45rem;
+    transition: all 0.2s ease;
+}
+
+ 
+.lang-label {
+     
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+ 
+.copy-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+}
+
+ 
+pre:hover .code-tools {
+    opacity: 1;
+    pointer-events: auto;
+}
+</style>
+
+
+  
+<script>
+    
+    window.diagramRenderUtils = {
+        
+        getOrCreateFullscreenOverlay: function() {
+            let overlay = document.querySelector('.fullscreen-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'fullscreen-overlay';
+                document.body.appendChild(overlay);
+
+                
+                overlay.addEventListener('dblclick', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            }
+            return overlay;
+        },
+
+        
+        createDiagramContainer: function() {
+            const container = document.createElement('div');
+            container.className = 'code-rendered-diagram';
+            return container;
+        },
+
+        
+        createCopyButton: function() {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'code-rendered-diagram-copy-button';
+            copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+            return copyButton;
+        },
+
+        
+        createFullscreenButton: function() {
+            const fullscreenButton = document.createElement('button');
+            fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+            fullscreenButton.innerHTML = '&#xf065; FULL';
+            return fullscreenButton;
+        },
+
+        
+        makeSVGTransparent: function(svgText) {
+            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                .forEach(el => {
+                    if (el.tagName !== 'svg') {
+                        el.setAttribute('fill', 'transparent');
+                    }
+                });
+            doc.documentElement.style.backgroundColor = 'transparent';
+            return new XMLSerializer().serializeToString(doc);
+        },
+
+        
+        setupCopyButton: function(copyButton, codeContent) {
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeContent);
+                    copyButton.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                } catch (err) {
+                    copyButton.textContent = 'FAILED';
+                    console.error('复制失败:', err);
+                }
+            });
+        },
+
+        
+        setupShowSourceCode: function(imageElem, sourceCode) {
+            
+            imageElem.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+
+                
+                const pre = document.createElement('pre');
+                const codeElem = document.createElement('code');
+                codeElem.textContent = sourceCode;
+                pre.appendChild(codeElem);
+
+                
+                window.diagramRenderUtils.popupWindowUtils.create({
+                    title: 'Source Code',
+                    content: pre,
+                    x: e.clientX,
+                    y: e.clientY,
+                    minWidth: 300,
+                    maxWidth: '60%',
+                    maxHeight: '60%',
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    className: 'source-code-viewer'
+                });
+            });
+        },
+
+        
+        setupFullscreenButton: function(fullscreenButton, contentElement, isImage = false) {
+            fullscreenButton.addEventListener('click', () => {
+                const overlay = this.getOrCreateFullscreenOverlay();
+                let clonedContent;
+
+                if (isImage) {
+                    
+                    clonedContent = contentElement.cloneNode(true);
+                } else {
+                    
+                    const svgElement = contentElement.querySelector('svg');
+                    if (!svgElement) return;
+                    clonedContent = svgElement.cloneNode(true);
+                }
+
+                overlay.innerHTML = '';
+
+                
+                const exitButton = document.createElement('button');
+                exitButton.className = 'fullscreen-exit-button';
+                exitButton.innerHTML = 'ESC';
+                exitButton.onclick = () => overlay.classList.remove('active');
+
+                overlay.appendChild(exitButton);
+                overlay.appendChild(clonedContent);
+                overlay.classList.add('active');
+
+                
+                this.setupZoomAndDrag(overlay, isImage ? 'img' : 'svg');
+            });
+        },
+
+        
+        setupZoomAndDrag: function(overlay, selector) {
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            const element = overlay.querySelector(selector);
+
+            
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY * -0.002;
+                const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                
+                const rect = element.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                
+                posX += mouseX * (1 - newScale / scale);
+                posY += mouseY * (1 - newScale / scale);
+
+                scale = newScale;
+                updateTransform();
+            });
+
+            
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === overlay) return;
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                overlay.classList.add('dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                overlay.classList.remove('dragging');
+            });
+
+            function updateTransform() {
+                element.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+        },
+
+        
+        popupWindowUtils: {
+            
+            create: function(options) {
+                
+                const config = {
+                    title: 'Popup Window',
+                    content: '',         
+                    x: 100,              
+                    y: 100,              
+                    minWidth: 300,       
+                    maxWidth: '80%',     
+                    maxHeight: '80%',    
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    onClose: null,       
+                    className: ''        
+                };
+
+                
+                Object.assign(config, options);
+
+                
+                if (config.className) {
+                    const existingPopup = document.querySelector(`.popup-window.${config.className}`);
+                    if (existingPopup) {
+                        document.body.removeChild(existingPopup);
+                    }
+                }
+
+                
+                const popup = document.createElement('div');
+                popup.className = `popup-window ${config.className}`.trim();
+
+                
+                const titleBar = document.createElement('div');
+                titleBar.className = 'popup-window-title';
+                titleBar.textContent = config.title;
+
+                
+                const closeButton = document.createElement('button');
+                closeButton.className = 'popup-window-close';
+                closeButton.innerHTML = '&times;';
+
+                
+                titleBar.appendChild(closeButton);
+
+                
+                const contentContainer = document.createElement('div');
+                contentContainer.className = 'popup-window-content';
+
+                
+                if (typeof config.content === 'string') {
+                    contentContainer.innerHTML = config.content;
+                } else if (config.content instanceof Element) {
+                    contentContainer.appendChild(config.content);
+                }
+
+                
+                popup.appendChild(titleBar);
+                popup.appendChild(contentContainer);
+
+                
+                popup.style.minWidth = typeof config.minWidth === 'number' ? `${config.minWidth}px` : config.minWidth;
+                popup.style.maxWidth = typeof config.maxWidth === 'number' ? `${config.maxWidth}px` : config.maxWidth;
+                popup.style.maxHeight = typeof config.maxHeight === 'number' ? `${config.maxHeight}px` : config.maxHeight;
+
+                
+                document.body.appendChild(popup);
+
+                
+                const popupRect = popup.getBoundingClientRect();
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+
+                
+                let left = Math.min(Math.max(config.x, 20), windowWidth - popupRect.width - 20);
+                let top = Math.min(Math.max(config.y, 20), windowHeight - popupRect.height - 20);
+
+                popup.style.left = `${left}px`;
+                popup.style.top = `${top}px`;
+
+                
+                const closePopup = () => {
+                    if (document.body.contains(popup)) {
+                        document.body.removeChild(popup);
+                        if (typeof config.onClose === 'function') {
+                            config.onClose();
+                        }
+                    }
+                };
+
+                closeButton.addEventListener('click', closePopup);
+
+                
+                if (config.closeOnEsc) {
+                    const escHandler = (e) => {
+                        if (e.key === 'Escape' && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('keydown', escHandler);
+                        }
+                    };
+                    document.addEventListener('keydown', escHandler);
+                }
+
+                
+                if (config.closeOnClickOutside) {
+                    const outsideClickHandler = (e) => {
+                        if (popup && !popup.contains(e.target) && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('mousedown', outsideClickHandler);
+                        }
+                    };
+
+                    
+                    setTimeout(() => {
+                        document.addEventListener('mousedown', outsideClickHandler);
+                    }, 100);
+                }
+
+                
+                let isDragging = false;
+                let offsetX = 0;
+                let offsetY = 0;
+
+                titleBar.addEventListener('mousedown', (e) => {
+                    
+                    if (e.target !== closeButton) {
+                        isDragging = true;
+                        offsetX = e.clientX - popup.getBoundingClientRect().left;
+                        offsetY = e.clientY - popup.getBoundingClientRect().top;
+                        popup.classList.add('dragging');
+                    }
+                });
+
+                const mouseMoveHandler = (e) => {
+                    if (isDragging) {
+                        let newLeft = e.clientX - offsetX;
+                        let newTop = e.clientY - offsetY;
+
+                        
+                        newLeft = Math.max(0, Math.min(windowWidth - popupRect.width, newLeft));
+                        newTop = Math.max(0, Math.min(windowHeight - popupRect.height, newTop));
+
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    }
+                };
+
+                const mouseUpHandler = () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        popup.classList.remove('dragging');
+                    }
+                };
+
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+
+                
+                return {
+                    element: popup,
+                    contentElement: contentContainer,
+                    close: closePopup,
+                    setTitle: (title) => {
+                        titleBar.textContent = title;
+                        titleBar.appendChild(closeButton); 
+                    },
+                    setContent: (content) => {
+                        contentContainer.innerHTML = '';
+                        if (typeof content === 'string') {
+                            contentContainer.innerHTML = content;
+                        } else if (content instanceof Element) {
+                            contentContainer.appendChild(content);
+                        }
+                    },
+                    setPosition: (x, y) => {
+                        let newLeft = Math.min(Math.max(x, 0), windowWidth - popupRect.width);
+                        let newTop = Math.min(Math.max(y, 0), windowHeight - popupRect.height);
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    },
+                    
+                    destroy: () => {
+                        document.removeEventListener('mousemove', mouseMoveHandler);
+                        document.removeEventListener('mouseup', mouseUpHandler);
+                        if (document.body.contains(popup)) {
+                            document.body.removeChild(popup);
+                        }
+                    }
+                };
+            }
+        }
+    };
+</script>
+<style>
+     
+    .code-rendered-diagram {
+        max-width: 80% !important;
+        height: auto;
+        position: relative;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .code-rendered-diagram-copy-button,
+    .code-rendered-diagram-fullscreen-button {
+        position: absolute;
+        top: 20px;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 0.3rem;
+        margin: 0 0 0 0.6rem;
+        color: #333;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.6rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        opacity: 0;
+    }
+
+    .code-rendered-diagram-copy-button {
+        right: 10px;
+    }
+
+    .code-rendered-diagram-fullscreen-button {
+        right: 100px;
+    }
+
+    .code-rendered-diagram:hover .code-rendered-diagram-copy-button,
+    .code-rendered-diagram:hover .code-rendered-diagram-fullscreen-button {
+        opacity: 1;
+    }
+
+    .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FBFBFB;
+         
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fullscreen-overlay.active {
+        display: flex;
+    }
+
+    .fullscreen-overlay img,
+    .fullscreen-overlay svg {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        cursor: move;
+        transition: transform 0.1s ease-out;
+        transform-origin: center center;
+    }
+
+    .fullscreen-overlay svg {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .fullscreen-overlay.dragging {
+        cursor: move;
+    }
+
+    .fullscreen-exit-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        color: #666;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        transition: all 0.2s ease;
+        z-index: 100000;
+    }
+
+    .fullscreen-exit-button:hover {
+        background-color: #e0e0e0;
+        color: #333;
+    }
+
+     
+    .popup-window {
+        position: fixed;
+        z-index: 10000;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .popup-window.dragging {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        opacity: 0.95;
+    }
+
+    .popup-window-title {
+        background-color: #e8e8e8;
+        padding: 8px 12px;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        cursor: move;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #333;
+        font-family: "Maple Mono NF CN", monospace;
+        font-size: 0.9rem;
+    }
+
+    .popup-window-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #666;
+        padding: 0 4px;
+        margin: -4px -4px 0 0;
+        transition: color 0.2s ease;
+    }
+
+    .popup-window-close:hover {
+        color: #333;
+    }
+
+    .popup-window-content {
+        overflow: auto;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+     
+    .popup-window.source-code-viewer .popup-window-content {
+        font-family: "Maple Mono NF CN", monospace;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content pre {
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content code {
+        font-family: "Maple Mono NF CN", monospace;
+        color: #333;
+    }
+</style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
+        if (!plantumlBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
+
+        
+        script.onload = () => {
+            const plantuml_theme = `
+scale 5
+skinparam shadowing false
+skinparam BackgroundColor transparent
+skinparam UsecaseBackgroundColor #white
+skinparam classBackgroundColor #white
+skinparam ActivityBackgroundColor #white
+skinparam ActorBackgroundColor #white
+skinparam participantBackgroundColor #white
+    `.trim();
+
+            plantumlBlocks.forEach(codeBlock => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const img = document.createElement('img');
+                img.className = 'code-rendered-diagram-img';
+                img.style.display = 'block';
+                img.alt = 'PlantUML Diagram';
+
+                
+                const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
+                img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, fullCode);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(img, fullCode);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, img, true);
+
+                
+                
+
+                
+                container.appendChild(img);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+                codeBlock.parentElement.replaceWith(container);
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+        if (!mermaidBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js';
+
+        
+        script.onload = () => {
+            
+            mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                
+                
+                
+                theme: 'neutral',
+                
+                
+            });
+
+            
+            mermaidBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const renderDiv = document.createElement('div');
+                renderDiv.id = `mermaid-diagram-${index}`;
+                renderDiv.style.background = 'transparent';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                try {
+                    
+                    mermaid.render(`mermaid-svg-${index}`, code).then(result => {
+                        renderDiv.innerHTML = result.svg;
+
+                        
+                        const svg = renderDiv.querySelector('svg');
+                        if (svg) {
+                            svg.style.backgroundColor = 'transparent';
+                            
+                            svg.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                                .forEach(el => {
+                                    if (el.tagName !== 'svg') {
+                                        el.setAttribute('fill', 'transparent');
+                                    }
+                                });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Mermaid渲染错误:', error);
+                    renderDiv.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Mermaid渲染错误: ${error.message}
+                    </div>`;
+                }
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(renderDiv, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, renderDiv, false);
+
+                
+                container.appendChild(renderDiv);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const markmapBlocks = document.querySelectorAll('pre code.language-map, pre code.language-mindmap');
+        if (!markmapBlocks.length) return;
+
+        
+        Promise.all([
+            loadScript('https://cdn.jsdelivr.net/npm/d3@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-view@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-lib@latest')
+        ]).then(() => {
+            
+            markmapBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const markmapContainer = document.createElement('div');
+                markmapContainer.className = 'markmap';
+                markmapContainer.id = `markmap-${index}`;
+                markmapContainer.style.minHeight = '300px';
+                markmapContainer.style.width = '100%';
+                markmapContainer.style.position = 'relative';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                
+                const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.style.width = '100%';
+                svgElement.style.height = '400px';
+                markmapContainer.appendChild(svgElement);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(markmapContainer, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, markmapContainer, false);
+
+                
+                container.appendChild(markmapContainer);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+
+                
+                try {
+                    
+                    const { Transformer } = window.markmap;
+                    const transformer = new Transformer();
+
+                    
+                    const { root, features } = transformer.transform(code);
+
+                    
+                    const { Markmap } = window.markmap;
+                    const mm = new Markmap(svgElement, {
+                        autoFit: true,
+                        duration: 500,
+                        zoom: true,
+                    });
+
+                    
+                    mm.setData(root, features);
+                    mm.fit();
+
+                    
+                    markmapContainer.dataset.markmapData = JSON.stringify({
+                        root: root,
+                        features: features
+                    });
+
+                    
+                    setTimeout(() => {
+                        const links = svgElement.querySelectorAll('a');
+                        links.forEach(link => {
+                            link.setAttribute('target', '_blank');
+                            link.setAttribute('rel', 'noopener noreferrer');
+                        });
+                    }, 100);
+                } catch (error) {
+                    console.error('Markmap渲染错误:', error);
+                    markmapContainer.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Markmap渲染错误: ${error.message}
+                    </div>`;
+                }
+            });
+        }).catch(error => {
+            console.error('加载markmap库失败:', error);
+        });
+
+        
+        function loadScript(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+    });
+</script>
+
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        if (!window.diagramRenderUtils) return;
+
+        
+        const originalSetupFullscreenButton = window.diagramRenderUtils.setupFullscreenButton;
+        window.diagramRenderUtils.setupFullscreenButton = function(fullscreenButton, contentElement, isImage = false) {
+            
+            const isMarkmap = contentElement.classList.contains('markmap');
+
+            if (isMarkmap) {
+                fullscreenButton.addEventListener('click', () => {
+                    const overlay = this.getOrCreateFullscreenOverlay();
+                    overlay.innerHTML = '';
+
+                    
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => overlay.classList.remove('active');
+                    overlay.appendChild(exitButton);
+
+                    
+                    const fullscreenContainer = document.createElement('div');
+                    fullscreenContainer.className = 'markmap';
+                    fullscreenContainer.style.width = '100%';
+                    fullscreenContainer.style.height = '100%';
+
+                    
+                    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svgElement.style.width = '100%';
+                    svgElement.style.height = '100%';
+                    fullscreenContainer.appendChild(svgElement);
+
+                    overlay.appendChild(fullscreenContainer);
+                    overlay.classList.add('active');
+
+                    
+                    try {
+                        const markmapData = JSON.parse(contentElement.dataset.markmapData || '{}');
+                        if (markmapData.root) {
+                            
+                            const { Markmap } = window.markmap;
+                            const mm = new Markmap(svgElement, {
+                                autoFit: true,
+                                duration: 500,
+                                zoom: true,
+                            });
+
+                            
+                            mm.setData(markmapData.root, markmapData.features);
+                            mm.fit();
+
+                            
+                            setTimeout(() => {
+                                const links = svgElement.querySelectorAll('a');
+                                links.forEach(link => {
+                                    link.setAttribute('target', '_blank');
+                                    link.setAttribute('rel', 'noopener noreferrer');
+                                });
+                            }, 100);
+                        }
+                    } catch (error) {
+                        console.error('全屏模式下渲染markmap失败:', error);
+                    }
+
+                    
+                    this.setupZoomAndDrag(overlay, 'svg');
+                });
+            } else {
+                
+                originalSetupFullscreenButton.call(this, fullscreenButton, contentElement, isImage);
+            }
+        };
+    });
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const DIAGRAM_MAP = new Map([
+            ['plantuml_kroki', 'plantuml'],
+            ['mermaid_kroki', 'mermaid'],
+            ['graphviz', 'graphviz'],
+            ['blockdiag', 'blockdiag'],
+            ['seqdiag', 'seqdiag'],
+            ['actdiag', 'actdiag'],
+            ['packetdiag', 'packetdiag'],
+            ['database', 'dbml'],
+            ['dbml', 'dbml'],
+            ['vega', 'vega']
+        ]);
+
+        
+        const blocks = [];
+        document.querySelectorAll('pre code[class]').forEach(block => {
+            if (block.dataset.kroki) return;
+            const lang = [...block.classList].find(c => DIAGRAM_MAP.has(c.split('-')[1]));
+            if (lang) {
+                block.dataset.kroki = 'processed';
+                blocks.push({ block, api: DIAGRAM_MAP.get(lang.split('-')[1]) });
+            }
+        });
+
+        if (!blocks.length) return;
+
+        
+        const CONCURRENCY = 6;
+        const queue = blocks.slice();
+
+        (async function processQueue() {
+            const workers = Array(Math.min(CONCURRENCY, queue.length))
+                .fill()
+                .map(async () => {
+                    while (queue.length) {
+                        const { block, api } = queue.pop();
+                        await renderBlock(block, api);
+                    }
+                });
+            await Promise.all(workers);
+        })();
+
+        async function renderBlock(block, api) {
+            const pre = block.closest('pre');
+            try {
+                const code = block.textContent.trim();
+                if (!code) {
+                    pre.style.border = '2px solid orange';
+                    return;
+                }
+
+                const res = await fetch(`https://kroki.io/${api}/svg`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: code
+                });
+
+                if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
+
+                
+                const svg = window.diagramRenderUtils.createDiagramContainer();
+                svg.innerHTML = window.diagramRenderUtils.makeSVGTransparent(await res.text());
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, svg, false);
+                svg.appendChild(fullscreenButton);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+                svg.appendChild(copyButton);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(svg, code);
+
+                pre.insertAdjacentElement('afterend', svg);
+
+                
+                pre.remove();
+            } catch (err) {
+                console.error(`[Kroki] 渲染失败: ${err.message}`);
+                pre.style.border = '2px solid red';
+                pre.title = err.message;
+            }
+        }
+    });
+</script>
+
+
+  
+
+  <div id="search-modal">
+  <input type="text" id="modal-search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
+  <div id="modal-search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="modal-search-results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+  function debug(text) {
+      document.getElementById('modal-search-debug').textContent = text;
+  }
+  function showpages() {
+    debug("当前本站共有 " + searchIndex.length + " 篇文章");
+  }
+
+  let searchIndex = [];
+  
+  
+    
+  
+
+  
+    searchIndex.push({
+      title: "\"Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)\"",
+      permalink: "\"/%E7%BD%91%E9%A1%B5%E5%89%AA%E8%97%8F/epoll%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"epoll\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)\"",
+      permalink: "\"/%E7%BD%91%E9%A1%B5%E5%89%AA%E8%97%8F/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)\"",
+      permalink: "\"/%E7%BD%91%E9%A1%B5%E5%89%AA%E8%97%8F/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"asio\"]",
+      series: "[\"网络编程\"]",
+      date: "\"2025-04-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"GoogleTest入门指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16717123.html)\"",
+      permalink: "\"/%E7%BD%91%E9%A1%B5%E5%89%AA%E8%97%8F/googletest%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"GoogleTest进阶之gMock | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)\"",
+      permalink: "\"/%E7%BD%91%E9%A1%B5%E5%89%AA%E8%97%8F/googletest%E8%BF%9B%E9%98%B6%E4%B9%8Bgmock/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)\"",
+      permalink: "\"/%E7%BD%91%E9%A1%B5%E5%89%AA%E8%97%8F/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)\"",
+      permalink: "\"/%E7%BD%91%E9%A1%B5%E5%89%AA%E8%97%8F/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"Docker\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)\"",
+      permalink: "\"/%E7%BD%91%E9%A1%B5%E5%89%AA%E8%97%8F/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"CyberRT\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++小技巧\"",
+      permalink: "\"/cpp/c++%E5%B0%8F%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"快速上手 modern c++\"]",
+      date: "\"2025-04-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"tmux 快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"tmux\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Valgrind快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/valgrind%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"valgrind\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Mermaid快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/mermaid%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"mermaid\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-07\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT框架总览\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"通信中间件术语表\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E6%9C%AF%E8%AF%AD%E8%A1%A8/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: [],
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-27\""
+    });
+  
+    searchIndex.push({
+      title: "\"现代C++开发环境配置指南\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"c++\"]",
+      series: "[\"环境配置专栏\"]",
+      date: "\"2025-03-26\""
+    });
+  
+    searchIndex.push({
+      title: "\"带着目的学：CyberRT\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6cyberrt/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Linux环境变量加载顺序分析\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E5%88%86%E6%9E%90/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"linux\"]",
+      series: [],
+      date: "\"2025-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"手册速查方案（如cppreference）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"cppreference\"]",
+      series: [],
+      date: "\"2025-03-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT中的代码和工程技巧\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\",\"C++\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"设计模式\"",
+      permalink: "\"/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/\"",
+      
+      categories: "[\"软件工程\"]",
+      tags: "[\"SE\"]",
+      series: "[\"设计模式专项总结\"]",
+      date: "\"2025-02-28\""
+    });
+  
+    searchIndex.push({
+      title: "\"一站式环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: "[\"环境配置专栏\"]",
+      date: "\"2025-02-24\""
+    });
+  
+    searchIndex.push({
+      title: "\"leetcode调试指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/\"",
+      
+      categories: [],
+      tags: "[\"leetcode\"]",
+      series: [],
+      date: "\"2024-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"linux命令行大记忆恢复术\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"linux\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"番茄鸡蛋面\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E8%8F%9C%E8%B0%B1/%E7%95%AA%E8%8C%84%E9%B8%A1%E8%9B%8B%E9%9D%A2/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: [],
+      series: "[\"快速做饭\"]",
+      date: "\"2023-10-22\""
+    });
+  
+    searchIndex.push({
+      title: "\"PlantUML快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"uml\",\"plantuml\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-10-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"windows安装wsl\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/wsl%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2023-09-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++网络编程入门概念及api总结\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/\"",
+      
+      categories: [],
+      tags: "[\"linux\",\"网络编程\"]",
+      series: "[\"面筋\",\"快速上手\"]",
+      date: "\"2023-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"苏州旅行计划\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/%E8%8B%8F%E5%B7%9E/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: "[\"旅行\"]",
+      series: [],
+      date: "\"2023-04-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"gdb快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"gdb\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2022-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Ubuntu22.04安装Hadoop完全分布式集群\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"hadoop\"]",
+      series: [],
+      date: "\"2022-11-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++连接mysql\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E8%BF%9E%E6%8E%A5mysql/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2022-11-20\""
+    });
+  
+    searchIndex.push({
+      title: "\"征服C指针笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/\"",
+      
+      categories: [],
+      tags: [],
+      series: [],
+      date: "\"2022-10-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Leetcode刷题指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"算法\"]",
+      tags: "[\"leetcode\"]",
+      series: "[\"leetcode刷题指南\"]",
+      date: "\"2022-09-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"word 页眉页脚设置\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/word%E9%A1%B5%E7%9C%89%E9%A1%B5%E8%84%9A%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: [],
+      series: [],
+      date: "\"2021-04-03\""
+    });
+  
+    searchIndex.push({
+      title: "\"Markdown Demo\"",
+      permalink: "\"/%E6%B5%8B%E8%AF%95/markdown-demo/\"",
+      
+      categories: [],
+      tags: "[\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"常用数学符号的latex表示\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84latex%E8%A1%A8%E7%A4%BA/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"latex\",\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+
+  showpages()
+
+  const options = {
+    includeScore: true,
+    threshold: 0.6,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'content', weight: 0.3 },
+      { name: 'tags', weight: 0.5 },
+      { name: 'categories', weight: 0.5 },
+      { name: 'series', weight: 0.5 }
+    ]
+  };
+
+  const fuse = new Fuse(searchIndex, options);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'k') {
+      event.preventDefault();
+      toggleSearchModal();
+    } else if (event.key === 'Escape') {
+      document.getElementById('modal-search-input').value = "";
+      closeSearchModal();
+      var res = document.getElementById('modal-search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      showpages();
+    }
+  });
+
+  function toggleSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+      document.getElementById('modal-search-input').focus();
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('modal-search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.trim();
+    const resultsContainer = document.getElementById('modal-search-results');
+    resultsContainer.innerHTML = '';
+
+    if (searchTerm === '') {
+      showpages()
+      return;
+    }
+
+    const results = fuse.search(searchTerm);
+
+    results.sort((a, b) => new Date(b.item.date) - new Date(a.item.date));
+
+    if (results.length === 0) {
+      showpages()
+      resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
+      return;
+    } else {
+      debug("共找到 " + results.length + " 篇匹配的文章")
+    }
+
+    results.forEach(result => {
+      const item = result.item;
+      const resultItem = document.createElement('div');
+      resultItem.className = 'modal-search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
+      date.className = 'modal-search-result-date';
+
+      const link = document.createElement('a');
+      link.href = item.permalink.replace(/^"|"$/g, '');
+      link.textContent = item.title.replace(/^"|"$/g, '');
+      link.className = 'modal-search-result-title';
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
+    });
+  });
+</script>
+
+<style>
+ 
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
+    border-radius: 6px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+}
+
+#modal-search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#modal-search-results {
+    margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.modal-search-result-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+    text-wrap: nowrap;
+}
+
+.modal-search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.modal-search-result-title:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+  
+<link rel="stylesheet" href="/css/note_down.min.6f53446a3926929fbd997660313634ca1db4a0566a04ccb07965d98c77e930d8.css">
+
+
+<script src="/js/note_down.min.f712cab3a19c2b6a7f727ecc52c9666678bba69993e36c2ada9d44bfbf4f5b13.js" defer></script>
+
+  
+  <hr />
+  © 
+<a href="https://kaikaixixi.xyz"  target="_blank" rel="noopener noreferrer" >SHUAIKAI</a>
+ 2021 &ndash; 2025 | 🎨
+<a href="https://github.com/captainwc/captainwc.github.io/tree/main/themes/ksimple"  target="_blank" rel="noopener noreferrer" >KSimple</a>
+  
+
+</footer>
+</body>
+
+</html>
+
