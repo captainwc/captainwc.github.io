@@ -64,7 +64,7 @@ markup:
         mark:
           enable: true
         insert:
-          enable: true
+          enable: false
         delete:
           enable: true
         subscript:
