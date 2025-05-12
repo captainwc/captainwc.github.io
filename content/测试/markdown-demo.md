@@ -2,6 +2,10 @@
 date: "2021-02-15T18:08:01+08:00"
 title: "Markdown Demo"
 tags: ["markdown"]
+aliases:
+    - /hello
+    - /demosite
+    - /demo
 ---
 
 [<img src="https://simpleicons.org/icons/github.svg" style="max-width:10%;min-width:40px;float:right;" alt="Github repo" />](https://github.com/captainwc)
