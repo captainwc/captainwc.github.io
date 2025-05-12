@@ -1,5 +1,8 @@
+{{ if .Site.Params.ksimpleUsePrismJs }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/prism.min.css">
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/prism.min.js"></script>
+{{ else }}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
-
 <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/highlight.min.js"></script>
-
 <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll())</script>
+{{ end }}

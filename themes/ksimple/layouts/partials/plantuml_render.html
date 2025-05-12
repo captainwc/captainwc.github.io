@@ -10,16 +10,7 @@
 
         // 3. 加载完成后执行渲染
         script.onload = () => {
-            const plantuml_theme = `
-scale 5
-skinparam shadowing false
-skinparam BackgroundColor transparent
-skinparam UsecaseBackgroundColor #white
-skinparam classBackgroundColor #white
-skinparam ActivityBackgroundColor #white
-skinparam ActorBackgroundColor #white
-skinparam participantBackgroundColor #white
-    `.trim();
+            const plantuml_theme = parsePlantumlUserConfig();
 
             plantumlBlocks.forEach(codeBlock => {
                 // 使用公共方法创建容器
@@ -60,4 +51,48 @@ skinparam participantBackgroundColor #white
         // 4. 注入脚本到页面
         document.head.appendChild(script);
     });
+
+    function parsePlantumlUserConfig() {
+        let configItems = [];
+
+        {{ with .Site.Params.plantumlDefaultScale }}
+            configItems.push(`scale {{ . }}`);
+        {{ end }}
+
+        {{ with .Site.Params.plantumlDefaultSkin }}
+            configItems.push(`skin {{ . }}`);
+        {{ end }}
+
+        {{ $shadowParam := .Site.Params.plantumlAddSkinShadowing | default false }}
+        {{ if eq (printf "%T" $shadowParam) "bool" }}
+            {{ if $shadowParam }}
+                configItems.push(`skinparam shadowing true`);
+            {{ else }}
+                configItems.push(`skinparam shadowing false`);
+            {{ end }}
+        {{ else }}
+            {{ if eq $shadowParam "true" }}
+                configItems.push(`skinparam shadowing true`);
+            {{ else }}
+                configItems.push(`skinparam shadowing false`);
+            {{ end }}
+        {{ end }}
+
+        {{ if .Site.Params.plantumlBackgroundTransparent }}
+            configItems.push(`
+skinparam BackgroundColor transparent
+skinparam UsecaseBackgroundColor #white
+skinparam classBackgroundColor #white
+skinparam ActivityBackgroundColor #white
+skinparam ActorBackgroundColor #white
+skinparam participantBackgroundColor #white
+            `);
+        {{ end }}
+
+        {{ with .Site.Params.plantumlCustomParam }}
+            configItems.push(`{{ . }}`);
+        {{ end }}
+
+        return configItems.join("\n").trim();
+    }
 </script>

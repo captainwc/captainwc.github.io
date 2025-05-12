@@ -1,0 +1,112 @@
+## KSimple Theme Default Configuration
+## Can be overridden by the site configuration in hugo.yaml/toml
+
+## [[🔔 TIPS]] You'd better check all the items marked with "🛠️" and "🚨" and configure them to customize your website. The "🛠️" items are optional, while the "🚨" items mean you must specify them.
+
+## Common Settings，add to your hugo.yml to take effect
+# baseurl: "[[https://Your Site]]"
+# title: "[[My Blog With KSimple]]"
+# languageCode: "zh-cn"
+# theme: ["ksimple"]
+# metaDataFormat: "yaml"
+# googleAnalytics: ""
+# disqusShortname: ""
+# ignoreFiles: ["_cache$"]
+# enableEmoji: true
+
+## Theme-specific parameters
+params:
+  description: "KSimple -- A hugo theme created by SHUAIKAI, striving for simplicity and aesthetics."
+  footer: "&copy; [Author](https://[[🚨 Your Home Page Link]]) {🚨 Start Year} -- {Year} | 🎨[KSimple](https://github.com/captainwc/captainwc.github.io/tree/main/themes/ksimple)"
+  githubUserName: "[[🚨 Your Github Name]]"
+  cusdisID: "[[🚨 CusdisID to use comment area, get from https://cusdis.com]]"
+
+  ## [[🛠️]] Features Config
+  defaultNewPostCreatedFolder: "" # The default folder when you create a new document via the "edit" button on github.com (relative to "content").
+
+  ## [[🛠️]] Mermaid Default Config
+  mermaidDefaultTheme: "neutral" # Themes: 'default' 'neutral', 'dark', 'forest', 'base'
+  mermaidDefaultLook: "default" # Look: 'handDrawn' 'default'
+  mermaidDefaultFont: "" # eg: 'Maple Mono Normal NF CN'
+
+  ## [[🛠️]] Plantuml Style Config
+  plantumlDefaultScale: "5" # A larger scale value can make the generated SVG clearer.
+  plantumlDefaultSkin: "" # Skin: 'plantuml' 'rose'
+  plantumlBackgroundTransparent: true # The generated SVG uses a transparent background and a lot of white color tones (with some presets already in place).
+  plantumlAddSkinShadowing: false # Whether to add shadows to the images.
+  plantumlCustomParam: "" # Any other params you want add to your every plantuml header (Use plantuml's syntax)
+
+  ## [[🛠️ 🧙‍♀️]] NewFeatures
+  ksimpleUseLocalPageNote: true # After enabling this feature, you can right-click on any page of the website to create or view notes that belong to the current page. (These notes are stored in the browser's local cache.)
+  ksimpleUseProgressBarForTodoList: true # Add a progress bar for every todolist.
+  ksimpleUsePrismJs: false # Use highlight.js(Recommended) or prism.js to highlight your code
+
+## taxonomies
+taxonomies:
+  categories: categories
+  tags: tags
+  series: series
+  archives: archives
+
+## Default menu structure
+menu:
+  main:
+    - name: Home
+      url: ""
+      weight: 1
+    - name: Serie
+      url: "series/"
+      weight: 2
+    - name: Category
+      url: "categories/"
+      weight: 3
+    - name: Tag
+      url: "tags/"
+      weight: 4
+    - name: Archive
+      url: "archives/"
+      weight: 5
+    - name: Search
+      url: "search/"
+      weight: 6
+    - name: About
+      url: "about/"
+      weight: 10
+## Recommend markup configuration，must add to your hugo.yml to take effect
+# markup:
+#   highlight:
+#     codeFences: false
+#   goldmark:
+#     parser:
+#       attribute:
+#         block: true
+#     renderer:
+#       unsafe: true
+#     extensions:
+#       strikethrough: false
+#       extras:
+#         mark:
+#           enable: true
+#         insert:
+#           enable: false
+#         delete:
+#           enable: true
+#         subscript:
+#           enable: false
+#         superscript:
+#           enable: true
+#       typographer:
+#         enable: false # Disable automatic symbol conversion to prevent formula interference
+#       passthrough:
+#         enable: true
+#         delimiters:
+#           block:
+#             - ["\\[", "\\]"] # Block-level formula \[...\]
+#             - ["$$", "$$"] # Block-level formula $$...$$
+#           inline:
+#             - ["\\(", "\\)"] # Inline formula \(...\)
+
+## permalinks, [ref] https://www.engino.co.uk/form-elements/urls/
+# permalinks:
+#   "content-dir1-note": "/this-is-note/:year/:month/:day/:slug/"
+#   "content-dir2-xxx": "/xxx/:section/:filename/:slug/"

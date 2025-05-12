@@ -15,10 +15,11 @@
             mermaid.initialize({
                 startOnLoad: false,
                 securityLevel: 'loose',
-                // fontFamily: 'Maple Mono Normal NF CN',
-                // look: 'handDrawn',
+                fontFamily: '{{ .Site.Params.mermaidDefaultFont }}',
+                // look: 'default' 'handDrawn'
+                look: '{{ .Site.Params.mermaidDefaultLook }}',
                 // themes: 'default' 'neutral', 'dark', 'forest', 'base'
-                theme: 'neutral',
+                theme: '{{ .Site.Params.mermaidDefaultTheme }}',
                 // Other configs: [https://mermaid.nodejs.cn/config/usage.html, https://mermaid.nodejs.cn/intro/syntax-reference.html]
                 // Front Yaml in mermaid like ```mermaid --- config: xxx: xxx ---``` is allowed too
             });

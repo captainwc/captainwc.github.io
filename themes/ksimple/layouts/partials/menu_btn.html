@@ -10,7 +10,7 @@
 
     <!-- 编辑按钮 -->
     <div class="menu-popup-btn edit-btn">
-        <a href='{{ if .IsHome }}https://github.com/{{ .Site.Params.githubUserName }}/{{ .Site.Params.githubUserName }}.github.io/new/main/content/测试{{ else }}https://github.com/{{ .Site.Params.githubUserName }}/{{ .Site.Params.githubUserName }}.github.io/edit/main/content/{{ replace .File.Path "\\" "/" }}{{ end }}'
+        <a href='{{ if .IsHome }}https://github.com/{{ .Site.Params.githubUserName }}/{{ .Site.Params.githubUserName }}.github.io/new/main/content/{{ .Site.Params.defaultNewPostCreatedFolder }}{{ else }}https://github.com/{{ .Site.Params.githubUserName }}/{{ .Site.Params.githubUserName }}.github.io/edit/main/content/{{ replace .File.Path "\\" "/" }}{{ end }}'
             target="_blank" rel="noopener">
             <i class="fa-solid fa-square-pen"></i>
         </a>

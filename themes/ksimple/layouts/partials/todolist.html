@@ -12,8 +12,10 @@
         const todolistContainer = document.createElement('div');
         todolistContainer.className = 'todolist';
 
-        // 添加进度条
-        addTaskProgressBar(ul, todolistContainer);
+        {{ if .Site.Params.ksimpleUseProgressBarForTodoList }}
+          // 添加进度条
+          addTaskProgressBar(ul, todolistContainer);
+        {{ end }}
 
         // 转换每个列表项
         ul.querySelectorAll('li').forEach(li => {

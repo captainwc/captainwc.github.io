@@ -26,7 +26,9 @@
 
   {{ partial "search_modal.html" . }}
 
+  {{ if .Site.Params.ksimpleUseLocalPageNote }}
   {{ partial "note_down.html" . }}
+  {{ end }}
 
   {{ with .Site.Params.footer }}
   <hr />
