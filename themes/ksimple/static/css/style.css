@@ -6,8 +6,7 @@ body {
     margin-right: auto !important;
     padding: 1em;
     line-height: 1.5;
-    /*    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.85) 10%, rgba(255, 255, 255, 0.96) 21%, rgba(255, 255, 255, 0.96) 80%, rgba(255, 255, 255, 0.85) 90%, rgba(255, 255, 255, 0.75) 100%), url('/images/background.jpg');*/
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.85) 10%, rgba(255, 255, 255, 0.95) 21%, rgba(255, 255, 255, 0.95) 80%, rgba(255, 255, 255, 0.82) 85%, rgba(255, 255, 255, 0.66) 100%), url('/images/background-moon.jpg');
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.85) 10%, rgba(255, 255, 255, 0.96) 21%, rgba(255, 255, 255, 0.96) 80%, rgba(255, 255, 255, 0.85) 90%, rgba(255, 255, 255, 0.75) 100%), url('/images/background.jpg');
     background-position: center;
     background-size: cover;
     background-attachment: fixed;

@@ -21,10 +21,13 @@ params:
   githubUserName: "[[🚨 Your Github Name]]"
   cusdisID: "[[🚨 CusdisID to use comment area, get from https://cusdis.com]]"
 
+  ## [[🛠️]] Custom style
+  # You can specify your style in static/css/custom.css to cover the default.
+
   ## [[🛠️]] Features Config
   defaultNewPostCreatedFolder: "" # The default folder when you create a new document via the "edit" button on github.com (relative to "content").
 
-  ## [[🛠️]] Mermaid Default Config
+  ## [[🛠️]] Mermaid Style Config
   mermaidDefaultTheme: "neutral" # Themes: 'default' 'neutral', 'dark', 'forest', 'base'
   mermaidDefaultLook: "default" # Look: 'handDrawn' 'default'
   mermaidDefaultFont: "" # eg: 'Maple Mono Normal NF CN'
