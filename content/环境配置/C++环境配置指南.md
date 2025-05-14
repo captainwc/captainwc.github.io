@@ -867,7 +867,7 @@ bazel我还在学，这里只说环境怎么配置就好了。想学习第一手
 
 - [bazelisk](https://github.com/bazelbuild/bazelisk): 与 bazel 接口完全相同，区别在于这个能自动下载、切换到你需要的bazel版本，也是官方推荐安装的。详情看[使用 Bazelisk 安装 / 更新 Bazel](https://bazel.build/install/bazelisk?hl=zh-cn)
 - [buildtools](https://github.com/bazelbuild/buildtools/releases): （`scoop install bazel-buildtools`）包括格式化工具 [buildifier](https://github.com/bazelbuild/buildtools/blob/main/buildifier/README.md)，以及另外两个我没咋用到的 buildozer 和 unused_deps，项目 readme 中有说明
-- [sparkpls](https://github.com/withered-magic/starpls): lsp 服务。目前 bazel [官方插件推荐](https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel#Using%20a%20language%20server%20(experimental))的有两个（另一个是 [bazel-lsp](https://github.com/cameron-martin/bazel-lsp)，但是恰好它的 6.3 版本在我这有 bug 用不了）
+- [starpls](https://github.com/withered-magic/starpls): lsp 服务。目前 bazel [官方插件推荐](https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel#Using%20a%20language%20server%20(experimental))的有两个（另一个是 [bazel-lsp](https://github.com/cameron-martin/bazel-lsp)，但是恰好它的 6.3 版本在我这有 bug 用不了）
 - [bazel-vscode](https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel): vscode 插件，all in one。包括构建、高亮、补全。但是要依赖上述几个工具 
 
 **vscode的配置**如下：
