@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Asio on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/tags/asio/</link>
+    <description>Recent content in Asio on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 17 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/tags/asio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)</title>
+      <link>https://kaikaixixi.xyz/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
+      <pubDate>Thu, 17 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
+      <description>&lt;h1 id=&#34;boostasio-基本使用与核心设计思想_boostasio-csdn博客&#34;&gt;【Boost】Asio 基本使用与核心设计思想_boost::asio-CSDN博客&lt;/h1&gt;&#xA;&#xA;          &lt;link rel=&#34;stylesheet&#34; href=&#34;https://kaikaixixi.xyz/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css&#34; integrity=&#34;sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=&#34; crossorigin=&#34;anonymous&#34;&gt;&#xA;  &lt;div class=&#34;admonition warning&#34;&gt;&#xA;    &lt;div class=&#34;admonition-header&#34;&gt;&#xA;      &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 512 512&#34;&gt;&lt;path d=&#34;M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z&#34;/&gt;&lt;/svg&gt;&#xA;      &lt;span&gt;声明&lt;/span&gt;&#xA;    &lt;/div&gt;&#xA;      &lt;div class=&#34;admonition-content&#34;&gt;&#xA;        &lt;ul&gt;&#xA;&lt;li&gt;本文由插件&#xA;&lt;a href=&#34;https://chromewebstore.google.com/detail/markdownload-markdown-web/pcmpcfapbekmbjjkdalcgopdkipoggdi?pli=1&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;Markdown Web Clipper&lt;/a&gt;&#xA;自动提取网页正文而来，并未获取原作者授权！&lt;/li&gt;&#xA;&lt;li&gt;本文仅作个人存档学习使用，如有任何疑问/需求请查看&#xA;&lt;a href=&#34;https://blog.csdn.net/gma999/article/details/143983035&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;原文&lt;/a&gt;&#xA;！&lt;/li&gt;&#xA;&lt;li&gt;如有侵权，请联系本人立刻删除！&lt;/li&gt;&#xA;&lt;li&gt;原文链接: &#xA;&lt;a href=&#34;https://blog.csdn.net/gma999/article/details/143983035&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;【Boost】Asio 基本使用与核心设计思想_boost::asio-CSDN博客&lt;/a&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;      &lt;/div&gt;&#xA;  &lt;/div&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;基本了解&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
