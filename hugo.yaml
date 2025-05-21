@@ -16,6 +16,27 @@ params:
   githubUserName: "captainwc"
   cusdisID: "697d528d-b618-4ee1-a6fe-403c81a646ac"
 
+  ## [[🛠️]] Features Config
+  defaultNewPostCreatedFolder: "测试"
+
+  ## [[🛠️]] Mermaid Style Config
+  mermaidDefaultTheme: "neutral" # Themes: 'default' 'neutral', 'dark', 'forest', 'base'
+  mermaidDefaultLook: "handDrawn" # Look: 'handDrawn' 'default'
+  mermaidDefaultFont: "Maple Mono NF CN" # eg: 'Maple Mono Normal NF CN'
+
+  ## [[🛠️]] Plantuml Style Config
+  plantumlDefaultScale: "5" # A larger scale value can make the generated SVG clearer.
+  plantumlDefaultSkin: "rose" # Skin: 'plantuml' 'rose'
+  plantumlBackgroundTransparent: true # The generated SVG uses a transparent background and a lot of white color tones (with some presets already in place).
+  plantumlUseWhiteBlock: false
+  plantumlAddSkinShadowing: false # Whether to add shadows to the images.
+  plantumlCustomParam: "skinparam BackgroundColor transparent" # Any other params you want add to your every plantuml header (Use plantuml's syntax)
+
+  ## [[🛠️ 🧙‍♀️]] NewFeatures
+  ksimpleUseLocalPageNote: false # After enabling this feature, you can right-click on any page of the website to create or view notes that belong to the current page. (These notes are stored in the browser's local cache.)
+  ksimpleUseProgressBarForTodoList: false # Add a progress bar for every todolist.
+  ksimpleUsePrismJs: false # Use highlight.js(Recommended) or prism.js to highlight your code
+
 permalinks:
   "网页剪藏": /转载/:year/:month/:day/:filename/
 
