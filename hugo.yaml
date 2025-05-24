@@ -11,7 +11,7 @@ enableEmoji: true
 
 params:
   description: "Welcome to KaiKai's blog!"
-  footer: "&copy; [SHUAIKAI](https://kaikaixixi.xyz) 2021 -- {Year} | 🎨[KSimple](https://github.com/captainwc/captainwc.github.io/tree/main/themes/ksimple)"
+  footer: "&copy; [SHUAIKAI](https://kaikaixixi.xyz) 2021 -- {Year} | 🎨[KSimple](https://github.com/captainwc/ksimple)"
   favicon: "/images/favicon.png"
   githubUserName: "captainwc"
   cusdisID: "697d528d-b618-4ee1-a6fe-403c81a646ac"

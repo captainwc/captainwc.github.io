@@ -1,0 +1,3 @@
+[submodule "themes/ksimple"]
+	path = themes/ksimple
+	url = git@github.com:captainwc/ksimple.git
