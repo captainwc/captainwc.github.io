@@ -36,6 +36,9 @@ params:
   ksimpleUseLocalPageNote: false # After enabling this feature, you can right-click on any page of the website to create or view notes that belong to the current page. (These notes are stored in the browser's local cache.)
   ksimpleUseProgressBarForTodoList: false # Add a progress bar for every todolist.
   ksimpleUsePrismJs: false # Use highlight.js(Recommended) or prism.js to highlight your code
+  ksimpleUseFloatToc: false
+  ksimpleUseFloatLeftSideBar: false
+  ksimpleUseEmbedScrollSync: true
 
 permalinks:
   "网页剪藏": /转载/:year/:month/:day/:filename/
