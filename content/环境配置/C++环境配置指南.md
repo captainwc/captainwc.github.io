@@ -1192,6 +1192,9 @@ sudo ldconfig  # 刷新缓存
 
 ### vscode
 
+> [!reference]
+> [.vscode几个配置文件说明](https://zhuanlan.zhihu.com/p/1910087435012015746?share_code=aW4cqvcjiOyE&utm_psn=1910504804075157180)
+
 ### vim
 
 ### nvim
