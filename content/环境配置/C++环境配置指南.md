@@ -890,6 +890,30 @@ bazel我还在学，这里只说环境怎么配置就好了。想学习第一手
 1. [kiron1/bazel-compile-commands](https://github.com/kiron1/bazel-compile-commands) ：在 Bazel 工作区中运行 `bazel-compile-commands //...` 以生成 `compile_commands.json` 文件。`compile_commands.json` 文件可让 `clang-tidy`、`clangd` (LSP) 和其他 IDE 等工具提供自动补全、智能导航、快速修复等功能。该工具使用 C++ 编写，并使用 Bazel 的 Protobuf 输出来提取编译命令。
 2. [hedronvision/bazel-compile-commands-extractor](https://github.com/hedronvision/bazel-compile-commands-extractor) ：可在各种可扩展的编辑器（包括 VSCode、Vim、Emacs、Atom 和 Sublime）中启用自动补全、智能导航、快速修复等功能。它可让 clangd 和 ccls 等语言服务器以及其他类型的工具利用 Bazel 对 `cc` 和 `objc` 代码编译方式的理解，包括它如何为其他平台配置交叉编译。
 
+**交叉编译工具链**
+
+这里以常见的在windows上修改编译器为mingw（默认为MSVC）为例，说明工具链怎么修改。参考仓库 [bazel-mingw-toolchain](https://github.com/vvviktor/bazel-mingw-toolchain)
+
+使用blzmod的话，MODULE.bazel添加如下内容：
+```python
+bazel_dep(
+    name = "mingw_toolchain"
+)
+git_override(
+    module_name = "mingw_toolchain",
+    remote = "https://github.com/vvviktor/bazel-mingw-toolchain.git",
+    commit = "0ea42a31c45f0ff146058cecd124053b6915205e",
+)
+```
+修改.bazelrc文件
+```bash
+build --incompatible_enable_cc_toolchain_resolution             # allow bazel to use custom toolchains
+build --define=MINGW_PATH="path/to/mingw"                       # define path to yuor mingw location, for example: build --define=MINGW_PATH="C:/msys64/ucrt64" 
+build --define=GCC_VERSION="gcc version"                        # define gcc version used, for example: build --define=GCC_VERSION="13.2.0"
+```
+
+其余的参考原仓库即可
+
 #### 依赖管理
 
 有些规模的C++程序，除了标准库外，一般都会依赖一些别的三方库，或者是自己造的轮子库，比如什么日志库、网络库等等。这些依赖大体上可以分为三种，一种是，静态库、动态库，还有一种 header-only 的库，顾名思义就是只有头文件，不用额外让你的程序链接上库文件（它的优劣可以参考这个[c++ - Benefits of header-only libraries - Stack Overflow](https://stackoverflow.com/questions/12671383/benefits-of-header-only-libraries)）。
