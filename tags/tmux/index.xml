@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tmux on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/tags/tmux/</link>
+    <description>Recent content in Tmux on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 08 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/tags/tmux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>tmux 快速上手</title>
+      <link>https://kaikaixixi.xyz/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</link>
+      <pubDate>Tue, 08 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</guid>
+      <description>&lt;h1 id=&#34;tmux-快速上手&#34;&gt;Tmux 快速上手&lt;/h1&gt;&#xA;&lt;p&gt;tmux是一个著名的终端复用工具&lt;/p&gt;&#xA;&lt;h2 id=&#34;安装配置&#34;&gt;安装配置&lt;/h2&gt;&#xA;&lt;p&gt;&#xA;&lt;a href=&#34;https://github.com/tmux/tmux/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;Releases · tmux/tmux&lt;/a&gt;&#xA;，如果安装不了，或者C库版本不支持，可以直接下载 &#xA;&lt;a href=&#34;https://gitee.com/kaikaixixi/modernunix/raw/main/linux-x86_64/static/tmux&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;静态的tmux版本 - tmux3.3a&lt;/a&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;配置，可以参考我的配置： &#xA;&lt;a href=&#34;https://github.com/captainwc/.dotfiles/tree/main/.config/tmux&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;.dotfiles/.config/tmux at main · captainwc/.dotfiles&lt;/a&gt;&#xA;，将 &lt;code&gt;tmux.conf&lt;/code&gt;和&lt;code&gt;tmux.conf.local&lt;/code&gt;放到&lt;code&gt;~/.local/tmux&lt;/code&gt;中。如果版本不支持，可以用一个简单版本的 &lt;code&gt;.tmux.conf.only-one-for-lower-version&lt;/code&gt; 放到 &lt;code&gt;~/.tmux.conf&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;如果安装了&#xA;&lt;a href=&#34;https://www.nerdfonts.com/cheat-sheet&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;Nerd Fonts&lt;/a&gt;&#xA;后图标仍然显示不对，可以试下是否是没有 &lt;code&gt;export LANG=en_US.UTF-8&lt;/code&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;核心概念&#34;&gt;核心概念&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;会话（session）&lt;/li&gt;&#xA;&lt;li&gt;窗口（window）&lt;/li&gt;&#xA;&lt;li&gt;窗格（pane）&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;快捷键&#34;&gt;快捷键&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b d&lt;/strong&gt; — 分离当前会话（让它在后台运行）&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b %&lt;/strong&gt; — 左右分屏&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b &amp;ldquo;&lt;/strong&gt; — 上下分屏&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b c&lt;/strong&gt; — 创建新的 &lt;strong&gt;window&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b w&lt;/strong&gt; — 查看所有的 &lt;strong&gt;window&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b n&lt;/strong&gt; or &lt;strong&gt;p&lt;/strong&gt; — 切换到下一个或者上一个 &lt;strong&gt;window&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b 1 (2,3&amp;hellip;)&lt;/strong&gt; — 移动到指定的&lt;strong&gt;window&lt;/strong&gt;，通过 index&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b q&lt;/strong&gt; — 查看 &lt;strong&gt;pane&lt;/strong&gt; 的标号&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b Arrow Key&lt;/strong&gt; (Left, Right, Up, Down) — 切换当前活动 &lt;strong&gt;pane&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b x&lt;/strong&gt; — 关闭 &lt;strong&gt;pane&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b :&lt;/strong&gt; — 命令行执行命令（支持tab补全）&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ctrl+b ?&lt;/strong&gt; — 查看所有的快捷键，按下 &lt;strong&gt;q&lt;/strong&gt; 退出&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;命令&#34;&gt;命令&lt;/h2&gt;&#xA;&lt;p&gt;&lt;code&gt;tmux ls&lt;/code&gt; 列出所有的tmux会话&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
