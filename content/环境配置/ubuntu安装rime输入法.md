@@ -18,10 +18,12 @@ export XMODIFIERS=@im=fcitx5
 
 ## 雾凇拼音安装
 
-https://dvel.me/posts/rime-ice/
-
 > [!reference]
+> 
+> https://dvel.me/posts/rime-ice/
+>
 > https://sspai.com/post/89281
+>
 > https://sspai.com/post/84373
 
 ```bash
