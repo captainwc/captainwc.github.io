@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式专项总结 on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/series/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A1%B9%E6%80%BB%E7%BB%93/</link>
+    <description>Recent content in 设计模式专项总结 on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 28 Feb 2025 00:19:19 +0800</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/series/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%93%E9%A1%B9%E6%80%BB%E7%BB%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>设计模式</title>
+      <link>https://kaikaixixi.xyz/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 28 Feb 2025 00:19:19 +0800</pubDate>
+      <guid>https://kaikaixixi.xyz/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description>&lt;h1 id=&#34;设计模式&#34;&gt;设计模式&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-关系&#34;&gt;1 关系&lt;/h2&gt;&#xA;&lt;h3 id=&#34;关联--依赖&#34;&gt;关联 &amp;amp; 依赖&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;依赖&lt;/strong&gt; 表示一种&lt;code&gt;使用&lt;/code&gt;关系，一个类的实现需要另一个类的协助，因此尽量使用单向的依赖。代码表现为参数依赖、局部变量、静态方法/变量依赖等&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;关联&lt;/strong&gt; 偏向一种&lt;code&gt;拥有&lt;/code&gt;关系，A 拥有 B，即 A 的某个成员，是 B 类的对象，也可以双向拥有，也可以仅仅是存在一种&lt;code&gt;关联&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-plantuml&#34;&gt;@startuml&#xA;scale 1&#xA;class Car {&#xA;    +run() void&#xA;}&#xA;class Driver {&#xA;    +Car car&#xA;    +drive() void&#xA;}&#xA;Driver &amp;quot;1&amp;quot;--&amp;gt;&amp;quot;n&amp;quot; Car&#xA;&#xA;class Bus {&#xA;    +run() void&#xA;}&#xA;class BusDriver {&#xA;    +drive(bus:Bus) void&#xA;}&#xA;class Passenger {&#xA;&#xA;}&#xA;BusDriver ..&amp;gt; Bus&#xA;Bus &amp;quot;n&amp;quot;--&amp;quot;n&amp;quot; Passenger&#xA;@enduml&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&#xA;          &lt;link rel=&#34;stylesheet&#34; href=&#34;https://kaikaixixi.xyz/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css&#34; integrity=&#34;sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=&#34; crossorigin=&#34;anonymous&#34;&gt;&#xA;  &lt;div class=&#34;admonition note&#34;&gt;&#xA;    &lt;div class=&#34;admonition-header&#34;&gt;&#xA;      &lt;svg t=&#34;1742459666649&#34; class=&#34;icon&#34; viewBox=&#34;0 0 1024 1024&#34; version=&#34;1.1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; p-id=&#34;6550&#34; width=&#34;200&#34; height=&#34;200&#34;&gt;&lt;path d=&#34;M575.99996 576.00028l319.9998-319.9998-127.99992-127.99992L448.00004 448.00036 575.99996 576.00028zM959.99972 192.00052l63.99996 0c0-193.983879-191.99988-191.99988-191.99988-191.99988l0 63.99996 63.99996 63.99996L959.99972 192.00052zM895.99976 832.00012c0 35.327978-28.671982 63.99996-63.99996 63.99996L192.0002 896.00008c-35.327978 0-63.99996-28.671982-63.99996-63.99996L128.00024 192.00052c0-35.327978 28.671982-63.99996 63.99996-63.99996l383.99976 0 127.99992-127.99992L128.00024 0.00064C57.280284 0.00064 0.00032 57.280604 0.00032 128.00056l0 767.99952c0 70.719956 57.279964 127.99992 127.99992 127.99992l767.99952 0c70.719956 0 127.99992-57.279964 127.99992-127.99992L1023.99968 320.00044l-127.99992 127.99992L895.99976 832.00012zM320.00012 512.00032l0 191.99988 191.99988 0 0-63.99996L384.00008 512.00032 320.00012 512.00032z&#34; p-id=&#34;6551&#34;&gt;&lt;/path&gt;&lt;/svg&gt;&#xA;&#xA;      &lt;span&gt;Note&lt;/span&gt;&#xA;    &lt;/div&gt;&#xA;      &lt;div class=&#34;admonition-content&#34;&gt;&#xA;        &lt;p&gt;依赖强调一方要使用另一方、依赖另一方而存在&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

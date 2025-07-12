@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>面筋 on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/series/%E9%9D%A2%E7%AD%8B/</link>
+    <description>Recent content in 面筋 on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 02 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/series/%E9%9D%A2%E7%AD%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;网络编程入门概念及api总结</title>
+      <link>https://kaikaixixi.xyz/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/</guid>
+      <description>&lt;h1 id=&#34;linux-系统编程&#34;&gt;Linux 系统编程&lt;/h1&gt;&#xA;&lt;h2 id=&#34;chapter-1-系统编程入门&#34;&gt;Chapter 1 系统编程入门&lt;/h2&gt;&#xA;&lt;h3 id=&#34;gcc&#34;&gt;GCC&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;区别 GCC 与 G++&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;gcc 既能编译 c，也能编译 c++。只不过 gcc 在链接的时候，不能自动链接 C++的库。在编译阶段，g++会调用 gcc，二者是等价的。&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;__cplusplus&lt;/code&gt;宏：g++编译 .c 文件时会定义，按照严谨的 cpp 语法去执行；gcc 编译 .cpp 文件时也会定义。&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;gcc -lstdc++&lt;/code&gt;即可解决 gcc 链接不了 c++库的问题&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;-D&lt;/code&gt;选项，可以指定一个编译时后的宏，可以方便调试。比如调试版本和 release 版本，就不用删除 log 了&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;静态库与动态库&#34;&gt;静态库与动态库&lt;/h3&gt;&#xA;&lt;h4 id=&#34;静态库&#34;&gt;静态库&lt;/h4&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# 编译,得到目标文件&#xA;gcc -c tes1.c tes2.c&#xA;# 打包成静态库: -r插入  -c  -s起名&#xA;ar -rcs libxxx.a tes1.o tes2.o&#xA;# 使用：指定库名、库位置、头文件&#xA;gcc -o demo tes1.o tes2.o -l xxx -L ./lib -I ./include&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;优点：&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;加载速度快，因为打包到程序里面了&lt;/li&gt;&#xA;&lt;li&gt;发布无需额外提供库，方便移植&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;缺点：&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
