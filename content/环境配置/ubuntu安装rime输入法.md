@@ -44,6 +44,11 @@ fcitx5-remote -r
 
 ## 配置
 
+> [!reference]
+>
+> https://www.lvbibir.cn/posts/tech/windowns-rime-input-method/
+> 
+
 ### 主题
 ```bash
 git clone https://github.com/thep0y/fcitx5-themes-candlelight.git
