@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hadoop on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/tags/hadoop/</link>
+    <description>Recent content in Hadoop on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 21 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu22.04安装Hadoop完全分布式集群</title>
+      <link>https://kaikaixixi.xyz/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+      <pubDate>Mon, 21 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
+      <description>&lt;h1 id=&#34;ubuntu2204-安装-hadoop-完全分布式集群&#34;&gt;Ubuntu22.04 安装 Hadoop 完全分布式集群&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-网络配置&#34;&gt;1. 网络配置&lt;/h2&gt;&#xA;&lt;p&gt;需要修改四处，windows（宿主机），vmware，和虚拟机 ubuntu &lt;strong&gt;（NAT模式）&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;windows，设置 vmware8 的 ipv4 选项即可&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;vmware 的 ip 设置和 windows 是一样的，网关都是&lt;code&gt;192.168.5.2&lt;/code&gt;，还有 NAT 网络设置&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;ubuntu 的主要任务就是&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;把 DHCP 换成&lt;code&gt;静态IP&lt;/code&gt;（这部分要看具体集群配置，比如设置 master 和 slave1，slave2，则可以分别分配 ip 为&lt;code&gt;192.168.5.11&lt;/code&gt;,&lt;code&gt;192.168.5.12&lt;/code&gt;,&lt;code&gt;192.168.5.13&lt;/code&gt;）&lt;/li&gt;&#xA;&lt;li&gt;再改改网关 gateway 和 DNS（这部分和上面是一样的）&lt;/li&gt;&#xA;&lt;li&gt;然后为 ip 地址起个别名，即修改&lt;code&gt;hosts&lt;/code&gt;，添加映射&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd /etc/netplan/ &amp;amp;&amp;amp; ll&#xA;vim 01-network-manager-all.yaml&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;# 把以下内容粘贴上&#xA;# Let NetworkManager manage all devices on this system&#xA;network:&#xA;    ethernets:&#xA;        ens33:                    ## 网卡名，要改对&#xA;            dhcp4: false&#xA;            addresses:&#xA;              - 192.168.5.11/24   ## set static IP&#xA;            routes:&#xA;              - to: default&#xA;                via: 192.168.5.2  ## gateway&#xA;            nameservers:&#xA;              addresses: [8.8.8.8,8.8.4.4,192.168.3.1]&#xA;    version: 2&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 开启systemd-networkd服务&#xA;sudo systemctl start systemd-networkd&#xA;# 查看状态&#xA;sudo systemctl status systemd-networkd&#xA;&#xA;# 重启网络服务&#xA;sudo netplan apply&#xA;#查看设定的ip是否生效&#xA;ifconfig | head -n 3&#xA;&#xA;# 测试网络&#xA;ping -c 3 www.baidu.com&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# 修改hostname&#xA;sudo vim /etc/hostname&#xA;# 设置ip映射&#xA;sudo vim /etc/hosts&#xA;# 把对应的ip添加到文件中&#xA;192.168.5.11 master&#xA;192.168.5.12 slave1&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;h1 id=&#34;在-windows-中也添加-ip-映射&#34;&gt;在 windows 中也添加 ip 映射&lt;/h1&gt;&#xA;&lt;p&gt;/C:\windows\system32\drivers\etc\hosts&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
