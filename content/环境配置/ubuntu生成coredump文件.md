@@ -16,10 +16,12 @@ ulimit -c
 修改方式是：
 
 ```bash
-echo "ulimit -c unlimited" >> ~/.bashrc
+echo "ulimit -c unlimited 2>/dev/null || true" >> ~/.bashrc
 ```
 
 或者修改 `/etc/security/limits.conf` 文件，在文件末尾追加
+
+(注意：如果你是**WSL2**用户的话，尝试下面方法无果后，建议还是使用第一种)
 
 ```plaintext
 *        soft    core    unlimited
@@ -50,8 +52,10 @@ sudo systemctl disable apport.service
 
 修改`/etc/sysctl.conf`文件，比如将core文件统一生成到`/tmp/coredumps`目录，则添加如下内容
 
+(WSL2用户不要放在/tmp目录下，它好像会自动删除这个目录。建议是要么就放在/tmp，要么就换个目录，不要在/tmp创建子目录）
+
 ```plaintext
-kernel.core_pattern=/tmp/core-%e-%t-%t-%p-%E
+kernel.core_pattern=/tmp/coredumps/core-%e-%t-%p-%E
 kernel.core_uses_pid=1
 ```
 
