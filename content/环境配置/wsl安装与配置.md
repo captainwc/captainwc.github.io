@@ -1,10 +1,10 @@
 ---
 date: 2023-09-12
-title: windows安装wsl
+title: WSL安装与配置
 categories: [环境配置]
 ---
 
-# Windows 安装 wsl
+## 安装 wsl
 
 > 本文简要介绍 WSL2 的自定义位置安装。比较简略，适合有一定经验的选手回忆用。
 
@@ -14,7 +14,7 @@ categories: [环境配置]
 
 :link:[最新版 ubuntu 的 AppxBundle 包](https://aka.ms/wslubuntu)
 
-## WSL2 手动安装流程
+### WSL2 手动安装流程
 
 首先对 WSL2 是什么有个基本了解。然后如果不想从应用商店或者直接命令 install（默认 C 盘）的话，按照上述链接去下载一个包。
 
@@ -30,11 +30,11 @@ categories: [环境配置]
 
 如果这之间发生了什么异常，首先检查是不是虚拟化什么的没准备好，如果好了，那 STFW
 
-## WSL1 手动安装流程
+### WSL1 手动安装流程
 
 鉴于 WSL2 丢失 wifi 的情况，如果想安装 wsl1，那么只需要`wsl --set-default-version 1`，然后仍然按照上述流程走就好了。运行完`.\ubuntu.exe`后得到的就是 wsl1
 
-## 常用命令（WSL）
+## WSL 常用命令
 
 1. `Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux`检查是否开启了 wsl 功能。还有什么系统版本、HyperV 之类的都检查一下
 2. `dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart`上一步发现**Enable**的用这条命令开启 wsl 功能
@@ -59,3 +59,66 @@ categories: [环境配置]
     - `--version`：（仅导入）指定将发行版导入为 WSL 1 还是 WSL 2 发行版
 15. `Get-AppxPackage -allusers | grep -i ubuntu`搜索安装的 ubuntu 包
 16. `Remove-AppxPackage -Package <PackageFullName>`移除包。可能手动安装新的包时需要这两条命令（比如出现什么更高版本已安装的问题）
+
+## WSL2经典问题
+
+### coredump文件生成
+
+> [!reference] [ubuntu配置coredump文件生成位置 | SHUAIKAI's Blog](https://kaikaixixi.xyz/环境配置/ubuntu生成coredump文件/)
+
+### 网络问题
+
+现在已经是5202了，应该都是相对来说比较新的Win11，WSL2支持了`Mirror`镜像模式网络，还是比较方便联网的。如果没有这个模式，建议更新一下。不说多么追新了，基本的大版本还是要跟得上的
+
+第一步，设置里直接拉满
+
+![image-20250819235306713](https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20250819235306713.png)
+
+第二步，在windows下编辑`~/.wslconfig`文件（其实编辑这个的话，上面的拉不拉无所吊慰了，只是展示一下其实是有图形界面的）
+
+> [!reference] 可以参考这个人的 https://github.com/microsoft/WSL/issues/10753#issuecomment-2041372912
+
+```toml
+[wsl2]
+networkingMode=mirrored
+dnsTunneling=true
+firewall=true
+autoProxy=true
+
+[experimental]
+# requires dnsTunneling but are also OPTIONAL
+bestEffortDnsParsing=true
+useWindowsDnsCache=true
+```
+
+第三步，注意其实一般是这里的问题多一些，也即是，联不通网络，很多情况下是因为WSL的DNS解析不了
+
+```shell
+# 首先检查一下下面这个文件是不是软连接
+ll /etc/resolv.conf
+# (case 1) 如果是软连接，那么说明这个是自动生成的，你首先要关掉它
+sudo vim /etc/wsl.conf
+# (case 1) 然后添加下面的东西
+[network]
+generateResolvConf=false
+# (case 1) 然后 wsl --shutdown 重启
+
+# (case 2) 如果不是软连接，那么直接编辑就好了。换成一个顺眼的nameserver，比如：
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+# (case 2) 具体是用哪个DNS，有以下几个原则：
+# 	- 如果你的本机DNS没啥问题，就打开控制面板，找到你的本机的DNS天上就好
+# 	- 如果你想要折腾更快的，那么可以使用 DnsJumper 天天测 https://dnsjumper.net/
+# 	- !如果你在公司里面用之类的，那么注意最好找到公司网的DNS，8.8.8.8这种不一定能行
+```
+
+### 想要systemd
+
+```shell
+sudo vim /etc/wsl.conf
+
+# add below
+[boot]
+systemd=true
+```
+

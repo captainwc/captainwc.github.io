@@ -2,7 +2,6 @@
 title: ubuntu安装中文输入法（fcitx5-rime）
 date: 2025-07-10
 categories: ["环境配置"]
-series: ["环境配置专栏"]
 ---
 
 ## 安装
@@ -88,5 +87,4 @@ patch:
     Shift_L: commit_code
     Shift_R: commit_code
 ```
-
 

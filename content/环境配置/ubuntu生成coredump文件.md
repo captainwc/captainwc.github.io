@@ -2,7 +2,6 @@
 title: ubuntu配置coredump文件生成位置
 date: 2025-08-01
 categories: ["环境配置"]
-series: ["环境配置专栏"]
 ---
 
 ## ubuntu配置coredump文件生成位置
