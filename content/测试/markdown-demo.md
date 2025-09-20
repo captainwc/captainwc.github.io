@@ -12,7 +12,7 @@ aliases:
 
 # KSimple
 
-[Ksimple](https://github.com/captainwc/ksimple) 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 基础上修改而来一个 hugo 主题，加入了目录、mermaid/plantuml等代码渲染图片、代码块高亮复制折叠、模糊查找、评论系统以及其他各类元素样式定制，整体风格力求简约而实用。
+[Ksimple](https://github.com/captainwc/ksimple) 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 基础上修改而来一个 hugo 主题，加入了目录、xmind、mermaid/plantuml等代码渲染图片、代码块高亮复制折叠、模糊查找、评论系统以及其他各类元素样式定制，整体风格力求简约而实用。
 
 ## 样式一览
 
@@ -169,6 +169,45 @@ Type = PrimitiveType | ReferenceType;
 PrimitiveType = [Annotation], (NumericType | boolean );
 @endebnf
 
+```
+
+#### 思维导图
+
+```plantuml
+@startmindmap
+title 需求分解
+
+* <&star>add_argument
+**:<code>
+add_argument("", "", .type=, .help=,)
+</code>;
+*** 优点：跟python很像
+*** 缺点
+****_ 靠结构体的这个提示，没有约束
+****_ 结构体赋值没法跳过，也就是说必须全部指定
+**:<code>
+add_argument(name)
+    .help()
+    .type()
+    .default_value()
+</code>;
+*** 优点：方便定制，类似java里面的<b>builder</b>模式
+*** 缺点：<s>好像其实也没啥明显缺点
+
+* add_parser
+** action
+*** 首先需要像位置参数那样添加
+** 返回 sub_parser
+*** 多个sub_parser添加/获取参数
+****_:学python的话，可以认为同时只有一个sub_parser，
+进而参数存一块也是可以的;
+*** help信息
+
+* help
+** 格式化打印
+*** 找最长的argument
+*** argument按照加入顺序排序
+@endmindmap
 ```
 
 ......
@@ -384,6 +423,15 @@ gantt
 
 ```
 
+### Xmind嵌入
+
+使用 [xmind-embed-viewer](https://github.com/xmindltd/xmind-embed-viewer) 项目来渲染你的`xmind`文件，支持本地文件和远程文件。
+效果如下
+
+```xmind
+/xmind/demo.xmind
+```
+
 ### MarkMap渲染
 
 使用 [Markmap.js](https://markmap.js.org/api/) 渲染思维导图，效果如下：
@@ -435,7 +483,11 @@ Note that if blocks and lists appear at the same level, the lists will be ignore
 ![](https://markmap.js.org/favicon.png)
 ```
 
-至此，已有三种方式实现思维导图：使用Plantuml(效果太简单，但是语法也很简单直观)，使用Mermaid(效果太花哨，像脑图云图之类的)，以及使用Markmind（效果最好的思维导图）
+至此，已有四种方式实现思维导图：
+1. 使用Plantuml (效果太简单，但是语法也很简单直观)
+2. 使用Mermaid (效果太花哨，像脑图云图之类的)
+3. 使用Markmind (简单且相对效果较好)
+4. 使用Xmind，本地编辑好后上传上来进行渲染 (效果最好，但是缺点也很明显，是二进制文件，不好用git管理，需要额外打开xmind进行编辑, 同时网页加载也比较慢)。可以根据场景自行取舍，选择最适合的使用)
 
 ### Kroki渲染
 
