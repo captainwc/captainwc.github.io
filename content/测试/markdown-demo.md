@@ -426,11 +426,24 @@ gantt
 ### Xmind嵌入
 
 使用 [xmind-embed-viewer](https://github.com/xmindltd/xmind-embed-viewer) 项目来渲染你的`xmind`文件，支持本地文件和远程文件。
+
+使用方法如下，就是用xmind代码块里面填上xmind文件链接就好，比如
+
+````text
+```xmind
+/xmind/demo.xmdin
+```
+````
+
 效果如下
 
 ```xmind
 /xmind/demo.xmind
 ```
+
+> [!warning]
+>
+> 或许是xmind-embed-viewer的限制，当前支支持**思维导图**，对于其他图形如逻辑图、括号图、鱼骨图等，当前并不支持（布局会混乱）
 
 ### MarkMap渲染
 
