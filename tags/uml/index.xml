@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Uml on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/tags/uml/</link>
+    <description>Recent content in Uml on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 11 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/tags/uml/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PlantUML快速上手</title>
+      <link>https://kaikaixixi.xyz/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</guid>
+      <description>&lt;h1 id=&#34;plantuml-快速上手&#34;&gt;PlantUML 快速上手&lt;/h1&gt;&#xA;&lt;h2 id=&#34;通用&#34;&gt;通用&lt;/h2&gt;&#xA;&lt;h3 id=&#34;命令&#34;&gt;命令&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;title header footer：标题、页首、页脚&lt;/li&gt;&#xA;&lt;li&gt;skin rose ： rational rose 的皮肤&lt;/li&gt;&#xA;&lt;li&gt;skinparam monochrome true ： 黑白皮肤&lt;/li&gt;&#xA;&lt;li&gt;scale 2 ： 生成图片放大两倍，嫌图片分辨率不够的时候可以用&lt;/li&gt;&#xA;&lt;li&gt;participant 可以预定义参与者&lt;/li&gt;&#xA;&lt;li&gt;actor 小人儿&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;注释&#34;&gt;注释&lt;/h3&gt;&#xA;&lt;p&gt;&#xA;&lt;div class=&#34;img-no-link&#34;&gt;&#xA;  &lt;img class=&#34;common-markdown-diagram&#34; src=&#34;https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20231126235808615.png&#34; alt=&#34;image-20231126235808615&#34; /&gt;&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;img src=&#34;https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20231126235448816.png&#34; alt=&#34;image-20231126235448816&#34; style=&#34;zoom:80%;&#34; /&gt;&#xA;&lt;h2 id=&#34;时序图&#34;&gt;时序图&lt;/h2&gt;&#xA;&lt;p&gt;boundary 边界&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&lt;div class=&#34;img-no-link&#34;&gt;&#xA;  &lt;img class=&#34;common-markdown-diagram&#34; src=&#34;https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20231126233949689.png&#34; alt=&#34;image-20231126233949689&#34; /&gt;&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&lt;div class=&#34;img-no-link&#34;&gt;&#xA;  &lt;img class=&#34;common-markdown-diagram&#34; src=&#34;https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20231126234608471.png&#34; alt=&#34;image-20231126234608471&#34; /&gt;&#xA;&lt;/div&gt;&#xA;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;箭头 -&amp;gt;， &amp;ndash;&amp;gt;， -&amp;raquo;， -\， -/, o-&amp;gt;， -x， [-&amp;gt;， ?-&amp;gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;实线同步消息，虚线返回消息（直接用 return），细箭头异步消息&lt;/li&gt;&#xA;&lt;li&gt;[ 方括号表示虚空来历（不关心从哪来、往哪去）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;标记&#xA;&lt;ul&gt;&#xA;&lt;li&gt;==xx==分割线&lt;/li&gt;&#xA;&lt;li&gt;||| 增大间隔&lt;/li&gt;&#xA;&lt;li&gt;&amp;hellip; 延迟&lt;/li&gt;&#xA;&lt;li&gt;(30) 圆括号指定角度&lt;/li&gt;&#xA;&lt;li&gt;{start}&amp;lt;-&amp;gt;{end} 纵向连接线，要开启一个命令，&lt;/li&gt;&#xA;&lt;li&gt;++ 激活 activate&lt;/li&gt;&#xA;&lt;li&gt;&amp;ndash; 取消 deactivate&lt;/li&gt;&#xA;&lt;li&gt;!! 删除对象&lt;/li&gt;&#xA;&lt;li&gt;** 创建对象&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;块 xxx &amp;hellip; end xxx。标签颜色井号紧跟名字，空格跟背景颜色&#xA;&lt;ul&gt;&#xA;&lt;li&gt;box-end 括住整个参与者&lt;/li&gt;&#xA;&lt;li&gt;mainframe-end 一般包，可定义别名&lt;/li&gt;&#xA;&lt;li&gt;opt （switch）&lt;/li&gt;&#xA;&lt;li&gt;alt-else-end （if-else）&lt;/li&gt;&#xA;&lt;li&gt;loop-end&lt;/li&gt;&#xA;&lt;li&gt;par-end （并行）&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;活动图&#34;&gt;活动图&lt;/h2&gt;&#xA;&lt;p&gt;&lt;code&gt;start&lt;/code&gt;开始，&lt;code&gt;stop/end&lt;/code&gt;结束&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
