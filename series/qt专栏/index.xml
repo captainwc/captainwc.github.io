@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Qt专栏 on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/series/qt%E4%B8%93%E6%A0%8F/</link>
+    <description>Recent content in Qt专栏 on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 30 Aug 2025 00:38:31 +0800</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/series/qt%E4%B8%93%E6%A0%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Qt从零开始（0）——环境配置</title>
+      <link>https://kaikaixixi.xyz/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/qt%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/</link>
+      <pubDate>Sat, 30 Aug 2025 00:38:31 +0800</pubDate>
+      <guid>https://kaikaixixi.xyz/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/qt%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/</guid>
+      <description>&lt;h1 id=&#34;qt快速开始&#34;&gt;Qt快速开始&lt;/h1&gt;&#xA;&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;&#xA;&lt;p&gt;不管是windows还是linux，都是通过在线安装器安装了。不想去网站走注册流程（虽然最终难逃一注），可以使用installer的镜像：&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&lt;a href=&#34;https://mirrors.tuna.tsinghua.edu.cn/help/qt/&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;qt | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror&lt;/a&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;上面的custom安装自己看着勾选吧。我喜欢all in cmake，什么creator studio之类的都不安装&lt;/p&gt;&#xA;&lt;p&gt;（或许也可以用sudo apt intall libqt6xxx，但是我没成功，直接用installer了。虽然要注册，但是可以指定安装位置，更干净，还可以管理模块增减更新）&lt;/p&gt;&#xA;&lt;h3 id=&#34;依赖安装&#34;&gt;依赖安装&lt;/h3&gt;&#xA;&#xA;          &lt;link rel=&#34;stylesheet&#34; href=&#34;https://kaikaixixi.xyz/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css&#34; integrity=&#34;sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=&#34; crossorigin=&#34;anonymous&#34;&gt;&#xA;  &lt;div class=&#34;admonition warning&#34;&gt;&#xA;    &lt;div class=&#34;admonition-header&#34;&gt;&#xA;      &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 512 512&#34;&gt;&lt;path d=&#34;M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z&#34;/&gt;&lt;/svg&gt;&#xA;      &lt;span&gt;Warning&lt;/span&gt;&#xA;    &lt;/div&gt;&#xA;      &lt;div class=&#34;admonition-content&#34;&gt;&#xA;        &lt;p&gt;这里我的环境不干净，所以具体安装了什么也不可控。比如linux上我安装了x11和xcb这些，没有的话可能你也要装。windows上装了那什么只有天知道了&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
