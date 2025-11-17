@@ -3,7 +3,7 @@ date: 2025-04-14
 title: C++小技巧
 tags: [C++]
 categories: [C++笔记]
-series: [ModernCPP]
+series: [modern c++]
 ---
 
 # C++小技巧
