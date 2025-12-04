@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cppreference on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/tags/cppreference/</link>
+    <description>Recent content in Cppreference on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 12 Mar 2025 13:41:29 +0800</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/tags/cppreference/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>手册速查方案（如cppreference）</title>
+      <link>https://kaikaixixi.xyz/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Wed, 12 Mar 2025 13:41:29 +0800</pubDate>
+      <guid>https://kaikaixixi.xyz/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;p&gt;&#xA;&lt;a href=&#34;https://zealdocs.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;&lt;img src=&#34;https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20250312141139881.png&#34; style=&#34;float: right; zoom: 16%;&#34;/&gt;&lt;/a&gt;&#xA;&lt;/p&gt;&#xA;&lt;h2 id=&#34;zeal&#34;&gt;zeal&lt;/h2&gt;&#xA;&lt;p&gt;直接下载 &#xA;&lt;a href=&#34;https://zealdocs.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;Zeal - Offline Documentation Browser&lt;/a&gt;&#xA;，然后搜索自己感兴趣的 docset 下载即可&lt;/p&gt;&#xA;&lt;h2 id=&#34;utools-dataset&#34;&gt;utools-dataset&lt;/h2&gt;&#xA;&lt;p&gt;使用 utools 的 dataset 插件，能够更快更方便地唤起 zeal。按照插件指引配置 zeal 的 docset 文件夹位置即可。&lt;/p&gt;&#xA;&lt;p&gt;这里需要说明的是，怎么将 cppreference 的语言变为中文，也即使用 &#xA;&lt;a href=&#34;https://zh.cppreference.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;zh.cppreference.com&lt;/a&gt;&#xA;&lt;/p&gt;&#xA;&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;&#xA;&lt;p&gt;首先要下载&#xA;&lt;a href=&#34;https://zh.cppreference.com/w/Cppreference:Archives&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;中文离线版手册&lt;/a&gt;&#xA;（不如英文版的新，但是无所谓了），解压后里面有两个关键的文件夹，所有需要做的就是用 &lt;em&gt;zh-html-book\reference\zh&lt;/em&gt; 替换掉 &lt;em&gt;docsets\C++.docset\Contents\Resources\Documents\en.cppreference.com\w&lt;/em&gt; 这个，将 &lt;em&gt;zh-html-book\reference\common&lt;/em&gt; 文件夹放到 w 的相同位置。推荐使用软连接来做，可以参考下面的命令&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mklink /d %LOCALAPPDATA%\Zeal\Zeal\docsets\zh_C++.docset\Contents\Resources\Documents\en.cppreference.com\w %LOCALAPPDATA%\Zeal\Zeal\docsets\zh_C++.docset\zh-html-book\reference\zh&#xA;&#xA;mklink /d %LOCALAPPDATA%\Zeal\Zeal\docsets\zh_C++.docset\Contents\Resources\Documents\en.cppreference.com\common %LOCALAPPDATA%\Zeal\Zeal\docsets\zh_C++.docset\zh-html-book\reference\common&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;C 的 reference 其实是复用的 Cpp 的，完全可以删除 c.docset 中的 en.cppreference.com，直接用一个软连接指向 cpp 中的即可&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;rm -rf %LOCALAPPDATA%\Zeal\Zeal\docsets\zh_C.docset\Contents\Resources\Documents\en.cppreference.com&#xA;&#xA;mklink /d %LOCALAPPDATA%\Zeal\Zeal\docsets\zh_C.docset\Contents\Resources\Documents\en.cppreference.com %LOCALAPPDATA%\Zeal\Zeal\docsets\zh_C++.docset\Contents\Resources\Documents\en.cppreference.com&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;这里我想同时保留中英文，没有直接修改 &lt;em&gt;%LOCALAPPDATA%\Zeal\Zeal\docsets\C++.docset&lt;/em&gt; ，而是创建了 &lt;em&gt;%LOCALAPPDATA%\Zeal\Zeal\docsets\zh-C++.docset&lt;/em&gt; 和 &lt;em&gt;%LOCALAPPDATA%\Zeal\Zeal\docsets\zh-C.docset&lt;/em&gt; 两个作为副本，然后同时保持&lt;code&gt;cpp&lt;/code&gt;和&lt;code&gt;cppzh&lt;/code&gt;两条命令作为区分。这样不影响 zeal 更新&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

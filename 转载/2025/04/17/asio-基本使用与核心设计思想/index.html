@@ -1,0 +1,4142 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035) | SHUAIKAI&#39;s Blog</title>
+    <link rel="icon" href= /images/favicon.png />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <link rel="stylesheet" href="/css/custom.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">主页</a></li>
+      
+      <li><a href="/series/">专栏</a></li>
+      
+      <li><a href="/categories/">分类</a></li>
+      
+      <li><a href="/tags/">标签</a></li>
+      
+      <li><a href="/archives/">归档</a></li>
+      
+      <li><a href="/search/">搜索</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+
+<div class="article-meta">
+    <h1><span class="article-meta-title">Asio 基本使用与核心设计思想 | 
+<a href="https://blog.csdn.net/gma999/article/details/143983035"  target="_blank" rel="noopener noreferrer" >转载</a></span></h1>
+
+    <div class="article-meta-info">
+        
+
+        
+        
+        
+        
+
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        🕺🏻 gma999 🗓️ 2025-04-17 🎖️ <a href="/series/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a> 🗂️ <a href="/categories/%E5%8D%9A%E5%AE%A2%E5%89%AA%E8%97%8F/">博客剪藏</a> 🏷️ <a href="/tags/asio/">#asio</a>
+    </div>
+</div>
+
+<main>
+
+    
+
+<div class="left-sidebar-btn" id="leftSidebarBtn"><i class="fa-solid fa-list"></i></div>
+<div class="left-sidebar-panel" id="leftSidebarPanel">
+    
+        <div class="sidebar-content">
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🏷️ 标签</div>
+                <div class="tag-blocks">
+                    
+                    <a href="/tags/asio" class="tag-block">
+                        asio
+                    </a>
+                    
+                </div>
+            </div>
+            
+
+            
+            
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🎖️ 系列文章</div>
+                
+                
+                <div class="series-group">
+                    <div class="series-name">网络编程</div>
+                    <ul class="article-list">
+                        
+                        
+                        
+                    </ul>
+                </div>
+                
+            </div>
+            
+
+            
+            
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🗂️ 分类文章</div>
+                
+                
+                <div class="category-group">
+                    <div class="category-name">博客剪藏</div>
+                    <ul class="article-list">
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/06/10/22%E7%A7%8Dc-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/" class="article-link">
+                                
+                                <span class="article-title">C++ 高并发服务器模型实现 | [转载](https://github.com/linkxzhou/mylib/blob/master/c%2B%2B/concurrency_server/README.md)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/05/04/epoll%E8%AF%A6%E8%A7%A3/" class="article-link">
+                                
+                                <span class="article-title">Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/05/04/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/" class="article-link">
+                                
+                                <span class="article-title">共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/16/googletest%E4%B8%8Egmock%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/" class="article-link">
+                                
+                                <span class="article-title">GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/16/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/" class="article-link">
+                                
+                                <span class="article-title">GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/15/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" class="article-link">
+                                
+                                <span class="article-title">Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/15/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="article-link">
+                                
+                                <span class="article-title">万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)</span>
+                            </a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('leftSidebarBtn');
+            const panel = document.getElementById('leftSidebarPanel');
+            let hoverTimeout;
+
+            
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                panel.classList.add('show');
+            });
+
+            panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+            [btn, panel].forEach(el => {
+                el.addEventListener('mouseleave', () => {
+                    hoverTimeout = setTimeout(() => {
+                        panel.classList.remove('show');
+                    }, 200);
+                });
+            });
+        });
+    </script>
+    
+
+    <style>
+        
+
+         
+        .left-sidebar-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 980;
+            cursor: pointer;
+            padding: 6px 10px;
+            background: #EFEFEF;
+            border-radius: 8px;
+            transition: background 0.3s;
+            color: #999;
+            opacity: 0.7;
+        }
+
+        .left-sidebar-btn:hover {
+            background: #BEC2B3;
+        }
+
+        .left-sidebar-panel {
+            border-radius: 8px;
+            display: none;
+            position: fixed;
+            top: 66px;
+            left: 20px;
+            max-width: 360px;
+            min-width: 280px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #eee;
+            padding: 10px 5px 10px 15px;
+            z-index: 970;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-sidebar-panel.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        
+
+        .sidebar-content {
+            padding: 15px 12px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.2rem;
+        }
+
+        .sidebar-section-title {
+            font-size: 1rem;
+            color: #2d3842;
+            margin: 0 0 0.6rem 0;
+            padding-bottom: 0.3rem;
+            font-family: "LXGW WenKai";
+            font-weight: bold;
+
+             
+            
+            border-bottom: 2px dashed #cfcfcf;
+            
+        }
+
+         
+        .tag-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tag-block {
+            display: inline-block;
+            background: #F6F6F6;
+            color: #666;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .tag-block:hover {
+            background: #2e59a7;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+         
+        .series-group,
+        .category-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .series-name,
+        .category-name {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0 0 0.4rem 0;
+            font-weight: bold;
+            font-family: "LXGW WenKai";
+        }
+
+         
+        .article-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .article-item {
+            margin-bottom: 0.3rem;
+        }
+
+        .article-link {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.4rem;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .article-link:hover {
+            background: #f8f9fa;
+            border-left-color: #2e59a7;
+            transform: translateX(3px);
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            color: #999;
+            font-family: "LXGW WenKai";
+            flex-shrink: 0;
+            width: 45px;
+            text-align: left;
+        }
+
+        .article-title {
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+         
+        
+
+        .left-sidebar-panel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .left-sidebar-panel {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        
+
+         
+        @media (max-width: 768px) {
+        
+        }
+    </style>
+
+    
+
+
+<div class="toc-btn" id="tocBtn"><i class="fa-solid fa-bars-staggered"></i></div>
+<div class="toc-panel" id="tocPanel"></div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        
+        const btn = document.getElementById('tocBtn');
+        const panel = document.getElementById('tocPanel');
+        let hoverTimeout;
+
+        
+        btn.addEventListener('mouseenter', () => {
+            clearTimeout(hoverTimeout);
+            generateToc(panel);
+            panel.classList.add('show');
+
+            
+            requestAnimationFrame(() => {
+                const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+                let activeHeader = null;
+                let minDistance = Infinity;
+
+                
+                headers.forEach(header => {
+                    const rect = header.getBoundingClientRect();
+                    const distance = Math.abs(rect.top);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeHeader = header;
+                    }
+                });
+
+                
+                if (activeHeader) {
+                    const activeLink = panel.querySelector(`a[href="#${activeHeader.id}"]`);
+                    if (activeLink) {
+                        
+                        const panelHeight = panel.offsetHeight;
+                        const linkOffset = activeLink.offsetTop;
+                        const centerPosition = linkOffset - (panelHeight / 2) + (activeLink.offsetHeight / 2);
+                        
+                        panel.scrollTo({
+                            top: centerPosition,
+                            behavior: 'auto'
+                        });
+                    }
+                }
+            });
+        });
+
+        panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+        [btn, panel].forEach(el => {
+            el.addEventListener('mouseleave', () => {
+                hoverTimeout = setTimeout(() => {
+                    panel.classList.remove('show');
+                }, 200);
+            });
+        });
+        
+
+        
+        function generateToc(container) {
+            if (container.children.length > 0) return;
+
+            const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+            const counts = [0, 0, 0, 0, 0]; 
+
+            headers.forEach(header => {
+                const level = parseInt(header.tagName[1]) - 2;
+                if (level < 0) return;
+
+                counts[level]++;
+                for (let i = level + 1; i < counts.length; i++) counts[i] = 0;
+                const number = counts.slice(0, level + 1).join('.');
+
+                
+                const numberSpan = document.createElement('span');
+                numberSpan.className = 'toc-number';
+                numberSpan.textContent = number;
+
+                
+                const link = document.createElement('a');
+                link.href = `#${header.id}`;
+                link.style.paddingLeft = `${level * 12}px`;
+
+                
+                link.appendChild(numberSpan);
+                link.appendChild(document.createTextNode(header.textContent));
+
+                container.appendChild(link);
+            });
+        }
+    });
+</script>
+
+<style>
+    
+
+     
+    .toc-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 980;
+        cursor: pointer;
+        padding: 6px 10px;
+        background: #EFEFEF;
+        border-radius: 8px;
+        transition: background 0.3s;
+        color: #999;
+        opacity: 0.7;
+    }
+
+    .toc-btn:hover {
+        background: #BEC2B3;
+    }
+
+    .toc-panel {
+        border-radius: 8px;
+        display: none;
+        position: fixed;
+        top: 66px;
+        right: 20px;
+        max-width: 360px;
+        min-width: 200px;
+        max-height: 80vh;
+        overflow-y: auto;
+        background: white;
+        border: 1px solid #eee;
+        padding: 10px 5px 10px 15px;
+        z-index: 970;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        list-style: none;
+    }
+
+    .toc-panel.show {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+     
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    
+
+     
+    .toc-number {
+        vertical-align: middle;
+        margin-right: 6px;
+        font-family: "LXGW WenKai";
+        font-size: 0.85rem;
+    }
+
+     
+        
+
+    .toc-panel a {
+        
+            display: block;
+            padding: 4px 0;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        
+
+        .toc-panel a:hover {
+        
+
+                color: #007bff;
+            }
+
+        
+</style>
+
+
+    
+    
+    
+        <h1 id="boostasio-基本使用与核心设计思想_boostasio-csdn博客">【Boost】Asio 基本使用与核心设计思想_boost::asio-CSDN博客</h1>
+
+          <link rel="stylesheet" href="/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css" integrity="sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=" crossorigin="anonymous">
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>声明</span>
+    </div>
+      <div class="admonition-content">
+        <ul>
+<li>本文由插件
+<a href="https://chromewebstore.google.com/detail/markdownload-markdown-web/pcmpcfapbekmbjjkdalcgopdkipoggdi?pli=1"  target="_blank" rel="noopener noreferrer" >Markdown Web Clipper</a>
+自动提取网页正文而来，并未获取原作者授权！</li>
+<li>本文仅作个人存档学习使用，如有任何疑问/需求请查看
+<a href="https://blog.csdn.net/gma999/article/details/143983035"  target="_blank" rel="noopener noreferrer" >原文</a>
+！</li>
+<li>如有侵权，请联系本人立刻删除！</li>
+<li>原文链接: 
+<a href="https://blog.csdn.net/gma999/article/details/143983035"  target="_blank" rel="noopener noreferrer" >【Boost】Asio 基本使用与核心设计思想_boost::asio-CSDN博客</a>
+</li>
+</ul>
+      </div>
+  </div>
+<hr>
+<h2 id="概述">概述</h2>
+<blockquote>
+<p>基本了解</p></blockquote>
+<p>主要用于网络编程和底层I/O操作，支持同步异步操作，提供队列各种接口，从而帮助我们快速构建网路哦应用程序，目的就是简化I/O代码，提高性能和可维护性</p>
+<blockquote>
+<p>主要特点总结</p></blockquote>
+<ul>
+<li><strong>跨平台支持</strong>：Boost.Asio 支持 Windows、Linux、Mac OS 等多个操作系统。它封装了底层的 I/O 机制，使得开发者能够无缝地在不同平台之间切换</li>
+<li><strong>同步和异步操作</strong>：Boost.Asio 提供了同步和异步两种操作模型。在同步模式下，操作会阻塞线程直到完成；在异步模式下，操作会立即返回，并通过回调函数在操作完成时通知应用程序。异步操作通过 <code>io_service</code> 或 <code>io_context</code> 来管理事件和任务调度</li>
+<li><strong>支持各种 I/O 类型</strong>
+<ul>
+<li><strong>网络编程</strong>：Boost.Asio 提供了对 TCP 和 UDP 网络编程的支持，可以用来开发高效的服务器和客户端程序</li>
+<li><strong>定时器</strong>：Boost.Asio 可以设置定时器来在指定的时间点执行操作，广泛应用于定时任务和超时控制。</li>
+<li><strong>串行端口</strong>：通过 Boost.Asio，开发者还可以进行串行端口的通信操作</li>
+</ul>
+</li>
+<li><strong>不依赖于线程池</strong>：Boost.Asio 本身不依赖于线程池，它使用 <code>io_service</code>（在新版中为 <code>io_context</code>）来调度异步操作。开发者可以灵活地决定如何管理线程池，或者在单线程模式下使用</li>
+</ul>
+<blockquote>
+<p>核心概念</p></blockquote>
+<p><strong>o_service / io_context</strong>：<code>io_service</code>（在新版本中为 <code>io_context</code>）是 Boost.Asio 的核心组件，负责管理和调度所有异步操作。通过 <code>io_service</code>，可以注册异步操作，并在操作完成时通过回调函数得到通知</p>
+<p><strong>异步操作</strong>：Boost.Asio 提供的异步操作模型基于回调函数。开发者可以通过 <code>async_</code> 系列函数（如 <code>async_read</code>、<code>async_write</code> 等）启动异步操作。这些操作不会阻塞线程，而是将操作提交给 <code>io_service</code>，并在操作完成时执行回调</p>
+<p><strong>套接字（Socket）</strong>：Boost.Asio 提供了对 TCP 和 UDP 套接字的支持。TCP 套接字（<code>tcp::socket</code>）用于建立面向连接的通信，UDP 套接字（<code>udp::socket</code>）则用于无连接的通信。开发者可以通过这些类实现网络通信功能</p>
+<h2 id="常用接口与应用">常用接口与应用</h2>
+<h3 id="boostasioio_context">boost::asio::io_context</h3>
+<blockquote>
+<p>主要作用</p></blockquote>
+<p>主要作用就是调用异步操作和处理这些操作的核心函数，内部提供了事件循环机制</p>
+<ul>
+<li><strong>调度异步任务</strong>：<code>io_context</code> 是一个任务队列，可以调度和执行异步任务。所有异步操作都需要绑定到一个<code>io_context</code> 对象</li>
+<li><strong>事件循环</strong>：<code>io_context</code> 提供事件循环（通过 <code>run()</code> 方法），用于不断检查和执行任务队列中的任务</li>
+<li>线程安全：可以被多个线程共享，使得多个线程可以并发地处理同一个 <code>io_context</code> 上的任务</li>
+<li><strong>同步与异步支持</strong>：它既支持异步任务，也可以在事件循环内执行同步任务</li>
+</ul>
+<blockquote>
+<p>常用方法总结</p></blockquote>
+<ul>
+<li><strong><code>run()</code></strong> 启动事件循环，处理所有挂起的任务，直到任务队列清空为止</li>
+<li><strong><code>run_one()</code></strong> 处理任务队列中的一个任务，然后立即返回</li>
+<li><strong><code>poll()</code></strong> 非阻塞地处理任务队列中的所有任务。如果任务队列为空，则立即返回</li>
+<li><strong><code>poll_one()</code></strong> 非阻塞地处理一个任务。如果任务队列中没有任务，则立即返回</li>
+<li><strong><code>stop()</code></strong> 停止事件循环。<code>run()</code> 方法会尽快返回，但不会清空未处理的任务队列</li>
+<li><strong><code>reset()</code></strong> 重置事件循环的状态，使得可以再次调用 <code>run()</code> 或 <code>poll()</code> 方法。通常在调用 <code>stop()</code> 后使用</li>
+<li><strong><code>get_executor()</code></strong> 获取与当前 <code>io_context</code> 关联的执行器（executor）</li>
+<li><strong><code>post(handler)</code></strong> 将一个任务添加到任务队列。任务是通过 <code>handler</code> 函数对象定义的</li>
+<li><strong><code>dispatch(handler)</code></strong> 如果可能的话，立即在当前线程中执行任务；否则，将其添加到任务队列中</li>
+<li><strong><code>work_guard</code>（类）</strong> 用于确保 <code>io_context</code> 不会因为任务队列为空而自动退出。它能够保持事件循环处于活跃状态</li>
+</ul>
+<blockquote>
+<p>使用步骤总结</p></blockquote>
+<ul>
+<li>创建 <code>io_context</code> 对象</li>
+<li>为异步操作或回调绑定 <code>io_context</code></li>
+<li>调用 <code>run()</code> 或其他事件循环方法启动 <code>io_context</code></li>
+</ul>
+<h4 id="单任务循环">单任务循环</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/c6175a895e6f4568a07ba7987d894f12.png" alt="" />
+</div>
+</p>
+<pre><code>#include &lt;boost/asio.hpp&gt;
+#include &lt;iostream&gt;
+
+int main() {
+    // 创建 io_context 对象
+    boost::asio::io_context io_context;
+
+    // 提交一个简单任务到 io_context
+    io_context.post([]() {
+        std::cout &lt;&lt; &quot;Hello, Boost.Asio!&quot; &lt;&lt; std::endl;
+    });
+
+    // 启动事件循环
+    io_context.run();
+
+    return 0;
+}
+</code></pre>
+<h4 id="多任务调度">多任务调度</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/c90467c298754e4d9087953587f92d18.png" alt="" />
+</div>
+</p>
+<pre><code>int main()
+{
+    boost::asio::io_context io_context;
+
+    io_context.post([](){
+        std::cout&lt;&lt;&quot;Hello,Boost.Asio&quot;&lt;&lt;std::endl;
+    });
+
+    io_context.post([]() {
+        std::cout &lt;&lt; &quot;Task 1&quot; &lt;&lt; std::endl;
+    });
+
+    io_context.post([]() {
+        std::cout &lt;&lt; &quot;Task 2&quot; &lt;&lt; std::endl;
+    });
+
+    io_context.post([]() {
+        std::cout &lt;&lt; &quot;Task 3&quot; &lt;&lt; std::endl;
+    });
+
+    io_context.run();
+
+    return 0;
+}
+</code></pre>
+<blockquote>
+<p>多线程共享一个io_context对象，实现并发处理</p></blockquote>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/c741e5177130456daa8bb3826a3454ea.png" alt="" />
+</div>
+</p>
+<pre><code>#include &lt;boost/asio.hpp&gt;
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+
+void worker(boost::asio::io_context&amp; io_context, int id) {
+    io_context.run();
+    std::cout &lt;&lt; &quot;Thread &quot; &lt;&lt; id &lt;&lt; &quot; finished.&quot; &lt;&lt; std::endl;
+}
+
+int main() {
+    boost::asio::io_context io_context;
+
+    // 提交任务
+    for (int i = 0; i &lt; 10; ++i) {
+        io_context.post([i]() {
+            std::cout &lt;&lt; &quot;Task &quot; &lt;&lt; i &lt;&lt; &quot; is running&quot; &lt;&lt; std::endl;
+        });
+    }
+
+    // 创建线程池
+    std::vector&lt;std::thread&gt; threads;
+    for (int i = 0; i &lt; 4; ++i) {
+        threads.emplace_back(worker, std::ref(io_context), i);
+    }
+
+    // 等待所有线程完成
+    for (auto&amp; t : threads) {
+        t.join();
+    }
+
+    return 0;
+}
+</code></pre>
+<h3 id="boostasioiptcpsocket">boost::asio::ip::tcp::socket</h3>
+<p>处理 TCP 连接的类，用于发送和接收数据。它支持异步操作，可以在后台完成网络通信任务，而不会阻塞主线程</p>
+<blockquote>
+<p>主要功能</p></blockquote>
+<ul>
+<li>连接到服务器或监听来自客户端的连接</li>
+<li>发送和接收数据</li>
+<li>支持异步操作，如 <strong><code>async_read()</code>, <code>async_write()</code></strong>，可以通过回调处理结果</li>
+</ul>
+<blockquote>
+<p><strong>常用方法</strong></p></blockquote>
+<p><strong>构造函数</strong></p>
+<ul>
+<li><strong><code>tcp::socket(io_context)</code></strong> 创建一个未绑定的 TCP 套接字，需通过后续操作指定使用目标</li>
+<li><strong><code>tcp::socket(io_context, endpoint)</code></strong> 创建并绑定到指定端点的 TCP 套接字</li>
+<li><strong><code>tcp::socket(io_context, protocol)</code></strong> 使用指定协议（如 IPv4 或 IPv6）初始化一个 TCP 套接字</li>
+</ul>
+<p><strong>成员函数</strong></p>
+<ul>
+<li><strong><code>connect(endpoint)</code></strong> 同步连接到指定的远程端点，阻塞直到连接完成</li>
+<li><strong><code>async_connect(endpoint, handler)</code></strong> 异步连接到远程端点，完成时调用指定的处理函数 <code>handler</code></li>
+<li><strong><code>read_some(buffer)</code></strong> 从套接字同步读取数据到缓冲区，返回读取的字节数</li>
+<li><strong><code>async_read_some(buffer, handler)</code></strong> 异步读取数据到缓冲区，完成时调用处理函数 <code>handler</code></li>
+<li><strong><code>write_some(buffer)</code></strong> 从缓冲区同步写入数据到套接字，返回写入的字节数</li>
+<li><strong><code>async_write_some(buffer, handler)</code></strong> 异步写入数据到套接字，完成时调用处理函数 <code>handler</code></li>
+<li><strong><code>close()</code></strong> 关闭套接字以释放资源</li>
+<li><strong><code>is_open()</code></strong> 检查套接字是否处于打开状态</li>
+<li><strong><code>cancel()</code></strong> 取消挂起的异步操作，操作结果将通过处理函数返回</li>
+<li><strong><code>remote_endpoint()</code></strong> 获取远程连接的 IP 和端口信息</li>
+<li><strong><code>local_endpoint()</code></strong> 获取本地绑定的 IP 和端口信息</li>
+</ul>
+<blockquote>
+<p><strong>使用步骤</strong></p></blockquote>
+<ul>
+<li><strong>创建和初始化 <code>tcp::socket</code> 对象</strong>： 通过绑定 <code>io_context</code> 来初始化套接字</li>
+<li><strong>连接远程端点（客户端）或接受连接（服务器）</strong>： 使用 <code>connect()</code> 或 <code>accept()</code> 建立连接</li>
+<li><strong>发送和接收数据</strong>： 使用 <code>read()</code>、<code>write()</code>（同步）或 <code>async_read()</code>、<code>async_write()</code>（异步）</li>
+<li><strong>关闭套接字</strong>： 通过 <code>close()</code> 方法关闭套接字</li>
+</ul>
+<h4 id="同步tcp客户端与服务端搭建"><strong>同步TCP客户端与服务端搭建</strong></h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/c403a3b4770c4d2a9a4e4eb5bbb27f5f.png" alt="" />
+</div>
+</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/93778b2f4ffa42deb9a27e6866148a35.png" alt="" />
+</div>
+</p>
+<pre><code>//
+///TCP同步客户端
+//
+
+int main() {
+    try {
+        // 创建 io_context 和 socket
+        boost::asio::io_context io_context;
+        boost::asio::ip::tcp::socket socket(io_context);
+
+        // 定义远程端点（IP 和端口）
+        boost::asio::ip::tcp::endpoint endpoint(
+            boost::asio::ip::address::from_string(&quot;127.0.0.1&quot;), 8080);
+
+        // 连接到服务器
+        socket.connect(endpoint);
+
+        // 发送数据到服务器
+        std::string message = &quot;Hello, Server!&quot;;
+        boost::asio::write(socket, boost::asio::buffer(message));
+
+        // 接收服务器响应
+        char buffer[128];
+        size_t len = socket.read_some(boost::asio::buffer(buffer));
+        std::cout &lt;&lt; &quot;Server response: &quot; &lt;&lt; std::string(buffer, len) &lt;&lt; std::endl;
+
+        // 关闭连接
+        socket.close();
+    } catch (const std::exception&amp; e) {
+        std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+<pre><code>//
+///TCP同步服务器
+//
+
+int main() {
+    try {
+        boost::asio::io_context io_context;
+
+        // 创建监听器
+        boost::asio::ip::tcp::acceptor acceptor(
+            io_context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 8080));
+
+        std::cout &lt;&lt; &quot;Server is running on port 8080...&quot; &lt;&lt; std::endl;
+
+        // 接受客户端连接
+        boost::asio::ip::tcp::socket socket(io_context);
+        acceptor.accept(socket);
+
+        std::cout &lt;&lt; &quot;Client connected: &quot; &lt;&lt; socket.remote_endpoint() &lt;&lt; std::endl;
+
+        // 接收客户端数据
+        char buffer[128];
+        size_t len = socket.read_some(boost::asio::buffer(buffer));
+        std::cout &lt;&lt; &quot;Received: &quot; &lt;&lt; std::string(buffer, len) &lt;&lt; std::endl;
+
+        // 发送响应
+        std::string response = &quot;Hello, Client!&quot;;
+        boost::asio::write(socket, boost::asio::buffer(response));
+
+        // 关闭连接
+        socket.close();
+    } catch (const std::exception&amp; e) {
+        std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+<h4 id="异步tcp客户端与服务端搭建"><strong>异步TCP客户端与服务端搭建</strong></h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/b3ce74a09ffa49099aaf2ee5ddd1ba6f.png" alt="" />
+</div>
+</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/a557c801f65b4399a799178e3c35fbba.png" alt="" />
+</div>
+</p>
+<pre><code>
+//
+///TCP异步服务器
+//
+
+void on_accept(const boost::system::error_code&amp; ec, boost::asio::ip::tcp::socket socket) {
+    if (!ec) {
+        std::cout &lt;&lt; &quot;Client connected: &quot; &lt;&lt; socket.remote_endpoint() &lt;&lt; std::endl;
+
+        // 异步读取数据
+        auto buffer = std::make_shared&lt;std::vector&lt;char&gt;&gt;(128);
+        socket.async_read_some(boost::asio::buffer(*buffer),
+            [buffer](const boost::system::error_code&amp; ec, std::size_t length) {
+                if (!ec) {
+                    std::cout &lt;&lt; &quot;Received: &quot; &lt;&lt; std::string(buffer-&gt;data(), length) &lt;&lt; std::endl;
+                }
+            });
+    } else {
+        std::cerr &lt;&lt; &quot;Accept failed: &quot; &lt;&lt; ec.message() &lt;&lt; std::endl;
+    }
+}
+
+int main() {
+    boost::asio::io_context io_context;
+
+    // 创建监听器
+    boost::asio::ip::tcp::acceptor acceptor(
+        io_context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 8080));
+
+    // 异步接受连接
+    acceptor.async_accept(
+        [&amp;acceptor](const boost::system::error_code&amp; ec, boost::asio::ip::tcp::socket socket) {
+            on_accept(ec, std::move(socket));
+        });
+
+    std::cout &lt;&lt; &quot;Server is running on port 8080...&quot; &lt;&lt; std::endl;
+
+    // 启动事件循环
+    io_context.run();
+
+    return 0;
+}
+</code></pre>
+<pre><code>//
+///TCP异步步客户端
+//
+
+void on_connect(const boost::system::error_code&amp; ec) {
+    if (!ec) {
+        std::cout &lt;&lt; &quot;Connected to server!&quot; &lt;&lt; std::endl;
+    } else {
+        std::cerr &lt;&lt; &quot;Failed to connect: &quot; &lt;&lt; ec.message() &lt;&lt; std::endl;
+    }
+}
+
+int main() {
+    boost::asio::io_context io_context;
+    boost::asio::ip::tcp::socket socket(io_context);
+
+    // 定义远程端点
+    boost::asio::ip::tcp::endpoint endpoint(
+        boost::asio::ip::address::from_string(&quot;127.0.0.1&quot;), 8080);
+
+    // 异步连接
+    socket.async_connect(endpoint, on_connect);
+
+    // 运行事件循环
+    io_context.run();
+
+    return 0;
+}
+</code></pre>
+<h3 id="boostasioiptcpacceptor">boost::asio::ip::tcp::acceptor</h3>
+<p><code>acceptor</code> 类用于监听进入的 TCP 连接。它用于接受客户端发起的连接，并为每个连接创建一个新的 <code>socket</code> 实例</p>
+<blockquote>
+<p>主要功能</p></blockquote>
+<ul>
+<li>监听端口，等待客户端连接</li>
+<li>一旦有客户端连接成功，创建一个新的 <code>socket</code> 来处理与客户端的通信</li>
+</ul>
+<blockquote>
+<p>构造函数</p></blockquote>
+<ul>
+<li>io_context：参考上文</li>
+<li>endpoint：绑定的端点，一般是服务器的IP和端口号</li>
+</ul>
+<pre><code>boost::asio::ip::tcp::acceptor(io_context, const endpoint&amp;);
+// 使用事例
+boost::asio::io_context io_context;
+boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), 8080);
+boost::asio::ip::tcp::acceptor acceptor(io_context, endpoint);
+</code></pre>
+<blockquote>
+<p>accept（socket）：接收一个客户端连接请求，该方法是阻塞的直到客户端连接成功</p></blockquote>
+<ul>
+<li><code>socket</code>：接收客户端连接的 <code>boost::asio::ip::tcp::socket</code> 实例。成功连接后，<code>socket</code> 会被自动填充为新的连接</li>
+<li>：无返回值。如果连接成功，<code>socket</code> 已经准备好与客户端进行通信</li>
+</ul>
+<pre><code>boost::asio::ip::tcp::socket socket(io_context);
+acceptor.accept(socket);  // 阻塞，直到有客户端连接
+</code></pre>
+<blockquote>
+<p>async_accept(socket , handler）</p></blockquote>
+<ul>
+<li>异步接收客户端的连接请求，调用的时候不会阻塞，接受连接的操作在后台执行，操作完成后的会调用handler函数</li>
+<li>参数：一个Socket对象一个handle回调函数</li>
+</ul>
+<pre><code>boost::asio::ip::tcp::socket socket(io_context);
+acceptor.async_accept(socket, [](const boost::system::error_code&amp; ec) {
+    if (!ec) {
+        std::cout &lt;&lt; &quot;Client connected successfully!&quot; &lt;&lt; std::endl;
+    } else {
+        std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; ec.message() &lt;&lt; std::endl;
+    }
+});
+io_context.run();  // 运行事件循环，处理异步操作
+</code></pre>
+<blockquote>
+<p>local_endpoint()</p></blockquote>
+<ul>
+<li>获取acceptor绑定的本地端点</li>
+<li>返回一个boost::asio::ip::tcp::endpoint ，表示绑定到服务器的IP地址和端口</li>
+</ul>
+<pre><code>boost::asio::ip::tcp::endpoint local_endpoint = acceptor.local_endpoint();
+std::cout &lt;&lt; &quot;Server is listening on &quot; &lt;&lt; local_endpoint &lt;&lt; std::endl;
+</code></pre>
+<blockquote>
+<p>close（）</p></blockquote>
+<ul>
+<li>关闭acceptor，停止监听新连接，一般是在应用程序退出的时候调用，释放资源</li>
+</ul>
+<blockquote>
+<p>具体使用参考同步与异步服务器搭建</p></blockquote>
+<h3 id="boostasiodeadline_timer--steady_timer">boost::asio::deadline_timer / steady_timer</h3>
+<p>这两个类是用于异步编程中的定时操作类，主要用于设置延时操作</p>
+<ul>
+<li><strong><code>deadline_timer</code></strong> 是基于绝对时间的定时器，适用于在某一指定时刻执行操作</li>
+<li><strong><code>steady_timer</code></strong> 是基于相对时间的定时器，适用于相对延迟</li>
+</ul>
+<blockquote>
+<p>主要功能</p></blockquote>
+<ul>
+<li>异步定时操作</li>
+<li>定时器过期时，调用指定的回调函数</li>
+</ul>
+<h4 id="deadline_timer基于绝对时间">deadline_timer（基于绝对时间）</h4>
+<blockquote>
+<p>构造函数</p></blockquote>
+<ul>
+<li>ptime：定时器到期的绝对时间点</li>
+<li>time_duration：从当前时间开始，持续时间</li>
+</ul>
+<pre><code>boost::asio::deadline_timer(io_context, const boost::posix_time::ptime&amp;);
+boost::asio::deadline_timer(io_context, const boost::posix_time::time_duration&amp;);
+</code></pre>
+<blockquote>
+<p>常用方法</p></blockquote>
+<ul>
+<li>async_wait(handler)：异步等待定时器到期，handler是定时器到期时候的回调函数</li>
+<li>expires_at(ptime)：设置定时器的到期时间为指定的绝对时间点</li>
+<li>expires_from_now(time_duration)：设置定时器到期时间为相对时间</li>
+<li>cancel()：取消定时器</li>
+</ul>
+<blockquote>
+<p>具体使用</p></blockquote>
+<h4 id="定时器1">定时器1</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/8141b73834dc4f509f1f5d1d4965941f.png" alt="" />
+</div>
+</p>
+<pre><code>#include &lt;boost/asio.hpp&gt;
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+#include &lt;iostream&gt;
+
+void handler(const boost::system::error_code&amp; /*ec*/) {
+    std::cout &lt;&lt; &quot;Deadline timer expired!&quot; &lt;&lt; std::endl;
+}
+
+int main() {
+    try {
+        boost::asio::io_context io_context;
+
+        // 设置绝对到期时间（5秒后）
+        boost::asio::deadline_timer timer(io_context, boost::posix_time::seconds(5));
+
+        // 异步等待定时器到期
+        timer.async_wait(handler);
+
+        // 启动事件循环
+        io_context.run();
+    } catch (const std::exception&amp; e) {
+        std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+<h4 id="steady_timer相对时间">steady_timer（相对时间）</h4>
+<p>相对时间也就是到期时间是从当前时间开始的延迟</p>
+<blockquote>
+<p>构造函数</p></blockquote>
+<pre><code>boost::asio::steady_timer(io_context, const boost::chrono::steady_clock::duration&amp;);
+</code></pre>
+<blockquote>
+<p>常用方法</p></blockquote>
+<ul>
+<li>async_wait(handler)：异步等待到期后调用handler回调函数</li>
+<li>expires_after(duration)：设置定时器的到期时间为从当前时间开始的相对时间</li>
+<li>cancel()：取消定时器</li>
+</ul>
+<pre><code>#include &lt;boost/asio.hpp&gt;
+#include &lt;iostream&gt;
+
+void handler(const boost::system::error_code&amp; /*ec*/) {
+    std::cout &lt;&lt; &quot;Steady timer expired!&quot; &lt;&lt; std::endl;
+}
+
+int main() {
+    try {
+        boost::asio::io_context io_context;
+
+        // 设置相对到期时间（5秒后）
+        boost::asio::steady_timer timer(io_context, boost::asio::chrono::seconds(5));
+
+        // 异步等待定时器到期
+        timer.async_wait(handler);
+
+        // 启动事件循环
+        io_context.run();
+    } catch (const std::exception&amp; e) {
+        std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+<h3 id="boostasioiptcpresolver">boost::asio::ip::tcp::resolver</h3>
+<p><code>resolver</code> 是用来解析主机名和服务名的类。它将域名解析为具体的 IP 地址，用于建立连接</p>
+<blockquote>
+<p>主要功能</p></blockquote>
+<ul>
+<li>解析主机名或 IP 地址，返回可以用于连接的端点（<code>endpoint</code>）</li>
+<li>异步解析支持，通过 <code>async_resolve()</code> 实现</li>
+</ul>
+<blockquote>
+<p>主要功能</p></blockquote>
+<ul>
+<li>解析主机名和服务名：resolver可以将主机名或者服务名解析成为一个或者多个IP地址和端口对</li>
+<li>支持同步和异步两种操作</li>
+<li>返回endpoint列表，返回一个boost::asio::ip::tcp::resolver::results_type类型的对象，其可以解析一个或者多个endpoint，这些endpoint直接用于建立连接</li>
+</ul>
+<blockquote>
+<p>构造函数</p></blockquote>
+<pre><code>boost::asio::ip::tcp::resolver(io_context);
+</code></pre>
+<blockquote>
+<p>常用方法</p></blockquote>
+<ul>
+<li>resolve(const std::string&amp; host, const std::string&amp; service)：指定主机名和服务名然后返回一个endpoint列表</li>
+<li>async_resolve(const std::string&amp; host, const std::string&amp; service, handler)：异步解析</li>
+</ul>
+<h4 id="同步解析">同步解析</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/d83ea92b29f34801afa173119e1658e5.png" alt="" />
+</div>
+</p>
+<pre><code>int main() {
+    try {
+        boost::asio::io_context io_context;
+
+        // 创建一个 resolver 对象
+        boost::asio::ip::tcp::resolver resolver(io_context);
+
+        // 同步解析主机名和服务名
+        auto endpoints = resolver.resolve(&quot;example.com&quot;, &quot;http&quot;);
+
+        for (const auto&amp; endpoint : endpoints) {
+            std::cout &lt;&lt; &quot;Resolved endpoint: &quot; &lt;&lt; endpoint.endpoint() &lt;&lt; std::endl;
+        }
+
+    } catch (const boost::system::system_error&amp; e) {
+        std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+<h4 id="异步解析">异步解析</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/b08277a48bb84dca8ee6bf854bdfa853.png" alt="" />
+</div>
+</p>
+<pre><code>void on_resolve(const boost::system::error_code&amp; ec, boost::asio::ip::tcp::resolver::results_type endpoints) {
+    if (!ec) {
+        for (const auto&amp; endpoint : endpoints) {
+            std::cout &lt;&lt; &quot;Resolved endpoint: &quot; &lt;&lt; endpoint.endpoint() &lt;&lt; std::endl;
+        }
+    } else {
+        std::cerr &lt;&lt; &quot;Resolve failed: &quot; &lt;&lt; ec.message() &lt;&lt; std::endl;
+    }
+}
+
+int main() {
+    try {
+        boost::asio::io_context io_context;
+
+        // 创建 resolver 对象
+        boost::asio::ip::tcp::resolver resolver(io_context);
+
+        // 异步解析主机名和服务名
+        resolver.async_resolve(&quot;example.com&quot;, &quot;http&quot;, on_resolve);
+
+        // 启动事件循环，等待解析完成
+        io_context.run();
+
+    } catch (const boost::system::system_error&amp; e) {
+        std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+<h3 id="boostasiobuffer--mutable_buffer">boost::asio::buffer / mutable_buffer</h3>
+<p><code>buffer</code> 是 <code>Boost.Asio</code> 中用于封装数据块的类。它用于表示读写操作的数据区，支持多种数据类型（如数组、<code>std::vector</code>、<code>std::string</code>）</p>
+<blockquote>
+<p><strong>主要功能</strong></p></blockquote>
+<ul>
+<li>用于缓冲区管理，通常用于传递给异步读写操作</li>
+<li><code>mutable_buffer</code> 用于可以修改的数据缓冲区，<code>const_buffer</code> 用于只读缓冲区</li>
+</ul>
+<h4 id="buffer">Buffer</h4>
+<blockquote>
+<p><strong>创建使用</strong></p></blockquote>
+<ul>
+<li>该函数将数据容器封装成一个缓冲区对象</li>
+<li>通过该接口可以将容器包装成一个可以传递给异步读写操作的缓冲区对象</li>
+<li>支持的数据类型
+<ul>
+<li>oost::asio::buffer(my_array)数组类型</li>
+<li>vector 、 string、array</li>
+</ul>
+</li>
+</ul>
+<pre><code>#include &lt;boost/asio.hpp&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+
+int main() {
+    std::vector&lt;char&gt; data(128);  // 创建一个存储 128 字节的 vector
+    boost::asio::buffer(data);     // 使用 boost::asio::buffer() 创建一个缓冲区
+    std::cout &lt;&lt; &quot;Buffer size: &quot; &lt;&lt; data.size() &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+<h4 id="mutable_buffer">mutable_buffer</h4>
+<p>表示一个可修改的数据缓冲区，表示可以修改缓冲区的数据，异步操作中一般用于读取缓冲区数据或者发送数据</p>
+<blockquote>
+<p><strong>构造函数</strong></p></blockquote>
+<ul>
+<li>data：指向数据存储区域的指针</li>
+<li>size：缓冲区的大小，字节为单位</li>
+</ul>
+<pre><code>boost::asio::mutable_buffer buffer(void* data, std::size_t size);
+</code></pre>
+<blockquote>
+<p><strong>测试</strong></p></blockquote>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/c838c06b7866452b99f15972866c6e74.png" alt="" />
+</div>
+</p>
+<pre><code>int main() {
+    std::vector&lt;char&gt; data(128);  // 创建一个存储 128 字节的 vector
+    boost::asio::mutable_buffer buffer(data.data(), data.size());  // 创建一个可修改的缓冲区
+    std::cout &lt;&lt; &quot;Mutable buffer size: &quot; &lt;&lt; buffer.size() &lt;&lt; std::endl;
+    return 0;
+}
+</code></pre>
+<h3 id="boostasiostreambuf">boost::asio::streambuf</h3>
+<p><code>streambuf</code> 是一个内存缓冲区类，提供了一个流接口来读写数据。它常用于处理异步读取的数据</p>
+<blockquote>
+<p><strong>主要功能</strong></p></blockquote>
+<ul>
+<li>为流式输入/输出提供一个缓冲区</li>
+<li>适用于处理流数据，如 HTTP 请求/响应、网络协议等</li>
+</ul>
+<blockquote>
+<p><strong>构造函数</strong></p></blockquote>
+<ul>
+<li>通过默认构造函数创建一个空的缓冲区，可以通过异步读写操作将数据存入或者从中读取</li>
+</ul>
+<pre><code>boost::asio::streambuf buf;  // 创建一个空的 streambuf 对象
+</code></pre>
+<blockquote>
+<p><strong>常用方法</strong></p></blockquote>
+<ul>
+<li>获取或写入缓冲区数据：通过data()获取数据区域，consume()方法从缓冲区中消费数据
+<ul>
+<li>streambuf对象的转换为boost::asio::mutable_buffer或者boost::asio::const_buffer，然后进行读写操作</li>
+</ul>
+</li>
+<li>std::istream和std::ostream构造函数接收streambuf对象，然后就可以像标准流一样读写或者写入数据</li>
+</ul>
+<h4 id="异步读取数据">异步读取数据</h4>
+<pre><code>#include &lt;boost/asio.hpp&gt;
+#include &lt;iostream&gt;
+
+void read_handler(const boost::system::error_code&amp; ec, std::size_t bytes_transferred) {
+    if (!ec) {
+        std::cout &lt;&lt; &quot;Successfully read &quot; &lt;&lt; bytes_transferred &lt;&lt; &quot; bytes.&quot; &lt;&lt; std::endl;
+    } else {
+        std::cerr &lt;&lt; &quot;Error during read: &quot; &lt;&lt; ec.message() &lt;&lt; std::endl;
+    }
+}
+
+int main() {
+    try {
+        boost::asio::io_context io_context;
+
+        boost::asio::ip::tcp::socket socket(io_context);
+        boost::asio::ip::tcp::resolver resolver(io_context);
+        auto endpoints = resolver.resolve(&quot;example.com&quot;, &quot;http&quot;);
+
+        // 连接到服务器
+        boost::asio::connect(socket, endpoints);
+
+        boost::asio::streambuf buf;  // 创建一个 streambuf 对象
+        boost::asio::async_read(socket, buf, read_handler);  // 异步读取数据到 streambuf 中
+
+        io_context.run();  // 启动事件循环
+    } catch (const boost::system::system_error&amp; e) {
+        std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+<h4 id="异步写入数据">异步写入数据</h4>
+<pre><code>#include &lt;boost/asio.hpp&gt;
+#include &lt;iostream&gt;
+
+void write_handler(const boost::system::error_code&amp; ec, std::size_t bytes_transferred) {
+    if (!ec) {
+        std::cout &lt;&lt; &quot;Successfully sent &quot; &lt;&lt; bytes_transferred &lt;&lt; &quot; bytes.&quot; &lt;&lt; std::endl;
+    } else {
+        std::cerr &lt;&lt; &quot;Error during write: &quot; &lt;&lt; ec.message() &lt;&lt; std::endl;
+    }
+}
+
+int main() {
+    try {
+        boost::asio::io_context io_context;
+
+        boost::asio::ip::tcp::socket socket(io_context);
+        boost::asio::ip::tcp::resolver resolver(io_context);
+        auto endpoints = resolver.resolve(&quot;example.com&quot;, &quot;http&quot;);
+
+        // 连接到服务器
+        boost::asio::connect(socket, endpoints);
+
+        // 将数据放入 streambuf
+        boost::asio::streambuf buf;
+        std::ostream os(&amp;buf);
+        os &lt;&lt; &quot;GET / HTTP/1.1\r\nHost: example.com\r\n\r\n&quot;;  // 向 buf 中写入 HTTP 请求
+
+        // 异步写入数据
+        boost::asio::async_write(socket, buf, write_handler);
+
+        io_context.run();  // 启动事件循环
+    } catch (const boost::system::system_error&amp; e) {
+        std::cerr &lt;&lt; &quot;Error: &quot; &lt;&lt; e.what() &lt;&lt; std::endl;
+    }
+
+    return 0;
+}
+</code></pre>
+<h3 id="boostasioasync_read--write">boost::asio::async_read() / write()</h3>
+<p>这两个函数用于异步地从 <code>socket</code> 读取数据或写入数据。它们支持回调机制，在操作完成时调用指定的回调函数</p>
+<blockquote>
+<p><strong>主要功能</strong></p></blockquote>
+<ul>
+<li>异步读写操作，避免阻塞主线程</li>
+<li>支持传输数据（如字符串、文件等）</li>
+</ul>
+<blockquote>
+<p><strong>接口在前面的事例中已经被广泛使用</strong></p></blockquote>
+<pre><code>boost::asio::async_read(socket, boost::asio::buffer(data), handler);  // 异步读取数据
+boost::asio::async_write(socket, boost::asio::buffer(data), handler);  // 异步写入数据
+</code></pre>
+<h3 id="boostasioconnect--async_connect">boost::asio::connect() / async_connect()</h3>
+<p><code>connect</code> 用于同步连接到远程主机，而 <code>async_connect</code> 用于异步连接，后者更常用于高性能网络编程</p>
+<blockquote>
+<p><strong>主要功能</strong></p></blockquote>
+<ul>
+<li>用于客户端连接远程服务器。</li>
+<li><code>async_connect</code> 支持异步连接，在连接成功后调用回调函数</li>
+</ul>
+<pre><code>boost::asio::async_connect(socket, endpoints, handler);
+</code></pre>
+<h3 id="boostasiopost">boost::asio::post()</h3>
+<p><code>post</code> 是一个简单的异步任务调度器，它将任务投递到 <code>io_context</code> 中，任务会在 <code>io_context.run()</code> 循环中执行</p>
+<blockquote>
+<p><strong>主要功能</strong></p></blockquote>
+<p>在事件循环中调度任务执行，类似于线程池的任务调度</p>
+<pre><code>boost::asio::post(io_context, [](){ std::cout &lt;&lt; &quot;Hello, Asio!&quot; &lt;&lt; std::endl; });
+</code></pre>
+<h3 id="boostasiostrand">boost::asio::strand</h3>
+<p><code>strand</code> 是 <code>Boost.Asio</code> 中用于处理线程安全问题的类。在多线程环境中，它确保多个异步操作的回调函数不会同时执行，从而避免数据竞争和不一致性</p>
+<blockquote>
+<p><strong>主要功能</strong></p></blockquote>
+<ul>
+<li>提供线程安全的任务执行模型</li>
+<li>确保同一 <code>strand</code> 中的回调函数按顺序执行</li>
+<li>使用strand可以避免在多线程环境中出现数据竞争或者死锁，尤其是在需要访问共享资源的时候</li>
+</ul>
+<blockquote>
+<p><strong>构造函数</strong></p></blockquote>
+<ul>
+<li>io_context.get_executor()提供了io_context的执行器，定义了strand中的任务执行上下文</li>
+</ul>
+<pre><code>boost::asio::strand&lt;boost::asio::io_context::executor_type&gt; strand(io_context.get_executor());
+</code></pre>
+<blockquote>
+<p><strong>boost::asio::post(strand, handler)</strong></p></blockquote>
+<ul>
+<li>使用strand提交一个回调函数，然后strand会确保这些回调函数按照顺序执行</li>
+</ul>
+<pre><code>boost::asio::post(strand, handler);  // 保证 handler 按顺序执行
+</code></pre>
+<blockquote>
+<p><strong>strand 和 async_*</strong></p></blockquote>
+<pre><code>boost::asio::async_read(socket, buffer, strand.wrap(handler));  // wrap 使回调函数按顺序执行
+</code></pre>
+<h4 id="strand保证回调顺序">strand保证回调顺序</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://i-blog.csdnimg.cn/direct/9062af24f58449dbadc6c3703ffe06e6.png" alt="" />
+</div>
+</p>
+<pre><code>///
+///strand 保证回调顺序
+///
+
+void handler(int id) {
+    std::cout &lt;&lt; &quot;Handler &quot; &lt;&lt; id &lt;&lt; &quot; executed in thread: &quot;
+              &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;
+}
+
+int main() {
+    boost::asio::io_context io_context;
+    boost::asio::strand&lt;boost::asio::io_context::executor_type&gt; strand(io_context.get_executor());
+
+    // 提交多个任务到同一个 strand，确保它们按顺序执行
+    boost::asio::post(strand, std::bind(handler, 1));  // 提交任务1
+    boost::asio::post(strand, std::bind(handler, 2));  // 提交任务2
+    boost::asio::post(strand, std::bind(handler, 3));  // 提交任务3
+
+    // 在多线程环境中运行 io_context
+    std::thread t1([&amp;io_context](){ io_context.run(); });
+    std::thread t2([&amp;io_context](){ io_context.run(); });
+
+    t1.join();
+    t2.join();
+
+    return 0;
+}
+</code></pre>
+<blockquote>
+<p><strong>strand.wrap()</strong></p></blockquote>
+<p>将异步操作的回调函数打包在一起，从而保证回调函数在同一strand中按照顺序执行，主要是在多线程中使用</p>
+<pre><code>boost::asio::async_read(socket, buffer, strand.wrap(handler));
+</code></pre>
+<h4 id="strandwrap-保证顺序执行">strand.wrap() 保证顺序执行</h4>
+<pre><code>#include &lt;boost/asio.hpp&gt;
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+
+void handler(int id) {
+    std::cout &lt;&lt; &quot;Handler &quot; &lt;&lt; id &lt;&lt; &quot; executed in thread: &quot;
+              &lt;&lt; std::this_thread::get_id() &lt;&lt; std::endl;
+}
+
+int main() {
+    boost::asio::io_context io_context;
+    boost::asio::strand&lt;boost::asio::io_context::executor_type&gt; strand(io_context.get_executor());
+
+    // 提交多个任务到同一个 strand，确保它们按顺序执行
+    boost::asio::async_read_some(socket, buffer, strand.wrap(std::bind(handler, 1)));
+    boost::asio::async_read_some(socket, buffer, strand.wrap(std::bind(handler, 2)));
+    boost::asio::async_read_some(socket, buffer, strand.wrap(std::bind(handler, 3)));
+
+    // 在多线程环境中运行 io_context
+    std::thread t1([&amp;io_context](){ io_context.run(); });
+    std::thread t2([&amp;io_context](){ io_context.run(); });
+
+    t1.join();
+    t2.join();
+
+    return 0;
+}
+</code></pre>
+<h2 id="核心设计思想">核心设计思想</h2>
+<h3 id="异步模型与事件循环机制">异步模型与事件循环机制</h3>
+<blockquote>
+<p><strong>整体逻辑</strong></p></blockquote>
+<p>当调用一个异步操作的时候，io_service会启动事件循环</p>
+<ul>
+<li><strong>提交异步操作</strong></li>
+<li><strong>进入事件循环，不断监视异步操作的状态，直到其完成</strong></li>
+<li><strong>回调通知，如果操作完成，会调用其预先注册的好的回调函数</strong></li>
+<li><strong>继续执行其他任务</strong></li>
+</ul>
+<blockquote>
+<p>内部实现结合具体方法</p></blockquote>
+<p><strong>post() 和 dispatch()</strong></p>
+<ul>
+<li>post方法就是将任务投递到任务队列，任务不会打断线程，而是会在队列中等待执行</li>
+<li>dispath(）方法则是提交给当前线程立即执行，不会将任务放到队列中，而是直接在当前线程中执行</li>
+</ul>
+<p><strong>io_service/io_context</strong></p>
+<ul>
+<li><strong>run()方法：会将程序进入循环，开始调度和执行已经提交的异步操作</strong></li>
+<li><strong>io_serive：则可以将回调函数添加到任务队列中，等待线程进行处理</strong></li>
+</ul>
+<blockquote>
+<p><strong>多线程与事件循环机制结合</strong></p></blockquote>
+<p>多核机器上通过多核线程可以提高运行性能，多线程设计的核心之一就是确保其互相不会打扰，高效的执行异步任务，所以通过循环机制和任务队列。该处的核心思想可以参考modou网络库的设计思想</p>
+<h3 id="多路复用机制">多路复用机制</h3>
+<p>asio中对于多路复用机制的使用在于确保在I/O操作时及时触发回调函数，不需要为每一个I/O操作都创建新的线程</p>
+<blockquote>
+<p><strong>strand设计</strong></p></blockquote>
+<p>asio设计stand机制的核心目的就是保证异步编程中回调函数的顺序性，避免多个回调函数并发执行时的竞态条件。因为多线程环境中，<strong>多个异步操作的回调可能会在不同的线程中并发执行</strong>，那么就有可能造成数据不一致或者竞争情况</p>
+<p>strand的核心作用就是让异步操作放入一个队列中，然后让其排队，从而确保同一strand中的回调函数按顺序执行，这样即使多个回调函数在被不同线程执行的时候，也不会出现竞态条件</p>
+<p><strong>核心特点：通过队列确保顺序性；通过事件循环机制执行任务，从而减少了锁的开销</strong></p>
+<blockquote>
+<p><strong>拓展1：设计高效I/O复用机制，减少阻塞和提高吞吐量的思路</strong></p></blockquote>
+<ul>
+<li><strong>非阻塞 I/O：</strong> 采用非阻塞 I/O 操作，避免线程被阻塞，浪费计算资源。当某个文件描述符或套接字准备好进行 I/O 操作时，才通知事件循环来处理</li>
+<li><strong>事件通知机制：</strong> 在高并发环境中，尽量使用高效的事件通知机制</li>
+<li><strong>线程池：</strong> 如果 I/O 操作涉及复杂的计算，可以使用线程池来处理。通过将计算密集型任务从主线程中分离出来，避免阻塞事件循环，从而提升系统的并发性</li>
+<li><strong>事件循环设计：</strong> 确保事件循环高效执行，可以通过优化任务调度、减少空转等待等方式提高事件循环的吞吐量。要避免将阻塞的操作放入事件循环中，避免影响其他异步任务的执行</li>
+<li><strong>批量操作和分片：</strong> 对于大量的 I/O 操作，可以将它们合并为批量操作，减少每次 I/O 操作的开销，提升整体吞吐量。另外，拆分大任务为多个小任务也能提高并发执行效率</li>
+</ul>
+<h3 id="其他设计思想">其他设计思想</h3>
+<p>之前学习modou网络库中接触并总结过这些思想，所以此处省略</p>
+<ul>
+<li>**内存缓冲区机制：**预先设置一块缓冲区，从而减少内存分配从而提高内存利用率</li>
+<li>**定时器与异步事件调度：**其中核心思想就是时间轮的设计</li>
+<li>**回调函数与生命周期管理：**通过智能指针以及绑定到连接从而控制其生命周期</li>
+</ul>
+
+</main>
+
+<style>
+    
+
+    
+
+    body {
+        margin-right: 280px;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            margin-right: 0;
+        }
+    }
+
+    
+
+     
+    .article-meta {
+        text-align: center;
+        text-decoration: none;
+        background: #efefef;
+        padding: 1px;
+        border-radius: 5px;
+    }
+
+    .article-meta-title {
+        font-size: 2.2rem;
+    }
+
+    .article-meta-info {
+        color: #666;
+        font-size: 1.1rem;
+        margin: -0.6rem 0 0.2rem 10px;
+        text-align: left;
+    }
+
+    .article-meta-info a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+</style>
+
+
+
+<h1 style="font-size: 1.2rem; margin: 2.5rem 0 0.1rem 0;">Comment</h1>
+<div class="cusdis-comments">
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id=697d528d-b618-4ee1-a6fe-403c81a646ac
+    data-page-id="45bff853193af9d928c6ffcd101a2e9e"
+    data-page-url="https://kaikaixixi.xyz/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/"
+    data-page-title="Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)"
+  ></div>
+  <script async defer src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/cusdis/cusdis.es.min.js"></script>
+</div>
+
+<style>
+.cusdis-comments {
+  border-top: 2px dashed #cfcfcf;
+  padding-top: 1.3rem;
+}
+
+#cusdis_thread iframe {
+  min-height: 500px !important;
+  overflow: visible !important;
+}
+</style>
+
+
+<footer>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/math-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/render-katex.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/center-img.min.js"></script>
+
+  
+
+<div id="menuBtnContainer">
+    
+    <button id="menuBtn"><i class="fa-solid fa-screwdriver-wrench"></i></button>
+
+    
+    <button id="backToBottomBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-down"></i></button>
+    <button id="backToTopBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-up"></i></button>
+
+    
+    <div class="menu-popup-btn edit-btn">
+        <a href='https://github.com/captainwc/captainwc.github.io/edit/main/content/%e7%bd%91%e9%a1%b5%e5%89%aa%e8%97%8f/Asio%20%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8%e4%b8%8e%e6%a0%b8%e5%bf%83%e8%ae%be%e8%ae%a1%e6%80%9d%e6%83%b3.md'
+            target="_blank" rel="noopener">
+            <i class="fa-solid fa-square-pen"></i>
+        </a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuBtn = document.getElementById('menuBtn');
+        var menuBtnContainer = document.getElementById('menuBtnContainer');
+        var backToTopBtn = document.getElementById('backToTopBtn');
+        var backToBottomBtn = document.getElementById('backToBottomBtn');
+        var popupBtns = document.querySelectorAll('.menu-popup-btn');
+        var hoverTimeout;
+
+        
+        menuBtnContainer.classList.add('visible');
+
+        
+        function showPopupBtns() {
+            clearTimeout(hoverTimeout);
+            menuBtnContainer.classList.add('active');
+        }
+
+        
+        function hidePopupBtns() {
+            hoverTimeout = setTimeout(function() {
+                menuBtnContainer.classList.remove('active');
+            }, 300);
+        }
+
+        
+        menuBtnContainer.addEventListener('mouseenter', showPopupBtns);
+        menuBtnContainer.addEventListener('mouseleave', hidePopupBtns);
+
+        
+        menuBtn.addEventListener('click', function() {
+            if (menuBtnContainer.classList.contains('active')) {
+                menuBtnContainer.classList.remove('active');
+            } else {
+                showPopupBtns();
+            }
+        });
+
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        
+        backToBottomBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+<style>
+     
+    #menuBtnContainer {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 999;
+        opacity: 0.6;
+        visibility: visible;
+        transition: opacity 0.3s;
+    }
+
+    #menuBtnContainer:hover {
+        opacity: 1;
+    }
+
+     
+    #menuBtn {
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.2rem;
+        transition: background 0.3s;
+        cursor: pointer;
+        background: #EFEFEF;
+        z-index: 1000;
+        position: relative;
+    }
+
+    #menuBtn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+     
+    .menu-popup-btn {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        background: #EFEFEF;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+     
+    .menu-popup-btn.top-btn {
+        right: 0;
+        transform: translateY(0) scale(0.8);
+    }
+
+     
+    .menu-popup-btn.edit-btn {
+        bottom: 0;
+        transform: translateX(0) scale(0.8);
+        padding: 1px 6.6px 0px 6.6px;
+    }
+
+    .menu-popup-btn.edit-btn a {
+        color: #ccc;
+        text-decoration: none;
+        background: none !important;
+        transition: opacity 0.2s;
+        padding: 0;
+        margin: 0;
+    }
+
+     
+    #menuBtnContainer.active .menu-popup-btn {
+        opacity: 1;
+        visibility: visible;
+    }
+
+     
+    #menuBtnContainer.active #backToBottomBtn {
+        transform: translateY(-60px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active #backToTopBtn {
+        transform: translateY(-110px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active .edit-btn {
+        transform: translateX(-60px) scale(1);
+    }
+
+     
+    .menu-popup-btn:hover,
+    .menu-popup-btn.edit-btn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+    .menu-popup-btn.edit-btn:hover a {
+        color: #666;
+    }
+
+     
+    @media (max-width: 768px) {
+        #menuBtnContainer {
+            right: 15px;
+            bottom: 15px;
+        }
+
+        #menuBtnContainer.active #backToBottomBtn {
+            transform: translateY(-50px) scale(1);
+        }
+
+        #menuBtnContainer.active #backToTopBtn {
+            transform: translateY(-90px) scale(1);
+        }
+
+        #menuBtnContainer.active .edit-btn {
+            transform: translateX(-50px) scale(1);
+        }
+    }
+</style>
+
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    document.querySelectorAll('ul').forEach(ul => {
+      
+      const isTodoList = Array.from(ul.children).some(li => {
+        return li.innerHTML.includes('type="checkbox"')
+      });
+
+      if (isTodoList) {
+        
+        const todolistContainer = document.createElement('div');
+        todolistContainer.className = 'todolist';
+
+        
+
+        
+        ul.querySelectorAll('li').forEach(li => {
+          const todoItemDiv = document.createElement('div');
+          todoItemDiv.className = 'todo-item';
+
+          
+          const isChecked = li.innerHTML.includes('checked');
+          const content = li.innerHTML
+            .replace(/<input[^>]+>/g, '') 
+            .trim();
+
+          
+          const checkedIcon = `<svg t="1742522457277" class="todo-item-checked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12342"><path d="M512 938.688A426.624 426.624 0 1 1 512 85.376a426.624 426.624 0 0 1 0 853.312z m0-85.312A341.312 341.312 0 1 0 512 170.688a341.312 341.312 0 0 0 0 682.688z m-42.56-170.688L288.448 501.632l60.288-60.288L469.44 561.92l241.28-241.28 60.416 60.288-301.696 301.696z" p-id="12343"></path></svg>`;
+          const uncheckedIcon = `<svg t="1742522354856" class="todo-item-unchecked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11882"><path d="M512 938.666667C276.352 938.666667 85.333333 747.648 85.333333 512S276.352 85.333333 512 85.333333s426.666667 191.018667 426.666667 426.666667-191.018667 426.666667-426.666667 426.666667z m0-85.333334a341.333333 341.333333 0 1 0 0-682.709333A341.333333 341.333333 0 0 0 512 853.333333z" p-id="11883"></path></svg>`;
+
+          
+          todoItemDiv.innerHTML = `
+            <span class="todo-item-checkbox">
+              ${isChecked ? checkedIcon : uncheckedIcon}
+            </span>
+            <span class="todo-item-content">
+              ${isChecked ? `<del>${content}</del>` : content}
+            </span>
+          `;
+
+          
+          todolistContainer.appendChild(todoItemDiv);
+        });
+
+        
+        ul.parentNode.replaceChild(todolistContainer, ul);
+      }
+    });
+
+    function addTaskProgressBar(ul, todolistContainer) {
+      
+      const totalTasks = ul.children.length;
+      const finishedTasks = Array.from(ul.children).filter(li => li.innerHTML.includes('checked')).length;
+
+      
+      const progressContainer = document.createElement('div');
+      progressContainer.className = 'todo-progress';
+
+      
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'todo-progress-counter';
+      counterSpan.textContent = `${finishedTasks}/${totalTasks}`;
+
+      
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'todo-progress-bar';
+
+      
+      const progressFill = document.createElement('div');
+      progressFill.className = 'todo-progress-bar-fill';
+      progressFill.style.width = `${(finishedTasks / totalTasks) * 100}%`;
+
+      
+      const flagSpan = document.createElement('span');
+      flagSpan.className = 'todo-progress-flag';
+      flagSpan.innerHTML = `${finishedTasks === totalTasks ? '🌟' : '🚧'}`;
+
+      
+      progressTrack.appendChild(progressFill);
+      progressContainer.append(flagSpan, progressTrack, counterSpan);
+      todolistContainer.appendChild(progressContainer);
+    }
+  });
+</script>
+
+<style>
+   
+  .todolist {
+    padding-left: 0.6rem;
+  }
+
+  .todo-item {
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: -0.5rem 0 -0.5rem -0.7rem;
+    line-height: 1.3;
+  }
+
+  .todo-item-checkbox {
+    flex-shrink: 0;
+    font-size: 1.2em;
+
+    svg {
+      margin-top: 0.46rem;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .todo-item-checked-icon {
+    fill: #707070;
+  }
+
+  .todo-item-unchecked-icon {
+    fill: #1A61CC;
+  }
+
+  .todo-item-unchecked-icon:hover {
+    fill: red;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .todo-item-content {
+    flex: 1;
+    word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+   
+  .todo-progress {
+    display: flex;
+     
+    align-items: center;
+    gap: 0.3rem;
+     
+    margin: 0.1rem 0 0 0.7rem;
+  }
+
+  .todo-progress-counter {
+     
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+    color: #707070;
+  }
+
+  .todo-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #a64036;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 20%;
+  }
+
+  .todo-progress-bar-fill {
+    height: 100%;
+    background: #84a729;
+    transition: width 0.3s ease;
+  }
+
+  .todo-progress-flag {
+    display: none;
+    position: relative;
+    font-size: 0.9rem;
+  }
+</style>
+
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll())</script>
+
+
+
+  <script>
+    const langToNerdFontMap = {
+        asm: '\ue6ab',
+        bash: '\ue760',
+        bazel: '\ue63a',
+        c: '\ue61e',
+        cmake: '\ue794',
+        cmd: '\uebc4',
+        cpp: '\ue61d',
+        'c++': '\ue61d',
+        csharp: '\ue7b2',
+        css: '\ue749',
+        diff: '\ueae1',
+        dockerfile: '\uf21f',
+        go: '\udb81\udfd3',
+        gradle: '\ue7f2',
+        html: '\ue736',
+        java: '\uedaf',
+        javascript: '\ue781',
+        json: '\ueb0f',
+        latex: '\ue81f',
+        llvm: '\ue823',
+        lua: '\ue826',
+        makefile: '\ue673',
+        markdown: '\uf48a',
+        maven: '\ue82c',
+        plaintext: '\udb80\udd4d',
+        plantuml: '\ue8cb',
+        powershell: '\ue86c',
+        python: '\ued1b',
+        rust: '\udb85\ude17',
+        shell: '\ue760',
+        sql: '\udb82\udc66',
+        text: '\udb80\udd4d',
+        toml: '\ue6b2',
+        txt: '\udb80\udd4d',
+        typescript: '\ue8ca',
+        uml: '\ue8cb',
+        vim: '\ue7c5',
+        wasm: '\ue8e0',
+        xml: '\ue8ea',
+        yaml: '\ue8eb',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            const parentElement = codeBlock.parentElement;
+
+            
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+
+            
+            const foldBtn = document.createElement('button');
+            foldBtn.className = 'fold-btn';
+            foldBtn.innerHTML = '\uf48c';
+            foldBtn.style.display = 'none';
+
+            
+            const langLabel = document.createElement('div');
+            langLabel.className = 'lang-label';
+            const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
+            const icon = langToNerdFontMap[lang.toLowerCase()];
+            langLabel.textContent = icon || lang.toUpperCase();
+            if (!icon) langLabel.style.fontSize = '0.8rem';
+
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = '\uf4bb COPY';
+
+            
+            const scale_height = 600;       
+            const collapsed_height = 500;   
+            const checkHeight = () => {
+                const originalDisplay = parentElement.style.display;
+                parentElement.style.display = 'block';
+                const fullHeight = parentElement.scrollHeight;
+                parentElement.style.display = originalDisplay;
+                return fullHeight > scale_height;
+            };
+
+            
+            if (checkHeight()) {
+                foldBtn.style.display = 'flex';
+                parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+
+                
+                parentElement.classList.add('collapsed');
+                parentElement.style.maxHeight = `${collapsed_height}px`;
+                foldBtn.innerHTML = '\uf4d9';
+
+                parentElement.style.overflowY = 'auto'; 
+
+                foldBtn.addEventListener('click', () => {
+                    const isCollapsed = parentElement.classList.toggle('collapsed');
+                    foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
+
+                    if (isCollapsed) {
+                        parentElement.style.maxHeight = `${collapsed_height}px`;
+                        parentElement.style.overflowX = 'auto';
+                    } else {
+                        parentElement.style.maxHeight = 'none';
+                        void parentElement.offsetHeight;
+                        parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                    }
+                });
+            }
+
+            
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeBlock.textContent);
+                    copyBtn.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyBtn.textContent = '\uf4bb COPY', 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                }
+            });
+
+            
+            tools.append(langLabel, foldBtn, copyBtn);
+            parentElement.prepend(tools);
+        });
+    });
+</script>
+
+<style>
+ 
+.code-tools {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-family: "Maple Mono NF CN";
+}
+
+.fold-btn {
+    cursor: pointer;
+    border: none;
+    color: #666;
+    background: none;
+    font-family: "Maple Mono NF CN";
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0 0.45rem;
+    transition: all 0.2s ease;
+}
+
+ 
+.lang-label {
+     
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+ 
+.copy-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+}
+
+ 
+pre:hover .code-tools {
+    opacity: 1;
+    pointer-events: auto;
+}
+</style>
+
+
+  
+<script>
+    
+    window.diagramRenderUtils = {
+        
+        getOrCreateFullscreenOverlay: function() {
+            let overlay = document.querySelector('.fullscreen-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'fullscreen-overlay';
+                document.body.appendChild(overlay);
+
+                
+                overlay.addEventListener('dblclick', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            }
+            return overlay;
+        },
+
+        
+        createDiagramContainer: function() {
+            const container = document.createElement('div');
+            container.className = 'code-rendered-diagram';
+            return container;
+        },
+
+        
+        createCopyButton: function() {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'code-rendered-diagram-copy-button';
+            copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+            return copyButton;
+        },
+
+        
+        createFullscreenButton: function() {
+            const fullscreenButton = document.createElement('button');
+            fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+            fullscreenButton.innerHTML = '&#xf065; FULL';
+            return fullscreenButton;
+        },
+
+        
+        makeSVGTransparent: function(svgText) {
+            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                .forEach(el => {
+                    if (el.tagName !== 'svg') {
+                        el.setAttribute('fill', 'transparent');
+                    }
+                });
+            doc.documentElement.style.backgroundColor = 'transparent';
+            return new XMLSerializer().serializeToString(doc);
+        },
+
+        
+        setupCopyButton: function(copyButton, codeContent) {
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeContent);
+                    copyButton.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                } catch (err) {
+                    copyButton.textContent = 'FAILED';
+                    console.error('复制失败:', err);
+                }
+            });
+        },
+
+        
+        setupShowSourceCode: function(imageElem, sourceCode) {
+            
+            imageElem.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+
+                
+                const pre = document.createElement('pre');
+                const codeElem = document.createElement('code');
+                codeElem.textContent = sourceCode;
+                pre.appendChild(codeElem);
+
+                
+                window.diagramRenderUtils.popupWindowUtils.create({
+                    title: 'Source Code',
+                    content: pre,
+                    x: e.clientX,
+                    y: e.clientY,
+                    minWidth: 300,
+                    maxWidth: '60%',
+                    maxHeight: '60%',
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    className: 'source-code-viewer'
+                });
+            });
+        },
+
+        
+        setupFullscreenButton: function(fullscreenButton, contentElement, isImage = false) {
+            fullscreenButton.addEventListener('click', () => {
+                const overlay = this.getOrCreateFullscreenOverlay();
+                let clonedContent;
+
+                if (isImage) {
+                    
+                    clonedContent = contentElement.cloneNode(true);
+                } else {
+                    
+                    const svgElement = contentElement.querySelector('svg');
+                    if (!svgElement) return;
+                    clonedContent = svgElement.cloneNode(true);
+                }
+
+                overlay.innerHTML = '';
+
+                
+                const exitButton = document.createElement('button');
+                exitButton.className = 'fullscreen-exit-button';
+                exitButton.innerHTML = 'ESC';
+                exitButton.onclick = () => overlay.classList.remove('active');
+
+                overlay.appendChild(exitButton);
+                overlay.appendChild(clonedContent);
+                overlay.classList.add('active');
+
+                
+                this.setupZoomAndDrag(overlay, isImage ? 'img' : 'svg');
+            });
+        },
+
+        
+        setupZoomAndDrag: function(overlay, selector) {
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            const element = overlay.querySelector(selector);
+
+            
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY * -0.002;
+                const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                
+                const rect = element.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                
+                posX += mouseX * (1 - newScale / scale);
+                posY += mouseY * (1 - newScale / scale);
+
+                scale = newScale;
+                updateTransform();
+            });
+
+            
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === overlay) return;
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                overlay.classList.add('dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                overlay.classList.remove('dragging');
+            });
+
+            function updateTransform() {
+                element.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+        },
+
+        
+        popupWindowUtils: {
+            
+            create: function(options) {
+                
+                const config = {
+                    title: 'Popup Window',
+                    content: '',         
+                    x: 100,              
+                    y: 100,              
+                    minWidth: 300,       
+                    maxWidth: '80%',     
+                    maxHeight: '80%',    
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    onClose: null,       
+                    className: ''        
+                };
+
+                
+                Object.assign(config, options);
+
+                
+                if (config.className) {
+                    const existingPopup = document.querySelector(`.popup-window.${config.className}`);
+                    if (existingPopup) {
+                        document.body.removeChild(existingPopup);
+                    }
+                }
+
+                
+                const popup = document.createElement('div');
+                popup.className = `popup-window ${config.className}`.trim();
+
+                
+                const titleBar = document.createElement('div');
+                titleBar.className = 'popup-window-title';
+                titleBar.textContent = config.title;
+
+                
+                const closeButton = document.createElement('button');
+                closeButton.className = 'popup-window-close';
+                closeButton.innerHTML = '&times;';
+
+                
+                titleBar.appendChild(closeButton);
+
+                
+                const contentContainer = document.createElement('div');
+                contentContainer.className = 'popup-window-content';
+
+                
+                if (typeof config.content === 'string') {
+                    contentContainer.innerHTML = config.content;
+                } else if (config.content instanceof Element) {
+                    contentContainer.appendChild(config.content);
+                }
+
+                
+                popup.appendChild(titleBar);
+                popup.appendChild(contentContainer);
+
+                
+                popup.style.minWidth = typeof config.minWidth === 'number' ? `${config.minWidth}px` : config.minWidth;
+                popup.style.maxWidth = typeof config.maxWidth === 'number' ? `${config.maxWidth}px` : config.maxWidth;
+                popup.style.maxHeight = typeof config.maxHeight === 'number' ? `${config.maxHeight}px` : config.maxHeight;
+
+                
+                document.body.appendChild(popup);
+
+                
+                const popupRect = popup.getBoundingClientRect();
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+
+                
+                let left = Math.min(Math.max(config.x, 20), windowWidth - popupRect.width - 20);
+                let top = Math.min(Math.max(config.y, 20), windowHeight - popupRect.height - 20);
+
+                popup.style.left = `${left}px`;
+                popup.style.top = `${top}px`;
+
+                
+                const closePopup = () => {
+                    if (document.body.contains(popup)) {
+                        document.body.removeChild(popup);
+                        if (typeof config.onClose === 'function') {
+                            config.onClose();
+                        }
+                    }
+                };
+
+                closeButton.addEventListener('click', closePopup);
+
+                
+                if (config.closeOnEsc) {
+                    const escHandler = (e) => {
+                        if (e.key === 'Escape' && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('keydown', escHandler);
+                        }
+                    };
+                    document.addEventListener('keydown', escHandler);
+                }
+
+                
+                if (config.closeOnClickOutside) {
+                    const outsideClickHandler = (e) => {
+                        if (popup && !popup.contains(e.target) && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('mousedown', outsideClickHandler);
+                        }
+                    };
+
+                    
+                    setTimeout(() => {
+                        document.addEventListener('mousedown', outsideClickHandler);
+                    }, 100);
+                }
+
+                
+                let isDragging = false;
+                let offsetX = 0;
+                let offsetY = 0;
+
+                titleBar.addEventListener('mousedown', (e) => {
+                    
+                    if (e.target !== closeButton) {
+                        isDragging = true;
+                        offsetX = e.clientX - popup.getBoundingClientRect().left;
+                        offsetY = e.clientY - popup.getBoundingClientRect().top;
+                        popup.classList.add('dragging');
+                    }
+                });
+
+                const mouseMoveHandler = (e) => {
+                    if (isDragging) {
+                        let newLeft = e.clientX - offsetX;
+                        let newTop = e.clientY - offsetY;
+
+                        
+                        newLeft = Math.max(0, Math.min(windowWidth - popupRect.width, newLeft));
+                        newTop = Math.max(0, Math.min(windowHeight - popupRect.height, newTop));
+
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    }
+                };
+
+                const mouseUpHandler = () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        popup.classList.remove('dragging');
+                    }
+                };
+
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+
+                
+                return {
+                    element: popup,
+                    contentElement: contentContainer,
+                    close: closePopup,
+                    setTitle: (title) => {
+                        titleBar.textContent = title;
+                        titleBar.appendChild(closeButton); 
+                    },
+                    setContent: (content) => {
+                        contentContainer.innerHTML = '';
+                        if (typeof content === 'string') {
+                            contentContainer.innerHTML = content;
+                        } else if (content instanceof Element) {
+                            contentContainer.appendChild(content);
+                        }
+                    },
+                    setPosition: (x, y) => {
+                        let newLeft = Math.min(Math.max(x, 0), windowWidth - popupRect.width);
+                        let newTop = Math.min(Math.max(y, 0), windowHeight - popupRect.height);
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    },
+                    
+                    destroy: () => {
+                        document.removeEventListener('mousemove', mouseMoveHandler);
+                        document.removeEventListener('mouseup', mouseUpHandler);
+                        if (document.body.contains(popup)) {
+                            document.body.removeChild(popup);
+                        }
+                    }
+                };
+            }
+        }
+    };
+</script>
+<style>
+     
+    .code-rendered-diagram {
+        max-width: 80% !important;
+        height: auto;
+        position: relative;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .code-rendered-diagram-copy-button,
+    .code-rendered-diagram-fullscreen-button {
+        position: absolute;
+        top: 20px;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 0.3rem;
+        margin: 0 0 0 0.6rem;
+        color: #333;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.6rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        opacity: 0;
+    }
+
+    .code-rendered-diagram-copy-button {
+        right: 10px;
+    }
+
+    .code-rendered-diagram-fullscreen-button {
+        right: 100px;
+    }
+
+    .code-rendered-diagram:hover .code-rendered-diagram-copy-button,
+    .code-rendered-diagram:hover .code-rendered-diagram-fullscreen-button {
+        opacity: 1;
+    }
+
+    .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FBFBFB;
+         
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fullscreen-overlay.active {
+        display: flex;
+    }
+
+    .fullscreen-overlay img,
+    .fullscreen-overlay svg {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        cursor: move;
+        transition: transform 0.1s ease-out;
+        transform-origin: center center;
+    }
+
+    .fullscreen-overlay svg {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .fullscreen-overlay.dragging {
+        cursor: move;
+    }
+
+    .fullscreen-exit-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        color: #666;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        transition: all 0.2s ease;
+        z-index: 100000;
+    }
+
+    .fullscreen-exit-button:hover {
+        background-color: #e0e0e0;
+        color: #333;
+    }
+
+     
+    .popup-window {
+        position: fixed;
+        z-index: 10000;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .popup-window.dragging {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        opacity: 0.95;
+    }
+
+    .popup-window-title {
+        background-color: #e8e8e8;
+        padding: 8px 12px;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        cursor: move;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #333;
+        font-family: "Maple Mono NF CN", monospace;
+        font-size: 0.9rem;
+    }
+
+    .popup-window-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #666;
+        padding: 0 4px;
+        margin: -4px -4px 0 0;
+        transition: color 0.2s ease;
+    }
+
+    .popup-window-close:hover {
+        color: #333;
+    }
+
+    .popup-window-content {
+        overflow: auto;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+     
+    .popup-window.source-code-viewer .popup-window-content {
+        font-family: "Maple Mono NF CN", monospace;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content pre {
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content code {
+        font-family: "Maple Mono NF CN", monospace;
+        color: #333;
+    }
+</style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
+        if (!plantumlBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
+
+        
+        script.onload = () => {
+            const plantuml_theme = parsePlantumlUserConfig();
+
+            plantumlBlocks.forEach(codeBlock => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const img = document.createElement('img');
+                img.className = 'code-rendered-diagram-img';
+                img.style.display = 'block';
+                img.alt = 'PlantUML Diagram';
+
+                
+                const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
+                img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, fullCode);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(img, fullCode);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, img, true);
+
+                
+                
+
+                
+                container.appendChild(img);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+                codeBlock.parentElement.replaceWith(container);
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+
+    function parsePlantumlUserConfig() {
+        let configItems = [];
+
+        
+            configItems.push(`scale 5`);
+        
+
+        
+            configItems.push(`skin rose`);
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        
+        
+            
+                configItems.push(`skinparam shadowing false`);
+            
+        
+
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        return configItems.join("\n").trim();
+    }
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+        if (!mermaidBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js';
+
+        
+        script.onload = () => {
+            
+            mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                fontFamily: 'Maple Mono NF CN',
+                
+                look: 'handDrawn',
+                
+                theme: 'neutral',
+                
+                
+            });
+
+            
+            mermaidBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const renderDiv = document.createElement('div');
+                renderDiv.id = `mermaid-diagram-${index}`;
+                renderDiv.style.background = 'transparent';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                try {
+                    
+                    mermaid.render(`mermaid-svg-${index}`, code).then(result => {
+                        renderDiv.innerHTML = result.svg;
+
+                        
+                        const svg = renderDiv.querySelector('svg');
+                        if (svg) {
+                            svg.style.backgroundColor = 'transparent';
+                            
+                            svg.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                                .forEach(el => {
+                                    if (el.tagName !== 'svg') {
+                                        el.setAttribute('fill', 'transparent');
+                                    }
+                                });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Mermaid渲染错误:', error);
+                    renderDiv.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Mermaid渲染错误: ${error.message}
+                    </div>`;
+                }
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(renderDiv, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, renderDiv, false);
+
+                
+                container.appendChild(renderDiv);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const markmapBlocks = document.querySelectorAll('pre code.language-map, pre code.language-mindmap');
+        if (!markmapBlocks.length) return;
+
+        
+        function loadScript(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+
+        
+        Promise.all([
+            loadScript('https://cdn.jsdelivr.net/npm/d3@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-view@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-lib@latest')
+        ]).then(() => {
+            
+            markmapBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const markmapContainer = document.createElement('div');
+                markmapContainer.className = 'markmap';
+                markmapContainer.id = `markmap-${index}`;
+                markmapContainer.style.minHeight = '300px';
+                markmapContainer.style.width = '100%';
+                markmapContainer.style.position = 'relative';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                
+                const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.style.width = '100%';
+                svgElement.style.height = '400px';
+                markmapContainer.appendChild(svgElement);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(markmapContainer, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, markmapContainer, false);
+
+                
+                container.appendChild(markmapContainer);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+
+                
+                renderMarkmapWithRetry(svgElement, markmapContainer, code);
+            });
+        }).catch(error => {
+            console.error('加载markmap库失败:', error);
+        });
+
+        
+
+        function renderMarkmapWithRetry(svgElement, markmapContainer, code, maxRetries = 5, delay = 200) {
+            let attempt = 0;
+
+            function tryRender() {
+                attempt++;
+                try {
+                    
+                    if (!window.markmap || typeof window.markmap.Markmap !== 'function') {
+                        throw new Error('Markmap constructor not available yet.');
+                    }
+
+                    
+                    const { Transformer } = window.markmap;
+                    const transformer = new Transformer();
+
+                    
+                    const { root, features } = transformer.transform(code);
+
+                    
+                    const { Markmap } = window.markmap;
+                    const mm = new Markmap(svgElement, {
+                        autoFit: true,
+                        duration: 500,
+                        zoom: true,
+                    });
+
+                    
+                    mm.setData(root, features);
+                    mm.fit();
+
+                    
+                    markmapContainer.dataset.markmapData = JSON.stringify({
+                        root: root,
+                        features: features
+                    });
+
+                    
+                    setTimeout(() => {
+                        const links = svgElement.querySelectorAll('a');
+                        links.forEach(link => {
+                            link.setAttribute('target', '_blank');
+                            link.setAttribute('rel', 'noopener noreferrer');
+                        });
+                    }, 100);
+
+                } catch (error) {
+                    console.error(`Markmap渲染尝试第 ${attempt} 次失败:`, error.message);
+                    if (attempt < maxRetries) {
+                        
+                        setTimeout(tryRender, delay);
+                    } else {
+                        
+                        console.error('Markmap渲染在多次重试后仍然失败。');
+                        markmapContainer.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                            Markmap渲染错误: ${error.message} (请尝试手动刷新网页)
+                        </div>`;
+                    }
+                }
+            }
+
+            
+            tryRender();
+        }
+    });
+</script>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        if (!window.diagramRenderUtils) return;
+
+        
+        const originalSetupFullscreenButton = window.diagramRenderUtils.setupFullscreenButton;
+        window.diagramRenderUtils.setupFullscreenButton = function(fullscreenButton, contentElement, isImage = false) {
+            
+            const isMarkmap = contentElement.classList.contains('markmap');
+
+            if (isMarkmap) {
+                fullscreenButton.addEventListener('click', () => {
+                    const overlay = this.getOrCreateFullscreenOverlay();
+                    overlay.innerHTML = '';
+
+                    
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => overlay.classList.remove('active');
+                    overlay.appendChild(exitButton);
+
+                    
+                    const fullscreenContainer = document.createElement('div');
+                    fullscreenContainer.className = 'markmap';
+                    fullscreenContainer.style.width = '100%';
+                    fullscreenContainer.style.height = '100%';
+
+                    
+                    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svgElement.style.width = '100%';
+                    svgElement.style.height = '100%';
+                    fullscreenContainer.appendChild(svgElement);
+
+                    overlay.appendChild(fullscreenContainer);
+                    overlay.classList.add('active');
+
+                    
+                    try {
+                        const markmapData = JSON.parse(contentElement.dataset.markmapData || '{}');
+                        if (markmapData.root) {
+                            
+                            const { Markmap } = window.markmap;
+                            const mm = new Markmap(svgElement, {
+                                autoFit: true,
+                                duration: 500,
+                                zoom: true,
+                            });
+
+                            
+                            mm.setData(markmapData.root, markmapData.features);
+                            mm.fit();
+
+                            
+                            setTimeout(() => {
+                                const links = svgElement.querySelectorAll('a');
+                                links.forEach(link => {
+                                    link.setAttribute('target', '_blank');
+                                    link.setAttribute('rel', 'noopener noreferrer');
+                                });
+                            }, 100);
+                        }
+                    } catch (error) {
+                        console.error('全屏模式下渲染markmap失败:', error);
+                    }
+
+                    
+                    this.setupZoomAndDrag(overlay, 'svg');
+                });
+            } else {
+                
+                originalSetupFullscreenButton.call(this, fullscreenButton, contentElement, isImage);
+            }
+        };
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const xmindBlocks = document.querySelectorAll('pre code.language-xmind');
+        if (xmindBlocks.length === 0) {
+            return;
+        }
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/xmind-embed-viewer/dist/umd/xmind-embed-viewer.js';
+        document.head.appendChild(script);
+
+        
+        script.onload = function() {
+            xmindBlocks.forEach((codeBlock, index) => {
+                const xmindUrl = codeBlock.textContent.trim();
+                if (!xmindUrl) {
+                    console.error('XMind code block is empty.');
+                    return;
+                }
+
+                
+                const mountId = `xmind-mount-${index}`;
+                const mountDiv = document.createElement('div');
+                mountDiv.id = mountId;
+
+                
+                const preElement = codeBlock.parentElement;
+                preElement.parentElement.replaceChild(mountDiv, preElement);
+
+                renderXmindFile(mountId, xmindUrl);
+            });
+
+            async function renderXmindFile(elementId, fileUrl) {
+                const mountEl = document.getElementById(elementId);
+
+                
+                
+                mountEl.className = 'xmind-container';
+                
+                mountEl.innerHTML = `
+                <div class="xmind-loader-wrapper">
+                    <div class="xmind-loader"></div>
+                    <div class="xmind-loader-text">xmind loading</div>
+                </div>
+            `;
+
+                try {
+                    
+                    const isExternal = fileUrl.startsWith('http');
+                    const fetchUrl = isExternal ? `https://api.allorigins.win/raw?url=${encodeURIComponent(fileUrl)}` : fileUrl;
+                    const res = await fetch(fetchUrl, {
+                        mode: 'cors'
+                    });
+
+                    
+                    if (!res.ok) {
+                        mountEl.innerHTML = `
+                        <div class="xmind-error">
+                            <span class="xmind-error-icon">⚠️</span>
+                            <div class="xmind-error-content">
+                                <strong>加载 XMind 文件失败</strong>
+                                <p>无法从 <code>${fileUrl}</code> 获取文件 (HTTP ${res.status})</p>
+                            </div>
+                        </div>
+                    `;
+                        console.error(`Failed to fetch XMind file: ${res.statusText}`);
+                        return;
+                    }
+                    const fileBuffer = await res.arrayBuffer();
+
+                    
+                    mountEl.className = ''; 
+                    mountEl.innerHTML = ''; 
+
+                    new XMindEmbedViewer({
+                        el: `#${elementId}`,
+                        file: fileBuffer,
+                        styles: {
+                            'height': '500px',
+                            'width': '100%'
+                        }
+                    });
+                } catch (error) {
+                    
+                    mountEl.innerHTML = `
+                    <div class="xmind-error">
+                        <span class="xmind-error-icon">⚠️</span>
+                        <div class="xmind-error-content">
+                            <strong>渲染 XMind 文件时出错</strong>
+                            <p>${error.message}</p>
+                        </div>
+                    </div>
+                `;
+                    console.error('Error rendering XMind file:', error);
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+     
+    .xmind-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        background-color: #f9f9f9;
+        border: 1px dashed #ddd;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+        padding: 20px;
+    }
+
+     
+    .xmind-loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+     
+    .xmind-loader {
+        border: 3px solid #f0f0f0;
+        border-top: 3px solid #999;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+    }
+
+     
+    .xmind-loader-text {
+        color: #888;
+        font-size: 0.9rem;
+        font-family: "LXGW WenKai", "Maple Mono NF CN", sans-serif;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+     
+    .xmind-error {
+        display: flex;
+        align-items: flex-start;
+        text-align: left;
+        color: #c0392b;
+        width: 100%;
+    }
+
+    .xmind-error-icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        line-height: 1.2;
+    }
+
+    .xmind-error-content {
+        flex: 1;
+    }
+
+    .xmind-error strong {
+        font-size: 1.1rem;
+        color: #a93226;
+    }
+
+    .xmind-error p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        color: #7b241c;
+        word-break: break-all;
+    }
+
+    .xmind-error code {
+        background-color: #fbeae5;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+</style>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const DIAGRAM_MAP = new Map([
+            ['plantuml_kroki', 'plantuml'],
+            ['mermaid_kroki', 'mermaid'],
+            ['graphviz', 'graphviz'],
+            ['blockdiag', 'blockdiag'],
+            ['seqdiag', 'seqdiag'],
+            ['actdiag', 'actdiag'],
+            ['packetdiag', 'packetdiag'],
+            ['database', 'dbml'],
+            ['dbml', 'dbml'],
+            ['vega', 'vega']
+        ]);
+
+        
+        const blocks = [];
+        document.querySelectorAll('pre code[class]').forEach(block => {
+            if (block.dataset.kroki) return;
+            const lang = [...block.classList].find(c => DIAGRAM_MAP.has(c.split('-')[1]));
+            if (lang) {
+                block.dataset.kroki = 'processed';
+                blocks.push({ block, api: DIAGRAM_MAP.get(lang.split('-')[1]) });
+            }
+        });
+
+        if (!blocks.length) return;
+
+        
+        const CONCURRENCY = 6;
+        const queue = blocks.slice();
+
+        (async function processQueue() {
+            const workers = Array(Math.min(CONCURRENCY, queue.length))
+                .fill()
+                .map(async () => {
+                    while (queue.length) {
+                        const { block, api } = queue.pop();
+                        await renderBlock(block, api);
+                    }
+                });
+            await Promise.all(workers);
+        })();
+
+        async function renderBlock(block, api) {
+            const pre = block.closest('pre');
+            try {
+                const code = block.textContent.trim();
+                if (!code) {
+                    pre.style.border = '2px solid orange';
+                    return;
+                }
+
+                const res = await fetch(`https://kroki.io/${api}/svg`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: code
+                });
+
+                if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
+
+                
+                const svg = window.diagramRenderUtils.createDiagramContainer();
+                svg.innerHTML = window.diagramRenderUtils.makeSVGTransparent(await res.text());
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, svg, false);
+                svg.appendChild(fullscreenButton);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+                svg.appendChild(copyButton);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(svg, code);
+
+                pre.insertAdjacentElement('afterend', svg);
+
+                
+                pre.remove();
+            } catch (err) {
+                console.error(`[Kroki] 渲染失败: ${err.message}`);
+                pre.style.border = '2px solid red';
+                pre.title = err.message;
+            }
+        }
+    });
+</script>
+
+
+  <div id="search-modal">
+  <input type="text" id="modal-search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
+  <div id="modal-search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="modal-search-results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+  function debug(text) {
+      document.getElementById('modal-search-debug').textContent = text;
+  }
+  function showpages() {
+    debug("当前本站共有 " + searchIndex.length + " 篇文章");
+  }
+
+  let searchIndex = [];
+  
+  
+    
+  
+
+  
+    searchIndex.push({
+      title: "\"面向模式的软件架构 卷1 模式系统 读书笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%8D%B71%E6%A8%A1%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/\"",
+      
+      categories: "[\"读书笔记\",\"软件工程\"]",
+      tags: "[\"设计模式\"]",
+      series: "[\"软件架构之道\"]",
+      date: "\"2025-12-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"链接符号与符号导入导出宏——记一次因clangd补全头文件产生的链接错误\"",
+      permalink: "\"/cpp/%E9%93%BE%E6%8E%A5%E7%AC%A6%E5%8F%B7%E5%AF%BC%E5%87%BA%E4%B8%8E%E7%AC%A6%E5%8F%B7%E5%8F%AF%E8%A7%81%E5%AE%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"C++踩坑\"]",
+      date: "\"2025-11-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"Qt从零开始（0）——环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/qt%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: "[\"Qt专栏\"]",
+      date: "\"2025-08-30\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu配置coredump文件生成位置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E7%94%9F%E6%88%90coredump%E6%96%87%E4%BB%B6/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-08-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu安装中文输入法（fcitx5-rime）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E5%AE%89%E8%A3%85rime%E8%BE%93%E5%85%A5%E6%B3%95/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-07-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"SSH反向隧道中转机-远程连接本地服务器\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/ssh%E5%8F%8D%E5%90%91%E9%9A%A7%E9%81%93%E4%B8%AD%E8%BD%AC%E6%9C%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"ssh\"]",
+      series: [],
+      date: "\"2025-06-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++ 高并发服务器模型实现 | [转载](https://github.com/linkxzhou/mylib/blob/master/c%2B%2B/concurrency_server/README.md)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/06/10/22%E7%A7%8Dc-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"C++\"]",
+      series: [],
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"libclang-py使用介绍\"",
+      permalink: "\"/cpp/libclang-py%E4%BD%BF%E7%94%A8/\"",
+      
+      categories: [],
+      tags: "[\"C++\",\"编译原理\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"参数包与折叠表达式傻傻分不清\"",
+      permalink: "\"/cpp/%E5%8F%82%E6%95%B0%E5%8C%85%E4%B8%8E%E6%8A%98%E5%8F%A0%E8%A1%A8%E8%BE%BE%E5%BC%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-06-05\""
+    });
+  
+    searchIndex.push({
+      title: "\"协程快速入门\"",
+      permalink: "\"/cpp/%E5%8D%8F%E7%A8%8B%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"coroutine\",\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-05-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"初等数学回忆录\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%88%9D%E7%AD%89%E6%95%B0%E5%AD%A6%E5%9B%9E%E5%BF%86%E5%BD%95/\"",
+      
+      categories: "[\"数学\"]",
+      tags: "[\"数学\",\"三角函数\",\"极坐标\",\"定积分\"]",
+      series: [],
+      date: "\"2025-05-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/epoll%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"epoll\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"asio\"]",
+      series: "[\"网络编程\"]",
+      date: "\"2025-04-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/googletest%E4%B8%8Egmock%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"Docker\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"CyberRT\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++小技巧\"",
+      permalink: "\"/cpp/c++%E5%B0%8F%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-04-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"tmux 快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"tmux\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Valgrind快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/valgrind%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"valgrind\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Mermaid快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/mermaid%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"mermaid\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-07\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT框架总览\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"通信中间件术语表\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E6%9C%AF%E8%AF%AD%E8%A1%A8/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: [],
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-27\""
+    });
+  
+    searchIndex.push({
+      title: "\"现代C++开发环境配置指南\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"c++\"]",
+      series: [],
+      date: "\"2025-03-26\""
+    });
+  
+    searchIndex.push({
+      title: "\"带着目的学：CyberRT\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6cyberrt/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Linux环境变量加载顺序分析\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E5%88%86%E6%9E%90/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"linux\"]",
+      series: [],
+      date: "\"2025-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"手册速查方案（如cppreference）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"cppreference\"]",
+      series: [],
+      date: "\"2025-03-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT中的代码和工程技巧\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\",\"C++\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"设计模式\"",
+      permalink: "\"/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/\"",
+      
+      categories: "[\"软件工程\"]",
+      tags: "[\"SE\"]",
+      series: "[\"设计模式专项总结\"]",
+      date: "\"2025-02-28\""
+    });
+  
+    searchIndex.push({
+      title: "\"一站式环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-02-24\""
+    });
+  
+    searchIndex.push({
+      title: "\"leetcode调试指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/\"",
+      
+      categories: [],
+      tags: "[\"leetcode\"]",
+      series: [],
+      date: "\"2024-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"linux命令行大记忆恢复术\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"linux\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"番茄鸡蛋面\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E8%8F%9C%E8%B0%B1/%E7%95%AA%E8%8C%84%E9%B8%A1%E8%9B%8B%E9%9D%A2/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: [],
+      series: "[\"快速做饭\"]",
+      date: "\"2023-10-22\""
+    });
+  
+    searchIndex.push({
+      title: "\"PlantUML快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"uml\",\"plantuml\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-10-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"WSL安装与配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/wsl%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2023-09-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++网络编程入门概念及api总结\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/\"",
+      
+      categories: [],
+      tags: "[\"linux\",\"网络编程\"]",
+      series: "[\"面筋\",\"快速上手\"]",
+      date: "\"2023-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"苏州旅行计划\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/%E8%8B%8F%E5%B7%9E/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: "[\"旅行\"]",
+      series: [],
+      date: "\"2023-04-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"gdb快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"gdb\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2022-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Ubuntu22.04安装Hadoop完全分布式集群\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"hadoop\"]",
+      series: [],
+      date: "\"2022-11-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++连接mysql\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E8%BF%9E%E6%8E%A5mysql/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2022-11-20\""
+    });
+  
+    searchIndex.push({
+      title: "\"征服C指针笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/\"",
+      
+      categories: [],
+      tags: [],
+      series: [],
+      date: "\"2022-10-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Leetcode刷题指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"算法\"]",
+      tags: "[\"leetcode\"]",
+      series: "[\"leetcode刷题指南\"]",
+      date: "\"2022-09-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"word 页眉页脚设置\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/word%E9%A1%B5%E7%9C%89%E9%A1%B5%E8%84%9A%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: [],
+      series: [],
+      date: "\"2021-04-03\""
+    });
+  
+    searchIndex.push({
+      title: "\"Markdown Demo\"",
+      permalink: "\"/%E6%B5%8B%E8%AF%95/markdown-demo/\"",
+      
+      categories: [],
+      tags: "[\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"常用数学符号的latex表示\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84latex%E8%A1%A8%E7%A4%BA/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"latex\",\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+
+  showpages()
+
+  const options = {
+    includeScore: true,
+    threshold: 0.6,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'content', weight: 0.3 },
+      { name: 'tags', weight: 0.5 },
+      { name: 'categories', weight: 0.5 },
+      { name: 'series', weight: 0.5 }
+    ]
+  };
+
+  const fuse = new Fuse(searchIndex, options);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'k') {
+      event.preventDefault();
+      toggleSearchModal();
+    } else if (event.key === 'Escape') {
+      document.getElementById('modal-search-input').value = "";
+      closeSearchModal();
+      var res = document.getElementById('modal-search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      showpages();
+    }
+  });
+
+  function toggleSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+      document.getElementById('modal-search-input').focus();
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('modal-search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.trim();
+    const resultsContainer = document.getElementById('modal-search-results');
+    resultsContainer.innerHTML = '';
+
+    if (searchTerm === '') {
+      showpages()
+      return;
+    }
+
+    const results = fuse.search(searchTerm);
+
+    results.sort((a, b) => new Date(b.item.date) - new Date(a.item.date));
+
+    if (results.length === 0) {
+      showpages()
+      resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
+      return;
+    } else {
+      debug("共找到 " + results.length + " 篇匹配的文章")
+    }
+
+    results.forEach(result => {
+      const item = result.item;
+      const resultItem = document.createElement('div');
+      resultItem.className = 'modal-search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
+      date.className = 'modal-search-result-date';
+
+      const link = document.createElement('a');
+      link.href = item.permalink.replace(/^"|"$/g, '');
+      link.textContent = item.title.replace(/^"|"$/g, '');
+      link.className = 'modal-search-result-title';
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
+    });
+  });
+</script>
+
+<style>
+ 
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
+    border-radius: 6px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+}
+
+#modal-search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#modal-search-results {
+    margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.modal-search-result-date {
+    color: #666;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    text-wrap: nowrap;
+}
+
+.modal-search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.modal-search-result-title:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+  
+
+  
+  <hr />
+  © 
+<a href="https://kaikaixixi.xyz"  target="_blank" rel="noopener noreferrer" >SHUAIKAI</a>
+ 2021 &ndash; 2025 | 🎨
+<a href="https://github.com/captainwc/ksimple"  target="_blank" rel="noopener noreferrer" >KSimple</a>
+  
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,3833 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html) | SHUAIKAI&#39;s Blog</title>
+    <link rel="icon" href= /images/favicon.png />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <link rel="stylesheet" href="/css/custom.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">主页</a></li>
+      
+      <li><a href="/series/">专栏</a></li>
+      
+      <li><a href="/categories/">分类</a></li>
+      
+      <li><a href="/tags/">标签</a></li>
+      
+      <li><a href="/archives/">归档</a></li>
+      
+      <li><a href="/search/">搜索</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+
+<div class="article-meta">
+    <h1><span class="article-meta-title">GoogleTest与gMock进阶指南 | 
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html"  target="_blank" rel="noopener noreferrer" >转载</a></span></h1>
+
+    <div class="article-meta-info">
+        
+
+        
+        
+        
+        
+
+        
+        
+        
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        🕺🏻 缙云烧饼 🗓️ 2025-04-16 🗂️ <a href="/categories/%E5%8D%9A%E5%AE%A2%E5%89%AA%E8%97%8F/">博客剪藏</a> 🏷️ <a href="/tags/googletest/">#GoogleTest</a>
+    </div>
+</div>
+
+<main>
+
+    
+
+<div class="left-sidebar-btn" id="leftSidebarBtn"><i class="fa-solid fa-list"></i></div>
+<div class="left-sidebar-panel" id="leftSidebarPanel">
+    
+        <div class="sidebar-content">
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🏷️ 标签</div>
+                <div class="tag-blocks">
+                    
+                    <a href="/tags/googletest" class="tag-block">
+                        GoogleTest
+                    </a>
+                    
+                </div>
+            </div>
+            
+
+            
+            
+
+            
+            
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🗂️ 分类文章</div>
+                
+                
+                <div class="category-group">
+                    <div class="category-name">博客剪藏</div>
+                    <ul class="article-list">
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/06/10/22%E7%A7%8Dc-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/" class="article-link">
+                                
+                                <span class="article-title">C++ 高并发服务器模型实现 | [转载](https://github.com/linkxzhou/mylib/blob/master/c%2B%2B/concurrency_server/README.md)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/05/04/epoll%E8%AF%A6%E8%A7%A3/" class="article-link">
+                                
+                                <span class="article-title">Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/05/04/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/" class="article-link">
+                                
+                                <span class="article-title">共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" class="article-link">
+                                
+                                <span class="article-title">Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/16/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/" class="article-link">
+                                
+                                <span class="article-title">GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/15/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" class="article-link">
+                                
+                                <span class="article-title">Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/15/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="article-link">
+                                
+                                <span class="article-title">万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)</span>
+                            </a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('leftSidebarBtn');
+            const panel = document.getElementById('leftSidebarPanel');
+            let hoverTimeout;
+
+            
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                panel.classList.add('show');
+            });
+
+            panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+            [btn, panel].forEach(el => {
+                el.addEventListener('mouseleave', () => {
+                    hoverTimeout = setTimeout(() => {
+                        panel.classList.remove('show');
+                    }, 200);
+                });
+            });
+        });
+    </script>
+    
+
+    <style>
+        
+
+         
+        .left-sidebar-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 980;
+            cursor: pointer;
+            padding: 6px 10px;
+            background: #EFEFEF;
+            border-radius: 8px;
+            transition: background 0.3s;
+            color: #999;
+            opacity: 0.7;
+        }
+
+        .left-sidebar-btn:hover {
+            background: #BEC2B3;
+        }
+
+        .left-sidebar-panel {
+            border-radius: 8px;
+            display: none;
+            position: fixed;
+            top: 66px;
+            left: 20px;
+            max-width: 360px;
+            min-width: 280px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #eee;
+            padding: 10px 5px 10px 15px;
+            z-index: 970;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-sidebar-panel.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        
+
+        .sidebar-content {
+            padding: 15px 12px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.2rem;
+        }
+
+        .sidebar-section-title {
+            font-size: 1rem;
+            color: #2d3842;
+            margin: 0 0 0.6rem 0;
+            padding-bottom: 0.3rem;
+            font-family: "LXGW WenKai";
+            font-weight: bold;
+
+             
+            
+            border-bottom: 2px dashed #cfcfcf;
+            
+        }
+
+         
+        .tag-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tag-block {
+            display: inline-block;
+            background: #F6F6F6;
+            color: #666;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .tag-block:hover {
+            background: #2e59a7;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+         
+        .series-group,
+        .category-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .series-name,
+        .category-name {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0 0 0.4rem 0;
+            font-weight: bold;
+            font-family: "LXGW WenKai";
+        }
+
+         
+        .article-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .article-item {
+            margin-bottom: 0.3rem;
+        }
+
+        .article-link {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.4rem;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .article-link:hover {
+            background: #f8f9fa;
+            border-left-color: #2e59a7;
+            transform: translateX(3px);
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            color: #999;
+            font-family: "LXGW WenKai";
+            flex-shrink: 0;
+            width: 45px;
+            text-align: left;
+        }
+
+        .article-title {
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+         
+        
+
+        .left-sidebar-panel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .left-sidebar-panel {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        
+
+         
+        @media (max-width: 768px) {
+        
+        }
+    </style>
+
+    
+
+
+<div class="toc-btn" id="tocBtn"><i class="fa-solid fa-bars-staggered"></i></div>
+<div class="toc-panel" id="tocPanel"></div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        
+        const btn = document.getElementById('tocBtn');
+        const panel = document.getElementById('tocPanel');
+        let hoverTimeout;
+
+        
+        btn.addEventListener('mouseenter', () => {
+            clearTimeout(hoverTimeout);
+            generateToc(panel);
+            panel.classList.add('show');
+
+            
+            requestAnimationFrame(() => {
+                const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+                let activeHeader = null;
+                let minDistance = Infinity;
+
+                
+                headers.forEach(header => {
+                    const rect = header.getBoundingClientRect();
+                    const distance = Math.abs(rect.top);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeHeader = header;
+                    }
+                });
+
+                
+                if (activeHeader) {
+                    const activeLink = panel.querySelector(`a[href="#${activeHeader.id}"]`);
+                    if (activeLink) {
+                        
+                        const panelHeight = panel.offsetHeight;
+                        const linkOffset = activeLink.offsetTop;
+                        const centerPosition = linkOffset - (panelHeight / 2) + (activeLink.offsetHeight / 2);
+                        
+                        panel.scrollTo({
+                            top: centerPosition,
+                            behavior: 'auto'
+                        });
+                    }
+                }
+            });
+        });
+
+        panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+        [btn, panel].forEach(el => {
+            el.addEventListener('mouseleave', () => {
+                hoverTimeout = setTimeout(() => {
+                    panel.classList.remove('show');
+                }, 200);
+            });
+        });
+        
+
+        
+        function generateToc(container) {
+            if (container.children.length > 0) return;
+
+            const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+            const counts = [0, 0, 0, 0, 0]; 
+
+            headers.forEach(header => {
+                const level = parseInt(header.tagName[1]) - 2;
+                if (level < 0) return;
+
+                counts[level]++;
+                for (let i = level + 1; i < counts.length; i++) counts[i] = 0;
+                const number = counts.slice(0, level + 1).join('.');
+
+                
+                const numberSpan = document.createElement('span');
+                numberSpan.className = 'toc-number';
+                numberSpan.textContent = number;
+
+                
+                const link = document.createElement('a');
+                link.href = `#${header.id}`;
+                link.style.paddingLeft = `${level * 12}px`;
+
+                
+                link.appendChild(numberSpan);
+                link.appendChild(document.createTextNode(header.textContent));
+
+                container.appendChild(link);
+            });
+        }
+    });
+</script>
+
+<style>
+    
+
+     
+    .toc-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 980;
+        cursor: pointer;
+        padding: 6px 10px;
+        background: #EFEFEF;
+        border-radius: 8px;
+        transition: background 0.3s;
+        color: #999;
+        opacity: 0.7;
+    }
+
+    .toc-btn:hover {
+        background: #BEC2B3;
+    }
+
+    .toc-panel {
+        border-radius: 8px;
+        display: none;
+        position: fixed;
+        top: 66px;
+        right: 20px;
+        max-width: 360px;
+        min-width: 200px;
+        max-height: 80vh;
+        overflow-y: auto;
+        background: white;
+        border: 1px solid #eee;
+        padding: 10px 5px 10px 15px;
+        z-index: 970;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        list-style: none;
+    }
+
+    .toc-panel.show {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+     
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    
+
+     
+    .toc-number {
+        vertical-align: middle;
+        margin-right: 6px;
+        font-family: "LXGW WenKai";
+        font-size: 0.85rem;
+    }
+
+     
+        
+
+    .toc-panel a {
+        
+            display: block;
+            padding: 4px 0;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        
+
+        .toc-panel a:hover {
+        
+
+                color: #007bff;
+            }
+
+        
+</style>
+
+
+    
+    
+    
+        <h1 id="cgoogletest-入门指南---缙云烧饼---博客园">【C++】GoogleTest 入门指南 - 缙云烧饼 - 博客园</h1>
+
+          <link rel="stylesheet" href="/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css" integrity="sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=" crossorigin="anonymous">
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>声明</span>
+    </div>
+      <div class="admonition-content">
+        <ul>
+<li>本文由插件
+<a href="https://chromewebstore.google.com/detail/markdownload-markdown-web/pcmpcfapbekmbjjkdalcgopdkipoggdi?pli=1"  target="_blank" rel="noopener noreferrer" >Markdown Web Clipper</a>
+自动提取网页正文而来，并未获取原作者授权！</li>
+<li>本文仅作个人存档学习使用，如有任何疑问/需求请查看
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html"  target="_blank" rel="noopener noreferrer" >原文</a>
+！</li>
+<li>如有侵权，请联系本人立刻删除！</li>
+<li>原文链接: 
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html"  target="_blank" rel="noopener noreferrer" >【C++】GoogleTest 入门指南</a>
+</li>
+</ul>
+      </div>
+  </div>
+<hr>
+<p>参考：<br>
+
+<a href="https://google.github.io/googletest/"  target="_blank" rel="noopener noreferrer" >GoogleTest 官网</a>
+</p>
+<h2 id="基本概念">基本概念</h2>
+<p>要使用 GoogleTest，需要包含 header <code>gtest/gtest.h</code></p>
+<h2 id="断言-assertionshttpswwwcnblogscomjinyunshaobingp16717123html728254241">断言 Assertions
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#728254241"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p>断言是检查条件是否为真的语句，其结果可能是成功或失败，失败分为非致命失败和致命失败两种，后者会终止当前运行，前者则会继续运行。<br>
+GoogleTest 中，断言类似于函数调用的宏，断言失败时，GoogleTest 会输出断言的源文件和行号位置以及失败消息（所有断言都可以使用&laquo;输出自定义失败消息）</p>
+<h3 id="assert_httpswwwcnblogscomjinyunshaobingp16717123html4031066449">ASSERT_*
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#4031066449"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>会抛出致命失败故障的断言，断言失败时中止当前测试函数的运行（不是中断整个 TEST）。</p>
+<pre><code class="language-cpp">ASSERT_EQ(x.size(),y.size())  &quot;x与y的大小不相同&quot;
+</code></pre>
+<h3 id="expect_httpswwwcnblogscomjinyunshaobingp16717123html2723575970">EXPECT_*
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#2723575970"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>会抛出非致命失败故障的断言，不会停止当前函数运行，而是继续往下运行下去</p>
+<pre><code class="language-cpp">EXPECT_EQ(x,y)  &quot;x与y不相等&quot;
+</code></pre>
+<h3 id="断言分类httpswwwcnblogscomjinyunshaobingp16717123html41088525">断言分类
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#41088525"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>前缀都会是 ASSERT_或者 EXPECT_,它们的区别上面已经进行了说明，所以以下都用 X_来略写</p>
+<h4 id="基本断言httpswwwcnblogscomjinyunshaobingp16717123html1101063573">基本断言
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#1101063573"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<ul>
+<li>X_TRUE(condition)：断言 condition 为 True</li>
+<li>X_FALSE(condition)：断言 condition 为 False</li>
+</ul>
+<h4 id="普通比较型断言httpswwwcnblogscomjinyunshaobingp16717123html2970445533">普通比较型断言
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#2970445533"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<ul>
+<li>X_EQ(v1,v2)：==</li>
+<li>X_NE(v1,v2)：!=</li>
+<li>X_LT(v1,v2)：&lt;</li>
+<li>X_LE(v1,v2)：&lt;=</li>
+<li>X_GT(v1,v2)：&gt;</li>
+<li>X_GE(v1,v2)：&gt;=</li>
+</ul>
+<h4 id="c-字符串比较型断言httpswwwcnblogscomjinyunshaobingp16717123html3651399125">C 字符串比较型断言
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#3651399125"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<ul>
+<li>X_STREQ(s1,s2)：s1==s2</li>
+<li>X_STRNE(s1,s2)：s1!=s2</li>
+<li>X_STRCASEEQ(s1,s2)：忽略大小写，s1==s2</li>
+<li>X_STRCASENE(s1,s2)：忽略大小写，s1!=s2
+注意：</li>
+<li>Null 指针和空字符&quot;&ldquo;是不相同的</li>
+<li>假如 char *s1 = &ldquo;abc&rdquo;，char *s2 = &ldquo;abc&rdquo;，那么 X_EQ(s1,s2)不通过，因为 s1 与 s2 实际上是地址指针，不相同;X_STREQ(s1,s2)通过，因为字符串相同</li>
+</ul>
+<h4 id="浮点数比较型断言httpswwwcnblogscomjinyunshaobingp16717123html3278043603">浮点数比较型断言
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#3278043603"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<p>对于浮点数，断言只是判断几乎相等</p>
+<ul>
+<li>X_FLOAT_EQ(f1,f2)：f1 和 f2 两个 float 值几乎相等</li>
+<li>X_DOUBLE_EQ(f1,f2)：f1 和 f2 两个 double 值几乎相等</li>
+<li>X_NEAR(v1,v2,abs_error)：v1 和 v2 两个浮点数的值差的绝对值不超过 abs_error</li>
+</ul>
+<h4 id="明确的成功与失败httpswwwcnblogscomjinyunshaobingp16717123html3815582">明确的成功与失败
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#3815582"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<ul>
+<li>SUCCEED()：生成一个成功，放行，但是并不代表整个测试成功</li>
+<li>FAIL()：生成致命错误，立即终止当前测试</li>
+<li>ADD_FAILURE()：生成非致命错误，继续运行测试</li>
+<li>ADD_FAILURE_AT(&ldquo;file_path&rdquo;,line_number)：生成非致命错误，输出文件名和行号</li>
+<li>GTEST_SKIP()：直接结束当前测试
+明确的成功与失败相较于前面的断言更适合判断条件复杂的情况，因为判断条件复杂不适合写成一个表达式 condition 用于判断。例如<code>if...else if...else if... else...</code></li>
+</ul>
+<h4 id="异常断言httpswwwcnblogscomjinyunshaobingp16717123html3202904611">异常断言
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#3202904611"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<p>用于验证一段代码是否抛出给定类型的异常</p>
+<ul>
+<li>X_THROW(statement,exception_type)：statement 代码会抛出 exception_type 的异常</li>
+<li>X_ANY_THROW(statement)：statement 代码会抛出异常，不限异常类型</li>
+<li>X_NO_THROW(statement)：statement 代码不会抛出任何类型异常</li>
+</ul>
+<h4 id="自定义布尔函数断言谓词断言httpswwwcnblogscomjinyunshaobingp16717123html2027338141">自定义布尔函数断言（谓词断言）
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#2027338141"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<ul>
+<li>X_PREDn(fun,v1,v2&hellip;)：拥有 n 个参数的函数 fun 会返回 True
+例如有一个函数 equal(a,b)，那么就是 ASSERT_PRED2(equal,a,b)
+与 ASSERT_EQ、ASSERT_TRUE()这些断言的区别在于输出的错误信息不同，同时它的功能更加强大</li>
+</ul>
+<h4 id="谓词格式化程序断言httpswwwcnblogscomjinyunshaobingp16717123html2572316932">谓词格式化程序断言
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#2572316932"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<p>普通的断言输出信息的内容是预定好的，如果想要自定义输出的内容，可以使用谓词格式化程序断言
+具体接口使用可参考：
+<a href="https://google.github.io/googletest/reference/assertions.html#EXPECT_PRED_FORMAT"  target="_blank" rel="noopener noreferrer" >EXPECT_PRED_FORMAT</a>
+
+为了避免新的断言宏爆炸式增长，GoogleTest 提供了很多谓词格式函数，它们可以使用谓词断言的方式组装成需要的断言，例如浮点数的小于等于</p>
+<pre><code>using ::testing::FloatLE;
+using ::testing::DoubleLE;
+...
+EXPECT_PRED_FORMAT2(FloatLE, val1, val2);
+EXPECT_PRED_FORMAT2(DoubleLE, val1, val2);
+
+</code></pre>
+<h4 id="匹配器断言httpswwwcnblogscomjinyunshaobingp16717123html2179868448">匹配器断言
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#2179868448"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<p><code>X_THAT(value, matcher)</code>：value 的值满足 matcher 的要求</p>
+<pre><code class="language-cpp">#include &quot;gmock/gmock.h&quot;
+
+using ::testing::AllOf;
+using ::testing::Gt;
+using ::testing::Lt;
+using ::testing::MatchesRegex;
+using ::testing::StartsWith;
+
+...
+EXPECT\_THAT(value1, StartsWith(&quot;Hello&quot;));
+EXPECT\_THAT(value2, MatchesRegex(&quot;Line \\d+&quot;));
+ASSERT\_THAT(value3, AllOf(Gt(5), Lt(10)));
+</code></pre>
+<p>关于 matcher 的具体接口文档，详见
+<a href="https://google.github.io/googletest/reference/matchers.html"  target="_blank" rel="noopener noreferrer" >matchers</a>
+</p>
+<h4 id="类型断言httpswwwcnblogscomjinyunshaobingp16717123html2273366328">类型断言
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#2273366328"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<p>调用函数::testing::StaticAssertTypeEq&lt;T1,T2&gt;();
+用于断言 T1 和 T2 是同一种类型，如果断言满足，该函数什么也不做，如果不同，函数调用会无法编译并报错<code>T1 and T2 are not the same type</code>
+注意：如果是在类模板或者函数模板中使用时，仅当该函数被实例化（被调用）时才会生效报错，否则不会报错</p>
+<h3 id="断言使用的位置httpswwwcnblogscomjinyunshaobingp16717123html1386563112">断言使用的位置
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#1386563112"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>除了在测试代码中使用断言外，在任何 C++函数中也都可以使用断言。但是注意，产生致命错误的断言只能用在返回 void 的函数（构造与析构函数不是返回 void 的函数）</p>
+<h2 id="测试httpswwwcnblogscomjinyunshaobingp16717123html4059550918">测试
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#4059550918"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<h3 id="简单测试httpswwwcnblogscomjinyunshaobingp16717123html2137147839">简单测试
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#2137147839"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<ul>
+<li>
+<p>使用<code>TEST()</code>宏定义和命名测试函数，这个函数是不返回值的普通 C++函数</p>
+</li>
+<li>
+<p>函数中可以包含任何有效的 C++语句以及各种 GoogleTest 断言来检查值</p>
+</li>
+<li>
+<p>测试的结果由断言决定，如果测试时没有任何断言失败（致命或非致命）或者测试程序崩溃，则测试成功</p>
+</li>
+<li>
+<p>第一个参数是测试套件的名称，第二个参数是测试套件中的测试名称，这两个名称都必须是有效的 C++标识符，并且不能含有任何下划线。测试的全名由测试套件和测试名称组成，不同测试套件的测试可以有相同的测试名称</p>
+<p>TEST(TestSuiteName, TestName){
+&hellip; test body &hellip;
+}</p>
+</li>
+</ul>
+<h4 id="举个栗子httpswwwcnblogscomjinyunshaobingp16717123html69825821">举个栗子
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#69825821"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<p>函数 funA 有一个输入 n，返回 n^2，两个测试都属于 FunATests 测试套件，名字分别是 HandlesZeroInput 和 HandlesPositiveInput 用于测试不同的情况</p>
+<pre><code class="language-cpp">int funA(int n);
+
+TEST(FunATests, HandlesZeroInput){
+    EXPECT_EQ(funA(0), 0);
+}
+TEST(FunATests, HandlesPositiveInput){
+    EXPECT_EQ(funA(1), 1);
+    EXPECT_EQ(funA(2), 4);
+    ...
+}
+</code></pre>
+<h3 id="测试夹具httpswwwcnblogscomjinyunshaobingp16717123html3748996127">测试夹具
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#3748996127"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>如果发现自己编写了两个或多个对相似数据进行操作的测试，可以使用测试夹具，它允许我们为多个不同的测试重用相同的对象配置</p>
+<h4 id="创建并使用夹具httpswwwcnblogscomjinyunshaobingp16717123html2800151575">创建并使用夹具
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#2800151575"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<ul>
+<li>从::tesing::Test 派生一个类，它的主体内容设置为 protected，因为我们要从子类中访问夹具成员</li>
+<li>在类中，声明计划使用的所有对象数据</li>
+<li>如有必要，编写一个默认构造函数或者 SetUp()函数来为每个测试准备对象</li>
+<li>如有必要，编写一个析构函数或者 TearDown()函数来释放测试对象数据</li>
+<li>如有需要，编写函数供使用该测试夹具的测试内使用</li>
+<li>注意，GoogleTest 不会在多个测试中重用同一个测试夹具对象。对于每个 TEST_F，GoogleTest 会创建一个新的测试夹具对象并立刻调用 SetUp()，运行测试主题结束后调用 TearDown()，最后删除测试夹具对象</li>
+<li>使用测试夹具的时候，用 TEST_F 代替 TEST，TEST_F 的第一个参数不再是测试套件名，而是测试夹具类名，具体见下方样例</li>
+</ul>
+<h4 id="举个栗子httpswwwcnblogscomjinyunshaobingp16717123html978734251">举个栗子
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#978734251"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<p>假设我们有一个类 Queue 需要进行测试，它长这样：</p>
+<pre><code class="language-cpp">template &lt;typename E&gt;  // E is the element type.
+class Queue {
+public:
+    Queue();
+    void Enqueue(const E element);
+    E* Dequeue();  // Returns NULL if the queue is empty.
+    size_t size() const;
+...
+};
+
+</code></pre>
+<p>定义它的测试夹具类，一般情况下测试夹具类名=类名+Test</p>
+<pre><code class="language-cpp">class QueueTest : public ::testing::Test {
+protected:
+    void SetUp() override {
+        q1_.Enqueue(1);
+        q2_.Enqueue(2);
+        q2_.Enqueue(3);
+    }
+
+    // void TearDown() override {}
+
+    Queue&lt;int&gt; q0_;
+    Queue&lt;int&gt; q1_;
+    Queue&lt;int&gt; q2_;
+};
+
+</code></pre>
+<p>在这里，TearDown()并不需要，因为我们并不需要进行任何清理工作，直接析构就可以了</p>
+<p>使用测试夹具进行测试</p>
+<pre><code class="language-cpp">TEST_F(QueueTest, IsEmptyInitially) {
+  EXPECT_EQ(q0_.size(), 0);
+}
+
+TEST_F(QueueTest, DequeueWorks) {
+  int* n = q0_.Dequeue();
+  EXPECT_EQ(n, nullptr);
+
+  n = q1_.Dequeue();
+  ASSERT_NE(n, nullptr);
+  EXPECT_EQ(*n, 1);
+  EXPECT_EQ(q1_.size(), 0);
+  delete n;
+
+  n = q2_.Dequeue();
+  ASSERT_NE(n, nullptr);
+  EXPECT_EQ(*n, 2);
+  EXPECT_EQ(q2_.size(), 1);
+  delete n;
+}
+
+</code></pre>
+<p>在这个栗子里，第一个 TEST_F 创建一个 QueueTest 对象 t1，t1.SetUp()后进入测试内容进行使用。测试结束后 t1.TearDown()然后销毁。对于第二个 TEST_F 进行相同的过程</p>
+<h2 id="调用测试httpswwwcnblogscomjinyunshaobingp16717123html2047075719">调用测试
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#2047075719"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p>TEST()和 TEST_F 都会自动的隐式注册到 GoogleTest，所以并不需要为了测试再重新列举所有定义的测试
+在定义测试之后，可以直接使用 RUN_ALL_TESTS()来运行所有测试，如果所有测试都通过了，它会返回 0。注意，RUNN_ALL_TESTS()会运行所有测试，哪怕这些测试来源于不同的测试套件、不同的源文件。</p>
+<h3 id="运行测试的过程httpswwwcnblogscomjinyunshaobingp16717123html1753488367">运行测试的过程
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#1753488367"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<ul>
+<li>保存所有 googletest 标志的状态</li>
+<li>为第一个测试创建测试夹具对象，通过 SetUp()初始化</li>
+<li>使用测试夹具对象运行测试</li>
+<li>测试结束，调用 TearDown()清理夹具然后销毁夹具对象</li>
+<li>恢复所有 googletest 标志的状态</li>
+<li>对下一个测试重复以上步骤，直到所有测试都运行结束
+注意：不能忽略 RUN_ALL_TESTS()的返回值，否则会产生编译器错误。自动化测试服务根据退出代码来判断测试是否通过，而不是通过 stdout/sederr 来判断，所以 main()函数必须返回 RUN_ALL_TESTS();</li>
+</ul>
+<h3 id="main的编写httpswwwcnblogscomjinyunshaobingp16717123html1752583433">main()的编写
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#1752583433"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>大部分情况下，我们并不需要自己编写 main 方法，而是直接链接 gtest_main(注意不是 gtest)，这个链接库定义了合适的接入点会帮我们进行测试
+如果想自行书写 main 方法，它需要返回 RUN_ALL_TESTS()的返回值</p>
+<pre><code class="language-cpp">int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(argc, argv);
+  return RUN_ALL_TESTS();
+}
+
+</code></pre>
+<p>在这段代码里，InitGoogleTest()的作用是解析命令行里 GoogleTest 的指令参数，这允许用户控制测试程序的行为。它必须在 RUN_ALL_TESTS 之前调用，否则命令行参数不会生效<br>
+在旧版本里，使用的是 ParseGUnitFlags()，但是目前它已经被弃用，需要使用 InitGoogleTest()</p>
+<h2 id="后续可填坑httpswwwcnblogscomjinyunshaobingp16717123html1717359307">后续可填坑
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html#1717359307"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p><code>gMock</code></p>
+<h1 id="cgoogletest-进阶之-gmock---缙云烧饼---博客园">【C++】GoogleTest 进阶之 gMock - 缙云烧饼 - 博客园</h1>
+
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>声明</span>
+    </div>
+      <div class="admonition-content">
+        <ul>
+<li>本文由插件
+<a href="https://chromewebstore.google.com/detail/markdownload-markdown-web/pcmpcfapbekmbjjkdalcgopdkipoggdi?pli=1"  target="_blank" rel="noopener noreferrer" >Markdown Web Clipper</a>
+自动提取网页正文而来，并未获取原作者授权！</li>
+<li>本文仅作个人存档学习使用，如有任何疑问/需求请查看
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html"  target="_blank" rel="noopener noreferrer" >原文</a>
+！</li>
+<li>如有侵权，请联系本人立刻删除！</li>
+<li>原文链接: 
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html"  target="_blank" rel="noopener noreferrer" >【C++】GoogleTest 进阶之 gMock</a>
+</li>
+</ul>
+      </div>
+  </div>
+<hr>
+<p>当我们去写测试时，有些测试对象很单纯简单，例如一个函数完全不依赖于其他的对象，那么就只需要验证其输入输出是否符合预期即可。</p>
+<p>但是如果测试对象很复杂或者依赖于其他的对象呢？例如一个函数中需要访问数据库或者消息队列，那么要想按照之前的思路去测试就必须创建好数据库和消息队列的客户端实例，然后放在该函数内使用。很多时候这种操作是很麻烦的，此时 Mock Object 就能帮助我们解决这个问题。一个 Mock Object 实现与真实对象相同的接口，它可以替代真实对象去使用，而我们要做的就是制定好该 Mock Object 的行为（调用多少次、参数、返回值等等）</p>
+<p>参考文档：<br>
+
+<a href="https://google.github.io/googletest/gmock_for_dummies.html"  target="_blank" rel="noopener noreferrer" >gMock 官方文档</a>
+</p>
+<h2 id="安装-gmockhttpswwwcnblogscomjinyunshaobingp16804309html3903036668">安装 gMock
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#3903036668"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p>gMock 现在与 gTest 是组合使用的关系，因此在安装 gTest 时默认就会安装 gMock，具体的安装方式见 github 上的官方说明<br>
+
+<a href="https://github.com/google/googletest/tree/main/googletest"  target="_blank" rel="noopener noreferrer" >https://github.com/google/googletest/tree/main/googletest</a>
+</p>
+<h2 id="使用-gmock-的基本思路httpswwwcnblogscomjinyunshaobingp16804309html3770826731">使用 gMock 的基本思路
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#3770826731"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<ul>
+<li>首先，使用一些简单的 gMock 宏来描述想要模拟的接口，它们会实现你的 mock 类</li>
+<li>然后，创建一些 mock object 然后使用 gMock 提供的语法指定好它们的行为</li>
+<li>最后，运行需要使用这些 mock object 的代码，gMock 会在 mock object 的行为不符合预期的时候发现并指出</li>
+</ul>
+<h2 id="gmock-快速入门">gMock 快速入门</h2>
+<p>假设我们在做一个用户的账户系统，一个用户会有一个账户，用户提供接口 salary，账户提供接口 add 和 getAccount，在用户的 salary 内会调用账户的 add 和 getAccount 接口<br>
+特别注意：此处的账户就是我们要 mock 的对象，它是用户的一个依赖。要想模拟它，它内部必须有虚析构函数，各个接口也建议是虚函数乃至纯虚函数。这里我的理解是，实际上 mock object 是对真实对象的代理/替换，在代理模式中比较常见的一种做法就是代理类和被代理类继承自同一个父类/接口</p>
+<h2 id="基本样例httpswwwcnblogscomjinyunshaobingp16804309html3275895804">基本样例
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#3275895804"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<h3 id="userhttpswwwcnblogscomjinyunshaobingp16804309html2659273203">User
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#2659273203"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<pre><code>#ifndef USER_H
+#define USER_H
+#include iostream
+#include &quot;account.h&quot;
+
+class User{
+public:
+    /// @brief User类的对象依赖于Account的对象
+    /// @param account Account实例，被User所依赖
+    User(Account *account){
+        account_ = account;
+    }
+    /// @brief 模拟发工资的场景
+    /// @param money 发的钱数
+    /// @return 账户余额
+    int salary(int money){
+        account_-add(money);
+        return account_-getAccount();
+    }
+
+private:
+    Account *account_;
+};
+
+#endif //USER_H
+
+</code></pre>
+<h3 id="accounthttpswwwcnblogscomjinyunshaobingp16804309html3825167995">Account
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#3825167995"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<pre><code>#ifndef ACCOUNT_H
+#define ACCOUNT_H
+
+class Account
+{
+public:
+    virtual ~Account() {}
+    virtual void add(int money) = 0;
+    virtual int getAccount() = 0;
+};
+
+#endif //ACCOUNT_H
+
+</code></pre>
+<h2 id="mock-类编写httpswwwcnblogscomjinyunshaobingp16804309html3708843258">mock 类编写
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#3708843258"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p>我们要 mock 的是 Account 的一个对象，所以书写 mock 类实现 Account 接口</p>
+<pre><code>#ifndef MOCK_ACCOUNT_H
+#define MOCK_ACCOUNT_H
+#include &quot;account.h&quot;
+#include gmock/gmock.h
+
+class MockAccount : public Account
+{
+public:
+    MOCK_METHOD(void, add, (int money), (override));
+    MOCK_METHOD(int, getAccount, (), (override));
+};
+
+#endif // MOCK_ACCOUNT_H
+
+</code></pre>
+<p>其中的关键部分在于 MOCK_METHOD，很多老的教程中会使用 MOCK_METHOD0、MOCK_METHOD1&hellip;这些宏，它们分别代表 0 参数、1 参数、2 参数的接口。在新的官方教程中没有这种写法，统一都是 MOCK_METHOD，内部有四个参数</p>
+<ul>
+<li>接口返回值类型</li>
+<li>接口名</li>
+<li>接口形参列表，注意，如果有泛型，需要多加一层括号，例如<code>MOCK_METHOD(void, funName, (int, (map&lt;int,string&gt;)),(override))</code></li>
+<li>为生成的 mock object 的方法添加关键字（如果是 override 这个参数其实可以不写，但是如果接口是 const 的，就必须写 const 关键字了）</li>
+</ul>
+<h3 id="mock-类放在哪httpswwwcnblogscomjinyunshaobingp16804309html4027525425">mock 类放在哪
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#4027525425"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>按照 google 的建议，除非整个接口就是你自己持有的，否则 mock 类不要放在 xx_test 下，因为一旦 Account 接口被它的所有者改变，MockAccount 也必须改变才能继续使用
+一般来说，我们不应该 mock 不是自己持有的接口。如果真的需要 mock 不是自己持有的，mock 对象的目录或者 testing 的子目录下创建一个.h 文件和一个 cc_library with testonly=true，这样一来，每个人都可以使用同一个地方定义的 mock 类</p>
+<h2 id="mock-的使用httpswwwcnblogscomjinyunshaobingp16804309html3283843717">mock 的使用
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#3283843717"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p>创建好 mock 类之后，要使用它一般分以下几步</p>
+<ul>
+<li>创建 Mock Object</li>
+<li>规定 Mock Object 的预期行为</li>
+<li>使用 Mock Object 测试业务代码，业务代码部分可以使用 gTest 的各种断言</li>
+<li>一旦 Mock Object 的方法被调用的情况与前面规定的预期行为不符，测试就会不通过（在 Mock Object 被析构时也会再次检查）
+其中比较核心代码有两部分：规定 Mock Object 的预期行为和业务代码测试，前者将会在下面详细展开，后者可以参考 Google Test 那篇文章
+
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16717123.html"  target="_blank" rel="noopener noreferrer" >google test 入门指南</a>
+</li>
+</ul>
+<h3 id="样例httpswwwcnblogscomjinyunshaobingp16804309html1045523345">样例
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#1045523345"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>user_test.cc 文件</p>
+<pre><code>#include gtest/gtest.h
+#include gmock/gmock.h
+#include &quot;user.h&quot;
+#include &quot;mock_account.h&quot;
+
+using ::testing::AtLeast;
+using ::testing::Return;
+
+TEST(UserTest, SalaryIsOK)
+{
+    MockAccount mAccount;//创建Mock Object
+    EXPECT_CALL(mAccount, add(100)).Times(AtLeast(1));
+    EXPECT_CALL(mAccount, getAccount()).Times(AtLeast(1));//规范Mock Object的行为，此处是说该mock对象的getAccount()方法至少被调用1次
+    User user(mAccount);//将Mock Obejct注入到user中使用（依赖注入）
+    int res = user.salary(100);//测试User业务逻辑
+    ASSERT_GE(res, 0);//gTest的断言，res大于等于0则通过
+}
+
+</code></pre>
+<h2 id="编译运行httpswwwcnblogscomjinyunshaobingp16804309html4022897349">编译运行
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#4022897349"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p>这里我使用 CMake 来做构建，注意 gTest 和 gMock 需要 C++14 及以上，在链接时直接链接 gtest_main，这样就不需要自己写 main 方法了</p>
+<h3 id="cmakeliststxthttpswwwcnblogscomjinyunshaobingp16804309html2659422929">CMakeLists.txt
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#2659422929"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<pre><code>cmake_minimum_required(VERSION 3.14)
+
+project(user LANGUAGES C CXX)
+
+set(CMAKE_CXX_STANDARD 14)
+
+enable_testing()
+
+find_package(GTest REQUIRED)
+
+add_executable(test_user &quot;${PROJECT_SOURCE_DIR}/user_test.cc&quot;)
+target_link_libraries(test_user GTest::gtest_main gmock)
+
+include(GoogleTest)
+gtest_discover_tests(test_user)
+
+</code></pre>
+<h3 id="运行结果httpswwwcnblogscomjinyunshaobingp16804309html90565185">运行结果
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#90565185"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<pre><code>[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from UserTest
+[ RUN      ] UserTest.SalaryIsOK
+[       OK ] UserTest.SalaryIsOK (0 ms)
+[----------] 1 test from UserTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+
+</code></pre>
+<p>测试通过了</p>
+<h2 id="设置预期行为">设置预期行为</h2>
+<p>使用 Mock 最核心的点就在于给一个 Mock Object 规定好预期行为。这部分也是我们需要斟酌的地方。预期行为是设置的严格一点还是松一点全看需求。</p>
+<h2 id="一般语法httpswwwcnblogscomjinyunshaobingp16804309html252554791">一般语法
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#252554791"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p>在 gMock 中使用 EXPECT_CALL()这个断言宏去设置一个 Mock Object 的预期行为
+<code>EXPECT_CALL(mock_object, mock_method(params))...</code>
+其中有两个核心参数，第一个是 mock_object，第二个是 mock_object 中的方法，如果有参数同时要把参数传进去，注意，不同参数的 mock_method 可以认为是不同的预期行为
+&hellip;部分可以填写很多链式调用的逻辑来指定该对象该方法的调用运行情况</p>
+<pre><code>using ::testing::Return;
+...
+EXPECT_CALL(mock_object, mock_method(params)).Times(5).WillOnce(Return(100)).WillOnce(Return(150)).WillRepeatedly(Return(200));
+
+</code></pre>
+<p>在以上的栗子中，为该对象的该方法指定了四个预期行为：
+首先它会被调用 5 次，第一次返回 100，第二次返回 150，之后的每次都返回 200</p>
+<h3 id="关于方法的参数-paramshttpswwwcnblogscomjinyunshaobingp16804309html540123511">关于方法的参数 params
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#540123511"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<h4 id="不确定参数值httpswwwcnblogscomjinyunshaobingp16804309html3041163831">不确定参数值
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#3041163831"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<p>很多时候我们不想让参数值变得固定，这个时候可以使用::testing::_来表示任意参数值</p>
+<pre><code>using ::testing::_;
+...
+EXPECT_CALL(mock_object, mock_method(_))...
+
+</code></pre>
+<p>如果参数有多个，而且全部都是不确定参数值，我们可以这样写：
+<code>EXPECT_CALL(mock_object, mock_method)...</code></p>
+<h4 id="参数值需要满足某种条件httpswwwcnblogscomjinyunshaobingp16804309html2356712581">参数值需要满足某种条件
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#2356712581"  target="_blank" rel="noopener noreferrer" >#</a>
+</h4>
+<p>对于传入确切参数的情况，相当于是使用 Eq(100)，以下的前两个写法是等价的</p>
+<pre><code>EXPECT_CALL(mock_object, mock_method(100))...
+EXPECT_CALL(mock_object, mock_method(Eq(100)))...
+EXPECT_CALL(mock_object, mock_method(Ge(50)))...//参数大于等于50的所有情况
+
+</code></pre>
+<p>那么除了 Eq 之外，gMock 还提供了其他的一些，可以自行探索</p>
+<h2 id="预期调用的次数httpswwwcnblogscomjinyunshaobingp16804309html2624830972">预期调用的次数
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#2624830972"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p>在预期行为部分，我们可以手动写上 Times(3)来指定它需要被调用 3 次，多或少都会导致测试不通过。
+AtLeast()是在次数预期里比较常用的一个方法，如果是 Times(3)，那方法必须调用且只能调用 3 次，但是如果是 Times(AtLeast(3))，那么就是至少调用 3 次的意思了。
+我们也可以省略 Times()，此时 gMock 会默认根据我们写的链式调用情况添加 Times()，具体规则见下面的部分。</p>
+<p>关于次数的预期，核心的方法有两个，分别是 WillOnce()和 WillRepeatedly()，前者表示调用一次，后者表示重复调用，它们可以组合使用，使用的具体规则如下：</p>
+<ul>
+<li>如果没有 WillOnce 和 WillRepeatedly()，则默认添加 Times(1)</li>
+<li>如果有 n 个 WillOnce，没有 WillRepeatedly()，则默认添加 Times(n)</li>
+<li>如果有 n 个 WillOnce，有一个 WillRepeatedly()，则默认添加 Times(AtLeast(n))，这意味着 WillRepeatedly 可以匹配调用 0 次的情况</li>
+</ul>
+<h2 id="预期发生的行为httpswwwcnblogscomjinyunshaobingp16804309html3100169290">预期发生的行为
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#3100169290"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p>一个 mock object 的所有方法中都没有具体的实现体，那么它的返回值情况是怎么样设定预期的呢？
+默认情况下我们如果不设定返回值预期，也会有默认的返回值（只是我们不使用而已），bool 会返回 false，int 等等的会返回 0.
+如果需要它有指定的预期返回值，我们可以在次数预期中加入返回值预期</p>
+<pre><code>using ::testing::Return;
+...
+EXPECT_CALL(mock_object, mock_method(params))
+.Times(5)
+.WillOnce(Return(100))
+.WillOnce(Return(150))
+.WillRepeatedly(Return(200));
+
+</code></pre>
+<p>在以上的栗子中，为该对象的该方法指定了四个预期行为：
+首先它会被调用 5 次，第一次返回 100，第二次返回 150，之后的每次都返回 200
+如果去掉 Times(5)，那就是第一次返回 100，第二次返回 150，之后每次都返回 200，调用次数不少于 2 次（WillRepeatedly 可以调用 0 次）</p>
+<h2 id="预期发生顺序httpswwwcnblogscomjinyunshaobingp16804309html3540544923">预期发生顺序
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#3540544923"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<p>默认情况下，我们设定好一个 mock 对象的多个预期行为时，是不关心它们的发生顺序的。例如以下代码中，先调用 PenDown()或者先调用了 Forward(100)都是无所谓的，都能通过测试：</p>
+<pre><code>EXPECT_CALL(turtle, PenDown());
+EXPECT_CALL(turtle, Forward(100));
+
+</code></pre>
+<p>那么如果我们想指定预期发生顺序，我们需要创建 InSequence 对象，该对象创建处的代码块（scope）内的所有预期行为都必须按照声明顺序发生。</p>
+<pre><code>using ::testing::InSequence;
+...
+TEST(FooTest, DrawsLineSegment) {
+  ...
+  {
+    InSequence seq;
+
+    EXPECT_CALL(turtle, PenDown());
+    EXPECT_CALL(turtle, Forward(100));
+    EXPECT_CALL(turtle, PenUp());
+  }
+  Foo();
+}
+
+</code></pre>
+<h2 id="一些需要注意的点httpswwwcnblogscomjinyunshaobingp16804309html1878194304">一些需要注意的点
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#1878194304"  target="_blank" rel="noopener noreferrer" >#</a>
+</h2>
+<h3 id="预期行为的一次性写入httpswwwcnblogscomjinyunshaobingp16804309html322437472">预期行为的一次性写入
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#322437472"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>EXPECT_CALL()的链式调用中所有预期都会一次性写入，这意味着不要在链式调用中写运算，可能不会满足预期需求。举个栗子，以下并不能匹配返回 100，101，102&hellip;而是只匹配返回 100 的情况，因为++是在预期行为被设定好之后才发生</p>
+<pre><code>using ::testing::Return;
+...
+int n = 100;
+EXPECT_CALL(turtle, GetX())
+    .Times(4)
+    .WillRepeatedly(Return(n++));
+
+</code></pre>
+<h3 id="mock-对象方法的预期行为多重定义httpswwwcnblogscomjinyunshaobingp16804309html169742846">mock 对象方法的预期行为多重定义
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#169742846"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>在前面，我们看到的都是单对象单方法仅有 1 种预期行为定义的情况，如果定义了多个呢？例如：</p>
+<pre><code>using ::testing::_;
+...
+EXPECT_CALL(turtle, Forward(_));  // #1
+EXPECT_CALL(turtle, Forward(10))  // #2
+    .Times(2);
+
+</code></pre>
+<p>假如我们在后面调用了三次 Forwar(10)，那么测试会报错不通过。如果调用了两次 Forward(10)，一次 Forward(20)，那么测试会通过。</p>
+<h3 id="预期行为粘连问题httpswwwcnblogscomjinyunshaobingp16804309html1477489468">预期行为粘连问题
+<a href="https://www.cnblogs.com/jinyunshaobing/p/16804309.html#1477489468"  target="_blank" rel="noopener noreferrer" >#</a>
+</h3>
+<p>gMock 中的预期行为默认是粘连的，它们会一直保持存活状态（哪怕它所规定的预期行为已经完全被匹配过了）
+例如以下的情况可能会出错，这种写法下可能最初想的是返回 50、40、30、20、10 的调用各一次，但是发生调用时就报错了（例如第一次调用返回 10，而第二次调用返回 20 时，预期返回 10 的那个也还存活着会报错(不满足 Once 了)）</p>
+<pre><code>using ::testing::Return;
+...
+for (int i = 5; i  0; i--) {
+  EXPECT_CALL(turtle, GetX())
+      .WillOnce(Return(10*i));
+}
+
+</code></pre>
+<p>我的理解：所谓预期行为(Expectations)，它所针对的是**<em>一个 Mock 对象的一个方法在某一种参数</em>**情况下的行为，如果不显式的声明让它在被满足后退休，它会一直存活，一直干活&hellip;
+要想解决上面的问题，可以显式的声明饱和退休</p>
+<pre><code>using ::testing::Return;
+...
+for (int i = n; i  0; i--) {
+  EXPECT_CALL(turtle, GetX())
+      .WillOnce(Return(10*i))
+      .RetiresOnSaturation();
+}
+
+</code></pre>
+<p>在以上这种写法下，每个.WillOnce()一旦被满足就会退休，后面发生了什么它不会去管了，也就不会报错了
+当然这也可以结合前面的预期发生顺序来写，以下的写法意味着第一次调用返回 10，第二次返回 20&hellip;..</p>
+<pre><code>using ::testing::InSequence;
+using ::testing::Return;
+...
+{
+  InSequence s;
+
+  for (int i = 1; i = n; i++) {
+    EXPECT_CALL(turtle, GetX())
+        .WillOnce(Return(10*i))
+        .RetiresOnSaturation();
+  }
+}
+
+</code></pre>
+<h2 id="后续可填坑">后续可填坑</h2>
+<p>gMock 进阶指南</p>
+
+</main>
+
+<style>
+    
+
+    
+
+    body {
+        margin-right: 280px;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            margin-right: 0;
+        }
+    }
+
+    
+
+     
+    .article-meta {
+        text-align: center;
+        text-decoration: none;
+        background: #efefef;
+        padding: 1px;
+        border-radius: 5px;
+    }
+
+    .article-meta-title {
+        font-size: 2.2rem;
+    }
+
+    .article-meta-info {
+        color: #666;
+        font-size: 1.1rem;
+        margin: -0.6rem 0 0.2rem 10px;
+        text-align: left;
+    }
+
+    .article-meta-info a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+</style>
+
+
+
+<h1 style="font-size: 1.2rem; margin: 2.5rem 0 0.1rem 0;">Comment</h1>
+<div class="cusdis-comments">
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id=697d528d-b618-4ee1-a6fe-403c81a646ac
+    data-page-id="7d692156e7d8d7bd6c2c82030edfe11b"
+    data-page-url="https://kaikaixixi.xyz/%E8%BD%AC%E8%BD%BD/2025/04/16/googletest%E4%B8%8Egmock%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/"
+    data-page-title="GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)"
+  ></div>
+  <script async defer src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/cusdis/cusdis.es.min.js"></script>
+</div>
+
+<style>
+.cusdis-comments {
+  border-top: 2px dashed #cfcfcf;
+  padding-top: 1.3rem;
+}
+
+#cusdis_thread iframe {
+  min-height: 500px !important;
+  overflow: visible !important;
+}
+</style>
+
+
+<footer>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/math-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/render-katex.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/center-img.min.js"></script>
+
+  
+
+<div id="menuBtnContainer">
+    
+    <button id="menuBtn"><i class="fa-solid fa-screwdriver-wrench"></i></button>
+
+    
+    <button id="backToBottomBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-down"></i></button>
+    <button id="backToTopBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-up"></i></button>
+
+    
+    <div class="menu-popup-btn edit-btn">
+        <a href='https://github.com/captainwc/captainwc.github.io/edit/main/content/%e7%bd%91%e9%a1%b5%e5%89%aa%e8%97%8f/GoogleTest%e4%b8%8eGMock%e8%bf%9b%e9%98%b6%e6%8c%87%e5%8d%97.md'
+            target="_blank" rel="noopener">
+            <i class="fa-solid fa-square-pen"></i>
+        </a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuBtn = document.getElementById('menuBtn');
+        var menuBtnContainer = document.getElementById('menuBtnContainer');
+        var backToTopBtn = document.getElementById('backToTopBtn');
+        var backToBottomBtn = document.getElementById('backToBottomBtn');
+        var popupBtns = document.querySelectorAll('.menu-popup-btn');
+        var hoverTimeout;
+
+        
+        menuBtnContainer.classList.add('visible');
+
+        
+        function showPopupBtns() {
+            clearTimeout(hoverTimeout);
+            menuBtnContainer.classList.add('active');
+        }
+
+        
+        function hidePopupBtns() {
+            hoverTimeout = setTimeout(function() {
+                menuBtnContainer.classList.remove('active');
+            }, 300);
+        }
+
+        
+        menuBtnContainer.addEventListener('mouseenter', showPopupBtns);
+        menuBtnContainer.addEventListener('mouseleave', hidePopupBtns);
+
+        
+        menuBtn.addEventListener('click', function() {
+            if (menuBtnContainer.classList.contains('active')) {
+                menuBtnContainer.classList.remove('active');
+            } else {
+                showPopupBtns();
+            }
+        });
+
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        
+        backToBottomBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+<style>
+     
+    #menuBtnContainer {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 999;
+        opacity: 0.6;
+        visibility: visible;
+        transition: opacity 0.3s;
+    }
+
+    #menuBtnContainer:hover {
+        opacity: 1;
+    }
+
+     
+    #menuBtn {
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.2rem;
+        transition: background 0.3s;
+        cursor: pointer;
+        background: #EFEFEF;
+        z-index: 1000;
+        position: relative;
+    }
+
+    #menuBtn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+     
+    .menu-popup-btn {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        background: #EFEFEF;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+     
+    .menu-popup-btn.top-btn {
+        right: 0;
+        transform: translateY(0) scale(0.8);
+    }
+
+     
+    .menu-popup-btn.edit-btn {
+        bottom: 0;
+        transform: translateX(0) scale(0.8);
+        padding: 1px 6.6px 0px 6.6px;
+    }
+
+    .menu-popup-btn.edit-btn a {
+        color: #ccc;
+        text-decoration: none;
+        background: none !important;
+        transition: opacity 0.2s;
+        padding: 0;
+        margin: 0;
+    }
+
+     
+    #menuBtnContainer.active .menu-popup-btn {
+        opacity: 1;
+        visibility: visible;
+    }
+
+     
+    #menuBtnContainer.active #backToBottomBtn {
+        transform: translateY(-60px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active #backToTopBtn {
+        transform: translateY(-110px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active .edit-btn {
+        transform: translateX(-60px) scale(1);
+    }
+
+     
+    .menu-popup-btn:hover,
+    .menu-popup-btn.edit-btn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+    .menu-popup-btn.edit-btn:hover a {
+        color: #666;
+    }
+
+     
+    @media (max-width: 768px) {
+        #menuBtnContainer {
+            right: 15px;
+            bottom: 15px;
+        }
+
+        #menuBtnContainer.active #backToBottomBtn {
+            transform: translateY(-50px) scale(1);
+        }
+
+        #menuBtnContainer.active #backToTopBtn {
+            transform: translateY(-90px) scale(1);
+        }
+
+        #menuBtnContainer.active .edit-btn {
+            transform: translateX(-50px) scale(1);
+        }
+    }
+</style>
+
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    document.querySelectorAll('ul').forEach(ul => {
+      
+      const isTodoList = Array.from(ul.children).some(li => {
+        return li.innerHTML.includes('type="checkbox"')
+      });
+
+      if (isTodoList) {
+        
+        const todolistContainer = document.createElement('div');
+        todolistContainer.className = 'todolist';
+
+        
+
+        
+        ul.querySelectorAll('li').forEach(li => {
+          const todoItemDiv = document.createElement('div');
+          todoItemDiv.className = 'todo-item';
+
+          
+          const isChecked = li.innerHTML.includes('checked');
+          const content = li.innerHTML
+            .replace(/<input[^>]+>/g, '') 
+            .trim();
+
+          
+          const checkedIcon = `<svg t="1742522457277" class="todo-item-checked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12342"><path d="M512 938.688A426.624 426.624 0 1 1 512 85.376a426.624 426.624 0 0 1 0 853.312z m0-85.312A341.312 341.312 0 1 0 512 170.688a341.312 341.312 0 0 0 0 682.688z m-42.56-170.688L288.448 501.632l60.288-60.288L469.44 561.92l241.28-241.28 60.416 60.288-301.696 301.696z" p-id="12343"></path></svg>`;
+          const uncheckedIcon = `<svg t="1742522354856" class="todo-item-unchecked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11882"><path d="M512 938.666667C276.352 938.666667 85.333333 747.648 85.333333 512S276.352 85.333333 512 85.333333s426.666667 191.018667 426.666667 426.666667-191.018667 426.666667-426.666667 426.666667z m0-85.333334a341.333333 341.333333 0 1 0 0-682.709333A341.333333 341.333333 0 0 0 512 853.333333z" p-id="11883"></path></svg>`;
+
+          
+          todoItemDiv.innerHTML = `
+            <span class="todo-item-checkbox">
+              ${isChecked ? checkedIcon : uncheckedIcon}
+            </span>
+            <span class="todo-item-content">
+              ${isChecked ? `<del>${content}</del>` : content}
+            </span>
+          `;
+
+          
+          todolistContainer.appendChild(todoItemDiv);
+        });
+
+        
+        ul.parentNode.replaceChild(todolistContainer, ul);
+      }
+    });
+
+    function addTaskProgressBar(ul, todolistContainer) {
+      
+      const totalTasks = ul.children.length;
+      const finishedTasks = Array.from(ul.children).filter(li => li.innerHTML.includes('checked')).length;
+
+      
+      const progressContainer = document.createElement('div');
+      progressContainer.className = 'todo-progress';
+
+      
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'todo-progress-counter';
+      counterSpan.textContent = `${finishedTasks}/${totalTasks}`;
+
+      
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'todo-progress-bar';
+
+      
+      const progressFill = document.createElement('div');
+      progressFill.className = 'todo-progress-bar-fill';
+      progressFill.style.width = `${(finishedTasks / totalTasks) * 100}%`;
+
+      
+      const flagSpan = document.createElement('span');
+      flagSpan.className = 'todo-progress-flag';
+      flagSpan.innerHTML = `${finishedTasks === totalTasks ? '🌟' : '🚧'}`;
+
+      
+      progressTrack.appendChild(progressFill);
+      progressContainer.append(flagSpan, progressTrack, counterSpan);
+      todolistContainer.appendChild(progressContainer);
+    }
+  });
+</script>
+
+<style>
+   
+  .todolist {
+    padding-left: 0.6rem;
+  }
+
+  .todo-item {
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: -0.5rem 0 -0.5rem -0.7rem;
+    line-height: 1.3;
+  }
+
+  .todo-item-checkbox {
+    flex-shrink: 0;
+    font-size: 1.2em;
+
+    svg {
+      margin-top: 0.46rem;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .todo-item-checked-icon {
+    fill: #707070;
+  }
+
+  .todo-item-unchecked-icon {
+    fill: #1A61CC;
+  }
+
+  .todo-item-unchecked-icon:hover {
+    fill: red;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .todo-item-content {
+    flex: 1;
+    word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+   
+  .todo-progress {
+    display: flex;
+     
+    align-items: center;
+    gap: 0.3rem;
+     
+    margin: 0.1rem 0 0 0.7rem;
+  }
+
+  .todo-progress-counter {
+     
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+    color: #707070;
+  }
+
+  .todo-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #a64036;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 20%;
+  }
+
+  .todo-progress-bar-fill {
+    height: 100%;
+    background: #84a729;
+    transition: width 0.3s ease;
+  }
+
+  .todo-progress-flag {
+    display: none;
+    position: relative;
+    font-size: 0.9rem;
+  }
+</style>
+
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll())</script>
+
+
+
+  <script>
+    const langToNerdFontMap = {
+        asm: '\ue6ab',
+        bash: '\ue760',
+        bazel: '\ue63a',
+        c: '\ue61e',
+        cmake: '\ue794',
+        cmd: '\uebc4',
+        cpp: '\ue61d',
+        'c++': '\ue61d',
+        csharp: '\ue7b2',
+        css: '\ue749',
+        diff: '\ueae1',
+        dockerfile: '\uf21f',
+        go: '\udb81\udfd3',
+        gradle: '\ue7f2',
+        html: '\ue736',
+        java: '\uedaf',
+        javascript: '\ue781',
+        json: '\ueb0f',
+        latex: '\ue81f',
+        llvm: '\ue823',
+        lua: '\ue826',
+        makefile: '\ue673',
+        markdown: '\uf48a',
+        maven: '\ue82c',
+        plaintext: '\udb80\udd4d',
+        plantuml: '\ue8cb',
+        powershell: '\ue86c',
+        python: '\ued1b',
+        rust: '\udb85\ude17',
+        shell: '\ue760',
+        sql: '\udb82\udc66',
+        text: '\udb80\udd4d',
+        toml: '\ue6b2',
+        txt: '\udb80\udd4d',
+        typescript: '\ue8ca',
+        uml: '\ue8cb',
+        vim: '\ue7c5',
+        wasm: '\ue8e0',
+        xml: '\ue8ea',
+        yaml: '\ue8eb',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            const parentElement = codeBlock.parentElement;
+
+            
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+
+            
+            const foldBtn = document.createElement('button');
+            foldBtn.className = 'fold-btn';
+            foldBtn.innerHTML = '\uf48c';
+            foldBtn.style.display = 'none';
+
+            
+            const langLabel = document.createElement('div');
+            langLabel.className = 'lang-label';
+            const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
+            const icon = langToNerdFontMap[lang.toLowerCase()];
+            langLabel.textContent = icon || lang.toUpperCase();
+            if (!icon) langLabel.style.fontSize = '0.8rem';
+
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = '\uf4bb COPY';
+
+            
+            const scale_height = 600;       
+            const collapsed_height = 500;   
+            const checkHeight = () => {
+                const originalDisplay = parentElement.style.display;
+                parentElement.style.display = 'block';
+                const fullHeight = parentElement.scrollHeight;
+                parentElement.style.display = originalDisplay;
+                return fullHeight > scale_height;
+            };
+
+            
+            if (checkHeight()) {
+                foldBtn.style.display = 'flex';
+                parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+
+                
+                parentElement.classList.add('collapsed');
+                parentElement.style.maxHeight = `${collapsed_height}px`;
+                foldBtn.innerHTML = '\uf4d9';
+
+                parentElement.style.overflowY = 'auto'; 
+
+                foldBtn.addEventListener('click', () => {
+                    const isCollapsed = parentElement.classList.toggle('collapsed');
+                    foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
+
+                    if (isCollapsed) {
+                        parentElement.style.maxHeight = `${collapsed_height}px`;
+                        parentElement.style.overflowX = 'auto';
+                    } else {
+                        parentElement.style.maxHeight = 'none';
+                        void parentElement.offsetHeight;
+                        parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                    }
+                });
+            }
+
+            
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeBlock.textContent);
+                    copyBtn.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyBtn.textContent = '\uf4bb COPY', 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                }
+            });
+
+            
+            tools.append(langLabel, foldBtn, copyBtn);
+            parentElement.prepend(tools);
+        });
+    });
+</script>
+
+<style>
+ 
+.code-tools {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-family: "Maple Mono NF CN";
+}
+
+.fold-btn {
+    cursor: pointer;
+    border: none;
+    color: #666;
+    background: none;
+    font-family: "Maple Mono NF CN";
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0 0.45rem;
+    transition: all 0.2s ease;
+}
+
+ 
+.lang-label {
+     
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+ 
+.copy-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+}
+
+ 
+pre:hover .code-tools {
+    opacity: 1;
+    pointer-events: auto;
+}
+</style>
+
+
+  
+<script>
+    
+    window.diagramRenderUtils = {
+        
+        getOrCreateFullscreenOverlay: function() {
+            let overlay = document.querySelector('.fullscreen-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'fullscreen-overlay';
+                document.body.appendChild(overlay);
+
+                
+                overlay.addEventListener('dblclick', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            }
+            return overlay;
+        },
+
+        
+        createDiagramContainer: function() {
+            const container = document.createElement('div');
+            container.className = 'code-rendered-diagram';
+            return container;
+        },
+
+        
+        createCopyButton: function() {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'code-rendered-diagram-copy-button';
+            copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+            return copyButton;
+        },
+
+        
+        createFullscreenButton: function() {
+            const fullscreenButton = document.createElement('button');
+            fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+            fullscreenButton.innerHTML = '&#xf065; FULL';
+            return fullscreenButton;
+        },
+
+        
+        makeSVGTransparent: function(svgText) {
+            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                .forEach(el => {
+                    if (el.tagName !== 'svg') {
+                        el.setAttribute('fill', 'transparent');
+                    }
+                });
+            doc.documentElement.style.backgroundColor = 'transparent';
+            return new XMLSerializer().serializeToString(doc);
+        },
+
+        
+        setupCopyButton: function(copyButton, codeContent) {
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeContent);
+                    copyButton.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                } catch (err) {
+                    copyButton.textContent = 'FAILED';
+                    console.error('复制失败:', err);
+                }
+            });
+        },
+
+        
+        setupShowSourceCode: function(imageElem, sourceCode) {
+            
+            imageElem.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+
+                
+                const pre = document.createElement('pre');
+                const codeElem = document.createElement('code');
+                codeElem.textContent = sourceCode;
+                pre.appendChild(codeElem);
+
+                
+                window.diagramRenderUtils.popupWindowUtils.create({
+                    title: 'Source Code',
+                    content: pre,
+                    x: e.clientX,
+                    y: e.clientY,
+                    minWidth: 300,
+                    maxWidth: '60%',
+                    maxHeight: '60%',
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    className: 'source-code-viewer'
+                });
+            });
+        },
+
+        
+        setupFullscreenButton: function(fullscreenButton, contentElement, isImage = false) {
+            fullscreenButton.addEventListener('click', () => {
+                const overlay = this.getOrCreateFullscreenOverlay();
+                let clonedContent;
+
+                if (isImage) {
+                    
+                    clonedContent = contentElement.cloneNode(true);
+                } else {
+                    
+                    const svgElement = contentElement.querySelector('svg');
+                    if (!svgElement) return;
+                    clonedContent = svgElement.cloneNode(true);
+                }
+
+                overlay.innerHTML = '';
+
+                
+                const exitButton = document.createElement('button');
+                exitButton.className = 'fullscreen-exit-button';
+                exitButton.innerHTML = 'ESC';
+                exitButton.onclick = () => overlay.classList.remove('active');
+
+                overlay.appendChild(exitButton);
+                overlay.appendChild(clonedContent);
+                overlay.classList.add('active');
+
+                
+                this.setupZoomAndDrag(overlay, isImage ? 'img' : 'svg');
+            });
+        },
+
+        
+        setupZoomAndDrag: function(overlay, selector) {
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            const element = overlay.querySelector(selector);
+
+            
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY * -0.002;
+                const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                
+                const rect = element.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                
+                posX += mouseX * (1 - newScale / scale);
+                posY += mouseY * (1 - newScale / scale);
+
+                scale = newScale;
+                updateTransform();
+            });
+
+            
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === overlay) return;
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                overlay.classList.add('dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                overlay.classList.remove('dragging');
+            });
+
+            function updateTransform() {
+                element.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+        },
+
+        
+        popupWindowUtils: {
+            
+            create: function(options) {
+                
+                const config = {
+                    title: 'Popup Window',
+                    content: '',         
+                    x: 100,              
+                    y: 100,              
+                    minWidth: 300,       
+                    maxWidth: '80%',     
+                    maxHeight: '80%',    
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    onClose: null,       
+                    className: ''        
+                };
+
+                
+                Object.assign(config, options);
+
+                
+                if (config.className) {
+                    const existingPopup = document.querySelector(`.popup-window.${config.className}`);
+                    if (existingPopup) {
+                        document.body.removeChild(existingPopup);
+                    }
+                }
+
+                
+                const popup = document.createElement('div');
+                popup.className = `popup-window ${config.className}`.trim();
+
+                
+                const titleBar = document.createElement('div');
+                titleBar.className = 'popup-window-title';
+                titleBar.textContent = config.title;
+
+                
+                const closeButton = document.createElement('button');
+                closeButton.className = 'popup-window-close';
+                closeButton.innerHTML = '&times;';
+
+                
+                titleBar.appendChild(closeButton);
+
+                
+                const contentContainer = document.createElement('div');
+                contentContainer.className = 'popup-window-content';
+
+                
+                if (typeof config.content === 'string') {
+                    contentContainer.innerHTML = config.content;
+                } else if (config.content instanceof Element) {
+                    contentContainer.appendChild(config.content);
+                }
+
+                
+                popup.appendChild(titleBar);
+                popup.appendChild(contentContainer);
+
+                
+                popup.style.minWidth = typeof config.minWidth === 'number' ? `${config.minWidth}px` : config.minWidth;
+                popup.style.maxWidth = typeof config.maxWidth === 'number' ? `${config.maxWidth}px` : config.maxWidth;
+                popup.style.maxHeight = typeof config.maxHeight === 'number' ? `${config.maxHeight}px` : config.maxHeight;
+
+                
+                document.body.appendChild(popup);
+
+                
+                const popupRect = popup.getBoundingClientRect();
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+
+                
+                let left = Math.min(Math.max(config.x, 20), windowWidth - popupRect.width - 20);
+                let top = Math.min(Math.max(config.y, 20), windowHeight - popupRect.height - 20);
+
+                popup.style.left = `${left}px`;
+                popup.style.top = `${top}px`;
+
+                
+                const closePopup = () => {
+                    if (document.body.contains(popup)) {
+                        document.body.removeChild(popup);
+                        if (typeof config.onClose === 'function') {
+                            config.onClose();
+                        }
+                    }
+                };
+
+                closeButton.addEventListener('click', closePopup);
+
+                
+                if (config.closeOnEsc) {
+                    const escHandler = (e) => {
+                        if (e.key === 'Escape' && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('keydown', escHandler);
+                        }
+                    };
+                    document.addEventListener('keydown', escHandler);
+                }
+
+                
+                if (config.closeOnClickOutside) {
+                    const outsideClickHandler = (e) => {
+                        if (popup && !popup.contains(e.target) && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('mousedown', outsideClickHandler);
+                        }
+                    };
+
+                    
+                    setTimeout(() => {
+                        document.addEventListener('mousedown', outsideClickHandler);
+                    }, 100);
+                }
+
+                
+                let isDragging = false;
+                let offsetX = 0;
+                let offsetY = 0;
+
+                titleBar.addEventListener('mousedown', (e) => {
+                    
+                    if (e.target !== closeButton) {
+                        isDragging = true;
+                        offsetX = e.clientX - popup.getBoundingClientRect().left;
+                        offsetY = e.clientY - popup.getBoundingClientRect().top;
+                        popup.classList.add('dragging');
+                    }
+                });
+
+                const mouseMoveHandler = (e) => {
+                    if (isDragging) {
+                        let newLeft = e.clientX - offsetX;
+                        let newTop = e.clientY - offsetY;
+
+                        
+                        newLeft = Math.max(0, Math.min(windowWidth - popupRect.width, newLeft));
+                        newTop = Math.max(0, Math.min(windowHeight - popupRect.height, newTop));
+
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    }
+                };
+
+                const mouseUpHandler = () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        popup.classList.remove('dragging');
+                    }
+                };
+
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+
+                
+                return {
+                    element: popup,
+                    contentElement: contentContainer,
+                    close: closePopup,
+                    setTitle: (title) => {
+                        titleBar.textContent = title;
+                        titleBar.appendChild(closeButton); 
+                    },
+                    setContent: (content) => {
+                        contentContainer.innerHTML = '';
+                        if (typeof content === 'string') {
+                            contentContainer.innerHTML = content;
+                        } else if (content instanceof Element) {
+                            contentContainer.appendChild(content);
+                        }
+                    },
+                    setPosition: (x, y) => {
+                        let newLeft = Math.min(Math.max(x, 0), windowWidth - popupRect.width);
+                        let newTop = Math.min(Math.max(y, 0), windowHeight - popupRect.height);
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    },
+                    
+                    destroy: () => {
+                        document.removeEventListener('mousemove', mouseMoveHandler);
+                        document.removeEventListener('mouseup', mouseUpHandler);
+                        if (document.body.contains(popup)) {
+                            document.body.removeChild(popup);
+                        }
+                    }
+                };
+            }
+        }
+    };
+</script>
+<style>
+     
+    .code-rendered-diagram {
+        max-width: 80% !important;
+        height: auto;
+        position: relative;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .code-rendered-diagram-copy-button,
+    .code-rendered-diagram-fullscreen-button {
+        position: absolute;
+        top: 20px;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 0.3rem;
+        margin: 0 0 0 0.6rem;
+        color: #333;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.6rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        opacity: 0;
+    }
+
+    .code-rendered-diagram-copy-button {
+        right: 10px;
+    }
+
+    .code-rendered-diagram-fullscreen-button {
+        right: 100px;
+    }
+
+    .code-rendered-diagram:hover .code-rendered-diagram-copy-button,
+    .code-rendered-diagram:hover .code-rendered-diagram-fullscreen-button {
+        opacity: 1;
+    }
+
+    .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FBFBFB;
+         
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fullscreen-overlay.active {
+        display: flex;
+    }
+
+    .fullscreen-overlay img,
+    .fullscreen-overlay svg {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        cursor: move;
+        transition: transform 0.1s ease-out;
+        transform-origin: center center;
+    }
+
+    .fullscreen-overlay svg {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .fullscreen-overlay.dragging {
+        cursor: move;
+    }
+
+    .fullscreen-exit-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        color: #666;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        transition: all 0.2s ease;
+        z-index: 100000;
+    }
+
+    .fullscreen-exit-button:hover {
+        background-color: #e0e0e0;
+        color: #333;
+    }
+
+     
+    .popup-window {
+        position: fixed;
+        z-index: 10000;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .popup-window.dragging {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        opacity: 0.95;
+    }
+
+    .popup-window-title {
+        background-color: #e8e8e8;
+        padding: 8px 12px;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        cursor: move;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #333;
+        font-family: "Maple Mono NF CN", monospace;
+        font-size: 0.9rem;
+    }
+
+    .popup-window-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #666;
+        padding: 0 4px;
+        margin: -4px -4px 0 0;
+        transition: color 0.2s ease;
+    }
+
+    .popup-window-close:hover {
+        color: #333;
+    }
+
+    .popup-window-content {
+        overflow: auto;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+     
+    .popup-window.source-code-viewer .popup-window-content {
+        font-family: "Maple Mono NF CN", monospace;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content pre {
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content code {
+        font-family: "Maple Mono NF CN", monospace;
+        color: #333;
+    }
+</style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
+        if (!plantumlBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
+
+        
+        script.onload = () => {
+            const plantuml_theme = parsePlantumlUserConfig();
+
+            plantumlBlocks.forEach(codeBlock => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const img = document.createElement('img');
+                img.className = 'code-rendered-diagram-img';
+                img.style.display = 'block';
+                img.alt = 'PlantUML Diagram';
+
+                
+                const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
+                img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, fullCode);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(img, fullCode);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, img, true);
+
+                
+                
+
+                
+                container.appendChild(img);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+                codeBlock.parentElement.replaceWith(container);
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+
+    function parsePlantumlUserConfig() {
+        let configItems = [];
+
+        
+            configItems.push(`scale 5`);
+        
+
+        
+            configItems.push(`skin rose`);
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        
+        
+            
+                configItems.push(`skinparam shadowing false`);
+            
+        
+
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        return configItems.join("\n").trim();
+    }
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+        if (!mermaidBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js';
+
+        
+        script.onload = () => {
+            
+            mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                fontFamily: 'Maple Mono NF CN',
+                
+                look: 'handDrawn',
+                
+                theme: 'neutral',
+                
+                
+            });
+
+            
+            mermaidBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const renderDiv = document.createElement('div');
+                renderDiv.id = `mermaid-diagram-${index}`;
+                renderDiv.style.background = 'transparent';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                try {
+                    
+                    mermaid.render(`mermaid-svg-${index}`, code).then(result => {
+                        renderDiv.innerHTML = result.svg;
+
+                        
+                        const svg = renderDiv.querySelector('svg');
+                        if (svg) {
+                            svg.style.backgroundColor = 'transparent';
+                            
+                            svg.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                                .forEach(el => {
+                                    if (el.tagName !== 'svg') {
+                                        el.setAttribute('fill', 'transparent');
+                                    }
+                                });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Mermaid渲染错误:', error);
+                    renderDiv.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Mermaid渲染错误: ${error.message}
+                    </div>`;
+                }
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(renderDiv, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, renderDiv, false);
+
+                
+                container.appendChild(renderDiv);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const markmapBlocks = document.querySelectorAll('pre code.language-map, pre code.language-mindmap');
+        if (!markmapBlocks.length) return;
+
+        
+        function loadScript(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+
+        
+        Promise.all([
+            loadScript('https://cdn.jsdelivr.net/npm/d3@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-view@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-lib@latest')
+        ]).then(() => {
+            
+            markmapBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const markmapContainer = document.createElement('div');
+                markmapContainer.className = 'markmap';
+                markmapContainer.id = `markmap-${index}`;
+                markmapContainer.style.minHeight = '300px';
+                markmapContainer.style.width = '100%';
+                markmapContainer.style.position = 'relative';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                
+                const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.style.width = '100%';
+                svgElement.style.height = '400px';
+                markmapContainer.appendChild(svgElement);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(markmapContainer, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, markmapContainer, false);
+
+                
+                container.appendChild(markmapContainer);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+
+                
+                renderMarkmapWithRetry(svgElement, markmapContainer, code);
+            });
+        }).catch(error => {
+            console.error('加载markmap库失败:', error);
+        });
+
+        
+
+        function renderMarkmapWithRetry(svgElement, markmapContainer, code, maxRetries = 5, delay = 200) {
+            let attempt = 0;
+
+            function tryRender() {
+                attempt++;
+                try {
+                    
+                    if (!window.markmap || typeof window.markmap.Markmap !== 'function') {
+                        throw new Error('Markmap constructor not available yet.');
+                    }
+
+                    
+                    const { Transformer } = window.markmap;
+                    const transformer = new Transformer();
+
+                    
+                    const { root, features } = transformer.transform(code);
+
+                    
+                    const { Markmap } = window.markmap;
+                    const mm = new Markmap(svgElement, {
+                        autoFit: true,
+                        duration: 500,
+                        zoom: true,
+                    });
+
+                    
+                    mm.setData(root, features);
+                    mm.fit();
+
+                    
+                    markmapContainer.dataset.markmapData = JSON.stringify({
+                        root: root,
+                        features: features
+                    });
+
+                    
+                    setTimeout(() => {
+                        const links = svgElement.querySelectorAll('a');
+                        links.forEach(link => {
+                            link.setAttribute('target', '_blank');
+                            link.setAttribute('rel', 'noopener noreferrer');
+                        });
+                    }, 100);
+
+                } catch (error) {
+                    console.error(`Markmap渲染尝试第 ${attempt} 次失败:`, error.message);
+                    if (attempt < maxRetries) {
+                        
+                        setTimeout(tryRender, delay);
+                    } else {
+                        
+                        console.error('Markmap渲染在多次重试后仍然失败。');
+                        markmapContainer.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                            Markmap渲染错误: ${error.message} (请尝试手动刷新网页)
+                        </div>`;
+                    }
+                }
+            }
+
+            
+            tryRender();
+        }
+    });
+</script>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        if (!window.diagramRenderUtils) return;
+
+        
+        const originalSetupFullscreenButton = window.diagramRenderUtils.setupFullscreenButton;
+        window.diagramRenderUtils.setupFullscreenButton = function(fullscreenButton, contentElement, isImage = false) {
+            
+            const isMarkmap = contentElement.classList.contains('markmap');
+
+            if (isMarkmap) {
+                fullscreenButton.addEventListener('click', () => {
+                    const overlay = this.getOrCreateFullscreenOverlay();
+                    overlay.innerHTML = '';
+
+                    
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => overlay.classList.remove('active');
+                    overlay.appendChild(exitButton);
+
+                    
+                    const fullscreenContainer = document.createElement('div');
+                    fullscreenContainer.className = 'markmap';
+                    fullscreenContainer.style.width = '100%';
+                    fullscreenContainer.style.height = '100%';
+
+                    
+                    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svgElement.style.width = '100%';
+                    svgElement.style.height = '100%';
+                    fullscreenContainer.appendChild(svgElement);
+
+                    overlay.appendChild(fullscreenContainer);
+                    overlay.classList.add('active');
+
+                    
+                    try {
+                        const markmapData = JSON.parse(contentElement.dataset.markmapData || '{}');
+                        if (markmapData.root) {
+                            
+                            const { Markmap } = window.markmap;
+                            const mm = new Markmap(svgElement, {
+                                autoFit: true,
+                                duration: 500,
+                                zoom: true,
+                            });
+
+                            
+                            mm.setData(markmapData.root, markmapData.features);
+                            mm.fit();
+
+                            
+                            setTimeout(() => {
+                                const links = svgElement.querySelectorAll('a');
+                                links.forEach(link => {
+                                    link.setAttribute('target', '_blank');
+                                    link.setAttribute('rel', 'noopener noreferrer');
+                                });
+                            }, 100);
+                        }
+                    } catch (error) {
+                        console.error('全屏模式下渲染markmap失败:', error);
+                    }
+
+                    
+                    this.setupZoomAndDrag(overlay, 'svg');
+                });
+            } else {
+                
+                originalSetupFullscreenButton.call(this, fullscreenButton, contentElement, isImage);
+            }
+        };
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const xmindBlocks = document.querySelectorAll('pre code.language-xmind');
+        if (xmindBlocks.length === 0) {
+            return;
+        }
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/xmind-embed-viewer/dist/umd/xmind-embed-viewer.js';
+        document.head.appendChild(script);
+
+        
+        script.onload = function() {
+            xmindBlocks.forEach((codeBlock, index) => {
+                const xmindUrl = codeBlock.textContent.trim();
+                if (!xmindUrl) {
+                    console.error('XMind code block is empty.');
+                    return;
+                }
+
+                
+                const mountId = `xmind-mount-${index}`;
+                const mountDiv = document.createElement('div');
+                mountDiv.id = mountId;
+
+                
+                const preElement = codeBlock.parentElement;
+                preElement.parentElement.replaceChild(mountDiv, preElement);
+
+                renderXmindFile(mountId, xmindUrl);
+            });
+
+            async function renderXmindFile(elementId, fileUrl) {
+                const mountEl = document.getElementById(elementId);
+
+                
+                
+                mountEl.className = 'xmind-container';
+                
+                mountEl.innerHTML = `
+                <div class="xmind-loader-wrapper">
+                    <div class="xmind-loader"></div>
+                    <div class="xmind-loader-text">xmind loading</div>
+                </div>
+            `;
+
+                try {
+                    
+                    const isExternal = fileUrl.startsWith('http');
+                    const fetchUrl = isExternal ? `https://api.allorigins.win/raw?url=${encodeURIComponent(fileUrl)}` : fileUrl;
+                    const res = await fetch(fetchUrl, {
+                        mode: 'cors'
+                    });
+
+                    
+                    if (!res.ok) {
+                        mountEl.innerHTML = `
+                        <div class="xmind-error">
+                            <span class="xmind-error-icon">⚠️</span>
+                            <div class="xmind-error-content">
+                                <strong>加载 XMind 文件失败</strong>
+                                <p>无法从 <code>${fileUrl}</code> 获取文件 (HTTP ${res.status})</p>
+                            </div>
+                        </div>
+                    `;
+                        console.error(`Failed to fetch XMind file: ${res.statusText}`);
+                        return;
+                    }
+                    const fileBuffer = await res.arrayBuffer();
+
+                    
+                    mountEl.className = ''; 
+                    mountEl.innerHTML = ''; 
+
+                    new XMindEmbedViewer({
+                        el: `#${elementId}`,
+                        file: fileBuffer,
+                        styles: {
+                            'height': '500px',
+                            'width': '100%'
+                        }
+                    });
+                } catch (error) {
+                    
+                    mountEl.innerHTML = `
+                    <div class="xmind-error">
+                        <span class="xmind-error-icon">⚠️</span>
+                        <div class="xmind-error-content">
+                            <strong>渲染 XMind 文件时出错</strong>
+                            <p>${error.message}</p>
+                        </div>
+                    </div>
+                `;
+                    console.error('Error rendering XMind file:', error);
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+     
+    .xmind-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        background-color: #f9f9f9;
+        border: 1px dashed #ddd;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+        padding: 20px;
+    }
+
+     
+    .xmind-loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+     
+    .xmind-loader {
+        border: 3px solid #f0f0f0;
+        border-top: 3px solid #999;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+    }
+
+     
+    .xmind-loader-text {
+        color: #888;
+        font-size: 0.9rem;
+        font-family: "LXGW WenKai", "Maple Mono NF CN", sans-serif;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+     
+    .xmind-error {
+        display: flex;
+        align-items: flex-start;
+        text-align: left;
+        color: #c0392b;
+        width: 100%;
+    }
+
+    .xmind-error-icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        line-height: 1.2;
+    }
+
+    .xmind-error-content {
+        flex: 1;
+    }
+
+    .xmind-error strong {
+        font-size: 1.1rem;
+        color: #a93226;
+    }
+
+    .xmind-error p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        color: #7b241c;
+        word-break: break-all;
+    }
+
+    .xmind-error code {
+        background-color: #fbeae5;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+</style>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const DIAGRAM_MAP = new Map([
+            ['plantuml_kroki', 'plantuml'],
+            ['mermaid_kroki', 'mermaid'],
+            ['graphviz', 'graphviz'],
+            ['blockdiag', 'blockdiag'],
+            ['seqdiag', 'seqdiag'],
+            ['actdiag', 'actdiag'],
+            ['packetdiag', 'packetdiag'],
+            ['database', 'dbml'],
+            ['dbml', 'dbml'],
+            ['vega', 'vega']
+        ]);
+
+        
+        const blocks = [];
+        document.querySelectorAll('pre code[class]').forEach(block => {
+            if (block.dataset.kroki) return;
+            const lang = [...block.classList].find(c => DIAGRAM_MAP.has(c.split('-')[1]));
+            if (lang) {
+                block.dataset.kroki = 'processed';
+                blocks.push({ block, api: DIAGRAM_MAP.get(lang.split('-')[1]) });
+            }
+        });
+
+        if (!blocks.length) return;
+
+        
+        const CONCURRENCY = 6;
+        const queue = blocks.slice();
+
+        (async function processQueue() {
+            const workers = Array(Math.min(CONCURRENCY, queue.length))
+                .fill()
+                .map(async () => {
+                    while (queue.length) {
+                        const { block, api } = queue.pop();
+                        await renderBlock(block, api);
+                    }
+                });
+            await Promise.all(workers);
+        })();
+
+        async function renderBlock(block, api) {
+            const pre = block.closest('pre');
+            try {
+                const code = block.textContent.trim();
+                if (!code) {
+                    pre.style.border = '2px solid orange';
+                    return;
+                }
+
+                const res = await fetch(`https://kroki.io/${api}/svg`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: code
+                });
+
+                if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
+
+                
+                const svg = window.diagramRenderUtils.createDiagramContainer();
+                svg.innerHTML = window.diagramRenderUtils.makeSVGTransparent(await res.text());
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, svg, false);
+                svg.appendChild(fullscreenButton);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+                svg.appendChild(copyButton);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(svg, code);
+
+                pre.insertAdjacentElement('afterend', svg);
+
+                
+                pre.remove();
+            } catch (err) {
+                console.error(`[Kroki] 渲染失败: ${err.message}`);
+                pre.style.border = '2px solid red';
+                pre.title = err.message;
+            }
+        }
+    });
+</script>
+
+
+  <div id="search-modal">
+  <input type="text" id="modal-search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
+  <div id="modal-search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="modal-search-results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+  function debug(text) {
+      document.getElementById('modal-search-debug').textContent = text;
+  }
+  function showpages() {
+    debug("当前本站共有 " + searchIndex.length + " 篇文章");
+  }
+
+  let searchIndex = [];
+  
+  
+    
+  
+
+  
+    searchIndex.push({
+      title: "\"面向模式的软件架构 卷1 模式系统 读书笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%8D%B71%E6%A8%A1%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/\"",
+      
+      categories: "[\"读书笔记\",\"软件工程\"]",
+      tags: "[\"设计模式\"]",
+      series: "[\"软件架构之道\"]",
+      date: "\"2025-12-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"链接符号与符号导入导出宏——记一次因clangd补全头文件产生的链接错误\"",
+      permalink: "\"/cpp/%E9%93%BE%E6%8E%A5%E7%AC%A6%E5%8F%B7%E5%AF%BC%E5%87%BA%E4%B8%8E%E7%AC%A6%E5%8F%B7%E5%8F%AF%E8%A7%81%E5%AE%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"C++踩坑\"]",
+      date: "\"2025-11-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"Qt从零开始（0）——环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/qt%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: "[\"Qt专栏\"]",
+      date: "\"2025-08-30\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu配置coredump文件生成位置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E7%94%9F%E6%88%90coredump%E6%96%87%E4%BB%B6/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-08-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu安装中文输入法（fcitx5-rime）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E5%AE%89%E8%A3%85rime%E8%BE%93%E5%85%A5%E6%B3%95/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-07-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"SSH反向隧道中转机-远程连接本地服务器\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/ssh%E5%8F%8D%E5%90%91%E9%9A%A7%E9%81%93%E4%B8%AD%E8%BD%AC%E6%9C%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"ssh\"]",
+      series: [],
+      date: "\"2025-06-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++ 高并发服务器模型实现 | [转载](https://github.com/linkxzhou/mylib/blob/master/c%2B%2B/concurrency_server/README.md)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/06/10/22%E7%A7%8Dc-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"C++\"]",
+      series: [],
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"libclang-py使用介绍\"",
+      permalink: "\"/cpp/libclang-py%E4%BD%BF%E7%94%A8/\"",
+      
+      categories: [],
+      tags: "[\"C++\",\"编译原理\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"参数包与折叠表达式傻傻分不清\"",
+      permalink: "\"/cpp/%E5%8F%82%E6%95%B0%E5%8C%85%E4%B8%8E%E6%8A%98%E5%8F%A0%E8%A1%A8%E8%BE%BE%E5%BC%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-06-05\""
+    });
+  
+    searchIndex.push({
+      title: "\"协程快速入门\"",
+      permalink: "\"/cpp/%E5%8D%8F%E7%A8%8B%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"coroutine\",\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-05-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"初等数学回忆录\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%88%9D%E7%AD%89%E6%95%B0%E5%AD%A6%E5%9B%9E%E5%BF%86%E5%BD%95/\"",
+      
+      categories: "[\"数学\"]",
+      tags: "[\"数学\",\"三角函数\",\"极坐标\",\"定积分\"]",
+      series: [],
+      date: "\"2025-05-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/epoll%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"epoll\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"asio\"]",
+      series: "[\"网络编程\"]",
+      date: "\"2025-04-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/googletest%E4%B8%8Egmock%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"Docker\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"CyberRT\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++小技巧\"",
+      permalink: "\"/cpp/c++%E5%B0%8F%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-04-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"tmux 快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"tmux\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Valgrind快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/valgrind%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"valgrind\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Mermaid快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/mermaid%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"mermaid\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-07\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT框架总览\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"通信中间件术语表\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E6%9C%AF%E8%AF%AD%E8%A1%A8/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: [],
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-27\""
+    });
+  
+    searchIndex.push({
+      title: "\"现代C++开发环境配置指南\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"c++\"]",
+      series: [],
+      date: "\"2025-03-26\""
+    });
+  
+    searchIndex.push({
+      title: "\"带着目的学：CyberRT\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6cyberrt/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Linux环境变量加载顺序分析\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E5%88%86%E6%9E%90/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"linux\"]",
+      series: [],
+      date: "\"2025-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"手册速查方案（如cppreference）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"cppreference\"]",
+      series: [],
+      date: "\"2025-03-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT中的代码和工程技巧\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\",\"C++\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"设计模式\"",
+      permalink: "\"/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/\"",
+      
+      categories: "[\"软件工程\"]",
+      tags: "[\"SE\"]",
+      series: "[\"设计模式专项总结\"]",
+      date: "\"2025-02-28\""
+    });
+  
+    searchIndex.push({
+      title: "\"一站式环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-02-24\""
+    });
+  
+    searchIndex.push({
+      title: "\"leetcode调试指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/\"",
+      
+      categories: [],
+      tags: "[\"leetcode\"]",
+      series: [],
+      date: "\"2024-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"linux命令行大记忆恢复术\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"linux\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"番茄鸡蛋面\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E8%8F%9C%E8%B0%B1/%E7%95%AA%E8%8C%84%E9%B8%A1%E8%9B%8B%E9%9D%A2/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: [],
+      series: "[\"快速做饭\"]",
+      date: "\"2023-10-22\""
+    });
+  
+    searchIndex.push({
+      title: "\"PlantUML快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"uml\",\"plantuml\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-10-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"WSL安装与配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/wsl%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2023-09-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++网络编程入门概念及api总结\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/\"",
+      
+      categories: [],
+      tags: "[\"linux\",\"网络编程\"]",
+      series: "[\"面筋\",\"快速上手\"]",
+      date: "\"2023-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"苏州旅行计划\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/%E8%8B%8F%E5%B7%9E/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: "[\"旅行\"]",
+      series: [],
+      date: "\"2023-04-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"gdb快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"gdb\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2022-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Ubuntu22.04安装Hadoop完全分布式集群\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"hadoop\"]",
+      series: [],
+      date: "\"2022-11-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++连接mysql\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E8%BF%9E%E6%8E%A5mysql/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2022-11-20\""
+    });
+  
+    searchIndex.push({
+      title: "\"征服C指针笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/\"",
+      
+      categories: [],
+      tags: [],
+      series: [],
+      date: "\"2022-10-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Leetcode刷题指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"算法\"]",
+      tags: "[\"leetcode\"]",
+      series: "[\"leetcode刷题指南\"]",
+      date: "\"2022-09-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"word 页眉页脚设置\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/word%E9%A1%B5%E7%9C%89%E9%A1%B5%E8%84%9A%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: [],
+      series: [],
+      date: "\"2021-04-03\""
+    });
+  
+    searchIndex.push({
+      title: "\"Markdown Demo\"",
+      permalink: "\"/%E6%B5%8B%E8%AF%95/markdown-demo/\"",
+      
+      categories: [],
+      tags: "[\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"常用数学符号的latex表示\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84latex%E8%A1%A8%E7%A4%BA/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"latex\",\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+
+  showpages()
+
+  const options = {
+    includeScore: true,
+    threshold: 0.6,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'content', weight: 0.3 },
+      { name: 'tags', weight: 0.5 },
+      { name: 'categories', weight: 0.5 },
+      { name: 'series', weight: 0.5 }
+    ]
+  };
+
+  const fuse = new Fuse(searchIndex, options);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'k') {
+      event.preventDefault();
+      toggleSearchModal();
+    } else if (event.key === 'Escape') {
+      document.getElementById('modal-search-input').value = "";
+      closeSearchModal();
+      var res = document.getElementById('modal-search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      showpages();
+    }
+  });
+
+  function toggleSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+      document.getElementById('modal-search-input').focus();
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('modal-search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.trim();
+    const resultsContainer = document.getElementById('modal-search-results');
+    resultsContainer.innerHTML = '';
+
+    if (searchTerm === '') {
+      showpages()
+      return;
+    }
+
+    const results = fuse.search(searchTerm);
+
+    results.sort((a, b) => new Date(b.item.date) - new Date(a.item.date));
+
+    if (results.length === 0) {
+      showpages()
+      resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
+      return;
+    } else {
+      debug("共找到 " + results.length + " 篇匹配的文章")
+    }
+
+    results.forEach(result => {
+      const item = result.item;
+      const resultItem = document.createElement('div');
+      resultItem.className = 'modal-search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
+      date.className = 'modal-search-result-date';
+
+      const link = document.createElement('a');
+      link.href = item.permalink.replace(/^"|"$/g, '');
+      link.textContent = item.title.replace(/^"|"$/g, '');
+      link.className = 'modal-search-result-title';
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
+    });
+  });
+</script>
+
+<style>
+ 
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
+    border-radius: 6px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+}
+
+#modal-search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#modal-search-results {
+    margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.modal-search-result-date {
+    color: #666;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    text-wrap: nowrap;
+}
+
+.modal-search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.modal-search-result-title:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+  
+
+  
+  <hr />
+  © 
+<a href="https://kaikaixixi.xyz"  target="_blank" rel="noopener noreferrer" >SHUAIKAI</a>
+ 2021 &ndash; 2025 | 🎨
+<a href="https://github.com/captainwc/ksimple"  target="_blank" rel="noopener noreferrer" >KSimple</a>
+  
+
+</footer>
+</body>
+
+</html>

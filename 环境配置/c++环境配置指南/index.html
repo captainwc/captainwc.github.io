@@ -1,0 +1,4500 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>现代C&#43;&#43;开发环境配置指南 | SHUAIKAI&#39;s Blog</title>
+    <link rel="icon" href= /images/favicon.png />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <link rel="stylesheet" href="/css/custom.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">主页</a></li>
+      
+      <li><a href="/series/">专栏</a></li>
+      
+      <li><a href="/categories/">分类</a></li>
+      
+      <li><a href="/tags/">标签</a></li>
+      
+      <li><a href="/archives/">归档</a></li>
+      
+      <li><a href="/search/">搜索</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+
+<div class="article-meta">
+    <h1><span class="article-meta-title">现代C++开发环境配置指南</span></h1>
+
+    <div class="article-meta-info">
+        
+
+        
+        
+
+        
+        
+        
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        🗓️ 2025-03-26 🗂️ <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置</a> 🏷️ <a href="/tags/c++/">#c++</a>
+    </div>
+</div>
+
+<main>
+
+    
+
+<div class="left-sidebar-btn" id="leftSidebarBtn"><i class="fa-solid fa-list"></i></div>
+<div class="left-sidebar-panel" id="leftSidebarPanel">
+    
+        <div class="sidebar-content">
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🏷️ 标签</div>
+                <div class="tag-blocks">
+                    
+                    <a href="/tags/c&#43;&#43;" class="tag-block">
+                        c&#43;&#43;
+                    </a>
+                    
+                </div>
+            </div>
+            
+
+            
+            
+
+            
+            
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🗂️ 分类文章</div>
+                
+                
+                <div class="category-group">
+                    <div class="category-name">环境配置</div>
+                    <ul class="article-list">
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/qt%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/" class="article-link">
+                                
+                                <span class="article-title">Qt从零开始（0）——环境配置</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E7%94%9F%E6%88%90coredump%E6%96%87%E4%BB%B6/" class="article-link">
+                                
+                                <span class="article-title">ubuntu配置coredump文件生成位置</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E5%AE%89%E8%A3%85rime%E8%BE%93%E5%85%A5%E6%B3%95/" class="article-link">
+                                
+                                <span class="article-title">ubuntu安装中文输入法（fcitx5-rime）</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E5%88%86%E6%9E%90/" class="article-link">
+                                
+                                <span class="article-title">Linux环境变量加载顺序分析</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/" class="article-link">
+                                
+                                <span class="article-title">手册速查方案（如cppreference）</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-link">
+                                
+                                <span class="article-title">一站式环境配置</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/wsl%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" class="article-link">
+                                
+                                <span class="article-title">WSL安装与配置</span>
+                            </a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('leftSidebarBtn');
+            const panel = document.getElementById('leftSidebarPanel');
+            let hoverTimeout;
+
+            
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                panel.classList.add('show');
+            });
+
+            panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+            [btn, panel].forEach(el => {
+                el.addEventListener('mouseleave', () => {
+                    hoverTimeout = setTimeout(() => {
+                        panel.classList.remove('show');
+                    }, 200);
+                });
+            });
+        });
+    </script>
+    
+
+    <style>
+        
+
+         
+        .left-sidebar-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 980;
+            cursor: pointer;
+            padding: 6px 10px;
+            background: #EFEFEF;
+            border-radius: 8px;
+            transition: background 0.3s;
+            color: #999;
+            opacity: 0.7;
+        }
+
+        .left-sidebar-btn:hover {
+            background: #BEC2B3;
+        }
+
+        .left-sidebar-panel {
+            border-radius: 8px;
+            display: none;
+            position: fixed;
+            top: 66px;
+            left: 20px;
+            max-width: 360px;
+            min-width: 280px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #eee;
+            padding: 10px 5px 10px 15px;
+            z-index: 970;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-sidebar-panel.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        
+
+        .sidebar-content {
+            padding: 15px 12px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.2rem;
+        }
+
+        .sidebar-section-title {
+            font-size: 1rem;
+            color: #2d3842;
+            margin: 0 0 0.6rem 0;
+            padding-bottom: 0.3rem;
+            font-family: "LXGW WenKai";
+            font-weight: bold;
+
+             
+            
+            border-bottom: 2px dashed #cfcfcf;
+            
+        }
+
+         
+        .tag-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tag-block {
+            display: inline-block;
+            background: #F6F6F6;
+            color: #666;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .tag-block:hover {
+            background: #2e59a7;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+         
+        .series-group,
+        .category-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .series-name,
+        .category-name {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0 0 0.4rem 0;
+            font-weight: bold;
+            font-family: "LXGW WenKai";
+        }
+
+         
+        .article-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .article-item {
+            margin-bottom: 0.3rem;
+        }
+
+        .article-link {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.4rem;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .article-link:hover {
+            background: #f8f9fa;
+            border-left-color: #2e59a7;
+            transform: translateX(3px);
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            color: #999;
+            font-family: "LXGW WenKai";
+            flex-shrink: 0;
+            width: 45px;
+            text-align: left;
+        }
+
+        .article-title {
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+         
+        
+
+        .left-sidebar-panel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .left-sidebar-panel {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        
+
+         
+        @media (max-width: 768px) {
+        
+        }
+    </style>
+
+    
+
+
+<div class="toc-btn" id="tocBtn"><i class="fa-solid fa-bars-staggered"></i></div>
+<div class="toc-panel" id="tocPanel"></div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        
+        const btn = document.getElementById('tocBtn');
+        const panel = document.getElementById('tocPanel');
+        let hoverTimeout;
+
+        
+        btn.addEventListener('mouseenter', () => {
+            clearTimeout(hoverTimeout);
+            generateToc(panel);
+            panel.classList.add('show');
+
+            
+            requestAnimationFrame(() => {
+                const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+                let activeHeader = null;
+                let minDistance = Infinity;
+
+                
+                headers.forEach(header => {
+                    const rect = header.getBoundingClientRect();
+                    const distance = Math.abs(rect.top);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeHeader = header;
+                    }
+                });
+
+                
+                if (activeHeader) {
+                    const activeLink = panel.querySelector(`a[href="#${activeHeader.id}"]`);
+                    if (activeLink) {
+                        
+                        const panelHeight = panel.offsetHeight;
+                        const linkOffset = activeLink.offsetTop;
+                        const centerPosition = linkOffset - (panelHeight / 2) + (activeLink.offsetHeight / 2);
+                        
+                        panel.scrollTo({
+                            top: centerPosition,
+                            behavior: 'auto'
+                        });
+                    }
+                }
+            });
+        });
+
+        panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+        [btn, panel].forEach(el => {
+            el.addEventListener('mouseleave', () => {
+                hoverTimeout = setTimeout(() => {
+                    panel.classList.remove('show');
+                }, 200);
+            });
+        });
+        
+
+        
+        function generateToc(container) {
+            if (container.children.length > 0) return;
+
+            const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+            const counts = [0, 0, 0, 0, 0]; 
+
+            headers.forEach(header => {
+                const level = parseInt(header.tagName[1]) - 2;
+                if (level < 0) return;
+
+                counts[level]++;
+                for (let i = level + 1; i < counts.length; i++) counts[i] = 0;
+                const number = counts.slice(0, level + 1).join('.');
+
+                
+                const numberSpan = document.createElement('span');
+                numberSpan.className = 'toc-number';
+                numberSpan.textContent = number;
+
+                
+                const link = document.createElement('a');
+                link.href = `#${header.id}`;
+                link.style.paddingLeft = `${level * 12}px`;
+
+                
+                link.appendChild(numberSpan);
+                link.appendChild(document.createTextNode(header.textContent));
+
+                container.appendChild(link);
+            });
+        }
+    });
+</script>
+
+<style>
+    
+
+     
+    .toc-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 980;
+        cursor: pointer;
+        padding: 6px 10px;
+        background: #EFEFEF;
+        border-radius: 8px;
+        transition: background 0.3s;
+        color: #999;
+        opacity: 0.7;
+    }
+
+    .toc-btn:hover {
+        background: #BEC2B3;
+    }
+
+    .toc-panel {
+        border-radius: 8px;
+        display: none;
+        position: fixed;
+        top: 66px;
+        right: 20px;
+        max-width: 360px;
+        min-width: 200px;
+        max-height: 80vh;
+        overflow-y: auto;
+        background: white;
+        border: 1px solid #eee;
+        padding: 10px 5px 10px 15px;
+        z-index: 970;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        list-style: none;
+    }
+
+    .toc-panel.show {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+     
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    
+
+     
+    .toc-number {
+        vertical-align: middle;
+        margin-right: 6px;
+        font-family: "LXGW WenKai";
+        font-size: 0.85rem;
+    }
+
+     
+        
+
+    .toc-panel a {
+        
+            display: block;
+            padding: 4px 0;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        
+
+        .toc-panel a:hover {
+        
+
+                color: #007bff;
+            }
+
+        
+</style>
+
+
+    
+    
+    
+        <h1 id="现代c环境配置指南">现代c++环境配置指南</h1>
+<h2 id="引言">引言</h2>
+<p>作为一个高强度冲浪的cpper，经常能在各种地方看到各式各样的大家诟病cpp的地方，其中比较多（但是相对温和）的一条就是，环境配置麻烦。这个问题有多少人说呢？最直观的一条佐证是，迄今为止，我的阅读、点赞、收藏量最多的一篇博文，居然就是随手写的一篇很粗糙的 —— 
+<a href="https://blog.csdn.net/qq_43533638/article/details/137198166"  target="_blank" rel="noopener noreferrer" >vscode搭配clangd配置现代c++环境-CSDN博客</a>
+，这背后又有多少被这编程第一关折磨的旁友&hellip;&hellip;</p>
+<p>本人的CPP水平一言难尽，平常喜欢的就是精通各类语言的hello world，以及配置各种有的没的环境，那么闲话少叙，下面就对这个粗糙的环境配置的坑进行补档。</p>
+
+          <link rel="stylesheet" href="/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css" integrity="sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=" crossorigin="anonymous">
+  <div class="admonition goal">
+    <div class="admonition-header">
+      <svg t="1742460196923" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14835" width="200" height="200"><path d="M872.768 151.232h-0.064l107.264 21.44c5.76 1.152 10.496 5.376 12.16 11.072a16 16 0 0 1-3.968 15.936l-87.872 87.936a56.064 56.064 0 0 1-39.616 16.384H787.84L604.8 487.104A96 96 0 1 1 416 512a96.064 96.064 0 0 1 120.896-92.736l183.104-183.168V163.328c0-14.848 5.888-29.12 16.384-39.616L824.32 35.776a16 16 0 0 1 15.936-3.968c5.696 1.664 9.92 6.4 11.072 12.16z" p-id="14836"></path><path d="M128 512a384 384 0 1 0 753.216-105.984 48.064 48.064 0 1 1 92.288-26.432 480.128 480.128 0 0 1-800.832 471.744A480.064 480.064 0 0 1 644.416 50.496a48 48 0 0 1-26.432 92.288A384.064 384.064 0 0 0 128 512z" p-id="14837"></path><path d="M320 512a192.128 192.128 0 0 0 300.736 158.464 192 192 0 0 0 81.92-180.928 47.872 47.872 0 0 1 66.88-50.048 48 48 0 0 1 28.48 39.04A288 288 0 1 1 545.024 225.92a48 48 0 1 1-10.88 95.36A192 192 0 0 0 320 512z" p-id="14838"></path></svg>
+
+      <span>Goal</span>
+    </div>
+      <div class="admonition-content">
+        <ol>
+<li>所谓CPP环境，具体指的是什么？
+<ul>
+<li>高亮、跳转、补全、错误提示、依赖管理、构建、调试、运行、发布</li>
+</ul>
+</li>
+<li>具体开发环境搭建
+<ul>
+<li>vscode、vim/nvim、sublime，or clion、vs</li>
+</ul>
+</li>
+</ol>
+      </div>
+  </div>
+
+  <div class="admonition message">
+    <div class="admonition-header">
+      <svg t="1742462024302" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="54058" width="200" height="200"><path d="M352.29696 481.72544m-52.31104 0a52.31104 52.31104 0 1 0 104.62208 0 52.31104 52.31104 0 1 0-104.62208 0Z" p-id="54059"></path><path d="M513.51552 429.4144c-28.88704 0-52.31104 23.424-52.31104 52.31104 0 28.89216 23.424 52.31616 52.31104 52.31616 28.928 0 52.34688-23.424 52.34688-52.31616 0-28.88704-23.41888-52.31104-52.34688-52.31104z" p-id="54060"></path><path d="M512 0C229.23776 0 0 229.23776 0 512s229.23776 512 512 512 512-229.23776 512-512S794.76224 0 512 0z m282.99264 642.70336c0 32.18944-28.26752 60.3648-64.37888 60.3648H356.3264L231.56224 763.4432V300.6208c0-32.18944 28.18048-60.36992 64.39424-60.36992h434.65728c36.1984 0 64.37888 28.18048 64.37888 60.36992v342.08256z" p-id="54061"></path><path d="M674.72384 429.4144c-28.88704 0-52.31104 23.424-52.31104 52.31104 0 28.89216 23.424 52.31616 52.31104 52.31616 28.8512 0 52.35712-23.424 52.35712-52.31616 0-28.88704-23.424-52.31104-52.35712-52.31104z" p-id="54062"></path></svg>
+
+      <span>提示</span>
+    </div>
+      <div class="admonition-content">
+        <p>本文会对我所认知范围内的，C++的环境做全流程的介绍。也会介绍具体的工具、环境该如何配置，但囿于篇幅和本人的水平以及耐心，可能不会特别详细，更无法兼顾到所有的conner case。</p>
+<p>比如我会说编译器是g++，构建工具是cmake，但是gcc和cmake如何安装到你的电脑上这种就没有介绍了。不过我想既然看官能够在茫茫互联网中找到我这篇博文，那么继续搜索搜索解决这些小问题自然不在话下。网上有相当多的且优质的关于某一个工具、软件如何下载安装配置的教程，如果你不清楚，直接STFW即可！</p>
+<p>至于本文，如果您能只凭本文顺着就把环境配好了，那实在是您天赋异禀，天生就是干C嘎嘎的料子。如果不能，那么直接搜索不清楚的内容就好。<strong>我希望的是本文能给各位刚接触C++的朋友们一个稍微完整一点的，关于C++开发环境的认识，知道有哪些工具，分别是做什么用的。然后根据自己的需要去按图索骥！</strong></p>
+      </div>
+  </div>
+<h2 id="cpp开发环境都包括哪些">CPP开发环境都包括哪些？</h2>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20250326163516854-cpp-workflow.png" alt="image-20250326163516854" />
+</div>
+</p>
+<p>什么是CPP开发环境呢？其实就是，你现在想阅读C++代码，或者想写C++代码，或者想把一个C++代码/项目跑起来，或者你想修改一个C++代码/项目，但是直接用记事本看/写你有不乐意，干看呢代码也不会自己运行。所以你需要在你的电脑上安装一系列的东西，来让这个看代码写代码改代码的过程，首先是能走通，然后是走得更舒服、更规范，这个就是配C++环境。</p>
+<p>那么C++程序需要什么环境呢？看你的需求。</p>
+<ol>
+<li>如果你想看代码，那么有个高亮、点击函数能自动跳转就可以了（这个需要lsp（不用管是啥，反正就是一个能理解你代码，还能让你跳转的东西））；</li>
+<li>如果你想编辑代码，那么最好还要有自动补全（这个也是需要lsp），写的过程中还得有错误提示（这个动作叫做lint），告诉你这样写不对/不规范，写着写着还想格式化一下（format），不然看着不舒服；</li>
+<li>如果你还想把代码跑起来，那你害得安装个编译器（就是gcc、clang、msvc之类的），编译器就是负责把你看到的.cpp或者.c这种文件，转变成.exe的可执行程序的东西（你看代码用的vscode/记事本这些，叫做编辑器）；</li>
+<li>如果你想跑的代码，还不是单个文件，是一个正儿八经的项目，那么一般就需要安装下构建工具了（也就是makefile、cmake、xmake、bazel这些，具体是啥看你的项目用的啥）</li>
+<li>如果一跑发现，哎呀出错了，那这个时候就需要调试了。调试就是找到程序中哪里写的不对，然后改正。你可以瞪眼调试，也可以通过一些调试器来做（也就是gdb，或者你用什么clion、visual studio来做）</li>
+<li>如果是你自己写项目，标准库不够你用了，你迫切地想使用别人写好的一些库，可是怎么整到自己的项目中来呢？从哪整进来呢？整进来了怎么运行呢？（这也算是构建的内容，但也有一部分包管理的部分。c++虽然以没有统一的包管理而饱受诟病，但不代表它就没有，比如用查cmake，或者专业的vcpkg、conan）</li>
+<li>还是你写的项目，千辛万苦，程序终于跑起来了！但是跑起来了就算没问题了吗？会不会只是暂时没有执行到有错的地方，跑一会儿或者多跑几次就出错了呢？当然会，比如大名鼎鼎的错误：内存泄漏、指针问题等。那么这个时候还需要用到一些工具来帮助你扫描这些潜在的漏洞（也就是valgrind、sanitizer、cppcheck等等等）</li>
+<li>正确性满足了，但是程序只是能正确地跑，跑得快不快呢？跑得慢具体是哪一部分拖慢了程序呢？有追求的化，还要对性能进行优化，找到性能的瓶颈，这时候可能会用到一些性能分析工具（比如perf）</li>
+<li>终于，一切就绪了，你写好了，也跑好了，现在就差拿去给别人用了。但是别人一用，缺少库文件！格式不兼容！或者我怎么编译不通过！！这时候你发现：<del>哎早知道不学C嘎嘎了。。。</del></li>
+</ol>
+<p>下面对各个步骤的推荐工具配置进行注意介绍：</p>
+<h3 id="高亮补全跳转">高亮、补全、跳转</h3>
+
+  <div class="admonition tldr">
+    <div class="admonition-header">
+      <svg t="1742977257977" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4459" width="200" height="200"><path d="M664.628 155.137c0 39.922-15.318 73.841-45.843 101.702-30.524 27.86-67.743 41.79-111.543 41.79-45.163 0-83.063-13.93-113.587-41.79-30.58-27.86-45.843-61.724-45.843-101.759 0-39.922 15.32-73.841 45.843-101.701 30.524-27.86 68.424-41.79 113.587-41.79 43.8 0 81.02 13.93 111.543 41.79 30.581 27.86 45.843 61.723 45.843 101.701zM345.827 658.152c0-39.978 15.318-73.898 45.843-101.758 31.885-29.106 70.353-43.603 115.572-43.603 42.495 0 79.658 14.497 111.543 43.603 31.886 27.86 50.496 59.345 55.829 94.453 10.61 65.404-2.667 130.242-39.886 194.457-35.857 64.158-87.657 113.253-155.457 147.116-37.163 19.423-67.687 18.8-91.63-1.812-22.58-19.367-15.886-42.357 19.971-69.028 19.858-13.307 36.482-30.295 49.815-50.851 13.276-20.612 21.9-41.79 25.872-63.592 1.362-9.683-3.29-14.553-13.957-14.553-26.553-1.19-53.786-14.553-81.7-39.978a123.061 122.823 0 0 1-41.815-94.454z" p-id="4460"></path></svg>
+      <span>TLDR</span>
+    </div>
+      <div class="admonition-content">
+        <p>这三类可以统一由一个LSP提供，也是最推荐的——<code>clangd</code>，此外就是用IDE自带的，或者VSCODE-CPP插件包。（还有一个在更新中的项目 
+<a href="https://github.com/clice-project/clice"  target="_blank" rel="noopener noreferrer" >clice-project/clice</a>
+ <strong>有望</strong>超过clangd，不过目前还处于不可用状态。）</p>
+      </div>
+  </div>
+<h4 id="介绍与使用">介绍与使用</h4>
+<p><code>clangd</code>是一个语言服务器，提供代码高亮、补全、跳转的功能，但是不能直接用，因为既然是服务器，那么就要配合客户端使用，使用不同的IDE或编辑器对应的客户端不同。</p>
+<ul>
+<li>服务器：clangd.exe
+<ul>
+<li>clangd有很多版本，依赖llvm项目的库，根据你的系统自行选择版本安装，比如 clangd-14.exe、clangd-18.exe 等等。</li>
+<li>clangd服务器直接理解单个文件没问题，但是要理解你的整个项目，需要依赖一个<code>compile_commands.json</code>文件。使用不同的构建工具时有不同的生成该文件的办法，比如CMake是使用<code>cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code>，至于Make、Bazel等怎么生成，这里不再赘述。</li>
+</ul>
+</li>
+<li>客户端：
+<ul>
+<li>vscode：安装 
+<a href="https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd"  target="_blank" rel="noopener noreferrer" >clangd - Visual Studio Marketplace</a>
+（本机没有安装clangd时，会提示你要不要帮你安装）</li>
+<li>vim：安装<code>coc</code>插件后，用 cocInstall 安装<code>coc-clangd</code>（无需自己安装clangd）</li>
+<li>nvim：mason 安装 clangd 插件（无需自己处理clangd.exe）</li>
+<li>clion：默认就是，不用管了。(都用IDE了应该就没配环境的烦恼了吧？)</li>
+</ul>
+</li>
+</ul>
+<h4 id="配置">配置</h4>
+<p>clangd也可以进行配置，参考
+<a href="https://clangd.llvm.org/config"  target="_blank" rel="noopener noreferrer" >官方手册</a>
+，比如可以指定在后台索引、指定对待源文件的方式、指定语法检查的工具Diagnostics（就是后文中
+<a href="#%e9%94%99%e8%af%af%e5%91%8a%e8%ad%a6lint" >clang-tidy</a>
+的配置）等等。</p>
+<p>配置文件的路径，Linux在 <code>$HOME/.config/clangd/config.yaml</code>，windows在 <code>%APPDATALOCAL%/clangd/config.yaml</code>。（如果有不对的，可以直接打开vscode，安装clangd插件，然后 ctrl+shift+p 搜索 clangd open user config 即可找到）</p>
+<p>这里给出一份我的配置</p>
+<pre><code class="language-yaml">Index:
+  Background: Build
+
+CompileFlags:
+  Add: [-xc++, -Wall, -std=c++20]
+  Compiler: clang++
+
+Diagnostics:
+  ClangTidy:
+    Add: [&quot;*&quot;]
+    Remove: [
+        abseil*,
+        fuchsia*,
+        llvmlib*,
+        zircon*,
+        altera*,
+
+        bugprone-easily-swappable-parameters, #相邻同类型参数容易混淆
+        cppcoreguidelines-avoid-c-arrays, # 不要用 C 数组
+        cppcoreguidelines-avoid-do-while,
+        cppcoreguidelines-avoid-magic-numbers, # 不要用魔法数字
+        cppcoreguidelines-macro-usage, # 宏定义用法，不要定义常数之类的
+        cppcoreguidelines-non-private-member-variables-in-classes, # 所有成员变量都得是private的
+        cppcoreguidelines-owning-memory, # 用gsl::owner&lt;&gt; 来表示指针拥有对象的所有权
+        cppcoreguidelines-pro-bounds-array-to-pointer-decay, # 数组传参退化为指针
+        cppcoreguidelines-pro-bounds-pointer-arithmetic, # 不要使用指针运算
+        cppcoreguidelines-pro-bounds-constant-array-index, # 数组index当为常量
+        google-build-using-namespace, # 不要用using namesapce xxx;
+        google-readability-todo,
+        hicpp-avoid-c-arrays, # 禁用c风格数组
+        hicpp-braces-around-statements,
+        hicpp-no-array-decay, # 防止数组传参退化为指针
+        misc-no-recursion, #递归
+        misc-non-private-member-variables-in-classes, # public成员变量，或许不该用，但是想用
+        modernize-avoid-c-arrays, # 同上
+        modernize-use-nodiscard, # 推荐使用 [[nodiscard]]
+        modernize-use-trailing-return-type, # 不要每个都加上尾返回值类型
+        readability-braces-around-statements,
+        readability-convert-member-functions-to-static, # 转为静态成员函数
+        readability-identifier-length, # 不检查变量名长度
+        readability-implicit-bool-conversion, # 隐式布尔类型转换
+        readability-magic-numbers, #同上
+      ]
+</code></pre>
+<h3 id="格式化">格式化</h3>
+
+  <div class="admonition tldr">
+    <div class="admonition-header">
+      <svg t="1742977257977" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4459" width="200" height="200"><path d="M664.628 155.137c0 39.922-15.318 73.841-45.843 101.702-30.524 27.86-67.743 41.79-111.543 41.79-45.163 0-83.063-13.93-113.587-41.79-30.58-27.86-45.843-61.724-45.843-101.759 0-39.922 15.32-73.841 45.843-101.701 30.524-27.86 68.424-41.79 113.587-41.79 43.8 0 81.02 13.93 111.543 41.79 30.581 27.86 45.843 61.723 45.843 101.701zM345.827 658.152c0-39.978 15.318-73.898 45.843-101.758 31.885-29.106 70.353-43.603 115.572-43.603 42.495 0 79.658 14.497 111.543 43.603 31.886 27.86 50.496 59.345 55.829 94.453 10.61 65.404-2.667 130.242-39.886 194.457-35.857 64.158-87.657 113.253-155.457 147.116-37.163 19.423-67.687 18.8-91.63-1.812-22.58-19.367-15.886-42.357 19.971-69.028 19.858-13.307 36.482-30.295 49.815-50.851 13.276-20.612 21.9-41.79 25.872-63.592 1.362-9.683-3.29-14.553-13.957-14.553-26.553-1.19-53.786-14.553-81.7-39.978a123.061 122.823 0 0 1-41.815-94.454z" p-id="4460"></path></svg>
+      <span>推荐 clangd-format</span>
+    </div>
+  </div>
+<h4 id="简介与使用">简介与使用</h4>
+<p>可能看一些开源项目的时候应该就见过了，很多项目中都会有一个<code>.clang-format</code>文件，这个就是clang-format需要使用的配置文件，可以在里面指定样式。</p>
+<p>你可以直接从认可的开源项目中clone一份来用，也可以找一个基础版本在上面修改，具体的选项参考
+<a href="https://clang.llvm.org/docs/ClangFormatStyleOptions.html"  target="_blank" rel="noopener noreferrer" >官方文档</a>
+</p>
+<p>使用时，在编辑器/IDE里面可以配合相应的格式化插件使用，编辑文件的时候实时格式化一下。</p>
+<p>也可以直接使用命令行对文件格式化。比如使用如下命令 <code>fd -e cpp -e cc -e h -x clang-format -i</code> 可以做到对项目中所有的头文件源文件按照当前.clang-format文件指定的格式重新格式化一下。</p>
+<h4 id="配置-1">配置</h4>
+<p>这里给出一个我经常用的clang-format配置：</p>
+<pre><code class="language-yaml">DisableFormat: false # 关闭格式化
+BasedOnStyle: Google
+Language: Cpp
+Standard: Latest
+ColumnLimit: 120
+# 在大括号前换行: Attach(始终将大括号附加到周围的上下文), Linux(除函数、命名空间和类定义，与Attach类似),
+#   Mozilla(除枚举、函数、记录定义，与Attach类似), Stroustrup(除函数定义、catch、else，与Attach类似),
+#   Allman(总是在大括号前换行), GNU(总是在大括号前换行，并对于控制语句的大括号增加额外的缩进), WebKit(在函数前换行), Custom
+#   注：这里认为语句块也属于函数
+BreakBeforeBraces: Custom
+BraceWrapping:
+  # case标签后面
+  AfterCaseLabel: false
+  # class定义后面
+  AfterClass: false
+  # 控制语句后面
+  AfterControlStatement: Never
+  # enum定义后面
+  AfterEnum: false
+  # 函数定义后面
+  AfterFunction: false
+  # 命名空间定义后面
+  AfterNamespace: false
+  # ObjC定义后面
+  AfterObjCDeclaration: false
+  # struct定义后面
+  AfterStruct: false
+  # union定义后面
+  AfterUnion: false
+  #ExternBlock定义后面
+  AfterExternBlock: false
+  # catch之前
+  BeforeCatch: false
+  # else之前
+  BeforeElse: false
+  # lambda块之前
+  BeforeLambdaBody: false
+  # while之前
+  BeforeWhile: false
+  # 缩进大括号
+  IndentBraces: false
+  # 分割空函数
+  SplitEmptyFunction: true
+  # 分割空记录
+  SplitEmptyRecord: true
+  # 分割空命名空间
+  SplitEmptyNamespace: true
+
+# 在 @property 后面添加空格, \@property (readonly) 而不是 \@property(readonly).
+ObjCSpaceAfterProperty: true
+# 访问说明符(public、private等)的偏移
+AccessModifierOffset: -4
+
+# 开括号(开圆括号、开尖括号、开方括号)后的对齐: Align, DontAlign, AlwaysBreak(总是在开括号后换行)
+AlignAfterOpenBracket: Align
+# 连续赋值时，对齐所有等号
+AlignConsecutiveAssignments: Consecutive
+# 连续声明时，对齐所有声明的变量名
+AlignConsecutiveDeclarations: Consecutive
+# 连续宏声明时，对齐空格
+AlignConsecutiveMacros: Consecutive
+# 对齐连接符: DontAlign(不对齐)， Left(左对齐), Right(右对齐)
+AlignEscapedNewlines: Left
+# 水平对齐二元和三元表达式的操作数
+AlignOperands: Align
+# 对齐连续的尾随的注释
+AlignTrailingComments: true
+# 允许函数调用的所有参数在放在下一行
+AllowAllArgumentsOnNextLine: true
+# 允许函数声明的所有参数在放在下一行
+AllowAllParametersOfDeclarationOnNextLine: true
+# 允许短的块放在同一行
+AllowShortBlocksOnASingleLine: Empty
+# 允许短的case标签放在同一行
+AllowShortCaseLabelsOnASingleLine: true
+# 允许短的枚举放在同一行
+AllowShortEnumsOnASingleLine: true
+# 允许短的函数放在同一行: None, InlineOnly(定义在类中), Empty(空函数), Inline(定义在类中，空函数), All
+AllowShortFunctionsOnASingleLine: Inline
+# 允许短的if语句保持在同一行
+AllowShortIfStatementsOnASingleLine: Never
+# 允许短的Lambdas语句保持在同一行
+AllowShortLambdasOnASingleLine: All
+# 允许短的循环保持在同一行
+AllowShortLoopsOnASingleLine: true
+# 总是在返回类型后换行: None, All, TopLevel(顶级函数，不包括在类中的函数),
+#   AllDefinitions(所有的定义，不包括声明), TopLevelDefinitions(所有的顶级函数的定义)
+# (clang-format-19: Renamed to BreakAfterReturnType)
+AlwaysBreakAfterReturnType: None
+# 总是在多行string字面量前换行
+AlwaysBreakBeforeMultilineStrings: false
+# 总是在template声明后换行(clang-format-19: Renamed to BreakTemplateDeclarations)
+AlwaysBreakTemplateDeclarations: Yes
+# false表示函数实参要么都在同一行，要么都各自一行
+BinPackArguments: true
+# false表示所有形参要么都在同一行，要么都各自一行
+BinPackParameters: true
+# 在二元运算符前换行: None(在操作符后换行), NonAssignment(在非赋值的操作符前换行), All(在操作符前换行)
+BreakBeforeBinaryOperators: NonAssignment
+# 在三元运算符前换行
+BreakBeforeTernaryOperators: true
+# 在构造函数的初始化列表的逗号前换行
+BreakConstructorInitializers: BeforeColon
+# 在类声明继承列表的逗号前换行
+BreakInheritanceList: BeforeColon
+# 允许中断长字符串
+BreakStringLiterals: true
+# 描述具有特殊意义的注释的正则表达式，它不应该被分割为多行或以其它方式改变
+CommentPragmas: &quot;^ ONE[ ]?LINE&quot;
+# 允许连续的名称空间声明将在同一行
+CompactNamespaces: false
+# 构造函数的初始化列表的缩进宽度
+ConstructorInitializerIndentWidth: 4
+# 延续的行的缩进宽度
+ContinuationIndentWidth: 4
+# 去除C++11的列表初始化的大括号{后和}前的空格
+Cpp11BracedListStyle: true
+# 继承最常用的指针和引用的对齐方式
+DerivePointerAlignment: true
+# 修饰符后放置空行
+EmptyLineAfterAccessModifier: Never
+# 修饰符前放置空行
+EmptyLineBeforeAccessModifier: LogicalBlock
+# 修正命名空间注释
+FixNamespaceComments: true
+# 需要被解读为foreach循环而不是函数调用的宏
+ForEachMacros:
+  - foreach
+  - Q_FOREACH
+  - BOOST_FOREACH
+# 需要解读为if的函数
+IfMacros:
+  - KJ_IF_MAYBE
+# 对#include进行排序，匹配了某正则表达式的#include拥有对应的优先级，匹配不到的则默认优先级为INT_MAX(优先级越小排序越靠前)，
+#   可以定义负数优先级从而保证某些#include永远在最前面
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^&lt;ext/.*\.h&gt;'
+    Priority: 2
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: '^&lt;.*\.h&gt;'
+    Priority: 1
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: &quot;^&lt;.*&quot;
+    Priority: 2
+    SortPriority: 0
+    CaseSensitive: false
+  - Regex: &quot;.*&quot;
+    Priority: 3
+    SortPriority: 0
+    CaseSensitive: false
+# include块排序
+IncludeIsMainRegex: &quot;([-_](test|unittest))?$&quot;
+# 缩进修饰符
+IndentAccessModifiers: false
+# 缩进case块
+IndentCaseBlocks: false
+# 缩进case标签
+IndentCaseLabels: true
+# 缩进goto标签
+IndentGotoLabels: false
+# 预处理缩进
+IndentPPDirectives: None
+# 缩进extern块
+IndentExternBlock: AfterExternBlock
+# 缩进宽度
+IndentWidth: 4
+# 函数返回类型换行时，缩进函数声明或函数定义的函数名
+IndentWrappedFunctionNames: false
+# 添加尾部注释
+InsertTrailingCommas: None
+# Lambda块缩进
+LambdaBodyIndentation: Signature
+# 开始一个块的宏的正则表达式
+MacroBlockBegin: &quot;&quot;
+# 结束一个块的宏的正则表达式
+MacroBlockEnd: &quot;&quot;
+# 连续空行的最大数量
+MaxEmptyLinesToKeep: 1
+# 命名空间的缩进: None, Inner(缩进嵌套的命名空间中的内容), All
+NamespaceIndentation: Inner
+# 使用的包构造函数初始化式样式
+PackConstructorInitializers: NextLine
+# 在call(后对函数调用换行的penalty
+PenaltyBreakBeforeFirstCallParameter: 19
+# 在一个注释中引入换行的penalty
+PenaltyBreakComment: 300
+# 第一次在&lt;&lt;前换行的penalty
+PenaltyBreakFirstLessLess: 120
+# 在一个字符串字面量中引入换行的penalty
+PenaltyBreakString: 1000
+# 对于每个在行字符数限制之外的字符的penalty
+PenaltyExcessCharacter: 1000000
+# 将函数的返回类型放到它自己的行的penalty
+PenaltyReturnTypeOnItsOwnLine: 200
+# 指针和引用的对齐: Left, Right, Middle
+PointerAlignment: Left
+# 预处理的缩进
+PPIndentWidth: -1
+RawStringFormats:
+  - Language: Cpp
+    Delimiters:
+      - cc
+      - CC
+      - cpp
+      - Cpp
+      - CPP
+      - &quot;c++&quot;
+      - &quot;C++&quot;
+    CanonicalDelimiter: &quot;&quot;
+    BasedOnStyle: google
+  - Language: TextProto
+    Delimiters:
+      - pb
+      - PB
+      - proto
+      - PROTO
+    EnclosingFunctions:
+      - EqualsProto
+      - EquivToProto
+      - PARSE_PARTIAL_TEXT_PROTO
+      - PARSE_TEST_PROTO
+      - PARSE_TEXT_PROTO
+      - ParseTextOrDie
+      - ParseTextProtoOrDie
+      - ParseTestProto
+      - ParsePartialTestProto
+    CanonicalDelimiter: pb
+    BasedOnStyle: google
+# 引用对齐
+ReferenceAlignment: Pointer
+# 允许重新排版注释
+ReflowComments: true
+# 允许排序#include
+SortIncludes: CaseSensitive
+# 允许排序声明
+SortUsingDeclarations: true
+# 单独的定义块
+SeparateDefinitionBlocks: Always
+# 在C风格类型转换后添加空格
+SpaceAfterCStyleCast: false
+# 在赋值运算符之前添加空格
+SpaceBeforeAssignmentOperators: true
+# 在逻辑非操作符之后插入一个空格
+SpaceAfterLogicalNot: false
+# 在' template '关键字之后会插入一个空格
+SpaceAfterTemplateKeyword: true
+# 在用于初始化对象的c++ 11带括号的列表之前(在前面的标识符或类型之后)将插入一个空格
+SpaceBeforeCpp11BracedList: false
+# 构造函数初始化式冒号前的空格是否删除
+SpaceBeforeCtorInitializerColon: true
+# 在继承冒号前添加空格
+SpaceBeforeInheritanceColon: true
+# 控制括号前的单独空格。
+SpaceBeforeParens: ControlStatements
+SpaceBeforeParensOptions:
+  AfterControlStatements: true
+  AfterForeachMacros: true
+  AfterFunctionDefinitionName: false
+  AfterFunctionDeclarationName: false
+  AfterIfMacros: true
+  AfterOverloadedOperator: false
+  BeforeNonEmptyParentheses: false
+# 在基于冒号的范围循环之前 添加空格
+SpaceBeforeRangeBasedForLoopColon: true
+# 在尾随的评论前添加的空格数(只适用于//)
+SpacesBeforeTrailingComments: 2
+# 在尖括号的&lt;后和&gt;前添加空格
+SpacesInAngles: Never
+# 在容器(ObjC和JavaScript的数组和字典等)字面量中添加空格
+SpacesInContainerLiterals: true
+# 在C风格类型转换的括号中添加空格
+SpacesInCStyleCastParentheses: false
+# 在方括号的[后和]前添加空格，lambda表达式和未指明大小的数组的声明不受影响
+SpacesInSquareBrackets: false
+# tab宽度
+TabWidth: 4
+# 使用tab字符: Never, ForIndentation, ForContinuationAndIndentation, Always
+UseTab: Never
+WhitespaceSensitiveMacros:
+  - STRINGIZE
+  - PP_STRINGIZE
+  - BOOST_PP_STRINGIZE
+  - NS_SWIFT_NAME
+  - CF_SWIFT_NAME
+</code></pre>
+<h3 id="错误告警lint">错误告警（Lint）</h3>
+
+  <div class="admonition tldr">
+    <div class="admonition-header">
+      <svg t="1742977257977" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4459" width="200" height="200"><path d="M664.628 155.137c0 39.922-15.318 73.841-45.843 101.702-30.524 27.86-67.743 41.79-111.543 41.79-45.163 0-83.063-13.93-113.587-41.79-30.58-27.86-45.843-61.724-45.843-101.759 0-39.922 15.32-73.841 45.843-101.701 30.524-27.86 68.424-41.79 113.587-41.79 43.8 0 81.02 13.93 111.543 41.79 30.581 27.86 45.843 61.723 45.843 101.701zM345.827 658.152c0-39.978 15.318-73.898 45.843-101.758 31.885-29.106 70.353-43.603 115.572-43.603 42.495 0 79.658 14.497 111.543 43.603 31.886 27.86 50.496 59.345 55.829 94.453 10.61 65.404-2.667 130.242-39.886 194.457-35.857 64.158-87.657 113.253-155.457 147.116-37.163 19.423-67.687 18.8-91.63-1.812-22.58-19.367-15.886-42.357 19.971-69.028 19.858-13.307 36.482-30.295 49.815-50.851 13.276-20.612 21.9-41.79 25.872-63.592 1.362-9.683-3.29-14.553-13.957-14.553-26.553-1.19-53.786-14.553-81.7-39.978a123.061 122.823 0 0 1-41.815-94.454z" p-id="4460"></path></svg>
+      <span>推荐 clang-tidy</span>
+    </div>
+  </div>
+<h4 id="简介与使用-1">简介与使用</h4>
+<p>看这个又是clang开头的应该就知道了，clang-tidy也是llvm项目的一部分，使用方法大同小异，都是在当前项目下放一个配置文件，这个叫<code>.clang-tidy</code>，然后就可以在里面指定你想要的检查项目。使用clangd时会自动对相关项进行检查与告警。</p>
+<p>不过在前面clangd的部分中提到过，在clangd的配置文件中也可以指定你的默认检查项，具体的可以返回参考相关部分</p>
+<h4 id="配置-2">配置</h4>
+<p>一开始我是恨不得开启所有的检查项，以求代码的干净。这样确实能快速学到很多更加规范的写法，所以也可以尝试一下。</p>
+<p>但是如果指定的检查项太多了的话，打开一个项目全是波浪线，也有点难受。因此学一阵子之后，还是建议回归到开启最关键的和常用的即可。仍然是可以从认可的开源项目中抓一个下来用，也可以参考官方手册进行修改。</p>
+<p>这里给出我的一个比较精简的配置：</p>
+<pre><code class="language-yaml"># REFERENCE https://blog.csdn.net/stallion5632/article/details/139545885
+Checks: &quot;-*,
+  clang-analyzer-core.*,
+  clang-analyzer-cplusplus.*,
+  modernize-redundant-void-arg,
+  modernize-use-bool-literals,
+  modernize-use-equals-default,
+  modernize-use-nullptr,
+  modernize-use-override,
+  google-explicit-constructor,
+  ; google-readability-casting,
+  readability-braces-around-statements,
+  readability-identifier-naming.ClassCase,
+  readability-identifier-naming.StructCase,
+  readability-identifier-naming.TypedefCase,
+  readability-identifier-naming.EnumCase,
+  readability-non-const-parameter,
+  cert-dcl21-cpp,
+  bugprone-undelegated-constructor,
+  bugprone-macro-parentheses,
+  bugprone-macro-repeated-side-effects,
+  bugprone-forward-declaration-namespace,
+  bugprone-bool-pointer-implicit-conversion,
+  bugprone-misplaced-widening-cast,
+  cppcoreguidelines-narrowing-conversions,
+  misc-unconventional-assign-operator,
+  misc-unused-parameters&quot;
+WarningsAsErrors: &quot;&quot;
+HeaderFilterRegex: &quot;&quot;
+CheckOptions:
+  # 现代化（Modernize）
+  - key: modernize-redundant-void-arg
+    value: &quot;true&quot; # 检查并移除函数声明中冗余的 void 参数。
+  - key: modernize-use-bool-literals
+    value: &quot;true&quot; # 建议使用布尔字面量 true 和 false 代替整数值 0 和 1。
+  - key: modernize-use-equals-default
+    value: &quot;true&quot; # 建议在默认构造函数、复制构造函数和赋值运算符中使用 = default，以简化代码。
+  - key: modernize-use-nullptr
+    value: &quot;true&quot; # 建议使用 nullptr 代替 NULL 或 0 来表示空指针。
+  - key: modernize-use-override
+    value: &quot;true&quot; # 建议在覆盖基类虚函数时使用 override 关键字，以增加代码的清晰性和安全性。
+
+  # Google 代码风格（Google）
+  - key: google-explicit-constructor
+    value: &quot;true&quot; # 检查并建议在单参数构造函数中使用 explicit 关键字，以防止隐式转换。
+  - key: google-readability-casting
+    value: &quot;true&quot; # 检查并建议使用 C++ 风格的类型转换（如 static_cast、dynamic_cast、const_cast 和 reinterpret_cast）代替 C 风格的类型转换。
+
+  # 可读性（Readability）
+  - key: readability-braces-around-statements
+    value: &quot;true&quot; # 建议在单行语句周围添加大括号，以提高代码的可读性和一致性。
+  - key: readability-identifier-naming.ClassCase
+    value: &quot;CamelCase&quot; # 类名应使用 CamelCase 风格，例如 MyClassName。
+  - key: readability-identifier-naming.StructCase
+    value: &quot;CamelCase&quot; # 结构体名应使用 CamelCase 风格，例如 MyStructName。
+  - key: readability-identifier-naming.TypedefCase
+    value: &quot;CamelCase&quot; # 类型定义应使用 CamelCase 风格，例如 MyTypeDef。
+  - key: readability-identifier-naming.EnumCase
+    value: &quot;CamelCase&quot; # 枚举名应使用 CamelCase 风格，例如 MyEnumName。
+  - key: readability-non-const-parameter
+    value: &quot;true&quot; # 检查并标识非 const 参数，以提高代码的可读性和安全性。
+
+  # CERT 安全编码标准（CERT）
+  - key: cert-dcl21-cpp
+    value: &quot;true&quot; # 检查并标识在头文件中不应包含无命名空间的 using 声明和指令，以防止命名空间污染。
+
+  # Bug 检测（Bugprone）
+  - key: bugprone-undelegated-constructor
+    value: &quot;true&quot; # 检查并标识未委托的构造函数，以确保构造函数的正确性。
+  - key: bugprone-macro-parentheses
+    value: &quot;true&quot; # 检查并建议在宏定义中使用括号，以防止潜在的错误。
+  - key: bugprone-macro-repeated-side-effects
+    value: &quot;true&quot; # 检查并标识宏中重复的副作用，以防止潜在的错误。
+  - key: bugprone-forward-declaration-namespace
+    value: &quot;true&quot; # 检查并标识命名空间前向声明的潜在问题。
+  - key: bugprone-bool-pointer-implicit-conversion
+    value: &quot;true&quot; # 检查并标识布尔指针的隐式转换，以防止潜在的错误。
+  - key: bugprone-misplaced-widening-cast
+    value: &quot;true&quot; # 检查并标识错误的宽化转换，以防止潜在的错误。
+
+  # 杂项（Miscellaneous）
+  - key: misc-unconventional-assign-operator
+    value: &quot;true&quot; # 检查并标识不常见的赋值操作符重载，以确保代码的一致性和可维护性。
+  - key: misc-unused-parameters
+    value: &quot;true&quot; # 检测未使用的参数。
+
+  # C++ 核心指南（CppCoreGuidelines）
+#   - key: cppcoreguidelines-narrowing-conversions
+#     value: &quot;true&quot; # 检查并标识可能导致数据丢失的窄化转换。
+</code></pre>
+<h3 id="构建">构建</h3>
+<h4 id="单文件编译选项">单文件（编译选项）</h4>
+<p>构建，对于单个文件来说其实就是编译嘛，直接用 gcc/g++ 或者 clang/clang++ 加上一堆编译选项就可以了。但是编译选项比较多，很多比较偏的我也不甚精通，所以就列出几个常用的，能把代码跑起来就行，后面的还需进一步学习。比如菜鸟上有一个很直观的介绍编译选项的教程
+<a href="https://www.runoob.com/w3cnote/gcc-parameter-detail.html"  target="_blank" rel="noopener noreferrer" >GCC 参数详解 | 菜鸟教程</a>
+</p>
+<p>最简单的命令就是 <code>g++ demo.cpp -o demo</code>，得到的demo就是可执行文件（-o， output，用于指定输出文件的名字）。这背后有很多过程，如果想了解，或者编译出错了，那么就再进一步去了解相关的编译选项。</p>
+<h5 id="编译流程相关">编译流程相关</h5>
+<p>编译的流程是: 源文件 -&gt; 预处理 -&gt; 汇编 -&gt; 编译 -&gt; 链接，这些流程都有对应的编译选项，也就是说你可以只编译到任意的中间步骤去查看整成什么样子了。</p>
+<ul>
+<li><code>g++ -E demo.cpp -o demo.i</code>：<strong>-E</strong> 是说只进行预处理（把你include的头文件展开、宏展开等）</li>
+<li><code>g++ -S demo.cpp -o demo.s</code>: <strong>-S</strong> 是说只进行汇编，不编译链接，得到的是汇编码</li>
+<li><code>g++ -c demo.cpp -o demo.o</code>: <strong>-c</strong> 是说只编译得到目标文件，不进行链接</li>
+</ul>
+<h5 id="头文件库文件相关">头文件库文件相关</h5>
+<p>当然有时候需要处理一些跟头文件库文件相关的内容</p>
+<ul>
+<li><code>g++ demo.cpp -o demo -I../include -lmylib -L/home/usr/mylib</code>：<strong>-I</strong>指定头文件查找位置，<strong>-L</strong>指定库文件查找位置，<strong>-l</strong>指定你想链接的库。<code>-lmylib</code>对应的库文件全名实际上是 <code>libmylib.so</code> 或者 <code>libmylib.a</code>，即-l跟的名字是掐头去尾得到的
+<ul>
+<li><code>g++ -static demo.cpp -o demo -lmylib</code>: <strong>-static</strong> 指定了静态链接（简单来说就是把库文件打包进可执行文件里面，动态链接的库是在别的地方，程序运行的时候才加载），既然是静态链接，要注意你必须得有 <code>libmylib.a</code>这个文件，.so只没办法让你静态链接得。</li>
+<li><code>g++ -fPIC -shared mylib.cpp -o libmylib.so</code>: 这个用于生成动态库，<strong>-fPIC</strong>指定生成与位置无关的代码，<strong>-shared</strong> 说要生成动态库</li>
+<li><code>ar rcs libmylib.a demo1.o demo2.o</code>: 那么这个就是生成静态库的方法了，这里使用的不是g++，而是<code>ar</code>这个工具。静态库类似一种压缩包把，<strong>ar</strong>是个打包工具，你要先用g++生成目标文件，然后再将他们打包成静态库。rcs中，r表示添加文件到归档中，如果存在则替换；c表示归档不存在则创建；s表示创建索引</li>
+</ul>
+</li>
+<li>有时候不想每次都手动指定路径，可是头文件和库又不在默认位置，那么可以通过设置环境变量来解决。可以参考
+<a href="https://blog.csdn.net/weixin_44327262/article/details/105860213"  target="_blank" rel="noopener noreferrer" >详解Linux下环境变量C_INCLUDE_PATH、CPLUS_INCLUDE_PATH、CPATH以及常见错误_include path-CSDN博客</a>
+
+<ul>
+<li><code>C_INCLUDE_PATH/CPLUS_INCLUDE_PATH/CPATH</code>：它们分别是C、C++、C&amp;C++程序在编译时，默认的头文件搜索位置</li>
+<li><code>LIBRARY_PATH</code>：<strong>编译时</strong>默认的库文件搜索位置</li>
+<li><code>LD_LIBRARY_PATH</code>：<strong>运行时</strong>默认的库文件寻找位置</li>
+</ul>
+</li>
+</ul>
+<h5 id="调试优化告警标准">调试优化告警标准</h5>
+<p>然后是，调试、优化、告警、标准这些，还算常用，但不知道怎么归类了，就叫做风格化吧：</p>
+<ul>
+<li><code>g++ demo.cpp -o demo -g</code>: <strong>-g</strong> 是说要生成一个可以调试的文件，也就是说这个会在可执行文件中保留一些符号信息，用途就是调试，文件体积和性能相对不带的自然会弱一些。</li>
+<li><code>g++ demo.cpp -o demo -O3</code>：<strong>-O3</strong> 是一个优化选项，让编译器采用最激进的方式对你的源文件进行优化，以得到更好的性能（据说有可能有不稳定的情况，反正我没碰到过，相信编译器了），当然自然也有 <strong>-O2 -O1 -O0</strong> 优化越来越保守，-O0是不做任何优化，保留原汁原味的代码体验，一般调试的时候用</li>
+<li><code>g++ demo.cpp -o demo -Wall -Werror</code>: W就是warn，所以 <strong>-Wall</strong> 就是把所有的警告都报告出来，<strong>-Werror</strong> 就是把告警看作是一种错误，这俩放一块要求代码中不能有一处告警，否则就是编译出错直接中止，适合对代码有追求的人和项目。</li>
+<li><code>g++ demo.cpp -o demo -g -fno-inline</code>：<strong>-fno-inline</strong>不内联函数，能够使得调用链更清晰</li>
+<li><code>g++ demo.cpp -o demo -std=c++20</code>: <strong>-std</strong> 指定了你使用的c++标准</li>
+</ul>
+<h5 id="项目依赖查看">项目依赖查看</h5>
+<p>有时候需要看看项目的依赖，看看g++编译的时候到底都给你找了什么东西引用上了链接上了</p>
+<ul>
+<li><code>g++ -MM demo.cpp &gt; demo.d</code>: <strong>-MM</strong> 用于生成文件的所有依赖关系（除了标准库，<strong>-M</strong>则包括标准库头文件），一般用于Makefile中，可以做到头文件变动时也重新编译文件（否则只有源文件变动才重新编译，可能会出问题）。.d文件长这样demo.o: demo.cpp /usr/include/cstdio &hellip;</li>
+<li><code>g++ -H demo.cpp -o demo</code>: <strong>-H</strong> 用于打印层次化的头文件引用情况，比如你直接引用了ABC，A有引用了DEF，B引用了GH，等等等等，都给你列出来</li>
+<li><code>g++ -v demo.cpp -o demo</code>: <strong>-v</strong>用于可视化整个编译过程，用了谁编译、编译选项如何、去哪里查找的头文件等等。如果编译过程出问题了，可以检查一下</li>
+<li><code>g++ -v -E c++ -</code>: 这个用于打印编译c++时的依赖搜索路径，可能个人比上面的用的多些。常见的场景：我已经安装了某个库了，或者我已经修改了某个头文件了，但是编译器里不符合预期，可以看看是不是压根没查找到它，查找的是别的同名的（比如在wsl中编译，链接的却是windows上msys2中的库）</li>
+<li><code>g++ -print-file-name=libmylib.a</code>: <strong>-print-file-name</strong> 直接打印出，如果让g++去找这个库的话，它的查找路径</li>
+</ul>
+<h5 id="性能优化相关">性能优化相关</h5>
+<p>性能优化的值得单开一部分</p>
+<ul>
+<li><code>g++ -ftime-trace demo.cpp -o demo</code>: -ftime-trace 用于显示分析编译耗时</li>
+<li><code>Sanitizer</code>: 是 LLVM/Clang 和 GCC 编译器提供的一套工具，用于在运行时检测程序中的各种错误。它的核心思想是通过在编译时插入额外的检查代码，来捕获内存错误、未定义行为、数据竞争等问题。编译完<strong>直接运行程序</strong>，然后会给你输出错误。后文
+<a href="#Sanitizer" >Sanitizer一节</a>
+还会再行介绍（列举一些参考文档罢了，用法就在这里）
+<ul>
+<li><code>g++ -fsanitize=address -o demo demo.cpp</code>: address 启用 AddressSanitizer，这是一个内存错误检测工具，能够检测内存泄漏、缓冲区溢出、使用未初始化的内存等问题</li>
+<li><code>fsanitize=leak</code>：仅检测内存泄漏</li>
+<li><code>fsanitize=undefined</code>：检测未定义行为</li>
+<li><code>fsanitize=thread</code>：检测多线程问题</li>
+</ul>
+</li>
+</ul>
+<h4 id="项目构建">项目构建</h4>
+<h5 id="构建工具概要介绍">构建工具概要介绍</h5>
+<p>项目构建就要使用到构建工具了，常见的有 Make，Ninja，CMake，XMake，QMake, Bazel，VSProject &hellip;</p>
+<ul>
+<li><strong>Make</strong>: make是一个，怎么说呢，原始而强大的东西，可以很简单，比如你嫌弃用几个g++命令构建出目标文件，再手动链接比较麻烦，就把他们写进makefile中，然后make一下就可以了。这个时候的makefile就像一个shell脚本一样，你直接写shell脚本构建也是一样的。（所以有时候拿makefile当一个脚本启动器也是很不错的）但是它也可以像邪恶的古神一样很复杂，有很多高级配置，依赖查找balabala，复杂到维护这个项目Makefile的人奔溃到谁改一下下就吼谁（只是耳闻）</li>
+<li><strong>Ninja</strong>：ninja和make类似，它是为了快速构建而生的。我见过手写makefile的，但是见识浅薄，身边没有手写ninja.build的，ninja更多是只负责快速编译，至于如何编译还是使用CMake直接生成的多一些。</li>
+<li><strong>CMake</strong>：c++的事实构建标准，这一句评价就够了。你可以会很多花里呼哨的构建方式构建器，你可以听很多人说它不好，xxx比它友好一万倍快十万倍，但是你最好还是要会使用它，因为它是事实标准。它的使用我知道一些，但是这里的空间太小了，写不下</li>
+<li><strong>XMake</strong>：这就是一个CMake的替代品，不过人家作者说了，无意取代CMake，只是在构建什么个人项目、小项目的时候提供一种更友好更快速的选择。它使用lua来写构建脚本，会lua的有福了。同时自带包管理（加分项）。然后就是，可能更新快一些吧，比如比CMake更支持c++20的Modules。</li>
+<li><strong>QMake</strong>：Qt的构建器，没用过，也没用过Qt。不过现在Qt已经拥抱CMake了，所以，没有必要也没有兴趣的话应该不用管。</li>
+<li><strong>Bazel</strong>：谷歌做的构建器，使用一种类似python的语法写构建脚本。优势是使用了分布式缓存，构建更快；然后是考虑到了构建环境，可以做到相同环境必定能复现构建；然后还有就是分析目标更精准吧，并行化好、重复构建最少。等等吧，反正就是又快又对。百度的Apollo项目使用的是这个，当然还有很多别的项目也都用了。</li>
+<li><strong>VSProject</strong>：使用Visual Studio开发的话默认这个，听说很方便，但是我用VS不多，对这个不甚了解</li>
+</ul>
+<p>下面就简单介绍下Make、CMake、Bazel，是真的简单介绍，深入学习的话还是要进一步深入学习的。</p>
+<h6 id="make">Make</h6>
+
+  <div class="admonition reference">
+    <div class="admonition-header">
+      <svg t="1742461876844" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="48681" width="200" height="200"><path d="M65.42832 207.541555c1.419105-76.228262 70.647064-144.132337 147.334027-142.150095 199.191771-0.610236 398.376374-0.255971 597.569168-0.203753-0.258019 198.478122 0.308189 397.006415-0.307166 595.484538-185.424608-0.308189-370.898363 0.099317-556.379285-0.203753-41.290223-0.610236-82.376694 23.058921-101.272498 60.082614-17.062025 30.879358-16.402643 69.986657-0.863135 101.371815 17.472603 36.771818 56.783656 61.19865 97.310061 62.116051 211.991361-0.104436 423.930504 0.05017 635.917769-0.050171 0.100341-223.46502-0.054266-446.880893 0.050171-670.345913 24.783144-0.05017 49.617483 0 74.405746 0 0.149487 248.402771 0.05017 496.855712 0.050171 745.30763-247.084007 0-494.21716 0.05017-741.303214-0.049147-58.405491 0.504775-115.542387-34.743501-139.458301-88.32342-10.871614-23.112163-13.718016-48.908954-13.152831-74.147727 0.149487-196.296223-0.054266-392.592446 0.099317-588.888669z" p-id="48682"></path><path d="M288.89334 735.53362c173.850609-0.049146 347.639784-0.153583 521.438175 0.050171-0.099317 24.481098 0.05017 49.011343-0.099317 73.542611-173.749244-0.05017-347.488249 0.049146-521.239541 0-0.19761-24.580415-0.148463-49.061513-0.099317-73.592782z" p-id="48683"></path></svg>
+
+      <span>Reference</span>
+    </div>
+      <div class="admonition-content">
+        <ul>
+<li>
+<a href="https://seisman.github.io/how-to-write-makefile/index.html"  target="_blank" rel="noopener noreferrer" >跟我一起写makefile</a>
+这个是比较出名的教程了，想写就跟他一起写吧</li>
+<li>
+<a href="https://www.zhaixue.cc/makefile/makefile-intro.html"  target="_blank" rel="noopener noreferrer" >之间随便搜罗的一个参考，没细看过</a>
+</li>
+</ul>
+      </div>
+  </div>
+<p>简单来说makefie就是指定目标，指定目标的依赖，然后指定怎么从依赖得到目标的一个脚本，比如:</p>
+<pre><code class="language-makefile">rebuild:
+    @rm -rf build &amp;&amp; cd build &amp;&amp; cmake .. -G&quot;Ninja&quot;
+</code></pre>
+<p>这里我指定了目标是rebuild，依赖是空，得到目标的办法是执行那一长串命令。这实际上不是编译，只是给那一长串命令起了个名字叫 <code>make rebuild</code>。makefile不只可以用来构建，也可以当作脚本启动器。</p>
+
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>Warning</span>
+    </div>
+      <div class="admonition-content">
+        <p>不过需要注意的是，makefile中的命令是新启动一个shell来做的，你可以指定使用shell还是使用bash，但你没法指定它不启动一个新的。所以想在makefile中设置当前的环境变量是不可以的</p>
+      </div>
+  </div>
+<p>当然它的主业还是构建，简单介绍一些特性，然后直接给几个例子揣摩一下吧</p>
+<p><strong>特殊变量</strong></p>
+<ul>
+<li><code>$@</code> Target</li>
+<li><code>$^</code> 所有依赖，空格分隔</li>
+<li><code>$&lt;</code> 第一个依赖</li>
+</ul>
+<p><strong>模式替换</strong></p>
+<p><code>$(patsubst &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt; )</code></p>
+<p>查找中的单词（单词以“空格”、“Tab”或“回车”“换行”分隔）是否符合模式，如果匹配的话，则以替换。</p>
+<p>这里，可以包括通配符“%”，表示任意长度的字串。如果中也包含“%”，那么，中的这个“%”将是中的那个“%”所代表的字串。（可以用“\”来转义，以“%”来表示真实含义的“%”字符）</p>
+<pre><code class="language-makefile">$(patsubst %.c,%.o, a.c b.c)
+# 把字串 “a.c b.c” 符合模式[%.c]的单词替换成[%.o]，返回结果是 “a.o b.o”
+</code></pre>
+<p><strong>变量替换引用</strong></p>
+<p>对于一个已经定义的变量，可以使用“替换引用”将其值中的后缀字符（串）使用指定的字符（字符串）替换。格式为<code>$(VAR:A=B)</code>或者<code>${VAR:A=B}</code></p>
+<p>意思是，替换变量“VAR”中所有“A”字符结尾的字为“B”结尾的字。“结尾”的含义是空格之前（变量值多个字之间使用空格分开）。而对于变量其它部分的“A”字符不进行替换。</p>
+<pre><code class="language-makefile">foo := a.o b.o c.o
+bar := $(foo:.o=.c)
+# 注意变量不要带 $
+SRCS_NODIR := $(notdir $(wildcard $(SRC_DIR)/*$(SRC_SUFFIX)))
+OBJS_NODIR := $(SRCS_NODIR:$(SRC_SUFFIX)=$(OBJ_SUFFIX))
+</code></pre>
+<p><strong>模板1</strong></p>
+<pre><code class="language-makefile"># 一个适合中小规模的makefile模版，基本上自己按照实际情况指定一下 源文件，目标文件，头文件目录，以及源文件后缀就行了。
+
+# ---------------------------------------------------------------------------
+# commands
+# ---------------------------------------------------------------------------
+CC := gcc
+LINK := gcc
+RM := rm -rf
+MV := mv
+TAR := tar
+MKDIR := mkdir
+
+# ---------------------------------------------------------------------------
+# settings
+# ---------------------------------------------------------------------------
+SRC_SUFFIX := .c
+OBJ_SUFFIX := .o
+LIB_SUFFIX := .a
+BIN_SUFFIX := .exe
+DLL_SUFFIX := .so
+
+INC_PREFIX := -I
+LIB_PREFIX := -L
+
+OPT_C := -c
+OPT_OUT := -o
+OPT_LINKOUT := -o
+
+CFLAGS := $(OPT_C)
+LIBFLAGS := -Debug
+
+# ---------------------------------------------------------------------------
+# directories
+# ---------------------------------------------------------------------------
+SRC_DIR := ./src
+OBJ_DIR := ./obj
+INC_DIR := ./inc
+LIB_DIR := ./lib /usr/local/lib /lib /usr/lib
+
+# ---------------------------------------------------------------------------
+# common settings
+# ---------------------------------------------------------------------------
+SRCS := $(wildcard $(SRC_DIR)/*$(SRC_SUFFIX))
+OBJS := $(patsubst $(SRC_DIR)/%$(SRC_SUFFIX),$(OBJ_DIR)/%$(OBJ_SUFFIX),$(SRCS))
+INCS := $(addprefix $(INC_PREFIX), $(INC_DIR))
+LIBS := $(addprefix $(LIB_PREFIX), $(LIB_DIR)) $(LIBFLAGS)
+TEMPFILES := core core.* *$(OBJ_SUFFIX) temp.* *.out typescript*
+
+# ---------------------------------------------------------------------------
+# make rule
+# ---------------------------------------------------------------------------
+TARGET := loader
+
+.PHONY: all clean
+
+all: $(TARGET)
+
+clean:
+$(RM) $(TARGET)$(BIN_SUFFIX) $(OBJS)
+
+$(TARGET):$(OBJS)
+$(LINK) $(OPT_LINKOUT)$(TARGET)$(BIN_SUFFIX) $(LIBS) $(OBJS)
+
+$(OBJS):$(OBJ_DIR)/%$(OBJ_SUFFIX):$(SRC_DIR)/%$(SRC_SUFFIX)
+$(CC) $(CFLAGS) $(INCS) $(OPT_OUT)$@ $&lt;
+
+</code></pre>
+<p><strong>模板2</strong></p>
+<pre><code class="language-makefile">CXX := g++
+
+SRC_DIR := ./src
+OBJ_DIR := ./build
+BIN_DIR := ./bin
+INC_DIR := ./include
+
+VPATH = $(INC_DIR) $(OBJ_DIR) $(SRC_DIR)
+vpath %.h $(INC_DIR)
+
+# 一种搜索源文件的方式
+# SRC_DIRS = $(shell find $(SRC_DIR) -maxdepth 3 -type d)
+# SRCS = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.cpp))
+# TODO: 这样子出来的目标文件，在jing'tai时就找不到依赖了
+# OBJS := $(OBJ_DIR)/$(notdir $(patsubst %.cpp, %.o, $(SRCS)))
+
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+OBJS := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
+INCS := $(addprefix -I, $(INC_DIR))
+BUILDING_DIRS := $(OBJ_DIR) $(BIN_DIR)
+
+TARGET := adb_lab2.exe
+RUN := run.sh
+
+$(TARGET) : $(BUILDING_DIRS) $(OBJS)
+	$(CXX) -o $(BIN_DIR)/$(TARGET) $(OBJS)
+	@touch $(RUN)
+	@echo &quot;$(BIN_DIR)/$(TARGET)&quot; &gt; $(RUN)
+
+# 这里的前缀不能少。makefile不会自动去VPATH里面找这几个目标，而是直接当成新的目标来对待
+$(OBJ_DIR)/BufferPoolManager.o : BufferPoolManager.h LRUReplacer.h
+$(OBJ_DIR)/DataStorageManager.o : DataStorageManager.h
+$(OBJ_DIR)/LRUReplacer.o : LRUReplacer.h
+$(OBJ_DIR)/main.o : BufferPoolManager.h
+
+# 一个创建运行时依赖文件夹的方法
+$(BUILDING_DIRS) :
+	@mkdir $@
+
+# 这叫 静态模式
+$(OBJS) : $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
+	$(CXX) -o $@ -c $&lt; $(INCS)
+
+.PHONY: all clean output
+all : $(TARGET)
+clean:
+	-rm -rf $(BUILDING_DIRS) test.dbf $(RUN)
+output:
+	@echo $(SRCS)
+	@echo --------------
+	@echo $(OBJS)
+</code></pre>
+<p><strong>模板3</strong></p>
+<pre><code class="language-makefile">CC := gcc
+CC_INCLUDE_FLAGS := -I ./include/
+CC_FLAGS := $(CC_INCLUDE_FLAGS) -g
+
+# 程序执行的参数
+ARGS := ~/codes
+
+DIR_SRC := ./src
+DIR_OBJ := ./build
+DIR_EXE := ./bin
+
+SRCS := $(shell find $(DIR_SRC) -name &quot;*.c&quot;)
+OBJS := $(patsubst $(DIR_SRC)/%.c, $(DIR_OBJ)/%.o, $(SRCS))
+DPTS := $(patsubst %.c, %.d, $(SRCS))
+DIRS := $(DIR_OBJ) $(DIR_EXE)
+
+target := $(DIR_EXE)/my_ls_pro
+
+$(target): $(DIRS) $(OBJS)
+	$(CC) $(OBJS) -o $@
+
+$(DIRS):
+	@mkdir $@
+
+$(DIR_OBJ)/%.o: $(DIR_SRC)/%.c
+	$(CC) $(CC_FLAGS) -c $&lt; -o $@
+
+%.d: %.c
+	@set -e; \
+	rm -f $@; \
+	$(CC) -MM $(CC_FLAGS) $&lt; $(CC_INCLUDE_FLAGS) &gt; $@.$$$$.dtmp; \
+	sed 's,\(.*\)\.o\:,$*\.o $*\.d\:,g' &lt; $@.$$$$.dtmp &gt; $@;\
+	rm -f $@.$$$$.dtmp
+
+-include $(DPTS)
+
+clean:
+	rm -f $(OBJS)
+	rm -f $(DPTS)
+
+run:
+	make
+	$(target) $(ARGS)
+</code></pre>
+<h6 id="cmake">CMake</h6>
+<p>这里只说基本的，拷下来一个cmake项目怎么运行。具体的CMake项目怎么写怎么组织，可以参考项目 
+<a href="https://github.com/captainwc/quick-cmake"  target="_blank" rel="noopener noreferrer" >quick-cmake GitHub</a>
+</p>
+<p>一般来说分为三步：</p>
+<ol>
+<li>项目根目录创建一个build文件夹，然后cd进去。在build文件夹中进行构建，cmake生成的文件就会都在build文件夹内，不会污染源项目，所以十分推荐这种方式。（当然不cd进去直接用 -B build 指定也可以）</li>
+<li>运行cmake，获取到构建文件。是的，cmake只负责生成构建文件，具体的构建还是由make、ninja这些完成的。</li>
+</ol>
+<ul>
+<li>常用的构建命令就是 <code>cmake .. -G&quot;Ninja&quot; -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release</code></li>
+<li>-G 指定用谁来构建，有很多选项，比如 -G&quot;Unix Makefiles&quot;生成makefile， -G&quot;MinGW Makefiles&quot;在Windows上使用mingw的makefile，还可以指定使用你的Visual Studio 2017 2022啥的</li>
+<li>-Dxxx=yyy，-D用于设置变量的值</li>
+</ul>
+<ol start="3">
+<li>运行构建命令，得到目标</li>
+</ol>
+<ul>
+<li>make -j8 生成的 makefile，就用make，-j8 指定 8 个线程</li>
+<li>ninja -j8</li>
+<li>cmake &ndash;build . -j8： 如果不知道生成的啥，或者想通用性，就用这个</li>
+</ul>
+<p>如果需要安装，就再加一步 <code>make install</code> or <code>ninja install</code> or <code>cmake --build . --target=install</code>。是的，install本身也只是一个target而已</p>
+<h6 id="bazel">Bazel</h6>
+<p>bazel我还在学，这里只说环境怎么配置就好了。想学习第一手资料还是去看
+<a href="https://bazel.build/install?hl=zh-cn"  target="_blank" rel="noopener noreferrer" >官网</a>
+</p>
+<p>首先需要<strong>安装</strong>的有：</p>
+<ul>
+<li>
+<a href="https://github.com/bazelbuild/bazelisk"  target="_blank" rel="noopener noreferrer" >bazelisk</a>
+: 与 bazel 接口完全相同，区别在于这个能自动下载、切换到你需要的bazel版本，也是官方推荐安装的。详情看
+<a href="https://bazel.build/install/bazelisk?hl=zh-cn"  target="_blank" rel="noopener noreferrer" >使用 Bazelisk 安装 / 更新 Bazel</a>
+</li>
+<li>
+<a href="https://github.com/bazelbuild/buildtools/releases"  target="_blank" rel="noopener noreferrer" >buildtools</a>
+: （<code>scoop install bazel-buildtools</code>）包括格式化工具 
+<a href="https://github.com/bazelbuild/buildtools/blob/main/buildifier/README.md"  target="_blank" rel="noopener noreferrer" >buildifier</a>
+，以及另外两个我没咋用到的 buildozer 和 unused_deps，项目 readme 中有说明</li>
+<li>
+<a href="https://github.com/withered-magic/starpls"  target="_blank" rel="noopener noreferrer" >starpls</a>
+: lsp 服务。目前 bazel 
+<a href="https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel#Using%20a%20language%20server%20%28experimental%29"  target="_blank" rel="noopener noreferrer" >官方插件推荐</a>
+的有两个（另一个是 
+<a href="https://github.com/cameron-martin/bazel-lsp"  target="_blank" rel="noopener noreferrer" >bazel-lsp</a>
+，但是恰好它的 6.3 版本在我这有 bug 用不了）</li>
+<li>
+<a href="https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel"  target="_blank" rel="noopener noreferrer" >bazel-vscode</a>
+: vscode 插件，all in one。包括构建、高亮、补全。但是要依赖上述几个工具</li>
+</ul>
+<p><strong>vscode的配置</strong>如下：</p>
+<pre><code class="language-json">{
+    &quot;bazel.executable&quot;: &quot;bazel&quot;,
+    &quot;bazel.buildifierExecutable&quot;: &quot;buildifier&quot;,
+    &quot;bazel.lsp.command&quot;: &quot;starpls&quot;, // alternatively: &quot;bazel-lsp&quot;
+    &quot;bazel.enableCodeLens&quot;: true,
+}
+</code></pre>
+<p><strong>代码补全</strong></p>
+<p>各语言源码补全参考
+<a href="https://bazel.build/install/ide?hl=zh-cn#autocomplete-for-source-code"  target="_blank" rel="noopener noreferrer" >将 Bazel 与 IDE 集成</a>
+</p>
+<p>具体到 C/C++ 来说一般是生成 <code>compile_commands.json</code> 文件，官方推荐有两种方式：</p>
+<ol>
+<li>
+<a href="https://github.com/kiron1/bazel-compile-commands"  target="_blank" rel="noopener noreferrer" >kiron1/bazel-compile-commands</a>
+ ：在 Bazel 工作区中运行 <code>bazel-compile-commands //...</code> 以生成 <code>compile_commands.json</code> 文件。<code>compile_commands.json</code> 文件可让 <code>clang-tidy</code>、<code>clangd</code> (LSP) 和其他 IDE 等工具提供自动补全、智能导航、快速修复等功能。该工具使用 C++ 编写，并使用 Bazel 的 Protobuf 输出来提取编译命令。</li>
+<li>
+<a href="https://github.com/hedronvision/bazel-compile-commands-extractor"  target="_blank" rel="noopener noreferrer" >hedronvision/bazel-compile-commands-extractor</a>
+ ：可在各种可扩展的编辑器（包括 VSCode、Vim、Emacs、Atom 和 Sublime）中启用自动补全、智能导航、快速修复等功能。它可让 clangd 和 ccls 等语言服务器以及其他类型的工具利用 Bazel 对 <code>cc</code> 和 <code>objc</code> 代码编译方式的理解，包括它如何为其他平台配置交叉编译。</li>
+</ol>
+<p><strong>交叉编译工具链</strong></p>
+<p>这里以常见的在windows上修改编译器为mingw（默认为MSVC）为例，说明工具链怎么修改。参考仓库 
+<a href="https://github.com/vvviktor/bazel-mingw-toolchain"  target="_blank" rel="noopener noreferrer" >bazel-mingw-toolchain</a>
+</p>
+<p>使用blzmod的话，MODULE.bazel添加如下内容：</p>
+<pre><code class="language-python">bazel_dep(
+    name = &quot;mingw_toolchain&quot;
+)
+git_override(
+    module_name = &quot;mingw_toolchain&quot;,
+    remote = &quot;https://github.com/vvviktor/bazel-mingw-toolchain.git&quot;,
+    commit = &quot;0ea42a31c45f0ff146058cecd124053b6915205e&quot;,
+)
+</code></pre>
+<p>修改.bazelrc文件</p>
+<pre><code class="language-bash">build --incompatible_enable_cc_toolchain_resolution             # allow bazel to use custom toolchains
+build --define=MINGW_PATH=&quot;path/to/mingw&quot;                       # define path to yuor mingw location, for example: build --define=MINGW_PATH=&quot;C:/msys64/ucrt64&quot; 
+build --define=GCC_VERSION=&quot;gcc version&quot;                        # define gcc version used, for example: build --define=GCC_VERSION=&quot;13.2.0&quot;
+</code></pre>
+<p>其余的参考原仓库即可</p>
+<h4 id="依赖管理">依赖管理</h4>
+<p>有些规模的C++程序，除了标准库外，一般都会依赖一些别的三方库，或者是自己造的轮子库，比如什么日志库、网络库等等。这些依赖大体上可以分为三种，一种是，静态库、动态库，还有一种 header-only 的库，顾名思义就是只有头文件，不用额外让你的程序链接上库文件（它的优劣可以参考这个
+<a href="https://stackoverflow.com/questions/12671383/benefits-of-header-only-libraries"  target="_blank" rel="noopener noreferrer" >c++ - Benefits of header-only libraries - Stack Overflow</a>
+）。</p>
+<p>如何正确防止三方库的位置、处理编译选项，使得程序能够跑起来，似乎是
+<a href="#%e6%9e%84%e5%bb%ba" >编译</a>
+部分的事。确实是这样，因为很多程序跑不起来的重要的原因之一，就是第三方依赖找不到、找不对、编译不过，而C++在这一问题上尤为严重。主要是相比较其他主流语言如python(pip)、jvav(maven)、rust(cargo)等，C++没有一个主流的、让各方都信服的包管理工具。可能一方面是C++话事<del>人</del>委员会不care这个，另一方面或许是，我称之为Cppers的傲慢。都用c++了，轮子不是自己造的，那算什么用c++？（或许这也是一种乐趣吧）。</p>
+<p>所以自己写的包，或者peer写的包，就只能通过一种比较原始的方式，集成到项目中来——把他们下载下来、放到指定的位置，然后手动在编译选项中指定它们。但其实也没有那么地原始。从某种程度上来说cmake、bazel这些构建工具也可以算是一种包管理器，比如cmake的<code>find_package() find_library()</code>，也可以相当自动地帮你完成依赖寻找的任务。只不过前提是你用的库按照cmake的方式组织了，写好了<code>Findxxx.cmake</code>这种。不过一般也都会有，毕竟cmake是事实标准。所以实际上，没有包管理器这件事，是有些不方便，但是其实也并没有一些CPP小黑子说得那么地，无药可救。</p>
+<p>但是，事实上C++也是有好用的包管理器的，虽然不是官方的，但也并非什么小作坊的作品。如果你就是习惯有个包管理，那还是相当值得一用的。</p>
+
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>Attention</span>
+    </div>
+      <div class="admonition-content">
+        <p>由于C++的编译产物跟平台是强相关的，windows还是linux，x86还是arm，之间是完全不兼容的。因此这些个包管理呢实际上并不是给你下载个二进制文件就直接用了，而是把源码下载下来，然后用你机器上的工具，自动的给你编译好，再放到一个可以方便找到的地方。所以使用它和不使用的区别就是，它<strong>可能</strong>比你更会编译这个库。当然，都用它来做，更方便管理。</p>
+      </div>
+  </div>
+<h5 id="vcpkg">vcpkg</h5>
+
+  <div class="admonition tldr">
+    <div class="admonition-header">
+      <svg t="1742977257977" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4459" width="200" height="200"><path d="M664.628 155.137c0 39.922-15.318 73.841-45.843 101.702-30.524 27.86-67.743 41.79-111.543 41.79-45.163 0-83.063-13.93-113.587-41.79-30.58-27.86-45.843-61.724-45.843-101.759 0-39.922 15.32-73.841 45.843-101.701 30.524-27.86 68.424-41.79 113.587-41.79 43.8 0 81.02 13.93 111.543 41.79 30.581 27.86 45.843 61.723 45.843 101.701zM345.827 658.152c0-39.978 15.318-73.898 45.843-101.758 31.885-29.106 70.353-43.603 115.572-43.603 42.495 0 79.658 14.497 111.543 43.603 31.886 27.86 50.496 59.345 55.829 94.453 10.61 65.404-2.667 130.242-39.886 194.457-35.857 64.158-87.657 113.253-155.457 147.116-37.163 19.423-67.687 18.8-91.63-1.812-22.58-19.367-15.886-42.357 19.971-69.028 19.858-13.307 36.482-30.295 49.815-50.851 13.276-20.612 21.9-41.79 25.872-63.592 1.362-9.683-3.29-14.553-13.957-14.553-26.553-1.19-53.786-14.553-81.7-39.978a123.061 122.823 0 0 1-41.815-94.454z" p-id="4460"></path></svg>
+      <span>Tldr</span>
+    </div>
+      <div class="admonition-content">
+        <p><del>微软</del>巨硬做的C++包管理，如果不知道用什么，就相信品牌的力量。支持自动下载、编译、管理三方库，与 CMake 深度集成。支持几千个C++库了，基本涵盖所有常用的。详细学习请参考 
+<a href="https://learn.microsoft.com/zh-cn/vcpkg/"  target="_blank" rel="noopener noreferrer" >vcpkg 文档 | Microsoft Learn</a>
+</p>
+      </div>
+  </div>
+<p>使用起来很简单，跟着下面做就行了。</p>
+<pre><code class="language-bash"># 安装
+git clone https://github.com/microsoft/vcpkg
+cd vcpkg
+
+## 执行引导脚本（Windows 使用 .\bootstrap-vcpkg.bat）
+./bootstrap-vcpkg.sh
+
+# 添加环境变量（可选）
+export VCPKG_ROOT=&quot;/path/to/vcpkg&quot;
+export DEFAULET_TRIPLET=&quot;x64-linux&quot;
+export PATH=$VCPKG_ROOT:${PATH}
+
+# vcpkg还有一个一键和 visual studio集成的命令，但我不咋用vs，给搞忘了。有兴趣可以搜一下
+</code></pre>
+<p>然后你就可以使用vcpkg了。需要注意的是，vcpkg有两个比较重要的环境变量，<code>VCPKG_ROOT</code>和<code>DEFAULT_TRIPLET</code>，前者用于搜索vcpkg的位置，后者，<code>triplet</code>，三元组，就是描述你平台的三个关键词，比如<code>x64-linux-static</code>，就说明要安装x64版本linux上的静态库。具体的参考 
+<a href="https://learn.microsoft.com/zh-cn/vcpkg/users/triplets"  target="_blank" rel="noopener noreferrer" >Triplet | Microsoft Learn</a>
+</p>
+<pre><code class="language-bash"># 搜索
+vcpkg search spdlog
+
+# 安装
+vcpkg install spdlog
+
+# 在cmake中使用
+## 法 1，使用vcpkg的toolchain。 注意 toolchain的指定要在 project(xxx) 之前
+set(CMAKE_TOOLCHAIN_FILE &quot;$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake&quot;)
+find_package(spdlog REQUIRED)
+target_link_libraries(your_target PRIVATE spdlog::spdlog)
+
+## 法2：设置CMAKE_PREFIX_PATH，这样相当于只是告诉cmake了查找库的位置，侵入性更小
+list(APPEND CMAKE_PREFIX_PATH &quot;$ENV{VCPKG_ROOT}/installed/$ENV{VCPKG_DEFAULT_TRIPLET}&quot;)
+find_package(spdlog REQUIRED)
+target_link_libraries(your_target PRIVATE spdlog::spdlog)
+
+## 更详细专业的用法参考 https://learn.microsoft.com/zh-cn/vcpkg/users/buildsystems/cmake-integration
+</code></pre>
+<h5 id="conan">conan</h5>
+<p>conan是一个去中心化的c++包管理，可以指定具体的库版本（这么说是因为vcpkg在哪个场景来着，只支持使用最新版的库），可以构建自己的库仓库。使用的人也很多，支持的库也有几千个。做这种包管理的，还做出名堂来的，你所了解的常用的库肯定都会支持，所以这方面不必担心。</p>
+<p>不过我用的不多，详情还是搜一下。以下内容来自deepseek。</p>
+<pre><code class="language-bash"># 安装
+pip install conan
+
+# 创建默认 profile（生成 ~/.conan2/profiles/default）
+conan profile detect
+
+# 创建配置文件 conanfile.txt
+[requires]
+fmt/10.1.0
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[layout]
+cmake_layout
+
+# 安装依赖并生成配置
+mkdir build &amp;&amp; cd build
+conan install .. --build=missing
+
+# 集成到 CMake
+include(${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake)
+find_package(fmt REQUIRED)
+target_link_libraries(your_target PRIVATE fmt::fmt)
+</code></pre>
+<h5 id="apt--pacman">apt / pacman</h5>
+<p>严格来说呢，这些个并不是C++的包管理！它们是系统的包管理，但是很多时候你缺少依赖，直接一个<code>sudo apt install libxxx-dev</code>也就解决了（在arc linux，或者在msys2中，可以是<code>pacman -S libxxx</code>，还可能是<code>yum</code>等等等等）。那么，这怎么不算管理呢？（这个下载的是真的二进制文件，没有编译的步骤，跟前面说的vcpkg和connan那种包管理不同）</p>
+<p>不过需要注意的是，通过这样安装的库，是全局的。有可能你这个项目安装了这个版本的库，下个项目想用的是另一个版本的，这就会导致冲突。不过对于很多基础的库，像什么boost啦、opencv啦，直接安装是没问题的，也是最最方便的（甚至都可以不用加编译选项）。</p>
+<h3 id="调试">调试</h3>
+<p>程序跑起来有错误是相当正常滴，用各种方法，找到错误在哪并修改，再找再改，直到把程序跑起来的过程就是调试。</p>
+<p>当然这里说得更广义一些。有时候程序只是跑起来了，但可能并不那么健康。能跑不一定就对，只是暂时没执行到有错误的逻辑而已。如何查找预防这种隐藏起来的错误，也算调试了。还有就是，程序写好了，性能如何呢？跑得对，但是跑得慢，怎么让它快起来，优化性能，也是一种调试。下面逐个进行简单介绍。</p>
+<h4 id="程序调试">程序调试</h4>
+<p>找错误一般来说有以下几种方法：</p>
+<h5 id="瞪眼法">瞪眼法</h5>
+<p>这应该是最直观也是最常用的。不管你用的什么构建工具，编译出错，它都会告诉你错误是什么。有的报错信息很直观，你直接就能看懂。有的报错信息很冗长，像乱码一样，刚接触你可能看不懂，但是看多了，一看到某种乱码的模式，根据经验，或者捕捉关键词，就能立马明白错误是什么，应该怎么改。<strong>读报错信息，然后明白过来哪里错了，这就是瞪眼法</strong>。</p>
+<p>关于冗长的报错信息如何看，可以参考《Effective STL》的 <code>第49条：学会分析与STL相关的编译器诊断信</code>，简单来说就是，C++有很多模板，即使你没用，你用的标准库、三方库中也会用。报错信息看着很长，其实很多都是模板展开后的结果。肉眼排除掉冗余信息（或者写个过滤的小工具 
+<a href="https://github.com/captainwc/.dotfiles/blob/main/scripts/py/ErrorReducer.py"  target="_blank" rel="noopener noreferrer" >ErrorReducer.py</a>
+）能够使得错误更直观一些。不过这些可能都是老巴式了，直接复制粘贴到AI中，让ai帮你分析，也是不错的。不过最好分析完了理解一些，不然每次都只会复制粘贴问AI，长进不大。</p>
+<h5 id="print-大法">print 大法</h5>
+<p>当小脑袋瓜子栈溢出的时候，反应不过来到底是怎么个错误法了，一般就会选择在代码的某些位置上写上一串神秘字符：<code>printf(&quot;【x=%d, y=%s】\n&quot;, x, y);</code>或者<code>std::cout&lt;&lt;&quot;========\n&quot;;</code> 或者 <code>LOG(&quot;XXXXXXX&quot;);</code>这是很直观的，也基本是无师自通的。</p>
+<p>不管是printf还是直接读日志，都可以算是print大法了吧，即，<strong>在程序的关键位置输出一些有特征的信息，从而判断程序运行情况</strong>。有人嘲笑这种太土太Low，不会开个gdb打个断点就不能算是程序员；有人对这种推崇备至，说是真正高级的程序员谁tm打断点，都是看日志。我的看法是，管它高级不高级，有效的最快最对的就是最好的。</p>
+
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>Warning</span>
+    </div>
+      <div class="admonition-content">
+        <p>刚学的时候小脑袋瓜子不要装一堆饭圈的东西，这个高级那个老土。有用就行，装杯那是以后的事。程序调完了，丝滑运行了，喝杯茶冲冲浪，看看网友吹B，瘾上来了也下场小装一下，那会才是需要分辨谁High谁Low的时候。</p>
+      </div>
+  </div>
+
+  <div class="admonition reference">
+    <div class="admonition-header">
+      <svg t="1742461876844" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="48681" width="200" height="200"><path d="M65.42832 207.541555c1.419105-76.228262 70.647064-144.132337 147.334027-142.150095 199.191771-0.610236 398.376374-0.255971 597.569168-0.203753-0.258019 198.478122 0.308189 397.006415-0.307166 595.484538-185.424608-0.308189-370.898363 0.099317-556.379285-0.203753-41.290223-0.610236-82.376694 23.058921-101.272498 60.082614-17.062025 30.879358-16.402643 69.986657-0.863135 101.371815 17.472603 36.771818 56.783656 61.19865 97.310061 62.116051 211.991361-0.104436 423.930504 0.05017 635.917769-0.050171 0.100341-223.46502-0.054266-446.880893 0.050171-670.345913 24.783144-0.05017 49.617483 0 74.405746 0 0.149487 248.402771 0.05017 496.855712 0.050171 745.30763-247.084007 0-494.21716 0.05017-741.303214-0.049147-58.405491 0.504775-115.542387-34.743501-139.458301-88.32342-10.871614-23.112163-13.718016-48.908954-13.152831-74.147727 0.149487-196.296223-0.054266-392.592446 0.099317-588.888669z" p-id="48682"></path><path d="M288.89334 735.53362c173.850609-0.049146 347.639784-0.153583 521.438175 0.050171-0.099317 24.481098 0.05017 49.011343-0.099317 73.542611-173.749244-0.05017-347.488249 0.049146-521.239541 0-0.19761-24.580415-0.148463-49.061513-0.099317-73.592782z" p-id="48683"></path></svg>
+
+      <span>Reference</span>
+    </div>
+      <div class="admonition-content">
+        <p>简单的print太过简单了，可以参考这个 header-only 单头文件库 
+<a href="https://github.com/sharkdp/dbg-macro"  target="_blank" rel="noopener noreferrer" >dgb-macro</a>
+，可以帮你更好的print。（灵感来源rust的<code>dbg!</code>宏）</p>
+      </div>
+  </div>
+<h5 id="gdb">gdb</h5>
+<p>gdb是一个命令行运行的黑窗口工具，作用是可以让你在程序运行的时候，让它在指定的位置停下，然后还能让你读取停下来的位置的各种变量值是多少，的一个工具。非常强大，但是背后的原理也不算太复杂，通过什么系统调用实现的感兴趣也可以一学，甚至可以一做。</p>
+<p>要想使用gdb，在编译程序的时候要添加上一个
+<a href="#%e5%8d%95%e6%96%87%e4%bb%b6" >编译选项</a>
+<code>-g</code>，保留程序的各种符号信息，作用是调试的时候能看到源代码，如果不加也能调试，但是看不到源码（可以硬看汇编）。</p>
+<p>调试的工具有很多，但是基本的原理都一样，就是打断点，分析断点，分析变量取值，分析调用栈等等。这里简单罗列一下：</p>
+<p>
+<a href="#gdb" ><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/pic_bed/2025_3/1742197079944.png" style="max-width:40%;float:right"></a>
+</p>
+<ul>
+<li><strong>gdb</strong>：原汁原味，说开就开。缺点是命令行使用不够直观，程序是运行了是断点了，但是看不到对应的源代码是什么，很难受。不过gdb也有一个<code>tui</code>模式，可以呈现简单的界面。可以通过<code>layout src/split/asm</code>等切换布局，一定程度上解决了看不了源码的问题。</li>
+<li><strong>lldb</strong>：llvm项目的，和gdb的关系，大概就像是clang和gcc的关系吧</li>
+<li><strong>
+<a href="https://cgdb.github.io/"  target="_blank" rel="noopener noreferrer" >cgdb</a>
+</strong>：值得推荐的一个工具，完美解决了gdb没有界面不好看的问题，能够将界面分为两块，左边显示源代码，可以直接打断点，右边显示gdb，直接操作gdb。支持VIM快捷键。（如右图所示，就是在Vim的floatterm直接运行cgdb进行调试的样子，很轻量，推荐）</li>
+<li><strong>IDE</strong>：ide的图形界面做的最完善，功能很多，如果不想折腾，直接用也很舒服。至于什么不能用IDE的情况，以后碰上了再学。（当然还是那句话，都用IDE了，可能配环境的问题就没那么大了，也就不会看到这了）</li>
+</ul>
+
+  <div class="admonition reference">
+    <div class="admonition-header">
+      <svg t="1742461876844" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="48681" width="200" height="200"><path d="M65.42832 207.541555c1.419105-76.228262 70.647064-144.132337 147.334027-142.150095 199.191771-0.610236 398.376374-0.255971 597.569168-0.203753-0.258019 198.478122 0.308189 397.006415-0.307166 595.484538-185.424608-0.308189-370.898363 0.099317-556.379285-0.203753-41.290223-0.610236-82.376694 23.058921-101.272498 60.082614-17.062025 30.879358-16.402643 69.986657-0.863135 101.371815 17.472603 36.771818 56.783656 61.19865 97.310061 62.116051 211.991361-0.104436 423.930504 0.05017 635.917769-0.050171 0.100341-223.46502-0.054266-446.880893 0.050171-670.345913 24.783144-0.05017 49.617483 0 74.405746 0 0.149487 248.402771 0.05017 496.855712 0.050171 745.30763-247.084007 0-494.21716 0.05017-741.303214-0.049147-58.405491 0.504775-115.542387-34.743501-139.458301-88.32342-10.871614-23.112163-13.718016-48.908954-13.152831-74.147727 0.149487-196.296223-0.054266-392.592446 0.099317-588.888669z" p-id="48682"></path><path d="M288.89334 735.53362c173.850609-0.049146 347.639784-0.153583 521.438175 0.050171-0.099317 24.481098 0.05017 49.011343-0.099317 73.542611-173.749244-0.05017-347.488249 0.049146-521.239541 0-0.19761-24.580415-0.148463-49.061513-0.099317-73.592782z" p-id="48683"></path></svg>
+
+      <span>links</span>
+    </div>
+      <div class="admonition-content">
+        <ul>
+<li>
+<a href="https://kaikaixixi.xyz/%e5%b7%a5%e5%85%b7%e4%bd%bf%e7%94%a8/gdb%e6%95%99%e7%a8%8b/"  target="_blank" rel="noopener noreferrer" >gdb快速上手 | SHUAIKAI&rsquo;s Blog</a>
+</li>
+<li>
+<a href="https://cgdb.github.io/"  target="_blank" rel="noopener noreferrer" >cgdb官网</a>
+</li>
+<li>
+<a href="https://cgdb.github.io/docs/cgdb.htm"  target="_blank" rel="noopener noreferrer" >cgdb手册</a>
+</li>
+</ul>
+      </div>
+  </div>
+<h4 id="单元测试">单元测试</h4>
+<p>调试程序，一般你先得知道程序有错误。自己写的小程序，跑一边就知道又没错误了。但是如果是多人合作的大型项目，一来程序分支众多，跑一边不见得会跑到出错误的那种情况；另一方面，你好不容易设计出了一个好东西，或者修改好了一个bug，你当然不想被人再破坏它。保证这种情况的手段就是 单元测试。</p>
+<p>或许你听说过一个词叫 面向测试开发，或者什么测试先行。简单来说就是，代码还没写呢，功能还没实现呢，先把测试功能的代码写出来。这个一般说的就是，你先写出单元测试。单测的粒度比较小，比较精细，能够验证某个函数甚至某一个分支逻辑行为是否符合预期。</p>
+<p>C++有很多单测框架，著名而全面的有<code>GoogleTest</code>，它还带了一个可以模仿接口的<code>GoogleMock</code>，这个一般是绝对够用了的。你只会嫌弃它太重了而想换到更轻量的，比如<code>catch2</code>，<code>doctest</code>等这种单个头文件的。</p>
+<p>（这一节其实是后面才想起来，随便写写填个坑了）具体的参考这篇总结 
+<a href="https://www.cnblogs.com/seapo/p/18796800"  target="_blank" rel="noopener noreferrer" >C++ 单测框架Catch2、doctest、CppTest、GTest、CppUnit 和 CppUTest</a>
+</p>
+<h4 id="安全检查">安全检查</h4>
+<p>c++程序的安全问题，最出名的当属内存泄，以及指针相关的空指针野指针悬挂指针，此外还有一些除零、越界、溢出等等吧。这一节究竟是按照工具分类，还是按照错误分类呢？纠结了一下，还是直接介绍工具吧。读者知道有这么些个工具，等环境配好了，真个碰到对应场景的时候，再搜相关的问题，见到这些名词有个印象即可。</p>
+<h5 id="valgrind">Valgrind</h5>
+<p>详情请参考 
+<a href="https://kaikaixixi.xyz/%e5%b7%a5%e5%85%b7%e4%bd%bf%e7%94%a8/valgrind%e5%bf%ab%e9%80%9f%e4%b8%8a%e6%89%8b/"  target="_blank" rel="noopener noreferrer" >Valgrind快速上手 | SHUAIKAI&rsquo;s Blog</a>
+</p>
+<p>简单来说，valgrind提供了如下几个工具。使用方法就是 <code>valgrind --tool=&lt;tool&gt; ./&lt;your_program&gt;</code>。不同的工具可能还会输出一些文件，这些文件具体又怎么可视化，详情直接一搜即可。</p>
+<ul>
+<li><strong>memcheck</strong>： （默认tool）探测程序中内存管理存在的问题。它检查所有对内存的读/写操作，并截取所有的malloc/new/free/delete调用。因此memcheck工具能够探测到以下问题：1）使用未初始化的内存 2）读/写已经被释放的内存 3）读/写内存越界 4）读/写不恰当的内存栈空间 5）内存泄漏 6）使用malloc/new/new[]和free/delete/delete[]不匹配。 7）src和dst的重叠</li>
+<li><strong>cachegrind</strong>：模拟执行CPU中的L1, D1和L2 cache，因此它能很精确的指出代码中的cache未命中，可以打印出cache未命中的次数，内存引用和发生cache未命中的每一行代码，每一个函数，每一个模块和整个程序的摘要。</li>
+<li><strong>massif</strong>：堆栈分析器，它能测量程序在堆栈中使用了多少内存，告诉我们堆块，堆管理块和栈的大小</li>
+<li><strong>helgrind</strong>：主要用来检查多线程程序中出现的竞争问题。Helgrind 寻找内存中被多个线程访问，而又没有一贯加锁的区域，这些区域往往是线程之间失去同步的地方，而且会导致难以发掘的错误</li>
+<li><strong>callgrind</strong>：收集程序运行时的一些数据，函数调用关系等信息。用<code>callgrind_annotate</code>可以对输出文件进行可视化 <code>callgrind_annotate --auto=yes callgrind.out.[pid] &gt; log.log &amp;&amp; vim log.log</code></li>
+</ul>
+<h5 id="sanitizer">Sanitizer</h5>
+<p>Sanitizer最开始是google做的一个错误检查工具，通过在你的代码中插入一些东西，然后运行你的程序，这些东西就会把你的错误给你报出来。现在三大编译器都已经默认支持这个编译选项了。具体怎么用在上文
+<a href="#%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96%e7%9b%b8%e5%85%b3" >性能优化相关</a>
+的编译选项中已经介绍过了，直接加编译选项就好:</p>
+<p><code>g++ -fsanitize=address/leak/undefined/thread -o demo demo.cpp</code></p>
+
+  <div class="admonition reference">
+    <div class="admonition-header">
+      <svg t="1742461876844" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="48681" width="200" height="200"><path d="M65.42832 207.541555c1.419105-76.228262 70.647064-144.132337 147.334027-142.150095 199.191771-0.610236 398.376374-0.255971 597.569168-0.203753-0.258019 198.478122 0.308189 397.006415-0.307166 595.484538-185.424608-0.308189-370.898363 0.099317-556.379285-0.203753-41.290223-0.610236-82.376694 23.058921-101.272498 60.082614-17.062025 30.879358-16.402643 69.986657-0.863135 101.371815 17.472603 36.771818 56.783656 61.19865 97.310061 62.116051 211.991361-0.104436 423.930504 0.05017 635.917769-0.050171 0.100341-223.46502-0.054266-446.880893 0.050171-670.345913 24.783144-0.05017 49.617483 0 74.405746 0 0.149487 248.402771 0.05017 496.855712 0.050171 745.30763-247.084007 0-494.21716 0.05017-741.303214-0.049147-58.405491 0.504775-115.542387-34.743501-139.458301-88.32342-10.871614-23.112163-13.718016-48.908954-13.152831-74.147727 0.149487-196.296223-0.054266-392.592446 0.099317-588.888669z" p-id="48682"></path><path d="M288.89334 735.53362c173.850609-0.049146 347.639784-0.153583 521.438175 0.050171-0.099317 24.481098 0.05017 49.011343-0.099317 73.542611-173.749244-0.05017-347.488249 0.049146-521.239541 0-0.19761-24.580415-0.148463-49.061513-0.099317-73.592782z" p-id="48683"></path></svg>
+
+      <span>Reference</span>
+    </div>
+      <div class="admonition-content">
+        <ul>
+<li>
+<p>
+<a href="https://clang.llvm.org/docs/"  target="_blank" rel="noopener noreferrer" >Clang 21.0.0git documentation</a>
+ 这里面有许多关于clang用法的介绍，自然包括Address/Thread/Memory&hellip; Sanitizer，就不一一列举链接了</p>
+<ul>
+<li>
+<a href="https://clang.llvm.org/docs/AddressSanitizer.html"  target="_blank" rel="noopener noreferrer" >AddressSanitizer — Clang 21.0.0git documentation</a>
+</li>
+</ul>
+</li>
+<li>
+<p>
+<a href="https://github.com/google/sanitizers"  target="_blank" rel="noopener noreferrer" >google/sanitizers 项目文档</a>
+ google sanitizer项目原汁原味的文档</p>
+<ul>
+<li>
+<a href="https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer"  target="_blank" rel="noopener noreferrer" >AddressSanitizer &amp; LeakSanitizer · google/sanitizers Wiki</a>
+</li>
+<li>
+<a href="https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual"  target="_blank" rel="noopener noreferrer" >ThreadSanitizer · google/sanitizers Wiki</a>
+</li>
+<li>
+<a href="https://github.com/google/sanitizers/wiki/MemorySanitizer"  target="_blank" rel="noopener noreferrer" >MemorySanitizer · google/sanitizers Wiki</a>
+</li>
+</ul>
+</li>
+<li>
+<p>
+<a href="https://learn.microsoft.com/zh-cn/cpp/sanitizers/asan-error-examples?view=msvc-170"  target="_blank" rel="noopener noreferrer" >AddressSanitizer 的一些错误示例代码 | Microsoft Learn</a>
+</p>
+</li>
+</ul>
+      </div>
+  </div>
+<h5 id="静态分析">静态分析</h5>
+<p>静态分析有很多工具，像
+<a href="http://cppcheck.net/"  target="_blank" rel="noopener noreferrer" >Cppcheck</a>
+，
+<a href="https://clang.llvm.org/docs/ClangStaticAnalyzer.html"  target="_blank" rel="noopener noreferrer" >ClangStaticAnalyzer(CSA)</a>
+，
+<a href="https://github.com/cpplint/cpplint"  target="_blank" rel="noopener noreferrer" >cpplint</a>
+，前面说的
+<a href="#%e9%94%99%e8%af%af%e5%91%8a%e8%ad%a6lint" >clang-tidy</a>
+也算是吧。</p>
+<p>个人浅显的总结：cppcheck检查逻辑错误，csa能更深入的检查运行时错误，cpplint检查风格是否符合google style，clang-tidy写代码的时候给lint。有很多吧，感兴趣随便搜一下，比如这一篇
+<a href="https://www.zhihu.com/question/22178103"  target="_blank" rel="noopener noreferrer" > C++静态代码检查工具？ - 知乎</a>
+，这一篇
+<a href="https://blog.csdn.net/stallion5632/article/details/139569439"  target="_blank" rel="noopener noreferrer" >开源C++静态代码检测工具clang-tidy、cppcheck和oclint的比较_clang-tidy cppcheck-CSDN博客</a>
+&hellip;&hellip;</p>
+<h6 id="cppcheck">CppCheck</h6>
+<p>
+<a href="http://cppcheck.net/"  target="_blank" rel="noopener noreferrer" >Cppcheck</a>
+ 是 C/C++ 代码的静态分析工具，它提供<strong>独特的代码分析</strong>来检测错误（大概就是说可以检查一些别的检查不出来的错误。只检查编译器检查不出来的bug，不检查语法错误），专注于检测<strong>未定义的行为</strong>和危险的编码结构。</p>
+<p><strong>使用</strong></p>
+<p><code>cppcheck [OPTIONS] [files or paths]</code></p>
+<ol>
+<li><code>cppcheck . 2&gt; err.txt</code>: 递归检查当前文件夹，并在屏幕上打印进度，将错误写入文件</li>
+<li><code>cppcheck --quiet ../myproject/</code>: 递归检查 ../myproject/，并且不打印进度</li>
+<li><code>cppcheck --enable=all --inconclusive --library=posix test.cpp</code>: 检查test.cpp，启用所有检查</li>
+<li><code>cppcheck -I inc1/ -I inc2/ f.cpp</code>: 检查f.cpp并搜索inc1/和inc2/中的include文件</li>
+<li><code>–enable=all,warning,style,performance,portability,information,unusedFunction,missingInclude</code>启用更多检查。默认情况下只显示错误消息</li>
+<li><code>--platform=unix32,unix64 ,win32A,win32W,win64,avr8,elbrus-e1cp,pic8,pic8-enhanced,pic16,mips32,native,unspecified</code>: 指定平台，精确检查</li>
+<li><code>-i &lt;dir or file&gt;</code> 忽略源文件或源文件目录</li>
+<li><code>--suppress=syntaxError</code>屏蔽该类错误</li>
+<li><code>-j n</code> 启动多线程同时进行检查。</li>
+</ol>
+<h6 id="clangstaticanalyzer">ClangStaticAnalyzer</h6>
+<p>
+<a href="https://clang-analyzer.llvm.org/"  target="_blank" rel="noopener noreferrer" >Clang Static Analyzer</a>
+ 是一个工业级的静态源码检测工具，可以用来发现 C、C++ 和 Objective-C 程序中的 Bug。它既可以作为一个独立工具（scan-build）使用，也可以集成在 Xcode 中使用。Clang Static Analyzer 建立在 
+<a href="https://translate.googleusercontent.com/translate_c?depth=1&amp;hl=en&amp;ie=UTF8&amp;prev=_t&amp;rurl=translate.google.com&amp;sl=en&amp;sp=nmt4&amp;tl=zh-CN&amp;u=http://clang.llvm.org/&amp;xid=25657,15700022,15700124,15700149,15700186,15700191,15700201,15700214,15700230&amp;usg=ALkJrhj9knBnTdXjPrAgXaC9z2j7dV8gtw"  target="_blank" rel="noopener noreferrer" >Clang</a>
+ 和 
+<a href="https://translate.googleusercontent.com/translate_c?depth=1&amp;hl=en&amp;ie=UTF8&amp;prev=_t&amp;rurl=translate.google.com&amp;sl=en&amp;sp=nmt4&amp;tl=zh-CN&amp;u=http://llvm.org/&amp;xid=25657,15700022,15700124,15700149,15700186,15700191,15700201,15700214,15700230&amp;usg=ALkJrhjIJQVcd1RzZDUK95Dk6dujPHquDQ"  target="_blank" rel="noopener noreferrer" >LLVM</a>
+ 之上。严格地讲，它是 Clang 的一部分，因此它是完全开源的。Clang Static Analyzer 使用的静态分析引擎被实现为一个 C++ 库，可以在不同的客户端中重用，因此拥有很高的可扩展性。</p>
+<p>
+<a href="https://clang.llvm.org/docs/analyzer/user-docs/CommandLineUsage.html#scan-build"  target="_blank" rel="noopener noreferrer" >scan-build</a>
+是它自带的命令行工具，可以<strong>劫持</strong>你的构建工具来用（直接在工具如clang++、cmake前面加上scan-build即可）。找到问题后会给你生成一个一个可视化的报告，非常易读，用scan-view查看。</p>
+<pre><code class="language-bash">#(1) 单文件用scan-build
+
+scan-build clang++ demo.cc -o demo
+
+#(2) cmake项目用 scan-build
+
+mkdir build &amp;&amp; cd build
+
+## 在你的cmake前面添加上scan-build
+scan-build cmake ..
+
+## 然后构建
+scan-build cmake --build . -j8
+
+## 可能的输出
+# scan-build: Analysis run complete.
+# scan-build: 8 bugs found.
+# scan-build: Run 'scan-view /tmp/scan-build-2025-04-08-130150-171264-1' to examine bug reports.
+
+## 根据提示命令，用scan-view就可以查看报告
+scan-view /tmp/scan-build-2025-04-08-130150-171264-1
+</code></pre>
+<h5 id="形式化验证">形式化验证</h5>
+<p>形式化验证能够从数学的角度对代码进行分析验证，查找问题。常见的工具有CBMC和ESBMC。可能更偏学术一些，可以了解下有这么种东西。</p>
+<h6 id="cbmc">CBMC</h6>
+<p>
+<a href="https://www.cprover.org/cbmc/"  target="_blank" rel="noopener noreferrer" >CBMC(C Bounded Model Checker)</a>
+是一个有界模型检查器，专门用于C和C++程序。它通过将程序转换为逻辑公式，并使用SAT求解器来验证这些公式，从而检测程序中的错误。CBMC特别适用于验证嵌入式系统和安全关键软件。</p>
+<p><strong>使用</strong>：<code>cbmc [opt] file.cpp</code>，可添加选项如<code>--bounds-check</code>。支持生成验证报告（<code>--xml-ui</code>）。</p>
+<h6 id="esbmc">ESBMC</h6>
+<p>
+<a href="https://ssvlab.github.io/esbmc/"  target="_blank" rel="noopener noreferrer" >ESBMC(Efficient SMT-Based Context-Bounded Model Checker)</a>
+是一个基于SMT（可满足性模理论）的有界模型检查器，支持C、C++和Java程序。它使用SMT求解器来验证程序的属性，能够处理更复杂的逻辑和数据结构。ESBMC在验证并发程序和实时系统方面表现出色。</p>
+<p><strong>使用</strong>：<code>esbmc [opt] file.cpp</code>，输入C++代码并指定属性（如<code>--memory-leak-check</code>）。通过<code>esbmc file.cpp</code>执行验证，输出反例路径或确认安全性。</p>
+<h4 id="性能分析">性能分析</h4>
+<h5 id="perf">perf</h5>
+<p>暂时写不动了，等着后续吧。如果你看到的时候还没有后续，直接STFW得了。</p>
+<h3 id="运行">运行</h3>
+<p>程序编译好了，怎么跑起来，一般不是问题。但偶尔确实有问题，出去系统格式不对这种低级错误之外，最常见的问题应该是动态库找不到。</p>
+<p>找不到的原因有很多，可能程序是你自己编译的，但是输出到bin目录，动态库却在build目录、在lib目录；可能程序不是你编译的，你只有可执行文件，没有动态库文件；可能你有动态库文件，但是没放在默认能找到的位置。说来说去，总结一句话：<strong>动态库放的位置不对</strong>。（没动态库也算位置不对，相当于是放在了人家电脑上，没放自己电脑上）</p>
+<p>那么放哪里才算对呢？=&gt; 放系统默认位置，和当前目录下。最快的验证方法就是把动态库拷贝到当前文件夹再运行，一般就能跑起来了。</p>
+<p>如何判断缺没缺动态库可以用 <code>ldd</code> 这个工具。<code>ldd [your_excutable]</code> 他会告诉你这个程序依赖哪些动态库，找到的在哪个位置，没找到的又是谁。</p>
+<p>如果是安装的库，一般都会安装到默认位置，肯定能找到。如果是自己编译的库，那么不推荐放到系统默认位置，可以通过一个环境变量来指定：<code>LD_LIBRARY_PATH</code>，它是程序<strong>运行</strong>的时候默认的动态库搜索位置。</p>
+<pre><code class="language-bash"># 临时添加路径
+export LD_LIBRARY_PATH=/path/to/libs:$LD_LIBRARY_PATH
+
+# 永久配置（写入 ~/.bashrc 或 /etc/ld.so.conf）
+sudo ldconfig  # 刷新缓存
+</code></pre>
+<h2 id="具体编辑器配置">具体编辑器配置</h2>
+<h3 id="vscode">vscode</h3>
+
+  <div class="admonition reference">
+    <div class="admonition-header">
+      <svg t="1742461876844" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="48681" width="200" height="200"><path d="M65.42832 207.541555c1.419105-76.228262 70.647064-144.132337 147.334027-142.150095 199.191771-0.610236 398.376374-0.255971 597.569168-0.203753-0.258019 198.478122 0.308189 397.006415-0.307166 595.484538-185.424608-0.308189-370.898363 0.099317-556.379285-0.203753-41.290223-0.610236-82.376694 23.058921-101.272498 60.082614-17.062025 30.879358-16.402643 69.986657-0.863135 101.371815 17.472603 36.771818 56.783656 61.19865 97.310061 62.116051 211.991361-0.104436 423.930504 0.05017 635.917769-0.050171 0.100341-223.46502-0.054266-446.880893 0.050171-670.345913 24.783144-0.05017 49.617483 0 74.405746 0 0.149487 248.402771 0.05017 496.855712 0.050171 745.30763-247.084007 0-494.21716 0.05017-741.303214-0.049147-58.405491 0.504775-115.542387-34.743501-139.458301-88.32342-10.871614-23.112163-13.718016-48.908954-13.152831-74.147727 0.149487-196.296223-0.054266-392.592446 0.099317-588.888669z" p-id="48682"></path><path d="M288.89334 735.53362c173.850609-0.049146 347.639784-0.153583 521.438175 0.050171-0.099317 24.481098 0.05017 49.011343-0.099317 73.542611-173.749244-0.05017-347.488249 0.049146-521.239541 0-0.19761-24.580415-0.148463-49.061513-0.099317-73.592782z" p-id="48683"></path></svg>
+
+      <span>Reference</span>
+    </div>
+      <div class="admonition-content">
+        <p>
+<a href="https://zhuanlan.zhihu.com/p/1910087435012015746?share_code=aW4cqvcjiOyE&amp;utm_psn=1910504804075157180"  target="_blank" rel="noopener noreferrer" >.vscode几个配置文件说明</a>
+</p>
+      </div>
+  </div>
+<h3 id="vim">vim</h3>
+<h3 id="nvim">nvim</h3>
+<h3 id="sublime">sublime</h3>
+<h2 id="学习资料推荐">学习资料推荐</h2>
+<h3 id="手册类">手册类</h3>
+<ul>
+<li>
+<p>
+<a href="https://zh.cppreference.com/w/%e9%a6%96%e9%a1%b5"  target="_blank" rel="noopener noreferrer" >zh.cppreference.com</a>
+ and 
+<a href="https://en.cppreference.com/w/"  target="_blank" rel="noopener noreferrer" >cppreference.com</a>
+：最经典、最好用、最全面的c++在线手册，建议有问题直接去这上面查。怎么更方便的使用可以参考
+<a href="https://kaikaixixi.xyz/%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae/zeal-dataset%e4%b8%ad%e6%96%87cppreference%e9%85%8d%e7%bd%ae/"  target="_blank" rel="noopener noreferrer" >手册速查方案（如cppreference） | SHUAIKAI&rsquo;s Blog</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://hackingcpp.com/"  target="_blank" rel="noopener noreferrer" >Learn Contemporary C++ | Concise&amp;Visual Examples | hacking C++</a>
+：图形化展示各种c++标准库组件，非常非常直观理解、记忆、回忆各种api</p>
+</li>
+<li>
+<p>
+<a href="https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents.html"  target="_blank" rel="noopener noreferrer" >Google C++项目风格指南</a>
+：谷歌的C++项目风格指导</p>
+</li>
+</ul>
+<h3 id="工具类">工具类</h3>
+<ul>
+<li>
+<p>
+<a href="https://godbolt.org/"  target="_blank" rel="noopener noreferrer" >Compiler Explorer - Goldbolt</a>
+：一个非常有名的C++在线编辑器/IDE。它可以（1）用各种版本的编译器，编译运行你的c++代码或者cmake项目。（2）也能让你实时查看你写的c++代码每一段每一行对应的汇编，方便理解底层。（3）还可以作为一个代码分享工具，向别人原汁原味的展示你的代码。</p>
+</li>
+<li>
+<p>
+<a href="https://cppinsights.io/"  target="_blank" rel="noopener noreferrer" >CppInsight</a>
+：让你查看c++代码预处理后的样子。比如头文件展开、lambda表达式实现等等</p>
+</li>
+</ul>
+<h3 id="其他">其他</h3>
+<ul>
+<li>
+<a href="https://open-std.org/JTC1/SC22/WG21/"  target="_blank" rel="noopener noreferrer" >ISO/IEC JTC1/SC22/WG21 - The C++ Standards Committee - ISOCPP</a>
+：C++话事人</li>
+</ul>
+
+</main>
+
+<style>
+    
+
+    
+
+    body {
+        margin-right: 280px;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            margin-right: 0;
+        }
+    }
+
+    
+
+     
+    .article-meta {
+        text-align: center;
+        text-decoration: none;
+        background: #efefef;
+        padding: 1px;
+        border-radius: 5px;
+    }
+
+    .article-meta-title {
+        font-size: 2.2rem;
+    }
+
+    .article-meta-info {
+        color: #666;
+        font-size: 1.1rem;
+        margin: -0.6rem 0 0.2rem 10px;
+        text-align: left;
+    }
+
+    .article-meta-info a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+</style>
+
+
+
+<h1 style="font-size: 1.2rem; margin: 2.5rem 0 0.1rem 0;">Comment</h1>
+<div class="cusdis-comments">
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id=697d528d-b618-4ee1-a6fe-403c81a646ac
+    data-page-id="77698acc72d42cdce73daf73671fcf2f"
+    data-page-url="https://kaikaixixi.xyz/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c&#43;&#43;%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/"
+    data-page-title="现代C&#43;&#43;开发环境配置指南"
+  ></div>
+  <script async defer src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/cusdis/cusdis.es.min.js"></script>
+</div>
+
+<style>
+.cusdis-comments {
+  border-top: 2px dashed #cfcfcf;
+  padding-top: 1.3rem;
+}
+
+#cusdis_thread iframe {
+  min-height: 500px !important;
+  overflow: visible !important;
+}
+</style>
+
+
+<footer>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/math-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/render-katex.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/center-img.min.js"></script>
+
+  
+
+<div id="menuBtnContainer">
+    
+    <button id="menuBtn"><i class="fa-solid fa-screwdriver-wrench"></i></button>
+
+    
+    <button id="backToBottomBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-down"></i></button>
+    <button id="backToTopBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-up"></i></button>
+
+    
+    <div class="menu-popup-btn edit-btn">
+        <a href='https://github.com/captainwc/captainwc.github.io/edit/main/content/%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae/C&#43;&#43;%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae%e6%8c%87%e5%8d%97.md'
+            target="_blank" rel="noopener">
+            <i class="fa-solid fa-square-pen"></i>
+        </a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuBtn = document.getElementById('menuBtn');
+        var menuBtnContainer = document.getElementById('menuBtnContainer');
+        var backToTopBtn = document.getElementById('backToTopBtn');
+        var backToBottomBtn = document.getElementById('backToBottomBtn');
+        var popupBtns = document.querySelectorAll('.menu-popup-btn');
+        var hoverTimeout;
+
+        
+        menuBtnContainer.classList.add('visible');
+
+        
+        function showPopupBtns() {
+            clearTimeout(hoverTimeout);
+            menuBtnContainer.classList.add('active');
+        }
+
+        
+        function hidePopupBtns() {
+            hoverTimeout = setTimeout(function() {
+                menuBtnContainer.classList.remove('active');
+            }, 300);
+        }
+
+        
+        menuBtnContainer.addEventListener('mouseenter', showPopupBtns);
+        menuBtnContainer.addEventListener('mouseleave', hidePopupBtns);
+
+        
+        menuBtn.addEventListener('click', function() {
+            if (menuBtnContainer.classList.contains('active')) {
+                menuBtnContainer.classList.remove('active');
+            } else {
+                showPopupBtns();
+            }
+        });
+
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        
+        backToBottomBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+<style>
+     
+    #menuBtnContainer {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 999;
+        opacity: 0.6;
+        visibility: visible;
+        transition: opacity 0.3s;
+    }
+
+    #menuBtnContainer:hover {
+        opacity: 1;
+    }
+
+     
+    #menuBtn {
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.2rem;
+        transition: background 0.3s;
+        cursor: pointer;
+        background: #EFEFEF;
+        z-index: 1000;
+        position: relative;
+    }
+
+    #menuBtn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+     
+    .menu-popup-btn {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        background: #EFEFEF;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+     
+    .menu-popup-btn.top-btn {
+        right: 0;
+        transform: translateY(0) scale(0.8);
+    }
+
+     
+    .menu-popup-btn.edit-btn {
+        bottom: 0;
+        transform: translateX(0) scale(0.8);
+        padding: 1px 6.6px 0px 6.6px;
+    }
+
+    .menu-popup-btn.edit-btn a {
+        color: #ccc;
+        text-decoration: none;
+        background: none !important;
+        transition: opacity 0.2s;
+        padding: 0;
+        margin: 0;
+    }
+
+     
+    #menuBtnContainer.active .menu-popup-btn {
+        opacity: 1;
+        visibility: visible;
+    }
+
+     
+    #menuBtnContainer.active #backToBottomBtn {
+        transform: translateY(-60px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active #backToTopBtn {
+        transform: translateY(-110px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active .edit-btn {
+        transform: translateX(-60px) scale(1);
+    }
+
+     
+    .menu-popup-btn:hover,
+    .menu-popup-btn.edit-btn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+    .menu-popup-btn.edit-btn:hover a {
+        color: #666;
+    }
+
+     
+    @media (max-width: 768px) {
+        #menuBtnContainer {
+            right: 15px;
+            bottom: 15px;
+        }
+
+        #menuBtnContainer.active #backToBottomBtn {
+            transform: translateY(-50px) scale(1);
+        }
+
+        #menuBtnContainer.active #backToTopBtn {
+            transform: translateY(-90px) scale(1);
+        }
+
+        #menuBtnContainer.active .edit-btn {
+            transform: translateX(-50px) scale(1);
+        }
+    }
+</style>
+
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    document.querySelectorAll('ul').forEach(ul => {
+      
+      const isTodoList = Array.from(ul.children).some(li => {
+        return li.innerHTML.includes('type="checkbox"')
+      });
+
+      if (isTodoList) {
+        
+        const todolistContainer = document.createElement('div');
+        todolistContainer.className = 'todolist';
+
+        
+
+        
+        ul.querySelectorAll('li').forEach(li => {
+          const todoItemDiv = document.createElement('div');
+          todoItemDiv.className = 'todo-item';
+
+          
+          const isChecked = li.innerHTML.includes('checked');
+          const content = li.innerHTML
+            .replace(/<input[^>]+>/g, '') 
+            .trim();
+
+          
+          const checkedIcon = `<svg t="1742522457277" class="todo-item-checked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12342"><path d="M512 938.688A426.624 426.624 0 1 1 512 85.376a426.624 426.624 0 0 1 0 853.312z m0-85.312A341.312 341.312 0 1 0 512 170.688a341.312 341.312 0 0 0 0 682.688z m-42.56-170.688L288.448 501.632l60.288-60.288L469.44 561.92l241.28-241.28 60.416 60.288-301.696 301.696z" p-id="12343"></path></svg>`;
+          const uncheckedIcon = `<svg t="1742522354856" class="todo-item-unchecked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11882"><path d="M512 938.666667C276.352 938.666667 85.333333 747.648 85.333333 512S276.352 85.333333 512 85.333333s426.666667 191.018667 426.666667 426.666667-191.018667 426.666667-426.666667 426.666667z m0-85.333334a341.333333 341.333333 0 1 0 0-682.709333A341.333333 341.333333 0 0 0 512 853.333333z" p-id="11883"></path></svg>`;
+
+          
+          todoItemDiv.innerHTML = `
+            <span class="todo-item-checkbox">
+              ${isChecked ? checkedIcon : uncheckedIcon}
+            </span>
+            <span class="todo-item-content">
+              ${isChecked ? `<del>${content}</del>` : content}
+            </span>
+          `;
+
+          
+          todolistContainer.appendChild(todoItemDiv);
+        });
+
+        
+        ul.parentNode.replaceChild(todolistContainer, ul);
+      }
+    });
+
+    function addTaskProgressBar(ul, todolistContainer) {
+      
+      const totalTasks = ul.children.length;
+      const finishedTasks = Array.from(ul.children).filter(li => li.innerHTML.includes('checked')).length;
+
+      
+      const progressContainer = document.createElement('div');
+      progressContainer.className = 'todo-progress';
+
+      
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'todo-progress-counter';
+      counterSpan.textContent = `${finishedTasks}/${totalTasks}`;
+
+      
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'todo-progress-bar';
+
+      
+      const progressFill = document.createElement('div');
+      progressFill.className = 'todo-progress-bar-fill';
+      progressFill.style.width = `${(finishedTasks / totalTasks) * 100}%`;
+
+      
+      const flagSpan = document.createElement('span');
+      flagSpan.className = 'todo-progress-flag';
+      flagSpan.innerHTML = `${finishedTasks === totalTasks ? '🌟' : '🚧'}`;
+
+      
+      progressTrack.appendChild(progressFill);
+      progressContainer.append(flagSpan, progressTrack, counterSpan);
+      todolistContainer.appendChild(progressContainer);
+    }
+  });
+</script>
+
+<style>
+   
+  .todolist {
+    padding-left: 0.6rem;
+  }
+
+  .todo-item {
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: -0.5rem 0 -0.5rem -0.7rem;
+    line-height: 1.3;
+  }
+
+  .todo-item-checkbox {
+    flex-shrink: 0;
+    font-size: 1.2em;
+
+    svg {
+      margin-top: 0.46rem;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .todo-item-checked-icon {
+    fill: #707070;
+  }
+
+  .todo-item-unchecked-icon {
+    fill: #1A61CC;
+  }
+
+  .todo-item-unchecked-icon:hover {
+    fill: red;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .todo-item-content {
+    flex: 1;
+    word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+   
+  .todo-progress {
+    display: flex;
+     
+    align-items: center;
+    gap: 0.3rem;
+     
+    margin: 0.1rem 0 0 0.7rem;
+  }
+
+  .todo-progress-counter {
+     
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+    color: #707070;
+  }
+
+  .todo-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #a64036;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 20%;
+  }
+
+  .todo-progress-bar-fill {
+    height: 100%;
+    background: #84a729;
+    transition: width 0.3s ease;
+  }
+
+  .todo-progress-flag {
+    display: none;
+    position: relative;
+    font-size: 0.9rem;
+  }
+</style>
+
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll())</script>
+
+
+
+  <script>
+    const langToNerdFontMap = {
+        asm: '\ue6ab',
+        bash: '\ue760',
+        bazel: '\ue63a',
+        c: '\ue61e',
+        cmake: '\ue794',
+        cmd: '\uebc4',
+        cpp: '\ue61d',
+        'c++': '\ue61d',
+        csharp: '\ue7b2',
+        css: '\ue749',
+        diff: '\ueae1',
+        dockerfile: '\uf21f',
+        go: '\udb81\udfd3',
+        gradle: '\ue7f2',
+        html: '\ue736',
+        java: '\uedaf',
+        javascript: '\ue781',
+        json: '\ueb0f',
+        latex: '\ue81f',
+        llvm: '\ue823',
+        lua: '\ue826',
+        makefile: '\ue673',
+        markdown: '\uf48a',
+        maven: '\ue82c',
+        plaintext: '\udb80\udd4d',
+        plantuml: '\ue8cb',
+        powershell: '\ue86c',
+        python: '\ued1b',
+        rust: '\udb85\ude17',
+        shell: '\ue760',
+        sql: '\udb82\udc66',
+        text: '\udb80\udd4d',
+        toml: '\ue6b2',
+        txt: '\udb80\udd4d',
+        typescript: '\ue8ca',
+        uml: '\ue8cb',
+        vim: '\ue7c5',
+        wasm: '\ue8e0',
+        xml: '\ue8ea',
+        yaml: '\ue8eb',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            const parentElement = codeBlock.parentElement;
+
+            
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+
+            
+            const foldBtn = document.createElement('button');
+            foldBtn.className = 'fold-btn';
+            foldBtn.innerHTML = '\uf48c';
+            foldBtn.style.display = 'none';
+
+            
+            const langLabel = document.createElement('div');
+            langLabel.className = 'lang-label';
+            const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
+            const icon = langToNerdFontMap[lang.toLowerCase()];
+            langLabel.textContent = icon || lang.toUpperCase();
+            if (!icon) langLabel.style.fontSize = '0.8rem';
+
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = '\uf4bb COPY';
+
+            
+            const scale_height = 600;       
+            const collapsed_height = 500;   
+            const checkHeight = () => {
+                const originalDisplay = parentElement.style.display;
+                parentElement.style.display = 'block';
+                const fullHeight = parentElement.scrollHeight;
+                parentElement.style.display = originalDisplay;
+                return fullHeight > scale_height;
+            };
+
+            
+            if (checkHeight()) {
+                foldBtn.style.display = 'flex';
+                parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+
+                
+                parentElement.classList.add('collapsed');
+                parentElement.style.maxHeight = `${collapsed_height}px`;
+                foldBtn.innerHTML = '\uf4d9';
+
+                parentElement.style.overflowY = 'auto'; 
+
+                foldBtn.addEventListener('click', () => {
+                    const isCollapsed = parentElement.classList.toggle('collapsed');
+                    foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
+
+                    if (isCollapsed) {
+                        parentElement.style.maxHeight = `${collapsed_height}px`;
+                        parentElement.style.overflowX = 'auto';
+                    } else {
+                        parentElement.style.maxHeight = 'none';
+                        void parentElement.offsetHeight;
+                        parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                    }
+                });
+            }
+
+            
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeBlock.textContent);
+                    copyBtn.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyBtn.textContent = '\uf4bb COPY', 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                }
+            });
+
+            
+            tools.append(langLabel, foldBtn, copyBtn);
+            parentElement.prepend(tools);
+        });
+    });
+</script>
+
+<style>
+ 
+.code-tools {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-family: "Maple Mono NF CN";
+}
+
+.fold-btn {
+    cursor: pointer;
+    border: none;
+    color: #666;
+    background: none;
+    font-family: "Maple Mono NF CN";
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0 0.45rem;
+    transition: all 0.2s ease;
+}
+
+ 
+.lang-label {
+     
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+ 
+.copy-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+}
+
+ 
+pre:hover .code-tools {
+    opacity: 1;
+    pointer-events: auto;
+}
+</style>
+
+
+  
+<script>
+    
+    window.diagramRenderUtils = {
+        
+        getOrCreateFullscreenOverlay: function() {
+            let overlay = document.querySelector('.fullscreen-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'fullscreen-overlay';
+                document.body.appendChild(overlay);
+
+                
+                overlay.addEventListener('dblclick', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            }
+            return overlay;
+        },
+
+        
+        createDiagramContainer: function() {
+            const container = document.createElement('div');
+            container.className = 'code-rendered-diagram';
+            return container;
+        },
+
+        
+        createCopyButton: function() {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'code-rendered-diagram-copy-button';
+            copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+            return copyButton;
+        },
+
+        
+        createFullscreenButton: function() {
+            const fullscreenButton = document.createElement('button');
+            fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+            fullscreenButton.innerHTML = '&#xf065; FULL';
+            return fullscreenButton;
+        },
+
+        
+        makeSVGTransparent: function(svgText) {
+            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                .forEach(el => {
+                    if (el.tagName !== 'svg') {
+                        el.setAttribute('fill', 'transparent');
+                    }
+                });
+            doc.documentElement.style.backgroundColor = 'transparent';
+            return new XMLSerializer().serializeToString(doc);
+        },
+
+        
+        setupCopyButton: function(copyButton, codeContent) {
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeContent);
+                    copyButton.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                } catch (err) {
+                    copyButton.textContent = 'FAILED';
+                    console.error('复制失败:', err);
+                }
+            });
+        },
+
+        
+        setupShowSourceCode: function(imageElem, sourceCode) {
+            
+            imageElem.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+
+                
+                const pre = document.createElement('pre');
+                const codeElem = document.createElement('code');
+                codeElem.textContent = sourceCode;
+                pre.appendChild(codeElem);
+
+                
+                window.diagramRenderUtils.popupWindowUtils.create({
+                    title: 'Source Code',
+                    content: pre,
+                    x: e.clientX,
+                    y: e.clientY,
+                    minWidth: 300,
+                    maxWidth: '60%',
+                    maxHeight: '60%',
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    className: 'source-code-viewer'
+                });
+            });
+        },
+
+        
+        setupFullscreenButton: function(fullscreenButton, contentElement, isImage = false) {
+            fullscreenButton.addEventListener('click', () => {
+                const overlay = this.getOrCreateFullscreenOverlay();
+                let clonedContent;
+
+                if (isImage) {
+                    
+                    clonedContent = contentElement.cloneNode(true);
+                } else {
+                    
+                    const svgElement = contentElement.querySelector('svg');
+                    if (!svgElement) return;
+                    clonedContent = svgElement.cloneNode(true);
+                }
+
+                overlay.innerHTML = '';
+
+                
+                const exitButton = document.createElement('button');
+                exitButton.className = 'fullscreen-exit-button';
+                exitButton.innerHTML = 'ESC';
+                exitButton.onclick = () => overlay.classList.remove('active');
+
+                overlay.appendChild(exitButton);
+                overlay.appendChild(clonedContent);
+                overlay.classList.add('active');
+
+                
+                this.setupZoomAndDrag(overlay, isImage ? 'img' : 'svg');
+            });
+        },
+
+        
+        setupZoomAndDrag: function(overlay, selector) {
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            const element = overlay.querySelector(selector);
+
+            
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY * -0.002;
+                const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                
+                const rect = element.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                
+                posX += mouseX * (1 - newScale / scale);
+                posY += mouseY * (1 - newScale / scale);
+
+                scale = newScale;
+                updateTransform();
+            });
+
+            
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === overlay) return;
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                overlay.classList.add('dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                overlay.classList.remove('dragging');
+            });
+
+            function updateTransform() {
+                element.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+        },
+
+        
+        popupWindowUtils: {
+            
+            create: function(options) {
+                
+                const config = {
+                    title: 'Popup Window',
+                    content: '',         
+                    x: 100,              
+                    y: 100,              
+                    minWidth: 300,       
+                    maxWidth: '80%',     
+                    maxHeight: '80%',    
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    onClose: null,       
+                    className: ''        
+                };
+
+                
+                Object.assign(config, options);
+
+                
+                if (config.className) {
+                    const existingPopup = document.querySelector(`.popup-window.${config.className}`);
+                    if (existingPopup) {
+                        document.body.removeChild(existingPopup);
+                    }
+                }
+
+                
+                const popup = document.createElement('div');
+                popup.className = `popup-window ${config.className}`.trim();
+
+                
+                const titleBar = document.createElement('div');
+                titleBar.className = 'popup-window-title';
+                titleBar.textContent = config.title;
+
+                
+                const closeButton = document.createElement('button');
+                closeButton.className = 'popup-window-close';
+                closeButton.innerHTML = '&times;';
+
+                
+                titleBar.appendChild(closeButton);
+
+                
+                const contentContainer = document.createElement('div');
+                contentContainer.className = 'popup-window-content';
+
+                
+                if (typeof config.content === 'string') {
+                    contentContainer.innerHTML = config.content;
+                } else if (config.content instanceof Element) {
+                    contentContainer.appendChild(config.content);
+                }
+
+                
+                popup.appendChild(titleBar);
+                popup.appendChild(contentContainer);
+
+                
+                popup.style.minWidth = typeof config.minWidth === 'number' ? `${config.minWidth}px` : config.minWidth;
+                popup.style.maxWidth = typeof config.maxWidth === 'number' ? `${config.maxWidth}px` : config.maxWidth;
+                popup.style.maxHeight = typeof config.maxHeight === 'number' ? `${config.maxHeight}px` : config.maxHeight;
+
+                
+                document.body.appendChild(popup);
+
+                
+                const popupRect = popup.getBoundingClientRect();
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+
+                
+                let left = Math.min(Math.max(config.x, 20), windowWidth - popupRect.width - 20);
+                let top = Math.min(Math.max(config.y, 20), windowHeight - popupRect.height - 20);
+
+                popup.style.left = `${left}px`;
+                popup.style.top = `${top}px`;
+
+                
+                const closePopup = () => {
+                    if (document.body.contains(popup)) {
+                        document.body.removeChild(popup);
+                        if (typeof config.onClose === 'function') {
+                            config.onClose();
+                        }
+                    }
+                };
+
+                closeButton.addEventListener('click', closePopup);
+
+                
+                if (config.closeOnEsc) {
+                    const escHandler = (e) => {
+                        if (e.key === 'Escape' && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('keydown', escHandler);
+                        }
+                    };
+                    document.addEventListener('keydown', escHandler);
+                }
+
+                
+                if (config.closeOnClickOutside) {
+                    const outsideClickHandler = (e) => {
+                        if (popup && !popup.contains(e.target) && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('mousedown', outsideClickHandler);
+                        }
+                    };
+
+                    
+                    setTimeout(() => {
+                        document.addEventListener('mousedown', outsideClickHandler);
+                    }, 100);
+                }
+
+                
+                let isDragging = false;
+                let offsetX = 0;
+                let offsetY = 0;
+
+                titleBar.addEventListener('mousedown', (e) => {
+                    
+                    if (e.target !== closeButton) {
+                        isDragging = true;
+                        offsetX = e.clientX - popup.getBoundingClientRect().left;
+                        offsetY = e.clientY - popup.getBoundingClientRect().top;
+                        popup.classList.add('dragging');
+                    }
+                });
+
+                const mouseMoveHandler = (e) => {
+                    if (isDragging) {
+                        let newLeft = e.clientX - offsetX;
+                        let newTop = e.clientY - offsetY;
+
+                        
+                        newLeft = Math.max(0, Math.min(windowWidth - popupRect.width, newLeft));
+                        newTop = Math.max(0, Math.min(windowHeight - popupRect.height, newTop));
+
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    }
+                };
+
+                const mouseUpHandler = () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        popup.classList.remove('dragging');
+                    }
+                };
+
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+
+                
+                return {
+                    element: popup,
+                    contentElement: contentContainer,
+                    close: closePopup,
+                    setTitle: (title) => {
+                        titleBar.textContent = title;
+                        titleBar.appendChild(closeButton); 
+                    },
+                    setContent: (content) => {
+                        contentContainer.innerHTML = '';
+                        if (typeof content === 'string') {
+                            contentContainer.innerHTML = content;
+                        } else if (content instanceof Element) {
+                            contentContainer.appendChild(content);
+                        }
+                    },
+                    setPosition: (x, y) => {
+                        let newLeft = Math.min(Math.max(x, 0), windowWidth - popupRect.width);
+                        let newTop = Math.min(Math.max(y, 0), windowHeight - popupRect.height);
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    },
+                    
+                    destroy: () => {
+                        document.removeEventListener('mousemove', mouseMoveHandler);
+                        document.removeEventListener('mouseup', mouseUpHandler);
+                        if (document.body.contains(popup)) {
+                            document.body.removeChild(popup);
+                        }
+                    }
+                };
+            }
+        }
+    };
+</script>
+<style>
+     
+    .code-rendered-diagram {
+        max-width: 80% !important;
+        height: auto;
+        position: relative;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .code-rendered-diagram-copy-button,
+    .code-rendered-diagram-fullscreen-button {
+        position: absolute;
+        top: 20px;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 0.3rem;
+        margin: 0 0 0 0.6rem;
+        color: #333;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.6rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        opacity: 0;
+    }
+
+    .code-rendered-diagram-copy-button {
+        right: 10px;
+    }
+
+    .code-rendered-diagram-fullscreen-button {
+        right: 100px;
+    }
+
+    .code-rendered-diagram:hover .code-rendered-diagram-copy-button,
+    .code-rendered-diagram:hover .code-rendered-diagram-fullscreen-button {
+        opacity: 1;
+    }
+
+    .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FBFBFB;
+         
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fullscreen-overlay.active {
+        display: flex;
+    }
+
+    .fullscreen-overlay img,
+    .fullscreen-overlay svg {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        cursor: move;
+        transition: transform 0.1s ease-out;
+        transform-origin: center center;
+    }
+
+    .fullscreen-overlay svg {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .fullscreen-overlay.dragging {
+        cursor: move;
+    }
+
+    .fullscreen-exit-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        color: #666;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        transition: all 0.2s ease;
+        z-index: 100000;
+    }
+
+    .fullscreen-exit-button:hover {
+        background-color: #e0e0e0;
+        color: #333;
+    }
+
+     
+    .popup-window {
+        position: fixed;
+        z-index: 10000;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .popup-window.dragging {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        opacity: 0.95;
+    }
+
+    .popup-window-title {
+        background-color: #e8e8e8;
+        padding: 8px 12px;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        cursor: move;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #333;
+        font-family: "Maple Mono NF CN", monospace;
+        font-size: 0.9rem;
+    }
+
+    .popup-window-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #666;
+        padding: 0 4px;
+        margin: -4px -4px 0 0;
+        transition: color 0.2s ease;
+    }
+
+    .popup-window-close:hover {
+        color: #333;
+    }
+
+    .popup-window-content {
+        overflow: auto;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+     
+    .popup-window.source-code-viewer .popup-window-content {
+        font-family: "Maple Mono NF CN", monospace;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content pre {
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content code {
+        font-family: "Maple Mono NF CN", monospace;
+        color: #333;
+    }
+</style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
+        if (!plantumlBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
+
+        
+        script.onload = () => {
+            const plantuml_theme = parsePlantumlUserConfig();
+
+            plantumlBlocks.forEach(codeBlock => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const img = document.createElement('img');
+                img.className = 'code-rendered-diagram-img';
+                img.style.display = 'block';
+                img.alt = 'PlantUML Diagram';
+
+                
+                const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
+                img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, fullCode);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(img, fullCode);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, img, true);
+
+                
+                
+
+                
+                container.appendChild(img);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+                codeBlock.parentElement.replaceWith(container);
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+
+    function parsePlantumlUserConfig() {
+        let configItems = [];
+
+        
+            configItems.push(`scale 5`);
+        
+
+        
+            configItems.push(`skin rose`);
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        
+        
+            
+                configItems.push(`skinparam shadowing false`);
+            
+        
+
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        return configItems.join("\n").trim();
+    }
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+        if (!mermaidBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js';
+
+        
+        script.onload = () => {
+            
+            mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                fontFamily: 'Maple Mono NF CN',
+                
+                look: 'handDrawn',
+                
+                theme: 'neutral',
+                
+                
+            });
+
+            
+            mermaidBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const renderDiv = document.createElement('div');
+                renderDiv.id = `mermaid-diagram-${index}`;
+                renderDiv.style.background = 'transparent';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                try {
+                    
+                    mermaid.render(`mermaid-svg-${index}`, code).then(result => {
+                        renderDiv.innerHTML = result.svg;
+
+                        
+                        const svg = renderDiv.querySelector('svg');
+                        if (svg) {
+                            svg.style.backgroundColor = 'transparent';
+                            
+                            svg.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                                .forEach(el => {
+                                    if (el.tagName !== 'svg') {
+                                        el.setAttribute('fill', 'transparent');
+                                    }
+                                });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Mermaid渲染错误:', error);
+                    renderDiv.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Mermaid渲染错误: ${error.message}
+                    </div>`;
+                }
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(renderDiv, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, renderDiv, false);
+
+                
+                container.appendChild(renderDiv);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const markmapBlocks = document.querySelectorAll('pre code.language-map, pre code.language-mindmap');
+        if (!markmapBlocks.length) return;
+
+        
+        function loadScript(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+
+        
+        Promise.all([
+            loadScript('https://cdn.jsdelivr.net/npm/d3@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-view@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-lib@latest')
+        ]).then(() => {
+            
+            markmapBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const markmapContainer = document.createElement('div');
+                markmapContainer.className = 'markmap';
+                markmapContainer.id = `markmap-${index}`;
+                markmapContainer.style.minHeight = '300px';
+                markmapContainer.style.width = '100%';
+                markmapContainer.style.position = 'relative';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                
+                const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.style.width = '100%';
+                svgElement.style.height = '400px';
+                markmapContainer.appendChild(svgElement);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(markmapContainer, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, markmapContainer, false);
+
+                
+                container.appendChild(markmapContainer);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+
+                
+                renderMarkmapWithRetry(svgElement, markmapContainer, code);
+            });
+        }).catch(error => {
+            console.error('加载markmap库失败:', error);
+        });
+
+        
+
+        function renderMarkmapWithRetry(svgElement, markmapContainer, code, maxRetries = 5, delay = 200) {
+            let attempt = 0;
+
+            function tryRender() {
+                attempt++;
+                try {
+                    
+                    if (!window.markmap || typeof window.markmap.Markmap !== 'function') {
+                        throw new Error('Markmap constructor not available yet.');
+                    }
+
+                    
+                    const { Transformer } = window.markmap;
+                    const transformer = new Transformer();
+
+                    
+                    const { root, features } = transformer.transform(code);
+
+                    
+                    const { Markmap } = window.markmap;
+                    const mm = new Markmap(svgElement, {
+                        autoFit: true,
+                        duration: 500,
+                        zoom: true,
+                    });
+
+                    
+                    mm.setData(root, features);
+                    mm.fit();
+
+                    
+                    markmapContainer.dataset.markmapData = JSON.stringify({
+                        root: root,
+                        features: features
+                    });
+
+                    
+                    setTimeout(() => {
+                        const links = svgElement.querySelectorAll('a');
+                        links.forEach(link => {
+                            link.setAttribute('target', '_blank');
+                            link.setAttribute('rel', 'noopener noreferrer');
+                        });
+                    }, 100);
+
+                } catch (error) {
+                    console.error(`Markmap渲染尝试第 ${attempt} 次失败:`, error.message);
+                    if (attempt < maxRetries) {
+                        
+                        setTimeout(tryRender, delay);
+                    } else {
+                        
+                        console.error('Markmap渲染在多次重试后仍然失败。');
+                        markmapContainer.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                            Markmap渲染错误: ${error.message} (请尝试手动刷新网页)
+                        </div>`;
+                    }
+                }
+            }
+
+            
+            tryRender();
+        }
+    });
+</script>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        if (!window.diagramRenderUtils) return;
+
+        
+        const originalSetupFullscreenButton = window.diagramRenderUtils.setupFullscreenButton;
+        window.diagramRenderUtils.setupFullscreenButton = function(fullscreenButton, contentElement, isImage = false) {
+            
+            const isMarkmap = contentElement.classList.contains('markmap');
+
+            if (isMarkmap) {
+                fullscreenButton.addEventListener('click', () => {
+                    const overlay = this.getOrCreateFullscreenOverlay();
+                    overlay.innerHTML = '';
+
+                    
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => overlay.classList.remove('active');
+                    overlay.appendChild(exitButton);
+
+                    
+                    const fullscreenContainer = document.createElement('div');
+                    fullscreenContainer.className = 'markmap';
+                    fullscreenContainer.style.width = '100%';
+                    fullscreenContainer.style.height = '100%';
+
+                    
+                    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svgElement.style.width = '100%';
+                    svgElement.style.height = '100%';
+                    fullscreenContainer.appendChild(svgElement);
+
+                    overlay.appendChild(fullscreenContainer);
+                    overlay.classList.add('active');
+
+                    
+                    try {
+                        const markmapData = JSON.parse(contentElement.dataset.markmapData || '{}');
+                        if (markmapData.root) {
+                            
+                            const { Markmap } = window.markmap;
+                            const mm = new Markmap(svgElement, {
+                                autoFit: true,
+                                duration: 500,
+                                zoom: true,
+                            });
+
+                            
+                            mm.setData(markmapData.root, markmapData.features);
+                            mm.fit();
+
+                            
+                            setTimeout(() => {
+                                const links = svgElement.querySelectorAll('a');
+                                links.forEach(link => {
+                                    link.setAttribute('target', '_blank');
+                                    link.setAttribute('rel', 'noopener noreferrer');
+                                });
+                            }, 100);
+                        }
+                    } catch (error) {
+                        console.error('全屏模式下渲染markmap失败:', error);
+                    }
+
+                    
+                    this.setupZoomAndDrag(overlay, 'svg');
+                });
+            } else {
+                
+                originalSetupFullscreenButton.call(this, fullscreenButton, contentElement, isImage);
+            }
+        };
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const xmindBlocks = document.querySelectorAll('pre code.language-xmind');
+        if (xmindBlocks.length === 0) {
+            return;
+        }
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/xmind-embed-viewer/dist/umd/xmind-embed-viewer.js';
+        document.head.appendChild(script);
+
+        
+        script.onload = function() {
+            xmindBlocks.forEach((codeBlock, index) => {
+                const xmindUrl = codeBlock.textContent.trim();
+                if (!xmindUrl) {
+                    console.error('XMind code block is empty.');
+                    return;
+                }
+
+                
+                const mountId = `xmind-mount-${index}`;
+                const mountDiv = document.createElement('div');
+                mountDiv.id = mountId;
+
+                
+                const preElement = codeBlock.parentElement;
+                preElement.parentElement.replaceChild(mountDiv, preElement);
+
+                renderXmindFile(mountId, xmindUrl);
+            });
+
+            async function renderXmindFile(elementId, fileUrl) {
+                const mountEl = document.getElementById(elementId);
+
+                
+                
+                mountEl.className = 'xmind-container';
+                
+                mountEl.innerHTML = `
+                <div class="xmind-loader-wrapper">
+                    <div class="xmind-loader"></div>
+                    <div class="xmind-loader-text">xmind loading</div>
+                </div>
+            `;
+
+                try {
+                    
+                    const isExternal = fileUrl.startsWith('http');
+                    const fetchUrl = isExternal ? `https://api.allorigins.win/raw?url=${encodeURIComponent(fileUrl)}` : fileUrl;
+                    const res = await fetch(fetchUrl, {
+                        mode: 'cors'
+                    });
+
+                    
+                    if (!res.ok) {
+                        mountEl.innerHTML = `
+                        <div class="xmind-error">
+                            <span class="xmind-error-icon">⚠️</span>
+                            <div class="xmind-error-content">
+                                <strong>加载 XMind 文件失败</strong>
+                                <p>无法从 <code>${fileUrl}</code> 获取文件 (HTTP ${res.status})</p>
+                            </div>
+                        </div>
+                    `;
+                        console.error(`Failed to fetch XMind file: ${res.statusText}`);
+                        return;
+                    }
+                    const fileBuffer = await res.arrayBuffer();
+
+                    
+                    mountEl.className = ''; 
+                    mountEl.innerHTML = ''; 
+
+                    new XMindEmbedViewer({
+                        el: `#${elementId}`,
+                        file: fileBuffer,
+                        styles: {
+                            'height': '500px',
+                            'width': '100%'
+                        }
+                    });
+                } catch (error) {
+                    
+                    mountEl.innerHTML = `
+                    <div class="xmind-error">
+                        <span class="xmind-error-icon">⚠️</span>
+                        <div class="xmind-error-content">
+                            <strong>渲染 XMind 文件时出错</strong>
+                            <p>${error.message}</p>
+                        </div>
+                    </div>
+                `;
+                    console.error('Error rendering XMind file:', error);
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+     
+    .xmind-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        background-color: #f9f9f9;
+        border: 1px dashed #ddd;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+        padding: 20px;
+    }
+
+     
+    .xmind-loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+     
+    .xmind-loader {
+        border: 3px solid #f0f0f0;
+        border-top: 3px solid #999;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+    }
+
+     
+    .xmind-loader-text {
+        color: #888;
+        font-size: 0.9rem;
+        font-family: "LXGW WenKai", "Maple Mono NF CN", sans-serif;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+     
+    .xmind-error {
+        display: flex;
+        align-items: flex-start;
+        text-align: left;
+        color: #c0392b;
+        width: 100%;
+    }
+
+    .xmind-error-icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        line-height: 1.2;
+    }
+
+    .xmind-error-content {
+        flex: 1;
+    }
+
+    .xmind-error strong {
+        font-size: 1.1rem;
+        color: #a93226;
+    }
+
+    .xmind-error p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        color: #7b241c;
+        word-break: break-all;
+    }
+
+    .xmind-error code {
+        background-color: #fbeae5;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+</style>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const DIAGRAM_MAP = new Map([
+            ['plantuml_kroki', 'plantuml'],
+            ['mermaid_kroki', 'mermaid'],
+            ['graphviz', 'graphviz'],
+            ['blockdiag', 'blockdiag'],
+            ['seqdiag', 'seqdiag'],
+            ['actdiag', 'actdiag'],
+            ['packetdiag', 'packetdiag'],
+            ['database', 'dbml'],
+            ['dbml', 'dbml'],
+            ['vega', 'vega']
+        ]);
+
+        
+        const blocks = [];
+        document.querySelectorAll('pre code[class]').forEach(block => {
+            if (block.dataset.kroki) return;
+            const lang = [...block.classList].find(c => DIAGRAM_MAP.has(c.split('-')[1]));
+            if (lang) {
+                block.dataset.kroki = 'processed';
+                blocks.push({ block, api: DIAGRAM_MAP.get(lang.split('-')[1]) });
+            }
+        });
+
+        if (!blocks.length) return;
+
+        
+        const CONCURRENCY = 6;
+        const queue = blocks.slice();
+
+        (async function processQueue() {
+            const workers = Array(Math.min(CONCURRENCY, queue.length))
+                .fill()
+                .map(async () => {
+                    while (queue.length) {
+                        const { block, api } = queue.pop();
+                        await renderBlock(block, api);
+                    }
+                });
+            await Promise.all(workers);
+        })();
+
+        async function renderBlock(block, api) {
+            const pre = block.closest('pre');
+            try {
+                const code = block.textContent.trim();
+                if (!code) {
+                    pre.style.border = '2px solid orange';
+                    return;
+                }
+
+                const res = await fetch(`https://kroki.io/${api}/svg`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: code
+                });
+
+                if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
+
+                
+                const svg = window.diagramRenderUtils.createDiagramContainer();
+                svg.innerHTML = window.diagramRenderUtils.makeSVGTransparent(await res.text());
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, svg, false);
+                svg.appendChild(fullscreenButton);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+                svg.appendChild(copyButton);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(svg, code);
+
+                pre.insertAdjacentElement('afterend', svg);
+
+                
+                pre.remove();
+            } catch (err) {
+                console.error(`[Kroki] 渲染失败: ${err.message}`);
+                pre.style.border = '2px solid red';
+                pre.title = err.message;
+            }
+        }
+    });
+</script>
+
+
+  <div id="search-modal">
+  <input type="text" id="modal-search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
+  <div id="modal-search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="modal-search-results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+  function debug(text) {
+      document.getElementById('modal-search-debug').textContent = text;
+  }
+  function showpages() {
+    debug("当前本站共有 " + searchIndex.length + " 篇文章");
+  }
+
+  let searchIndex = [];
+  
+  
+    
+  
+
+  
+    searchIndex.push({
+      title: "\"面向模式的软件架构 卷1 模式系统 读书笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%8D%B71%E6%A8%A1%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/\"",
+      
+      categories: "[\"读书笔记\",\"软件工程\"]",
+      tags: "[\"设计模式\"]",
+      series: "[\"软件架构之道\"]",
+      date: "\"2025-12-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"链接符号与符号导入导出宏——记一次因clangd补全头文件产生的链接错误\"",
+      permalink: "\"/cpp/%E9%93%BE%E6%8E%A5%E7%AC%A6%E5%8F%B7%E5%AF%BC%E5%87%BA%E4%B8%8E%E7%AC%A6%E5%8F%B7%E5%8F%AF%E8%A7%81%E5%AE%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"C++踩坑\"]",
+      date: "\"2025-11-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"Qt从零开始（0）——环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/qt%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: "[\"Qt专栏\"]",
+      date: "\"2025-08-30\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu配置coredump文件生成位置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E7%94%9F%E6%88%90coredump%E6%96%87%E4%BB%B6/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-08-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu安装中文输入法（fcitx5-rime）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E5%AE%89%E8%A3%85rime%E8%BE%93%E5%85%A5%E6%B3%95/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-07-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"SSH反向隧道中转机-远程连接本地服务器\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/ssh%E5%8F%8D%E5%90%91%E9%9A%A7%E9%81%93%E4%B8%AD%E8%BD%AC%E6%9C%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"ssh\"]",
+      series: [],
+      date: "\"2025-06-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++ 高并发服务器模型实现 | [转载](https://github.com/linkxzhou/mylib/blob/master/c%2B%2B/concurrency_server/README.md)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/06/10/22%E7%A7%8Dc-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"C++\"]",
+      series: [],
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"libclang-py使用介绍\"",
+      permalink: "\"/cpp/libclang-py%E4%BD%BF%E7%94%A8/\"",
+      
+      categories: [],
+      tags: "[\"C++\",\"编译原理\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"参数包与折叠表达式傻傻分不清\"",
+      permalink: "\"/cpp/%E5%8F%82%E6%95%B0%E5%8C%85%E4%B8%8E%E6%8A%98%E5%8F%A0%E8%A1%A8%E8%BE%BE%E5%BC%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-06-05\""
+    });
+  
+    searchIndex.push({
+      title: "\"协程快速入门\"",
+      permalink: "\"/cpp/%E5%8D%8F%E7%A8%8B%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"coroutine\",\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-05-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"初等数学回忆录\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%88%9D%E7%AD%89%E6%95%B0%E5%AD%A6%E5%9B%9E%E5%BF%86%E5%BD%95/\"",
+      
+      categories: "[\"数学\"]",
+      tags: "[\"数学\",\"三角函数\",\"极坐标\",\"定积分\"]",
+      series: [],
+      date: "\"2025-05-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/epoll%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"epoll\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"asio\"]",
+      series: "[\"网络编程\"]",
+      date: "\"2025-04-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/googletest%E4%B8%8Egmock%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"Docker\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"CyberRT\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++小技巧\"",
+      permalink: "\"/cpp/c++%E5%B0%8F%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-04-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"tmux 快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"tmux\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Valgrind快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/valgrind%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"valgrind\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Mermaid快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/mermaid%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"mermaid\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-07\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT框架总览\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"通信中间件术语表\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E6%9C%AF%E8%AF%AD%E8%A1%A8/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: [],
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-27\""
+    });
+  
+    searchIndex.push({
+      title: "\"现代C++开发环境配置指南\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"c++\"]",
+      series: [],
+      date: "\"2025-03-26\""
+    });
+  
+    searchIndex.push({
+      title: "\"带着目的学：CyberRT\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6cyberrt/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Linux环境变量加载顺序分析\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E5%88%86%E6%9E%90/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"linux\"]",
+      series: [],
+      date: "\"2025-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"手册速查方案（如cppreference）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"cppreference\"]",
+      series: [],
+      date: "\"2025-03-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT中的代码和工程技巧\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\",\"C++\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"设计模式\"",
+      permalink: "\"/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/\"",
+      
+      categories: "[\"软件工程\"]",
+      tags: "[\"SE\"]",
+      series: "[\"设计模式专项总结\"]",
+      date: "\"2025-02-28\""
+    });
+  
+    searchIndex.push({
+      title: "\"一站式环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-02-24\""
+    });
+  
+    searchIndex.push({
+      title: "\"leetcode调试指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/\"",
+      
+      categories: [],
+      tags: "[\"leetcode\"]",
+      series: [],
+      date: "\"2024-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"linux命令行大记忆恢复术\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"linux\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"番茄鸡蛋面\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E8%8F%9C%E8%B0%B1/%E7%95%AA%E8%8C%84%E9%B8%A1%E8%9B%8B%E9%9D%A2/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: [],
+      series: "[\"快速做饭\"]",
+      date: "\"2023-10-22\""
+    });
+  
+    searchIndex.push({
+      title: "\"PlantUML快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"uml\",\"plantuml\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-10-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"WSL安装与配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/wsl%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2023-09-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++网络编程入门概念及api总结\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/\"",
+      
+      categories: [],
+      tags: "[\"linux\",\"网络编程\"]",
+      series: "[\"面筋\",\"快速上手\"]",
+      date: "\"2023-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"苏州旅行计划\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/%E8%8B%8F%E5%B7%9E/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: "[\"旅行\"]",
+      series: [],
+      date: "\"2023-04-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"gdb快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"gdb\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2022-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Ubuntu22.04安装Hadoop完全分布式集群\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"hadoop\"]",
+      series: [],
+      date: "\"2022-11-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++连接mysql\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E8%BF%9E%E6%8E%A5mysql/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2022-11-20\""
+    });
+  
+    searchIndex.push({
+      title: "\"征服C指针笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/\"",
+      
+      categories: [],
+      tags: [],
+      series: [],
+      date: "\"2022-10-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Leetcode刷题指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"算法\"]",
+      tags: "[\"leetcode\"]",
+      series: "[\"leetcode刷题指南\"]",
+      date: "\"2022-09-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"word 页眉页脚设置\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/word%E9%A1%B5%E7%9C%89%E9%A1%B5%E8%84%9A%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: [],
+      series: [],
+      date: "\"2021-04-03\""
+    });
+  
+    searchIndex.push({
+      title: "\"Markdown Demo\"",
+      permalink: "\"/%E6%B5%8B%E8%AF%95/markdown-demo/\"",
+      
+      categories: [],
+      tags: "[\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"常用数学符号的latex表示\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84latex%E8%A1%A8%E7%A4%BA/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"latex\",\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+
+  showpages()
+
+  const options = {
+    includeScore: true,
+    threshold: 0.6,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'content', weight: 0.3 },
+      { name: 'tags', weight: 0.5 },
+      { name: 'categories', weight: 0.5 },
+      { name: 'series', weight: 0.5 }
+    ]
+  };
+
+  const fuse = new Fuse(searchIndex, options);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'k') {
+      event.preventDefault();
+      toggleSearchModal();
+    } else if (event.key === 'Escape') {
+      document.getElementById('modal-search-input').value = "";
+      closeSearchModal();
+      var res = document.getElementById('modal-search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      showpages();
+    }
+  });
+
+  function toggleSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+      document.getElementById('modal-search-input').focus();
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('modal-search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.trim();
+    const resultsContainer = document.getElementById('modal-search-results');
+    resultsContainer.innerHTML = '';
+
+    if (searchTerm === '') {
+      showpages()
+      return;
+    }
+
+    const results = fuse.search(searchTerm);
+
+    results.sort((a, b) => new Date(b.item.date) - new Date(a.item.date));
+
+    if (results.length === 0) {
+      showpages()
+      resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
+      return;
+    } else {
+      debug("共找到 " + results.length + " 篇匹配的文章")
+    }
+
+    results.forEach(result => {
+      const item = result.item;
+      const resultItem = document.createElement('div');
+      resultItem.className = 'modal-search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
+      date.className = 'modal-search-result-date';
+
+      const link = document.createElement('a');
+      link.href = item.permalink.replace(/^"|"$/g, '');
+      link.textContent = item.title.replace(/^"|"$/g, '');
+      link.className = 'modal-search-result-title';
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
+    });
+  });
+</script>
+
+<style>
+ 
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
+    border-radius: 6px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+}
+
+#modal-search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#modal-search-results {
+    margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.modal-search-result-date {
+    color: #666;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    text-wrap: nowrap;
+}
+
+.modal-search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.modal-search-result-title:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+  
+
+  
+  <hr />
+  © 
+<a href="https://kaikaixixi.xyz"  target="_blank" rel="noopener noreferrer" >SHUAIKAI</a>
+ 2021 &ndash; 2025 | 🎨
+<a href="https://github.com/captainwc/ksimple"  target="_blank" rel="noopener noreferrer" >KSimple</a>
+  
+
+</footer>
+</body>
+
+</html>

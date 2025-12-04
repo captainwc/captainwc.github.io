@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>编译原理 on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
+    <description>Recent content in 编译原理 on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 10 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>libclang-py使用介绍</title>
+      <link>https://kaikaixixi.xyz/cpp/libclang-py%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 10 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/cpp/libclang-py%E4%BD%BF%E7%94%A8/</guid>
+      <description>&lt;h1 id=&#34;libclang-python-binding-api介绍&#34;&gt;libclang python binding API介绍&lt;/h1&gt;&#xA;&#xA;          &lt;link rel=&#34;stylesheet&#34; href=&#34;https://kaikaixixi.xyz/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css&#34; integrity=&#34;sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=&#34; crossorigin=&#34;anonymous&#34;&gt;&#xA;  &lt;div class=&#34;admonition info&#34;&gt;&#xA;    &lt;div class=&#34;admonition-header&#34;&gt;&#xA;      &lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 512 512&#34;&gt;&lt;path d=&#34;M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z&#34;/&gt;&lt;/svg&gt;&#xA;      &lt;span&gt;Info&lt;/span&gt;&#xA;    &lt;/div&gt;&#xA;      &lt;div class=&#34;admonition-content&#34;&gt;&#xA;        &lt;p&gt;&lt;code&gt;libclang&lt;/code&gt; 是一Clang提供的C接口库，具体介绍参见 &#xA;&lt;a href=&#34;https://clang.llvm.org/doxygen/group__CINDEX.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;clang: libclang: C Interface to Clang&lt;/a&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;它同时还提供了 python bindings，对有关的C接口进行了封装，方便用python代码来快速操作C/C++源码&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

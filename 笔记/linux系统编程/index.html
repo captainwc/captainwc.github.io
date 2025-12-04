@@ -1,0 +1,5416 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C&#43;&#43;网络编程入门概念及api总结 | SHUAIKAI&#39;s Blog</title>
+    <link rel="icon" href= /images/favicon.png />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <link rel="stylesheet" href="/css/custom.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">主页</a></li>
+      
+      <li><a href="/series/">专栏</a></li>
+      
+      <li><a href="/categories/">分类</a></li>
+      
+      <li><a href="/tags/">标签</a></li>
+      
+      <li><a href="/archives/">归档</a></li>
+      
+      <li><a href="/search/">搜索</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+
+<div class="article-meta">
+    <h1><span class="article-meta-title">C++网络编程入门概念及api总结</span></h1>
+
+    <div class="article-meta-info">
+        
+
+        
+        
+
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        🗓️ 2023-04-02 🎖️ <a href="/series/%E9%9D%A2%E7%AD%8B/">面筋</a>, <a href="/series/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">快速上手</a> 🏷️ <a href="/tags/linux/">#linux</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">#网络编程</a>
+    </div>
+</div>
+
+<main>
+
+    
+
+<div class="left-sidebar-btn" id="leftSidebarBtn"><i class="fa-solid fa-list"></i></div>
+<div class="left-sidebar-panel" id="leftSidebarPanel">
+    
+        <div class="sidebar-content">
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🏷️ 标签</div>
+                <div class="tag-blocks">
+                    
+                    <a href="/tags/linux" class="tag-block">
+                        linux
+                    </a>
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B" class="tag-block">
+                        网络编程
+                    </a>
+                    
+                </div>
+            </div>
+            
+
+            
+            
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🎖️ 系列文章</div>
+                
+                
+                <div class="series-group">
+                    <div class="series-name">面筋</div>
+                    <ul class="article-list">
+                        
+                        
+                        
+                    </ul>
+                </div>
+                
+                
+                <div class="series-group">
+                    <div class="series-name">快速上手</div>
+                    <ul class="article-list">
+                        
+                        
+                        <li class="article-item">
+                            <a href="/cpp/libclang-py%E4%BD%BF%E7%94%A8/" class="article-link">
+                                
+                                <span class="article-title">libclang-py使用介绍</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" class="article-link">
+                                
+                                <span class="article-title">tmux 快速上手</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/valgrind%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" class="article-link">
+                                
+                                <span class="article-title">Valgrind快速上手</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/mermaid%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" class="article-link">
+                                
+                                <span class="article-title">Mermaid快速上手</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/" class="article-link">
+                                
+                                <span class="article-title">linux命令行大记忆恢复术</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" class="article-link">
+                                
+                                <span class="article-title">PlantUML快速上手</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/" class="article-link">
+                                
+                                <span class="article-title">gdb快速上手</span>
+                            </a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+                
+            </div>
+            
+
+            
+            
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('leftSidebarBtn');
+            const panel = document.getElementById('leftSidebarPanel');
+            let hoverTimeout;
+
+            
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                panel.classList.add('show');
+            });
+
+            panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+            [btn, panel].forEach(el => {
+                el.addEventListener('mouseleave', () => {
+                    hoverTimeout = setTimeout(() => {
+                        panel.classList.remove('show');
+                    }, 200);
+                });
+            });
+        });
+    </script>
+    
+
+    <style>
+        
+
+         
+        .left-sidebar-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 980;
+            cursor: pointer;
+            padding: 6px 10px;
+            background: #EFEFEF;
+            border-radius: 8px;
+            transition: background 0.3s;
+            color: #999;
+            opacity: 0.7;
+        }
+
+        .left-sidebar-btn:hover {
+            background: #BEC2B3;
+        }
+
+        .left-sidebar-panel {
+            border-radius: 8px;
+            display: none;
+            position: fixed;
+            top: 66px;
+            left: 20px;
+            max-width: 360px;
+            min-width: 280px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #eee;
+            padding: 10px 5px 10px 15px;
+            z-index: 970;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-sidebar-panel.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        
+
+        .sidebar-content {
+            padding: 15px 12px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.2rem;
+        }
+
+        .sidebar-section-title {
+            font-size: 1rem;
+            color: #2d3842;
+            margin: 0 0 0.6rem 0;
+            padding-bottom: 0.3rem;
+            font-family: "LXGW WenKai";
+            font-weight: bold;
+
+             
+            
+            border-bottom: 2px dashed #cfcfcf;
+            
+        }
+
+         
+        .tag-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tag-block {
+            display: inline-block;
+            background: #F6F6F6;
+            color: #666;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .tag-block:hover {
+            background: #2e59a7;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+         
+        .series-group,
+        .category-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .series-name,
+        .category-name {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0 0 0.4rem 0;
+            font-weight: bold;
+            font-family: "LXGW WenKai";
+        }
+
+         
+        .article-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .article-item {
+            margin-bottom: 0.3rem;
+        }
+
+        .article-link {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.4rem;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .article-link:hover {
+            background: #f8f9fa;
+            border-left-color: #2e59a7;
+            transform: translateX(3px);
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            color: #999;
+            font-family: "LXGW WenKai";
+            flex-shrink: 0;
+            width: 45px;
+            text-align: left;
+        }
+
+        .article-title {
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+         
+        
+
+        .left-sidebar-panel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .left-sidebar-panel {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        
+
+         
+        @media (max-width: 768px) {
+        
+        }
+    </style>
+
+    
+
+
+<div class="toc-btn" id="tocBtn"><i class="fa-solid fa-bars-staggered"></i></div>
+<div class="toc-panel" id="tocPanel"></div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        
+        const btn = document.getElementById('tocBtn');
+        const panel = document.getElementById('tocPanel');
+        let hoverTimeout;
+
+        
+        btn.addEventListener('mouseenter', () => {
+            clearTimeout(hoverTimeout);
+            generateToc(panel);
+            panel.classList.add('show');
+
+            
+            requestAnimationFrame(() => {
+                const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+                let activeHeader = null;
+                let minDistance = Infinity;
+
+                
+                headers.forEach(header => {
+                    const rect = header.getBoundingClientRect();
+                    const distance = Math.abs(rect.top);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeHeader = header;
+                    }
+                });
+
+                
+                if (activeHeader) {
+                    const activeLink = panel.querySelector(`a[href="#${activeHeader.id}"]`);
+                    if (activeLink) {
+                        
+                        const panelHeight = panel.offsetHeight;
+                        const linkOffset = activeLink.offsetTop;
+                        const centerPosition = linkOffset - (panelHeight / 2) + (activeLink.offsetHeight / 2);
+                        
+                        panel.scrollTo({
+                            top: centerPosition,
+                            behavior: 'auto'
+                        });
+                    }
+                }
+            });
+        });
+
+        panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+        [btn, panel].forEach(el => {
+            el.addEventListener('mouseleave', () => {
+                hoverTimeout = setTimeout(() => {
+                    panel.classList.remove('show');
+                }, 200);
+            });
+        });
+        
+
+        
+        function generateToc(container) {
+            if (container.children.length > 0) return;
+
+            const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+            const counts = [0, 0, 0, 0, 0]; 
+
+            headers.forEach(header => {
+                const level = parseInt(header.tagName[1]) - 2;
+                if (level < 0) return;
+
+                counts[level]++;
+                for (let i = level + 1; i < counts.length; i++) counts[i] = 0;
+                const number = counts.slice(0, level + 1).join('.');
+
+                
+                const numberSpan = document.createElement('span');
+                numberSpan.className = 'toc-number';
+                numberSpan.textContent = number;
+
+                
+                const link = document.createElement('a');
+                link.href = `#${header.id}`;
+                link.style.paddingLeft = `${level * 12}px`;
+
+                
+                link.appendChild(numberSpan);
+                link.appendChild(document.createTextNode(header.textContent));
+
+                container.appendChild(link);
+            });
+        }
+    });
+</script>
+
+<style>
+    
+
+     
+    .toc-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 980;
+        cursor: pointer;
+        padding: 6px 10px;
+        background: #EFEFEF;
+        border-radius: 8px;
+        transition: background 0.3s;
+        color: #999;
+        opacity: 0.7;
+    }
+
+    .toc-btn:hover {
+        background: #BEC2B3;
+    }
+
+    .toc-panel {
+        border-radius: 8px;
+        display: none;
+        position: fixed;
+        top: 66px;
+        right: 20px;
+        max-width: 360px;
+        min-width: 200px;
+        max-height: 80vh;
+        overflow-y: auto;
+        background: white;
+        border: 1px solid #eee;
+        padding: 10px 5px 10px 15px;
+        z-index: 970;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        list-style: none;
+    }
+
+    .toc-panel.show {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+     
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    
+
+     
+    .toc-number {
+        vertical-align: middle;
+        margin-right: 6px;
+        font-family: "LXGW WenKai";
+        font-size: 0.85rem;
+    }
+
+     
+        
+
+    .toc-panel a {
+        
+            display: block;
+            padding: 4px 0;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        
+
+        .toc-panel a:hover {
+        
+
+                color: #007bff;
+            }
+
+        
+</style>
+
+
+    
+    
+    
+        <h1 id="linux-系统编程">Linux 系统编程</h1>
+<h2 id="chapter-1-系统编程入门">Chapter 1 系统编程入门</h2>
+<h3 id="gcc">GCC</h3>
+<ul>
+<li>
+<p>区别 GCC 与 G++</p>
+<ol>
+<li>gcc 既能编译 c，也能编译 c++。只不过 gcc 在链接的时候，不能自动链接 C++的库。在编译阶段，g++会调用 gcc，二者是等价的。</li>
+<li><code>__cplusplus</code>宏：g++编译 .c 文件时会定义，按照严谨的 cpp 语法去执行；gcc 编译 .cpp 文件时也会定义。</li>
+<li><code>gcc -lstdc++</code>即可解决 gcc 链接不了 c++库的问题</li>
+</ol>
+</li>
+<li>
+<p><code>-D</code>选项，可以指定一个编译时后的宏，可以方便调试。比如调试版本和 release 版本，就不用删除 log 了</p>
+</li>
+</ul>
+<h3 id="静态库与动态库">静态库与动态库</h3>
+<h4 id="静态库">静态库</h4>
+<pre><code class="language-shell"># 编译,得到目标文件
+gcc -c tes1.c tes2.c
+# 打包成静态库: -r插入  -c  -s起名
+ar -rcs libxxx.a tes1.o tes2.o
+# 使用：指定库名、库位置、头文件
+gcc -o demo tes1.o tes2.o -l xxx -L ./lib -I ./include
+</code></pre>
+<ul>
+<li>
+<p><strong>优点：</strong></p>
+<ol>
+<li>加载速度快，因为打包到程序里面了</li>
+<li>发布无需额外提供库，方便移植</li>
+</ol>
+</li>
+<li>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>
+<p>消耗资源，每个程序使用库，都要加载到内存。如果多个程序使用同一个库，那就太浪费了</p>
+</li>
+<li>
+<p>更新发布麻烦，你把库发给别人，别人还要再编译一遍</p>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="动态库">动态库</h4>
+<pre><code class="language-shell"># 编译得 与位置无关 的目标文件
+gcc -fpic -c tes1.c tes2.c
+# 编译成共享库
+gcc -shared -o libxxx.so tes1.o tes2.o
+# 使用共享库，指定：指定库名、库位置、头文件
+# ！！还要确保能找到库的绝对路径
+</code></pre>
+<p>可以使用<code>ldd</code>命令来查看可执行文件所依赖的动态库，找不到的会提示&quot;not found&quot;。</p>
+<p>程序执行时，加载动态库的过程是由动态加载器<code>ld-linux.so</code>来完成的。他会依次寻找 elf 文件的 DT-RPATH 段（进程内存空间，改不了不用管）&mdash;&gt;环境变量 <code>LD_DIRECTORY_PATH</code>&mdash;&gt;<code>/etc/ld.so.cache</code>&mdash;&gt;<code>/lib /usr/lib</code>，找不到就报错。因此可以有以下方式指定路径：</p>
+<pre><code class="language-shell">#(1)更改环境变量
+export LD_DIRECTORY_PATH=$LD_DIRECTORY_PATH:{your_lib_directory}
+# 当然也可以修改 ~/.bashrc 或 /etc/profile
+
+#(2)更改 /etc/ld.so.cache，但这是一个二进制文件，要更改它的config文件
+sudo echo {your_lib_directory} &gt; /etc/ld.so.conf
+
+#(3)添加到 /lib /usr/lib 【不推荐】
+</code></pre>
+<ul>
+<li>优点
+<ol>
+<li>可以实现进程间资源共享（共享库）</li>
+<li>更新部署发布简单，用户不需要重新编译</li>
+<li>可以控制何时加载动态库，使用到的时候才进入内存</li>
+</ol>
+</li>
+<li>缺点
+<ol>
+<li>加载速度比静态库稍慢</li>
+<li>发布程序时需要提供依赖的动态库</li>
+</ol>
+</li>
+</ul>
+<h3 id="makefile">makefile</h3>
+<ul>
+<li>make 默认执行的是第一条规则，其他的都是为第一条服务的</li>
+<li>模式匹配中，多个百分号表示的是同一串字符</li>
+<li><code>.PHONY</code>，伪目标，那么就不会与外面的同名文件，如 clean 比较</li>
+</ul>
+<h3 id="gdb">GDB</h3>
+<p>GDB 的功能，一般来说有：</p>
+<table style="border:none">
+    <tr style="text-align:left">
+        <td style="width:80%">
+            <p>
+                <ol>
+                    <li>启动程序，随心所欲的运行程序</li>
+                    <Li>让被调试程序在指定断点处停止，断点可以是表达式</Li>
+                    <li>当程序被停住，可以检查此时程序中发生的所有事</li>
+                    <li>可以改变程序，修正一个BUG，从而去测试其他BUG</li>
+                </ol>                          
+            </p>     
+        </td>
+        <td style="width:20%;text-align:left"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230312190519841.png"></td>
+    </tr>
+</table>
+<hr>
+<p><code>core-file core</code>：查看<code>core</code>文件【通过<code>ulimit -a</code>查看，再设置 core 文件大小，编译时<code>-g</code>即可生成 core 文件】</p>
+<hr>
+<p><code>-g</code>只是把源文件的信息加入可执行程序中，并不是嵌入了源程序。因此调试时还需要能找到源程序</p>
+<p>命令：</p>
+<p><code>set args arg_1 arg_2</code>：给程序设置参数</p>
+<p><code>show args</code>：显示参数</p>
+<hr>
+<p><code>list 文件名 : 行号/函数名</code>：显示某文件，改函数或行号，附近的代码<code>l</code></p>
+<hr>
+<p><code>break 文件名 ： 行号/函数名</code>：在该处设置断点<code>b</code></p>
+<p><code>info break</code>：查看断点<code>i</code></p>
+<p><code>delete/disable/enable 断点编号</code>：查看/删除/无效/生效断点<code>d/del/dis/ena</code></p>
+<p><code>break [pos] if [condition] </code>：条件断点</p>
+<hr>
+<p><code>start/run</code>：开始，到第一行停下/开始，到断点停下<code>start/r</code></p>
+<hr>
+<p><code>continue</code>：执行到下一个断点<code>c</code></p>
+<p><code>next</code>：执行到下一行代码（不进入函数体）<code>n</code></p>
+<p><code>step</code>：向下单步调式（有函数就进入函数）<code>s</code></p>
+<p><code>finish</code>：跳出函数体（函数里面不能有断点）</p>
+<p><code>util</code> ：跳出循环(循环内不能有可用的断点，且要停在循环的第一行/最后一行)</p>
+<hr>
+<p><code>print/ptype 变量名</code>：打印变量值/打印变量类型</p>
+<p><code>display + 变量名</code>：自动打印指定变量的值</p>
+<p><code>undisplay + 编号</code> ：取消打印对应变量</p>
+<p><code>info display</code>：查看显示信息<code>i</code></p>
+<p><code>set var 变量名 = 变量值</code>：更改变量的值</p>
+<hr>
+<p><code>set disassemble-nextline on</code>：设置自动输出下一行代码的汇编</p>
+<hr>
+<h3 id="文件-io">文件 IO</h3>
+<h4 id="标准-c-库与系统-io">标准 C 库与系统 IO</h4>
+<p>C 库的 IO 函数是可以跨平台的。跨平台，要么是像 java 那样不同平台开发不同的虚拟机，要么是调用不同平台的系统 API，从而统一接口。</p>
+<p>标准 C 库带有缓冲区，因此效率是更高的</p>
+<p>C 库函数的 man 手册等级是 3，可以<code>man 3 fwrite</code></p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230313190840235.png" alt="image-20230313190840235" style="zoom: 67%;" />
+<p>UNIX 系统 IO</p>
+<p>C 库有缓冲区，可以提高读写效率，但注意，是效率，而不是速度。在网络通信情境中，我们希望能迅速收到对方发来的消息，那么此时应该使用系统 IO，即时读写。总不能我发来的信息，等半天了你还在缓冲区里呢</p>
+<h4 id="虚存与文件描述符">虚存与文件描述符</h4>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230313203459700.png" alt="image-20230313203459700" style="zoom:67%;" />
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230313205248025.png" alt="image-20230313205248025" />
+</div>
+</p>
+<p>一个应用程序可以打开很多文件，因此需要一个数组，来存储其打开的文件描述符</p>
+<p>所谓一切皆文件，0 1 2 是默认打开的，对应的就是当前终端，终端也是一个“文件”。</p>
+<p>同一文件可以被打开多次，相互之间的文件描述符是不相同的，比如不同用途，一个只读，一个只写。文件释放掉时文件描述符才会释放。分配文件描述符时，就从尚未分配的数子中选择一个最小的。</p>
+<h4 id="linux-系统-io-函数">Linux 系统 IO 函数</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230314162140130.png" alt="image-20230314162140130" />
+</div>
+系统 IO 在 man(2)，标准 C 库在 man(3)。因此这里就不具体列举了，直接<code>man 2</code></p>
+<h5 id="open">open</h5>
+<p><code>int open(const char *pathname, int flags, mode_t mode);</code></p>
+<ol>
+<li>注意，这里不是重载（C++才重载），这里用到的是 <strong>可变参数</strong></li>
+<li>open 函数失败返回 -1，然后，系统会恰当地设置一个“错误号”来标识此次错误的类型即<code>errno</code></li>
+<li><code>flags</code>的几个可选项之间，采用的是 按位或 <code>|</code> ，其实就是给 flags（32 位）不同位上加个 1</li>
+<li><code>mode_t</code>参数指定文件的权限，最终的权限 = <code>mode &amp; ~umask</code></li>
+<li><code>umask</code>作用就是抹去一些权限，保证你不会给错。</li>
+<li>在当前终端直接 umask 即即可输出，也可用函数 <code>mode_t umask(mode_t mode)</code></li>
+</ol>
+<p><code>errno</code>：错误号，<strong>属于 Linux 系统函数库</strong>（而非属于函数），是全局变量，记录最近的错误号。</p>
+<p><code>void perror(const char *s)</code>：打印 errno 对应的错误描述，其中参数 s 是<strong>用户描述</strong>，输出的样子是 用户描述（s） ： errno 对应的错误</p>
+<h5 id="readv--writev">readv &amp; writev</h5>
+<blockquote>
+<p>
+<a href="https://blog.csdn.net/qq_39642794/article/details/108080722"  target="_blank" rel="noopener noreferrer" >&#x1f517; readv()和 writev()函数</a>
+</p></blockquote>
+<pre><code class="language-c">#include &lt;sys/uio.h&gt;
+ssize_t readv(int fd, const struct iovec *iov, int iovcnt);
+ssize_t writev(int fd, const struct iovec *iov, int iovcnt);
+
+struct iovec {
+   void  *iov_base;    /* Starting address */
+   size_t iov_len;     /* Number of bytes to transfer */
+};
+</code></pre>
+<p>分散读与聚集写，可以用一次系统调用写多块</p>
+<h5 id="read--write">read &amp; write</h5>
+<ol>
+<li>返回值为 0，是判断读到文件读完的标志
+<code>while((len = read(fd_read, buffer, sizeof(buffer))) &gt; 0)</code></li>
+<li>对同一文件连续读写操作的时候，一定要注意，<mark>文件指针的位置</mark> $\downarrow$</li>
+</ol>
+<h5 id="lseek">lseek</h5>
+<p><code>off_t lseek(int fd, off_t offset, int whence);</code></p>
+<p><strong>作用</strong>：把文件指针移动到<code>whence + offset</code>的位置</p>
+<p><strong>返回值</strong>：成功返回文件指针相对于文件开始的偏移量，失败返回 -1</p>
+<ul>
+<li>对于参数 whence，有三个取值：
+<ol>
+<li><code>SEEK_SET</code>：设置文件指针的偏移量为 offset</li>
+<li><code>SEEK_CUT</code>：设置文件指针的偏移量为 当前位置 + offset</li>
+<li><code>SEEK_END</code>：设置文件指针的偏移量为 文件大小 + offset</li>
+</ol>
+</li>
+<li>lseek 一般有下面几个
+<ol>
+<li>移动文件指针到文件头，反复的读。不然就要关闭，再重新打开
+<code>lseek(fd, 0, SEEK_SET)</code></li>
+<li>获取当前文件指针的位置
+<code>lseek(fd, 0, SEEK_CUR)</code></li>
+<li>获取文件的大小
+<code>lseek(fd, 0, SEEK_END)</code></li>
+<li>拓展文件长度（比如在下载文件时，下载器是先占用这么大，再慢慢往里写数据）
+<code>lseek(fd, enlarge_size, SEEK_END)</code>，要写入一定内容才会真正拓展</li>
+</ol>
+</li>
+</ul>
+<h5 id="stat--lstat">stat &amp; lstat</h5>
+<ul>
+<li>命令行：<code>stat [filename]</code>，用以查看文件的信息</li>
+<li><code>int stat(const char *pathname, struct stat *statbuf);</code></li>
+<li><code>int lstat(const char *pathname, struct stat *statbuf);</code>（当文件是软链接时，获取链接本身的信息）</li>
+</ul>
+<pre><code class="language-c">struct stat {
+   dev_t     st_dev;         /* ID of device containing file */
+   ino_t     st_ino;         /* Inode number */
+   mode_t    st_mode;        /* File type and mode */
+   nlink_t   st_nlink;       /* Number of hard links */
+   uid_t     st_uid;         /* User ID of owner */
+   gid_t     st_gid;         /* Group ID of owner */
+   dev_t     st_rdev;        /* Device ID (if special file) */
+   off_t     st_size;        /* Total size, in bytes */
+   blksize_t st_blksize;     /* Block size for filesystem I/O */
+   blkcnt_t  st_blocks;      /* Number of 512B blocks allocated */
+};
+</code></pre>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230314200802550.png" alt="shadow-image-20230314200802550" />
+</div>
+</p>
+<p>判断各区段的值，只需要按位与，即<code>st.st_mode &amp; S_FLAGS</code>，得到的结果与各种宏进行比较即可。也正因如此，这些 FLAGS 的值看起来才这么“长”，因为它们都是 16 位的，直接与整个 st_mode 相与的，其余无关的位都置 0，起到一个过滤的作用。</p>
+<h5 id="文件属性-access">文件属性 access&hellip;</h5>
+<p><code>access &amp; chmod  &amp; truncate</code></p>
+<ol>
+<li>
+<p><code>int access(&quot;const char *pathname&quot;, int mode)</code></p>
+<ul>
+<li><code>mode</code>：<code>F_OK</code>判断文件是否存在，<code>R_OK, W_OK, X_OK</code>判断文件的读/写/执行/权限</li>
+</ul>
+</li>
+<li>
+<p><code>int chmod(const char *pathname, mode_t mode);</code></p>
+<ul>
+<li>系统中的用户和组，分别在文件<code>/etc/passwd</code>和<code>/etc/group</code>。也可以是用<code>id + username</code>命令</li>
+</ul>
+</li>
+<li>
+<p><code>int truncate(const char *pathname, off_t length)</code></p>
+<ul>
+<li>缩减/扩张文件到指定大小</li>
+</ul>
+</li>
+</ol>
+<h5 id="目录操作-mkdir">目录操作 mkdir&hellip;</h5>
+<p><code>mkdir &amp; rmdir &amp; rename &amp; chdir &amp; getcwd</code></p>
+<pre><code class="language-c">int mkdir(const char *pathname, mode_t mode);
+int rmdir(const char *pathname);
+int rename(const char *oldpath, const char *newpath);
+int chdir(const char *path);
+char *getcwd(char *buf, size_t size);
+</code></pre>
+<p>对应 shell 的命令：mkdir、rmdir、mv、cd、pwd。查手册时要注意使用 <code>man 2 makdir</code>，否则默认打开的是第一章的 mkdir 命令</p>
+<p><code>chdir</code>：修改进程的工作目录（默认是在当前工作路径，即，在哪个目录启动程序，进程默认路径就在哪，而不是程序所在的文件夹！）</p>
+<p><code>getcwd</code>：返回值其实就是传递进去的 buffer 的地址</p>
+<h5 id="目录遍历-readdir">目录遍历 readdir&hellip;</h5>
+<p>man （3）</p>
+<pre><code class="language-C">DIR *opendir(const char *dirname);
+struct dirent *readdir(DIR *dirp);
+int closedir(DIR *dirp);
+</code></pre>
+<ul>
+<li>
+<p><code>DIR *opendir(const char *dirname);</code>：</p>
+<ul>
+<li>DIR : 目录流结构体（不对用户开放，也用不到，只有指定参数类型时用）</li>
+<li>错误返回 NULL</li>
+</ul>
+</li>
+<li>
+<p><code>struct dirent *readdir(DIR *dirp)</code>;</p>
+<ul>
+<li>会自动指向流中，下一个目录的位置【这里<mark>疑惑</mark>：man 中说返回值是，下一个目录的结构体指针？】</li>
+<li>返回读取到的目录信息（即 dirent 结构体指针）。错误或到结尾返回 NULL。可以通过<code>errno</code>来区分究竟是文件尾还是错误</li>
+<li>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230315212544188.png" alt="image-20230315212544188" style="zoom:67%;" />
+</li>
+</ul>
+</li>
+<li>
+<p><code>int closedir(DIR *dirp);</code></p>
+</li>
+</ul>
+<h5 id="dup--dup2">dup &amp; dup2</h5>
+<p><code>int dup(int oldfd);</code></p>
+<ul>
+<li>选择一个最小的未被使用的文件描述符，来指向 oldfd 指向的文件，即复制出来了一个文件描述符</li>
+</ul>
+<p><code>int dup2(int oldfd, int newfd);</code></p>
+<ul>
+<li>
+<p>用指定的 newfd 来指向 oldfd 指向的文件。如果 newfd 指向的有文件，则先执行 close 操作。这里 oldfd 必须是一个有效值，否则 newfd 没有意义。如果二者相同，则等于什么都没做。返回值就是 newfd</p>
+</li>
+<li>
+<p>可以用<code>dup2</code>来进行<strong>输入输出重定向</strong>，比如默认的输出是标准输出(fd1=STDOUT_FILENO)，现在想让它输出到文件中(fd2=12)，那么，就可以<code>dup2(fd2, STDOUT_FILENO);</code>
+注意！重定向，是<strong>被更改的那一方作为 newfd</strong>，比如想重定向标准输出，则标准输出因该作为 newfd。因为 dup2 的作用是，<strong>关闭<code>newfd</code>指向的文件，并让其指向<code>oldfd</code></strong></p>
+</li>
+</ul>
+<h5 id="fcntl">fcntl</h5>
+<p><code>int fcntl(int fd, int cmd, ... /*args*/);</code></p>
+<p>参数<code>cmd</code>：命令，其实就是函数定义的一些宏，作用有五个：（列出了常用的两个）</p>
+<ol>
+<li>
+<p>复制文件描述符：<code>F_DUPFD</code>，返回一个新的文件描述符</p>
+</li>
+<li>
+<p>设置/获取文件状态：
+<code>F_GETFL</code>，获取文件描述符对应的状态，即<code>open</code>函数中的<code>flag</code>
+<code>F_SETFL</code>，设置文件的状态 flag</p>
+<ol>
+<li><strong>注意</strong>，3 个必选项不可以修改（只读、只写、读写，以及一些创建文件的选项等）</li>
+<li>可以修改的 flags 有<code>O_APPEND、O_NONBLOCK(设置成非阻塞) . . .</code></li>
+</ol>
+<blockquote>
+<p>阻塞/非阻塞：描述的函数调用的行为，函数对当前进程的影响。如，可籍此将管道文件设置为非阻塞</p></blockquote>
+</li>
+</ol>
+<pre><code class="language-c">int fd = open(&quot;xxx&quot;);
+// 首先要获取当前文件的FLAG
+int flag = fcntl(fd, F_GETFL);	// 失败返回-1，成功返回flag
+// 然后，修改的时候，注意不是直接替换
+flag |= O_APPEND; // 添加
+flag &amp;= ~O_APPEND; // 删除
+int ret = fcntl(fd, F_SETFL, flag);	// 失败返回-1，成功返回0
+</code></pre>
+<h2 id="chapter-2-linux-多进程开发">Chapter 2 Linux 多进程开发</h2>
+<h3 id="进程概述">进程概述</h3>
+<h4 id="区别程序--进程">区别程序 &amp; 进程</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230318152231915.png" alt="image-20230318152231915" />
+</div>
+</p>
+<hr>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230318152656919.png" alt="image-20230318152656919" />
+</div>
+</p>
+<ul>
+<li>多道程序、时间片、并发&amp;并行</li>
+</ul>
+<h4 id="进程控制块pcb">进程控制块(PCB)</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230318153120129.png" alt="image-20230318153120129" />
+</div>
+</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230318153553795.png" alt="image-20230318153553795" />
+</div>
+</p>
+<h4 id="进程状态">进程状态</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230318153828163.png" alt="image-20230318153828163" />
+</div>
+</p>
+<blockquote>
+<p>其实内核实现是不区分就绪态和运行态的。你占有 cpu 就是运行态，不占有就是就绪态</p></blockquote>
+<p>新建态：新建后进入就绪列表</p>
+<p>终止态：可能是运行结束，也可能是被高权限者终结。终结后，进程不再继续执行，但仍然会留在操作系统中等待善后。等其他进程完成了对终止进程信息抽取后，操作系统才会将其从系统中删除。</p>
+<h4 id="进程相关命令">进程相关命令</h4>
+<table style="border:none;text-align:center">
+    <tr>
+    	<td style="width:45%"><img src = "https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230318154342000.png"></td>
+        <td style="width:55%"><img src = "https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230318154731068.png"></td>
+    </tr>
+    <tr>
+    	<td style="width:50%"><img src = "https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230318155136677.png"></td>
+        <td style="width:50%"><img src = "https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230318155530999.png"></td>
+    </tr>
+</table>
+<p><code>{cmd} &amp;</code>：在命令后面加上一个<code>&amp;</code>可以让其在后台运行（会定时将结果输出到前台来，但不影响输入输出）</p>
+<h4 id="进程号和相关函数">进程号和相关函数</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230318160341864.png" alt="image-20230318160341864" />
+</div>
+</p>
+<h3 id="进程操作">进程操作</h3>
+<h4 id="进程创建-fork">进程创建 fork()</h4>
+<ul>
+<li>
+<p><code>pid_t fork(void)</code>：复制当前进程，但是运行在不同内存空间（仔细查看 fork(2)手册中的 DESCRIPTION）</p>
+<ol>
+<li>
+<p>创建成功，<mark>函数会返回两次</mark>：父进程中返回子进程 pid，子进程中返回 0</p>
+</li>
+<li>
+<p>创建失败：父进程中返回-1，并设置 errno：</p>
+<ul>
+<li>
+<p><code>EAGAIN</code>：当前系统进程数达到上限</p>
+</li>
+<li>
+<p><code>ENOMEM</code>：当前系统内存不足</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>如何区分父子进程？：利用 fork()函数的<strong>返回值</strong>。返回值为 0 说明是子进程，否则说明是父进程。由于父子进程是共享代码段的，因此通过添加一个 if-else 判断，来实现，两个进程执行相同代码，在某些地方又执行不同代码的效果。</p>
+</li>
+<li>
+<p>理解子进程创建：</p>
+<ol>
+<li>我们说，子进程“拷贝”一份父进程的虚拟地址空间（内核区也会拷贝）。但其实这么想会好些：<strong>子进程<mark>复制</mark>父进程的数据空间(数据段)、栈、堆；<mark>共享</mark>父进程的正文段</strong>，也即二者执行相同的代码，只是开始位置有些不同，但并非是，你有一段代码，我有另一段。原因往下看。</li>
+<li>子进程共享父进程的代码，是<mark>从 fork()后开始执行的</mark></li>
+<li>注意，是直接复制了一份内存空间，因此里面的什么变量啊的都是<mark>两份</mark>，改动互不影响</li>
+</ol>
+</li>
+<li>
+<p><em>实际上</em>，复制的实现，是通过“<strong>写时拷贝</strong>”（copy-on-write）来实现的，即，fork 后并不会真的直接复制一段内存，而是通过“只读共享”的方式，让父、子进程共用一段内存。只有在需要写入数据的时候，才真正进行拷贝，使得二者拥有独自的空间。</p>
+</li>
+<li>
+<p>父子进程共享文件，共用相同的文件描述符、相同的文件偏移指针，引用计数增加</p>
+</li>
+<li>
+<p>父子进程区别：</p>
+<ol>
+<li>fork()函数返回值不同</li>
+<li>PCB 中一些数据不一样，比如当前进程 pid、父进程 ppid(就是说,内核区也不是完全相同的)</li>
+<li>信号集不同</li>
+</ol>
+</li>
+<li>
+<p>父子进程共同点</p>
+<ul>
+<li>子进程刚被 fork 出来时，和父进程的：用户区数据、文件描述符表都是一样的</li>
+</ul>
+</li>
+</ul>
+<h4 id="gdb-多进程调试">GDB 多进程调试</h4>
+<ol>
+<li>GDB 默认只能跟踪一个进程，可以在 fork 函数调用之前，设置其跟踪的是子进程还是父进程(默认父进程)
+<code>set follow-fork-mode [ parent | child ]</code></li>
+<li>跟踪一个进程了，那另一个呢？另一个可以选择脱离 GDB 调试（直接运行到结束），也可以选择被 GDB 挂起。（detach:脱离）
+<code>set detach-on-fork [ on | off ]</code></li>
+<li>查看调试的进程：<code>info inferiors</code></li>
+<li>切换当前调试的进程：<code>inferior id</code></li>
+<li>使进程脱离 GDB 的调试：<code>detach inferiors id</code></li>
+</ol>
+<h3 id="exec-函数族">exec 函数族</h3>
+<p>函数族：一系列具有相同/相似功能的函数（C 语言中没有重载）</p>
+<h4 id="exec-函数族功能">exec 函数族功能:</h4>
+<ol>
+<li>能够在当前进程中，调用一个别的可执行程序。调用成功后，本进程的代码段、数据段、堆栈等所有信息都会被替换掉，<strong>相当于完全变成了另一个进程</strong>。此时调用函数也就不存在了，自然也就不会有返回值。只有失败了才会返回-1，从源程序调用点接着往下执行。</li>
+<li>但一般情况下，调用程序都是有别的任务的，你这么直接替换了怎么能行。因此，常用的做法是，<strong>先<code>fork()</code>一个子进程，然后再子进程中调用 exec 函数族</strong>，来，一下子，把子进程变成一个实现别的功能的新进程，而不只是原进程的拷贝了</li>
+<li>具体实现过程为：用指定程序，去把调用程序虚拟地址空间中的<strong>用户区替换掉，内核区保持不变</strong>。即，什么进程 id、父进程 id、当前工作目录这些内核区的框架不变，但是实际执行的内容却改变了。金蝉脱壳</li>
+</ol>
+<h4 id="exec-函数族介绍">exec 函数族介绍</h4>
+<h5 id="总览">总览</h5>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230319161449149.png" alt="image-20230319161449149" />
+</div>
+</p>
+<blockquote>
+<p>其中只有最后一个<code>execve()</code>函数是 UNIX 的，别的都属于标准 C 库函数，是对 execve()的封装</p></blockquote>
+<p>函数名其实就指明了函数的参数的传递方式</p>
+<hr>
+<h5 id="execl">execl()</h5>
+<pre><code class="language-c">int execl(const char *path, const char *args1, ...);
+</code></pre>
+<ul>
+<li>
+<p><code>path</code>：要调用的文件<strong>路径</strong>。推荐使用绝对路径</p>
+</li>
+<li>
+<p><code>args</code>：参数列表，直接传入多个，其中第一个参数约定为文件名，并且最后以<code>NULL</code>结尾(哨兵)</p>
+</li>
+</ul>
+<p>例如：<code>int ret_flag = execl(&quot;/usr/bin/ls&quot;, &quot;ls&quot;, &quot;-h&quot;, &quot;-al&quot;, &quot;/home/usr&quot;, NULL)</code>。即 <code>ls -alh ~</code></p>
+<ul>
+<li>
+<p>注意到，shell 命令也是可以执行的，它也不过是个可执行程序嘛。这个<code>-</code>，在命令既有参数又有文件名等时，不加是不行的。</p>
+</li>
+<li>
+<p>注意有可能会产生孤儿进程</p>
+</li>
+<li>
+<p>被 execl 族函数替换后，整个进程都变了，包括代码段等等。因此，<strong>原进程中 execl 函数后的代码将不会被执行！</strong></p>
+</li>
+</ul>
+<hr>
+<h5 id="execlp">execlp()</h5>
+<p><code>int execlp(const char *file, const char *args1, ...)</code></p>
+<ul>
+<li><code>file</code>：调用文件的<strong>文件名</strong></li>
+<li><code>args</code>：仍然是参数列表</li>
+</ul>
+<h3 id="进程控制">进程控制</h3>
+<h4 id="进程退出">进程退出</h4>
+<p><code>void exit(int status)</code>：标准 C 库的退出，在 stdlib.h 中</p>
+<p><code>void _exit(int status)</code>：系统调用，在 unisd.h 中</p>
+<ul>
+<li>
+<p><code>status</code>是退出时状态，父进程在回收子进程资源时能够获取到</p>
+</li>
+<li>
+<p>区别在于，调用<code>exit()</code>时，会先调用退出处理函数、刷新 IO 缓冲、关闭文件描述符等工作，然后再调用系统调用<code>_exit()</code>退出进程。</p>
+</li>
+<li>
+<p>举个例子，<code>printf(&quot;hello\nworld&quot;);</code>然后调用<code>exit(0)</code>，这是是能输出 hello\nworld 的。但是如果调用的是<code>_exit()</code>，那就只会输出一个 hello。因为 C 库的 IO 是带有缓冲区的，\n 会刷新缓冲，因此 hello 一定能输出。但是调用_exit()，此时 world 尚在缓冲区里，但进程直接就退出了，没有输出</p>
+</li>
+<li>
+<p>exit()会把 status 返回给父进程，就跟 main 的 return 一样，main 是被系统调用的，return 也是把状态返回给上一级。但只是对 main 而言，这两个一样的。</p>
+</li>
+<li>
+<p>区分 exit 与 return，只需要品味他们的名字即可。exit 是进程退出，而 return 是返回，在 main 函数中调用别的函数，func，func 和 main 都是在同一个进程中。这时 return 是返回，也即堆栈弹栈，是返回到调用者 main，main 还在；而 exit 是终结进程，main 也没了。</p>
+</li>
+</ul>
+<h4 id="孤儿进程">孤儿进程</h4>
+<p>孤儿进程：父进程运行结束，但是子进程还在运行，那么它就是孤儿进程</p>
+<ul>
+<li>
+<p>每当出现孤儿进程，操作系统就会把它的父进程设置为<code>init</code>(pid = 1)，init 会循环 wait()它已经退出的子进程，并最终回收其资源，做善后工作。因此孤儿进程并不会有什么危害</p>
+</li>
+<li>
+<p>显然，对孤儿进程，其 ppid = 1</p>
+</li>
+</ul>
+<h4 id="僵尸进程">僵尸进程</h4>
+<p>僵尸进程：每个进程结束后，内核都会释放掉该进程的所有资源、打开的文件、占用的内存等。但是仍为其保留一定的资源，主要是<mark>保留 PCB 信息（包括进程号、退出状态、运行时间等）</mark>，需要父进程去释放。因此，子进程终止，且<mark>父进程还没来得及回收</mark>时，这时子进程残留资源（PCB）存放于内核中，即变成僵尸进程。</p>
+<ul>
+<li>僵尸进程是不能被<code>kill -9</code>杀死的</li>
+<li>系统进程号数量是有上限的。如果产生大量僵尸进程，一直占用着 pid，那么就有可能导致操作系统无法产生新的进程，因此需要去避免。</li>
+<li>僵尸进程是有父进程的。如果 kill 父进程，那么僵尸进程就会被 init 函数托管，并释放</li>
+<li>但是一般是不会直接 kill 父进程的，而是在其中调用 wait()或 waitpid()来处理僵尸进程</li>
+<li>父进程可以通过调用<code>wait()</code>或<code>waitpid()</code>，来获取其退出状态的同时，杀死该进程</li>
+</ul>
+<h4 id="wait--waitpid">wait &amp; waitpid</h4>
+<ul>
+<li>
+<p>wait 类函数，用于等待一个进程，直至其状态发生改变（终止、挂起、kill），然后获取它的信息。</p>
+</li>
+<li>
+<p>对于进程终止（terminiate）的情况，调用 wait 可以让系统能够回收其资源，而不是让其变成僵尸进程。</p>
+</li>
+<li>
+<p>如果状态已经改变，则函数立即返回，否则调用 wait 的进程会被挂起，直到其等待的进程收到了一个不可被忽视的信号。</p>
+</li>
+<li>
+<p>区别在于，<strong>wait 会被阻塞</strong>，<strong>waitpid 可以设置不被阻塞</strong>，还可以<strong>指定等待哪个子进程结束</strong>。阻塞即，父进程 wait 不到时，就会停下手头的工作，去一直 wait 子进程，直至其结束。</p>
+</li>
+<li>
+<p><strong>一次 wait 函数只能清理一个子进程</strong>，清理多个应使用循环。</p>
+</li>
+</ul>
+<pre><code class="language-c">pid_t wait(int *wstatus);
+</code></pre>
+<ul>
+<li>
+<p><code>wstatus</code>：一个 int 类型地址，是<strong>传出参数</strong>，用于获取返回值。返回值还要传入一些宏中，即可获得一些有用的状态：Wait-IF-EXIT-EnD，Wait-EXITSTATUS，Wait-IF-SIGNAL-EnD，Wait-TERM-SIGnal&hellip;&hellip;</p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325163051515.png" alt="image-20230325163051515" style="zoom:50%;" />
+</li>
+</ul>
+<pre><code class="language-c">pid_t waitpid(pid_t pid, int *wstatus, int options);
+</code></pre>
+<ul>
+<li><code>pid</code>
+<ol>
+<li><code>pid &gt; 0</code>：即表示等待 pid 对应的子进程</li>
+<li><code>pid =0</code>：回收<strong>当前进程组的所有</strong>子进程，即当前调用者的进程组</li>
+<li><code>pid = -1</code>：回收<strong>所有</strong>的子进程，即使你跑到了别的组（最常用）</li>
+<li><code>pid &lt; -1</code>：等待任意一个，gpid 等于参数绝对值的，组内的，任一子进程</li>
+</ol>
+</li>
+<li><code>options</code>：设定阻塞/非阻塞
+<ol>
+<li><code>0</code>：阻塞</li>
+<li><code>WNOHANG</code>：非阻塞，立即返回</li>
+</ol>
+</li>
+<li>返回值
+<ol>
+<li><code>&gt; 0</code>：返回子进程 pid</li>
+<li><code>= 0</code>：（只有非阻塞情况下才会返回 0，即<code>options = WNOHANG</code>）表示还有子进程活着</li>
+<li><code>= -1</code>：错误或者没有子进程了</li>
+</ol>
+</li>
+</ul>
+<h3 id="进程间通信">进程间通信</h3>
+<h4 id="基本概念">基本概念</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230321154859119.png" alt="image-20230321154859119" />
+</div>
+</p>
+<p>子进程“复制”了父进程的东西，但是那叫“读时共享、写时拷贝”，写的时候，是两个相互独立的区域。在逻辑上，二者是隔离的。只不过是实现上，有一段共享的时候。</p>
+<p>进程是独立的，但不是孤立的</p>
+<h4 id="进程间通信方式">进程间通信方式</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230321155521700.png" alt="shadow-image-20230321155521700" />
+</div>
+</p>
+<h4 id="匿名管道管道">匿名管道（管道）</h4>
+<h5 id="匿名管道概述">匿名管道概述</h5>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230321155758005.png" alt="image-20230321155758005" />
+</div>
+</p>
+<h5 id="管道的特点">管道的特点</h5>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230321164725426.png" alt="image-20230321164725426" />
+</div>
+</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230321164848194.png" alt="image-20230321164848194" />
+</div>
+</p>
+<hr>
+<p>亲缘关系的进程能够共享管道的原因：</p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230321165640512.png" alt="image-20230321165640512" style="zoom:67%;" />
+<p>父子进程共享文件描述符表，管道具有文件的性质，因此可以操作同一个管道</p>
+<h5 id="管道的数据结构">管道的数据结构</h5>
+<p>环形队列。因为使用普通队列的话，写过的地方就不好再用了，采用环形队列可以节省内存空间。</p>
+<table style="border:none;text-align:center">
+    <tr>
+    	<td style="width:45%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230321170142312.png"></src></td>
+		<td style="width:55%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230321170030889.png"></src></td>
+    </tr>
+</table>
+<h5 id="匿名管道创建">匿名管道创建</h5>
+<pre><code class="language-c">int pipe(int pipefd[2]);
+</code></pre>
+<p>参数：一个 int 数组，是传出参数。<code>pipefd[0]</code>对应管道的读端（输出），<code>pipefd[1]</code>对应管道的写端（输入）</p>
+<p>返回值：成功返回 0，失败返回-1</p>
+<ul>
+<li>注意，<strong>要在 fork 之前创建 pipe</strong>！</li>
+<li>管道默认是<strong>阻塞</strong>的，如果空了，则 read 阻塞，如果满了，则 write 阻塞</li>
+<li>管道是有大小的，如果传递的数据超过管道大小会被忽略。（可以循环写）</li>
+<li>循环读取管道后，可以把读出的值清空（memset）。否则，最后一次读出的值可能并不能填满 buff，那么输出的结果后面就会有一些不该出现的值</li>
+<li>如果用匿名管道进行<strong>交互通信，则有可能产生一些问题</strong>：期待是父进程写，子进程读。但完全有可能产生进程读出自己写的内容的情况！因此，使用匿名管道时，一般只做，<strong>一方就是读的并且 close 写端，另一方就是写的并且关闭读端。</strong>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230321202446076.png" alt="image-20230321202446076" style="zoom:67%;" /></li>
+</ul>
+<h5 id="插播一些有用的函数">插播一些有用的函数</h5>
+<ol>
+<li><code>long fpathconf(int fd, int name);</code>：用于获取文件的一些信息，比如最大链接数、最长名字、最大管道尺寸等等，通过 name 传递一个宏值来指定功能。如<code>_PC_LINNK_MAX, _PC_PAYH_MAX, _PC_PIPE_BUF</code>等等等</li>
+<li><code>void bzero(void *s, size_t n);</code>：将 s 指针指向位置开头的 n 字节用<code>\0</code>填充（可能会受，头文件是 string.h 还是 strings.h 的影响）</li>
+<li><code>void *memset(void *s, int c, size_t n);</code>：将 s 指针指向位置开头的 n 字节用常字符<code>(int)c</code>填充，并返回一个指向 s 区域的指针</li>
+<li><code>void *memcpy(void *dest, const void *src, size_t n);</code>：内存拷贝（利用内存映射来拷贝文件时可以用）</li>
+</ol>
+<h5 id="管道读写特点总结">管道读写特点总结</h5>
+<p>都是在阻塞 IO 的情况下讨论：</p>
+<ol>
+<li><strong>写端全部关闭</strong>（fd[1]的引用计数 = 0），如果管道中的数据被读取完了，那么再次<strong>读</strong>取，read()会<code>返回0</code>，相当于读到了文件末尾</li>
+<li><strong>写端没有全部关闭</strong>（fd[1]的引用计数 &gt; 0），如果管道中的数据读完了，且没有再往里写，那么再次<strong>读</strong>取，read()会<code>被阻塞</code>。（如果设置了非阻塞，那么 read 将会返回-1)</li>
+<li>同理，<strong>读端都关闭</strong>了，此时再往里面<strong>写</strong>，则该进程会收到一个信号<code>SIGPIPE</code>，通常会导致管道异常终止</li>
+<li><strong>读端没有全部关闭</strong>，此时往里<strong>写</strong>，写满的时候，write()会<code>被阻塞</code></li>
+</ol>
+<p>那么，管道也是一个文件，因此自然也可以设置管道文件的文件描述符的属性 ==&gt; <code>fcntl()</code>，将其设为非阻塞</p>
+<h4 id="有名管道">有名管道</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230323200715853.png" alt="image-20230323200715853" />
+</div>
+</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230323200902253.png" alt="image-20230323200902253" />
+</div>
+</p>
+<p>命令行：<code>mkfifo [fifoname]</code></p>
+<pre><code class="language-C">int mkfifo(const char *pathname, mode_t mode);
+</code></pre>
+<ul>
+<li>
+<p>参数</p>
+<ul>
+<li>
+<p><code>pathname</code>：带路径的文件名</p>
+</li>
+<li>
+<p><code>mode</code>：与<code>open()</code>的 mode 相同</p>
+</li>
+<li>
+<p>成功返回 0，失败返回-1 并设置 errno</p>
+</li>
+</ul>
+</li>
+<li>
+<p>打开最好是，你是写的，就<code>O_WRONLY</code>，你要是读的，就<code>O_RDONLY</code></p>
+</li>
+</ul>
+<h5 id="有名管道读写特点">有名管道读写特点</h5>
+<p>（其实同匿名管道）</p>
+<ol>
+<li>对于只读/只写的进程来说，只有只读的进程打开管道，或者只有只写的进程打开管道，都会导致该进程阻塞。换言之，必须要同时有读写进程，才不会在打开这一步就被阻塞。</li>
+<li>读：
+<ol>
+<li>管道中有数据，则返回读取到的字节数</li>
+<li>管道中无数据时，
+<ol>
+<li>若写端没有全部关闭，则<code>read()阻塞</code>；</li>
+<li>若写端全部关闭，则<code>read()返回0</code></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>写：
+<ol>
+<li>若读端全部关闭，则收到<code>SIGPIPE</code>信号（管道破裂），导致<code>写端异常终止</code>。</li>
+<li>若读端未全部关闭：
+<ol>
+<li>管道未满，则返回实际写入的字节数</li>
+<li>管道满了，则<code>write()阻塞</code></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>总结：不管是有名还是匿名管道（在不设置非阻塞情况下）：
+<strong>读</strong>的重点在管道中有没有数据。有就读，没有就阻塞。如果既没有数据，又没有人写了，那就说明读完了，返回 0；而<strong>写</strong>更在乎有没有人在读，如果没有读的人了，那直接终止。如果有，那就继续写，写满了就阻塞。</li>
+</ol>
+<h4 id="内存映射">内存映射</h4>
+<p>参考读物：
+<a href="https://liuruijie87.github.io/2020/07/02/mmap%E8%AF%A6%E8%A7%A3/"  target="_blank" rel="noopener noreferrer" >mmap 内存映射原理</a>
+</p>
+<p>内存映射 (Memory-mapped I/O) 是将磁盘文件的数据映射到内存，用户通过修改内存就能修改磁盘文件。</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230324141859989.png" alt="image-20230324141859989" />
+</div>
+</p>
+<h5 id="内存映射函数">内存映射函数</h5>
+<pre><code class="language-c">#include&lt;sys/mman.h&gt;
+// 映射到内存
+void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);
+// 解除映射
+void munmap(void *addr, size_t length);
+</code></pre>
+<ul>
+<li>
+<p>内存映射函数 m-map()：</p>
+<ol>
+<li>
+<p><code>addr</code>：指定映射的内存起始地址。（最好传递<code>NULL</code>，由内核选择地址进行映射）</p>
+</li>
+<li>
+<p><code>length</code>：要映射的数据长度，要求大于 0 ；如果 length 未达到一页，则映射一页的大小【分页】。建议直接映射文件的大小（stat、lseek）</p>
+</li>
+<li>
+<p><code>prot</code>：对申请内存映射区的操作权限，不能和打开的文件的权限冲突。最起码要有读的权限。通常是读，或者读写即可。<code>PROT_READ，PROT_WRITE，PROT_EXEC，PROT_NONE</code>，相或</p>
+</li>
+<li>
+<p><code>flags</code>：内存的权限</p>
+<ul>
+<li>
+<p><code>MAP_SHARED</code> ：共享，即映射区的数据回自动与磁盘文件进行同步。如果要完成进程间通信则必须选择此 flags</p>
+</li>
+<li>
+<p><code>MAP_PRIVATE</code>：不会与文件同步，如果发生数据改变，则会创建一个 copy，而不会改写源文件</p>
+</li>
+<li>
+<p><code>MAP_ANONYMOUS</code>：实现<strong>匿名映射</strong>，即不需要文件实体了。那么</p>
+<p>① 只能实现父子进程之间的映射</p>
+<p>② 参数也要改变，<code> fd = -1</code> ，<code>offset = 0</code>，<code>flags = MAP_SHARED | MAP_ANONYMOUS</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>fd</code>：open 一个磁盘文件。注意，不能为空文件！且 open 指定的权限不能与 prot 权限冲突</p>
+</li>
+<li>
+<p><code>offset</code>：必须指定 4K 整数倍。一般不用管，即置 0</p>
+</li>
+<li>
+<p><code>返回值</code>：</p>
+<ul>
+<li>成功返回映射内存区的起始地址</li>
+<li>失败返回<code>MAP_FAILED</code>，即<code>(void *) -1</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>接触内存映射函数 m-un-map()</p>
+<ol>
+<li><code>addr</code>：要接触映射的内存始址</li>
+<li><code>length</code>：要和 mmap 的参数一样</li>
+</ol>
+</li>
+</ul>
+<h5 id="实现进程间通信">实现进程间通信</h5>
+<p>（指的是<strong>文件映射</strong>。匿名映射前面提过，设置参数<code>MAP_ANONYMOUS</code>，只能实现父子进程之间的通信）</p>
+<ul>
+<li>有关系的进程（父子进程）：在<code>fork()之前</code>，先选择一个非空文件，并创建内存映射区。然后子进程复制父进程地址空间，即可实现父子进程共享内存映射区（注意，这与写时拷贝也不冲突）</li>
+<li>无关系的进程：准备一个非空磁盘文件，两个进程分别对该文件进程内存映射得到各自内存指针，然后开始共享内存。</li>
+<li>内存映射为<strong>非阻塞</strong>通信。因此，比如父子进程通信时，要确保别写的还没写完，就读了，那肯定读不到</li>
+</ul>
+<h5 id="问题总结">问题总结</h5>
+<ol>
+<li>
+<p>如果对 mmap()的返回值(ptr)做++操作<code>(ptr++)</code>，munmap()是否能够成功?</p>
+<ul>
+<li>可以。但是要注意备份，即传递给 munmap 的地址应当是分配内存的首地址</li>
+</ul>
+</li>
+<li>
+<p>如果 open()<code>O_RDONLY</code>，mmap()时 prot 参数指定<code>PROT_READ | PROT_WRITE</code>会怎样?</p>
+<ul>
+<li>会映射失败，返回<code>MAP_FAILED</code>。prot 的权限 &lt;= open 的权限</li>
+</ul>
+</li>
+<li>
+<p>如果文件偏移量为 1000 会怎样?</p>
+<ul>
+<li>会映射失败，返回<code>MAP_FAILED</code>。必须为 4K(4096)的整数倍</li>
+</ul>
+</li>
+<li>
+<p>mmap()什么情况下会调用失败?</p>
+<ul>
+<li>空文件、权限错误（没有读权限或与 open 不一致）、偏移量不对</li>
+</ul>
+</li>
+<li>
+<p>可以 open()的时候<code>O_CREAT</code>一个新文件来创建映射区吗?</p>
+<ul>
+<li>可以，但是创建文件的大小为 0 会失败。可以对新的文件进行拓展（lseek、truncate）</li>
+</ul>
+</li>
+<li>
+<p>mmap()后关闭文件描述符，对 mmap()映射有没有影响</p>
+<ul>
+<li>不会。映射区仍然存在，尚未释放。mmap 对传进来的 fd 进行了拷贝，你的关闭了，它同步的还在</li>
+</ul>
+</li>
+<li>
+<p>对<code>ptr</code>越界操作令怎样?</p>
+<ul>
+<li>系统实际分配的，是 length 对应的分页大小。越界会段错误</li>
+</ul>
+</li>
+</ol>
+<p>内存映射不只可以进行进程通信，还可以实现比如文件复制等功能。牢记其原理：把文件映射到内存中，并且建立内存与文件之间的同步，把文件操作变成内存操作即可。</p>
+<h4 id="信号">信号</h4>
+<h5 id="信号概述">信号概述</h5>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:60%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230324153904364.png"></td>
+        <td style="width:40%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230324154204356.png"></td>
+    </tr>
+</table>
+<ul>
+<li>
+<p>查看信号详细信息：<code>man 7 signal</code></p>
+</li>
+<li>
+<p>信号默认的五种处理动作：</p>
+<ol>
+<li><code>Term</code>：终止进程</li>
+<li><code>Ign</code>：当前进程忽略掉这个信号</li>
+<li><code>Core</code>：终止进程，并生成一个 core 文件</li>
+<li><code>Stop</code>：暂停当前进程</li>
+<li><code>Cont</code>：继续执行当前被暂停的进程</li>
+</ol>
+</li>
+<li>
+<p>信号的几种状态：<code>产生、未决、递达</code></p>
+</li>
+<li>
+<p><code>SIGKILL</code>和<code>SIGSTOP</code>不能被捕捉、阻塞或者忽略，只能执行默认动作</p>
+</li>
+</ul>
+<h5 id="信号一览">信号一览</h5>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:45%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230324164616141.png"></td>
+        <td style="width:55%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230324164837689.png"></td>
+    </tr>
+    <tr>
+		<td style="width:51%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230324164945256.png"></td>
+        <td style="width:49%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230324165012060.png"></td>
+    </tr>
+</table>
+<h4 id="信号相关函数">信号相关函数</h4>
+<pre><code class="language-c">int kill(pid_t pid, int sig);
+int raise(int sig);
+void abord(void);
+</code></pre>
+<h5 id="kill--raise--abord">kill &amp; raise &amp; abord</h5>
+<ul>
+<li>
+<p><strong><code>kill</code></strong>：给<strong>指定进程</strong>发信号。注意，不一定是发送信号 9</p>
+<ol>
+<li>
+<p><code>pid</code>：取<code>&gt; 0</code>，表示发送给该进程，<code>0</code>，发给当前进程组的所有进程，<code>-1</code>，发给所有有资格发送信号去的进程（除了 init），<code>&lt;-1</code>给绝对值对应的进程组</p>
+</li>
+<li>
+<p><code>sig</code>：取<code>0</code>表示不发送信号</p>
+</li>
+<li>
+<p>成功返回 0，失败返回-1</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong><code>raise</code></strong>：只给<strong>当前进程</strong>/线程发送信号。成功返回 0，失败返回-1</p>
+</li>
+<li>
+<p><strong><code>abord</code></strong>：默认终止<strong>当前进程</strong></p>
+</li>
+</ul>
+<pre><code class="language-c">unsigned int alarm(unsigned int seconds);
+int setitimer(int which, const struct itimerval *new_val, struct itimerval *old_value);
+</code></pre>
+<h5 id="alarm--setitimer">alarm &amp; setitimer</h5>
+<ul>
+<li>
+<p><strong><code>alarm()</code></strong>：设置定时器，当时间到了的时候，给<strong>当前进程</strong>发送<code>SIGALRM</code>信号，默认终止当前进程。<strong>每个进程都有且只有一个计时器</strong></p>
+<ol>
+<li><code>seconds</code>：倒计时时间（秒），设置为 0 无效，即可通过<code>alarm(0)</code>取消定时器</li>
+<li>返回值：之前没有设置定时器则返回 0，之前有定时器则返回其剩余的时间</li>
+</ol>
+</li>
+<li>
+<p><strong><code>setitimer()</code></strong>：也是设置定时器，可以替代 alarm 函数，可以<strong>周期性</strong>定时，精度更高（微秒）</p>
+<ol>
+<li><code>which</code>：指定定时器以什么时间计时
+<ul>
+<li><code>ITIMER_REAL</code>：真实时间，时间到达发送 <code>SIGALRM</code>信号</li>
+<li><code>ITIMER_VIRTUAL</code>：用户时间，时间到发发送<code>SIGVTALRM</code></li>
+<li><code>ITIMER_PROF</code>：进程在用户态和内核态的时间，时间到达发送<code>SIGPROF</code></li>
+</ul>
+</li>
+<li><code>new_val</code>：一个结构体，设置定时器的属性（
+<a href="https://www.twblogs.net/a/5b8351b92b71776c51e287f2/?lang=zh-cn"  target="_blank" rel="noopener noreferrer" >这有一份示例代码</a>
+）</li>
+</ol>
+<pre><code class="language-c">struct itimerval {			  /*定时器的结构*/
+   struct timeval it_interval; /* Interval for periodic timer，后面每次间隔时间 */
+   struct timeval it_value;    /* Time until next expiration，延迟多久开始执行定时器 */
+};
+/* 就是说，只有第一次闹钟是等待it_value值后“响”，后面每隔it_interval值“响”一下 */
+
+struct timeval {			  /*时间的结构*/
+   time_t      tv_sec;         /* seconds */
+   suseconds_t tv_usec;        /* microseconds ，两个都要设置，否则可能是随机值*/
+};
+</code></pre>
+<ol start="3">
+<li><code>old_val</code>：记录上一次定时的时间参数（传出参数），不用可以设置为<code>NULL</code></li>
+<li>成功返回 0，失败返回-1</li>
+</ol>
+</li>
+</ul>
+<h5 id="信号捕捉-signal">信号捕捉 signal</h5>
+<pre><code class="language-c">#include &lt;signal.h&gt;
+typedef void (*sighandler_t)(int);
+sighandler_t signal(int signum, sighandler_t handler);
+</code></pre>
+<ul>
+<li><code>signum</code>：要捕捉的信号，就是那一堆宏。<code>SIGKILL</code>和<code>SIGSTOP</code>不可被捕捉、忽略</li>
+<li><code>handler</code>：捕捉后要如何处理，是一个指向参数为 int（即信号编号），返回值为 void 的函数的函数指针
+<ol>
+<li><code>SIG_IGN</code>：忽略信号</li>
+<li><code>SIG_DFL</code>：采用信号默认的处理方式</li>
+<li><code>回调函数</code>：让<strong>内核调用</strong>你写的某一个函数来进行处理（
+<a href="https://ost.51cto.com/posts/1114"  target="_blank" rel="noopener noreferrer" >回调函数介绍</a>
+）</li>
+<li>返回值：成功返回上一次设置的回调函数的指针（第一次为 NULL），失败返回<code>SIG_ERR</code></li>
+</ol>
+</li>
+<li>注册信号捕捉，要提前注册好，等信号来了再注册就来不及了，程序就直接结束了</li>
+</ul>
+<h5 id="信号捕捉-sigaction">信号捕捉 sigaction</h5>
+<p>建议使用 sigaction 而不是 signal，因此 sigaction 能满足更多的标准，更通用。</p>
+<pre><code class="language-c">// 检查或者改变信号的处理方式（新版信号捕捉）
+int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact);
+struct sigaction {
+   void     (*sa_handler)(int); // 信号处理函数①
+   void     (*sa_sigaction)(int, siginfo_t *, void *); //信号处理函数②，不常用，由flags指定
+   sigset_t   sa_mask;  // 在信号捕捉函数执行过程中，临时阻塞一些信号，不用记得清空
+   int        sa_flags; // 指定信号的处理方式，一堆宏值，其中0表示用①，SA_SIGINFO表示用②
+   void     (*sa_restorer)(void); // 废弃掉了，指定NULL即可
+};
+</code></pre>
+<p><strong><code>sigaction</code>：</strong></p>
+<ol>
+<li><code>signum</code>：要捕捉的信号，除了 sigkill 和 sigstop</li>
+<li><code>act</code>：捕捉到信号后的处理动作</li>
+<li><code>oldact</code>：上一次的处理动作，不用传入<code>NULL</code></li>
+</ol>
+<h5 id="信号集">信号集</h5>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:58%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325133733052.png"></td>
+        <td style="width:42%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325134014997.png"></td>
+    </tr>
+</table>
+<ul>
+<li>
+<p>信号集在 PCB 中其实就是一个 01 数组（位图），信号尚未被处理，那就在未决信号集里面，值 1；阻塞了，那就在阻塞信号集里面值 1。</p>
+</li>
+<li>
+<p>未决信号集中的信号不能马上被处理，还需要<strong>先跟阻塞信号集中对应的值比较</strong>，如果非阻塞，就发给进程去处理，发之后，就是送达状态，未决位就置 0 了</p>
+</li>
+<li>
+<p>不能直接设置这些位，而是要借用对信号集的一些操作函数来实现改变。比如阻塞信号集默认都非阻塞，但可以通过函数来设置阻塞。</p>
+</li>
+</ul>
+<h5 id="信号集相关函数">信号集相关函数</h5>
+<p>注意：下面这些函数操作的都是<strong>你自己创建的信号集</strong>，就是一个类似的数组，然后要通过一个系统调用<code>sigpromask</code>才能映射到系统中的阻塞信号集中。一般操作的都是阻塞非阻塞属性(sigprocmask)，未决信号集只有获取这个动作（sigpending)。</p>
+<p>注意：在多线程环境中，应当使用 <code>pthread_sigmask()</code>，其参数含义与作用完全相同</p>
+<pre><code class="language-c">// sigset就是一个你自己创建的无符号长整型数组，函数什么清空添加删除，都是操作的这个数组
+typedef __sigset_t sigset_t;
+#define _SIGSET_NWORDS (1024 / (8 * sizeof (unsigned long int)))
+typedef struct{
+  unsigned long int __val[_SIGSET_NWORDS];
+} __sigset_t;
+// 将信号集中的参数全部置为0/1，set是传出参数，即操作的信号集，成功返回0失败返回-1
+int sigemptyset(sigset_t *set);
+int  sigfillset(sigset_t *set);
+// 将信号集中的某个信号置为1/0，表示阻塞/不阻塞这个信号，成功返回0失败返回-1
+int   sigaddset(sigset_t *set, int signum);
+int   sigdelset(sigset_t *set, int signum);
+// 判断信号是否阻塞。返回1表述信号阻塞，0表示不阻塞，-1表示错误
+int sigismember(const sigset_t *set, int signum);
+
+/* 将自定义信号集中的数据设置到内核 阻塞 信号集中：设置阻塞、解除阻塞、替换 */
+int sigprocmask(int how,  const sigset_t *set, sigset_ *oldset);
+
+/* 获取内核中的 未决 信号集*/
+int  sigpending(sigset_t *set);
+</code></pre>
+<p><strong><code>sigprocmask</code></strong>：将自定义信号集中的数据设置到内核中：设置阻塞、解除阻塞、替换</p>
+<ol>
+<li><code>how</code>：设置函数工作的方式。不妨设<em>内核中的阻塞集为 mask</em>，<em>用户自定义的为 set</em>
+<ul>
+<li><code>SIG_BLOCK</code>：将用户设置阻塞信号添加到内核中，<code>mask = mask | set</code>，set 中为 1 的内核中置为 1</li>
+<li><code>SIG_UNBLOCK</code>：根据用户设置的数据，解除内核中的阻塞，<code>mask &amp;= ~set</code>，set 中为 1 的内核中置为 0</li>
+<li><code>SIG_SETMASK</code>：根据用户的信号集覆盖内核中的阻塞集，<code>mask == set</code>，set 是啥就是啥</li>
+</ul>
+</li>
+<li><code>set</code>：用户自定义的信号集</li>
+<li><code>oldset</code>：传出内核中原来的数据集，即做一个备份，不用设置为<code>NULL</code></li>
+<li>返回值，成功返回 0，失败返回-1，设置错误号<code>EFAULT</code>出错，<code>EINVAL</code>传入的 how 非法</li>
+</ol>
+<h5 id="信号捕捉过程">信号捕捉过程</h5>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325160957420.png" alt="image-20230325160957420" />
+</div>
+</p>
+<ul>
+<li>信号从开始执行回调函数，其未决状态会置为 0。此时再来一个相同的信号，未决变为 1，但是此时回调函数在执行过程中，新来的信号是执行不了的，会被阻塞在那里。</li>
+<li>回调函数处理过程中使用的是临时阻塞信号集，你要是没设置那就还是原来的</li>
+<li>前 32 个常规信号是不支持排队的，因为它只能记录 0 或者 1。后 32 个信号可以存储有多少个信号在排队</li>
+</ul>
+<h5 id="sigchild-信号">SIGCHILD 信号</h5>
+<p>在以下三种情况下，会给父进程发送<code>SIGCHILD</code>信号，而父进程<strong>默认会忽略</strong>此信号</p>
+<ol>
+<li>子进程终止</li>
+<li>子进程收到<code>SIGSTOP</code>信号而暂停</li>
+<li>子进程处在停止态，然后收到<code>SIGCONT</code>信号被唤醒时</li>
+</ol>
+<ul>
+<li><strong>问题 0</strong>，之前解决僵尸进程的办法是，不断循环 wait，这显然是不合理的，怎么优雅回收子进程资源呢？
+<ul>
+<li><strong>解决 0</strong>思路很简单，可以在父进程中捕捉 SIGCHILD 信号，等子进程结束时再调用 wait 回收它就好了</li>
+</ul>
+</li>
+<li>这里会有一个<strong>问题 1</strong>，假如子进程很多，它们都在同一时间结束，前面提到过，常规信号是不支持排队的，因此，收到第一个 SIGCHILD 信号去执行 handler 的过程中，会到达很多别的 SIGCHILD 信号，他们最终都只是未决队列里的同一个 1，等 handler 结束再回来的时候，再把这个“一个”未决的信号送达。等于是，<em>一堆子进程就执行了两次 handler</em>。
+<ul>
+<li><strong>解决 1</strong>方法也很简单，在 handler 中<strong>循环调用非阻塞的<code>waitpid</code>函数</strong>，当前有终止的子进程就回收，如果没有（返回值为 0 或-1）就 break 结束 handler，返回主控函数，不影响父进程的正常工作。这样就可以实现，收到一次信号，就可以回收当前所有已经终止的子进程。</li>
+</ul>
+</li>
+<li>然后又有一个<strong>问题 2</strong>：如果子进程很快就结束了，快到父进程注册信号捕捉这个系统调用还没结束，那岂不是就不能回收掉这个子进程了？因为这个子进程发送的 SIGCHILD 信号是被父进程默认忽略掉的
+<ul>
+<li>是的，<strong>解决 2</strong>办法是，在父进程中，先设置一个信号集，阻塞掉 SIGCHILD 信号，然后注册信号捕捉，等注册成功，在对 SIGCHILD 信号接触阻塞，即可。</li>
+</ul>
+</li>
+</ul>
+<h4 id="共享内存">共享内存</h4>
+<blockquote>
+<p>共享内存是效率最高的进程间通信方式，注意与内存映射区分，内存映射还是基于文件的，只不过少了一次从内核缓冲拷贝到用户缓冲的时间，直接实现磁盘和用户缓冲区之间的同步</p>
+<p>比较的时候要记住，凡是通过文件的 IO，不论读写，用户都是与内核的缓冲区进行交互的，内核缓冲区才负责读写文件，是用户—内核—文件的模式</p></blockquote>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325165457801.png"></td>
+        <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325170332765.png"></td>
+    </tr>
+</table>
+<h5 id="共享内存操作函数">共享内存操作函数</h5>
+<pre><code class="language-c">key_t  ftok(const char *pathname, int proj_id); // 获取一个创建共享内存的key，也可以自己指定
+int  shmget(key_t key, size_t size, int shmflg);	// 创建物理共享
+void *shmat(int shmid, const void *shmaddr, int shmflg); // 映射到自己的虚地址空间
+int   shmdt(const void *shmaddr); // 解除共享，从自己的虚地址空间中移除
+int  shmctl(int shmid, int cmd, struct shmid_ds *buf); // 读取或设置共享内存的一些属性
+</code></pre>
+<pre><code class="language-c">key_t ftok(const char *pathname, int proj_id);
+</code></pre>
+<ol>
+<li>
+<p><strong><code>ftok()</code>：</strong> 根据文件名和给定的 int 值，生成一个共享内存的 key。<strong>如果文件和 int 值不变，那 key 值在哪生成都是一样的</strong>。所以可以由此实现不同进程用同一个 key 来创建/获取共享内存。</p>
+<ul>
+<li><strong>pathname：</strong> 必须是一个已经存在的可以访问的文件</li>
+<li><strong>proj_id：</strong> 只会使用低八位，因此可以传入一个字符 &lsquo;a&rsquo;, &lsquo;b&rsquo;</li>
+</ul>
+<pre><code class="language-c">int shmget(key_t key, size_t size, int shmflg);
+</code></pre>
+</li>
+<li>
+<p><strong><code>shmget()</code>：</strong> 创建或获取共享内存标识，默认内存全部清 0</p>
+<ul>
+<li>
+<p><strong>key：</strong> key_t 类型（整形），共享内存的标识符，一般用 16 进制表示，非 0。A 进程开辟了一段共享内存，获取这段内存的 ID。但是 B 怎么找到这块内存呢？所以 key，就是“暗号”，让 AB 可以定位到同一段物理共享内存，当然，他们返回的 shmid 也是一样的。</p>
+</li>
+<li>
+<p><strong>size：</strong> 共享内存的大小，向上取整到分页大小，即按页对齐。如果是获取，那置为 0 就行了</p>
+</li>
+<li>
+<p><strong>shmflg：</strong> 指定属性，如内存权限（八进制），和附加属性（创建|存在与否）</p>
+<p>用法：<code>IPC_CREAT | IPC_EXCL | 0664</code>。存在判断必须要与创建连用才行</p>
+</li>
+<li>
+<p><strong>返回值：</strong> 成功返回共享内存引用的 ID（不是 key），失败返回 -1</p>
+</li>
+</ul>
+<pre><code class="language-c">void *shmat(int shmid, const void *shmaddr, int shmflg);
+</code></pre>
+</li>
+<li>
+<p><strong><code>shmat()</code>：</strong> 将一个物理的共享内存和当前进程关联（放进自己的虚拟地址空间中，在共享区）</p>
+<ul>
+<li>
+<p><strong>shmid：</strong> 共享内存的标识 ID，由<code>shmget</code>返回值获取</p>
+</li>
+<li>
+<p><strong>shmaddr：</strong> 共享内存在虚拟地址空间的起始地址，指定<code>NULL</code>，让内核去指定。自己指定有可能出错</p>
+</li>
+<li>
+<p><strong>shmflg：</strong> 对共享内存的操作，无非是读写等权限，注意，必须要有读权限</p>
+<p><code>SHM_RDONLY</code>指定只读，<code>0</code>默认是读写都有</p>
+</li>
+<li>
+<p><strong>返回值：</strong> 成功返回共享内存虚拟地址空间的起始地址，失败返回((void*)-1)</p>
+</li>
+<li>
+<p><strong>写入</strong> 的时候可以用<code>memcpy()</code>，来把你想写的东西拷贝进去</p>
+</li>
+<li>
+<p><strong>读出</strong> 的时候，也可以用<code>memcpy()</code>，还可以把<code>void *</code>类型指针转换成<code>char *</code>读取</p>
+</li>
+</ul>
+<pre><code class="language-c">int shmdt(const void *shmaddr);
+</code></pre>
+</li>
+<li>
+<p><strong><code>shmdt()</code>：</strong> 解除共享内存和当前进程的关联，参数即虚拟共享内存的起始地址，成功返回 0，失败返回-1</p>
+<pre><code class="language-c">int shmctl(int shmid, int cmd, struct shmid_ds *buf);
+</code></pre>
+</li>
+<li>
+<p><strong><code>shmctl()</code>：</strong> 操作共享内存，常用来删除。内存只有主动删除才消失，与创建进程存在与否无关。</p>
+<ul>
+<li>
+<p><strong>shmid：</strong> 共享内存的 ID</p>
+</li>
+<li>
+<p><strong>cmd：</strong> 要进行的操作</p>
+<ol>
+<li><code>IPC_STAT</code>：获取共享内存当前状态，此时参数 <code>buf</code> 是传出参数</li>
+<li><code>IPC_SET</code>：设置共享内存状态，此时参数 <code>buf</code> 是传入参数</li>
+<li><code>IPC_RMID</code>：标记共享内存为待删除，此时参数 <code>buf</code> 没有用，设置<code>NULL</code></li>
+</ol>
+</li>
+<li>
+<p><strong>buf：</strong> 一个<code>shmid_ds</code>结构体指针，存放需要设置或读出的参数，作用与<code>cmd</code>的选择有关</p>
+<pre><code class="language-c">struct shmid_ds {
+   struct ipc_perm shm_perm;    /* Ownership and permissions */
+   size_t          shm_segsz;   /* Size of segment (bytes) */
+   time_t          shm_atime;   /* Last attach time */
+   time_t          shm_dtime;   /* Last detach time */
+   time_t          shm_ctime;   /* Creation time/time of last
+                                   modification via shmctl() */
+   pid_t           shm_cpid;    /* PID of creator */
+   pid_t           shm_lpid;    /* PID of last shmat(2)/shmdt(2) */
+   shmatt_t        shm_nattch;  /* No. of current attaches */
+   ...
+};
+</code></pre>
+</li>
+<li>
+<p>所谓删除是，先<strong>标记删除</strong>，将共享内存段的<code>key</code>置 0，表示要删除这一段共享内存。只有等到共享内存的链接数为 0 的时候，才会真正删除这段内存。因此可以对一段内存进行多次删除，反正<strong>只有最后一个进程的删除动作才有效</strong>。</p>
+</li>
+<li>
+<p>链接数等信息，就是保存在一个<code>shmid_ds</code>结构体中</p>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="共享内存操作命令">共享内存操作命令</h5>
+<pre><code class="language-bash"># (1) ipcs 显示进程间通信的一些信息
+ipcs -a		# 打印当前系统中 所有的 进程间通信方式 的信息
+ipcs -m		# 打印出使用 共享内存 进行进程间通信的信息
+ipcs -q		# 打印出使用 消息队列 进行进程间通信的信息
+ipcs -s		# 打印出便用 信    号 进行进程间通信的信息
+
+# (2) ipcrm 进程间通信媒介的 删除手段
+ipcrm -M {shmkey}	# 移除用 shkey  创建的 共享内存段
+ipcrm -m {shmid}	# 移除用 shmid  标识的 共享内存段
+ipcrm -Q {msgkey}	# 移除用 msqkey 创建的 消息队列
+ipcrm -q {msqid}	# 移除用 msqid  标识的 消息队列
+ipcrm -S {semkey}	# 移除用 semkey 创建的 信号
+ipcrm -s {semid}	# 移除用 serid  标识的 信号
+</code></pre>
+<h5 id="共享内存和内存映射的区别">共享内存和内存映射的区别</h5>
+<ol>
+<li>共享内存可以直接创建，内存映射需要依赖文件（匿名映射除外）</li>
+<li>共享内存效率更高，内存映射需要与磁盘同步</li>
+<li>共享内存操作的是同一块内存，内存映射是，每一个进程在自己的虚拟内存中都有一块独立的内存，只不过这块内存通过一个共同的文件关联了起来</li>
+<li>数据安全：
+<ol>
+<li>进程退出，共享内存还在（需要主动调用删除才行）只不过进程不再与之关联，但内存映射区不在了</li>
+<li>电脑断电，没电了内存自然是消失了，但是由于磁盘文件还在，因此内存映射区的数据还在</li>
+</ol>
+</li>
+<li>生命周期，共享内存需要手动删除，且进程关联数为 0 时，才会真正被删除。而内存映射区，进程退出后就自动销毁了</li>
+</ol>
+<h4 id="守护进程">守护进程</h4>
+<h5 id="控制终端">控制终端</h5>
+<p>终端是一个设备（命令<code>tty</code>可以查看），用户通过终端登录后，获得一个 shell 进程（命令<code>echo $$</code>显示当前 shell 的 pid），这个进程的**控制终端（Controlling Terminal）**即是此终端。</p>
+<p>进程中，控制终端的信息是写在 PCB 中的，因此，从此 shell 启动的所有进程，其控制终端都是本终端（因为 fork()会复制 PCB），标准输入输出错误默认指向控制终端，因此也就都是指向本终端。</p>
+<p>可以在控制终端输入一些命令来控制进程，但这只对前台进程有效。因为后台进程（在启动命令后面加一个<code>$</code>或者用<code>Ctrl + Z</code>即可得到后台进程）是没有控制终端的。</p>
+<h5 id="进程组--会话">进程组 &amp; 会话</h5>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325200757279.png"></td>
+        <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325201431246.png"></td>
+    </tr>
+</table>
+<ul>
+<li>
+<p>相关进程放在同一个组里，方便管理，比如修改进程优先级，直接把组的改了就行了</p>
+</li>
+<li>
+<p><strong>创建会话的两步</strong>，第一步会话首进程创建一个进程组，组号等于自己的进程号；第二步，会话首进程创建一个会话，会话号等于自己的进程号。因为会话是进程组的集合嘛，得先创建一个组</p>
+</li>
+<li>
+<p>控制终端的第一个程序，会创建一个会话。一个终端只有一个会话；任意时刻，一个终端都有且只有一个前台进程组。下面是一个示例</p>
+</li>
+</ul>
+<pre><code class="language-bash">find / 2 &gt; /dev/null | wc -l &amp;
+sort &lt; longlist | uniq -c
+</code></pre>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325201835127.png"></td>
+        <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325202405135.png"></td>
+    </tr>
+</table>
+<h5 id="守护进程概念">守护进程概念</h5>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230325202719822.png" alt="image-20230325202719822" />
+</div>
+</p>
+<h5 id="守护进程创建步骤">守护进程创建步骤</h5>
+<ol>
+<li>执行 <code>fork()</code>，之后父进程退出，子进程继续执行。
+<ul>
+<li>因为下面要创建一个会话，创建会话的进程，不能是进程组的首进程（步骤 2 解释原因），而你执行父进程的时候，它默认就会创建一个进程组。因此，让它生成一个子进程来创建会话，子进程的 pid 和它的 pgid 是不一样的。</li>
+<li>父进程退出之后，会被 shell 得知，并输出一个 shell 提示符。显然我们不希望要这个提示符</li>
+</ul>
+</li>
+<li>子进程调用 <code>setsid()</code> 开启一个新的会话
+<ul>
+<li>创建一个新的会话，不会连接控制终端，因此这个新的会话就不会有控制终端。注意，是没有控制终端了，但不是说这个进程没有终端。这点在步骤 5 中有解释。</li>
+<li>**为什么要用子进程创建会话呢？**因为，如果使用父进程，父进程本身会有一个进程组（它是首进程），进程组的 pgid 就是父进程的 pid，父进程也是在一个会话 A 里面的。如果选择父进程来创建一个新的会话 B，那么首先，他会创建一个进程组，这个组的 pgid 和它的 pid 是一样的。好的，现在问题就出现了：<em>在会话 A 和会话 B 这两个会话里面，有两个组号相同的进程组</em>。这是不行的。<strong>因此，创建会话的进程，不能是进程组的首进程</strong>。（换言之：因为什么进程创建新会话，都要先以自身为组长创建进程组，而一个进程不能当两个组的组长，组长走了，原来的组还在呢）</li>
+</ul>
+</li>
+<li>清除进程的 <code>umask</code>，以确保当守护进程创建文件和目录时拥有所需的权限</li>
+<li>修改进程的当前工作目录，通常会改为根目录<code>/</code></li>
+<li>关闭守护进程从其父进程继承而来的所有打开者的文件描述符
+<ul>
+<li>守护进程是一直运行着的，如果不关闭文件描述符，那这些个文件就会被一直占用，删不掉</li>
+</ul>
+</li>
+<li>关闭文件描述符 0、1、2，然后打开<code>/dev/null</code>，并使用 dup2()重定向到这个设备
+<ul>
+<li>创建一个新会话脱离控制终端，但是终端还是有的，会继承父进程的文件描述符。因此要把这些都关闭，以防止误操作</li>
+<li>而有些操作会用到这些描述符。因此就重定向到 null，写到里面的东西都会被丢弃掉</li>
+</ul>
+</li>
+<li>执行核心业务逻辑</li>
+</ol>
+<h2 id="chapter-3-linux-多线程开发">Chapter 3 Linux 多线程开发</h2>
+<h3 id="线程概述">线程概述</h3>
+<h4 id="线程--进程">线程 &amp; 进程</h4>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230326144744272.png"></td>
+        <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230326145611245.png"></td>
+    </tr>
+</table>
+<blockquote>
+<p>插播一段别的知识：</p>
+<p>
+<a href="https://zhuanlan.zhihu.com/p/28659560"  target="_blank" rel="noopener noreferrer" >未初始化数据段</a>
+，即<code>.bss</code>里面存放的是，未初始化，或初始化为 0 的，全局变量或静态变量。而<code>.data</code>数据段，里面存放的是初始化为 非 0 的全局变量或静态变量。在程序运行起来之后，这俩是合在一块的，统称为数据区。之所以弄这个区别，是因为，bss 段里面的变量只有个符号，其实并没有实际分配内存，只有在运行起来后，连接器才会把后面跟着的这一块 bss 区，全部清零。而 data 段里面的，你初始化了 1000 个 int 的数组，它就真真切切的占用了 1000*4B 的空间，可执行程序就会大一些。</p></blockquote>
+<h4 id="共享与非共享">共享与非共享</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230326145945639.png" alt="image-20230326145945639" />
+</div>
+</p>
+<p>线程之间共享同一个虚拟地址空间，只有一些地方有区别，比如不同线程间，有各自的<code>.text</code>段和栈空间</p>
+<p>信号掩码即阻塞信号集，每个线程都有自己的阻塞信号集。每个线程都有自己的 error</p>
+<h3 id="线程操作">线程操作</h3>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230326150628923.png" alt="image-20230326150628923" />
+</div>
+</p>
+<h4 id="创建线程">创建线程</h4>
+<pre><code class="language-c">// 创建线程：传出线程号，指定线程属性（NULL）、线程业务（函数指针）和线程执行需要的参数（void*）
+int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
+                   void *(*start_routine) (void *), void *arg);
+// 获取线程自己的 tid，类似getpid()
+pthread_t pthread_self();
+// 用于比较两个线程的线程号是否相等。因为不同平台线程号的实现不同，有的用的是结构体，就没法 == 了
+int pthread_equal(pthread_t t1, pthread_t t2);
+</code></pre>
+<ul>
+<li>
+<p>进程是一个比较大的概念，是用来分配资源的单位，线程是用来调度的单位。main 函数中执行的是主线程，其余的是子线程。</p>
+</li>
+<li>
+<p>参数</p>
+<ul>
+<li><code>thread</code>：传出参数，创建成功后，会把子线程的 id 存放在其指向的那一块缓存中，再返回</li>
+<li><code>attr</code>：设置线程的属性，一般使用`NULL``</li>
+<li><code>start_routine</code>：即线程要执行的代码。是一个指向 参数为 void* 返回值也为 void* 的函数 的函数指针</li>
+<li><code>arg</code>：给线程要执行的函数 传递其需要的参数</li>
+<li><code>返回值</code>：成功返回 0， 失败返回 一个错误号（不是 -1 了，也不同于 errno，不能 perror 了）。现在的错误处理函数定义在 string.h 头文件中：<code>char *strerror(int errnum);</code></li>
+</ul>
+</li>
+<li>
+<p><code>pthread</code>不是标准库，因此有时编译不成功时，记得加上<code>-pthread</code>选项（或者加<code>-lpthread</code>指定也一样）</p>
+</li>
+</ul>
+<h4 id="终止线程">终止线程</h4>
+<pre><code class="language-c">void pthread_exit(void *retval);
+</code></pre>
+<ul>
+<li>在哪个线程中调用，即表示终止哪个线程。参数是你自己的 返回值</li>
+<li><code>retval</code>：传出自己的返回值，可以在<code>pthread_join()</code>中获取到
+<ul>
+<li>其实对子线程（返回值为 void*）来说，用这个退出，跟它调用 return 退出是一样的，即 <code>return retval;</code></li>
+</ul>
+</li>
+<li>谁调用，谁退出，但<strong>在主线程中执行退出，不会影响其他线程的运行</strong>。而主线程如果正常运行到 return 0 结束，相当于进程退出了，整个虚拟地址空间都不存在了，那自然所有的线程也就都没了。</li>
+<li>线程（包括主线程）调用了 pthread_exit 后就结束了，后面的代码就不再执行了。主线程 pthread_exit 后，不会像 return 和 exit 那样释放所有资源，但并不意味着这之间的代码还能执行。</li>
+</ul>
+<p>（对指针熟练了可以跳过下面这两段话）</p>
+<p><strong>线程返回值，不能返回局部变量</strong>。每个线程有自己的栈，线程退出了，这块栈也就销毁了。那么你返回的值，再去读取，可能就不是原来的值了。因此要返回全局或者静态变量，而这个，也正是下面 pthread_join 第二个参数是个<strong>二级指针</strong>的原因。因为返回值是个“全局”（指针类型）变量，你获取到之后，如果传递的是一级指针，是不就等于 C 语言函数传参里面的，传值方法？也就是说，你不能去修改它，因此要想能回这个值进行修改，就要返回一个指向它的指针，指向指针的指针，那就是二级指针。</p>
+<p>换言之，join 的工作过程其实就是，如果 retval 非空，则把目标线程的返回值（一个 void* 类型的数据），拷贝到 retval 指向的地址。（这里不要钻牛角尖，指向指针的指针，还是个指针，也还是指向一块存放数据的内存。只不过对这块内存的解读是，又是一个指针。类型不就是标记怎么解读比特数据的么）看出区别了没，其实跟之前传出参数一样，之前是用指针传出（而不是传值），现在也是用指针传出。区别就在，这次要传的参数，是一个指针。</p>
+<h4 id="回收线程">回收线程</h4>
+<pre><code class="language-c">// 连接终止的线程，连接的目的，就是回收其资源，并获取其返回值
+int pthread_join(pthread_t thread, void **retval);
+</code></pre>
+<p>子进程有一部分不能自己释放的资源，需要父进程回收。子线程也有，也需要回收，不同的是，任何线程都可以去回收另一个结束的线程。（一般也都是主线程调用）</p>
+<ul>
+<li>
+<p>回收不了会<strong>阻塞</strong>；一次只能回收一个，回收多个需要用循环</p>
+</li>
+<li>
+<p>参数</p>
+<ul>
+<li><code>thread</code>：需要回收的子线程的 tid</li>
+<li><code>retval</code>：回收子线程的返回值（不管是 return 返回的，还是调用 pthread_exit() 返回的，一样）</li>
+<li><code>返回值</code>：成功返回 0， 失败返回错误号</li>
+</ul>
+</li>
+</ul>
+<h4 id="线程分离">线程分离</h4>
+<pre><code class="language-c">// 分离指定的线程
+int pthread_detach(pthread_t thread);
+</code></pre>
+<ul>
+<li>被分离标记的线程，其结束的时候，会自动把资源归还给操作系统，不需要回收</li>
+<li>不能 detach 一个已经被 detach 的线程（unspecified behavior）</li>
+<li>也不能 join 一个已经被 detach 的线程（ivalid argument）</li>
+</ul>
+<h4 id="线程取消">线程取消</h4>
+<pre><code class="language-c">// 取消指定线程（让线程终止）
+int pthread_cancel(pthread_t thread);
+</code></pre>
+<ul>
+<li>
+<p>线程可以被取消与否，取决于被取消线程的一些属性，（即创建线程时的第二个参数<code>pthread_attr_t</code>）</p>
+</li>
+<li>
+<p>被取消的线程，不是立马终止的，而是要运行到一些被定义好的<strong>取消点</strong>（cancellation point，可以<code>man 7 pthreads</code>查看）时，才会被终止。大致上可以理解为，要运行到某些系统调用处，发生内核与用户态切换时，才会被终止。</p>
+</li>
+</ul>
+<h4 id="线程属性">线程属性</h4>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:65%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328144439076.png"></td>
+        <td style="width:35%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328145154300.png"></td>
+    </tr>
+</table>
+<pre><code class="language-c">// 设置/获取线程的分离属性
+int pthread_attr_setdetachstate(pthread_attr_t *attr, int detachstate);
+int pthread_attr_getdetachstate(const pthread_attr_t *attr, int *detachstate);
+// PTHREAD_CREATE_DETACHED   PTHREAD_CREATE_JOINABLE
+</code></pre>
+<p>首先要创建线程属性变量，然后对其进行<strong>初始化</strong><code>pthread_attr_init</code>，然后设置其属性。设置了分离状态<code>PTHREAD_CREATE_DETACHED</code>就说明，不需要别的进程来 join 我，我结束了自己会释放。然后<code>pthread_create</code>创建线程，把 attr 传进去就好了。</p>
+<p>设置了 detach 属性，就不能再去 <code>pthread_detach</code> 或者 <code>pthread_join</code> 了，跟执行一次<code>pthread_detach()</code>一样</p>
+<h3 id="线程同步">线程同步</h3>
+<h4 id="概述">概述</h4>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328152330428.png"></td>
+        <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328152656090.png"></td>
+    </tr>
+</table>
+<h4 id="互斥锁-mutex">互斥锁 mutex</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328152847746.png" alt="image-20230328152847746" />
+</div>
+</p>
+<p><code>restrict</code>：C 语言修饰符，被修饰的指针，不能被别的指针操作</p>
+<p>锁的使用步骤：创建锁(全局) $\Rarr$ 初始化锁(使用前) $\Rarr$ 加锁(阻塞)或尝试加锁(非阻塞) $\Rarr$ 操作 $\Rarr$ 解锁</p>
+<p>初始化一个已经被初始化的锁，和销毁正在被用着的锁，都是未定义行为。但是一个锁被销毁后，是可以再被重新初始化的。合理的去 destory 锁，反正在主线程退出之后 destory，和退出之前，但是别的线程还在用着呢的时候 destory，都是不合适的。个人认为，本身他也就是一个栈上的变量而已，全局的联合体变量。你 destroy 它，它也不会释放空间，只是变得可以再被 init 了而已。没有需要就不 destroy 了</p>
+<h4 id="死锁">死锁</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328154547333.png" alt="image-20230328154547333" />
+</div>
+</p>
+<h4 id="读写锁-rwlock">读写锁 rwlock</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328160341292.png" alt="image-20230328160341292" />
+</div>
+</p>
+<ul>
+<li>读可以共享，写的时候不许读</li>
+<li>写是独占的</li>
+<li>写的优先级更高</li>
+</ul>
+<h4 id="条件变量">条件变量</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328183345466.png" alt="image-20230328183345466" />
+</div>
+</p>
+<ul>
+<li>条件变量不是锁，是配合锁来更好实现线程同步的。可以实现，<strong>满足某个条件</strong>时通知线程来做，不满足时就阻塞。至于互斥的访问临界区，那还是得锁来做。</li>
+<li><code>wait</code>是一直等待，直到被通知，<code>timedwait</code>是等待指定时间，如果没收到通知就不等了</li>
+<li><strong>注意</strong>，当<code>pthread_cond_wait(&amp;cond, &amp;mutex)</code>等待 cond 被阻塞的时候，系统会<strong>自动解锁</strong>，等到信号，准备就绪的时候，mutex 这个锁<strong>又会被加上</strong></li>
+<li><code>signal</code>是至少通知一个正在等待的，<code>broadcast</code>是通知阻塞队列里的全部</li>
+</ul>
+<h4 id="信号量">信号量</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230328191035375.png" alt="image-20230328191035375" />
+</div>
+</p>
+<ul>
+<li>
+<p>同样的，信号量也是用来阻塞线程的，可以实现同步互斥前驱关系等，并不能保证线程安全，也即，想要保证多线程数据安全，仍然需要配合锁来实现（当然，单个信号量，值取 01，那跟锁一样了）</p>
+</li>
+<li>
+<p>信号量是有值的，条件变量是没有值的，是看满不满足条件</p>
+</li>
+<li>
+<p><code>sem_init</code>：初始化信号量</p>
+<ul>
+<li><strong>sem</strong>：定义的 sem_t 类型的信号量的地址</li>
+<li><strong>pshared</strong>：指定是用于线程间同步还是进程间同步。<code>0</code>表示线程间同步，<code>非0</code>表示进程间同步</li>
+<li><strong>value</strong>：信号量的值</li>
+</ul>
+</li>
+<li>
+<p><code>sem_wait</code>：V 对信号量加锁，使信号量值减一，如果 value 大于零则直接返回；如果 value 小于 0 则<strong>阻塞</strong></p>
+</li>
+<li>
+<p><code>sem_post</code>：P 对信号量解锁，使信号量值加一，如果让信号量的值大于 0，则唤醒一个被 wait 阻塞的线程</p>
+</li>
+</ul>
+<h4 id="同步模型">同步模型</h4>
+<ol>
+<li>生产者消费者模型：光有信号量是不够的，还要加互斥锁</li>
+<li>哲学家进餐模型：</li>
+<li>&hellip;</li>
+</ol>
+<h2 id="chapter-4-linux-网络编程">Chapter 4 Linux 网络编程</h2>
+<h3 id="网络的结构模式">网络的结构模式</h3>
+<h4 id="clientserver-模型">Client/Server 模型</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329190025012.png" alt="image-20230329190025012" />
+</div>
+</p>
+<h4 id="browserserver">Browser/Server</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329190240817.png" alt="image-20230329190240817" />
+</div>
+</p>
+<h4 id="mac-ip">MAC IP</h4>
+<p>每个网卡的 mac 地址是全球唯一的，由制造商烧录在网卡中</p>
+<p>IP，<code>Internet Protocal Address</code>，分配一个逻辑地址，屏蔽物理地址的差异</p>
+<p>子网掩码</p>
+<p>端口（port），0-65535（2^16-1)</p>
+<h3 id="网络协议模型">网络协议模型</h3>
+<h4 id="osi-七层模型">OSI 七层模型</h4>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329192136672.png" alt="image-20230329192136672" />
+</div>
+</p>
+<h4 id="tcpip-四层协议">TCP/IP 四层协议</h4>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:45%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329191737849.png"></td>
+        <td style="width:55%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329192458401.png"></td>
+    </tr>
+</table>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="C:/Users/wddjwk/AppData/Roaming/Typora/typora-user-images/image-20230329192844263.png" alt="image-20230329192844263" />
+</div>
+</p>
+<h3 id="协议一览">协议一览</h3>
+<blockquote>
+<p>协议，即网络协议的简称，是通信计算机双方必须遵从的<strong>一组约定</strong>，比如怎样建立连接，怎样互相识别等。只有遵守这个约定，之间才能互相通信交流。
+协议的三要素是，<strong>语法、语义、时序</strong>。为了使数据在网上从源到达目的，网络通信的参与方必须遵守相同的规则，这套规则称为协议(protocal)，<strong>他最终体现为，在网络上传输的数据包格式。</strong>
+协议往往分成几个层次，<strong>分层</strong>的定义是为了使某一层协议的改变，不影响其他层次。</p></blockquote>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329194129479.png" alt="image-20230329194129479" />
+</div>
+</p>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:55%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329194319306.png"></td>
+        <td style="width:45%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329194413379.png"></td>
+    </tr>
+    <tr>
+		<td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329194552429.png"></td>
+        <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329195021030.png"></td>
+    </tr>
+</table>
+<h3 id="网络通信的过程">网络通信的过程</h3>
+<h4 id="封装与分用">封装与分用</h4>
+<p>上层协议是如何便用下层协议提供的服务的呢？其实这是通过<strong>封装</strong> (encapsulation) 实现的。应用程序数据在发送到物理网络上之前，将沿<strong>着协议栈从上往下依次传递</strong>。每层协议都将在上层数据的基础上加上自己的头部信息（有时还包括尾部信息）以实现该层的功能，这个过程就称为封装。</p>
+<p>当帧到达目的主机时，将沿着协议栈自底向上依次传递。各层协议依次处理帧中本层负责的头部数据，以获取所需的信息，并是终将处理后的帧交给目标应用程序。这个过程称为<strong>分用</strong> (demultiplexing)。分用是<strong>依靠头部信息中的类型字段实现的</strong>。</p>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:45%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329195655630.png"></td>
+        <td style="width:55%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329195810372.png"></td>
+    </tr>
+</table>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329195959288.png" alt="image-20230329195959288" style="zoom:50%;" />
+<h4 id="arp-协议">ARP 协议</h4>
+<p>地址解析协议：通过 IP 找 MAC 地址。把 ip 封装成 ARP 包，加上以太网帧头尾，进行广播，与目标地址相同的进行应答。</p>
+<p>命令：<code>arp -a</code></p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230329204837243.png" alt="image-20230329204837243" />
+</div>
+</p>
+<h3 id="字节序">字节序</h3>
+<h4 id="字节序理解">字节序理解</h4>
+<p>即大端小端。大端指：整数的高位在低地址，输出是“顺”的；小端指：低位在高地址，输出是“反”的。</p>
+<p>举个例子，0x112233，最高字节是 11，最低字节是 33，则大端时输出其字节（访存是从低地址开始，往高地址读取），最高位在低地址，所以是 0x11，0x22，0x33；即与人读的顺序（从左往右）一致，人先看先读的就是高位。小端则相反，先拿到的是低位数据，因为低位放在低地址。</p>
+<p>可以通过强制转为<code>unsigned char *</code>输出每一 byte，也可以创建一个 <code>union</code>，里面定义一个数据类型 x，一个<strong>char 数组</strong>，这样输出 char 数组就可以得知 x 的字节序</p>
+<h4 id="字节序转换函数">字节序转换函数</h4>
+<p>TCP/IP 中将<strong>网络字节序</strong>规定为：<mark>大端</mark>序。发送端如果是小端机则要先转换为大端序，接收端按大端序解释，后面随便（转换成你的<em>主机字节序</em>）。</p>
+<p>网络中端口、IP 都没有负数，都采用 <code>unsigned</code> 格式。【注意是整数类型之间的转换，与<code>inet_pton()</code>等函数区别】</p>
+<pre><code class="language-C">#include &lt;arpa/inet.h&gt;
+/* h-&gt;host; n-&gt;net; s-&gt;short(unsigned short: 2B); l-&gt;long(unsigned int: 4B) */
+uint16_t htons(uint16_t hostshort);	// short 一般用来转换 端口 地址（2B）
+uint16_t ntohs(uint16_t netshort);
+uint32_t htonl(uint32_t hostlong);	// long  一般用来转换  IP 地址（4B）
+uint32_t ntohl(uint32_t netlong);
+</code></pre>
+<p>这里有一个定义 ip 的操作：先定义到<strong>字节数组</strong>里面，然后对其进行指针类型转换即可。</p>
+<pre><code class="language-c">char buff[4] = {192, 168, 5, 11};
+unsigned long x = *((unsigned long *)buff);
+unsigned long y = htonl(x);
+
+unsigned char *p = (unsigned char *)&amp;x;
+unsigned char *q = (unsigned char *)&amp;y;
+
+printf(&quot;x: %d.%d.%d.%d\n&quot;, *p, *(p + 1), *(p + 2), *(p + 3));
+printf(&quot;y: %d.%d.%d.%d\n&quot;, *q, *(q + 1), *(q + 2), *(q + 3));
+</code></pre>
+<h3 id="ip-地址转换函数">IP 地址转换函数</h3>
+<p>作用：格式转换</p>
+<ol>
+<li>点分十进制 IP 地址/16 进制 IPv6 地址（即字符串） $\Leftrightarrow$ 网络字节序整数（二进制数）</li>
+<li>主机字节序 $\Leftrightarrow$ 网络字节序</li>
+</ol>
+<pre><code class="language-c">/*a-&gt;address; n-&gt;network,即网络字节序的整数; p-&gt;point,即点分十进制字符串*/
+
+#include&lt;arpa/inet.h&gt;
+// 【不推荐使用】
+in_addr_t inet_addr(const char *cp); // 字符串IP 转换为 大端 整数 IP
+int       inet_aton(const char *cp, struct in_addr *inp);
+char     *inet_ntoa(struct in_addr in);
+
+// 下面俩同时适用IPv4和IPv6【推荐使用】
+int         inet_pton(int af, const char *src, void *dst);
+const char *inet_ntop(int af, const void *src, char *dst, socklen_t size);
+</code></pre>
+<ul>
+<li><code>af</code>：地址族，<code>AF_INET</code>，<code>AF_INET6</code> 二选一</li>
+<li><code>src</code>：点分十进制 IP 字符串 or 网络字节序的二进制整数</li>
+<li><code>dst</code>：【传出参数】网络字节序的二进制整数 or 点分十进制 IP 字符串</li>
+<li><code>size</code>：指定 dst 的大小（dst 字符数组的大小）</li>
+<li><code>返回值</code>：转换后的地址，与 <code>dst</code> 中内容一样（整数 to 字符串的情况）</li>
+</ul>
+<h3 id="tcp-介绍">TCP 介绍</h3>
+<h4 id="三握四挥">三握&amp;四挥</h4>
+<ul>
+<li>
+<p>为什么要三次握手而不是两次？</p>
+<ol>
+<li>因为如果 A 第一次请求连接时，发生了超时重传，重传的与 B 建立并完成了连接。但是第一次超时的连接请求，兜兜转转又传到了 B，如果采用的两次握手，则 B 又一次与 A 建立了连接，在 A 不知情的情况下，这显然是不合适的。如果采用三次握手，则 B 收到这个迟到的请求后，会向 A 进行确认，而 A 直到这是一个过期的请求，因此不予理会，那么建立连接失败。（被动方重传的是它的 FIN，直到收到主动方的 ACK 为止）</li>
+</ol>
+</li>
+<li>
+<p>为什么主动断开的一方，要等待 2MSL（Maximum Segment Lifetime：两倍的最长报文段寿命）才能关闭</p>
+<ol>
+<li>
+<p>保证 A 发的最后一个确认报文段（即第四次挥手）能准确到达 B，如果 A 不等待 2MSL 就关闭，且此时第四次回收的报文丢了，A 无法再重传，那么 B 就无法正常关闭。</p>
+</li>
+<li>
+<p>同采用三次握手的原因类似，等待 2MSL 可以保证本次连接中产生的所有报文段都从网络中消失。以免产生“已失效的连接请求报文段”等问题。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="滑动窗口">滑动窗口</h4>
+<h4 id="拥塞控制">拥塞控制</h4>
+<h4 id="tcp-通信流程">TCP 通信流程</h4>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230331130913294.png"></td>
+        <td style="width:50%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230330200747691.png"></td>
+    </tr>
+</table>
+<h4 id="tcp-状态转换">TCP 状态转换</h4>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:55%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230401173032852.png"></td>
+        <td style="width:45%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230401173050493.png"></td>
+    </tr>
+</table>
+<h4 id="半关闭状态">半关闭状态</h4>
+<p>第一次挥手后，被动方给主动方发送 ACK，但尚未发送 FIN，此时主动方进入 <code>FIN_WAIT_2</code> 状态，这时的主动方，可以接受被动方发来的消息，但是无法发出消息，即半关闭（半连接）状态。可以通过 API 来控制这一状态。</p>
+<pre><code class="language-c">int shutdown(int sockfd, int how);
+</code></pre>
+<p><code>how</code>：允许 shutdown 操作选择以下几种方式</p>
+<ul>
+<li><code>SHUT_RD(0)</code>：关闭 sockfd 上的读功能，该套接字不再接收数据，其接收缓冲区中的数据将被直接丢弃</li>
+<li><code>SHUT_WR(1)</code>：关闭 sockfd 上的写功能，进程无法再对此 socket 进行写操作</li>
+<li><code>SHUT_RWDR(2)</code>：关闭 sockfd 读写功能，相当于调用 shutdown 两次</li>
+</ul>
+<p>注意区别：使用<code>close()</code> 中止连接，即发送 <code>FIN</code>，但这只是减少 socket 描述符的引用计数，不会直接关闭。只有等引用计数减为 0 时才真正关闭。而 <code>shutdown()</code> 是立刻关闭连接，或者关闭一个方向，不考虑引用计数。即多进程通信时，一个进程调用 close 并不会影响别的进程通信，但有人调用的 shutdown 则都不能通信了。</p>
+<h3 id="socket-通信">socket 通信</h3>
+<h4 id="socket-地址">socket 地址</h4>
+<p>socket（套接字（插座）），就是对网络中不同主机上的应用进程之间进行双向通信的端点的抽象，一个套接字就是网络上进程通信的一端。上联应用进程，下联网络协议栈。socket 是一个伪文件。</p>
+<p><strong>（1）通用 socket 地址</strong></p>
+<p>表示 socket 地址的是一个结构体，有两个：<code>sockaddr</code> 和 <code>sockaddr_storage</code>，定义如下：</p>
+<pre><code class="language-c">#include &lt;bits/socket.h&gt;
+typedef unsigned short int sa_family_t;	// 2B
+struct sockaddr {
+    sa_family_t sa_family;	  // 表示地址族类型，与协议族对应，通常可以混用
+    char        sa_data[14];  // 存放socket地址值。不同协议族的地址具有不同的长度和含义
+};
+
+struct sockaddr_storege {
+    sa_family_t sa_family;
+    unsigned long int __ss_align;
+    char __ss_padding[ 128 - sizeof(__ss_align) ];
+};
+</code></pre>
+<table style="border:none;text-align:center">
+    <tr>
+		<td style="width:70%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230330191057391.png"></td>
+        <td style="width:30%"><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230330134047670.png"></td>
+    </tr>
+</table>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230330191720582.png" alt="image-20230330191720582" />
+</div>
+</p>
+<p>上图可见，<code>sockaddr</code> 中的 14B 的 data 是不够容纳所有协议的地址的，因此又新定义了一个 <code>sockaddr_storage</code>，以便容纳更长的地址，并且它是<strong>内存对齐</strong>的。</p>
+<p><strong>（2）专用 socket 地址</strong></p>
+<p>很多网络编程的函数诞生是早于 IPv4 协议的，当时用的都是 <code>sockaddr</code> 结构体，为了向前兼容，现在 sockaddr 退化成了，类似 <code>void*</code> 的作用，就是说，不管你是什么地址，统统转为 sockaddr 类型传给函数。至于这个地址到底怎么解释，是<code>sockaddr_in</code>还是<code>sockaddr_in6</code>，由协议族字段确定，然后函数内部再强制类型转换为相应的地址。</p>
+<p>所有的专用 socket 地址（包括 socket_storage）都要强制转换为通用 socket 地址类型（即 sockaddr），因为所有 socket 编程接口的地址参数类型都是<code>sockaddr</code></p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230330192425946.png" alt="image-20230330192425946" style="zoom: 60%;" />
+<pre><code class="language-c">/* sockaddr_in: TCP/IP协议族中IPv4的sock地址，sockaddr_in6 则是IPv6的地址 */
+#include &lt;netinet/in.h&gt;
+struct sockaddr_in {
+    sa_family_t    sin_family;	// 协议族(AF_INET &lt;=&gt; PF_INET)
+    in_port_t      sin_port;	// 端口号(16位无符号,2B)
+    struct in_addr sin_addr;	// IP地址(32位五符号,4B)
+    /*填充的部分*/
+    unsigned char sin_zero[sizeof(struct sockaddr) - __SOCKADDR_COMMON_SIZE -
+                          sizeof(in_port_t) - sizeof(struct in_addr)];
+};
+// 类型参考
+struct in_addr {
+	in_addr_t s_addr;
+};
+typedef uint16_t in_port_t;
+typedef uint32_t in_addr_t;
+#define __SOCKADDR_COMMAN_SIZE ( sizeof(unsigned short int) )
+</code></pre>
+<ul>
+<li>
+<p>sockaddr_in 地址指定方法为：</p>
+<pre><code class="language-c">struct sockaddr_in addr;	// 开始赋值：
+addr.sin_family = AF_INET;	// IPv4
+addr.sin_port = hton(9999);	// 字节序转换
+// 使用 IP 转换函数给需要的整形 sin_addr 赋值
+inet_pton(AF_INET,&quot;192.168.5.11&quot;, (void*)&amp;addr.sin_addr.s_addr);
+// 也可以采用下面偷懒的写法。客户端不行，客户端一定要指定你想连接哪个服务器
+addr.sin_addr = INADDR_ANY;	// 其实就是0.0.0.0，表示客户端进来任意地址都可以绑定
+</code></pre>
+</li>
+</ul>
+<h4 id="socket-函数">socket 函数</h4>
+<blockquote>
+<p>&#x2b50;
+<a href="https://www.cnblogs.com/traditional/p/11806454.html"  target="_blank" rel="noopener noreferrer" >Socket 缓冲区</a>
+</p></blockquote>
+<pre><code class="language-c">#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;arpa/inet.h&gt;	// 包含了这个，上面的两个可以省略
+/* 1. 服务端建立 */
+int socket (int domain, int type, int protocal);
+int bind   (int sockfd, const struct sockaddr *addr, socklen_t  addrlen);
+int listen (int sockfd, int backlog); /* /proc/sys/net/core/somaxconn */
+int accept (int sockfd,       struct sockaddr *addr, socklen_t *addrlen);//长度是指针！！
+int connect(int sockfd, const struct sockaddr *addr, socklen_t  addrlen);
+/* 2.1 读写函数 */
+ssize_t write   (int sockfd, const void *buf, size_t len);
+ssize_t read    (int sockfd,       void *buf, size_t len);
+/* 2.2 socket 专有的读写函数(就多了个 flags 选项) */
+ssize_t recv    (int sockfd,       void *buf, size_t len, int flags);
+ssize_t recvfrom(int sockfd,       void *buf, size_t len, int flags,
+                          struct sockaddr *src_addr, socklen_t *src_addr_len);
+ssize_t send    (int sockfd, const void *msg, size_t len, int flags);
+ssize_t sendto  (int sockfd, const void *msg, size_t len, int flags,
+	                const struct sockaddr *to_addr,  socklen_t  to_addr_len);
+/* 3. 关闭socket连接，参见 4.7.6 半关闭 */
+int close       (int sockfd);
+int shutdown    (int sockfd, int how);
+/* 4. 设置 socket 属性，参见 4.9.3 端口复用 */
+int getsockopt(int sockfd, int level, int optname,      void *optval, socklen_t*optlen);
+int setsockopt(int sockfd, int level, int optname,const void *optval, socklen_t optlen);
+</code></pre>
+<ol>
+<li><strong>socket()：</strong> 获取一个套接字（<code>cman 2 socket</code>）
+<ul>
+<li><code>domain</code>：协议族，<code>AF_INET ， AF_INET6， AF_UNIX/AF_LOCAL...</code></li>
+<li><code>type</code>：通信过程中使用的协议类型（流 报&hellip;)，<code>SOCK_STREAM，SOCK_DGRAM，SOCK_SEQPACKET...</code></li>
+<li><code>protocal</code>：具体的协议，一般传 <code>0</code>。流式协议默认<code>TCP</code>，报式默认<code>UDP</code></li>
+<li><code>返回值</code>：成功返回 socket 文件描述符，失败返回 -1</li>
+</ul>
+</li>
+<li><strong>bind()：</strong> 将 套接字 和 本地的 IP + 端口 绑定。
+<ul>
+<li><code>sockfd</code>：上一步创建的 socket</li>
+<li><code>addr</code>：本地（<strong>服务器的</strong>） IP 和 端口 结构体</li>
+<li><code>addrlen</code>：addr 的大小</li>
+<li><code>返回值</code>：成功 0， 失败 -1</li>
+</ul>
+</li>
+<li><strong>listen()：</strong> 监听指定 socket 上的链接。listen 时有<strong>两个队列</strong>：已连接的和未连接的
+<ul>
+<li><code>sockfd</code>：要监听的 socket，即刚通过 <code>socket()</code> 获得的那个</li>
+<li><code>backlog</code>：两个套接字队列的总最大长度（似乎与 man 手册不一样，查）（在 somaxconn 中定义）</li>
+</ul>
+</li>
+<li><strong>accept()：</strong> 从用于 listen 的那个 socket 获取进来的客户端信息，然后返回一个用于通信的新 socket【阻塞】
+<ul>
+<li><code>sockfd</code>：用于监听的那个 socket（即<code>listen()</code>用的那个），因为要从里面的缓冲区读取客户端的数据</li>
+<li><code>addr</code>：传出参数，记录连接成功后，链进来的 <strong>客户端的</strong> IP 和 端口</li>
+<li><code>addrlen</code>：是<strong>指针</strong>！！！，不能直接 sizeof 了，先定义一个变量。</li>
+<li><code>返回值</code>：成功返回用于通信的 socket 描述符，失败返回 -1</li>
+</ul>
+</li>
+<li><strong>connect()：</strong> 客户端调用，用于连接服务器
+<ul>
+<li><code>sockfd</code>：客户端自己创建的，用于通信的文件描述符</li>
+<li><code>addr</code>：要连接的服务器的 IP 和 端口</li>
+<li><code>addrlen</code>：addr 的 size</li>
+<li><code>返回值</code>：成功 0，失败 -1</li>
+</ul>
+</li>
+<li><strong>recv()：</strong> 从指定 sockfd 中接收消息到 buf 中，其 <code>flags</code> 取值如下：
+<a href="https://man.freebsd.org/cgi/man.cgi?query=recv&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD&#43;13.1-RELEASE&#43;and&#43;Ports&amp;arch=default&amp;format=html"  target="_blank" rel="noopener noreferrer" >recv(2)</a>
+
+<ul>
+<li><code>MSG_WAITALL</code>：阻塞，直到所有的 request 都满足才返回，除非中间出现错误或异常（信号、断连）</li>
+<li><code>MSG_DONTWAIT</code>：不阻塞，不能读就直接返回</li>
+<li><code>MSG_CMSG_CLOEXEC</code>：一执行，就把接受的 fd 关闭（只接收一次呗）</li>
+<li><code>0</code>：啥也不干，跟 read 一样</li>
+</ul>
+</li>
+<li><strong>send()：</strong> 给指定 sockfd 发送 buf 中的内容，其 <code>flags</code> 取值如下：
+<a href="https://man.freebsd.org/cgi/man.cgi?query=send&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD&#43;13.1-RELEASE&#43;and&#43;Ports&amp;arch=default&amp;format=html"  target="_blank" rel="noopener noreferrer" >send(2)</a>
+
+<ul>
+<li><code>MSG_DONTWAIT</code>：不阻塞，不给发就返回</li>
+<li><code>MSG_NOSIGNAL</code>：不产生 <code>SIGPIPE</code> 信号</li>
+<li><code>MSG_EOF</code>：shutdown 发送方向的连接，并发送一个数据尾标识（仅对 IPv4 的 TCP 有效）</li>
+<li><code>0</code>：啥也不干，跟 write 一样</li>
+</ul>
+</li>
+</ol>
+<h3 id="并发服务器开发">并发服务器开发</h3>
+<h4 id="多进程并发">多进程并发</h4>
+<p>基本模型：</p>
+<ol>
+<li>父进程循环 accept()，阻塞等待。有客户端链接进来，则创建一个子进程去与之通信，父进程继续回去阻塞等待 accept。</li>
+<li>父进程中应注册信号捕捉函数捕捉<code>SIGCHILD</code>信号，以便在子进程完成通信后回收它。回收的处理函数应当是一个非阻塞的循环 waitpid，有子进程在工作就返回父进程，使其得以继续监听。</li>
+<li><strong>注意</strong>，执行回调函数回收子进程，相当于一次软中断。而<mark>accept() 是会被系统中断打断的</mark>，也就是说，等回调函数返回时，accpet 会被打断，返回 -1，并设置<code>errno</code> 为 <code>EINTR</code>。要解决这个问题，便要在 accept 的返回值为 -1 时进行一次判断，如果<code>errno == EINTR</code>，则 continue 即可。</li>
+</ol>
+<h4 id="多线程并发">多线程并发</h4>
+<p>多线程的思想同多进程类似，也是主线程负责监听，接收到一个就创建一个子线程去处理。这里有一些关于<mark>传参</mark>的问题：</p>
+<ol>
+<li>
+<p>创建线程，我有多个参数：客户端信息、线程号、通信文件描述符&hellip;&hellip;，如何把这些参数传递给线程的回调函数呢？
+$\Rightarrow$ 很简单，只需要创建一个结构体，然后<strong>传递结构体指针</strong>即可。</p>
+</li>
+<li>
+<p>创建的结构体，如果放在主线程的 while 循环中，即一个局部变量，那肯定是不行滴，传参不能传局部变量的指针，因为下一个循环它就没有了。</p>
+<p>$\Rightarrow$ 法一：给结构体在<strong>堆上分配</strong>内存（用 malloc 或 new），缺点是需要自己管理内存
+$\Rightarrow$ 法二：把结构体创建成一个全局变量。但是既然是多线程环境，如果要同时提供多个服务，都要传参，那肯定是需要一个<strong>结构体数组</strong>了。</p>
+</li>
+<li>
+<p>既然要预先创建数组，那你得指定大小呀。指定了大小，就会有不够用的问题。也即，首先要确定，怎么从数组中找出当前可以用的结构体呢？如果找不到（用完了）又该怎么办呢？
+$\Rightarrow$ 首先是怎么找：当然是循环遍历了。如果是遍历结构体数组，那么开始时要对结构体数组进行初始化，将其中的客户端文件描述符置为-1，线程使用完后同样置为-1。这样，遍历找 client_fd 不是 -1 的结构体就好了
+$\Rightarrow$ 也可以设置一个可用数组，甚至可以采用位图的方法，专门描述哪些结构体数组可用。
+$\Rightarrow$ 比如结构体数组大小设置为 128，那意思就是，我这个服务器，最多只能并发 128 个线程。那多的请求呢？比如遍历到最后没找着，那就让其先睡一会儿，然后再去从头或者别的地儿遍历一下。找不着接着睡</p>
+</li>
+</ol>
+<p>另外，对子线程采用<code>pthread_join</code>来回收显然也是不可取的，因为它会阻塞主线程。设置分离属性即可。</p>
+<h4 id="端口复用">端口复用</h4>
+<ol>
+<li>防止服务器重启时，之前绑定的端口还没释放</li>
+<li>程序突然退出系统而没有释放端口</li>
+</ol>
+<p>比如正在运行的 server 和 client，突然 server 被关掉了，此时使用 <code>netstat -anp</code> 命令会发现，client处于 <code>close_wait</code> 状态，服务器不存在了，监听端口状态也没了，但是这条连接的，服务器端口还在，并处于 <code>fin_wait_2</code> 状态，此时再结束客户端，服务器端口则处于 <code>time_wait</code> 状态（过一会就结束了）</p>
+<p>就是说，服务器关闭了，但是 TCP 协议的任务还没完成，端口还被占用着。如果在这个 2MSL 的时间内，我想重启服务器，那么会发现，端口被占用了启动不了。为了避免这种情况，我们可以在绑定端口之前，指定端口复用属性。</p>
+<pre><code class="language-bash">netstat -anp
+# -a 所有 socket
+# -n 显示正在使用 socket 的程序的名称
+# -p 直接使用 IP 地址，而不通过域名服务器
+</code></pre>
+<pre><code class="language-c">int getsockopt(int sockfd, int level, int optname,      void *optval, socklen_t *optlen);
+int setsockopt(int sockfd, int level, int optname,const void *optval, socklen_t  optlen);
+</code></pre>
+<blockquote>
+<p>以上两个是设置/获取 socket 属性的函数，不只可以用来设置端口复用（
+<a href="NULL" >UNP7.2(P150)</a>
+）</p>
+<p>端口复用要在服务器绑定之前设置（socket 之后，bind 之前 setsockopt）</p></blockquote>
+<ol>
+<li>sockfd：打开的 socket 描述符</li>
+<li>level：级别，选 <code>SOL_SOCKET</code>（把选项解释为 通用套接字代码）</li>
+<li>optname：选项的名称，选 <code>SO_REUSEADDR</code> 或 <code>SO_REUSEPORT</code></li>
+<li>optval：端口复用的值，<code>0</code>表示不可以复用，<code>1</code>表示可以复用【int 型】</li>
+<li>optlen：optval 的长度，注意是否是指针。（因为 optval 不只是 int，还可以是 struct，参见 UNP）</li>
+</ol>
+<h3 id="io-模型">IO 模型</h3>
+<p>&#x1f31f;
+<a href="https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&amp;mid=2247483737&amp;idx=1&amp;sn=7ef3afbb54289c6e839eed724bb8a9d6&amp;chksm=ce77c71ef9004e08e3d164561e3a2708fc210c05408fa41f7fe338d8e85f39c1ad57519b614e#rd"  target="_blank" rel="noopener noreferrer" >从内核角度看 IO 模型</a>
+</p>
+<h4 id="bio阻塞">BIO(阻塞)</h4>
+<ul>
+<li>好处是不占用 CPU 资源，但是效率不高。accept 会阻塞，read 也会阻塞，服务器就干不了别的事了，一次一个</li>
+</ul>
+<p>解决方法是，创建多个线程，让别的线程去进行交互，这样主线程一直监听，就可以实现并发。</p>
+<ul>
+<li>这样仍有缺点：可能会瞬间产生大量的线程，大量的线程并发会消耗很多资源，而其中大部分都是在阻塞中，并没有干活</li>
+</ul>
+<p>但根本的问题没解决：即这是一个阻塞的模型，阻塞，就导致程序不能走下去，才会有后面的一系列问题</p>
+<h4 id="nio非阻塞">NIO(非阻塞)</h4>
+<p>要遍历去询问准备好了没（O(n))。这种模型已经可以做到：用很少的线程去处理多个连接了。</p>
+<ul>
+<li>但是仍有弊端：每一次遍历寻找就绪的 socket，都是一次系统调用，不断调用非常浪费 CPU 资源。那不系统调用了，这轮询的工作直接让内核去做不就行了？</li>
+</ul>
+<p>=&gt; IO 多路转接/复用技术，
+委托内核去帮我们做轮询 =&gt; select ，但是 select 只告诉你到了几个，不会说具体哪一个
+内核直接帮你把谁到了都检测出来 =&gt; epoll</p>
+<table>
+    <tr>
+    	<td><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421130148716.png" /></td>
+        <td><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421130209359.png" /></td>
+    </tr>
+    <tr>
+    	<td><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421130351355.png" /></td>
+        <td><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421130403377.png" /></td>
+    </tr>
+</table>
+<h4 id="根本区别">根本区别</h4>
+<p>对网络数据包接收流程可以分为两个阶段：</p>
+<ul>
+<li><strong>数据准备阶段：</strong> 在这个阶段，网络数据包到达网卡，通过<code>DMA</code>的方式将数据包拷贝到内存中，然后经过硬中断，软中断，接着通过内核线程<code>ksoftirqd</code>经过内核协议栈的处理，最终将数据发送到<code>内核Socket</code>的接收缓冲区中。</li>
+<li><strong>数据拷贝阶段：</strong> 当数据到达<code>内核Socket</code>的接收缓冲区中时，此时数据存在于<code>内核空间</code>中，需要将数据<code>拷贝</code>到<code>用户空间</code>中，才能够被应用程序读取。</li>
+</ul>
+<table style="border:none;text-align:center">
+    <tr>
+    	<td><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421211749555.png"></td>
+        <td><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421211802092.png"></td>
+    </tr>
+</table>
+<p>阻塞 IO ，就是会在第一阶段，数据准备阶段 阻塞，非阻塞 IO 就是在第一阶段不阻塞，如果读不到，就直接返回。而无论阻塞非阻塞，在第二阶段都是阻塞的。在第二阶段阻塞的叫同步 IO，在第二阶段不阻塞的叫异步 IO</p>
+<h4 id="同步与异步-io">同步与异步 IO</h4>
+<p><code>同步模式</code>在数据准备好后，是由<code>用户线程</code>的<code>内核态</code>来执行<code>第二阶段</code>。所以应用程序会在第二阶段发生<code>阻塞</code>，直到数据从<code>内核空间</code>拷贝到<code>用户空间</code>，系统调用才会返回。</p>
+<p><code>异步模式</code>下是由<code>内核</code>来执行第二阶段的数据拷贝操作，当<code>内核</code>执行完第二阶段，会通知用户线程 IO 操作已经完成，并将数据回调给用户线程。所以在<code>异步模式</code>下 <code>数据准备阶段</code>和<code>数据拷贝阶段</code>均是由<code>内核</code>来完成，不会对应用程序造成任何阻塞。</p>
+<p>基于以上特征，我们可以看到<code>异步模式</code>需要内核的支持，比较依赖操作系统底层的支持。</p>
+<h3 id="io-多路复用">IO 多路复用</h3>
+<p>I/O 多路复用使得程序能够同时监听多个文件描述，能够提高程序的性能。Linux 下实现 I/O 多路复用的系统调用主要有：select、poll、epoll</p>
+<h4 id="select">select</h4>
+<p>主旨思想：</p>
+<ol>
+<li>首先要构建一个文件描述的列表，将要监听的文件描述符添加到其中</li>
+<li>调用一个系统函数（select），监听该列表中的文件描述符，（阻塞）直到其中有人进行了 IO 操作才返回</li>
+<li>返回时会告诉有多少文件描述符到达了数据</li>
+</ol>
+<pre><code class="language-c">#include &lt;sys/select.h&gt;
+/* 让内核监听列表中的文件描述符 */
+/* sizeof(fd_set) = 128B = 1024 位，用位来表示对应的文件描述符 */
+int select   (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
+              struct timeval *timeout);
+void FD_CLR  (int fd,   fd_set *set);	 // 将 fd 对应的标志位置 0
+void FD_SET  (int fd,   fd_set *set);	 // 将 fd 对应的标志为置 1
+int  FD_ISSET(int fd,   fd_set *set);	 // 判断 fd 对应的标志位是否为 1,并返回该标志位值
+void FD_ZERO (fd_set *set);				// 将 set 中标志位全置为 0
+</code></pre>
+<ul>
+<li><code>nfds</code>：委托内核进行检测的文件描述符 最大数量 + 1（加 1 才能遍历到 max，因为从 0 开始嘛）</li>
+<li><code>readfds</code>：【传入传出参数】设置位，让内核检查读缓冲，看对应文件描述符上是否有谁发来数据<strong>可读</strong>，有的话不变，没有的话，就会把对应的位置为 0，再从内核拷贝回用户态</li>
+<li><code>writefds</code>：让内核检查写缓冲，看是否有空余位置<strong>可写</strong></li>
+<li><code>exceptfds</code>：检查异常</li>
+<li><code>timeout</code>：设置等待多久；如果为 0 表示不阻塞，为 NULL 表示永久阻塞</li>
+<li><code>返回值</code>：大于 0 表示有 n 个文件描述符发生了变化，0 表示超时了且没有检测到，-1 表示失败</li>
+</ul>
+<h5 id="工作原理">工作原理</h5>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230411181503928.png" alt="image-20230411181503928" style="zoom:67%;" />
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421131333739.png" alt="image-20230421131333739" />
+</div>
+</p>
+<ul>
+<li>select 会修改用户传进去的 fdset，因此如果你下次还想要监听相同的文件描述符，那就要重新填充 fdset</li>
+<li>select 只是把活跃的 fd 置 1，返回给用户。用户仍需要再遍历一次，才能找到活跃的 fd</li>
+<li>你要做的就是，每接收到一个新的客户端，就把它的 sockfd 添加到 fdset 中，交给 select 去监听</li>
+</ul>
+<h5 id="编写代码">编写代码</h5>
+<ol>
+<li>在 accept 之前，先定义一个 fdset，把<strong>监听</strong>的文件描述符加进去，然后传给 select，让内核去遍历这个 set
+<ul>
+<li>这里有一个细节：传给 select 的，应当是一个中间值（即新建一个 temp_set）因为内核会修改传入的 set，这显然是我们不希望的。定义一个中间值，每次循环都把我们定义的 set 赋值给它</li>
+</ul>
+</li>
+<li>select 返回，如果返回的 tempset 里面，listen_fd 是 1，这个文件描述符上有数据，就说明有新的客户端进来了，需要去进行链接，即 accept，得到客户端的文件描述符，之后，将它添加到 set 中，更新 maxfd，然后传给内核继续 select 遍历</li>
+<li>循环遍历 select 返回的 set，找到所有返回的文件描述符，然后处理上面的数据</li>
+<li>如果处理数据时发现客户端断开连接，那么也应该清除其 set 位</li>
+</ol>
+<p>【问题来了】，select 怎么多线程呢？新客户端进来之后，如果要创建新线程，那么新线程不还是要 BIO</p>
+<h5 id="select-的缺点">select 的缺点：</h5>
+<ol>
+<li>需要在内核态和用户态来回拷贝 fdset（两次拷贝）（当然还有两次切换）</li>
+<li>每次对内核返回的 set 都要进行遍历，O(n)</li>
+<li>select 支持的文件描述符太少了，就 1024</li>
+<li>fset 集合不能重用，每次都需要重置（内核会修改传入的 fdset，虽然有别的办法，但总归是机制不方便）</li>
+</ol>
+<h4 id="poll">poll</h4>
+<p>poll 和 select 没有本质上的区别，只不过是，select 用的是 fdset 这么个<strong>位数组</strong>来传给内核，而 poll 用的是一个 pollfd <strong>结构体数组</strong>来和内核传递消息。这就没有了 fd 最多 1024 的限制（但仍受限于系统的 fd 上限，这是显然的）。结构体数组中同时包括了<em>文件描述符</em> 和<em>读写事件的区分</em>，因此不需要分成三个 fdset 来传参</p>
+<p>至于工作的过程，仍然需要拷贝，仍然需要轮询，仍不是能解决
+<a href="https://jaminzhang.github.io/web/C10K-problem/"  target="_blank" rel="noopener noreferrer" > C10k 问题</a>
+（处理 10k 个并发连接）的好调度</p>
+<pre><code class="language-c">#include &lt;poll.h&gt;
+struct pollfd {
+   int   fd;         /* 委托内核进行检测的文件描述符 */
+   short events;     /* 委托内核检测什么事 */
+   short revents;    /* 内核反馈实际上发生了什么事 */
+};
+
+int poll(struct pollfd *fds, nfds_t nfds, int timeout);
+</code></pre>
+<ul>
+<li><code>fds</code>：同文件描述符表，只不过换成了结构体数组，没有 1024 的限制了</li>
+<li><code>nfds</code>：fds 数组的有效下标 + 1</li>
+<li><code>timeout</code>：0 不阻塞，-1 阻塞，&gt;1 表示要阻塞的 毫秒 数</li>
+<li><code>返回值</code>：-1 失败，n：fds 中有 n 个文件描述符有变化</li>
+<li><code>宏取值</code>：使用多个用 <code>|</code> ，<strong>判断是否相等用 <code>&amp;</code></strong>【注意，不能用 == 判断与某个宏值相等】</li>
+</ul>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230412201544996.png" alt="image-20230412201544996" />
+</div>
+</p>
+<h5 id="代码编写">代码编写</h5>
+<ol>
+<li>创建一个 fds 结构体数组，初始化第一个元素为监听文件描述符，nfds 先置为 0，调用 poll</li>
+<li>检查 poll 返回的数组，如果 <code>fds[0].revents &amp; PILLIN</code>，说明有新客户端，则进行 accept；然后将新的客户端文件描述符加入到 fds 数组中，要用 for 循环遍历找空位，以免浪费，更新 nfds</li>
+<li>然后遍历 fds 数组，查找<code>revents &amp; POLLIN</code>的 fd，进行通信</li>
+</ol>
+<h5 id="poll-缺点">poll 缺点</h5>
+<p>poll 改进了 select 的 3 4 缺点，即使用了一个结构数组，数组项可以重用了，也没有上限了。但仍有缺点：</p>
+<ol>
+<li>仍然需要在内核态和用户态拷贝</li>
+<li>仍然需要遍历。虽然告诉了你那几个发生了改变，但是并没有指出到底是谁，还是需要遍历</li>
+</ol>
+<h4 id="epoll">epoll</h4>
+<h5 id="select-的性能瓶颈">select 的性能瓶颈</h5>
+<p>无论是 select 还是 poll，它们都存在着下列问题：</p>
+<ol>
+<li>内核不会保存我们要监听的 sockfd 列表，因此每次调用，都需要来回拷贝一整份的数组**$\rarr$红黑树**</li>
+<li>内核不会通知具体是哪些 fd 就绪，只是在他们的数组位上打上标记，用户需要遍历才能找到$\rarr$<strong>双链表</strong></li>
+<li>内核也是通过遍历来寻找就绪的 socket fd 的$\rarr$<strong>回调函数</strong></li>
+</ol>
+<p>epoll 对这三个问题都进行了解决。它会在内核中创建一个 epoll 对象，这里面包括一个<strong>红黑树</strong><code>rbr</code>：用来存放用户需要监听的文件描述符，和一个<strong>双向链表</strong><code>rdlist</code>：用来保存内核找到的就绪描述符，并返回给用户。当然还有别的数据，比如一个<strong>阻塞队列</strong><code>wq</code>：存放的是阻塞在 epoll 上的用户进程，在 IO 就绪的时候 epoll 可以通过这个队列找到这些阻塞的进程并唤醒它们，从而执行 IO 调用读写 Socket 的数据。</p>
+<p>下面先看 epoll 的 API</p>
+<h5 id="epoll-api">epoll API</h5>
+<pre><code class="language-c">#include&lt;sys/epoll.h&gt;
+
+/**epoll_create
+ * @brief : 创建一个新的 epoll 实例（即内核中创建了一块数据结构）
+ * - 需要检测的文件描述符信息（红黑树）
+ * - 和就绪列表，存放内核检测到发生变化的文件描述符（双链表）
+ * @parameter:
+ *  A size: 没有意义，随便指定。（历史遗留问题，因为之前是用hash实现的）
+ * @return: -1失败，&gt;0 指向内核实例的文件描述符*/
+int epoll_create(int size);
+
+struct epoll_event {
+    unint32_t    events;	// 发生了什么事件
+    epoll_data_t data;		// 用户数据(Union)，一般只用到 fd
+};
+typedef union epoll_data {
+	void        *ptr;
+   	int          fd;		// 用这个传递 fd（注意这是个 Union）
+    unint32_t    u32;
+    unint64_t    u64;
+}epoll_data_t;
+
+/**epoll_ctl
+ * @brief: 对 epoll 实例进行管理，比如添加个文件描述符
+ * @parameter:
+ *  1. epfd : create 返回的文件描述符，操作内核实例
+ *  2. op   : 要进行什么操作（互相之间用 | ）
+ *      # EPOLL_CTL_ADD: 往红黑树中添加文件描述符
+ *      # EPOLL_CTL_MOD: 修改
+ *      # EPOLL_CTL_DEL: 删除
+ *      # EPOLLET: 边缘触发
+ *      # EPOLLONESHOT: LT模式下的，ET类似【待考究】
+ *  3. fd   : 要操作/添加的文件描述符
+ *  4. event: 检测文件描述符什么事件(结构体，包括事件和文件描述符(跟fd一样))
+ *      # EPOLLIN	: 写入
+ *      # EPOLLOUT
+ *      # EPOLLERR
+*/
+int epoll_ctl   (int epfd, int op, int fd, struct epoll_event *event);
+
+/**epoll_wait
+ * @brief : 真正的调用函数
+ * @parameter:
+    1. epfd     :
+    2. event    : 结构体数组，【传出参数】保存发生变化的文件描述符，以及发生了肾莫事
+    			 同样是一个指针，ctl函数中传入的是单个，wait函数传出的是数组
+    3. maxevent : 前一个结构体数组的大小
+    4. timeout  : 0不阻塞，-1阻塞直到检测到数据发生变化，&gt;0阻塞时常，单位毫秒
+   @return : 成功返回发生变化的文件描述符的个数 &gt;0，失败返回-1
+*/
+int epoll_wait  (int epfd, struct epoll_event *events, int maxevents, int timeout);
+</code></pre>
+<h5 id="工作原理-1">工作原理</h5>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230412203706983.png" alt="image-20230412203706983" />
+</div>
+</p>
+<p>可见 epoll 解决了如下问题：</p>
+<ul>
+<li>内核态和用户态来回拷贝的问题：直接在内核态创建一个数据结构</li>
+<li>内核态增删：创建一个红黑树，高效增删</li>
+<li>内核态查找就绪：注册回调函数，就绪了直接定位</li>
+<li>返回后用户不只谁变化，还需要遍历：创建一个就绪链表，返回的直接就是所有变化的</li>
+</ul>
+<blockquote>
+<p>&#x2753; epoll 的回调函数<code>ep_poll_callback</code>正是<code>epoll</code>同步 IO 事件通知机制的核心所在，也是区别于<code>select，poll</code>采用内核轮询方式的根本性能差异所在。（&#x26d3;&#xfe0f;
+<a href="https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&amp;mid=2247483737&amp;idx=1&amp;sn=7ef3afbb54289c6e839eed724bb8a9d6&amp;chksm=ce77c71ef9004e08e3d164561e3a2708fc210c05408fa41f7fe338d8e85f39c1ad57519b614e#rd"  target="_blank" rel="noopener noreferrer" >内核角度看 IO 模型</a>
+，源码实现，以后再看）</p></blockquote>
+<h5 id="epoll-优势总结">epoll 优势总结</h5>
+<ol>
+<li>内核中通过<code>红黑树</code>管理海量的连接，所以在调用<code>epoll_wait</code>获取<code>IO就绪</code>的 socket 时，不需要传入监听的 socket 文件描述符。从而避免了海量的文件描述符集合在<code>用户空间</code>和<code>内核空间</code>中来回复制。</li>
+<li>epoll 仅会通知<code>IO就绪</code>的 socket。避免了在用户空间遍历的开销</li>
+<li>epoll 通过在 socket 的 等待队列 上注册<strong>回调函数</strong><code>ep_poll_callback</code>通知用户程序<code>IO就绪</code>的 socket。避免了在内核中轮询的开销。</li>
+</ol>
+<h5 id="代码编写-1">代码编写</h5>
+<ol>
+<li>调用<code>epoll_create</code>，直接在<strong>内核</strong>创建一个数据结构（红黑树），返回文件描述符。通过文件描述符可以去操作这个内核区的实例</li>
+<li>调用<code>epoll_ctl</code>把监听文件描述符添加<code>EPOLL_CTL_ADD</code>进内核的红黑树中</li>
+<li>调用<code>epoll_wait</code>来让内核干活，返回一个发生变化的文件描述符列表<code>epoll_event</code>结构体数组</li>
+<li>遍历结构体数组的<strong>每一个</strong>，如果是监听的变了，就 accept，同时把新客户 ADD 进去；如果是别的，就进行数据传输，如果传输完了就把该客户 DEL 掉</li>
+</ol>
+<h5 id="两种工作模式">两种工作模式</h5>
+<p><strong>（1）LT 模式（水平触发）</strong></p>
+<p><code>EPOLLLT</code>，缺省即为此模式，可以同时支持阻塞和非阻塞 socket。这种模式下，内核会告诉你一个文件描述符是否就绪了，然后你可以对此就绪的 fd 进行 IO 操作。如果你不操作，或者没操作完（没读完），内核下一次还是会继续通知你这个 fd 可操作。</p>
+<p>即：只要 fd 缓冲区中有数据，epoll 就会一直通知（每一轮），直到读完</p>
+<p><strong>（2）ET 模式（边缘触发）</strong></p>
+<p><code>EPOLLET</code>，一种高速的工作方式，只支持 non-block socket，描述符变为就绪状态的时候，内核会通知你一次，后面就不会再为这个 fd 发送更多的信息了，直到某些操作导致其变为非就绪状态</p>
+<p>即：只在第一次 fd 就绪的时候通知一下，后面不管是读完没读完，还是一直没读导致 fd 又变为非就绪，都不会再通知了。直到你进行了某些操作使其变为非就绪，才会再新的轮次中发送有关该 fd 的可用通知</p>
+<p><strong>两种模式比较</strong></p>
+<p>ET 很大程度上减少了 epoll 时间被重复出发的次数，因此效率比 LT 高。必须使用非阻塞接口，以免由于一个 fd 阻塞而把多个 fd 饿死</p>
+<p>本质区别就在于：</p>
+<ul>
+<li>LT 模式下，线程调用 epoll_wait 操作一通 sockfd 之后，<strong>再次调用 epoll_wait 的时候</strong>，epoll_wait 会检查 socket 缓冲区中是否还有数据，是否读干净了。如果没读干净，那么就会把这个 sockfd 再次放进 <code>rdlist</code> 中，然后下次调用的时候还会返回这个 sockfd，还能接着读</li>
+<li>而 ET 模式下，这一次调用了 epoll_wait 之后，直接就<strong>把就绪队列 <code>rdlist</code> 清空</strong>了，因此，不管你读没读，完没完，你下次都读不到这个 sockfd 了。<strong>除非，这个 socket 上有新的 IO 数据到达</strong>，根据 epoll 的工作过程，该 socket 会被再次放入 <code>rdllist</code> 中。</li>
+</ul>
+<h3 id="io-线程模型">IO 线程模型</h3>
+<p>5 种 IO 模型是从内核空间的视角，来剖析网络数据的收发模型。而站在用户空间的视角，即可得到两种 IO 线程模型。即 Reactor 模型和 Proactor 模型</p>
+<p>这些用户空间的<code>IO线程模型</code>都是在讨论当多线程一起配合工作时谁负责接收连接，谁负责响应 IO 读写、谁负责计算、谁负责发送和接收，仅仅是用户 IO 线程的不同分工模式罢了。</p>
+<h4 id="reactor">Reactor</h4>
+<p><code>Reactor</code>是利用<code>NIO</code>（非阻塞）对<code>IO线程</code>进行不同的分工</p>
+<ul>
+<li>使用 IO 多路复用模型比如<code>select, poll, epoll, kqueue</code>，进行 IO 事件的注册和监听。</li>
+<li>将监听到就绪的 IO 事件分发<code>dispatch</code>到各个具体的处理<code>Handler</code>中进行相应的 IO 事件处理。</li>
+</ul>
+<p>Reactor 模型依赖 <strong>IO 多路复用技术(epoll)</strong>，来实现监听 IO 事件，不断的分发<code>dispatch</code>，就像一个<code>反应堆</code>一样，看起来像不断的产生 IO 事件，因此我们称这种模式为<code>Reactor</code>模型。</p>
+<p>具体分为三类：</p>
+<table style="border:none;text-align:center">
+    <tr>
+    	<td><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421195308879.png"></td>
+        <td><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421195325767.png"></td>
+        <td><img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421195347180.png"></td>
+    </tr>
+    <tr>
+    	<td>单Reactor单线程</td>
+        <td>单Reactor多线程</td>
+        <td>主从Reactor</td>
+    </tr>
+</table>
+<h5 id="单-reactor-单线程">单 Reactor 单线程</h5>
+<ul>
+<li>单 Reactor 意味着只有<strong>一个 epoll 对象</strong>，用来监听所有的事件，比如连接事件，读写事件。</li>
+<li>单线程 意味着只有<strong>一个线程</strong>来调用 <code>epoll_wait</code>，获取 IO 就绪的 Socket，然后对这些就绪的 Socket 执行读写，以及后边的业务处理也依然是这个线程。</li>
+</ul>
+<p>相当于一个线程（小老板）要完成 accept 事件（迎客） 、接受 IO 请求（顾客点菜）、业务处理（做菜）、IO 响应（上菜）、断开连接（送客）</p>
+<h5 id="单-reactor-多线程">单 Reactor 多线程</h5>
+<ul>
+<li>仍然是一个 epoll 对象监听所有 IO 事件， 一个线程来调用 <code> epoll_wait</code> 来获取所有就绪 socket</li>
+<li>但是处理 IO 事件的对应的业务 Handler 时，使用的是<strong>线程池</strong>，因此提高了执行效率</li>
+</ul>
+<h5 id="主从-reactor">主从 Reactor</h5>
+<ul>
+<li>主 Reactor 专门用来迎接客人（接受新连接），对应的 Handler 就是 acceptor</li>
+<li>从 Reactor 则负责招待客人（后续业务），在 acceptor 中将要监听的<code>read 事件</code>注册到<code>从 Reactor</code>中，由从 Reactor 来监听 socket 上的读写事件</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：这里向<code>从Reactor</code>注册的只是<code>read事件</code>，并没有注册<code>write事件</code>，因为<code>read事件</code>是由<code>epoll内核</code>触发的，而<code>write事件</code>则是由<code>用户业务线程</code>触发的（<code>什么时候发送数据是由具体业务线程决定的</code>），所以<code>write事件</code>理应是由<code>用户业务线程</code>去注册。</p></blockquote>
+<blockquote>
+<p>用户线程注册<code>write事件</code>的时机是只有当用户发送的数据<code>无法一次性</code>全部写入<code>buffer</code>时，才会去注册<code>write事件</code>，等待<code>buffer重新可写</code>时，继续写入剩下的发送数据、如果用户线程可以一股脑的将发送数据全部写入<code>buffer</code>，那么也就无需注册<code>write事件</code>到<code>从Reactor</code>中。</p></blockquote>
+<h4 id="proactor">Proactor</h4>
+<p><code>Proactor</code>是基于<code>AIO</code>对<code>IO线程</code>进行分工的一种模型。前边我们介绍了<code>异步IO模型</code>，它是操作系统内核支持的一种全异步编程模型，在<code>数据准备阶段</code>和<code>数据拷贝阶段</code>全程无阻塞。</p>
+<p>ProactorIO 线程模型将 <code>IO事件的监听</code>，<code>IO操作的执行</code>，<code>IO结果的dispatch</code>统统交给<code>内核</code>来做。</p>
+<img src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230421202939670.png" alt="image-20230421202939670" style="zoom: 67%;" />
+<h5 id="模型组件介绍">模型组件介绍</h5>
+<ul>
+<li><code>completion handler</code> 为用户程序定义的异步 IO 操作回调函数，在异步 IO 操作完成时会被内核回调并通知 IO 结果。</li>
+<li><code>Completion Event Queue</code> 异步 IO 操作完成后，会产生对应的<code>IO完成事件</code>，将<code>IO完成事件</code>放入该队列中。</li>
+<li><code>Asynchronous Operation Processor</code> 负责<code>异步IO</code>的执行。执行完成后产生<code>IO完成事件</code>放入<code>Completion Event Queue</code> 队列中。</li>
+<li><code>Proactor</code> 是一个事件循环派发器，负责从<code>Completion Event Queue</code>中获取<code>IO完成事件</code>，并回调与<code>IO完成事件</code>关联的<code>completion handler</code>。</li>
+<li><code>Initiator</code> 初始化异步操作（<code>asynchronous operation</code>）并通过<code>Asynchronous Operation Processor</code>将<code>completion handler</code>和<code>proactor</code>注册到内核。</li>
+</ul>
+<h5 id="执行过程">执行过程</h5>
+<ul>
+<li>用户线程发起<code>aio_read</code>，并告诉<code>内核</code>用户空间中的读缓冲区地址，以便<code>内核</code>完成<code>IO操作</code>将结果放入<code>用户空间</code>的读缓冲区，用户线程直接可以读取结果（<code>无任何阻塞</code>）。</li>
+<li><code>Initiator</code> 初始化<code>aio_read</code>异步读取操作（<code>asynchronous operation</code>）,并将<code>completion handler</code>注册到内核。</li>
+</ul>
+<blockquote>
+<p>在<code>Proactor</code>中我们关心的<code>IO完成事件</code>：内核已经帮我们读好数据并放入我们指定的读缓冲区，用户线程可以直接读取。在<code>Reactor</code>中我们关心的是<code>IO就绪事件</code>：数据已经到来，但是需要用户线程自己去读取。</p></blockquote>
+<ul>
+<li>此时用户线程就可以做其他事情了，无需等待 IO 结果。而内核与此同时开始异步执行 IO 操作。当<code>IO操作</code>完成时会产生一个<code>completion event</code>事件，将这个<code>IO完成事件</code>放入<code>completion event queue</code>中。</li>
+<li><code>Proactor</code>从<code>completion event queue</code>中取出<code>completion event</code>，并回调与<code>IO完成事件</code>关联的<code>completion handler</code>。</li>
+<li>在<code>completion handler</code>中完成业务逻辑处理。</li>
+</ul>
+<h4 id="两线程模型比较">两线程模型比较</h4>
+<ul>
+<li><code>Reactor</code>是基于<code>NIO</code>实现的一种 IO 线程模型，<code>Proactor</code>是基于<code>AIO</code>实现的 IO 线程模型。</li>
+<li><code>Reactor</code>关心的是<code>IO 就绪事件</code>，<code>Proactor</code>关心的是<code>IO 完成事件</code>。</li>
+<li><code>Proactor</code>中，用户程序需要向内核传递<code>用户空间的读缓冲区地址</code>。<code>Reactor</code>则不需要。这也就导致了在<code>Proactor</code>中每个并发操作都要求有独立的缓存区，在内存上有一定的开销。</li>
+<li><code>Proactor</code> 的实现逻辑复杂，编码成本较 <code>Reactor</code>要高很多。</li>
+<li><code>Proactor</code> 在处理<code>高耗时 IO</code>时的性能要高于 <code>Reactor</code>，但对于<code>低耗时 IO</code>的执行效率提升<code>并不明显</code>。</li>
+</ul>
+<h3 id="线程池">线程池</h3>
+<p><strong>池</strong>是一组资源的集合，在服务器启动之初就被完全创建好并初始化，是静态资源。线程池是由服务器预先创建的一组子线程，<strong>线程池中的线程数量，应该和 CPU 核心数量差不多</strong>。线程池中的所有子线程运行着相同的代码，当有新任务到来时，主线程通过某种方式选择一个子线程来位置服务。空间换时间。</p>
+<p>相比动态创建子线程，选择一个已经存在的子线程代价小得多。至于如何选择：</p>
+<ol>
+<li>主线程使用某种算法来选择。</li>
+<li>主线程和子线程共享一个<strong>工作队列</strong>，子线程在上面睡眠，有新任务来就唤醒</li>
+</ol>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/image-20230425192411965.png" alt="image-20230425192411965" />
+</div>
+</p>
+
+</main>
+
+<style>
+    
+
+    
+
+    body {
+        margin-right: 280px;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            margin-right: 0;
+        }
+    }
+
+    
+
+     
+    .article-meta {
+        text-align: center;
+        text-decoration: none;
+        background: #efefef;
+        padding: 1px;
+        border-radius: 5px;
+    }
+
+    .article-meta-title {
+        font-size: 2.2rem;
+    }
+
+    .article-meta-info {
+        color: #666;
+        font-size: 1.1rem;
+        margin: -0.6rem 0 0.2rem 10px;
+        text-align: left;
+    }
+
+    .article-meta-info a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+</style>
+
+
+
+<h1 style="font-size: 1.2rem; margin: 2.5rem 0 0.1rem 0;">Comment</h1>
+<div class="cusdis-comments">
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id=697d528d-b618-4ee1-a6fe-403c81a646ac
+    data-page-id="455246869f9376b4b8e73fec81c44220"
+    data-page-url="https://kaikaixixi.xyz/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/"
+    data-page-title="C&#43;&#43;网络编程入门概念及api总结"
+  ></div>
+  <script async defer src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/cusdis/cusdis.es.min.js"></script>
+</div>
+
+<style>
+.cusdis-comments {
+  border-top: 2px dashed #cfcfcf;
+  padding-top: 1.3rem;
+}
+
+#cusdis_thread iframe {
+  min-height: 500px !important;
+  overflow: visible !important;
+}
+</style>
+
+
+<footer>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/math-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/render-katex.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/center-img.min.js"></script>
+
+  
+
+<div id="menuBtnContainer">
+    
+    <button id="menuBtn"><i class="fa-solid fa-screwdriver-wrench"></i></button>
+
+    
+    <button id="backToBottomBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-down"></i></button>
+    <button id="backToTopBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-up"></i></button>
+
+    
+    <div class="menu-popup-btn edit-btn">
+        <a href='https://github.com/captainwc/captainwc.github.io/edit/main/content/%e7%ac%94%e8%ae%b0/linux%e7%b3%bb%e7%bb%9f%e7%bc%96%e7%a8%8b.md'
+            target="_blank" rel="noopener">
+            <i class="fa-solid fa-square-pen"></i>
+        </a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuBtn = document.getElementById('menuBtn');
+        var menuBtnContainer = document.getElementById('menuBtnContainer');
+        var backToTopBtn = document.getElementById('backToTopBtn');
+        var backToBottomBtn = document.getElementById('backToBottomBtn');
+        var popupBtns = document.querySelectorAll('.menu-popup-btn');
+        var hoverTimeout;
+
+        
+        menuBtnContainer.classList.add('visible');
+
+        
+        function showPopupBtns() {
+            clearTimeout(hoverTimeout);
+            menuBtnContainer.classList.add('active');
+        }
+
+        
+        function hidePopupBtns() {
+            hoverTimeout = setTimeout(function() {
+                menuBtnContainer.classList.remove('active');
+            }, 300);
+        }
+
+        
+        menuBtnContainer.addEventListener('mouseenter', showPopupBtns);
+        menuBtnContainer.addEventListener('mouseleave', hidePopupBtns);
+
+        
+        menuBtn.addEventListener('click', function() {
+            if (menuBtnContainer.classList.contains('active')) {
+                menuBtnContainer.classList.remove('active');
+            } else {
+                showPopupBtns();
+            }
+        });
+
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        
+        backToBottomBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+<style>
+     
+    #menuBtnContainer {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 999;
+        opacity: 0.6;
+        visibility: visible;
+        transition: opacity 0.3s;
+    }
+
+    #menuBtnContainer:hover {
+        opacity: 1;
+    }
+
+     
+    #menuBtn {
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.2rem;
+        transition: background 0.3s;
+        cursor: pointer;
+        background: #EFEFEF;
+        z-index: 1000;
+        position: relative;
+    }
+
+    #menuBtn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+     
+    .menu-popup-btn {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        background: #EFEFEF;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+     
+    .menu-popup-btn.top-btn {
+        right: 0;
+        transform: translateY(0) scale(0.8);
+    }
+
+     
+    .menu-popup-btn.edit-btn {
+        bottom: 0;
+        transform: translateX(0) scale(0.8);
+        padding: 1px 6.6px 0px 6.6px;
+    }
+
+    .menu-popup-btn.edit-btn a {
+        color: #ccc;
+        text-decoration: none;
+        background: none !important;
+        transition: opacity 0.2s;
+        padding: 0;
+        margin: 0;
+    }
+
+     
+    #menuBtnContainer.active .menu-popup-btn {
+        opacity: 1;
+        visibility: visible;
+    }
+
+     
+    #menuBtnContainer.active #backToBottomBtn {
+        transform: translateY(-60px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active #backToTopBtn {
+        transform: translateY(-110px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active .edit-btn {
+        transform: translateX(-60px) scale(1);
+    }
+
+     
+    .menu-popup-btn:hover,
+    .menu-popup-btn.edit-btn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+    .menu-popup-btn.edit-btn:hover a {
+        color: #666;
+    }
+
+     
+    @media (max-width: 768px) {
+        #menuBtnContainer {
+            right: 15px;
+            bottom: 15px;
+        }
+
+        #menuBtnContainer.active #backToBottomBtn {
+            transform: translateY(-50px) scale(1);
+        }
+
+        #menuBtnContainer.active #backToTopBtn {
+            transform: translateY(-90px) scale(1);
+        }
+
+        #menuBtnContainer.active .edit-btn {
+            transform: translateX(-50px) scale(1);
+        }
+    }
+</style>
+
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    document.querySelectorAll('ul').forEach(ul => {
+      
+      const isTodoList = Array.from(ul.children).some(li => {
+        return li.innerHTML.includes('type="checkbox"')
+      });
+
+      if (isTodoList) {
+        
+        const todolistContainer = document.createElement('div');
+        todolistContainer.className = 'todolist';
+
+        
+
+        
+        ul.querySelectorAll('li').forEach(li => {
+          const todoItemDiv = document.createElement('div');
+          todoItemDiv.className = 'todo-item';
+
+          
+          const isChecked = li.innerHTML.includes('checked');
+          const content = li.innerHTML
+            .replace(/<input[^>]+>/g, '') 
+            .trim();
+
+          
+          const checkedIcon = `<svg t="1742522457277" class="todo-item-checked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12342"><path d="M512 938.688A426.624 426.624 0 1 1 512 85.376a426.624 426.624 0 0 1 0 853.312z m0-85.312A341.312 341.312 0 1 0 512 170.688a341.312 341.312 0 0 0 0 682.688z m-42.56-170.688L288.448 501.632l60.288-60.288L469.44 561.92l241.28-241.28 60.416 60.288-301.696 301.696z" p-id="12343"></path></svg>`;
+          const uncheckedIcon = `<svg t="1742522354856" class="todo-item-unchecked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11882"><path d="M512 938.666667C276.352 938.666667 85.333333 747.648 85.333333 512S276.352 85.333333 512 85.333333s426.666667 191.018667 426.666667 426.666667-191.018667 426.666667-426.666667 426.666667z m0-85.333334a341.333333 341.333333 0 1 0 0-682.709333A341.333333 341.333333 0 0 0 512 853.333333z" p-id="11883"></path></svg>`;
+
+          
+          todoItemDiv.innerHTML = `
+            <span class="todo-item-checkbox">
+              ${isChecked ? checkedIcon : uncheckedIcon}
+            </span>
+            <span class="todo-item-content">
+              ${isChecked ? `<del>${content}</del>` : content}
+            </span>
+          `;
+
+          
+          todolistContainer.appendChild(todoItemDiv);
+        });
+
+        
+        ul.parentNode.replaceChild(todolistContainer, ul);
+      }
+    });
+
+    function addTaskProgressBar(ul, todolistContainer) {
+      
+      const totalTasks = ul.children.length;
+      const finishedTasks = Array.from(ul.children).filter(li => li.innerHTML.includes('checked')).length;
+
+      
+      const progressContainer = document.createElement('div');
+      progressContainer.className = 'todo-progress';
+
+      
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'todo-progress-counter';
+      counterSpan.textContent = `${finishedTasks}/${totalTasks}`;
+
+      
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'todo-progress-bar';
+
+      
+      const progressFill = document.createElement('div');
+      progressFill.className = 'todo-progress-bar-fill';
+      progressFill.style.width = `${(finishedTasks / totalTasks) * 100}%`;
+
+      
+      const flagSpan = document.createElement('span');
+      flagSpan.className = 'todo-progress-flag';
+      flagSpan.innerHTML = `${finishedTasks === totalTasks ? '🌟' : '🚧'}`;
+
+      
+      progressTrack.appendChild(progressFill);
+      progressContainer.append(flagSpan, progressTrack, counterSpan);
+      todolistContainer.appendChild(progressContainer);
+    }
+  });
+</script>
+
+<style>
+   
+  .todolist {
+    padding-left: 0.6rem;
+  }
+
+  .todo-item {
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: -0.5rem 0 -0.5rem -0.7rem;
+    line-height: 1.3;
+  }
+
+  .todo-item-checkbox {
+    flex-shrink: 0;
+    font-size: 1.2em;
+
+    svg {
+      margin-top: 0.46rem;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .todo-item-checked-icon {
+    fill: #707070;
+  }
+
+  .todo-item-unchecked-icon {
+    fill: #1A61CC;
+  }
+
+  .todo-item-unchecked-icon:hover {
+    fill: red;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .todo-item-content {
+    flex: 1;
+    word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+   
+  .todo-progress {
+    display: flex;
+     
+    align-items: center;
+    gap: 0.3rem;
+     
+    margin: 0.1rem 0 0 0.7rem;
+  }
+
+  .todo-progress-counter {
+     
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+    color: #707070;
+  }
+
+  .todo-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #a64036;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 20%;
+  }
+
+  .todo-progress-bar-fill {
+    height: 100%;
+    background: #84a729;
+    transition: width 0.3s ease;
+  }
+
+  .todo-progress-flag {
+    display: none;
+    position: relative;
+    font-size: 0.9rem;
+  }
+</style>
+
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll())</script>
+
+
+
+  <script>
+    const langToNerdFontMap = {
+        asm: '\ue6ab',
+        bash: '\ue760',
+        bazel: '\ue63a',
+        c: '\ue61e',
+        cmake: '\ue794',
+        cmd: '\uebc4',
+        cpp: '\ue61d',
+        'c++': '\ue61d',
+        csharp: '\ue7b2',
+        css: '\ue749',
+        diff: '\ueae1',
+        dockerfile: '\uf21f',
+        go: '\udb81\udfd3',
+        gradle: '\ue7f2',
+        html: '\ue736',
+        java: '\uedaf',
+        javascript: '\ue781',
+        json: '\ueb0f',
+        latex: '\ue81f',
+        llvm: '\ue823',
+        lua: '\ue826',
+        makefile: '\ue673',
+        markdown: '\uf48a',
+        maven: '\ue82c',
+        plaintext: '\udb80\udd4d',
+        plantuml: '\ue8cb',
+        powershell: '\ue86c',
+        python: '\ued1b',
+        rust: '\udb85\ude17',
+        shell: '\ue760',
+        sql: '\udb82\udc66',
+        text: '\udb80\udd4d',
+        toml: '\ue6b2',
+        txt: '\udb80\udd4d',
+        typescript: '\ue8ca',
+        uml: '\ue8cb',
+        vim: '\ue7c5',
+        wasm: '\ue8e0',
+        xml: '\ue8ea',
+        yaml: '\ue8eb',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            const parentElement = codeBlock.parentElement;
+
+            
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+
+            
+            const foldBtn = document.createElement('button');
+            foldBtn.className = 'fold-btn';
+            foldBtn.innerHTML = '\uf48c';
+            foldBtn.style.display = 'none';
+
+            
+            const langLabel = document.createElement('div');
+            langLabel.className = 'lang-label';
+            const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
+            const icon = langToNerdFontMap[lang.toLowerCase()];
+            langLabel.textContent = icon || lang.toUpperCase();
+            if (!icon) langLabel.style.fontSize = '0.8rem';
+
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = '\uf4bb COPY';
+
+            
+            const scale_height = 600;       
+            const collapsed_height = 500;   
+            const checkHeight = () => {
+                const originalDisplay = parentElement.style.display;
+                parentElement.style.display = 'block';
+                const fullHeight = parentElement.scrollHeight;
+                parentElement.style.display = originalDisplay;
+                return fullHeight > scale_height;
+            };
+
+            
+            if (checkHeight()) {
+                foldBtn.style.display = 'flex';
+                parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+
+                
+                parentElement.classList.add('collapsed');
+                parentElement.style.maxHeight = `${collapsed_height}px`;
+                foldBtn.innerHTML = '\uf4d9';
+
+                parentElement.style.overflowY = 'auto'; 
+
+                foldBtn.addEventListener('click', () => {
+                    const isCollapsed = parentElement.classList.toggle('collapsed');
+                    foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
+
+                    if (isCollapsed) {
+                        parentElement.style.maxHeight = `${collapsed_height}px`;
+                        parentElement.style.overflowX = 'auto';
+                    } else {
+                        parentElement.style.maxHeight = 'none';
+                        void parentElement.offsetHeight;
+                        parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                    }
+                });
+            }
+
+            
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeBlock.textContent);
+                    copyBtn.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyBtn.textContent = '\uf4bb COPY', 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                }
+            });
+
+            
+            tools.append(langLabel, foldBtn, copyBtn);
+            parentElement.prepend(tools);
+        });
+    });
+</script>
+
+<style>
+ 
+.code-tools {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-family: "Maple Mono NF CN";
+}
+
+.fold-btn {
+    cursor: pointer;
+    border: none;
+    color: #666;
+    background: none;
+    font-family: "Maple Mono NF CN";
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0 0.45rem;
+    transition: all 0.2s ease;
+}
+
+ 
+.lang-label {
+     
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+ 
+.copy-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+}
+
+ 
+pre:hover .code-tools {
+    opacity: 1;
+    pointer-events: auto;
+}
+</style>
+
+
+  
+<script>
+    
+    window.diagramRenderUtils = {
+        
+        getOrCreateFullscreenOverlay: function() {
+            let overlay = document.querySelector('.fullscreen-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'fullscreen-overlay';
+                document.body.appendChild(overlay);
+
+                
+                overlay.addEventListener('dblclick', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            }
+            return overlay;
+        },
+
+        
+        createDiagramContainer: function() {
+            const container = document.createElement('div');
+            container.className = 'code-rendered-diagram';
+            return container;
+        },
+
+        
+        createCopyButton: function() {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'code-rendered-diagram-copy-button';
+            copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+            return copyButton;
+        },
+
+        
+        createFullscreenButton: function() {
+            const fullscreenButton = document.createElement('button');
+            fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+            fullscreenButton.innerHTML = '&#xf065; FULL';
+            return fullscreenButton;
+        },
+
+        
+        makeSVGTransparent: function(svgText) {
+            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                .forEach(el => {
+                    if (el.tagName !== 'svg') {
+                        el.setAttribute('fill', 'transparent');
+                    }
+                });
+            doc.documentElement.style.backgroundColor = 'transparent';
+            return new XMLSerializer().serializeToString(doc);
+        },
+
+        
+        setupCopyButton: function(copyButton, codeContent) {
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeContent);
+                    copyButton.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                } catch (err) {
+                    copyButton.textContent = 'FAILED';
+                    console.error('复制失败:', err);
+                }
+            });
+        },
+
+        
+        setupShowSourceCode: function(imageElem, sourceCode) {
+            
+            imageElem.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+
+                
+                const pre = document.createElement('pre');
+                const codeElem = document.createElement('code');
+                codeElem.textContent = sourceCode;
+                pre.appendChild(codeElem);
+
+                
+                window.diagramRenderUtils.popupWindowUtils.create({
+                    title: 'Source Code',
+                    content: pre,
+                    x: e.clientX,
+                    y: e.clientY,
+                    minWidth: 300,
+                    maxWidth: '60%',
+                    maxHeight: '60%',
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    className: 'source-code-viewer'
+                });
+            });
+        },
+
+        
+        setupFullscreenButton: function(fullscreenButton, contentElement, isImage = false) {
+            fullscreenButton.addEventListener('click', () => {
+                const overlay = this.getOrCreateFullscreenOverlay();
+                let clonedContent;
+
+                if (isImage) {
+                    
+                    clonedContent = contentElement.cloneNode(true);
+                } else {
+                    
+                    const svgElement = contentElement.querySelector('svg');
+                    if (!svgElement) return;
+                    clonedContent = svgElement.cloneNode(true);
+                }
+
+                overlay.innerHTML = '';
+
+                
+                const exitButton = document.createElement('button');
+                exitButton.className = 'fullscreen-exit-button';
+                exitButton.innerHTML = 'ESC';
+                exitButton.onclick = () => overlay.classList.remove('active');
+
+                overlay.appendChild(exitButton);
+                overlay.appendChild(clonedContent);
+                overlay.classList.add('active');
+
+                
+                this.setupZoomAndDrag(overlay, isImage ? 'img' : 'svg');
+            });
+        },
+
+        
+        setupZoomAndDrag: function(overlay, selector) {
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            const element = overlay.querySelector(selector);
+
+            
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY * -0.002;
+                const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                
+                const rect = element.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                
+                posX += mouseX * (1 - newScale / scale);
+                posY += mouseY * (1 - newScale / scale);
+
+                scale = newScale;
+                updateTransform();
+            });
+
+            
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === overlay) return;
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                overlay.classList.add('dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                overlay.classList.remove('dragging');
+            });
+
+            function updateTransform() {
+                element.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+        },
+
+        
+        popupWindowUtils: {
+            
+            create: function(options) {
+                
+                const config = {
+                    title: 'Popup Window',
+                    content: '',         
+                    x: 100,              
+                    y: 100,              
+                    minWidth: 300,       
+                    maxWidth: '80%',     
+                    maxHeight: '80%',    
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    onClose: null,       
+                    className: ''        
+                };
+
+                
+                Object.assign(config, options);
+
+                
+                if (config.className) {
+                    const existingPopup = document.querySelector(`.popup-window.${config.className}`);
+                    if (existingPopup) {
+                        document.body.removeChild(existingPopup);
+                    }
+                }
+
+                
+                const popup = document.createElement('div');
+                popup.className = `popup-window ${config.className}`.trim();
+
+                
+                const titleBar = document.createElement('div');
+                titleBar.className = 'popup-window-title';
+                titleBar.textContent = config.title;
+
+                
+                const closeButton = document.createElement('button');
+                closeButton.className = 'popup-window-close';
+                closeButton.innerHTML = '&times;';
+
+                
+                titleBar.appendChild(closeButton);
+
+                
+                const contentContainer = document.createElement('div');
+                contentContainer.className = 'popup-window-content';
+
+                
+                if (typeof config.content === 'string') {
+                    contentContainer.innerHTML = config.content;
+                } else if (config.content instanceof Element) {
+                    contentContainer.appendChild(config.content);
+                }
+
+                
+                popup.appendChild(titleBar);
+                popup.appendChild(contentContainer);
+
+                
+                popup.style.minWidth = typeof config.minWidth === 'number' ? `${config.minWidth}px` : config.minWidth;
+                popup.style.maxWidth = typeof config.maxWidth === 'number' ? `${config.maxWidth}px` : config.maxWidth;
+                popup.style.maxHeight = typeof config.maxHeight === 'number' ? `${config.maxHeight}px` : config.maxHeight;
+
+                
+                document.body.appendChild(popup);
+
+                
+                const popupRect = popup.getBoundingClientRect();
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+
+                
+                let left = Math.min(Math.max(config.x, 20), windowWidth - popupRect.width - 20);
+                let top = Math.min(Math.max(config.y, 20), windowHeight - popupRect.height - 20);
+
+                popup.style.left = `${left}px`;
+                popup.style.top = `${top}px`;
+
+                
+                const closePopup = () => {
+                    if (document.body.contains(popup)) {
+                        document.body.removeChild(popup);
+                        if (typeof config.onClose === 'function') {
+                            config.onClose();
+                        }
+                    }
+                };
+
+                closeButton.addEventListener('click', closePopup);
+
+                
+                if (config.closeOnEsc) {
+                    const escHandler = (e) => {
+                        if (e.key === 'Escape' && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('keydown', escHandler);
+                        }
+                    };
+                    document.addEventListener('keydown', escHandler);
+                }
+
+                
+                if (config.closeOnClickOutside) {
+                    const outsideClickHandler = (e) => {
+                        if (popup && !popup.contains(e.target) && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('mousedown', outsideClickHandler);
+                        }
+                    };
+
+                    
+                    setTimeout(() => {
+                        document.addEventListener('mousedown', outsideClickHandler);
+                    }, 100);
+                }
+
+                
+                let isDragging = false;
+                let offsetX = 0;
+                let offsetY = 0;
+
+                titleBar.addEventListener('mousedown', (e) => {
+                    
+                    if (e.target !== closeButton) {
+                        isDragging = true;
+                        offsetX = e.clientX - popup.getBoundingClientRect().left;
+                        offsetY = e.clientY - popup.getBoundingClientRect().top;
+                        popup.classList.add('dragging');
+                    }
+                });
+
+                const mouseMoveHandler = (e) => {
+                    if (isDragging) {
+                        let newLeft = e.clientX - offsetX;
+                        let newTop = e.clientY - offsetY;
+
+                        
+                        newLeft = Math.max(0, Math.min(windowWidth - popupRect.width, newLeft));
+                        newTop = Math.max(0, Math.min(windowHeight - popupRect.height, newTop));
+
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    }
+                };
+
+                const mouseUpHandler = () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        popup.classList.remove('dragging');
+                    }
+                };
+
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+
+                
+                return {
+                    element: popup,
+                    contentElement: contentContainer,
+                    close: closePopup,
+                    setTitle: (title) => {
+                        titleBar.textContent = title;
+                        titleBar.appendChild(closeButton); 
+                    },
+                    setContent: (content) => {
+                        contentContainer.innerHTML = '';
+                        if (typeof content === 'string') {
+                            contentContainer.innerHTML = content;
+                        } else if (content instanceof Element) {
+                            contentContainer.appendChild(content);
+                        }
+                    },
+                    setPosition: (x, y) => {
+                        let newLeft = Math.min(Math.max(x, 0), windowWidth - popupRect.width);
+                        let newTop = Math.min(Math.max(y, 0), windowHeight - popupRect.height);
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    },
+                    
+                    destroy: () => {
+                        document.removeEventListener('mousemove', mouseMoveHandler);
+                        document.removeEventListener('mouseup', mouseUpHandler);
+                        if (document.body.contains(popup)) {
+                            document.body.removeChild(popup);
+                        }
+                    }
+                };
+            }
+        }
+    };
+</script>
+<style>
+     
+    .code-rendered-diagram {
+        max-width: 80% !important;
+        height: auto;
+        position: relative;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .code-rendered-diagram-copy-button,
+    .code-rendered-diagram-fullscreen-button {
+        position: absolute;
+        top: 20px;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 0.3rem;
+        margin: 0 0 0 0.6rem;
+        color: #333;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.6rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        opacity: 0;
+    }
+
+    .code-rendered-diagram-copy-button {
+        right: 10px;
+    }
+
+    .code-rendered-diagram-fullscreen-button {
+        right: 100px;
+    }
+
+    .code-rendered-diagram:hover .code-rendered-diagram-copy-button,
+    .code-rendered-diagram:hover .code-rendered-diagram-fullscreen-button {
+        opacity: 1;
+    }
+
+    .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FBFBFB;
+         
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fullscreen-overlay.active {
+        display: flex;
+    }
+
+    .fullscreen-overlay img,
+    .fullscreen-overlay svg {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        cursor: move;
+        transition: transform 0.1s ease-out;
+        transform-origin: center center;
+    }
+
+    .fullscreen-overlay svg {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .fullscreen-overlay.dragging {
+        cursor: move;
+    }
+
+    .fullscreen-exit-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        color: #666;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        transition: all 0.2s ease;
+        z-index: 100000;
+    }
+
+    .fullscreen-exit-button:hover {
+        background-color: #e0e0e0;
+        color: #333;
+    }
+
+     
+    .popup-window {
+        position: fixed;
+        z-index: 10000;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .popup-window.dragging {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        opacity: 0.95;
+    }
+
+    .popup-window-title {
+        background-color: #e8e8e8;
+        padding: 8px 12px;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        cursor: move;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #333;
+        font-family: "Maple Mono NF CN", monospace;
+        font-size: 0.9rem;
+    }
+
+    .popup-window-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #666;
+        padding: 0 4px;
+        margin: -4px -4px 0 0;
+        transition: color 0.2s ease;
+    }
+
+    .popup-window-close:hover {
+        color: #333;
+    }
+
+    .popup-window-content {
+        overflow: auto;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+     
+    .popup-window.source-code-viewer .popup-window-content {
+        font-family: "Maple Mono NF CN", monospace;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content pre {
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content code {
+        font-family: "Maple Mono NF CN", monospace;
+        color: #333;
+    }
+</style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
+        if (!plantumlBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
+
+        
+        script.onload = () => {
+            const plantuml_theme = parsePlantumlUserConfig();
+
+            plantumlBlocks.forEach(codeBlock => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const img = document.createElement('img');
+                img.className = 'code-rendered-diagram-img';
+                img.style.display = 'block';
+                img.alt = 'PlantUML Diagram';
+
+                
+                const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
+                img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, fullCode);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(img, fullCode);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, img, true);
+
+                
+                
+
+                
+                container.appendChild(img);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+                codeBlock.parentElement.replaceWith(container);
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+
+    function parsePlantumlUserConfig() {
+        let configItems = [];
+
+        
+            configItems.push(`scale 5`);
+        
+
+        
+            configItems.push(`skin rose`);
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        
+        
+            
+                configItems.push(`skinparam shadowing false`);
+            
+        
+
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        return configItems.join("\n").trim();
+    }
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+        if (!mermaidBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js';
+
+        
+        script.onload = () => {
+            
+            mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                fontFamily: 'Maple Mono NF CN',
+                
+                look: 'handDrawn',
+                
+                theme: 'neutral',
+                
+                
+            });
+
+            
+            mermaidBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const renderDiv = document.createElement('div');
+                renderDiv.id = `mermaid-diagram-${index}`;
+                renderDiv.style.background = 'transparent';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                try {
+                    
+                    mermaid.render(`mermaid-svg-${index}`, code).then(result => {
+                        renderDiv.innerHTML = result.svg;
+
+                        
+                        const svg = renderDiv.querySelector('svg');
+                        if (svg) {
+                            svg.style.backgroundColor = 'transparent';
+                            
+                            svg.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                                .forEach(el => {
+                                    if (el.tagName !== 'svg') {
+                                        el.setAttribute('fill', 'transparent');
+                                    }
+                                });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Mermaid渲染错误:', error);
+                    renderDiv.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Mermaid渲染错误: ${error.message}
+                    </div>`;
+                }
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(renderDiv, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, renderDiv, false);
+
+                
+                container.appendChild(renderDiv);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const markmapBlocks = document.querySelectorAll('pre code.language-map, pre code.language-mindmap');
+        if (!markmapBlocks.length) return;
+
+        
+        function loadScript(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+
+        
+        Promise.all([
+            loadScript('https://cdn.jsdelivr.net/npm/d3@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-view@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-lib@latest')
+        ]).then(() => {
+            
+            markmapBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const markmapContainer = document.createElement('div');
+                markmapContainer.className = 'markmap';
+                markmapContainer.id = `markmap-${index}`;
+                markmapContainer.style.minHeight = '300px';
+                markmapContainer.style.width = '100%';
+                markmapContainer.style.position = 'relative';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                
+                const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.style.width = '100%';
+                svgElement.style.height = '400px';
+                markmapContainer.appendChild(svgElement);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(markmapContainer, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, markmapContainer, false);
+
+                
+                container.appendChild(markmapContainer);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+
+                
+                renderMarkmapWithRetry(svgElement, markmapContainer, code);
+            });
+        }).catch(error => {
+            console.error('加载markmap库失败:', error);
+        });
+
+        
+
+        function renderMarkmapWithRetry(svgElement, markmapContainer, code, maxRetries = 5, delay = 200) {
+            let attempt = 0;
+
+            function tryRender() {
+                attempt++;
+                try {
+                    
+                    if (!window.markmap || typeof window.markmap.Markmap !== 'function') {
+                        throw new Error('Markmap constructor not available yet.');
+                    }
+
+                    
+                    const { Transformer } = window.markmap;
+                    const transformer = new Transformer();
+
+                    
+                    const { root, features } = transformer.transform(code);
+
+                    
+                    const { Markmap } = window.markmap;
+                    const mm = new Markmap(svgElement, {
+                        autoFit: true,
+                        duration: 500,
+                        zoom: true,
+                    });
+
+                    
+                    mm.setData(root, features);
+                    mm.fit();
+
+                    
+                    markmapContainer.dataset.markmapData = JSON.stringify({
+                        root: root,
+                        features: features
+                    });
+
+                    
+                    setTimeout(() => {
+                        const links = svgElement.querySelectorAll('a');
+                        links.forEach(link => {
+                            link.setAttribute('target', '_blank');
+                            link.setAttribute('rel', 'noopener noreferrer');
+                        });
+                    }, 100);
+
+                } catch (error) {
+                    console.error(`Markmap渲染尝试第 ${attempt} 次失败:`, error.message);
+                    if (attempt < maxRetries) {
+                        
+                        setTimeout(tryRender, delay);
+                    } else {
+                        
+                        console.error('Markmap渲染在多次重试后仍然失败。');
+                        markmapContainer.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                            Markmap渲染错误: ${error.message} (请尝试手动刷新网页)
+                        </div>`;
+                    }
+                }
+            }
+
+            
+            tryRender();
+        }
+    });
+</script>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        if (!window.diagramRenderUtils) return;
+
+        
+        const originalSetupFullscreenButton = window.diagramRenderUtils.setupFullscreenButton;
+        window.diagramRenderUtils.setupFullscreenButton = function(fullscreenButton, contentElement, isImage = false) {
+            
+            const isMarkmap = contentElement.classList.contains('markmap');
+
+            if (isMarkmap) {
+                fullscreenButton.addEventListener('click', () => {
+                    const overlay = this.getOrCreateFullscreenOverlay();
+                    overlay.innerHTML = '';
+
+                    
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => overlay.classList.remove('active');
+                    overlay.appendChild(exitButton);
+
+                    
+                    const fullscreenContainer = document.createElement('div');
+                    fullscreenContainer.className = 'markmap';
+                    fullscreenContainer.style.width = '100%';
+                    fullscreenContainer.style.height = '100%';
+
+                    
+                    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svgElement.style.width = '100%';
+                    svgElement.style.height = '100%';
+                    fullscreenContainer.appendChild(svgElement);
+
+                    overlay.appendChild(fullscreenContainer);
+                    overlay.classList.add('active');
+
+                    
+                    try {
+                        const markmapData = JSON.parse(contentElement.dataset.markmapData || '{}');
+                        if (markmapData.root) {
+                            
+                            const { Markmap } = window.markmap;
+                            const mm = new Markmap(svgElement, {
+                                autoFit: true,
+                                duration: 500,
+                                zoom: true,
+                            });
+
+                            
+                            mm.setData(markmapData.root, markmapData.features);
+                            mm.fit();
+
+                            
+                            setTimeout(() => {
+                                const links = svgElement.querySelectorAll('a');
+                                links.forEach(link => {
+                                    link.setAttribute('target', '_blank');
+                                    link.setAttribute('rel', 'noopener noreferrer');
+                                });
+                            }, 100);
+                        }
+                    } catch (error) {
+                        console.error('全屏模式下渲染markmap失败:', error);
+                    }
+
+                    
+                    this.setupZoomAndDrag(overlay, 'svg');
+                });
+            } else {
+                
+                originalSetupFullscreenButton.call(this, fullscreenButton, contentElement, isImage);
+            }
+        };
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const xmindBlocks = document.querySelectorAll('pre code.language-xmind');
+        if (xmindBlocks.length === 0) {
+            return;
+        }
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/xmind-embed-viewer/dist/umd/xmind-embed-viewer.js';
+        document.head.appendChild(script);
+
+        
+        script.onload = function() {
+            xmindBlocks.forEach((codeBlock, index) => {
+                const xmindUrl = codeBlock.textContent.trim();
+                if (!xmindUrl) {
+                    console.error('XMind code block is empty.');
+                    return;
+                }
+
+                
+                const mountId = `xmind-mount-${index}`;
+                const mountDiv = document.createElement('div');
+                mountDiv.id = mountId;
+
+                
+                const preElement = codeBlock.parentElement;
+                preElement.parentElement.replaceChild(mountDiv, preElement);
+
+                renderXmindFile(mountId, xmindUrl);
+            });
+
+            async function renderXmindFile(elementId, fileUrl) {
+                const mountEl = document.getElementById(elementId);
+
+                
+                
+                mountEl.className = 'xmind-container';
+                
+                mountEl.innerHTML = `
+                <div class="xmind-loader-wrapper">
+                    <div class="xmind-loader"></div>
+                    <div class="xmind-loader-text">xmind loading</div>
+                </div>
+            `;
+
+                try {
+                    
+                    const isExternal = fileUrl.startsWith('http');
+                    const fetchUrl = isExternal ? `https://api.allorigins.win/raw?url=${encodeURIComponent(fileUrl)}` : fileUrl;
+                    const res = await fetch(fetchUrl, {
+                        mode: 'cors'
+                    });
+
+                    
+                    if (!res.ok) {
+                        mountEl.innerHTML = `
+                        <div class="xmind-error">
+                            <span class="xmind-error-icon">⚠️</span>
+                            <div class="xmind-error-content">
+                                <strong>加载 XMind 文件失败</strong>
+                                <p>无法从 <code>${fileUrl}</code> 获取文件 (HTTP ${res.status})</p>
+                            </div>
+                        </div>
+                    `;
+                        console.error(`Failed to fetch XMind file: ${res.statusText}`);
+                        return;
+                    }
+                    const fileBuffer = await res.arrayBuffer();
+
+                    
+                    mountEl.className = ''; 
+                    mountEl.innerHTML = ''; 
+
+                    new XMindEmbedViewer({
+                        el: `#${elementId}`,
+                        file: fileBuffer,
+                        styles: {
+                            'height': '500px',
+                            'width': '100%'
+                        }
+                    });
+                } catch (error) {
+                    
+                    mountEl.innerHTML = `
+                    <div class="xmind-error">
+                        <span class="xmind-error-icon">⚠️</span>
+                        <div class="xmind-error-content">
+                            <strong>渲染 XMind 文件时出错</strong>
+                            <p>${error.message}</p>
+                        </div>
+                    </div>
+                `;
+                    console.error('Error rendering XMind file:', error);
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+     
+    .xmind-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        background-color: #f9f9f9;
+        border: 1px dashed #ddd;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+        padding: 20px;
+    }
+
+     
+    .xmind-loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+     
+    .xmind-loader {
+        border: 3px solid #f0f0f0;
+        border-top: 3px solid #999;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+    }
+
+     
+    .xmind-loader-text {
+        color: #888;
+        font-size: 0.9rem;
+        font-family: "LXGW WenKai", "Maple Mono NF CN", sans-serif;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+     
+    .xmind-error {
+        display: flex;
+        align-items: flex-start;
+        text-align: left;
+        color: #c0392b;
+        width: 100%;
+    }
+
+    .xmind-error-icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        line-height: 1.2;
+    }
+
+    .xmind-error-content {
+        flex: 1;
+    }
+
+    .xmind-error strong {
+        font-size: 1.1rem;
+        color: #a93226;
+    }
+
+    .xmind-error p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        color: #7b241c;
+        word-break: break-all;
+    }
+
+    .xmind-error code {
+        background-color: #fbeae5;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+</style>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const DIAGRAM_MAP = new Map([
+            ['plantuml_kroki', 'plantuml'],
+            ['mermaid_kroki', 'mermaid'],
+            ['graphviz', 'graphviz'],
+            ['blockdiag', 'blockdiag'],
+            ['seqdiag', 'seqdiag'],
+            ['actdiag', 'actdiag'],
+            ['packetdiag', 'packetdiag'],
+            ['database', 'dbml'],
+            ['dbml', 'dbml'],
+            ['vega', 'vega']
+        ]);
+
+        
+        const blocks = [];
+        document.querySelectorAll('pre code[class]').forEach(block => {
+            if (block.dataset.kroki) return;
+            const lang = [...block.classList].find(c => DIAGRAM_MAP.has(c.split('-')[1]));
+            if (lang) {
+                block.dataset.kroki = 'processed';
+                blocks.push({ block, api: DIAGRAM_MAP.get(lang.split('-')[1]) });
+            }
+        });
+
+        if (!blocks.length) return;
+
+        
+        const CONCURRENCY = 6;
+        const queue = blocks.slice();
+
+        (async function processQueue() {
+            const workers = Array(Math.min(CONCURRENCY, queue.length))
+                .fill()
+                .map(async () => {
+                    while (queue.length) {
+                        const { block, api } = queue.pop();
+                        await renderBlock(block, api);
+                    }
+                });
+            await Promise.all(workers);
+        })();
+
+        async function renderBlock(block, api) {
+            const pre = block.closest('pre');
+            try {
+                const code = block.textContent.trim();
+                if (!code) {
+                    pre.style.border = '2px solid orange';
+                    return;
+                }
+
+                const res = await fetch(`https://kroki.io/${api}/svg`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: code
+                });
+
+                if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
+
+                
+                const svg = window.diagramRenderUtils.createDiagramContainer();
+                svg.innerHTML = window.diagramRenderUtils.makeSVGTransparent(await res.text());
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, svg, false);
+                svg.appendChild(fullscreenButton);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+                svg.appendChild(copyButton);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(svg, code);
+
+                pre.insertAdjacentElement('afterend', svg);
+
+                
+                pre.remove();
+            } catch (err) {
+                console.error(`[Kroki] 渲染失败: ${err.message}`);
+                pre.style.border = '2px solid red';
+                pre.title = err.message;
+            }
+        }
+    });
+</script>
+
+
+  <div id="search-modal">
+  <input type="text" id="modal-search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
+  <div id="modal-search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="modal-search-results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+  function debug(text) {
+      document.getElementById('modal-search-debug').textContent = text;
+  }
+  function showpages() {
+    debug("当前本站共有 " + searchIndex.length + " 篇文章");
+  }
+
+  let searchIndex = [];
+  
+  
+    
+  
+
+  
+    searchIndex.push({
+      title: "\"面向模式的软件架构 卷1 模式系统 读书笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%8D%B71%E6%A8%A1%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/\"",
+      
+      categories: "[\"读书笔记\",\"软件工程\"]",
+      tags: "[\"设计模式\"]",
+      series: "[\"软件架构之道\"]",
+      date: "\"2025-12-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"链接符号与符号导入导出宏——记一次因clangd补全头文件产生的链接错误\"",
+      permalink: "\"/cpp/%E9%93%BE%E6%8E%A5%E7%AC%A6%E5%8F%B7%E5%AF%BC%E5%87%BA%E4%B8%8E%E7%AC%A6%E5%8F%B7%E5%8F%AF%E8%A7%81%E5%AE%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"C++踩坑\"]",
+      date: "\"2025-11-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"Qt从零开始（0）——环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/qt%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: "[\"Qt专栏\"]",
+      date: "\"2025-08-30\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu配置coredump文件生成位置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E7%94%9F%E6%88%90coredump%E6%96%87%E4%BB%B6/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-08-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu安装中文输入法（fcitx5-rime）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E5%AE%89%E8%A3%85rime%E8%BE%93%E5%85%A5%E6%B3%95/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-07-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"SSH反向隧道中转机-远程连接本地服务器\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/ssh%E5%8F%8D%E5%90%91%E9%9A%A7%E9%81%93%E4%B8%AD%E8%BD%AC%E6%9C%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"ssh\"]",
+      series: [],
+      date: "\"2025-06-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++ 高并发服务器模型实现 | [转载](https://github.com/linkxzhou/mylib/blob/master/c%2B%2B/concurrency_server/README.md)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/06/10/22%E7%A7%8Dc-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"C++\"]",
+      series: [],
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"libclang-py使用介绍\"",
+      permalink: "\"/cpp/libclang-py%E4%BD%BF%E7%94%A8/\"",
+      
+      categories: [],
+      tags: "[\"C++\",\"编译原理\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"参数包与折叠表达式傻傻分不清\"",
+      permalink: "\"/cpp/%E5%8F%82%E6%95%B0%E5%8C%85%E4%B8%8E%E6%8A%98%E5%8F%A0%E8%A1%A8%E8%BE%BE%E5%BC%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-06-05\""
+    });
+  
+    searchIndex.push({
+      title: "\"协程快速入门\"",
+      permalink: "\"/cpp/%E5%8D%8F%E7%A8%8B%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"coroutine\",\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-05-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"初等数学回忆录\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%88%9D%E7%AD%89%E6%95%B0%E5%AD%A6%E5%9B%9E%E5%BF%86%E5%BD%95/\"",
+      
+      categories: "[\"数学\"]",
+      tags: "[\"数学\",\"三角函数\",\"极坐标\",\"定积分\"]",
+      series: [],
+      date: "\"2025-05-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/epoll%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"epoll\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"asio\"]",
+      series: "[\"网络编程\"]",
+      date: "\"2025-04-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/googletest%E4%B8%8Egmock%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"Docker\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"CyberRT\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++小技巧\"",
+      permalink: "\"/cpp/c++%E5%B0%8F%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-04-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"tmux 快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"tmux\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Valgrind快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/valgrind%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"valgrind\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Mermaid快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/mermaid%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"mermaid\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-07\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT框架总览\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"通信中间件术语表\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E6%9C%AF%E8%AF%AD%E8%A1%A8/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: [],
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-27\""
+    });
+  
+    searchIndex.push({
+      title: "\"现代C++开发环境配置指南\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"c++\"]",
+      series: [],
+      date: "\"2025-03-26\""
+    });
+  
+    searchIndex.push({
+      title: "\"带着目的学：CyberRT\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6cyberrt/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Linux环境变量加载顺序分析\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E5%88%86%E6%9E%90/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"linux\"]",
+      series: [],
+      date: "\"2025-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"手册速查方案（如cppreference）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"cppreference\"]",
+      series: [],
+      date: "\"2025-03-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT中的代码和工程技巧\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\",\"C++\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"设计模式\"",
+      permalink: "\"/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/\"",
+      
+      categories: "[\"软件工程\"]",
+      tags: "[\"SE\"]",
+      series: "[\"设计模式专项总结\"]",
+      date: "\"2025-02-28\""
+    });
+  
+    searchIndex.push({
+      title: "\"一站式环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-02-24\""
+    });
+  
+    searchIndex.push({
+      title: "\"leetcode调试指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/\"",
+      
+      categories: [],
+      tags: "[\"leetcode\"]",
+      series: [],
+      date: "\"2024-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"linux命令行大记忆恢复术\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"linux\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"番茄鸡蛋面\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E8%8F%9C%E8%B0%B1/%E7%95%AA%E8%8C%84%E9%B8%A1%E8%9B%8B%E9%9D%A2/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: [],
+      series: "[\"快速做饭\"]",
+      date: "\"2023-10-22\""
+    });
+  
+    searchIndex.push({
+      title: "\"PlantUML快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"uml\",\"plantuml\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-10-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"WSL安装与配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/wsl%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2023-09-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++网络编程入门概念及api总结\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/\"",
+      
+      categories: [],
+      tags: "[\"linux\",\"网络编程\"]",
+      series: "[\"面筋\",\"快速上手\"]",
+      date: "\"2023-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"苏州旅行计划\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/%E8%8B%8F%E5%B7%9E/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: "[\"旅行\"]",
+      series: [],
+      date: "\"2023-04-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"gdb快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"gdb\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2022-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Ubuntu22.04安装Hadoop完全分布式集群\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"hadoop\"]",
+      series: [],
+      date: "\"2022-11-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++连接mysql\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E8%BF%9E%E6%8E%A5mysql/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2022-11-20\""
+    });
+  
+    searchIndex.push({
+      title: "\"征服C指针笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/\"",
+      
+      categories: [],
+      tags: [],
+      series: [],
+      date: "\"2022-10-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Leetcode刷题指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"算法\"]",
+      tags: "[\"leetcode\"]",
+      series: "[\"leetcode刷题指南\"]",
+      date: "\"2022-09-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"word 页眉页脚设置\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/word%E9%A1%B5%E7%9C%89%E9%A1%B5%E8%84%9A%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: [],
+      series: [],
+      date: "\"2021-04-03\""
+    });
+  
+    searchIndex.push({
+      title: "\"Markdown Demo\"",
+      permalink: "\"/%E6%B5%8B%E8%AF%95/markdown-demo/\"",
+      
+      categories: [],
+      tags: "[\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"常用数学符号的latex表示\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84latex%E8%A1%A8%E7%A4%BA/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"latex\",\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+
+  showpages()
+
+  const options = {
+    includeScore: true,
+    threshold: 0.6,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'content', weight: 0.3 },
+      { name: 'tags', weight: 0.5 },
+      { name: 'categories', weight: 0.5 },
+      { name: 'series', weight: 0.5 }
+    ]
+  };
+
+  const fuse = new Fuse(searchIndex, options);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'k') {
+      event.preventDefault();
+      toggleSearchModal();
+    } else if (event.key === 'Escape') {
+      document.getElementById('modal-search-input').value = "";
+      closeSearchModal();
+      var res = document.getElementById('modal-search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      showpages();
+    }
+  });
+
+  function toggleSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+      document.getElementById('modal-search-input').focus();
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('modal-search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.trim();
+    const resultsContainer = document.getElementById('modal-search-results');
+    resultsContainer.innerHTML = '';
+
+    if (searchTerm === '') {
+      showpages()
+      return;
+    }
+
+    const results = fuse.search(searchTerm);
+
+    results.sort((a, b) => new Date(b.item.date) - new Date(a.item.date));
+
+    if (results.length === 0) {
+      showpages()
+      resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
+      return;
+    } else {
+      debug("共找到 " + results.length + " 篇匹配的文章")
+    }
+
+    results.forEach(result => {
+      const item = result.item;
+      const resultItem = document.createElement('div');
+      resultItem.className = 'modal-search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
+      date.className = 'modal-search-result-date';
+
+      const link = document.createElement('a');
+      link.href = item.permalink.replace(/^"|"$/g, '');
+      link.textContent = item.title.replace(/^"|"$/g, '');
+      link.className = 'modal-search-result-title';
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
+    });
+  });
+</script>
+
+<style>
+ 
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
+    border-radius: 6px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+}
+
+#modal-search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#modal-search-results {
+    margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.modal-search-result-date {
+    color: #666;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    text-wrap: nowrap;
+}
+
+.modal-search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.modal-search-result-title:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+  
+
+  
+  <hr />
+  © 
+<a href="https://kaikaixixi.xyz"  target="_blank" rel="noopener noreferrer" >SHUAIKAI</a>
+ 2021 &ndash; 2025 | 🎨
+<a href="https://github.com/captainwc/ksimple"  target="_blank" rel="noopener noreferrer" >KSimple</a>
+  
+
+</footer>
+</body>
+
+</html>

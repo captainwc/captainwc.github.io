@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/tags/</link>
+    <description>Recent content in Tags on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 04 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>设计模式</title>
+      <link>https://kaikaixixi.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://kaikaixixi.xyz/tags/c&#43;&#43;/</link>
+      <pubDate>Mon, 17 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ssh</title>
+      <link>https://kaikaixixi.xyz/tags/ssh/</link>
+      <pubDate>Mon, 16 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/ssh/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>编译原理</title>
+      <link>https://kaikaixixi.xyz/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Tue, 10 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>网络编程</title>
+      <link>https://kaikaixixi.xyz/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Tue, 10 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Coroutine</title>
+      <link>https://kaikaixixi.xyz/tags/coroutine/</link>
+      <pubDate>Wed, 21 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/coroutine/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>三角函数</title>
+      <link>https://kaikaixixi.xyz/tags/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>定积分</title>
+      <link>https://kaikaixixi.xyz/tags/%E5%AE%9A%E7%A7%AF%E5%88%86/</link>
+      <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/%E5%AE%9A%E7%A7%AF%E5%88%86/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>数学</title>
+      <link>https://kaikaixixi.xyz/tags/%E6%95%B0%E5%AD%A6/</link>
+      <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/%E6%95%B0%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>极坐标</title>
+      <link>https://kaikaixixi.xyz/tags/%E6%9E%81%E5%9D%90%E6%A0%87/</link>
+      <pubDate>Fri, 16 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/%E6%9E%81%E5%9D%90%E6%A0%87/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Epoll</title>
+      <link>https://kaikaixixi.xyz/tags/epoll/</link>
+      <pubDate>Sun, 04 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/epoll/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Asio</title>
+      <link>https://kaikaixixi.xyz/tags/asio/</link>
+      <pubDate>Thu, 17 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/asio/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GoogleTest</title>
+      <link>https://kaikaixixi.xyz/tags/googletest/</link>
+      <pubDate>Wed, 16 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/googletest/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CyberRT</title>
+      <link>https://kaikaixixi.xyz/tags/cyberrt/</link>
+      <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/cyberrt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://kaikaixixi.xyz/tags/docker/</link>
+      <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tmux</title>
+      <link>https://kaikaixixi.xyz/tags/tmux/</link>
+      <pubDate>Tue, 08 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/tmux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Valgrind</title>
+      <link>https://kaikaixixi.xyz/tags/valgrind/</link>
+      <pubDate>Tue, 08 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/valgrind/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mermaid</title>
+      <link>https://kaikaixixi.xyz/tags/mermaid/</link>
+      <pubDate>Mon, 07 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/mermaid/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://kaikaixixi.xyz/tags/linux/</link>
+      <pubDate>Fri, 14 Mar 2025 15:39:01 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cppreference</title>
+      <link>https://kaikaixixi.xyz/tags/cppreference/</link>
+      <pubDate>Wed, 12 Mar 2025 13:41:29 +0800</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/cppreference/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SE</title>
+      <link>https://kaikaixixi.xyz/tags/se/</link>
+      <pubDate>Fri, 28 Feb 2025 00:19:19 +0800</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/se/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Leetcode</title>
+      <link>https://kaikaixixi.xyz/tags/leetcode/</link>
+      <pubDate>Thu, 14 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/leetcode/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cmdline</title>
+      <link>https://kaikaixixi.xyz/tags/cmdline/</link>
+      <pubDate>Sat, 25 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/cmdline/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Plantuml</title>
+      <link>https://kaikaixixi.xyz/tags/plantuml/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/plantuml/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Uml</title>
+      <link>https://kaikaixixi.xyz/tags/uml/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/uml/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>旅行</title>
+      <link>https://kaikaixixi.xyz/tags/%E6%97%85%E8%A1%8C/</link>
+      <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/%E6%97%85%E8%A1%8C/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Gdb</title>
+      <link>https://kaikaixixi.xyz/tags/gdb/</link>
+      <pubDate>Fri, 25 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/gdb/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hadoop</title>
+      <link>https://kaikaixixi.xyz/tags/hadoop/</link>
+      <pubDate>Mon, 21 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/hadoop/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Markdown</title>
+      <link>https://kaikaixixi.xyz/tags/markdown/</link>
+      <pubDate>Mon, 15 Feb 2021 18:08:01 +0800</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/markdown/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Latex</title>
+      <link>https://kaikaixixi.xyz/tags/latex/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/tags/latex/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

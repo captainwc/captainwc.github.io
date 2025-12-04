@@ -1,0 +1,4334 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html) | SHUAIKAI&#39;s Blog</title>
+    <link rel="icon" href= /images/favicon.png />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <link rel="stylesheet" href="/css/custom.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">主页</a></li>
+      
+      <li><a href="/series/">专栏</a></li>
+      
+      <li><a href="/categories/">分类</a></li>
+      
+      <li><a href="/tags/">标签</a></li>
+      
+      <li><a href="/archives/">归档</a></li>
+      
+      <li><a href="/search/">搜索</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+
+<div class="article-meta">
+    <h1><span class="article-meta-title">GTest / GMock 单元测试实践手册 | 
+<a href="https://imageslr.com/2023/gtest.html"  target="_blank" rel="noopener noreferrer" >转载</a></span></h1>
+
+    <div class="article-meta-info">
+        
+
+        
+        
+        
+        
+
+        
+        
+        
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        🕺🏻 Images 🗓️ 2025-04-16 🗂️ <a href="/categories/%E5%8D%9A%E5%AE%A2%E5%89%AA%E8%97%8F/">博客剪藏</a> 🏷️ <a href="/tags/googletest/">#GoogleTest</a>
+    </div>
+</div>
+
+<main>
+
+    
+
+<div class="left-sidebar-btn" id="leftSidebarBtn"><i class="fa-solid fa-list"></i></div>
+<div class="left-sidebar-panel" id="leftSidebarPanel">
+    
+        <div class="sidebar-content">
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🏷️ 标签</div>
+                <div class="tag-blocks">
+                    
+                    <a href="/tags/googletest" class="tag-block">
+                        GoogleTest
+                    </a>
+                    
+                </div>
+            </div>
+            
+
+            
+            
+
+            
+            
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🗂️ 分类文章</div>
+                
+                
+                <div class="category-group">
+                    <div class="category-name">博客剪藏</div>
+                    <ul class="article-list">
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/06/10/22%E7%A7%8Dc-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/" class="article-link">
+                                
+                                <span class="article-title">C++ 高并发服务器模型实现 | [转载](https://github.com/linkxzhou/mylib/blob/master/c%2B%2B/concurrency_server/README.md)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/05/04/epoll%E8%AF%A6%E8%A7%A3/" class="article-link">
+                                
+                                <span class="article-title">Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/05/04/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/" class="article-link">
+                                
+                                <span class="article-title">共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" class="article-link">
+                                
+                                <span class="article-title">Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/16/googletest%E4%B8%8Egmock%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/" class="article-link">
+                                
+                                <span class="article-title">GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/15/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" class="article-link">
+                                
+                                <span class="article-title">Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/15/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="article-link">
+                                
+                                <span class="article-title">万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)</span>
+                            </a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('leftSidebarBtn');
+            const panel = document.getElementById('leftSidebarPanel');
+            let hoverTimeout;
+
+            
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                panel.classList.add('show');
+            });
+
+            panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+            [btn, panel].forEach(el => {
+                el.addEventListener('mouseleave', () => {
+                    hoverTimeout = setTimeout(() => {
+                        panel.classList.remove('show');
+                    }, 200);
+                });
+            });
+        });
+    </script>
+    
+
+    <style>
+        
+
+         
+        .left-sidebar-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 980;
+            cursor: pointer;
+            padding: 6px 10px;
+            background: #EFEFEF;
+            border-radius: 8px;
+            transition: background 0.3s;
+            color: #999;
+            opacity: 0.7;
+        }
+
+        .left-sidebar-btn:hover {
+            background: #BEC2B3;
+        }
+
+        .left-sidebar-panel {
+            border-radius: 8px;
+            display: none;
+            position: fixed;
+            top: 66px;
+            left: 20px;
+            max-width: 360px;
+            min-width: 280px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #eee;
+            padding: 10px 5px 10px 15px;
+            z-index: 970;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-sidebar-panel.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        
+
+        .sidebar-content {
+            padding: 15px 12px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.2rem;
+        }
+
+        .sidebar-section-title {
+            font-size: 1rem;
+            color: #2d3842;
+            margin: 0 0 0.6rem 0;
+            padding-bottom: 0.3rem;
+            font-family: "LXGW WenKai";
+            font-weight: bold;
+
+             
+            
+            border-bottom: 2px dashed #cfcfcf;
+            
+        }
+
+         
+        .tag-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tag-block {
+            display: inline-block;
+            background: #F6F6F6;
+            color: #666;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .tag-block:hover {
+            background: #2e59a7;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+         
+        .series-group,
+        .category-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .series-name,
+        .category-name {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0 0 0.4rem 0;
+            font-weight: bold;
+            font-family: "LXGW WenKai";
+        }
+
+         
+        .article-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .article-item {
+            margin-bottom: 0.3rem;
+        }
+
+        .article-link {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.4rem;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .article-link:hover {
+            background: #f8f9fa;
+            border-left-color: #2e59a7;
+            transform: translateX(3px);
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            color: #999;
+            font-family: "LXGW WenKai";
+            flex-shrink: 0;
+            width: 45px;
+            text-align: left;
+        }
+
+        .article-title {
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+         
+        
+
+        .left-sidebar-panel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .left-sidebar-panel {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        
+
+         
+        @media (max-width: 768px) {
+        
+        }
+    </style>
+
+    
+
+
+<div class="toc-btn" id="tocBtn"><i class="fa-solid fa-bars-staggered"></i></div>
+<div class="toc-panel" id="tocPanel"></div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        
+        const btn = document.getElementById('tocBtn');
+        const panel = document.getElementById('tocPanel');
+        let hoverTimeout;
+
+        
+        btn.addEventListener('mouseenter', () => {
+            clearTimeout(hoverTimeout);
+            generateToc(panel);
+            panel.classList.add('show');
+
+            
+            requestAnimationFrame(() => {
+                const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+                let activeHeader = null;
+                let minDistance = Infinity;
+
+                
+                headers.forEach(header => {
+                    const rect = header.getBoundingClientRect();
+                    const distance = Math.abs(rect.top);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeHeader = header;
+                    }
+                });
+
+                
+                if (activeHeader) {
+                    const activeLink = panel.querySelector(`a[href="#${activeHeader.id}"]`);
+                    if (activeLink) {
+                        
+                        const panelHeight = panel.offsetHeight;
+                        const linkOffset = activeLink.offsetTop;
+                        const centerPosition = linkOffset - (panelHeight / 2) + (activeLink.offsetHeight / 2);
+                        
+                        panel.scrollTo({
+                            top: centerPosition,
+                            behavior: 'auto'
+                        });
+                    }
+                }
+            });
+        });
+
+        panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+        [btn, panel].forEach(el => {
+            el.addEventListener('mouseleave', () => {
+                hoverTimeout = setTimeout(() => {
+                    panel.classList.remove('show');
+                }, 200);
+            });
+        });
+        
+
+        
+        function generateToc(container) {
+            if (container.children.length > 0) return;
+
+            const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+            const counts = [0, 0, 0, 0, 0]; 
+
+            headers.forEach(header => {
+                const level = parseInt(header.tagName[1]) - 2;
+                if (level < 0) return;
+
+                counts[level]++;
+                for (let i = level + 1; i < counts.length; i++) counts[i] = 0;
+                const number = counts.slice(0, level + 1).join('.');
+
+                
+                const numberSpan = document.createElement('span');
+                numberSpan.className = 'toc-number';
+                numberSpan.textContent = number;
+
+                
+                const link = document.createElement('a');
+                link.href = `#${header.id}`;
+                link.style.paddingLeft = `${level * 12}px`;
+
+                
+                link.appendChild(numberSpan);
+                link.appendChild(document.createTextNode(header.textContent));
+
+                container.appendChild(link);
+            });
+        }
+    });
+</script>
+
+<style>
+    
+
+     
+    .toc-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 980;
+        cursor: pointer;
+        padding: 6px 10px;
+        background: #EFEFEF;
+        border-radius: 8px;
+        transition: background 0.3s;
+        color: #999;
+        opacity: 0.7;
+    }
+
+    .toc-btn:hover {
+        background: #BEC2B3;
+    }
+
+    .toc-panel {
+        border-radius: 8px;
+        display: none;
+        position: fixed;
+        top: 66px;
+        right: 20px;
+        max-width: 360px;
+        min-width: 200px;
+        max-height: 80vh;
+        overflow-y: auto;
+        background: white;
+        border: 1px solid #eee;
+        padding: 10px 5px 10px 15px;
+        z-index: 970;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        list-style: none;
+    }
+
+    .toc-panel.show {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+     
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    
+
+     
+    .toc-number {
+        vertical-align: middle;
+        margin-right: 6px;
+        font-family: "LXGW WenKai";
+        font-size: 0.85rem;
+    }
+
+     
+        
+
+    .toc-panel a {
+        
+            display: block;
+            padding: 4px 0;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        
+
+        .toc-panel a:hover {
+        
+
+                color: #007bff;
+            }
+
+        
+</style>
+
+
+    
+    
+    
+        <h1 id="gtest--gmock-单元测试实践手册">GTest / GMock 单元测试实践手册</h1>
+
+          <link rel="stylesheet" href="/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css" integrity="sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=" crossorigin="anonymous">
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>声明</span>
+    </div>
+      <div class="admonition-content">
+        <ul>
+<li>本文由插件
+<a href="https://chromewebstore.google.com/detail/markdownload-markdown-web/pcmpcfapbekmbjjkdalcgopdkipoggdi?pli=1"  target="_blank" rel="noopener noreferrer" >Markdown Web Clipper</a>
+自动提取网页正文而来，并未获取原作者授权！</li>
+<li>本文仅作个人存档学习使用，如有任何疑问/需求请查看
+<a href="https://imageslr.com/2023/gtest.html"  target="_blank" rel="noopener noreferrer" >原文</a>
+！</li>
+<li>如有侵权，请联系本人立刻删除！</li>
+<li>原文链接: 
+<a href="https://imageslr.com/2023/gtest.html"  target="_blank" rel="noopener noreferrer" >💻【C++】研发基本功 - GTest / GMock 单元测试实践手册</a>
+</li>
+</ul>
+      </div>
+  </div>
+<hr>
+<h2 id="一前言">一、前言</h2>
+<p>📌 本文来自 Ads Infra 内部分享，
+<a href="https://imageslr.com/ads-infra"  target="_blank" rel="noopener noreferrer" >欢迎加入 👉🏻</a>
+</p>
+<p>作为架构部门，我们的很多核心仓库都是 C++ 编写，目前基本都有 80% 的增量单测覆盖率卡点。编写单测的好处不言而喻：通过构造各种 case，可以发现空指针、大数越界等肉眼不容易发现的 bug。此外，单测也可以在不引流的情况下，测试功能是否正确。因此，编写单测是必要的，<strong>为新增代码补充单测是每个研发同学的基本功</strong>。</p>
+<p>但是，<strong>C++ 编写单测也是最麻烦的</strong>。根据日常观察，大部分同学没有系统地写过单测，基本依赖照抄现有代码，单测写得慢，且不标准。此外，没有掌握常见的调试技巧，主要通过 <code>cout</code> 逐行打日志和重新编译来定位问题，进一步降低了单测编写效率。</p>
+<p>本文旨在解决上述问题：</p>
+<ul>
+<li>本文的<strong>受众</strong>：开发过 C++ 模块、知道 GTest / GMock 的基本使用、编写过单测代码、能完成简单场景的单测需求、但对于复杂的代码则无从下手的同学；写单测感觉很不爽、知道痛点在哪儿、但不知道如何解决的同学；平时 review 代码只看业务逻辑、不看单测合理性的 reviewer 同学。</li>
+<li>本文的<strong>内容</strong>：分享 GTest、GMock 的核心用法、常用技巧 + 单测编写的思路 + GDB 调试方法。只讲最必要的、最常用的内容，能覆盖大部分场景的单测需求。不讲花活儿，但会引用外部文档供扩展阅读。</li>
+<li>本文的<strong>目标</strong>：(1) 通过分享上述内容，让大家系统掌握单测编写和调试方法，<strong>写起来更丝滑</strong>，查问题更高效。(2) 对齐认知，<strong>让单测真正发挥作用</strong>。知道什么是正确的、有效的、好的单测，并写出这样的单测。知道什么是无效的、差的单测，并避免写出 / 合入这样的单测。以对待线上代码的标准来对待单测。</li>
+</ul>
+<h2 id="二hello-world从一个单测示例开始">二、Hello, world：从一个单测示例开始</h2>
+<p>为下面这段代码编写单测：</p>
+<pre><code class="language-cpp">int check_threshold(RequestContext ctx, Ad ad) {
+    if (ad.pricing == CPT) {
+        return -1;
+    }
+    if (ad.pricing == CPM) {
+        if (ctx.params.use_stable_thresh || ad.use_stable_thresh()) {
+            return 2;
+        }
+        return ctx.get_threshold(ad);
+    }
+    ...
+}
+</code></pre>
+<p>编写出来的单测代码可能是这样的：</p>
+<pre><code class="language-cpp">// Case 1
+TEST(ChecksThresholdTest, CheckThreshForCPT) {
+    // 1. 构造输入
+    RequestContext ctx;
+    Ad ad;
+    ad.pricing = CPT;
+
+    // 2. 检查输出
+    EXPECT_EQ(check_threshold(ctx, ad), -1);
+}
+
+// Case 2
+TEST(CheckThresholdTest, CheckThreshForCPM) {
+    // 1. 构造输入
+    MockRequestContext ctx;  // 这是一个 GMock 对象
+
+    // 使用大括号分隔不同 case
+    {
+        Ad ad;
+        ad.pricing = CPM;
+        ctx.params.use_stable_thresh = true;
+        EXPECT_EQ(check_threshold(ctx, ad), 2);
+        ctx.params.use_stable_thresh = false;  // reset
+    }
+
+    // 上面对于 if(a||b) 的分支来说，只达到了 50% 分支覆盖率
+    // 尝试达到 100% 覆盖率
+    {
+        Ad ad;
+        ad.pricing = CPM;
+        ad.should_use_stable_thresh = true; // 假设 ad.use_stable_thresh() 函数内部用了这个字段来判断
+        ASSERT_TRUE(ad.use_stable_thresh()); // 上一行修改是为了控制这个函数的结果，所以最好 ASSERT 一下
+        EXPECT_EQ(check_threshold(ctx, ad), 2);
+    }
+
+    // 默认分支
+    {
+        Ad ad;
+        ad.pricing = CPM;
+        EXPECT_CALL(ctx, get_threshold).WillOnce(Return(100));
+        EXPECT_EQ(check_threshold(ctx, ad), 100);
+    }
+}
+</code></pre>
+<p>涉及到的方面：</p>
+<ul>
+<li>构造输入：手动</li>
+<li>检测输出：EXPECT</li>
+<li>控制外部函数的返回值：EXPECT_CALL</li>
+<li>分支覆盖率：对于 <code>if(a||b)</code>，需要分别构造 <code>a == true</code> 和 <code>b == true</code> 两个 case。</li>
+</ul>
+<h2 id="三gtest">三、GTest</h2>
+<h3 id="基本概念test-suitetest-case">基本概念：Test Suite、Test Case</h3>
+<h4 id="test-suite">Test Suite</h4>
+<pre><code class="language-cpp">TEST(TestSuiteName, TestCaseName) {
+    // 单测代码
+    EXPECT_EQ(func(0), 0);
+}
+</code></pre>
+<ul>
+<li><code>TestSuiteName</code> 用来汇总 test case，相关的 test case 应该是相同的 <code>TestSuiteName</code>。一个文件里只能有一个 <code>TestSuiteName</code>，建议命名为这个文件测试的类名。</li>
+<li><code>TestCaseName</code> 是测试用例的名称。建议有意义，比如“被测试的函数名称”，或者被测试的函数名的不同输入的情况。</li>
+<li><code>TestSuiteName_TestCaseName</code> 的组合应该是唯一的。</li>
+<li>GTest 生成的类名是带下划线的，所以上面这些名字里不建议有下划线。</li>
+</ul>
+<h4 id="test-case">Test Case</h4>
+<p>一个 <code>TEST(Foo, Bar){...}</code> 就是一个 Test Case。考虑到构造输入有成本，通常一个 <code>TEST(Foo, Bar)</code> 里会反复修改输入，构造多个 case，测试不同的执行流程。这里建议<strong>用大括号分隔不同的 case</strong>，整体更条理。另一个好处在于：<strong>每个变量的生命周期仅限于大括号内</strong>。这样就可以反复使用相同的变量名，而不用给变量名编号。</p>
+<pre><code class="language-cpp">TEST(Foo, bar) {
+    // case 1: enable = true
+    {
+        Context ctx;
+        params.enable_refresh = true;
+        ASSERT_EQ(ctx-&gt;is_enable_fresh(), true);
+    }
+
+    // case 2: enable = false
+    {
+        Context ctx;
+        params.enable_refresh = false;
+        ASSERT_EQ(ctx-&gt;is_enable_fresh(), false);
+    }
+}
+</code></pre>
+<p>此外，如果待测函数十分复杂，建议拆分多个 <code>TEST(Foo, Bar){...}</code>，避免 Test Case 代码膨胀。比如：</p>
+<pre><code class="language-cpp">// 待测函数
+int foo(Ad ad) {
+    if (!ad)
+        return -1;
+    switch(ad.pricing) {
+        case CPT:
+            ...
+        case GD:
+            ...
+    }
+}
+// 输入为空
+TEST(Foo, IsNil) {
+    ...
+}
+
+// 输入是 CPT 广告
+TEST(Foo, IsCpt) {
+    ...
+}
+
+// 输入是 GD 广告
+TEST(Foo, IsGd) {
+    ...
+}
+</code></pre>
+<h3 id="善用-test_f避免写重复的代码">善用 TEST_F，避免写重复的代码</h3>
+<p>GTest 提供了多种测试宏，其中最为常用的是 <code>TEST</code>、<code>TEST_F</code>，它们的区别如下：</p>
+<ol>
+<li><code>TEST</code>：这是最基本的测试宏，代表一个最小测试单元。在执行 <code>TEST</code> 宏时，gtest 会为每个 <code>TEST</code> 定义一个独立的实例，使其互相隔离，避免对同一个变量进行修改或共享等可能带来的副作用。</li>
+<li><strong><code>TEST_F</code></strong>：这是 TestFixture 的测试宏。TestFixture 是一个类，可以在<strong>多个<strong><strong>测试用例</strong></strong>之间共享数据结构或方法</strong>。对于同一个 Test Suite 的所有 Test Cases，会创建一个 TestFixture 对象，其 SetUp 函数会在每个 Test Case 执行之前被调用，而 TearDown 函数则会在每个 Test Case 执行之后被调用。</li>
+</ol>
+<p>使用 Test Fixture Class，可以避免写重复的代码：</p>
+<ul>
+<li>将共享的变量作为成员变量，可以在 test case 中直接访问；变量初始化、回收逻辑放到 SetUp()、TearDown()</li>
+<li>提供公共方法，可以在 test case 中直接使用</li>
+</ul>
+<p>示例代码：</p>
+<pre><code class="language-cpp">class FooTest : public ::testing::Test {
+protected:
+  // 在每个 Test Case 运行开始前，都会调用 SetUp，这里可以初始化
+  void SetUp() override {
+    ctx = RequestContext(&quot;123&quot;);
+  }
+
+  // 在每个 Test Case 运行结束后，都会调用 TearDown
+  void TearDown() override {}
+
+  // 所有 Test Case 都可以直接访问这些变量和方法
+  Ad new_ad() { return Ad(ctx); }
+  RequestContext ctx;
+};
+
+TEST_F(FooTest, enable_foo) { // 这里会初始化 FooTest 对象
+  ctx-&gt;params.enable_foo = true; // 可以访问 FooTest 中的变量
+  auto item = new_ad(); // 可以调用 FooTest 中的方法
+  ...
+}
+
+// 每个 test case 都是独立的，这里会初始化另一个 FooTest 对象
+TEST_F(FooTest, OnTestProgramStart) {
+  // ...
+}
+</code></pre>
+<p>实际使用技巧：</p>
+<ul>
+<li>共享一些变量，比如预先初始化好单测依赖的 Context 对象</li>
+<li>封装一些公共方法，尤其是构造通用数据对象的方法</li>
+<li>派生更多子类：
+<ul>
+<li>建议每个服务有一个公共的 <code>BaseTestFixture</code>，继承 <code>::testing::Test</code>，封装全局通用的方法</li>
+<li>其他单测可以再继承 <code>BaseTestFixture</code>，提供某个测试场景下共享变量和方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="断言expect-与-assert-宏">断言：EXPECT 与 ASSERT 宏</h3>
+<p>用来判断某个变量的值是否符合预期。前者在校验失败时会打印失败信息，然后继续运行。后者会直接终止。</p>
+<p>💡 <strong>正确使用 ASSERT 和 EXPECT 前缀：</strong></p>
+<ul>
+<li>
+<p>如果某个判断不通过时，会影响后续步骤，要使用 ASSERT。常见的是空指针，或者数组访问越界。</p>
+<blockquote>
+<p>如果某个 EXPECT 失败会导致后续一连串 EXPECT 失败，那么第一个 EXPECT 应该换成 ASSERT。这就像编译时的报错信息，往往只有第一个是有用的，其他错误都只是刷屏。</p></blockquote>
+</li>
+<li>
+<p>其他情况，可以使用 EXPECT，尽可能多测试几个用例。</p>
+</li>
+</ul>
+<p>下面罗列一些最常用的 EXPECT 宏，把前缀换成 ASSERT 也可以使用。完整列表见
+<a href="http://google.github.io/googletest/reference/assertions.html"  target="_blank" rel="noopener noreferrer" >文档</a>
+。</p>
+<h4 id="1-一元--二元比较">(1) 一元 / 二元比较</h4>
+<ul>
+<li><code>EXPECT_TRUE(foo)</code>、<code>EXPECT_FALSE(foo)</code>：判断一个变量是否是 true 或 false。</li>
+<li>二元比较：
+<ul>
+<li><code>EXPECT_EQ(foo, bar)</code>：判断两个变量是否相等。
+<ul>
+<li>只要重载了<code>==</code>运算符就可以，所以也可以判断两个 vector 是否相等。</li>
+</ul>
+</li>
+<li><code>EXPECT_NE(foo, bar)</code>：判断 foo != bar。</li>
+<li><code>EXPECT_LT(foo, bar)</code>：foo &lt; bar，less than。</li>
+<li><code>EXPECT_LE(foo, bar)</code>: foo ≤ bar，less or equal。</li>
+<li><code>EXPECT_GT(foo, bar)</code>：foo &gt; bar，greater than。</li>
+<li><code>EXPECT_GE(foo, bar)</code>: foo ≥ bar，greater or equal。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-浮点数比较">(2) 浮点数比较</h4>
+<ul>
+<li>
+<p><code>EXPECT_DOUBLE_EQ(foo, 0.1)</code>：浮点数比较不能使用 <code>EXPECT_EQ</code>。</p>
+</li>
+<li>
+<p><code>EXPECT_FLOAT_EQ</code>：同上。</p>
+</li>
+<li>
+<p><code>EXPECT_NEAR(foo, bar, abs_val)</code>：判断两个数字的绝对值相差是否小于等于 abs_val。</p>
+<pre><code class="language-cpp">double pi = 3.141592653589793238;
+double approx_pi = 3.14;
+EXPECT_NEAR(pi, approx_pi, 0.01);  // 检测两个 π 值，允许误差在 0.01 以内
+</code></pre>
+</li>
+</ul>
+<h4 id="3-字符串比较">(3) 字符串比较</h4>
+<ul>
+<li>
+<p><code>EXPECT_STREQ(foo, &quot;bar&quot;)</code>：判断两个字符串是否相等。这里比较的是 C 风格的字符串，即 <code>char*</code>。如果某个对象是 <code>std::string</code>，需要调用其 <code>c_str()</code> 方法。如果两个对象都是 <code>std::string</code>，可以使用 <code>EXPECT_EQ</code>。</p>
+<pre><code class="language-cpp">std::string str = &quot;hello&quot;;
+EXPECT_STREQ(str.c_str(), &quot;hello&quot;);
+</code></pre>
+</li>
+<li>
+<p><code>EXPECT_STRNE</code>：不相等。</p>
+</li>
+<li>
+<p><code>EXPECT_STRCASEEQ</code>：忽略大小写，是否相等。</p>
+</li>
+<li>
+<p><code>EXPECT_STRCASENE</code>：忽略大小写，是否相等。</p>
+</li>
+</ul>
+<h4 id="4-其他">(4) 其他</h4>
+<ul>
+<li>
+<p><code>EXPECT_THROW</code>/<code>EXPECT_NO_THROW</code>：处理异常，不要自行<code>try-catch</code>。</p>
+</li>
+<li>
+<p><code>EXPECT_THAT</code>：这实际上是 GMock 提供的宏，需要和 
+<a href="#matcher" >匹配器 Matcher</a>
+ 配合使用，详见下文。这是<strong>写出优雅单测的必备技能</strong>。</p>
+</li>
+<li>
+<p><code>EXPECT_CALL</code>：同样是 GMock 提供的宏，判断函数被调用的次数，详见下文。</p>
+</li>
+<li>
+<p><code>EXPECT_PRED(func, arg1, arg2, ...)</code>：自定义一个返回 bool 的谓词，传给该谓词一系列参数，判断是否返回 true。如果失败，会依次打印传入的参数值。</p>
+<pre><code class="language-cpp">std::vector&lt;int&gt; vec = {1, 2, 3};
+EXPECT_PRED([](const std::vector&lt;int&gt;&amp; v) { return v.size() == 3; }, vec);
+</code></pre>
+</li>
+</ul>
+<h4 id="断言失败时输出自定义信息">断言失败时输出自定义信息</h4>
+<p>默认当 EXPECT 或 ASSERT 失败时，GTest 会打印预期值和实际值：</p>
+<pre><code class="language-cpp">EXPECT_EQ(4, 3);
+
+/path/to/test.cpp:7: Failure
+Expected equality of these values:
+  4
+  result
+    Which is: 3
+</code></pre>
+<p>但有时候，这些信息不够定位具体的失败原因。可以像这样<strong>输出自定义日志</strong>，这些日志仅在 EXPECT 失败时才打印：</p>
+<pre><code class="language-cpp">for (int i = 0; i &lt; x.size(); i++) {
+  EXPECT_EQ(x[i], y[i]) &lt;&lt; &quot;x and y differ at index &quot; &lt;&lt; i;
+}
+</code></pre>
+<p>还可以<strong>在 TestFixture 中封装 debug 函数</strong>，输出更详细的信息。比如，被测对象中包含了一些位图 std::bitset。在 EXPECT 失败时打印位图信息，有助于排查单测失败的原因：</p>
+<pre><code class="language-cpp">class BitsetTest : public BaseTest {
+public:
+  std::string debug_message() {
+      stringstream ss;
+      for (const auto&amp; iter : bitset_maps) {
+        ss &lt;&lt; &quot;bitset: name=&quot; &lt;&lt; iter.first &lt;&lt; &quot; value=&quot; &lt;&lt; iter.second &lt;&lt; std::endl;
+      }
+      return ss.string();
+  }
+}
+
+TEST_F(BitsetTest, validate) {
+    // ...
+    EXPECT_TRUE(validate(ad, pos)) &lt;&lt; debug_message();
+}
+</code></pre>
+<h2 id="四gmock">四、GMock</h2>
+
+  <div class="admonition info">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+      <span>Info</span>
+    </div>
+      <div class="admonition-content">
+        <p>使用GMock要先明白GMock是做什么的。它模拟了接口的行为，所以如果你验证接口的结果的话，那肯定怎么验证都是对的。这会接口还不存在呢，它验证的是你的函数与接口的交互方式，比如</p>
+<ol>
+<li><strong>被测代码是否正确调用了依赖接口</strong>：验证被测代码在特定条件下是否调用了正确的接口方法。</li>
+<li><strong>调用顺序是否符合预期</strong>：验证方法调用的顺序是否正确。</li>
+<li><strong>调用次数是否符合预期</strong>：验证方法被调用的次数是否符合预期。</li>
+<li><strong>调用参数是否正确</strong>：验证调用接口时传递的参数是否正确。</li>
+<li><strong>被测代码对接口返回值的响应是否正确</strong>：我们设置模拟返回值，然后验证被测代码是否正确处理了这些返回值。</li>
+</ol>
+      </div>
+  </div>
+
+  <div class="admonition idea">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2l160 0zM192 512c44.2 0 80-35.8 80-80l0-16-160 0 0 16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z"/></svg>
+      <span>Idea</span>
+    </div>
+      <div class="admonition-content">
+        <p>也就是说，你写测试的时候，脑袋瓜子是清醒的，你知道你的函数<strong>应该</strong>怎么使用接口。比如数据库连接场景，你写好了客户端，但是数据库封装类Database还没有实现。你想验证的只是你的客户端行为是否符合预期，</p>
+<p>比如一次正确的查询的<strong>预期</strong>过程应该是：</p>
+<ol>
+<li>调用<code>connect</code>创建连接</li>
+<li>调用<code>query</code>查询</li>
+<li>调用<code>disconnect</code>释放连接</li>
+</ol>
+<p>**那么你的函数中是否调用了，以及是否是按顺序调用了这些呢？**再比如一次错误的连接，那么就应该校验非法，然后就应该调用接口中的<code>HandleBadMan</code>函数，那么是否调用了呢？明白没，重点不是在接口的结果是否正确，不是验证connect函数是否能帮你连接到数据库，而是验证你写的客户端代码，是否正确执行了接口的调用流程。</p>
+      </div>
+  </div>
+<h3 id="原理与示例">原理与示例</h3>
+<p>GMock 是 Google Test 提供的一个 C++ mocking 框架，可以用于创建虚拟的对象和方法。GMock 的原理是利用 C++ 的多态特性，覆盖 virtual 函数，将函数调用转发到相应的 mock 函数中。</p>
+<p>GMock 基本使用流程如下：</p>
+<ol>
+<li>继承被 mock 的类，定义一个新的 Mock 类</li>
+<li>使用 GMock 提供的 mock 宏，用于实现 Mock 类的方法</li>
+<li>通过上面的 Mock 类，创建一个模拟对象</li>
+<li>通过 EXPECT_CALL 宏，控制模拟方法的返回值</li>
+</ol>
+<pre><code class="language-cpp">#include &lt;gmock/gmock.h&gt;
+
+class FooInterface {
+public:
+    virtual int foo(int) { return 3; } // ① 需要定义为虚函数
+};
+
+// ② 需要声明一个 Mock 类，并声明 MOCK_METHOD
+class MockFoo: public FooInterface {
+public:
+    MOCK_METHOD1(foo, int(int)); // 记录函数名字 + 类型信息到 MockFoo 对象上
+};
+
+using ::testing::Return;
+TEST(FooInterface, foo) {
+    MockFoo mockFoo; // ③ 需要声明 Mock 出来的子类
+    EXPECT_CALL(mockFoo, foo(3)).Times(1). // 自定义函数返回值
+                WillOnce(Return(10));
+    EXPECT_EQ(mockFoo.foo(3), 10); // return 10
+}
+</code></pre>
+<p>使用 GMock 有<strong>两个前提</strong>：</p>
+<p>(1) 被 Mock 的方法必须是虚函数；</p>
+<p>(2) 必须替换掉被 mock 的对象，将其赋值为 mock 对象。</p>
+<p>其<strong>不足之处</strong>：</p>
+<p>(1) 使用 GMock 时必须定义一个 Mock class；</p>
+<p>(2) 如果想 mock 非虚函数，需要变更函数签名，这可能不太安全；</p>
+<p>(3) 对于函数内部的局部变量，无法赋值，也就无法 mock。</p>
+<h3 id="expect_call">EXPECT_CALL</h3>
+<p>语法：</p>
+<pre><code class="language-cpp">EXPECT_CALL(mock_object, method(matchers))
+    .Times(cardinality)
+    .WillOnce(action)
+    .WillRepeatedly(action);
+</code></pre>
+<p>比如下面代码的含义是：调用 <code>turtle</code> 对象的 <code>GetX(string)</code> 方法 5 次，每次传入的参数都是”hello”，第一次返回 100，第二次返回 150，之后几次返回 200：</p>
+<pre><code class="language-cpp">using ::testing::Return;
+...
+EXPECT_CALL(turtle, GetX(&quot;hello&quot;))
+    .Times(5)
+    .WillOnce(Return(100))
+    .WillOnce(Return(150))
+    .WillRepeatedly(Return(200));
+</code></pre>
+<h4 id="基数判断函数调用次数">基数：判断函数调用次数</h4>
+<ul>
+<li><code>Times(n)</code>：调用 n 次</li>
+<li><code>Times(0)</code>：不被调用</li>
+<li><code>Times(AtLeast(n))</code>：至少被调用 n 次</li>
+<li><code>WillOnce(action)</code>：被调用 1 次，执行自定义行为</li>
+<li><code>WillRepeatedly(action)</code>：被调用任意次，执行自定义行为</li>
+</ul>
+<h4 id="action控制被调用时的行为">Action：控制被调用时的行为</h4>
+<p><code>Will</code> 开头的接口可以传入一个 Action 参数，设置 mock 函数被调用时的行为。常用的：</p>
+<ul>
+<li>
+<p><code>Return</code>：返回指定值。比如 <code>WillOnce(Return(100))</code>。</p>
+</li>
+<li>
+<p><code>ReturnRef</code>、<code>ByRef</code>：<code>Return</code> 不支持返回引用类型的变量，需要用这两个宏。</p>
+</li>
+<li>
+<p><code>SetArgReferee&lt;n&gt;(value)</code>：修改传入的第 n 个引用类型的参数的值，下标 n 从 0 开始。</p>
+<pre><code class="language-cpp">class MockGetter : public Getter {
+    public:
+    MOCK_METHOD(int, get, (const string&amp;, string&amp;));
+};
+
+TEST(MockGetter, SetArgRefereeTest) {
+    const std::string key = &quot;foo_key&quot;;
+    std::string value;
+
+    MockGetter getter;
+    EXPECT_CALL(getter, get(key, _))
+        .WillOnce(SetArgReferee&lt;1&gt;(&quot;bar_value&quot;));
+
+    getter.get(key ,value);
+    EXPECT_EQ(sum, &quot;bar_value&quot;);
+}
+</code></pre>
+</li>
+<li>
+<p><code>DoAll(action1, action2, ...)</code>：执行多个 Action，比如修改参数的值 + 设定返回值：</p>
+<pre><code class="language-cpp">EXPECT_CALL(calc, Add(_, _, _))
+  .WillOnce(DoAll(SetArgReferee&lt;2&gt;(8), Return(true)));
+</code></pre>
+</li>
+<li>
+<p>直接传入一个 lambda 函数，或者 <code>Invoke(function)</code>：执行自定义的函数，比如：</p>
+<pre><code class="language-cpp">// 传入 lambda 函数
+EXPECT_CALL(calc, Add).WillOnce([](int a, int b)) {
+    return a + b + 1;
+});
+
+// 传入函数指针
+int AddFunc(int a, int b) {
+    return a + b + 1;
+}
+EXPECT_CALL(calc, Add(_, _)).WillOnce(Invoke(AddFunc));
+
+// 传入类方法
+class AddHelper {
+    public:
+    int Add(int a, int b) {
+        return a + b + 1;
+    }
+};
+AddHelper helper;
+EXPECT_CALL(calc, Add(_, _)).WillOnce(Invoke(&amp;helper, &amp;AddHelper::Add));
+</code></pre>
+<ul>
+<li>Lambda 函数的签名必须和被 Mock 的函数一致。</li>
+<li>Invoke 函数可接受任何可调用对象作为参数，包括函数指针、函数对象、Lambda 表达式等</li>
+</ul>
+</li>
+</ul>
+<h4 id="matcher匹配传给函数的参数">Matcher：匹配传给函数的参数</h4>
+<p>Matcher 能够实现在复杂场景下进行断言，可以让测试用例更加灵活和可读，是写出优雅单测的必备工具。</p>
+<p>Matcher 提供了一系列常用的比较函数，例如 Eq、Ne、Lt、Gt、Le、Ge 等，可以满足不同类型变量的比较。</p>
+<p>Matcher 有两个使用场景：</p>
+<ol>
+<li>
+<p>和 EXPECT_CALL 配合使用，用于检查传递给函数的参数值是否符合预期</p>
+<pre><code class="language-cpp">// 期望第一个参数大于 2，第二个参数小于 6
+EXPECT_CALL(calc, Add(Gt(2), Le(6)));
+calc.Add(3, 5);  // 可以通过检测
+calc.Add(2, 7);  // 不能通过检测
+</code></pre>
+</li>
+<li>
+<p>和 EXPECT_THAT 配合使用，用于检查某个变量的值是否符合预期</p>
+<pre><code class="language-cpp">// int_foo &gt; 6
+EXPECT_THAT(int_foo, Gt(6));
+
+// 判断一个 vector 的元素值
+std::vector&lt;int&gt; result = {1, 2, 5};
+EXPECT_THAT(result, ElementsAre(1, 2, Gt(3)));
+
+// 判断一个 unordered_map 的元素值
+std::unordered_map&lt;string, int&gt; result = {{&quot;idt_a&quot;, 1}, {&quot;idt_b&quot;， 2}};
+EXPECT_THAT(result, UnorderedElementsAre(Pair(&quot;idt_a&quot;, 1), Pair(&quot;idt_b&quot;, 2)));
+
+// 期望 foo 包含子串 &quot;hello&quot;
+EXPECT_THAT(foo, HasSubStr(&quot;hello&quot;));
+</code></pre>
+</li>
+</ol>
+<h5 id="通配符_atype">通配符：<code>_</code>，<code>A&lt;type&gt;</code></h5>
+<p><code>_</code> 可以匹配任意类型的任意变量。它位于 <code>::testing</code> 命名空间下。示例：</p>
+<pre><code class="language-cpp">using namespace testing;
+EXPECT_CALL(calc, Add(_, _)).Times(1);
+EXPECT_CALL(calc, Add).Times(1);  // 省略参数列表，和上面等价
+</code></pre>
+<p><code>A&lt;type&gt;()</code> 或者 <code>An&lt;type&gt;()</code> 匹配类型是 <code>type</code> 的任意变量。其应用场景主要是匹配重载函数。示例：</p>
+<pre><code class="language-cpp">class Foo {
+    void DoSomething(int a, int b);
+    void DoSomething(int a, string b);
+}
+
+EXPECT_CALL(foo, DoSomething(_, A&lt;int&gt;()));  // 预期调用第一个函数
+</code></pre>
+<h5 id="常用匹配器">常用匹配器</h5>
+<p>完整列表见 
+<a href="http://google.github.io/googletest/reference/matchers.html"  target="_blank" rel="noopener noreferrer" >http://google.github.io/googletest/reference/matchers.html</a>
+，下面罗列常用的匹配器：</p>
+<ul>
+<li>
+<p>一般比较</p>
+<ul>
+<li>
+<p><code>value</code>：写出字面量的值，就是精确匹配，等价于 <code>Eq(value)</code>。</p>
+<pre><code class="language-cpp">EXPECT_CALL(foo, method(100)).Times(1);
+EXPECT_CALL(foo, method(Eq(100))).Times(1);  // 和上面等价
+</code></pre>
+</li>
+<li>
+<p><code>Ge(value)</code>、<code>Gt</code>、<code>Le</code>、<code>Lt</code>：&gt;= (greater or equal)、&gt; (greater)、&lt;= (less or equal)、&lt; (less)。</p>
+<pre><code class="language-cpp">EXPECT_THAT(int_foo, Gt(100));  // int_foo &gt; 100
+EXPECT_THAT(int_foo, Le(200));  // int_foo &lt;= 200
+</code></pre>
+</li>
+<li>
+<p><code>Ne(value)</code>：不等于，not equal。</p>
+</li>
+<li>
+<p><code>IsFalse()</code>、<code>IsTrue()</code>：转成 bool 值后是 false 或 true。非 0 值、非空指针等都可以视为 true。</p>
+</li>
+<li>
+<p><code>IsNull()</code>、<code>NotNull()</code>：指针是否为空。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>浮点数比较</p>
+<ul>
+<li>
+<p><code>DoubleEq(a_double)</code>、<code>FloatEq(a_float)</code>：浮点数相等。</p>
+<pre><code class="language-cpp">double foo = 0.01 + 0.02;
+EXPECT_THAT(foo, Eq(0.03));  // 会失败
+EXPECT_THAT(foo, DoubleEq(0.03));  // 会成功
+</code></pre>
+</li>
+<li>
+<p><code>DoubleNear(a_double, max_abs_error)</code>：浮点数近似，差值的绝对值小于给定的 <code>abs_error</code>。</p>
+<pre><code class="language-cpp">double foo = 0.03 + 0.001;
+EXPECT_THAT(foo, DoubleNear(0.01));   // 会失败
+EXPECT_THAT(foo, DoubleNear(0.001));  // 会成功
+</code></pre>
+</li>
+<li>
+<p><code>FloatNear(a_float, max_abs_error)</code>：同上。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>字符串比较</p>
+<ul>
+<li>
+<p><code>StartsWith(prefix)</code>：指定前缀</p>
+</li>
+<li>
+<p><code>EndsWith(suffix)</code>：指定后缀</p>
+</li>
+<li>
+<p><code>HasSubstr(string)</code>：包含子串</p>
+<pre><code class="language-cpp">std::string str = &quot;hello, world&quot;;
+EXPECT_THAT(str, StartsWith(&quot;hello&quot;));
+EXPECT_THAT(str, EndsWith(&quot;world&quot;));
+EXPECT_THAT(str, HasSubstr(&quot;llo&quot;));
+</code></pre>
+</li>
+<li>
+<p><code>IsEmpty()</code>：字符串为空</p>
+</li>
+<li>
+<p><code>StrEq(string)</code>、<code>StrNe(string)</code>：字符串相等或不等</p>
+<pre><code class="language-cpp">EXPECT_CALL(m, foo(StrEq(&quot;hello, world&quot;)).Times(1);
+m.foo(&quot;hello, world&quot;);  // 符合预期
+</code></pre>
+</li>
+<li>
+<p><code>StrCaseEq(string)</code>、<code>StrCaseNe(string)</code>：忽略大小写，字符串相等或不等</p>
+<pre><code class="language-cpp">EXPECT_CALL(m, foo(StrCaseEq(&quot;hello, world&quot;)).Times(1);
+m.foo(&quot;HELLO, WORLD&quot;);  // 符合预期
+</code></pre>
+</li>
+<li>
+<p><code>ContainsRegex(string)</code>：正则表达式匹配</p>
+</li>
+</ul>
+</li>
+<li>
+<p>容器比较</p>
+<ul>
+<li>
+<p><code>ElementsAre(e0, e1, ..., en)</code>：每个元素依次是什么，用于 vector、map、set 等。</p>
+<pre><code class="language-cpp">std:vector&lt;int&gt; v = {1, 2, 4};
+EXPECT_THAT(v, ElementsAre(1, 2, 4));  // 值是 {1, 2, 4}
+EXPECT_THAT(v, ElementsAre(1, 2, Gt(3)));  // 值是 {1, 2, 大于 3 的任意值}
+
+// 下面这样也可以，但不如上面只写一行优雅，不推荐
+vector&lt;int&gt; expect_vector = {1, 2, 4};
+EXPECT_EQ(v, expected_vector);
+</code></pre>
+</li>
+<li>
+<p><code>UnorderedElementsAre(e0, e1, ..., en)</code>：同上，用于 unordered_set、unordered_map 等。</p>
+<pre><code class="language-cpp">std:set&lt;int&gt; v = {1, 2, 4};
+EXPECT_THAT(v, UnorderedElementsAre(1, 2, 4));  // 值包含 {1, 2, 4}
+EXPECT_THAT(v, UnorderedElementsAre(1, 2, Gt(3)));  // 值包含 {1, 2, 大于 3 的任意值}
+</code></pre>
+</li>
+<li>
+<p><code>ContainerEq(container)</code>：效果同上，但会打印出哪些元素不一致。</p>
+</li>
+<li>
+<p><code>Contains(e)</code>：包含一个元素和 <code>e</code> 匹配，这里 <code>e</code> 可以是一个精确值，也可以是一个匹配器。</p>
+</li>
+<li>
+<p><code>Contains(e).Times(n)</code>：检测 <code>e</code> 指定的元素出现 n 次。<code>Times(0)</code> 表示不能包含这样的元素。</p>
+<pre><code class="language-cpp">EXPECT_THAT(v, Contains(5));  // 需要包含一个值为 5 的元素
+EXPECT_THAT(v, Contains(Lt(5)));  // 需要包含一个值 &lt;5 的元素
+EXPECT_THAT(v, Contains(Lt(5)).Times(3));  // 需要包含 3 个值 &lt;5 的元素
+</code></pre>
+</li>
+<li>
+<p><code>Each(e)</code>：每个元素都要匹配 <code>e</code>。</p>
+<pre><code class="language-cpp">EXPECT_THAT(v, Each(Lt(5)));  // 每个元素都需要 &lt;5
+EXPECT_THAT(v, Each(AllOf(Lt(5), Gt(3)));  // 每个元素都需要 &gt;3 且 &lt;5
+</code></pre>
+</li>
+<li>
+<p><code>IsSubsetOf(array)</code>、<code>IsSubsetOf(begin, end)</code>：参数是指定数组的子集，顺序可以不一致。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>成员匹配</p>
+<ul>
+<li>
+<p><code>Field(&amp;class::field, m)</code>：匹配字段值，用于结构体检测，比如：</p>
+<pre><code class="language-cpp">struct MyStruct {
+    int value = 42;
+    std::string greeting = &quot;aloha&quot;;
+};
+MyStruct s;
+EXPECT_THAT(s, FieldsAre(42, &quot;aloha&quot;));
+</code></pre>
+</li>
+<li>
+<p><code>Pair(m1, m2)</code>：匹配一个 <code>std::pair</code>，经常和 <code>ElementsAre</code> 配合使用，匹配一个 map：</p>
+<pre><code class="language-cpp">std::map m = {
+    {&quot;hello&quot;, 1},
+    {&quot;world&quot;, 2},
+};
+EXPECT_THAT(m, ElementsAre(Pair(&quot;hello&quot;, 1), Pair(&quot;world&quot;, 2)));
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>指针匹配</p>
+<ul>
+<li>
+<p><code>Pointee</code>：匹配一个指针或 shared_ptr，常和 <code>Field</code> 一起检测某个指针的字段值：</p>
+<pre><code class="language-cpp">struct Item { int id; };
+std::shared_ptr&lt;Item&gt; obj = std::make_shared&lt;Item&gt;();
+obj-&gt;id = 1;
+EXPECT_THAT(obj, Pointee(Field(&amp;Item::id, 1));
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>复合匹配</p>
+<ul>
+<li>
+<p><code>AllOf(m1, m2, ..., mn)</code>：匹配所有给定的匹配器。</p>
+<pre><code class="language-cpp">std:vector&lt;int&gt; v = {4, 5};
+EXPECT_THAT(v, Each(AllOf(Le(5), Gt(3)));  // 每个元素都需要 &gt;3 且 &lt;=5
+</code></pre>
+</li>
+<li>
+<p><code>AnyOf(m1, m2, ..., mn)</code>：匹配任何一个给定的匹配器。</p>
+<pre><code class="language-cpp">std:vector&lt;int&gt; v = {1, 2, 6, 7};
+EXPECT_THAT(v, Each(AnyOf(Lt(3), Gt(5)));  // 每个元素要么 &lt;3，要么 &gt;5
+</code></pre>
+</li>
+<li>
+<p><code>Not(m)</code>：不匹配给定的匹配器，可以和 <code>AllOf</code>、<code>AnyOf</code> 配合使用。</p>
+<pre><code class="language-cpp">EXPECT_THAT(v, Each(AllOf(Gt(3), Lt(5)));  // 3 &lt; each_item &lt; 5
+EXPECT_THAT(v, Each(Not(AllOf(Gt(3), Lt(5))));  // each_item &lt;= 3 || each_item &gt;=5
+</code></pre>
+</li>
+<li>
+<p><code>Conditional(cond, m1, m2)</code>：cond 为 true 时匹配 <code>m1</code>，否则匹配 <code>m2</code>。</p>
+<pre><code class="language-cpp">EXPECT_THAT(v, Conditional(is_ad, Gt(5), Lt(3));  // v = is_ad ? v &gt; 5 : v &lt; 3
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="匹配器的优先级">匹配器的优先级</h5>
+<p>在使用 GMock 的 EXPECT_CALL 宏进行 mock 函数参数匹配时，一次函数调用可能命中多个匹配器：</p>
+<pre><code class="language-cpp">EXPECT_CALL(calc, add).Times(1);                // 任意参数
+EXPECT_CALL(calc, add(_, _)).Times(1);          // 和上面等价
+EXPECT_CALL(calc, add(3, 5)).Times(1);          // 字面量，精确匹配
+EXPECT_CALL(calc, add(Gt(2), Lt(6))).Times(1);  // 比较，模糊匹配
+
+calc.add(3, 5);  // 这一行理论上可以匹配上面每一个 EXPECT_CALL
+</code></pre>
+<p>匹配的优先级如下：<strong>模糊匹配器 &gt; 精确匹配器 &gt;</strong> <strong>通配符</strong></p>
+<ul>
+<li>模糊匹配器：Lt (小于)、Gt (大于) 等</li>
+<li>精确匹配器：字面量、Eq (相等) 等</li>
+<li>通配符：_ 等</li>
+<li>当优先级相同时，越近的声明优先级越高。</li>
+</ul>
+<p>这引入了一些使用技巧：</p>
+<ol>
+<li>
+<p>只设置必要的匹配器。如果对某个参数的值不感兴趣，请写 <code>_</code> 作为参数，这意味着“一切皆有可能”。</p>
+<pre><code class="language-cpp">EXPECT_CALL(calc, add(5, _).Times(1);  // 如果只关心第一个参数的值，第二个参数就写成 _
+EXPECT_CALL(calc, add(5, 3).Times(1);  // 如果这样写，之后代码变动，单测可能就不通过了
+</code></pre>
+</li>
+<li>
+<p>如果对所有参数的值都不感兴趣，可以<strong>省略参数列表</strong>，这和把每个参数都写成 <code>_</code> 是一致的。好处是后续改了函数签名后，比如新增了一个参数，单测是不需要改动的。</p>
+<pre><code class="language-cpp">EXPECT_CALL(calc, add).Times(1);       // 任意参数
+EXPECT_CALL(calc, add(_, _)).Times(1); // 和上面等价
+</code></pre>
+</li>
+<li>
+<p>利用匹配器的优先级，可以细粒度地<strong>控制函数在不同参数下的返回值</strong>。比如 mock 一个 getter，我们希望在 key == <code>foo</code> 时返回 <code>bar</code>、key == <code>hello</code> 时返回 <code>world</code>，其他 key 通通返回空字符串，那么可以这样写：</p>
+<pre><code class="language-cpp">EXPECT_CALL(getter, get).WillRepeatedly(Return(&quot;&quot;));
+EXPECT_CALL(getter, get(&quot;foo&quot;)).WillRepeatedly(Return(&quot;bar&quot;));
+EXPECT_CALL(getter, get(&quot;hello&quot;)).WillRepeatedly(Return(&quot;world&quot;));
+
+EXPECT_STREQ(getter.get(&quot;foo&quot;), &quot;bar&quot;);
+EXPECT_STREQ(getter.get(&quot;hello&quot;), &quot;world&quot;);
+EXPECT_STREQ(getter.get(&quot;aaa&quot;), &quot;&quot;);
+EXPECT_STREQ(getter.get(&quot;bbb&quot;), &quot;&quot;);
+</code></pre>
+</li>
+</ol>
+<h4 id="uninteresting-call处理非预期调用">Uninteresting call：处理非预期调用</h4>
+<p><code>非预期调用</code>是指未被 <code>EXPECT_CALL</code> 匹配的调用。当有非预期调用时，会有 warning 日志输出：</p>
+<pre><code class="language-plaintext">Uninteresting mock function call - returning default value.
+    Function call: foo(42)
+          Returns: 0
+</code></pre>
+<p>有两种处理方式。</p>
+<h5 id="nicemock不要输出-warning-信息">NiceMock：不要输出 warning 信息</h5>
+<p>GMock 有三种级别：Nice Mock、Naggy Mock、Strict Mock。</p>
+<p>默认是 Naggy Mock，当有非预期调用时，输出 warning 日志。</p>
+<pre><code class="language-plaintext">Uninteresting mock function call - returning default value.
+    Function call: foo(42)
+          Returns: 0
+</code></pre>
+<p>如果我们希望非预期调用不要有 warning，可以用 <code>NiceMock</code>。<code>NiceMock</code> 是一个模板类：</p>
+<pre><code class="language-cpp">class MyMockClass : public MyClass {
+    MOCK_METHOD(...)
+};
+MyMockClass mock;  // 这非预期调用会有 warning 日志
+NiceMock&lt;MyMockClass&gt; mock; // 改成这样就不会有 warning 日志了
+</code></pre>
+<p>也可以在 Mock Class 定义的时候，直接继承 <code>NiceMock</code>：</p>
+<pre><code class="language-cpp">class MyMockClass : public NiceMock&lt;MyClass&gt; {
+    MOCK_METHOD(...)
+};
+MyMockClass mock;  // 这里非预期调用会返回默认值，不会有 warning 日志
+</code></pre>
+<p>Strict Mock 在有非预期调用时会直接 fail。也是一个模板类，使用方法和 <code>NiceMock</code> 类似。</p>
+<h5 id="打印调用栈检查非预期调用来自哪里">打印调用栈：检查非预期调用来自哪里</h5>
+<p>当有非预期调用时，如果我们希望检查非预期调用来自哪里，可以打印调用栈。有两种方式。</p>
+<ul>
+<li>
+<p>一种是通过 EXPECT_CALL 打印调用栈：</p>
+<pre><code class="language-cpp">#include &lt;boost/stacktrace.hpp&gt;
+
+void print_stack_trace() {
+  std::cout &lt;&lt; &quot;call stack:&quot; &lt;&lt; std::endl;
+  const auto frames = boost::stacktrace::stacktrace();
+  for (const auto&amp; frame : frames) {
+    std::cout &lt;&lt; &quot;  &quot; &lt;&lt; frame &lt;&lt; std::endl;
+  }
+}
+
+EXPECT_CALL(...).WillRepeatedly([](){
+  print_stack_trace();
+  return xxx;  // 返回默认值
+});
+</code></pre>
+</li>
+<li>
+<p>另一种方式是使用 GTest 提供的选项 <code>--gmock_verbose=info</code>，该选项会打印每次 Mock Method 被调用时的参数和调用栈。需要在单测 main 函数执行 <code>::testing::InitGoogleMock(&amp;</code><em><code>argc</code></em><code>,</code> <em><code>argv)</code>**。</em></p>
+</li>
+</ul>
+<h3 id="on_call">ON_CALL</h3>
+<p>ON_CALL 可以和 EXPECT_CALL 配合使用。ON_CALL 设置函数的默认行为，EXPECT_CALL 临时修改其行为。</p>
+<p>💡 ON_CALL 和 EXPECT_CALL 的语法很像，但提供了不同的语义。EXPECT_CALL 目的在于定义一个预期，即我们期望被测试函数在某些特定条件下应该调用哪些函数，如果没有满足预期的调用，则认为是一次失败。ON_CALL 只是为了指定被测试函数的默认行为。</p>
+<p>ON_CALL 通常用在 <strong>Mock 类的构造函数</strong>、或者 TestFixture 的 <strong><code>SetUp</code></strong> <strong>函数</strong>里：</p>
+<ol>
+<li>
+<p>令 mock 函数始终返回某个自定义的值</p>
+</li>
+<li>
+<p>将 mock 函数的默认操作委托给基类或其他实例进行。一个具体使用场景：希望 Mock 某个函数，默认还是执行原有操作，但当有需要的时候，可以临时更改其行为。这时就可以在 ON_CALL 里把默认操作委托给基类，后续再在 EXPECT_CALL 里临时控制其返回值。</p>
+<pre><code class="language-cpp"> class MockFoo : public Foo {
+ public:
+ // Normal mock method definitions using gMock.
+ MOCK_METHOD(char, DoThis, (int n), (override));
+ MOCK_METHOD(void, DoThat, (const char* s, int* p), (override));
+
+ // 构造函数里，委托 Mock 接口的操作给其他类
+ MockFoo() {
+ // 委托给基类
+ ON_CALL(*this, DoThat).WillByDefault([this](const char* s, int* p) {
+ Foo::DoThat(s, p);
+ });
+ // 委托给另一个对象
+ ON_CALL(*this, DoThis).WillByDefault([this](int n) {
+ return fake_.DoThis(n);
+ });
+ }
+
+ private:
+ FakeFoo fake_;  // Keeps an instance of the fake in the mock.
+ };
+</code></pre>
+</li>
+</ol>
+<h2 id="五tips">五、Tips</h2>
+<h3 id="编译参数">编译参数</h3>
+<h4 id="访问私有变量">访问私有变量</h4>
+<p>错误的做法：<code>#define private public</code>，或者定义 getter 函数。前者可能导致编译报错，后者需要修改代码。</p>
+<p>正确的做法：<code>-fno-access-control</code>，放在单测的 optimize 参数里。</p>
+<h4 id="修改-const-字段">修改 Const 字段</h4>
+<p>错误的做法：定义 setter 函数。需要修改代码。</p>
+<p>较好的做法：使用 <code>const_cast&lt;Type&amp;&gt;</code> 修改常量类型。</p>
+<h4 id="优化级别改为-o0">优化级别改为 O0</h4>
+<p>好处：单测覆盖率报告更准。</p>
+<h3 id="运行单测">运行单测</h3>
+<h4 id="运行特定单测--gtest_filter">运行特定单测：<code>--gtest_filter</code></h4>
+<p>什么时候需要运行特定单测：</p>
+<ul>
+<li>运行所有单测，发现某个单测失败了。但这个时候单测日志已经刷屏，看不到这个单测的具体失败原因了。</li>
+<li>修复单测 bug 后重新编译，只希望运行上次失败的那个单测。</li>
+</ul>
+<p>语法：<code>--gtest_filter=TestSuite.TestCase</code>。<strong>支持****通配符</strong> <strong><code>\*</code></strong> <strong>和排除符</strong> <strong><code>-</code></strong>。</p>
+<ul>
+<li><code>--gtest_filter=FooTest.Bar</code>，只运行 <code>FooTest.Bar</code>。</li>
+<li><code>--gtest_filter=*FooTest*</code>，运行所有名称里包含 <code>FooTest</code> 的单测。</li>
+<li><code>--gtest_filter=FooTest.*:BarTest.*</code>，运行 FooTest 和 BarTest 两个 suites 下的所有单测。</li>
+<li><code>--gtest_filter=FooTest.*-FooTest.Bar</code>，运行 FooTest 下的所有单测，但不运行 FooTest.Bar。</li>
+<li><code>--gtest_filter=FooTest.*:BarTest.*-FooTest.Bar:BarTest.Foo</code>，运行 FooTest 和 BarTest 下的所有单测，但不运行 FooTest.Bar 和 BarTest.Foo。</li>
+<li>详细的匹配规则见
+<a href="https://github.com/google/googletest/blob/main/docs/advanced.md#running-a-subset-of-the-tests"  target="_blank" rel="noopener noreferrer" >文档</a>
+。</li>
+</ul>
+<h4 id="重复运行单测多次--gtest_repeat--gtest_break_on_failure">重复运行单测多次：<code>--gtest_repeat</code>、<code>--gtest_break_on_failure</code></h4>
+<p>有些单元测试涉及到多线程，可能会偶发性的不通过。</p>
+<p>可以使用 <code>--gtest_repeat=-1</code>、<code>--gtest_break_on_failure</code>运行多次来复现。</p>
+<h4 id="临时禁用某个单测disabled_">临时禁用某个单测：<code>DISABLED_</code></h4>
+<p>可以使用<code>DISABLED_</code>前缀来跳过某项测试：</p>
+<pre><code class="language-cpp">TEST_F(DISABLED_BarTest, DoesXyz) { ... }
+TEST_F(BarTest, DISABLED_DoesXyz) { ... }
+</code></pre>
+<p>DISABLED 之后，单测日志会输出 DISABLED 的单测数量：</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://imageslr.com/media/gtest/disable.png" alt="img" />
+</div>
+</p>
+<p>之后在修理单测过程中，可以使用 <code>--gtest_also_run_disabled_tests</code> 或者 <code>--gtest_filter</code> 来执行被 DISABLED 的单测。</p>
+<p>相比于把整段单测代码全部注释掉，加一个 DISABLED_ 前缀的 diff 更少，而且后续可以直接运行。</p>
+<h3 id="输出日志">输出日志</h3>
+<p>std::cout 输出的日志会直接展示在终端。</p>
+<p>💡 建议：<strong>能用 EXPECT 就不要写 std::cout</strong></p>
+<ul>
+<li>如果 cout 的日志是确定性的，那么应该写成断言。</li>
+<li>如果是 debug 用的，那么在写完单测后应该删除。</li>
+<li>如果期望单测失败时打印，那么应该放在 <code>EXPECT_CALL()... &lt;&lt; ...</code> 后面，而不是直接输出。</li>
+<li>除此之外，这些日志没有任何意义，只会刷屏，没有保留的必要。</li>
+</ul>
+<h3 id="使用-gdb-运行和调试程序">使用 GDB 运行和调试程序</h3>
+<p>🔗 <strong>GDB</strong> <strong>快速入门 / 速查手册</strong>：
+<a href="https://imageslr.com/2023/gdb"  target="_blank" rel="noopener noreferrer" >https://imageslr.com/2023/gdb.html</a>
+</p>
+<p>GDB 也是研发基本功之一。使用 GDB 断点调试的效率远高于<code>加日志+重新编译单测</code>，但大部分人依然使用后面这种调试方式，原因可能是认为 GDB 的上手成本太高。但实际上，GDB 入门只需要 3 分钟。这里罗列 GDB 的基本使用姿势，足够覆盖大部分单测场景。上面高亮块里也提供了一个速查手册。</p>
+<ol>
+<li>
+<p>进入 GDB，同时加载单测程序：</p>
+<pre><code class="language-Shell">  gdb ./path/to/unit_test
+</code></pre>
+</li>
+<li>
+<p>加载动态链接库：</p>
+<pre><code class="language-Shell">  set env LD_LIBRARY_PATH=...
+</code></pre>
+</li>
+<li>
+<p>运行单测：<code>r</code>。如果要运行指定单测，加 <code>--gtest_filter</code> 参数：</p>
+<pre><code class="language-Shell">  r --gtest_filter=FooTest.bar_method
+</code></pre>
+</li>
+<li>
+<p>打断点：<code>b</code>。比如：</p>
+<pre><code class="language-Shell">  b 文件名:行号
+  b prime/src/auction/validator/frame/validator.cpp:52
+</code></pre>
+</li>
+<li>
+<p>从断点处继续运行：<code>c</code></p>
+</li>
+<li>
+<p>逐行执行：<code>n</code></p>
+</li>
+<li>
+<p>打印变量：<code>p 变量名</code></p>
+</li>
+<li>
+<p>查看 core 栈：<code>bt</code></p>
+</li>
+</ol>
+<h2 id="六单测编写规范">六、单测编写规范</h2>
+<p>💡 单测代码也需要经过 Code Review。单测代码和线上代码同等重要。</p>
+<h3 id="目录结构文件与命名规范">目录结构、文件与命名规范</h3>
+<h4 id="单测的目录结构要和源码的目录结构一致-强制">单测的目录结构，要和源码的目录结构一致 <code>[强制]</code></h4>
+<p>单测文件的路径名，等价于源码的文件名加上 <code>_test</code> 后缀。</p>
+<p>目的在于：让写单测的人能很快定位是否已经有这个文件或这个类的单测，让新增代码更聚合，避免写重复单测。</p>
+<pre><code class="language-JSON">// bad
+src/
+  common/
+    item_data.cpp
+  frame/
+    request_context.cpp
+unittest/
+  item_data_test.cpp // 这里直接平铺在 unittest 目录下了，和 src 目录层级不一致
+  request_context_test.cpp
+
+// good
+src/
+  common/
+    item_data.cpp
+  frame/
+    request_context.cpp
+unittest/
+  common/
+    item_data_test.cpp
+  frame/
+    request_context_test.cpp
+</code></pre>
+<h4 id="testsuitetestcase-命名规范-建议">TestSuite、TestCase 命名规范 <code>[建议]</code></h4>
+<p>TestSuite 建议命名为被测试的类名加上 <code>Test</code> 后缀：</p>
+<pre><code class="language-cpp">// bad
+TEST(MyTest, foo) {...}
+
+// good
+TEST(RequestContextTest, foo) {...}
+</code></pre>
+<p>TestCase 建议命名为被测试的函数名，不要随意起名，也不需要增加不必要的前缀：</p>
+<pre><code class="language-JSON">// bad
+TEST(RequestContextTest, test_uav) {
+    ASSERT_EQ(ctx-&gt;init_uav_to_group_bid(), 1);
+}
+
+// good
+TEST(RequestContextTest, init_uav_to_group_bid) { // 不需要加 test_ 前缀
+    ASSERT_EQ(ctx-&gt;init_uav_to_group_bid(), 1);
+}
+</code></pre>
+<p>GTest 生成的类名是带下划线的，所以上面这些名字建议用驼峰形式。</p>
+<h3 id="写有用的单测而不只是通过单测覆盖率卡点">写有用的单测，而不只是通过单测覆盖率卡点</h3>
+<h4 id="禁止写无用单测-强制">禁止写无用单测 <code>[强制]</code></h4>
+<p>经典问题：“<strong>假单测</strong>”。为了通过单测覆盖率卡点、便只是在单测里执行了一下新增函数，但<strong>不检测其返回值，没有任何断言逻辑</strong>。之前遇到过有同学写了几百行单测，reviewer 从头看到尾，居然一行 EXPECT 都没有，（╯‵□′）╯。</p>
+<p>还有一种场景是“<strong>蹭****单测</strong>”：新增了一个分支逻辑，引入了一坨逻辑，但只是在某个已有单测里，把这分支的控制参数打开了，完全没有自己构造输入去覆盖新增逻辑。这样即使覆盖率也能达标，也属于无用单测。</p>
+<h4 id="测试不符合预期的边界情况而不是只测试符合预期的情况-建议">测试不符合预期的边界情况，而不是只测试符合预期的情况 <code>[建议]</code></h4>
+<p>单测的目的之一在于测试程序的鲁棒性，即当输入不符合预期时，是否能正确处理。比如一个 <code>stoi</code> 函数 —— 将字符串转成整数。在构造输入时，最基本的是 <code>123</code> 这种合法字符串，此外还应当构造 <code>0.9999</code> (小数)、<code>123abc</code> (含非法字符) 等非法输入，以及 <code>1781234123412341234</code> 这种合法但越界的输入。</p>
+<h3 id="写优雅的可理解的易于维护的单测代码风格与注释">写优雅的、可理解的、易于维护的单测：代码风格与注释</h3>
+<h4 id="不要用-stdcout-输出变量值改为用-assert--expect-检查-强制">不要用 std::cout 输出变量值，改为用 <code>ASSERT</code> / <code>EXPECT</code> 检查 <code>[强制]</code></h4>
+<p>能用 EXPECT 就不要写 std::cout：</p>
+<ul>
+<li>如果 cout 的日志是确定性的，那么应该写成断言。</li>
+<li>如果是 debug 用的，那么在写完单测后应该删除。</li>
+<li>如果期望单测失败时打印，那么应该放在 <code>EXPECT_CALL()... &lt;&lt; ...</code> 后面，而不是直接输出。</li>
+<li>除此之外，<strong>这些日志没有任何意义</strong>，只会刷屏，没有保留的必要。</li>
+</ul>
+<pre><code class="language-cpp">// bad
+std::cout &lt;&lt; &quot;ads_size = &quot; &lt;&lt; rsp.ads.size() &lt;&lt; std::endl; // 这一行多此一举
+EXPECT_EQ(rsp.ads.size(), 1);
+
+// good
+EXPECT_EQ(rsp.size(), 1); // 这一行在检测失败时，会打印 rsp.size() 的值
+EXPECT_EQ(rsp.size(), 1) &lt;&lt; rsp.ads.debug_string() &lt;&lt; std::endl;  // 可以在检测失败时，打印更多 debug 日志
+</code></pre>
+<h4 id="不要直接写数值要写清楚这个数字是怎么算的-建议">不要直接写数值，要写清楚这个数字是怎么算的 <code>[建议]</code></h4>
+<p>直接写一个数字 <code>2965</code>，其他人并不知道这个数字是怎么算出来的，后续有问题也不好排查。</p>
+<p>写出这个数字的计算过程，<strong>映射到代码分支上</strong>，其他人好看懂。这也是白盒化单测的表现之一。</p>
+<pre><code class="language-cpp">// bad
+params.alpha = 2;
+params.beta = 2.5;
+ASSERT_EQ(params.get_score(), 2965); // 这 2965 咋算的？
+
+// good
+params.alpha = 2;
+params.beta = 2.5;
+ASSERT_EQ(params.get_score(), 2 * 2.5 * 593); // alpha * beta * ctx.bid
+
+// good: 把变量名直接注释在字面量后面
+ASSERT_EQ(params.get_score(), 2 /* alpha */ * 2.5 /* beta */ * 593 /* ctx.bid */);
+</code></pre>
+<h4 id="使用大括号分隔缩进不同的-test-case-建议">使用大括号分隔、缩进不同的 Test Case <code>[建议]</code></h4>
+<p>一个 <code>TEST(Foo, Bar){...}</code> 就是一个 Test Case。考虑到构造输入有成本，通常一个 <code>TEST(Foo, Bar)</code> 里会反复修改输入，构造多个 case，测试不同的执行流程。这里建议<strong>用大括号分隔不同的 case</strong>，整体更条理。另一个好处在于：<strong>每个变量的生命周期仅限于大括号内</strong>。这样就可以反复使用相同的变量名，而不用给变量名编号。</p>
+<pre><code class="language-cpp">// bad
+TEST(Foo, bar) {
+    Context ctx1;
+    params.enable_refresh = true;
+    ASSERT_EQ(ctx1-&gt;is_enable_fresh(), true);
+
+    Context ctx2;
+    params.enable_refresh = false;
+    ASSERT_EQ(ctx2-&gt;is_enable_fresh(), false);
+}
+
+// good
+TEST(Foo, bar) {
+    // case 1: enable = true
+    {
+        Context ctx;
+        params.enable_refresh = true;
+        ASSERT_EQ(ctx-&gt;is_enable_fresh(), true);
+    }
+
+    // case 2: enable = false
+    {
+        Context ctx;
+        params.enable_refresh = false;
+        ASSERT_EQ(ctx-&gt;is_enable_fresh(), false);
+    }
+}
+</code></pre>
+<p>此外，如果待测函数十分复杂，建议拆分多个 <code>TEST(Foo, Bar){...}</code>，避免 Test Case 代码膨胀。比如：</p>
+<pre><code class="language-cpp">// 待测函数
+int foo(Ad ad) {
+    if (!ad)
+        return -1;
+    switch(ad.pricing) {
+        case CPT:
+            ...
+        case GD:
+            ...
+    }
+}
+// 输入为空
+TEST(Foo, IsNil) {
+    ...
+}
+
+// 输入是 CPT 广告
+TEST(Foo, IsCpt) {
+    ...
+}
+
+// 输入是 GD 广告
+TEST(Foo, IsGd) {
+    ...
+}
+</code></pre>
+<h4 id="正确使用-assert-和-expect-前缀-建议">正确使用 <code>ASSERT</code> 和 <code>EXPECT</code> 前缀 <code>[建议]</code></h4>
+<ul>
+<li>
+<p>前者在校验失败时会直接终止，后者则会继续运行。</p>
+</li>
+<li>
+<p>如果某个判断不通过时会影响后续步骤 ，需要使用 <code>ASSERT</code>。常见的是空指针，或者数组访问越界。</p>
+<blockquote>
+<p>如果某个 EXPECT 失败会导致后续一连串 EXPECT 失败，那么第一个 EXPECT 应该换成 ASSERT。这就像编译时的报错信息，往往只有第一个是有用的，其他错误都只是刷屏。</p></blockquote>
+</li>
+<li>
+<p>其他情况，可以使用 <code>EXPECT</code>，尽可能多测试几个用例。</p>
+</li>
+<li>
+<p>此外，如果修改了某个字段的<strong>目的是影响某个函数的返回值，那么最好补一行</strong> <strong><code>ASSERT</code></strong>。好处显而易见：代码即注释；且在查单测 bug 的时候，这些断言能够预先排除一些问题。</p>
+<pre><code class="language-cpp">// bad
+req.type = Type::foo;  // 其他人看不懂这一行的目的是什么
+EXPECT_EQ(req.get_value(), 1);
+
+// good
+req.type = Type::foo;
+ASSERT_TRUE(context.is_foo());  // 这里表明，上一行是为了影响代码里这个判断函数的结果
+EXPECT_EQ(req.get_value(), 1);
+</code></pre>
+</li>
+</ul>
+<h4 id="解除对外部逻辑的依赖--耦合-建议">解除对外部逻辑的依赖 / 耦合 <code>[建议]</code></h4>
+<ul>
+<li>如果被测代码里用到了某个全局变量：
+<ul>
+<li>Bad：从请求入口开始执行全部代码、间接构造该变量。这样太黑盒了。</li>
+<li>Good：直接就地构造变量，然后赋值到全局字段上。</li>
+</ul>
+</li>
+<li>如果被测代码里调用了某个函数：
+<ul>
+<li>Bad：想办法构造外部函数的输入，以此来影响其返回结果。这样会导致被测函数与外部函数耦合 —— 需要看外部函数的实现逻辑，且如果后续外部函数改动了，当前函数的单测可能会不通过。</li>
+<li>Good：使用 GMock 劫持该函数，在单测里控制其返回结果。完全不需要关心外部函数的实现。</li>
+</ul>
+</li>
+</ul>
+<h4 id="为单测补充详细的注释-建议">为单测补充详细的注释 <code>[建议]</code></h4>
+<p>单测写出来必须的白盒的、可理解的、可维护的。如果不补充注释，其他人根本看不懂这些单测在测试什么逻辑，也无法确保其有效，后续修单测也很痛苦。</p>
+<p>为单测补充注释时，重点要说明「这些赋值对应了哪个分支条件」，目标是让其他人扫一眼源码就能知道这些单测在测试哪些逻辑。</p>
+<pre><code class="language-cpp">// bad
+req.type = Type::foo;
+req.from = &quot;localhost&quot;;
+EXPECT_EQ(ctx.get_value(), 5);
+
+// good：补充注释
+req.type = Type::foo;  // is_foo()
+req.from = &quot;localhost&quot;;  // is_local_req()
+EXPECT_EQ(ctx.get_value(), 5);  // 本地请求，默认值是 5
+
+// best：代码即注释
+req.type = Type::foo;
+ASSERT_TRUE(ctx-&gt;is_foo());
+req.from = &quot;localhost&quot;;
+ASSERT_TRUE(ctx-&gt;is_local_req());
+EXPECT_EQ(ctx.get_value(), 5);  // 本地请求，默认值是 5
+</code></pre>
+<h3 id="写稳定的单测">写稳定的单测</h3>
+<h4 id="mock-所有-io不要依赖外部数据-强制">Mock 所有 IO，不要依赖外部数据 <code>[强制]</code></h4>
+<p>单测里<strong>禁止访问外部服务</strong>，最好是整个单测能够断网。</p>
+<p>之前遇到的实际 case：</p>
+<ul>
+<li>单测依赖线上服务，导致必须在一台线上环境的容器里才能启动单测。</li>
+<li>单测依赖了线上 redis 里的测试数据，过了半年后数据过期了，线上单测突然挂了。</li>
+</ul>
+<h2 id="参考文档">参考文档</h2>
+<p>
+<a href="http://google.github.io/googletest/primer.html"  target="_blank" rel="noopener noreferrer" >Gtest 官方手册 (Google Test Primer)</a>
+ ，以及部门内的分享。</p>
+
+</main>
+
+<style>
+    
+
+    
+
+    body {
+        margin-right: 280px;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            margin-right: 0;
+        }
+    }
+
+    
+
+     
+    .article-meta {
+        text-align: center;
+        text-decoration: none;
+        background: #efefef;
+        padding: 1px;
+        border-radius: 5px;
+    }
+
+    .article-meta-title {
+        font-size: 2.2rem;
+    }
+
+    .article-meta-info {
+        color: #666;
+        font-size: 1.1rem;
+        margin: -0.6rem 0 0.2rem 10px;
+        text-align: left;
+    }
+
+    .article-meta-info a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+</style>
+
+
+
+<h1 style="font-size: 1.2rem; margin: 2.5rem 0 0.1rem 0;">Comment</h1>
+<div class="cusdis-comments">
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id=697d528d-b618-4ee1-a6fe-403c81a646ac
+    data-page-id="e46121929941386cdcd2c7785bf6fcc5"
+    data-page-url="https://kaikaixixi.xyz/%E8%BD%AC%E8%BD%BD/2025/04/16/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/"
+    data-page-title="GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)"
+  ></div>
+  <script async defer src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/cusdis/cusdis.es.min.js"></script>
+</div>
+
+<style>
+.cusdis-comments {
+  border-top: 2px dashed #cfcfcf;
+  padding-top: 1.3rem;
+}
+
+#cusdis_thread iframe {
+  min-height: 500px !important;
+  overflow: visible !important;
+}
+</style>
+
+
+<footer>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/math-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/render-katex.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/center-img.min.js"></script>
+
+  
+
+<div id="menuBtnContainer">
+    
+    <button id="menuBtn"><i class="fa-solid fa-screwdriver-wrench"></i></button>
+
+    
+    <button id="backToBottomBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-down"></i></button>
+    <button id="backToTopBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-up"></i></button>
+
+    
+    <div class="menu-popup-btn edit-btn">
+        <a href='https://github.com/captainwc/captainwc.github.io/edit/main/content/%e7%bd%91%e9%a1%b5%e5%89%aa%e8%97%8f/GTest_GMock%20%e5%8d%95%e5%85%83%e6%b5%8b%e8%af%95%e5%ae%9e%e8%b7%b5%e6%89%8b%e5%86%8c.md'
+            target="_blank" rel="noopener">
+            <i class="fa-solid fa-square-pen"></i>
+        </a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuBtn = document.getElementById('menuBtn');
+        var menuBtnContainer = document.getElementById('menuBtnContainer');
+        var backToTopBtn = document.getElementById('backToTopBtn');
+        var backToBottomBtn = document.getElementById('backToBottomBtn');
+        var popupBtns = document.querySelectorAll('.menu-popup-btn');
+        var hoverTimeout;
+
+        
+        menuBtnContainer.classList.add('visible');
+
+        
+        function showPopupBtns() {
+            clearTimeout(hoverTimeout);
+            menuBtnContainer.classList.add('active');
+        }
+
+        
+        function hidePopupBtns() {
+            hoverTimeout = setTimeout(function() {
+                menuBtnContainer.classList.remove('active');
+            }, 300);
+        }
+
+        
+        menuBtnContainer.addEventListener('mouseenter', showPopupBtns);
+        menuBtnContainer.addEventListener('mouseleave', hidePopupBtns);
+
+        
+        menuBtn.addEventListener('click', function() {
+            if (menuBtnContainer.classList.contains('active')) {
+                menuBtnContainer.classList.remove('active');
+            } else {
+                showPopupBtns();
+            }
+        });
+
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        
+        backToBottomBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+<style>
+     
+    #menuBtnContainer {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 999;
+        opacity: 0.6;
+        visibility: visible;
+        transition: opacity 0.3s;
+    }
+
+    #menuBtnContainer:hover {
+        opacity: 1;
+    }
+
+     
+    #menuBtn {
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.2rem;
+        transition: background 0.3s;
+        cursor: pointer;
+        background: #EFEFEF;
+        z-index: 1000;
+        position: relative;
+    }
+
+    #menuBtn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+     
+    .menu-popup-btn {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        background: #EFEFEF;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+     
+    .menu-popup-btn.top-btn {
+        right: 0;
+        transform: translateY(0) scale(0.8);
+    }
+
+     
+    .menu-popup-btn.edit-btn {
+        bottom: 0;
+        transform: translateX(0) scale(0.8);
+        padding: 1px 6.6px 0px 6.6px;
+    }
+
+    .menu-popup-btn.edit-btn a {
+        color: #ccc;
+        text-decoration: none;
+        background: none !important;
+        transition: opacity 0.2s;
+        padding: 0;
+        margin: 0;
+    }
+
+     
+    #menuBtnContainer.active .menu-popup-btn {
+        opacity: 1;
+        visibility: visible;
+    }
+
+     
+    #menuBtnContainer.active #backToBottomBtn {
+        transform: translateY(-60px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active #backToTopBtn {
+        transform: translateY(-110px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active .edit-btn {
+        transform: translateX(-60px) scale(1);
+    }
+
+     
+    .menu-popup-btn:hover,
+    .menu-popup-btn.edit-btn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+    .menu-popup-btn.edit-btn:hover a {
+        color: #666;
+    }
+
+     
+    @media (max-width: 768px) {
+        #menuBtnContainer {
+            right: 15px;
+            bottom: 15px;
+        }
+
+        #menuBtnContainer.active #backToBottomBtn {
+            transform: translateY(-50px) scale(1);
+        }
+
+        #menuBtnContainer.active #backToTopBtn {
+            transform: translateY(-90px) scale(1);
+        }
+
+        #menuBtnContainer.active .edit-btn {
+            transform: translateX(-50px) scale(1);
+        }
+    }
+</style>
+
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    document.querySelectorAll('ul').forEach(ul => {
+      
+      const isTodoList = Array.from(ul.children).some(li => {
+        return li.innerHTML.includes('type="checkbox"')
+      });
+
+      if (isTodoList) {
+        
+        const todolistContainer = document.createElement('div');
+        todolistContainer.className = 'todolist';
+
+        
+
+        
+        ul.querySelectorAll('li').forEach(li => {
+          const todoItemDiv = document.createElement('div');
+          todoItemDiv.className = 'todo-item';
+
+          
+          const isChecked = li.innerHTML.includes('checked');
+          const content = li.innerHTML
+            .replace(/<input[^>]+>/g, '') 
+            .trim();
+
+          
+          const checkedIcon = `<svg t="1742522457277" class="todo-item-checked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12342"><path d="M512 938.688A426.624 426.624 0 1 1 512 85.376a426.624 426.624 0 0 1 0 853.312z m0-85.312A341.312 341.312 0 1 0 512 170.688a341.312 341.312 0 0 0 0 682.688z m-42.56-170.688L288.448 501.632l60.288-60.288L469.44 561.92l241.28-241.28 60.416 60.288-301.696 301.696z" p-id="12343"></path></svg>`;
+          const uncheckedIcon = `<svg t="1742522354856" class="todo-item-unchecked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11882"><path d="M512 938.666667C276.352 938.666667 85.333333 747.648 85.333333 512S276.352 85.333333 512 85.333333s426.666667 191.018667 426.666667 426.666667-191.018667 426.666667-426.666667 426.666667z m0-85.333334a341.333333 341.333333 0 1 0 0-682.709333A341.333333 341.333333 0 0 0 512 853.333333z" p-id="11883"></path></svg>`;
+
+          
+          todoItemDiv.innerHTML = `
+            <span class="todo-item-checkbox">
+              ${isChecked ? checkedIcon : uncheckedIcon}
+            </span>
+            <span class="todo-item-content">
+              ${isChecked ? `<del>${content}</del>` : content}
+            </span>
+          `;
+
+          
+          todolistContainer.appendChild(todoItemDiv);
+        });
+
+        
+        ul.parentNode.replaceChild(todolistContainer, ul);
+      }
+    });
+
+    function addTaskProgressBar(ul, todolistContainer) {
+      
+      const totalTasks = ul.children.length;
+      const finishedTasks = Array.from(ul.children).filter(li => li.innerHTML.includes('checked')).length;
+
+      
+      const progressContainer = document.createElement('div');
+      progressContainer.className = 'todo-progress';
+
+      
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'todo-progress-counter';
+      counterSpan.textContent = `${finishedTasks}/${totalTasks}`;
+
+      
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'todo-progress-bar';
+
+      
+      const progressFill = document.createElement('div');
+      progressFill.className = 'todo-progress-bar-fill';
+      progressFill.style.width = `${(finishedTasks / totalTasks) * 100}%`;
+
+      
+      const flagSpan = document.createElement('span');
+      flagSpan.className = 'todo-progress-flag';
+      flagSpan.innerHTML = `${finishedTasks === totalTasks ? '🌟' : '🚧'}`;
+
+      
+      progressTrack.appendChild(progressFill);
+      progressContainer.append(flagSpan, progressTrack, counterSpan);
+      todolistContainer.appendChild(progressContainer);
+    }
+  });
+</script>
+
+<style>
+   
+  .todolist {
+    padding-left: 0.6rem;
+  }
+
+  .todo-item {
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: -0.5rem 0 -0.5rem -0.7rem;
+    line-height: 1.3;
+  }
+
+  .todo-item-checkbox {
+    flex-shrink: 0;
+    font-size: 1.2em;
+
+    svg {
+      margin-top: 0.46rem;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .todo-item-checked-icon {
+    fill: #707070;
+  }
+
+  .todo-item-unchecked-icon {
+    fill: #1A61CC;
+  }
+
+  .todo-item-unchecked-icon:hover {
+    fill: red;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .todo-item-content {
+    flex: 1;
+    word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+   
+  .todo-progress {
+    display: flex;
+     
+    align-items: center;
+    gap: 0.3rem;
+     
+    margin: 0.1rem 0 0 0.7rem;
+  }
+
+  .todo-progress-counter {
+     
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+    color: #707070;
+  }
+
+  .todo-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #a64036;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 20%;
+  }
+
+  .todo-progress-bar-fill {
+    height: 100%;
+    background: #84a729;
+    transition: width 0.3s ease;
+  }
+
+  .todo-progress-flag {
+    display: none;
+    position: relative;
+    font-size: 0.9rem;
+  }
+</style>
+
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll())</script>
+
+
+
+  <script>
+    const langToNerdFontMap = {
+        asm: '\ue6ab',
+        bash: '\ue760',
+        bazel: '\ue63a',
+        c: '\ue61e',
+        cmake: '\ue794',
+        cmd: '\uebc4',
+        cpp: '\ue61d',
+        'c++': '\ue61d',
+        csharp: '\ue7b2',
+        css: '\ue749',
+        diff: '\ueae1',
+        dockerfile: '\uf21f',
+        go: '\udb81\udfd3',
+        gradle: '\ue7f2',
+        html: '\ue736',
+        java: '\uedaf',
+        javascript: '\ue781',
+        json: '\ueb0f',
+        latex: '\ue81f',
+        llvm: '\ue823',
+        lua: '\ue826',
+        makefile: '\ue673',
+        markdown: '\uf48a',
+        maven: '\ue82c',
+        plaintext: '\udb80\udd4d',
+        plantuml: '\ue8cb',
+        powershell: '\ue86c',
+        python: '\ued1b',
+        rust: '\udb85\ude17',
+        shell: '\ue760',
+        sql: '\udb82\udc66',
+        text: '\udb80\udd4d',
+        toml: '\ue6b2',
+        txt: '\udb80\udd4d',
+        typescript: '\ue8ca',
+        uml: '\ue8cb',
+        vim: '\ue7c5',
+        wasm: '\ue8e0',
+        xml: '\ue8ea',
+        yaml: '\ue8eb',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            const parentElement = codeBlock.parentElement;
+
+            
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+
+            
+            const foldBtn = document.createElement('button');
+            foldBtn.className = 'fold-btn';
+            foldBtn.innerHTML = '\uf48c';
+            foldBtn.style.display = 'none';
+
+            
+            const langLabel = document.createElement('div');
+            langLabel.className = 'lang-label';
+            const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
+            const icon = langToNerdFontMap[lang.toLowerCase()];
+            langLabel.textContent = icon || lang.toUpperCase();
+            if (!icon) langLabel.style.fontSize = '0.8rem';
+
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = '\uf4bb COPY';
+
+            
+            const scale_height = 600;       
+            const collapsed_height = 500;   
+            const checkHeight = () => {
+                const originalDisplay = parentElement.style.display;
+                parentElement.style.display = 'block';
+                const fullHeight = parentElement.scrollHeight;
+                parentElement.style.display = originalDisplay;
+                return fullHeight > scale_height;
+            };
+
+            
+            if (checkHeight()) {
+                foldBtn.style.display = 'flex';
+                parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+
+                
+                parentElement.classList.add('collapsed');
+                parentElement.style.maxHeight = `${collapsed_height}px`;
+                foldBtn.innerHTML = '\uf4d9';
+
+                parentElement.style.overflowY = 'auto'; 
+
+                foldBtn.addEventListener('click', () => {
+                    const isCollapsed = parentElement.classList.toggle('collapsed');
+                    foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
+
+                    if (isCollapsed) {
+                        parentElement.style.maxHeight = `${collapsed_height}px`;
+                        parentElement.style.overflowX = 'auto';
+                    } else {
+                        parentElement.style.maxHeight = 'none';
+                        void parentElement.offsetHeight;
+                        parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                    }
+                });
+            }
+
+            
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeBlock.textContent);
+                    copyBtn.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyBtn.textContent = '\uf4bb COPY', 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                }
+            });
+
+            
+            tools.append(langLabel, foldBtn, copyBtn);
+            parentElement.prepend(tools);
+        });
+    });
+</script>
+
+<style>
+ 
+.code-tools {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-family: "Maple Mono NF CN";
+}
+
+.fold-btn {
+    cursor: pointer;
+    border: none;
+    color: #666;
+    background: none;
+    font-family: "Maple Mono NF CN";
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0 0.45rem;
+    transition: all 0.2s ease;
+}
+
+ 
+.lang-label {
+     
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+ 
+.copy-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+}
+
+ 
+pre:hover .code-tools {
+    opacity: 1;
+    pointer-events: auto;
+}
+</style>
+
+
+  
+<script>
+    
+    window.diagramRenderUtils = {
+        
+        getOrCreateFullscreenOverlay: function() {
+            let overlay = document.querySelector('.fullscreen-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'fullscreen-overlay';
+                document.body.appendChild(overlay);
+
+                
+                overlay.addEventListener('dblclick', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            }
+            return overlay;
+        },
+
+        
+        createDiagramContainer: function() {
+            const container = document.createElement('div');
+            container.className = 'code-rendered-diagram';
+            return container;
+        },
+
+        
+        createCopyButton: function() {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'code-rendered-diagram-copy-button';
+            copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+            return copyButton;
+        },
+
+        
+        createFullscreenButton: function() {
+            const fullscreenButton = document.createElement('button');
+            fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+            fullscreenButton.innerHTML = '&#xf065; FULL';
+            return fullscreenButton;
+        },
+
+        
+        makeSVGTransparent: function(svgText) {
+            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                .forEach(el => {
+                    if (el.tagName !== 'svg') {
+                        el.setAttribute('fill', 'transparent');
+                    }
+                });
+            doc.documentElement.style.backgroundColor = 'transparent';
+            return new XMLSerializer().serializeToString(doc);
+        },
+
+        
+        setupCopyButton: function(copyButton, codeContent) {
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeContent);
+                    copyButton.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                } catch (err) {
+                    copyButton.textContent = 'FAILED';
+                    console.error('复制失败:', err);
+                }
+            });
+        },
+
+        
+        setupShowSourceCode: function(imageElem, sourceCode) {
+            
+            imageElem.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+
+                
+                const pre = document.createElement('pre');
+                const codeElem = document.createElement('code');
+                codeElem.textContent = sourceCode;
+                pre.appendChild(codeElem);
+
+                
+                window.diagramRenderUtils.popupWindowUtils.create({
+                    title: 'Source Code',
+                    content: pre,
+                    x: e.clientX,
+                    y: e.clientY,
+                    minWidth: 300,
+                    maxWidth: '60%',
+                    maxHeight: '60%',
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    className: 'source-code-viewer'
+                });
+            });
+        },
+
+        
+        setupFullscreenButton: function(fullscreenButton, contentElement, isImage = false) {
+            fullscreenButton.addEventListener('click', () => {
+                const overlay = this.getOrCreateFullscreenOverlay();
+                let clonedContent;
+
+                if (isImage) {
+                    
+                    clonedContent = contentElement.cloneNode(true);
+                } else {
+                    
+                    const svgElement = contentElement.querySelector('svg');
+                    if (!svgElement) return;
+                    clonedContent = svgElement.cloneNode(true);
+                }
+
+                overlay.innerHTML = '';
+
+                
+                const exitButton = document.createElement('button');
+                exitButton.className = 'fullscreen-exit-button';
+                exitButton.innerHTML = 'ESC';
+                exitButton.onclick = () => overlay.classList.remove('active');
+
+                overlay.appendChild(exitButton);
+                overlay.appendChild(clonedContent);
+                overlay.classList.add('active');
+
+                
+                this.setupZoomAndDrag(overlay, isImage ? 'img' : 'svg');
+            });
+        },
+
+        
+        setupZoomAndDrag: function(overlay, selector) {
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            const element = overlay.querySelector(selector);
+
+            
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY * -0.002;
+                const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                
+                const rect = element.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                
+                posX += mouseX * (1 - newScale / scale);
+                posY += mouseY * (1 - newScale / scale);
+
+                scale = newScale;
+                updateTransform();
+            });
+
+            
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === overlay) return;
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                overlay.classList.add('dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                overlay.classList.remove('dragging');
+            });
+
+            function updateTransform() {
+                element.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+        },
+
+        
+        popupWindowUtils: {
+            
+            create: function(options) {
+                
+                const config = {
+                    title: 'Popup Window',
+                    content: '',         
+                    x: 100,              
+                    y: 100,              
+                    minWidth: 300,       
+                    maxWidth: '80%',     
+                    maxHeight: '80%',    
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    onClose: null,       
+                    className: ''        
+                };
+
+                
+                Object.assign(config, options);
+
+                
+                if (config.className) {
+                    const existingPopup = document.querySelector(`.popup-window.${config.className}`);
+                    if (existingPopup) {
+                        document.body.removeChild(existingPopup);
+                    }
+                }
+
+                
+                const popup = document.createElement('div');
+                popup.className = `popup-window ${config.className}`.trim();
+
+                
+                const titleBar = document.createElement('div');
+                titleBar.className = 'popup-window-title';
+                titleBar.textContent = config.title;
+
+                
+                const closeButton = document.createElement('button');
+                closeButton.className = 'popup-window-close';
+                closeButton.innerHTML = '&times;';
+
+                
+                titleBar.appendChild(closeButton);
+
+                
+                const contentContainer = document.createElement('div');
+                contentContainer.className = 'popup-window-content';
+
+                
+                if (typeof config.content === 'string') {
+                    contentContainer.innerHTML = config.content;
+                } else if (config.content instanceof Element) {
+                    contentContainer.appendChild(config.content);
+                }
+
+                
+                popup.appendChild(titleBar);
+                popup.appendChild(contentContainer);
+
+                
+                popup.style.minWidth = typeof config.minWidth === 'number' ? `${config.minWidth}px` : config.minWidth;
+                popup.style.maxWidth = typeof config.maxWidth === 'number' ? `${config.maxWidth}px` : config.maxWidth;
+                popup.style.maxHeight = typeof config.maxHeight === 'number' ? `${config.maxHeight}px` : config.maxHeight;
+
+                
+                document.body.appendChild(popup);
+
+                
+                const popupRect = popup.getBoundingClientRect();
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+
+                
+                let left = Math.min(Math.max(config.x, 20), windowWidth - popupRect.width - 20);
+                let top = Math.min(Math.max(config.y, 20), windowHeight - popupRect.height - 20);
+
+                popup.style.left = `${left}px`;
+                popup.style.top = `${top}px`;
+
+                
+                const closePopup = () => {
+                    if (document.body.contains(popup)) {
+                        document.body.removeChild(popup);
+                        if (typeof config.onClose === 'function') {
+                            config.onClose();
+                        }
+                    }
+                };
+
+                closeButton.addEventListener('click', closePopup);
+
+                
+                if (config.closeOnEsc) {
+                    const escHandler = (e) => {
+                        if (e.key === 'Escape' && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('keydown', escHandler);
+                        }
+                    };
+                    document.addEventListener('keydown', escHandler);
+                }
+
+                
+                if (config.closeOnClickOutside) {
+                    const outsideClickHandler = (e) => {
+                        if (popup && !popup.contains(e.target) && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('mousedown', outsideClickHandler);
+                        }
+                    };
+
+                    
+                    setTimeout(() => {
+                        document.addEventListener('mousedown', outsideClickHandler);
+                    }, 100);
+                }
+
+                
+                let isDragging = false;
+                let offsetX = 0;
+                let offsetY = 0;
+
+                titleBar.addEventListener('mousedown', (e) => {
+                    
+                    if (e.target !== closeButton) {
+                        isDragging = true;
+                        offsetX = e.clientX - popup.getBoundingClientRect().left;
+                        offsetY = e.clientY - popup.getBoundingClientRect().top;
+                        popup.classList.add('dragging');
+                    }
+                });
+
+                const mouseMoveHandler = (e) => {
+                    if (isDragging) {
+                        let newLeft = e.clientX - offsetX;
+                        let newTop = e.clientY - offsetY;
+
+                        
+                        newLeft = Math.max(0, Math.min(windowWidth - popupRect.width, newLeft));
+                        newTop = Math.max(0, Math.min(windowHeight - popupRect.height, newTop));
+
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    }
+                };
+
+                const mouseUpHandler = () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        popup.classList.remove('dragging');
+                    }
+                };
+
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+
+                
+                return {
+                    element: popup,
+                    contentElement: contentContainer,
+                    close: closePopup,
+                    setTitle: (title) => {
+                        titleBar.textContent = title;
+                        titleBar.appendChild(closeButton); 
+                    },
+                    setContent: (content) => {
+                        contentContainer.innerHTML = '';
+                        if (typeof content === 'string') {
+                            contentContainer.innerHTML = content;
+                        } else if (content instanceof Element) {
+                            contentContainer.appendChild(content);
+                        }
+                    },
+                    setPosition: (x, y) => {
+                        let newLeft = Math.min(Math.max(x, 0), windowWidth - popupRect.width);
+                        let newTop = Math.min(Math.max(y, 0), windowHeight - popupRect.height);
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    },
+                    
+                    destroy: () => {
+                        document.removeEventListener('mousemove', mouseMoveHandler);
+                        document.removeEventListener('mouseup', mouseUpHandler);
+                        if (document.body.contains(popup)) {
+                            document.body.removeChild(popup);
+                        }
+                    }
+                };
+            }
+        }
+    };
+</script>
+<style>
+     
+    .code-rendered-diagram {
+        max-width: 80% !important;
+        height: auto;
+        position: relative;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .code-rendered-diagram-copy-button,
+    .code-rendered-diagram-fullscreen-button {
+        position: absolute;
+        top: 20px;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 0.3rem;
+        margin: 0 0 0 0.6rem;
+        color: #333;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.6rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        opacity: 0;
+    }
+
+    .code-rendered-diagram-copy-button {
+        right: 10px;
+    }
+
+    .code-rendered-diagram-fullscreen-button {
+        right: 100px;
+    }
+
+    .code-rendered-diagram:hover .code-rendered-diagram-copy-button,
+    .code-rendered-diagram:hover .code-rendered-diagram-fullscreen-button {
+        opacity: 1;
+    }
+
+    .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FBFBFB;
+         
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fullscreen-overlay.active {
+        display: flex;
+    }
+
+    .fullscreen-overlay img,
+    .fullscreen-overlay svg {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        cursor: move;
+        transition: transform 0.1s ease-out;
+        transform-origin: center center;
+    }
+
+    .fullscreen-overlay svg {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .fullscreen-overlay.dragging {
+        cursor: move;
+    }
+
+    .fullscreen-exit-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        color: #666;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        transition: all 0.2s ease;
+        z-index: 100000;
+    }
+
+    .fullscreen-exit-button:hover {
+        background-color: #e0e0e0;
+        color: #333;
+    }
+
+     
+    .popup-window {
+        position: fixed;
+        z-index: 10000;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .popup-window.dragging {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        opacity: 0.95;
+    }
+
+    .popup-window-title {
+        background-color: #e8e8e8;
+        padding: 8px 12px;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        cursor: move;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #333;
+        font-family: "Maple Mono NF CN", monospace;
+        font-size: 0.9rem;
+    }
+
+    .popup-window-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #666;
+        padding: 0 4px;
+        margin: -4px -4px 0 0;
+        transition: color 0.2s ease;
+    }
+
+    .popup-window-close:hover {
+        color: #333;
+    }
+
+    .popup-window-content {
+        overflow: auto;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+     
+    .popup-window.source-code-viewer .popup-window-content {
+        font-family: "Maple Mono NF CN", monospace;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content pre {
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content code {
+        font-family: "Maple Mono NF CN", monospace;
+        color: #333;
+    }
+</style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
+        if (!plantumlBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
+
+        
+        script.onload = () => {
+            const plantuml_theme = parsePlantumlUserConfig();
+
+            plantumlBlocks.forEach(codeBlock => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const img = document.createElement('img');
+                img.className = 'code-rendered-diagram-img';
+                img.style.display = 'block';
+                img.alt = 'PlantUML Diagram';
+
+                
+                const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
+                img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, fullCode);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(img, fullCode);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, img, true);
+
+                
+                
+
+                
+                container.appendChild(img);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+                codeBlock.parentElement.replaceWith(container);
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+
+    function parsePlantumlUserConfig() {
+        let configItems = [];
+
+        
+            configItems.push(`scale 5`);
+        
+
+        
+            configItems.push(`skin rose`);
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        
+        
+            
+                configItems.push(`skinparam shadowing false`);
+            
+        
+
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        return configItems.join("\n").trim();
+    }
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+        if (!mermaidBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js';
+
+        
+        script.onload = () => {
+            
+            mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                fontFamily: 'Maple Mono NF CN',
+                
+                look: 'handDrawn',
+                
+                theme: 'neutral',
+                
+                
+            });
+
+            
+            mermaidBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const renderDiv = document.createElement('div');
+                renderDiv.id = `mermaid-diagram-${index}`;
+                renderDiv.style.background = 'transparent';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                try {
+                    
+                    mermaid.render(`mermaid-svg-${index}`, code).then(result => {
+                        renderDiv.innerHTML = result.svg;
+
+                        
+                        const svg = renderDiv.querySelector('svg');
+                        if (svg) {
+                            svg.style.backgroundColor = 'transparent';
+                            
+                            svg.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                                .forEach(el => {
+                                    if (el.tagName !== 'svg') {
+                                        el.setAttribute('fill', 'transparent');
+                                    }
+                                });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Mermaid渲染错误:', error);
+                    renderDiv.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Mermaid渲染错误: ${error.message}
+                    </div>`;
+                }
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(renderDiv, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, renderDiv, false);
+
+                
+                container.appendChild(renderDiv);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const markmapBlocks = document.querySelectorAll('pre code.language-map, pre code.language-mindmap');
+        if (!markmapBlocks.length) return;
+
+        
+        function loadScript(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+
+        
+        Promise.all([
+            loadScript('https://cdn.jsdelivr.net/npm/d3@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-view@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-lib@latest')
+        ]).then(() => {
+            
+            markmapBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const markmapContainer = document.createElement('div');
+                markmapContainer.className = 'markmap';
+                markmapContainer.id = `markmap-${index}`;
+                markmapContainer.style.minHeight = '300px';
+                markmapContainer.style.width = '100%';
+                markmapContainer.style.position = 'relative';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                
+                const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.style.width = '100%';
+                svgElement.style.height = '400px';
+                markmapContainer.appendChild(svgElement);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(markmapContainer, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, markmapContainer, false);
+
+                
+                container.appendChild(markmapContainer);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+
+                
+                renderMarkmapWithRetry(svgElement, markmapContainer, code);
+            });
+        }).catch(error => {
+            console.error('加载markmap库失败:', error);
+        });
+
+        
+
+        function renderMarkmapWithRetry(svgElement, markmapContainer, code, maxRetries = 5, delay = 200) {
+            let attempt = 0;
+
+            function tryRender() {
+                attempt++;
+                try {
+                    
+                    if (!window.markmap || typeof window.markmap.Markmap !== 'function') {
+                        throw new Error('Markmap constructor not available yet.');
+                    }
+
+                    
+                    const { Transformer } = window.markmap;
+                    const transformer = new Transformer();
+
+                    
+                    const { root, features } = transformer.transform(code);
+
+                    
+                    const { Markmap } = window.markmap;
+                    const mm = new Markmap(svgElement, {
+                        autoFit: true,
+                        duration: 500,
+                        zoom: true,
+                    });
+
+                    
+                    mm.setData(root, features);
+                    mm.fit();
+
+                    
+                    markmapContainer.dataset.markmapData = JSON.stringify({
+                        root: root,
+                        features: features
+                    });
+
+                    
+                    setTimeout(() => {
+                        const links = svgElement.querySelectorAll('a');
+                        links.forEach(link => {
+                            link.setAttribute('target', '_blank');
+                            link.setAttribute('rel', 'noopener noreferrer');
+                        });
+                    }, 100);
+
+                } catch (error) {
+                    console.error(`Markmap渲染尝试第 ${attempt} 次失败:`, error.message);
+                    if (attempt < maxRetries) {
+                        
+                        setTimeout(tryRender, delay);
+                    } else {
+                        
+                        console.error('Markmap渲染在多次重试后仍然失败。');
+                        markmapContainer.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                            Markmap渲染错误: ${error.message} (请尝试手动刷新网页)
+                        </div>`;
+                    }
+                }
+            }
+
+            
+            tryRender();
+        }
+    });
+</script>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        if (!window.diagramRenderUtils) return;
+
+        
+        const originalSetupFullscreenButton = window.diagramRenderUtils.setupFullscreenButton;
+        window.diagramRenderUtils.setupFullscreenButton = function(fullscreenButton, contentElement, isImage = false) {
+            
+            const isMarkmap = contentElement.classList.contains('markmap');
+
+            if (isMarkmap) {
+                fullscreenButton.addEventListener('click', () => {
+                    const overlay = this.getOrCreateFullscreenOverlay();
+                    overlay.innerHTML = '';
+
+                    
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => overlay.classList.remove('active');
+                    overlay.appendChild(exitButton);
+
+                    
+                    const fullscreenContainer = document.createElement('div');
+                    fullscreenContainer.className = 'markmap';
+                    fullscreenContainer.style.width = '100%';
+                    fullscreenContainer.style.height = '100%';
+
+                    
+                    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svgElement.style.width = '100%';
+                    svgElement.style.height = '100%';
+                    fullscreenContainer.appendChild(svgElement);
+
+                    overlay.appendChild(fullscreenContainer);
+                    overlay.classList.add('active');
+
+                    
+                    try {
+                        const markmapData = JSON.parse(contentElement.dataset.markmapData || '{}');
+                        if (markmapData.root) {
+                            
+                            const { Markmap } = window.markmap;
+                            const mm = new Markmap(svgElement, {
+                                autoFit: true,
+                                duration: 500,
+                                zoom: true,
+                            });
+
+                            
+                            mm.setData(markmapData.root, markmapData.features);
+                            mm.fit();
+
+                            
+                            setTimeout(() => {
+                                const links = svgElement.querySelectorAll('a');
+                                links.forEach(link => {
+                                    link.setAttribute('target', '_blank');
+                                    link.setAttribute('rel', 'noopener noreferrer');
+                                });
+                            }, 100);
+                        }
+                    } catch (error) {
+                        console.error('全屏模式下渲染markmap失败:', error);
+                    }
+
+                    
+                    this.setupZoomAndDrag(overlay, 'svg');
+                });
+            } else {
+                
+                originalSetupFullscreenButton.call(this, fullscreenButton, contentElement, isImage);
+            }
+        };
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const xmindBlocks = document.querySelectorAll('pre code.language-xmind');
+        if (xmindBlocks.length === 0) {
+            return;
+        }
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/xmind-embed-viewer/dist/umd/xmind-embed-viewer.js';
+        document.head.appendChild(script);
+
+        
+        script.onload = function() {
+            xmindBlocks.forEach((codeBlock, index) => {
+                const xmindUrl = codeBlock.textContent.trim();
+                if (!xmindUrl) {
+                    console.error('XMind code block is empty.');
+                    return;
+                }
+
+                
+                const mountId = `xmind-mount-${index}`;
+                const mountDiv = document.createElement('div');
+                mountDiv.id = mountId;
+
+                
+                const preElement = codeBlock.parentElement;
+                preElement.parentElement.replaceChild(mountDiv, preElement);
+
+                renderXmindFile(mountId, xmindUrl);
+            });
+
+            async function renderXmindFile(elementId, fileUrl) {
+                const mountEl = document.getElementById(elementId);
+
+                
+                
+                mountEl.className = 'xmind-container';
+                
+                mountEl.innerHTML = `
+                <div class="xmind-loader-wrapper">
+                    <div class="xmind-loader"></div>
+                    <div class="xmind-loader-text">xmind loading</div>
+                </div>
+            `;
+
+                try {
+                    
+                    const isExternal = fileUrl.startsWith('http');
+                    const fetchUrl = isExternal ? `https://api.allorigins.win/raw?url=${encodeURIComponent(fileUrl)}` : fileUrl;
+                    const res = await fetch(fetchUrl, {
+                        mode: 'cors'
+                    });
+
+                    
+                    if (!res.ok) {
+                        mountEl.innerHTML = `
+                        <div class="xmind-error">
+                            <span class="xmind-error-icon">⚠️</span>
+                            <div class="xmind-error-content">
+                                <strong>加载 XMind 文件失败</strong>
+                                <p>无法从 <code>${fileUrl}</code> 获取文件 (HTTP ${res.status})</p>
+                            </div>
+                        </div>
+                    `;
+                        console.error(`Failed to fetch XMind file: ${res.statusText}`);
+                        return;
+                    }
+                    const fileBuffer = await res.arrayBuffer();
+
+                    
+                    mountEl.className = ''; 
+                    mountEl.innerHTML = ''; 
+
+                    new XMindEmbedViewer({
+                        el: `#${elementId}`,
+                        file: fileBuffer,
+                        styles: {
+                            'height': '500px',
+                            'width': '100%'
+                        }
+                    });
+                } catch (error) {
+                    
+                    mountEl.innerHTML = `
+                    <div class="xmind-error">
+                        <span class="xmind-error-icon">⚠️</span>
+                        <div class="xmind-error-content">
+                            <strong>渲染 XMind 文件时出错</strong>
+                            <p>${error.message}</p>
+                        </div>
+                    </div>
+                `;
+                    console.error('Error rendering XMind file:', error);
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+     
+    .xmind-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        background-color: #f9f9f9;
+        border: 1px dashed #ddd;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+        padding: 20px;
+    }
+
+     
+    .xmind-loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+     
+    .xmind-loader {
+        border: 3px solid #f0f0f0;
+        border-top: 3px solid #999;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+    }
+
+     
+    .xmind-loader-text {
+        color: #888;
+        font-size: 0.9rem;
+        font-family: "LXGW WenKai", "Maple Mono NF CN", sans-serif;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+     
+    .xmind-error {
+        display: flex;
+        align-items: flex-start;
+        text-align: left;
+        color: #c0392b;
+        width: 100%;
+    }
+
+    .xmind-error-icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        line-height: 1.2;
+    }
+
+    .xmind-error-content {
+        flex: 1;
+    }
+
+    .xmind-error strong {
+        font-size: 1.1rem;
+        color: #a93226;
+    }
+
+    .xmind-error p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        color: #7b241c;
+        word-break: break-all;
+    }
+
+    .xmind-error code {
+        background-color: #fbeae5;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+</style>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const DIAGRAM_MAP = new Map([
+            ['plantuml_kroki', 'plantuml'],
+            ['mermaid_kroki', 'mermaid'],
+            ['graphviz', 'graphviz'],
+            ['blockdiag', 'blockdiag'],
+            ['seqdiag', 'seqdiag'],
+            ['actdiag', 'actdiag'],
+            ['packetdiag', 'packetdiag'],
+            ['database', 'dbml'],
+            ['dbml', 'dbml'],
+            ['vega', 'vega']
+        ]);
+
+        
+        const blocks = [];
+        document.querySelectorAll('pre code[class]').forEach(block => {
+            if (block.dataset.kroki) return;
+            const lang = [...block.classList].find(c => DIAGRAM_MAP.has(c.split('-')[1]));
+            if (lang) {
+                block.dataset.kroki = 'processed';
+                blocks.push({ block, api: DIAGRAM_MAP.get(lang.split('-')[1]) });
+            }
+        });
+
+        if (!blocks.length) return;
+
+        
+        const CONCURRENCY = 6;
+        const queue = blocks.slice();
+
+        (async function processQueue() {
+            const workers = Array(Math.min(CONCURRENCY, queue.length))
+                .fill()
+                .map(async () => {
+                    while (queue.length) {
+                        const { block, api } = queue.pop();
+                        await renderBlock(block, api);
+                    }
+                });
+            await Promise.all(workers);
+        })();
+
+        async function renderBlock(block, api) {
+            const pre = block.closest('pre');
+            try {
+                const code = block.textContent.trim();
+                if (!code) {
+                    pre.style.border = '2px solid orange';
+                    return;
+                }
+
+                const res = await fetch(`https://kroki.io/${api}/svg`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: code
+                });
+
+                if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
+
+                
+                const svg = window.diagramRenderUtils.createDiagramContainer();
+                svg.innerHTML = window.diagramRenderUtils.makeSVGTransparent(await res.text());
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, svg, false);
+                svg.appendChild(fullscreenButton);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+                svg.appendChild(copyButton);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(svg, code);
+
+                pre.insertAdjacentElement('afterend', svg);
+
+                
+                pre.remove();
+            } catch (err) {
+                console.error(`[Kroki] 渲染失败: ${err.message}`);
+                pre.style.border = '2px solid red';
+                pre.title = err.message;
+            }
+        }
+    });
+</script>
+
+
+  <div id="search-modal">
+  <input type="text" id="modal-search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
+  <div id="modal-search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="modal-search-results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+  function debug(text) {
+      document.getElementById('modal-search-debug').textContent = text;
+  }
+  function showpages() {
+    debug("当前本站共有 " + searchIndex.length + " 篇文章");
+  }
+
+  let searchIndex = [];
+  
+  
+    
+  
+
+  
+    searchIndex.push({
+      title: "\"面向模式的软件架构 卷1 模式系统 读书笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%8D%B71%E6%A8%A1%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/\"",
+      
+      categories: "[\"读书笔记\",\"软件工程\"]",
+      tags: "[\"设计模式\"]",
+      series: "[\"软件架构之道\"]",
+      date: "\"2025-12-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"链接符号与符号导入导出宏——记一次因clangd补全头文件产生的链接错误\"",
+      permalink: "\"/cpp/%E9%93%BE%E6%8E%A5%E7%AC%A6%E5%8F%B7%E5%AF%BC%E5%87%BA%E4%B8%8E%E7%AC%A6%E5%8F%B7%E5%8F%AF%E8%A7%81%E5%AE%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"C++踩坑\"]",
+      date: "\"2025-11-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"Qt从零开始（0）——环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/qt%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: "[\"Qt专栏\"]",
+      date: "\"2025-08-30\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu配置coredump文件生成位置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E7%94%9F%E6%88%90coredump%E6%96%87%E4%BB%B6/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-08-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu安装中文输入法（fcitx5-rime）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E5%AE%89%E8%A3%85rime%E8%BE%93%E5%85%A5%E6%B3%95/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-07-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"SSH反向隧道中转机-远程连接本地服务器\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/ssh%E5%8F%8D%E5%90%91%E9%9A%A7%E9%81%93%E4%B8%AD%E8%BD%AC%E6%9C%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"ssh\"]",
+      series: [],
+      date: "\"2025-06-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++ 高并发服务器模型实现 | [转载](https://github.com/linkxzhou/mylib/blob/master/c%2B%2B/concurrency_server/README.md)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/06/10/22%E7%A7%8Dc-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"C++\"]",
+      series: [],
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"libclang-py使用介绍\"",
+      permalink: "\"/cpp/libclang-py%E4%BD%BF%E7%94%A8/\"",
+      
+      categories: [],
+      tags: "[\"C++\",\"编译原理\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"参数包与折叠表达式傻傻分不清\"",
+      permalink: "\"/cpp/%E5%8F%82%E6%95%B0%E5%8C%85%E4%B8%8E%E6%8A%98%E5%8F%A0%E8%A1%A8%E8%BE%BE%E5%BC%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-06-05\""
+    });
+  
+    searchIndex.push({
+      title: "\"协程快速入门\"",
+      permalink: "\"/cpp/%E5%8D%8F%E7%A8%8B%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"coroutine\",\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-05-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"初等数学回忆录\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%88%9D%E7%AD%89%E6%95%B0%E5%AD%A6%E5%9B%9E%E5%BF%86%E5%BD%95/\"",
+      
+      categories: "[\"数学\"]",
+      tags: "[\"数学\",\"三角函数\",\"极坐标\",\"定积分\"]",
+      series: [],
+      date: "\"2025-05-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/epoll%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"epoll\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"asio\"]",
+      series: "[\"网络编程\"]",
+      date: "\"2025-04-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/googletest%E4%B8%8Egmock%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"Docker\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"CyberRT\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++小技巧\"",
+      permalink: "\"/cpp/c++%E5%B0%8F%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-04-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"tmux 快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"tmux\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Valgrind快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/valgrind%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"valgrind\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Mermaid快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/mermaid%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"mermaid\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-07\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT框架总览\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"通信中间件术语表\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E6%9C%AF%E8%AF%AD%E8%A1%A8/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: [],
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-27\""
+    });
+  
+    searchIndex.push({
+      title: "\"现代C++开发环境配置指南\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"c++\"]",
+      series: [],
+      date: "\"2025-03-26\""
+    });
+  
+    searchIndex.push({
+      title: "\"带着目的学：CyberRT\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6cyberrt/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Linux环境变量加载顺序分析\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E5%88%86%E6%9E%90/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"linux\"]",
+      series: [],
+      date: "\"2025-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"手册速查方案（如cppreference）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"cppreference\"]",
+      series: [],
+      date: "\"2025-03-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT中的代码和工程技巧\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\",\"C++\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"设计模式\"",
+      permalink: "\"/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/\"",
+      
+      categories: "[\"软件工程\"]",
+      tags: "[\"SE\"]",
+      series: "[\"设计模式专项总结\"]",
+      date: "\"2025-02-28\""
+    });
+  
+    searchIndex.push({
+      title: "\"一站式环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-02-24\""
+    });
+  
+    searchIndex.push({
+      title: "\"leetcode调试指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/\"",
+      
+      categories: [],
+      tags: "[\"leetcode\"]",
+      series: [],
+      date: "\"2024-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"linux命令行大记忆恢复术\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"linux\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"番茄鸡蛋面\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E8%8F%9C%E8%B0%B1/%E7%95%AA%E8%8C%84%E9%B8%A1%E8%9B%8B%E9%9D%A2/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: [],
+      series: "[\"快速做饭\"]",
+      date: "\"2023-10-22\""
+    });
+  
+    searchIndex.push({
+      title: "\"PlantUML快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"uml\",\"plantuml\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-10-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"WSL安装与配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/wsl%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2023-09-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++网络编程入门概念及api总结\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/\"",
+      
+      categories: [],
+      tags: "[\"linux\",\"网络编程\"]",
+      series: "[\"面筋\",\"快速上手\"]",
+      date: "\"2023-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"苏州旅行计划\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/%E8%8B%8F%E5%B7%9E/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: "[\"旅行\"]",
+      series: [],
+      date: "\"2023-04-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"gdb快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"gdb\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2022-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Ubuntu22.04安装Hadoop完全分布式集群\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"hadoop\"]",
+      series: [],
+      date: "\"2022-11-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++连接mysql\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E8%BF%9E%E6%8E%A5mysql/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2022-11-20\""
+    });
+  
+    searchIndex.push({
+      title: "\"征服C指针笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/\"",
+      
+      categories: [],
+      tags: [],
+      series: [],
+      date: "\"2022-10-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Leetcode刷题指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"算法\"]",
+      tags: "[\"leetcode\"]",
+      series: "[\"leetcode刷题指南\"]",
+      date: "\"2022-09-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"word 页眉页脚设置\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/word%E9%A1%B5%E7%9C%89%E9%A1%B5%E8%84%9A%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: [],
+      series: [],
+      date: "\"2021-04-03\""
+    });
+  
+    searchIndex.push({
+      title: "\"Markdown Demo\"",
+      permalink: "\"/%E6%B5%8B%E8%AF%95/markdown-demo/\"",
+      
+      categories: [],
+      tags: "[\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"常用数学符号的latex表示\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84latex%E8%A1%A8%E7%A4%BA/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"latex\",\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+
+  showpages()
+
+  const options = {
+    includeScore: true,
+    threshold: 0.6,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'content', weight: 0.3 },
+      { name: 'tags', weight: 0.5 },
+      { name: 'categories', weight: 0.5 },
+      { name: 'series', weight: 0.5 }
+    ]
+  };
+
+  const fuse = new Fuse(searchIndex, options);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'k') {
+      event.preventDefault();
+      toggleSearchModal();
+    } else if (event.key === 'Escape') {
+      document.getElementById('modal-search-input').value = "";
+      closeSearchModal();
+      var res = document.getElementById('modal-search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      showpages();
+    }
+  });
+
+  function toggleSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+      document.getElementById('modal-search-input').focus();
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('modal-search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.trim();
+    const resultsContainer = document.getElementById('modal-search-results');
+    resultsContainer.innerHTML = '';
+
+    if (searchTerm === '') {
+      showpages()
+      return;
+    }
+
+    const results = fuse.search(searchTerm);
+
+    results.sort((a, b) => new Date(b.item.date) - new Date(a.item.date));
+
+    if (results.length === 0) {
+      showpages()
+      resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
+      return;
+    } else {
+      debug("共找到 " + results.length + " 篇匹配的文章")
+    }
+
+    results.forEach(result => {
+      const item = result.item;
+      const resultItem = document.createElement('div');
+      resultItem.className = 'modal-search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
+      date.className = 'modal-search-result-date';
+
+      const link = document.createElement('a');
+      link.href = item.permalink.replace(/^"|"$/g, '');
+      link.textContent = item.title.replace(/^"|"$/g, '');
+      link.className = 'modal-search-result-title';
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
+    });
+  });
+</script>
+
+<style>
+ 
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
+    border-radius: 6px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+}
+
+#modal-search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#modal-search-results {
+    margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.modal-search-result-date {
+    color: #666;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    text-wrap: nowrap;
+}
+
+.modal-search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.modal-search-result-title:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+  
+
+  
+  <hr />
+  © 
+<a href="https://kaikaixixi.xyz"  target="_blank" rel="noopener noreferrer" >SHUAIKAI</a>
+ 2021 &ndash; 2025 | 🎨
+<a href="https://github.com/captainwc/ksimple"  target="_blank" rel="noopener noreferrer" >KSimple</a>
+  
+
+</footer>
+</body>
+
+</html>

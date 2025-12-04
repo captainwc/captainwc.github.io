@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gdb on SHUAIKAI&#39;s Blog</title>
+    <link>https://kaikaixixi.xyz/tags/gdb/</link>
+    <description>Recent content in Gdb on SHUAIKAI&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 25 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://kaikaixixi.xyz/tags/gdb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gdb快速上手</title>
+      <link>https://kaikaixixi.xyz/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Fri, 25 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://kaikaixixi.xyz/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/</guid>
+      <description>&lt;h1 id=&#34;gdb&#34;&gt;gdb&lt;/h1&gt;&#xA;&lt;h2 id=&#34;命令&#34;&gt;命令&lt;/h2&gt;&#xA;&lt;h3 id=&#34;通用命令&#34;&gt;通用命令&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&amp;#x1f4d6;&#xA;&lt;a href=&#34;https://visualgdb.com/gdbreference/commands/&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;GDB Reference&lt;/a&gt;&#xA; &amp;#x1f517;&#xA;&lt;a href=&#34;https://www.iteye.com/blog/daimajishu-1089741&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;调试器 GDB 常用功能&lt;/a&gt;&#xA;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;x&lt;/code&gt; / [&lt;em&gt;Length&lt;/em&gt;] [&lt;em&gt;Format&lt;/em&gt;: t o d x f a c s] [&lt;em&gt;Address expression&lt;/em&gt; b-8 h-16 w-32 g-64 ] &amp;#x1f4ce;&#xA;&lt;a href=&#34;https://visualgdb.com/gdbreference/commands/x&#34;  target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34; &gt;GDB Command Reference : x&lt;/a&gt;&#xA;&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;p&lt;/code&gt; / t-2 o-8 d-10 x-16 f-loat a-ddress c-har s-tring [var]&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&amp;#x26a0;&amp;#xfe0f; 要注意区分，&lt;strong&gt;x&lt;/strong&gt; 是扫描&lt;strong&gt;内存&lt;/strong&gt;，因此后面跟的直接是内存地址， 而 &lt;strong&gt;p&lt;/strong&gt; 是输出&lt;strong&gt;变量&lt;/strong&gt;的值，因此后面想跟地址的话，需要取其内容，即加上&lt;code&gt;*&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;关于 &lt;code&gt;*&lt;/code&gt;，很多命令地址前面都要加星号，因为不加星号的一个地址，是被当成函数来看待的&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;s n&lt;/code&gt; ：C 语言级别的单步执行； &lt;code&gt;si ni&lt;/code&gt;汇编级别的单步执行&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;i [line] / [locals] / [vtbl] / [args] / [checkpoints] / [breakpoints] &lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

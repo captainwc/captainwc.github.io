@@ -1,0 +1,3935 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ) | SHUAIKAI&#39;s Blog</title>
+    <link rel="icon" href= /images/favicon.png />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <link rel="stylesheet" href="/css/custom.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">主页</a></li>
+      
+      <li><a href="/series/">专栏</a></li>
+      
+      <li><a href="/categories/">分类</a></li>
+      
+      <li><a href="/tags/">标签</a></li>
+      
+      <li><a href="/archives/">归档</a></li>
+      
+      <li><a href="/search/">搜索</a></li>
+      
+      <li><a href="/about/">关于</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+
+<div class="article-meta">
+    <h1><span class="article-meta-title">共享内存详解 | 
+<a href="https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ"  target="_blank" rel="noopener noreferrer" >转载</a></span></h1>
+
+    <div class="article-meta-info">
+        
+
+        
+        
+        
+        
+
+        
+        
+        
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+        🕺🏻 往事敬秋风 🗓️ 2025-05-04 🗂️ <a href="/categories/%E5%8D%9A%E5%AE%A2%E5%89%AA%E8%97%8F/">博客剪藏</a> 🏷️ <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">#网络编程</a>
+    </div>
+</div>
+
+<main>
+
+    
+
+<div class="left-sidebar-btn" id="leftSidebarBtn"><i class="fa-solid fa-list"></i></div>
+<div class="left-sidebar-panel" id="leftSidebarPanel">
+    
+        <div class="sidebar-content">
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🏷️ 标签</div>
+                <div class="tag-blocks">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B" class="tag-block">
+                        网络编程
+                    </a>
+                    
+                </div>
+            </div>
+            
+
+            
+            
+
+            
+            
+            
+            
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">🗂️ 分类文章</div>
+                
+                
+                <div class="category-group">
+                    <div class="category-name">博客剪藏</div>
+                    <ul class="article-list">
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/06/10/22%E7%A7%8Dc-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/" class="article-link">
+                                
+                                <span class="article-title">C++ 高并发服务器模型实现 | [转载](https://github.com/linkxzhou/mylib/blob/master/c%2B%2B/concurrency_server/README.md)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/05/04/epoll%E8%AF%A6%E8%A7%A3/" class="article-link">
+                                
+                                <span class="article-title">Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" class="article-link">
+                                
+                                <span class="article-title">Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/16/googletest%E4%B8%8Egmock%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/" class="article-link">
+                                
+                                <span class="article-title">GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/16/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/" class="article-link">
+                                
+                                <span class="article-title">GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/15/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" class="article-link">
+                                
+                                <span class="article-title">Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)</span>
+                            </a>
+                        </li>
+                        
+                        
+                        
+                        <li class="article-item">
+                            <a href="/%E8%BD%AC%E8%BD%BD/2025/04/15/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" class="article-link">
+                                
+                                <span class="article-title">万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)</span>
+                            </a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('leftSidebarBtn');
+            const panel = document.getElementById('leftSidebarPanel');
+            let hoverTimeout;
+
+            
+            btn.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                panel.classList.add('show');
+            });
+
+            panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+            [btn, panel].forEach(el => {
+                el.addEventListener('mouseleave', () => {
+                    hoverTimeout = setTimeout(() => {
+                        panel.classList.remove('show');
+                    }, 200);
+                });
+            });
+        });
+    </script>
+    
+
+    <style>
+        
+
+         
+        .left-sidebar-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 980;
+            cursor: pointer;
+            padding: 6px 10px;
+            background: #EFEFEF;
+            border-radius: 8px;
+            transition: background 0.3s;
+            color: #999;
+            opacity: 0.7;
+        }
+
+        .left-sidebar-btn:hover {
+            background: #BEC2B3;
+        }
+
+        .left-sidebar-panel {
+            border-radius: 8px;
+            display: none;
+            position: fixed;
+            top: 66px;
+            left: 20px;
+            max-width: 360px;
+            min-width: 280px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #eee;
+            padding: 10px 5px 10px 15px;
+            z-index: 970;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-sidebar-panel.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        
+
+        .sidebar-content {
+            padding: 15px 12px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.2rem;
+        }
+
+        .sidebar-section-title {
+            font-size: 1rem;
+            color: #2d3842;
+            margin: 0 0 0.6rem 0;
+            padding-bottom: 0.3rem;
+            font-family: "LXGW WenKai";
+            font-weight: bold;
+
+             
+            
+            border-bottom: 2px dashed #cfcfcf;
+            
+        }
+
+         
+        .tag-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tag-block {
+            display: inline-block;
+            background: #F6F6F6;
+            color: #666;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .tag-block:hover {
+            background: #2e59a7;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+         
+        .series-group,
+        .category-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .series-name,
+        .category-name {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0 0 0.4rem 0;
+            font-weight: bold;
+            font-family: "LXGW WenKai";
+        }
+
+         
+        .article-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .article-item {
+            margin-bottom: 0.3rem;
+        }
+
+        .article-link {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.4rem;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .article-link:hover {
+            background: #f8f9fa;
+            border-left-color: #2e59a7;
+            transform: translateX(3px);
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            color: #999;
+            font-family: "LXGW WenKai";
+            flex-shrink: 0;
+            width: 45px;
+            text-align: left;
+        }
+
+        .article-title {
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+         
+        
+
+        .left-sidebar-panel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .left-sidebar-panel {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        
+
+         
+        @media (max-width: 768px) {
+        
+        }
+    </style>
+
+    
+
+
+<div class="toc-btn" id="tocBtn"><i class="fa-solid fa-bars-staggered"></i></div>
+<div class="toc-panel" id="tocPanel"></div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        
+        const btn = document.getElementById('tocBtn');
+        const panel = document.getElementById('tocPanel');
+        let hoverTimeout;
+
+        
+        btn.addEventListener('mouseenter', () => {
+            clearTimeout(hoverTimeout);
+            generateToc(panel);
+            panel.classList.add('show');
+
+            
+            requestAnimationFrame(() => {
+                const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+                let activeHeader = null;
+                let minDistance = Infinity;
+
+                
+                headers.forEach(header => {
+                    const rect = header.getBoundingClientRect();
+                    const distance = Math.abs(rect.top);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeHeader = header;
+                    }
+                });
+
+                
+                if (activeHeader) {
+                    const activeLink = panel.querySelector(`a[href="#${activeHeader.id}"]`);
+                    if (activeLink) {
+                        
+                        const panelHeight = panel.offsetHeight;
+                        const linkOffset = activeLink.offsetTop;
+                        const centerPosition = linkOffset - (panelHeight / 2) + (activeLink.offsetHeight / 2);
+                        
+                        panel.scrollTo({
+                            top: centerPosition,
+                            behavior: 'auto'
+                        });
+                    }
+                }
+            });
+        });
+
+        panel.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+
+        [btn, panel].forEach(el => {
+            el.addEventListener('mouseleave', () => {
+                hoverTimeout = setTimeout(() => {
+                    panel.classList.remove('show');
+                }, 200);
+            });
+        });
+        
+
+        
+        function generateToc(container) {
+            if (container.children.length > 0) return;
+
+            const headers = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+            const counts = [0, 0, 0, 0, 0]; 
+
+            headers.forEach(header => {
+                const level = parseInt(header.tagName[1]) - 2;
+                if (level < 0) return;
+
+                counts[level]++;
+                for (let i = level + 1; i < counts.length; i++) counts[i] = 0;
+                const number = counts.slice(0, level + 1).join('.');
+
+                
+                const numberSpan = document.createElement('span');
+                numberSpan.className = 'toc-number';
+                numberSpan.textContent = number;
+
+                
+                const link = document.createElement('a');
+                link.href = `#${header.id}`;
+                link.style.paddingLeft = `${level * 12}px`;
+
+                
+                link.appendChild(numberSpan);
+                link.appendChild(document.createTextNode(header.textContent));
+
+                container.appendChild(link);
+            });
+        }
+    });
+</script>
+
+<style>
+    
+
+     
+    .toc-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 980;
+        cursor: pointer;
+        padding: 6px 10px;
+        background: #EFEFEF;
+        border-radius: 8px;
+        transition: background 0.3s;
+        color: #999;
+        opacity: 0.7;
+    }
+
+    .toc-btn:hover {
+        background: #BEC2B3;
+    }
+
+    .toc-panel {
+        border-radius: 8px;
+        display: none;
+        position: fixed;
+        top: 66px;
+        right: 20px;
+        max-width: 360px;
+        min-width: 200px;
+        max-height: 80vh;
+        overflow-y: auto;
+        background: white;
+        border: 1px solid #eee;
+        padding: 10px 5px 10px 15px;
+        z-index: 970;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        list-style: none;
+    }
+
+    .toc-panel.show {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+     
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    
+
+     
+    .toc-number {
+        vertical-align: middle;
+        margin-right: 6px;
+        font-family: "LXGW WenKai";
+        font-size: 0.85rem;
+    }
+
+     
+        
+
+    .toc-panel a {
+        
+            display: block;
+            padding: 4px 0;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        
+
+        .toc-panel a:hover {
+        
+
+                color: #007bff;
+            }
+
+        
+</style>
+
+
+    
+    
+    
+        <h1 id="解锁linux共享内存进程间通信的超高速通道">解锁Linux共享内存：进程间通信的超高速通道</h1>
+
+          <link rel="stylesheet" href="/css/vendors/admonitions.e8f9d71468684b38dcc32a3631441f47b6ee45ce52f3bcc31201e76cc2b0a193.css" integrity="sha256-6PnXFGhoSzjcwyo2MUQfR7buRc5S87zDEgHnbMKwoZM=" crossorigin="anonymous">
+  <div class="admonition warning">
+    <div class="admonition-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+      <span>声明</span>
+    </div>
+      <div class="admonition-content">
+        <ul>
+<li>本文由插件
+<a href="https://chromewebstore.google.com/detail/markdownload-markdown-web/pcmpcfapbekmbjjkdalcgopdkipoggdi?pli=1"  target="_blank" rel="noopener noreferrer" >Markdown Web Clipper</a>
+自动提取网页正文而来，并未获取原作者授权！</li>
+<li>本文仅作个人存档学习使用，如有任何疑问/需求请查看
+<a href="https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ"  target="_blank" rel="noopener noreferrer" >原文</a>
+！</li>
+<li>如有侵权，请联系本人立刻删除！</li>
+<li>原文链接: 
+<a href="https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ"  target="_blank" rel="noopener noreferrer" >解锁Linux共享内存：进程间通信的超高速通道</a>
+</li>
+</ul>
+      </div>
+  </div>
+<hr>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/0-20250504203550-ym726uh.jpg" alt="cover_image" />
+</div>
+</p>
+<p>在 Linux 系统的进程间通信 “江湖” 中，众多通信方式各显神通。管道，如同隐秘的地下通道，让有亲缘关系的进程能够悄然传递信息；消息队列则似邮局，进程可投递和接收格式化的消息包裹。然而，有一种通信方式却以其独特的 “高速” 特性脱颖而出，它就是共享内存。想象一下，进程们原本各自生活在独立的 “小天地” 里，有着自己专属的虚拟地址空间。但共享内存却如同神奇的 “任意门”，打破了进程间的隔阂，让多个进程能够直接访问同一块内存区域。这种独特的机制，使得数据在进程间的传递无需繁琐的复制过程，极大地提升了通信效率，堪称进程间通信的超高速通道。</p>
+<p>在使用共享内存时，需要注意对于并发访问的控制，如使用锁或其他同步机制来保证数据的一致性和安全性。此外，还需要谨慎处理资源管理问题，确保正确地释放共享内存以避免内存泄漏。接下来，就让我们一同深入探索 Linux 共享内存的奥秘，揭开它神秘的面纱，看看它是如何在 Linux 系统中发挥这一独特且强大的作用 。</p>
+<h2 id="一linux-内存管理初窥">一、Linux 内存管理初窥</h2>
+<h3 id="11-虚拟内存与物理内存">1.1 虚拟内存与物理内存</h3>
+<p>Linux 采用虚拟内存管理机制，为每个进程分配独立的虚拟地址空间。这意味着每个进程都可以认为自己拥有 4GB（32 位系统）或更大（64 位系统）的连续内存空间，而不必担心物理内存的实际大小和其他进程的干扰。虚拟内存与物理内存通过内存映射机制建立联系，进程访问的虚拟地址会被转换为实际的物理地址。</p>
+<p>举个例子，当你在 Linux 系统上同时运行多个程序时，每个程序都觉得自己独占了大量内存，但实际上物理内存是有限的。通过虚拟内存管理，操作系统可以巧妙地在物理内存和磁盘之间交换数据，使得系统能够运行比物理内存更大的程序集。就好比一个小型图书馆，虽然书架空间有限（物理内存），但通过一个庞大的仓库（磁盘）来存放暂时不用的书籍（数据），当读者需要某本书时，管理员（操作系统）会从仓库中取出并放到书架上供读者使用。</p>
+<h3 id="12-内存分页">1.2 内存分页</h3>
+<p>为了更高效地管理内存，Linux 采用内存分页机制。将虚拟内存和物理内存按照固定大小的页（通常为 4KB）进行划分，页是内存管理的最小单位。操作系统通过维护页表来记录虚拟页和物理页之间的映射关系，当进程访问某个虚拟地址时，CPU 会根据页表将其转换为对应的物理地址。</p>
+<p>想象一下，内存就像一本巨大的书籍，每一页都有固定的页码（虚拟页号和物理页号）。当你想要查找书中的某个内容（访问内存数据）时，通过目录（页表）可以快速定位到具体的页码，从而找到所需内容。</p>
+<h3 id="13-内存分配与回收">1.3 内存分配与回收</h3>
+<p>内存管理包括内存的分配和回收。当进程需要内存时，它会向操作系统请求分配内存，操作系统根据一定的算法从空闲内存中分配相应大小的内存块给进程；当进程不再需要某些内存时，它会将这些内存释放回操作系统，以便操作系统重新分配给其他需要的进程。</p>
+<p>例如，当你在 Linux 系统上运行一个新的程序时，程序会向操作系统申请内存来存放代码和数据。操作系统会从空闲内存池中找到合适大小的内存块分配给该程序。当程序运行结束后，它占用的内存会被操作系统回收，重新加入空闲内存池，等待下一个程序的请求。</p>
+<h2 id="二共享内存详解">二、共享内存详解</h2>
+<h3 id="21-共享内存是什么">2.1 共享内存是什么</h3>
+<p>共享内存是一种高效的进程间通信（IPC，Inter - Process Communication）机制，它允许两个或多个进程直接访问同一块物理内存区域。简单来说，就好比多个房间（进程）都有一扇门可以直接通向同一个储物间（共享内存），大家可以直接在这个储物间里存放和取用物品（数据） 。</p>
+<p>在 Linux 系统中，共享内存的实现依赖于操作系统的支持。当一个进程创建共享内存时，操作系统会在物理内存中分配一块区域，并为这块区域生成一个唯一的标识符。其他进程可以通过这个标识符将该共享内存映射到自己的虚拟地址空间中，从而实现对共享内存的访问。</p>
+<h3 id="22-为什么要用共享内存">2.2 为什么要用共享内存</h3>
+<p>在进程间通信的众多方式中，共享内存之所以备受青睐，是因为它具有其他方式难以比拟的优势。</p>
+<p>首先，与管道和消息队列等通信方式相比，共享内存的速度极快。管道和消息队列在数据传输时，需要进行多次数据拷贝，数据要在内核空间和用户空间之间来回传递，这会消耗大量的时间和系统资源。而共享内存则不同，多个进程直接访问同一块内存区域，数据不需要在不同进程的地址空间之间拷贝，大大减少了数据传输的开销，提高了通信效率。例如，在一个实时数据处理系统中，多个进程需要频繁地交换大量数据，如果使用管道或消息队列，可能会因为数据传输的延迟而影响系统的实时性；而使用共享内存，就可以快速地传递数据，满足系统对实时性的要求。</p>
+<p>其次，共享内存的使用非常灵活。它可以用于任何类型的进程间通信，无论是有亲缘关系的进程（如父子进程）还是毫无关系的进程，都可以通过共享内存进行数据共享和交互。而且，共享内存区域可以存储各种类型的数据结构，开发者可以根据实际需求自定义数据格式，这为复杂应用场景的实现提供了便利。比如，在一个多进程协作的图形处理程序中，不同进程可以通过共享内存共享图像数据和处理参数，各自完成不同的处理任务，如一个进程负责图像的滤波处理，另一个进程负责图像的边缘检测，共享内存使得它们能够高效地协同工作。</p>
+<p>此外，共享内存还能有效地节省内存资源。多个进程共享同一块内存区域，而不是每个进程都单独开辟一块内存来存储相同的数据，这在内存资源有限的情况下显得尤为重要。例如，在一个服务器系统中，可能同时有多个进程需要访问一些公共的配置信息或缓存数据，使用共享内存可以避免这些数据在每个进程中重复存储，从而提高内存的利用率。</p>
+<h3 id="23-共享内存原理">2.3 共享内存原理</h3>
+<p>共享内存是 System V 版本的最后一个进程间通信方式。共享内存，顾名思义就是允许两个不相关的进程访问同一个逻辑内存，共享内存是两个正在运行的进程之间共享和传递数据的一种非常有效的方式。不同进程之间共享的内存通常为同一段物理内存。进程可以将同一段物理内存连接到他们自己的地址空间中，所有的进程都可以访问共享内存中的地址。如果某个进程向共享内存写入数据，所做的改动将立即影响到可以访问同一段共享内存的任何其他进程。</p>
+<blockquote>
+<p>特别提醒：共享内存并未提供同步机制，也就是说，在第一个进程结束对共享内存的写操作之前，并无自动机制可以阻止第二个进程开始对它进行读取，所以我们通常需要用其他的机制来同步对共享内存的访问，例如信号量。</p></blockquote>
+<p>在 Linux 中，每个进程都有属于自己的进程控制块（PCB）和地址空间（Addr Space），并且都有一个与之对应的页表，负责将进程的虚拟地址与物理地址进行映射，通过内存管理单元（MMU）进行管理。两个不同的虚拟地址通过页表映射到物理空间的同一区域，它们所指向的这块区域即共享内存。</p>
+<p><strong>共享内存的通信原理示意图：</strong></p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/640-20250504203550-3ch2awo.jpg" alt="图片" />
+</div>
+</p>
+<p>对于上图我的理解是：当两个进程通过页表将虚拟地址映射到物理地址时，在物理地址中有一块共同的内存区，即共享内存，这块内存可以被两个进程同时看到。这样当一个进程进行写操作，另一个进程读操作就可以实现进程间通信。但是，我们要确保一个进程在写的时候不能被读，因此我们使用信号量来实现同步与互斥。</p>
+<p>对于一个共享内存，实现采用的是引用计数的原理，当进程脱离共享存储区后，计数器减一，挂架成功时，计数器加一，只有当计数器变为零时，才能被删除。当进程终止时，它所附加的共享存储区都会自动脱离。</p>
+<p><strong>为什么共享内存速度最快？</strong></p>
+<p>借助上图说明：Proc A 进程给内存中写数据， Proc B 进程从内存中读取数据，在此期间一共发生了两次复制</p>
+<pre><code>（1）Proc A 到共享内存       
+（2）共享内存到 Proc B
+</code></pre>
+<p>因为直接在内存上操作，所以共享内存的速度也就提高了。</p>
+<h2 id="三共享内存使用指南">三、共享内存使用指南</h2>
+<h3 id="31-关键函数全解析">3.1 关键函数全解析</h3>
+<p>在 Linux 中使用共享内存，离不开一些关键的系统调用函数，它们是我们操作共享内存的有力工具。</p>
+<p><strong>(1)shmget 函数</strong>
+：用于创建共享内存段或获取已存在的共享内存段的标识符。其函数原型为：</p>
+<pre><code>#include &lt;sys/ipc.h&gt;
+#include &lt;sys/shm.h&gt;
+int shmget(key_t key, size_t size, int shmflg);
+</code></pre>
+<p>key：是一个用于标识共享内存段的键值，它就像是共享内存的 “门牌号”。通常可以使用 ftok 函数根据文件路径和项目 ID 生成一个唯一的 key 值。例如：</p>
+<pre><code>key_t key = ftok(&quot;/tmp/somefile&quot;, 1);
+</code></pre>
+<p>这里/tmp/somefile 是一个已存在的文件路径，1 是项目 ID。如果 key 取值为 IPC_PRIVATE，则会创建一个新的私有共享内存段，通常用于父子进程间的通信。</p>
+<p>size：指定共享内存段的大小，单位是字节。例如，若要创建一个 1024 字节大小的共享内存段，可以这样设置：</p>
+<pre><code>int shmid = shmget(key, 1024, IPC_CREAT | 0666);
+</code></pre>
+<ul>
+<li>shmflg：是一组标志位，常用的标志包括 IPC_CREAT（如果共享内存不存在则创建）和 IPC_EXCL（与 IPC_CREAT 一起使用，确保创建新的共享内存段，若已存在则报错）。权限设置与文件权限类似，如 0666 表示所有者、组和其他用户都有读写权限 。如果 shmget 函数执行成功，会返回一个非负整数，即共享内存段的标识符 shmid；若失败，则返回 -1。</li>
+</ul>
+<p><strong>(2)shmat 函数</strong>
+：将共享内存段连接到调用进程的地址空间，使得进程可以访问共享内存中的数据。</p>
+<p>其函数原型为：</p>
+<pre><code>void *shmat(int shmid, const void *shmaddr, int shmflg);
+</code></pre>
+<ul>
+<li>shmid：是由 shmget 函数返回的共享内存标识符。</li>
+<li>shmaddr：指定共享内存连接到当前进程中的地址位置，通常设置为 NULL，表示让系统自动选择合适的地址。例如：</li>
+</ul>
+<pre><code>void *shared_mem = shmat(shmid, NULL, 0);
+</code></pre>
+<p>shmflg：通常为 0，表示默认的连接方式。如果设置了 SHM_RDONLY，则以只读方式连接共享内存。如果 shmat 函数调用成功，会返回一个指向共享内存起始地址的指针；若失败，返回(void *)-1。</p>
+<p><strong>(3)shmdt 函数</strong>
+：用于将共享内存段从当前进程的地址空间中分离。函数原型为：</p>
+<pre><code>int shmdt(const void *shmaddr);
+</code></pre>
+<p>shmaddr：是 shmat 函数返回的共享内存起始地址。调用该函数后，进程不再能够访问该共享内存，但共享内存本身并不会被删除。例如：</p>
+<pre><code>int result = shmdt(shared_mem);
+if (result == -1) {
+    perror(&quot;shmdt failed&quot;);
+}
+</code></pre>
+<p>如果分离成功，shmdt 返回 0；若失败，返回 -1。</p>
+<p><strong>(4)shmctl 函数</strong>
+：用于对共享内存进行控制操作，如获取共享内存信息、设置权限、删除共享内存等。函数原型为：</p>
+<pre><code>int shmctl(int shmid, int cmd, struct shmid_ds *buf);
+</code></pre>
+<ul>
+<li>shmid：共享内存标识符。</li>
+<li>cmd：指定要执行的控制命令，常用的命令有 IPC_STAT（获取共享内存的状态信息，存入 buf 指向的结构体）、IPC_SET（设置共享内存的状态信息，如权限等，从 buf 指向的结构体中获取设置值）和 IPC_RMID（删除共享内存段）。</li>
+<li>buf：是一个指向 shmid_ds 结构体的指针，用于传递或获取共享内存的相关信息。当 cmd 为 IPC_RMID 时，buf 通常设置为 NULL。例如，删除共享内存段的操作如下：</li>
+</ul>
+<pre><code>int result = shmctl(shmid, IPC_RMID, NULL);
+if (result == -1) {
+    perror(&quot;shmctl IPC_RMID failed&quot;);
+}
+</code></pre>
+<p>如果操作成功，shmctl 返回 0；若失败，返回 -1。</p>
+<h3 id="32-代码实战共享内存的读写操作">3.2 代码实战：共享内存的读写操作</h3>
+<p>下面通过一个完整的代码示例，展示如何在两个进程间使用共享内存进行数据读写。假设我们要在一个进程中写入数据，另一个进程读取这些数据。</p>
+<p>首先，定义一个数据结构，用于在共享内存中存储数据。这里我们定义一个简单的结构体，包含一个整数和一个字符数组：</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;unistd.h&gt;
+
+#define SHM_SIZE 1024
+
+// 定义共享内存中使用的数据结构
+typedef struct {
+    int num;
+    char text[100];
+} SharedData;
+
+int main() {
+    int shmid;
+    key_t key;
+    SharedData *shared_data;
+
+    // 生成唯一的key值
+    key = ftok(&quot;.&quot;, 'a');
+    if (key == -1) {
+        perror(&quot;ftok&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    // 创建共享内存段
+    shmid = shmget(key, sizeof(SharedData), IPC_CREAT | 0666);
+    if (shmid == -1) {
+        perror(&quot;shmget&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    // 将共享内存连接到当前进程的地址空间
+    shared_data = (SharedData *)shmat(shmid, NULL, 0);
+    if (shared_data == (SharedData *)-1) {
+        perror(&quot;shmat&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    // 写入数据到共享内存
+    shared_data-&gt;num = 42;
+    strcpy(shared_data-&gt;text, &quot;Hello, shared memory!&quot;);
+
+    printf(&quot;Data written to shared memory: num = %d, text = %s\n&quot;, shared_data-&gt;num, shared_data-&gt;text);
+
+    // 分离共享内存
+    if (shmdt(shared_data) == -1) {
+        perror(&quot;shmdt&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    return 0;
+}
+</code></pre>
+<p>上述代码中，首先使用 ftok 函数生成一个 key 值，然后通过 shmget 创建一个共享内存段，其大小为 SharedData 结构体的大小。接着使用 shmat 将共享内存连接到当前进程地址空间，向共享内存中写入数据，最后使用 shmdt 分离共享内存。</p>
+<p><strong>下面是读取共享内存数据的代码：</strong></p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;sys/ipc.h&gt;
+#include &lt;sys/shm.h&gt;
+#include &lt;unistd.h&gt;
+
+#define SHM_SIZE 1024
+
+// 定义共享内存中使用的数据结构
+typedef struct {
+    int num;
+    char text[100];
+} SharedData;
+
+int main() {
+    int shmid;
+    key_t key;
+    SharedData *shared_data;
+
+    // 生成唯一的key值，必须与写入进程一致
+    key = ftok(&quot;.&quot;, 'a');
+    if (key == -1) {
+        perror(&quot;ftok&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    // 获取已存在的共享内存段
+    shmid = shmget(key, sizeof(SharedData), 0666);
+    if (shmid == -1) {
+        perror(&quot;shmget&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    // 将共享内存连接到当前进程的地址空间
+    shared_data = (SharedData *)shmat(shmid, NULL, 0);
+    if (shared_data == (SharedData *)-1) {
+        perror(&quot;shmat&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    // 从共享内存读取数据
+    printf(&quot;Data read from shared memory: num = %d, text = %s\n&quot;, shared_data-&gt;num, shared_data-&gt;text);
+
+    // 分离共享内存
+    if (shmdt(shared_data) == -1) {
+        perror(&quot;shmdt&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    // 删除共享内存段（这里仅演示，实际应用中需谨慎操作）
+    if (shmctl(shmid, IPC_RMID, NULL) == -1) {
+        perror(&quot;shmctl IPC_RMID&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    return 0;
+}
+</code></pre>
+<p>在读取代码中，同样先使用 ftok 生成与写入进程相同的 key 值，然后通过 shmget 获取共享内存段（注意这里没有使用 IPC_CREAT 标志，因为共享内存已经由写入进程创建），接着连接共享内存并读取数据，最后分离共享内存并删除共享内存段（在实际应用中，删除共享内存段的操作需要谨慎考虑，确保没有其他进程再使用该共享内存）。</p>
+<h3 id="33-模拟共享内存">3.3 模拟共享内存</h3>
+<p>我们用 server 来创建共享存储段，用 client 获取共享存储段的标识符，二者关联起来之后 server 将数据写入共享存储段，client 从共享区读取数据。通信结束之后 server 与 client 断开与共享区的关联，并由 server 释放共享存储段。</p>
+<p><strong>comm.h</strong></p>
+<pre><code>//comm.h
+#ifndef _COMM_H__
+#define _COMM_H__
+
+#include&lt;stdio.h&gt;
+#include&lt;sys/types.h&gt;
+#include&lt;sys/ipc.h&gt;
+#include&lt;sys/shm.h&gt;
+
+#define PATHNAME &quot;.&quot;
+#define PROJ_ID 0x6666
+
+int CreateShm(int size);
+int DestroyShm(int shmid);
+int GetShm(int size);
+#endif
+</code></pre>
+<p><strong>comm.c</strong></p>
+<pre><code>//comm.c
+#include&quot;comm.h&quot;
+
+static int CommShm(int size,int flags)
+{
+	key_t key = ftok(PATHNAME,PROJ_ID);
+	if(key &lt; 0)
+	{
+		perror(&quot;ftok&quot;);
+		return -1;
+	}
+	int shmid = 0;
+	if((shmid = shmget(key,size,flags)) &lt; 0)
+	{
+		perror(&quot;shmget&quot;);
+		return -2;
+	}
+	return shmid;
+}
+int DestroyShm(int shmid)
+{
+	if(shmctl(shmid,IPC_RMID,NULL) &lt; 0)
+	{
+		perror(&quot;shmctl&quot;);
+		return -1;
+	}
+	return 0;
+}
+int CreateShm(int size)
+{
+	return CommShm(size,IPC_CREAT | IPC_EXCL | 0666);
+}
+int GetShm(int size)
+{
+	return CommShm(size,IPC_CREAT);
+}
+</code></pre>
+<p><strong>client.c</strong></p>
+<pre><code>//client.c
+#include&quot;comm.h&quot;
+
+int main()
+{
+	int shmid = GetShm(4096);
+	sleep(1);
+	char *addr = shmat(shmid,NULL,0);
+	sleep(2);
+	int i = 0;
+	while(i &lt; 26)
+	{
+		addr[i] = 'A' + i;
+		i++;
+		addr[i] = 0;
+		sleep(1);
+	}
+	shmdt(addr);
+	sleep(2);
+	return 0;
+}
+</code></pre>
+<p><strong>server.c</strong></p>
+<pre><code>//server.c
+#include&quot;comm.h&quot;
+
+int main()
+{
+	int shmid = CreateShm(4096);
+
+	char *addr = shmat(shmid,NULL,0);
+	sleep(2);
+	int i = 0;
+	while(i++ &lt; 26)
+	{
+		printf(&quot;client# %s\n&quot;,addr);
+		sleep(1);
+	}
+	shmdt(addr);
+	sleep(2);
+	DestroyShm(shmid);
+	return 0;
+}
+</code></pre>
+<p><strong>Makefile</strong></p>
+<pre><code>//Makefile
+.PHONY:all
+all:server client
+
+client:client.c comm.c
+	gcc -o $@ $^
+server:server.c comm.c
+	gcc -o $@ $^
+
+.PHONY:clean
+clean:
+rm -f client server
+</code></pre>
+<p>运行结果：</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/640-20250504203550-fnw23bd.jpg" alt="图片" />
+</div>
+</p>
+<ul>
+<li>优点：我们可以看到使用共享内存进行进程之间的通信是非常方便的，而且函数的接口也比较简单，数据的共享还使进程间的数据不用传送，而是直接访问内存，加快了程序的效率。</li>
+<li>缺点：共享内存没有提供同步机制，这使得我们在使用共享内存进行进程之间的通信时，往往需要借助其他手段来保证进程之间的同步工作。</li>
+</ul>
+<h3 id="34-权限与生命周期管理">3.4 权限与生命周期管理</h3>
+<p>权限设置：在创建共享内存时，可以通过 shmget 函数的 shmflg 参数设置共享内存的访问权限。权限设置与文件权限类似，使用三位八进制数表示，分别对应所有者、组和其他用户的读、写、执行权限。例如，0666 表示所有者、组和其他用户都有读写权限；0644 表示所有者有读写权限，组和其他用户只有读权限。合理的权限设置可以保证共享内存的安全性，防止未经授权的进程访问或修改共享内存中的数据。比如，在一个多用户的服务器环境中，如果有一些共享内存用于存储敏感数据，就需要严格设置权限，只允许特定的用户或用户组访问。</p>
+<p>生命周期管理：共享内存的生命周期独立于使用它的进程。当最后一个使用共享内存的进程将其分离（调用 shmdt）后，共享内存仍然存在于系统中，直到被显式删除（调用 shmctl 并传入 IPC_RMID 命令）或系统重启。这就需要开发者在使用共享内存时，谨慎管理其生命周期。在程序结束时，应该确保及时删除不再使用的共享内存，以避免内存泄漏和资源浪费。</p>
+<p>比如，在一个长期运行的服务器程序中，如果不断创建共享内存而不删除，随着时间的推移，系统中会残留大量无用的共享内存，占用系统资源，影响系统性能。同时，在删除共享内存之前，要确保所有使用该共享内存的进程都已经将其分离，否则可能会导致其他进程访问非法内存地址，引发程序崩溃等问题。</p>
+<h2 id="四深入共享内存的实现原理">四、深入共享内存的实现原理</h2>
+<h3 id="41-内核视角共享内存的数据结构">4.1 内核视角：共享内存的数据结构</h3>
+<p>在 Linux 内核中，有几个关键的数据结构用于管理共享内存，其中 struct shmid_kernel 和 struct shmid_ds 起着重要作用。</p>
+<p>struct shmid_kernel 是内核中用于表示共享内存对象的内部数据结构，它包含了共享内存的各种属性和状态信息。虽然这个结构体对于普通开发者来说并不直接可见，但了解它有助于深入理解共享内存的工作机制。它记录了共享内存段的大小、所属的进程组、创建时间、最后访问时间等重要信息。例如，通过这个结构体，内核可以跟踪共享内存的使用情况，判断哪些进程正在使用它，以及何时需要回收共享内存资源。</p>
+<p>而 struct shmid_ds 则是一个更常用的数据结构，开发者可以通过 shmctl 函数来访问和修改这个结构体中的信息。它的定义如下：</p>
+<pre><code>struct shmid_ds {
+    struct ipc_perm shm_perm;    /* 所有权和权限相关信息 */
+    size_t          shm_segsz;   /* 共享内存段的大小（字节） */
+    time_t          shm_atime;   /* 最后一次连接到共享内存的时间 */
+    time_t          shm_dtime;   /* 最后一次从共享内存分离的时间 */
+    time_t          shm_ctime;   /* 共享内存状态最后一次改变的时间 */
+    pid_t           shm_cpid;    /* 创建共享内存的进程ID */
+    pid_t           shm_lpid;    /* 最后一次执行shmat或shmdt操作的进程ID */
+    shmatt_t        shm_nattch;  /* 当前连接到共享内存的进程数 */
+    ...
+};
+</code></pre>
+<ul>
+<li>shm_perm：包含了共享内存的所有权和权限信息，如所有者 ID、组 ID、访问权限等，类似于文件的权限管理。例如，通过设置 shm_perm 中的权限位，可以控制哪些进程可以访问共享内存，以及以何种方式（读、写等）访问。</li>
+<li>shm_segsz：明确了共享内存段的大小，以字节为单位。在创建共享内存时，开发者需要根据实际需求指定合适的大小。比如，在一个简单的进程间通信场景中，如果只是传递少量的状态信息，可能只需要分配几十或几百字节的共享内存；而在一个需要共享大量数据的场景中，如共享视频帧数据，可能需要分配几兆甚至更大的共享内存空间。</li>
+<li>shm_atime、shm_dtime 和 shm_ctime：分别记录了共享内存的连接时间、分离时间和状态改变时间。这些时间戳对于调试和性能分析非常有帮助，例如，通过查看 shm_atime 和 shm_dtime，可以了解进程对共享内存的使用时间间隔，判断是否存在长时间占用共享内存而不释放的情况；shm_ctime 则可以帮助开发者追踪共享内存的状态变化历史。</li>
+<li>shm_cpid 和 shm_lpid：记录了创建共享内存的进程 ID 和最后一次执行 shmat 或 shmdt 操作的进程 ID。这对于调试和管理共享内存的使用非常有用，当出现共享内存相关的问题时，可以通过这些 ID 来追溯问题的源头，查看是哪个进程创建了共享内存，以及最近哪些进程对共享内存进行了连接或分离操作。</li>
+<li>shm_nattch：表示当前连接到共享内存的进程数。内核通过这个字段来管理共享内存的生命周期，当 shm_nattch 变为 0 时，并且没有其他进程持有对该共享内存的引用，内核可以考虑回收该共享内存资源。例如，在一个多进程协作的服务器程序中，当所有使用共享内存的进程都完成任务并与共享内存分离后，shm_nattch 变为 0，此时内核可以及时释放共享内存，避免内存资源的浪费。</li>
+</ul>
+<h3 id="42-映射机制虚拟内存与物理内存的桥梁">4.2 映射机制：虚拟内存与物理内存的桥梁</h3>
+<p>共享内存能够实现高效的进程间通信，关键在于其巧妙的内存映射机制，通过页表将虚拟内存映射到物理内存。</p>
+<p>在 Linux 系统中，每个进程都有自己独立的虚拟地址空间。当进程创建或连接到共享内存时，操作系统会在进程的虚拟地址空间中分配一段虚拟地址范围，并将这段虚拟地址与共享内存所在的物理内存区域建立映射关系。这个映射关系是通过页表来维护的。</p>
+<p>页表是一种数据结构，它记录了虚拟页号（VPN，Virtual Page Number）与物理页号（PPN，Physical Page Number）之间的对应关系。当进程访问共享内存中的数据时，CPU 首先会根据当前进程的页表，将虚拟地址中的虚拟页号转换为物理页号，然后再加上页内偏移量，得到实际的物理内存地址，从而访问到共享内存中的数据。</p>
+<p>例如，假设进程 A 和进程 B 共享一块大小为 4KB 的共享内存。当进程 A 创建共享内存时，操作系统会在物理内存中分配一块 4KB 大小的内存区域，并为这块区域分配一个物理页号。然后，操作系统在进程 A 的页表中创建一个页表项，将虚拟页号与该物理页号关联起来，使得进程 A 可以通过虚拟地址访问这块共享内存。当进程 B 连接到该共享内存时，操作系统同样在进程 B 的页表中创建一个页表项，将其虚拟地址空间中的一段虚拟页号也映射到相同的物理页号上。这样，进程 A 和进程 B 就可以通过各自的虚拟地址访问同一块物理内存区域，实现数据共享。</p>
+<p>在这个过程中，如果所需的共享内存数据不在物理内存中（例如，由于内存不足，共享内存的部分数据被交换到磁盘上），会发生页面错误（page fault）。此时，操作系统会负责将所需的数据从磁盘读入物理内存，并更新页表，确保进程能够正确访问共享内存。这种动态的内存管理机制使得共享内存能够在有限的物理内存条件下高效运行，同时也保证了进程间通信的稳定性和可靠性。</p>
+<p>Linux 提供了内存映射函数 mmap, 它把文件内容映射到一段内存上(准确说是虚拟内存上，运行着进程), 通过对这段内存的读取和修改, 实现对文件的读取和修改。mmap()系统调用使得进程之间可以通过映射一个普通的文件实现共享内存。普通文件映射到进程地址空间后，进程可以像访问内存的方式对文件进行访问，不需要其他内核态的系统调用(read,write)去操作。</p>
+<p>这里是讲设备或者硬盘存储的一块空间映射到物理内存，然后操作这块物理内存就是在操作实际的硬盘空间，不需要经过内核态传递。比如你的硬盘上有一个文件，你可以使用 linux 系统提供的 mmap 接口，将这个文件映射到进程一块虚拟地址空间，这块空间会对应一块物理内存，当你读写这块物理空间的时候，就是在读取实际的磁盘文件，就是这么直接高效。通常诸如共享库的加载都是通过内存映射的方式加载到物理内存的。</p>
+<p>mmap 系统调用并不完全是为了共享内存来设计的，它本身提供了不同于一般对普通文件的访问的方式，进程可以像读写内存一样对普通文件进行操作，IPC 的共享内存是纯粹为了共享。</p>
+<p>内存映射指的是将 ：进程中的 1 个虚拟内存区域 &amp; 1 个磁盘上的对象，使得二者存在映射关系。当然，也可以多个进程同时映射到一个对象上面。</p>
+<p><strong>实现过程</strong></p>
+<ul>
+<li>内存映射的实现过程主要是通过 Linux 系统下的系统调用函数：mmap（）</li>
+<li>该函数的作用 = 创建虚拟内存区域 + 与共享对象建立映射关系</li>
+</ul>
+<p><strong>其函数原型、具体使用</strong>  <strong>&amp;</strong>  <strong>内部流程 如下：</strong></p>
+<pre><code>/** * 函数原型 */ 
+void *mmap(void *start, size_t length, int prot, int flags, int fd, off_t offset);
+ /** 
+* 具体使用（用户进程调用mmap（）） 
+* 下述代码即常见了一片大小 = MAP_SIZE的接收缓存区 &amp; 关联到共享对象中（即建立映射） 
+*/ 
+
+mmap(NULL, MAP_SIZE, PROT_READ, MAP_PRIVATE, fd, 0); 
+/** 
+* 内部原理 
+* 步骤1：创建虚拟内存区域 
+* 步骤2：实现地址映射关系，即：进程的虚拟地址空间 -&gt;&gt; 共享对象 
+* 注：
+* a. 此时，该虚拟地址并没有任何数据关联到文件中，仅仅只是建立映射关系 
+* b. 当其中1个进程对虚拟内存写入数据时，则真正实现了数据的可见 
+*/
+</code></pre>
+<p><strong>优点</strong></p>
+<p>进程在读写磁盘的时候，大概的流程是：</p>
+<p>以 write 为例：进程（用户空间） -&gt; 系统调用，进入内核 -&gt; 将要写入的数据从用户空间拷贝到内核空间的缓存区 -&gt; 调用磁盘驱动 -&gt; 写在磁盘上面。</p>
+<p>使用 mmap 之后进程（用户空间）&ndash;&gt; 读写映射的内存 &ndash;&gt; 写在磁盘上面。
+<strong>（这样的优点是 避免了频繁的进入内核空间，进行系统调用，提高了效率）</strong></p>
+<p><strong>(1)mmap 系统调用</strong></p>
+<pre><code>void *mmap(void *addr, size_t length, int prot, int flags,
+                  int fd, off_t offset);
+</code></pre>
+<p>这就是 mmap 系统调用的接口，mmap 函数成功返回指向内存区域的指针，失败返回 MAP_FAILED。</p>
+<ul>
+<li>addr，某个特定的地址作为起始地址，当被设置为 NULL，标识系统自动分配地址。实实在在的物理区域。</li>
+<li>length 说的是内存段的长度。</li>
+<li>prot 是用来设定内存段的访问权限。</li>
+</ul>
+<pre><code>PROT_READ	内存段可读
+PROT_WRITE	内存段可写
+PROT_EXEC	内存段可执行
+PROT_NONE	内存段不能被访问
+</code></pre>
+<p>flags 参数控制内存段内容被修改以后程序的行为。</p>
+<pre><code>MAP_SHARED	进程间共享内存，对该内存段修改反映到映射文件中。提供了POSIX共享内存
+MAP_PRIVATE	内存段为调用进程所私有。对该内存段的修改不会反映到映射文件
+MAP_ANNOYMOUS	这段内存不是从文件映射而来的。内容被初始化为全0
+MAP_FIXED	内存段必须位于start参数指定的地址处，start必须是页大小的整数倍（4K整数倍）
+MAP_HUGETLB	按照大内存页面来分配内存空间
+</code></pre>
+<p>fd 参数是用来被映射文件对应的文件描述符，通过 open 系统调用得到，offset 设定从何处进行映射。</p>
+<p><strong>(2)mmap 用于共享内存的方式</strong></p>
+<ol>
+<li>我们可以使用普通文件进行提供内存映射，例如，open 系统调用打开一个文件，然后进行 mmap 操作，得到共享内存，这种方式适用于任何进程之间。</li>
+<li>可以使用特殊文件进行匿名内存映射，这个相对的是具有血缘关系的进程之间，当父进程调用 mmap，然后进行 fork，这样父进程创建的子进程会继承父进程匿名映射后的地址空间，这样，父子进程之间就可以进行通信了。相当于是 mmap 的返回地址此时是父子进程同时来维护。</li>
+<li>另外 POSIX 版本的共享内存底层也是使用了 mmap。所以，共享内存在在 posix 上一定程度上就是指的内存映射了。</li>
+</ol>
+<h2 id="五mmap-和-system-v-共享内存的比较">五、Mmap 和 System V 共享内存的比较</h2>
+<p>共享内存：</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/640-20250504203550-fg40c25.jpg" alt="图片" />
+</div>
+</p>
+<p>这是 System V 版本的共享内存（以下我们统称为 shm），下面看下 mmap 的：</p>
+<p>
+<div class="img-no-link">
+  <img class="common-markdown-diagram" src="https://shuaikai-bucket0001.oss-cn-shanghai.aliyuncs.com/blog_img/640-20250504203550-zdso7to.jpg" alt="图片" />
+</div>
+</p>
+<p>mmap 是在磁盘上建立一个文件，每个进程地址空间中开辟出一块空间进行映射。而 shm 共享内存，每个进程最终会映射到同一块物理内存。shm 保存在物理内存，这样读写的速度肯定要比磁盘要快，但是存储量不是特别大，相对于 shm 来说，mmap 更加简单，调用更加方便，所以这也是大家都喜欢用的原因。</p>
+<p>另外 mmap 有一个好处是当机器重启，因为 mmap 把文件保存在磁盘上，这个文件还保存了操作系统同步的映像，所以 mmap 不会丢失，但是 shmget 在内存里面就会丢失，总之，共享内存是在内存中创建空间，每个进程映射到此处。内存映射是创建一个文件，并且映射到每个进程开辟的空间中，但在 posix 中的共享内存就是指这种使用文件的方式“内存映射”。</p>
+<h2 id="六posix-共享内存">六、POSIX 共享内存</h2>
+<h3 id="61-ipc-机制">6.1 IPC 机制</h3>
+<p>共享内存是最快的可用 IPC 形式。它允许多个不相关(无亲缘关系)的进程去访问同一部分逻辑内存。</p>
+<p>如果需要在两个进程之间传输数据，共享内存将是一种效率极高的解决方案。一旦这样的内存区映射到共享它的进程的地址空间，这些进程间数据的传输就不再涉及内核。这样就可以减少系统调用时间，提高程序效率。</p>
+<p>共享内存是由 IPC 为一个进程创建的一个特殊的地址范围，它将出现在进程的地址空间中。其他进程可以把同一段共享内存段“连接到”它们自己的地址空间里去。所有进程都可以访问共享内存中的地址。如果一个进程向这段共享内存写了数据，所做的改动会立刻被有访问同一段共享内存的其他进程看到。</p>
+<p>要注意的是共享内存本身没有提供任何同步功能。也就是说，在第一个进程结束对共享内存的写操作之前，并没有什么自动功能能够预防第二个进程开始对它进行读操作。共享内存的访问同步问题必须由程序员负责。可选的同步方式有互斥锁、条件变量、读写锁、纪录锁、信号灯。</p>
+<p>实际上，进程之间在共享内存时，并不总是读写少量数据后就解除映射，有新的通信时，再重新建立共享内存区域。而是保持共享区域，直到通信完毕为止。</p>
+<h3 id="62-posix-共享内存-api">6.2 POSIX 共享内存 API</h3>
+<p>使用 POSIX 共享内存需要用到下面这些 API：</p>
+<pre><code>#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;        /* For mode constants */
+#include &lt;sys/mman.h&gt;
+#include &lt;fcntl.h&gt;           /* For O_* constants */
+#include &lt;unistd.h&gt;
+int shm_open(const char *name, int oflag, mode_t mode);
+int shm_unlink(const char *name);
+int ftruncate(int fildes, off_t length);
+void *mmap(void *addr, size_t len, int prot, int flags, int fildes, off_t off);
+int munmap(void *addr, size_t len);
+int close(int fildes);
+int fstat(int fildes, struct stat *buf);
+int fchown(int fildes, uid_t owner, gid_t group);
+int fchmod(int fildes, mode_t mode);
+</code></pre>
+<ul>
+<li>shm_open：穿件并打开一个新的共享内存对象或者打开一个既存的共享内存对象, 与函数 open 的用法是类似的函数返回值是一个文件描述符,会被下面的 API 使用。</li>
+<li>ftruncate：设置共享内存对象的大小,新创建的共享内存对象大小为 0。</li>
+<li>mmap：将共享内存对象映射到调用进程的虚拟地址空间。</li>
+<li>munmap：取消共享内存对象到调用进程的虚拟地址空间的映射。</li>
+<li>shm_unlink：删除一个共享内存对象名字。</li>
+<li>close：当 shm_open 函数返回的文件描述符不再使用时,使用 close 函数关闭它。</li>
+<li>fstat：获得共享内存对象属性的 stat 结构体. 结构体中会包含共享内存对象的大小(st_size), 权限(st_mode), 所有者(st_uid), 归属组 (st_gid)。</li>
+<li>fchown：改变一个共享内存对象的所有权。</li>
+<li>fchmod：改变一个共享内存对象的权限。</li>
+</ul>
+<h2 id="七共享内存的同步问题">七、共享内存的同步问题</h2>
+<p>虽然共享内存为进程间通信提供了高效的数据共享方式，但由于多个进程可以同时访问同一块内存区域，这就带来了同步和互斥的问题。如果没有合适的同步机制，可能会出现以下情况：</p>
+<ul>
+<li>竞态条件（Race Condition）：当多个进程同时访问和修改共享内存中的数据时，由于进程执行的先后顺序不确定，可能导致最终的数据结果不可预测。例如，有两个进程 P1 和 P2 同时读取共享内存中的一个整数变量 count，然后各自对其加 1，最后再写回共享内存。如果没有同步机制，可能会出现 P1 和 P2 读取到相同的 count 值，然后各自加 1 后写回，这样 count 只增加了 1，而不是预期的 2 。</li>
+<li>数据不一致性：一个进程正在对共享内存中的数据进行修改时，另一个进程可能同时读取这些未完全修改的数据，从而导致数据不一致。比如，一个进程正在更新共享内存中的一个复杂数据结构，在更新过程中，另一个进程读取该数据结构，可能会读到部分更新的数据，使数据处于不一致的状态，进而导致程序出现错误。</li>
+</ul>
+<p><strong>解决方案：信号量与互斥锁的应用</strong></p>
+<p>为了解决共享内存带来的同步和互斥问题，通常会使用信号量（Semaphore）和互斥锁（Mutex）等同步机制。</p>
+<p><strong>(1)信号量</strong>
+：信号量是一种计数器，用于控制对共享资源的访问。它可以用来实现进程间的同步和互斥。在共享内存的场景中，信号量可以用来控制对共享内存的访问权限。例如，我们可以创建一个信号量，初始值设为 1，表示共享内存资源可用。当一个进程要访问共享内存时，它首先尝试获取信号量（通过对信号量执行 P 操作，即减 1 操作）。如果信号量的值大于等于 0，说明资源可用，进程可以继续执行对共享内存的访问操作；如果信号量的值小于 0，说明资源已被其他进程占用，该进程会被阻塞，直到信号量的值大于等于 0。当进程完成对共享内存的访问后，它会释放信号量（通过对信号量执行 V 操作，即加 1 操作），通知其他进程可以访问共享内存。在 Linux 中，有 POSIX 有名信号量、POSIX 无名信号量和 System V 信号量等不同类型，开发者可以根据具体需求选择使用。例如，使用 POSIX 有名信号量实现共享内存同步的代码示例如下：</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;semaphore.h&gt;
+#include &lt;sys/mman.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/stat.h&gt;
+
+#define SHM_SIZE 1024
+#define SEM_NAME &quot;/my_semaphore&quot;
+
+int main() {
+    int shm_fd;
+    void *shared_memory;
+    sem_t *sem;
+
+    // 创建共享内存对象
+    shm_fd = shm_open(&quot;/my_shared_memory&quot;, O_CREAT | O_RDWR, 0666);
+    if (shm_fd == -1) {
+        perror(&quot;shm_open&quot;);
+        exit(1);
+    }
+
+    // 配置共享内存大小
+    if (ftruncate(shm_fd, SHM_SIZE) == -1) {
+        perror(&quot;ftruncate&quot;);
+        exit(1);
+    }
+
+    // 将共享内存映射到进程地址空间
+    shared_memory = mmap(0, SHM_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    if (shared_memory == MAP_FAILED) {
+        perror(&quot;mmap&quot;);
+        exit(1);
+    }
+
+    // 创建信号量
+    sem = sem_open(SEM_NAME, O_CREAT, 0666, 1);
+    if (sem == SEM_FAILED) {
+        perror(&quot;sem_open&quot;);
+        exit(1);
+    }
+
+    // 等待信号量，获取共享内存访问权限
+    if (sem_wait(sem) == -1) {
+        perror(&quot;sem_wait&quot;);
+        exit(1);
+    }
+
+    // 访问共享内存
+    printf(&quot;Accessed shared memory: %s\n&quot;, (char *)shared_memory);
+
+    // 释放信号量，允许其他进程访问共享内存
+    if (sem_post(sem) == -1) {
+        perror(&quot;sem_post&quot;);
+        exit(1);
+    }
+
+    // 取消映射并关闭共享内存
+    if (munmap(shared_memory, SHM_SIZE) == -1) {
+        perror(&quot;munmap&quot;);
+        exit(1);
+    }
+    if (close(shm_fd) == -1) {
+        perror(&quot;close&quot;);
+        exit(1);
+    }
+
+    // 删除共享内存对象
+    if (shm_unlink(&quot;/my_shared_memory&quot;) == -1) {
+        perror(&quot;shm_unlink&quot;);
+        exit(1);
+    }
+
+    // 关闭并删除信号量
+    if (sem_close(sem) == -1) {
+        perror(&quot;sem_close&quot;);
+        exit(1);
+    }
+    if (sem_unlink(SEM_NAME) == -1) {
+        perror(&quot;sem_unlink&quot;);
+        exit(1);
+    }
+
+    return 0;
+}
+</code></pre>
+<p><strong>(2)互斥锁</strong>
+：互斥锁是一种二元信号量，用于保证在同一时刻只有一个进程能够访问共享资源，即实现对共享内存的互斥访问。当一个进程获取到互斥锁后，其他进程如果试图获取该互斥锁，会被阻塞，直到持有互斥锁的进程释放它。在 Linux 中，使用 pthread 库中的互斥锁相关函数来实现互斥锁的操作。例如，初始化互斥锁可以使用 pthread_mutex_init 函数，获取互斥锁使用 pthread_mutex_lock 函数，释放互斥锁使用 pthread_mutex_unlock 函数，销毁互斥锁使用 pthread_mutex_destroy 函数。以下是使用互斥锁实现共享内存同步的简单代码示例：</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;pthread.h&gt;
+#include &lt;sys/mman.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/stat.h&gt;
+
+#define SHM_SIZE 1024
+
+typedef struct {
+    pthread_mutex_t mutex;
+    char data[SHM_SIZE];
+} SharedData;
+
+int main() {
+    int shm_fd;
+    SharedData *shared_data;
+
+    // 创建共享内存对象
+    shm_fd = shm_open(&quot;/my_shared_memory&quot;, O_CREAT | O_RDWR, 0666);
+    if (shm_fd == -1) {
+        perror(&quot;shm_open&quot;);
+        exit(1);
+    }
+
+    // 配置共享内存大小
+    if (ftruncate(shm_fd, sizeof(SharedData)) == -1) {
+        perror(&quot;ftruncate&quot;);
+        exit(1);
+    }
+
+    // 将共享内存映射到进程地址空间
+    shared_data = (SharedData *)mmap(0, sizeof(SharedData), PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    if (shared_data == MAP_FAILED) {
+        perror(&quot;mmap&quot;);
+        exit(1);
+    }
+
+    // 初始化互斥锁
+    pthread_mutexattr_t attr;
+    pthread_mutexattr_init(&amp;attr);
+    pthread_mutexattr_setpshared(&amp;attr, PTHREAD_PROCESS_SHARED);
+    if (pthread_mutex_init(&amp;shared_data-&gt;mutex, &amp;attr) != 0) {
+        perror(&quot;pthread_mutex_init&quot;);
+        exit(1);
+    }
+
+    // 获取互斥锁，访问共享内存
+    if (pthread_mutex_lock(&amp;shared_data-&gt;mutex) != 0) {
+        perror(&quot;pthread_mutex_lock&quot;);
+        exit(1);
+    }
+    printf(&quot;Accessed shared memory: %s\n&quot;, shared_data-&gt;data);
+    // 释放互斥锁
+    if (pthread_mutex_unlock(&amp;shared_data-&gt;mutex) != 0) {
+        perror(&quot;pthread_mutex_unlock&quot;);
+        exit(1);
+    }
+
+    // 取消映射并关闭共享内存
+    if (munmap(shared_data, sizeof(SharedData)) == -1) {
+        perror(&quot;munmap&quot;);
+        exit(1);
+    }
+    if (close(shm_fd) == -1) {
+        perror(&quot;close&quot;);
+        exit(1);
+    }
+
+    // 删除共享内存对象
+    if (shm_unlink(&quot;/my_shared_memory&quot;) == -1) {
+        perror(&quot;shm_unlink&quot;);
+        exit(1);
+    }
+
+    return 0;
+}
+</code></pre>
+<p>通过合理使用信号量和互斥锁等同步机制，可以有效地解决共享内存带来的同步和互斥问题，确保多个进程能够安全、高效地共享内存数据。</p>
+<h2 id="八实际应用场景及常见问题解答">八、实际应用场景及常见问题解答</h2>
+<h3 id="81-实际应用场景">8.1 实际应用场景</h3>
+<p><strong>(1)数据库缓存优化</strong></p>
+<p>在数据库系统中，共享内存发挥着至关重要的作用，尤其是在缓存优化方面。以 Oracle 数据库为例，它使用共享全局区（SGA，Shared Global Area）来实现共享内存。SGA 是一个共享的内存结构，用于存储数据块、SQL 语句和其他共享信息 。</p>
+<p>当数据库接收到查询请求时，首先会在共享内存的缓存中查找相关数据。如果数据存在于缓存中，即命中缓存，数据库可以直接从共享内存中读取数据并返回给用户，这大大减少了磁盘 I/O 操作。因为从磁盘读取数据的速度远远低于从内存读取数据的速度，通过共享内存缓存数据，可以显著提高查询性能。例如，在一个高并发的在线交易系统中，大量用户频繁查询订单信息。如果没有共享内存缓存，每次查询都需要从磁盘读取数据，磁盘 I/O 很快就会成为系统的瓶颈，导致查询响应时间变长。而使用共享内存缓存订单数据后，大部分查询可以直接从内存中获取数据，大大提高了系统的响应速度和吞吐量。</p>
+<p>同时，共享内存还可以减少内存的重复使用，提高内存利用率。多个数据库进程可以共享同一块内存区域，避免了每个进程都单独开辟内存来存储相同的数据，从而节省了内存资源。比如，在一个包含多个数据库实例的系统中，这些实例可以共享 SGA 中的数据缓存，减少了内存的浪费，使得系统能够在有限的内存资源下高效运行。</p>
+<p><strong>(2)高性能计算中的数据共享</strong></p>
+<p>在高性能计算领域，共享内存同样有着广泛的应用。在大规模的科学计算和工程模拟中，往往需要处理海量的数据和复杂的计算任务，这些任务通常需要多个处理器核心或多个计算节点协同工作。</p>
+<p>以分子动力学模拟为例，这是一种用于研究分子系统微观行为的计算方法，需要对大量分子的运动轨迹进行模拟计算。在计算过程中，不同的处理器核心需要共享分子的初始位置、速度等数据，以及模拟过程中的中间结果。通过共享内存，这些数据可以被多个处理器核心直接访问，避免了数据在不同处理器之间通过网络或其他方式传输的开销，提高了计算效率。</p>
+<p>再比如，在气象预报模型中，需要对全球范围内的气象数据进行分析和预测。这些数据量巨大，计算任务复杂，通常会在分布式计算集群上进行。共享内存可以用于在不同计算节点之间共享气象数据和计算参数，使得各个节点能够协同工作，共同完成气象预报的计算任务。在这种场景下，共享内存不仅提高了数据共享的效率，还减少了节点之间的通信开销，对于提高整个高性能计算系统的性能起着关键作用。</p>
+<h3 id="72-避坑指南与常见问题解答">7.2 避坑指南与常见问题解答</h3>
+<p>在使用 Linux 共享内存的过程中，开发者常常会遇到一些棘手的问题，下面我们就来总结一下这些常见问题，并给出相应的解决方案。</p>
+<p><strong>(1)共享内存创建失败</strong></p>
+<p>① 问题描述：调用 shmget 函数创建共享内存时，返回值为 -1，导致创建失败。</p>
+<p>② 可能原因</p>
+<ul>
+<li>系统资源限制：系统对共享内存的数量和大小有限制，如 SHMMAX（单个共享内存段的最大大小）和 SHMMNI（系统中共享内存段的最大数量）等参数。如果要创建的共享内存超过了这些限制，就会导致创建失败。例如，当系统的 SHMMAX 设置为 32MB，而你尝试创建一个 64MB 的共享内存段时，就会失败。</li>
+<li>权限不足：创建共享内存需要适当的权限。如果当前用户没有足够的权限（如在一些安全限制较严格的系统中），shmget 调用也会失败。比如，普通用户在没有特殊权限配置的情况下，无法创建共享内存。</li>
+</ul>
+<p>③ 解决方案</p>
+<p>检查系统参数：通过 cat /proc/sys/kernel/shmmax 和 cat /proc/sys/kernel/shmmni 等命令查看系统的共享内存参数设置。如果需要，可以通过修改/etc/sysctl.conf 文件来调整这些参数，例如：</p>
+<pre><code>echo &quot;kernel.shmmax = 2147483648&quot; &gt;&gt; /etc/sysctl.conf
+sysctl -p
+</code></pre>
+<p>上述命令将 SHMMAX 设置为 2GB，并使其立即生效。</p>
+<p>④ 确认权限：确保当前用户具有创建共享内存的权限，必要时可以切换到具有足够权限的用户（如 root 用户）来创建共享内存，或者通过修改文件权限和用户组等方式来赋予相应权限。</p>
+<p><strong>(2)共享内存访问异常</strong></p>
+<p>① 问题描述：在进程访问共享内存时，出现段错误（Segmentation Fault）或其他访问异常。</p>
+<p>② 可能原因</p>
+<ul>
+<li>未正确映射共享内存：调用 shmat 函数时，可能由于参数设置错误，导致共享内存没有正确映射到进程的地址空间。例如，shmat 返回的指针为(void *)-1，表示映射失败，但程序没有正确处理这种情况，仍然尝试使用该指针访问共享内存，就会导致访问异常。</li>
+<li>内存越界访问：在对共享内存进行读写操作时，没有正确检查边界条件，导致访问超出了共享内存的范围。比如，共享内存大小为 1024 字节，而程序尝试写入 2048 字节的数据，就会造成内存越界。</li>
+<li>同步问题：多个进程同时访问共享内存时，如果没有正确的同步机制（如信号量、互斥锁等），可能会导致数据竞争和访问冲突，进而引发访问异常。例如，一个进程正在修改共享内存中的数据，另一个进程同时读取这些未完全修改的数据，就可能导致数据不一致和访问错误。</li>
+</ul>
+<p>③ 解决方案</p>
+<p>检查映射结果：在调用 shmat 后，仔细检查返回值。如果返回(void *)-1，则根据 errno 变量的值进行错误处理，例如：</p>
+<pre><code>void *shared_mem = shmat(shmid, NULL, 0);
+if (shared_mem == (void *)-1) {
+    perror(&quot;shmat failed&quot;);
+    exit(EXIT_FAILURE);
+}
+</code></pre>
+<ul>
+<li>边界检查：在对共享内存进行读写操作时，务必进行严格的边界检查，确保不会越界访问。例如，在写入数据时，要检查数据大小是否超过共享内存的剩余空间；在读取数据时，要确保读取的长度不超过共享内存的有效范围。</li>
+<li>完善同步机制：引入合适的同步机制，如使用信号量或互斥锁来确保对共享内存的访问是安全的。在访问共享内存之前，先获取同步锁（如信号量的 P 操作或互斥锁的加锁操作），访问完成后再释放同步锁（如信号量的 V 操作或互斥锁的解锁操作）。</li>
+</ul>
+<p><strong>(3)共享内存未及时释放</strong></p>
+<p>① 问题描述：共享内存不再被使用，但没有被及时删除，导致系统资源浪费。</p>
+<p>② 可能原因</p>
+<ul>
+<li>程序逻辑错误：在程序中没有正确处理共享内存的生命周期，例如没有在合适的时机调用 shmctl 函数并传入 IPC_RMID 命令来删除共享内存。</li>
+<li>进程异常退出：使用共享内存的进程由于某种原因（如程序崩溃、收到异常信号等）异常退出，而没有来得及执行共享内存的删除操作。</li>
+</ul>
+<p><strong>③ 解决方案</strong></p>
+<p>优化程序逻辑：在程序设计时，明确共享内存的生命周期，确保在不再需要共享内存时，及时调用 shmctl 函数删除共享内存。例如，在程序结束时，添加如下代码：</p>
+<pre><code>if (shmctl(shmid, IPC_RMID, NULL) == -1) {
+    perror(&quot;shmctl IPC_RMID failed&quot;);
+    exit(EXIT_FAILURE);
+}
+</code></pre>
+<p><strong>捕获异常信号</strong>
+：在进程中捕获常见的异常信号（如 SIGSEGV、SIGABRT 等），在信号处理函数中添加释放共享内存的操作。例如，使用 signal 函数注册信号处理函数：</p>
+<pre><code>#include &lt;signal.h&gt;
+
+void cleanup_shared_memory(int signum) {
+    // 释放共享内存相关资源
+    if (shmctl(shmid, IPC_RMID, NULL) == -1) {
+        perror(&quot;shmctl IPC_RMID in signal handler failed&quot;);
+    }
+    exit(EXIT_FAILURE);
+}
+
+int main() {
+    // 注册信号处理函数
+    signal(SIGSEGV, cleanup_shared_memory);
+    signal(SIGABRT, cleanup_shared_memory);
+    // 其他程序逻辑
+}
+</code></pre>
+<p>通过上述方法，可以有效避免共享内存未及时释放的问题，提高系统资源的利用率。</p>
+<p>‍</p>
+
+</main>
+
+<style>
+    
+
+    
+
+    body {
+        margin-right: 280px;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            margin-right: 0;
+        }
+    }
+
+    
+
+     
+    .article-meta {
+        text-align: center;
+        text-decoration: none;
+        background: #efefef;
+        padding: 1px;
+        border-radius: 5px;
+    }
+
+    .article-meta-title {
+        font-size: 2.2rem;
+    }
+
+    .article-meta-info {
+        color: #666;
+        font-size: 1.1rem;
+        margin: -0.6rem 0 0.2rem 10px;
+        text-align: left;
+    }
+
+    .article-meta-info a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+</style>
+
+
+
+<h1 style="font-size: 1.2rem; margin: 2.5rem 0 0.1rem 0;">Comment</h1>
+<div class="cusdis-comments">
+  <div id="cusdis_thread"
+    data-host="https://cusdis.com"
+    data-app-id=697d528d-b618-4ee1-a6fe-403c81a646ac
+    data-page-id="1c4ec9ea84945fa1bdebd2cae61c46ca"
+    data-page-url="https://kaikaixixi.xyz/%E8%BD%AC%E8%BD%BD/2025/05/04/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/"
+    data-page-title="共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)"
+  ></div>
+  <script async defer src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/cusdis/cusdis.es.min.js"></script>
+</div>
+
+<style>
+.cusdis-comments {
+  border-top: 2px dashed #cfcfcf;
+  padding-top: 1.3rem;
+}
+
+#cusdis_thread iframe {
+  min-height: 500px !important;
+  overflow: visible !important;
+}
+</style>
+
+
+<footer>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/math-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/render-katex.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/center-img.min.js"></script>
+
+  
+
+<div id="menuBtnContainer">
+    
+    <button id="menuBtn"><i class="fa-solid fa-screwdriver-wrench"></i></button>
+
+    
+    <button id="backToBottomBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-down"></i></button>
+    <button id="backToTopBtn" class="menu-popup-btn top-btn"><i class="fa-solid fa-square-caret-up"></i></button>
+
+    
+    <div class="menu-popup-btn edit-btn">
+        <a href='https://github.com/captainwc/captainwc.github.io/edit/main/content/%e7%bd%91%e9%a1%b5%e5%89%aa%e8%97%8f/%e5%85%b1%e4%ba%ab%e5%86%85%e5%ad%98%e8%af%a6%e8%a7%a3.md'
+            target="_blank" rel="noopener">
+            <i class="fa-solid fa-square-pen"></i>
+        </a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var menuBtn = document.getElementById('menuBtn');
+        var menuBtnContainer = document.getElementById('menuBtnContainer');
+        var backToTopBtn = document.getElementById('backToTopBtn');
+        var backToBottomBtn = document.getElementById('backToBottomBtn');
+        var popupBtns = document.querySelectorAll('.menu-popup-btn');
+        var hoverTimeout;
+
+        
+        menuBtnContainer.classList.add('visible');
+
+        
+        function showPopupBtns() {
+            clearTimeout(hoverTimeout);
+            menuBtnContainer.classList.add('active');
+        }
+
+        
+        function hidePopupBtns() {
+            hoverTimeout = setTimeout(function() {
+                menuBtnContainer.classList.remove('active');
+            }, 300);
+        }
+
+        
+        menuBtnContainer.addEventListener('mouseenter', showPopupBtns);
+        menuBtnContainer.addEventListener('mouseleave', hidePopupBtns);
+
+        
+        menuBtn.addEventListener('click', function() {
+            if (menuBtnContainer.classList.contains('active')) {
+                menuBtnContainer.classList.remove('active');
+            } else {
+                showPopupBtns();
+            }
+        });
+
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        
+        backToBottomBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+<style>
+     
+    #menuBtnContainer {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 999;
+        opacity: 0.6;
+        visibility: visible;
+        transition: opacity 0.3s;
+    }
+
+    #menuBtnContainer:hover {
+        opacity: 1;
+    }
+
+     
+    #menuBtn {
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.2rem;
+        transition: background 0.3s;
+        cursor: pointer;
+        background: #EFEFEF;
+        z-index: 1000;
+        position: relative;
+    }
+
+    #menuBtn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+     
+    .menu-popup-btn {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: 8px;
+        border: none;
+        color: #aaa;
+        font-family: "Maple Mono NF CN";
+        font-size: 1.3rem;
+        transition: all 0.3s ease;
+        background: #EFEFEF;
+        cursor: pointer;
+        z-index: 999;
+    }
+
+     
+    .menu-popup-btn.top-btn {
+        right: 0;
+        transform: translateY(0) scale(0.8);
+    }
+
+     
+    .menu-popup-btn.edit-btn {
+        bottom: 0;
+        transform: translateX(0) scale(0.8);
+        padding: 1px 6.6px 0px 6.6px;
+    }
+
+    .menu-popup-btn.edit-btn a {
+        color: #ccc;
+        text-decoration: none;
+        background: none !important;
+        transition: opacity 0.2s;
+        padding: 0;
+        margin: 0;
+    }
+
+     
+    #menuBtnContainer.active .menu-popup-btn {
+        opacity: 1;
+        visibility: visible;
+    }
+
+     
+    #menuBtnContainer.active #backToBottomBtn {
+        transform: translateY(-60px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active #backToTopBtn {
+        transform: translateY(-110px) scale(1);
+    }
+
+     
+    #menuBtnContainer.active .edit-btn {
+        transform: translateX(-60px) scale(1);
+    }
+
+     
+    .menu-popup-btn:hover,
+    .menu-popup-btn.edit-btn:hover {
+        background: #BEC2B3;
+        color: #666;
+    }
+
+    .menu-popup-btn.edit-btn:hover a {
+        color: #666;
+    }
+
+     
+    @media (max-width: 768px) {
+        #menuBtnContainer {
+            right: 15px;
+            bottom: 15px;
+        }
+
+        #menuBtnContainer.active #backToBottomBtn {
+            transform: translateY(-50px) scale(1);
+        }
+
+        #menuBtnContainer.active #backToTopBtn {
+            transform: translateY(-90px) scale(1);
+        }
+
+        #menuBtnContainer.active .edit-btn {
+            transform: translateX(-50px) scale(1);
+        }
+    }
+</style>
+
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    document.querySelectorAll('ul').forEach(ul => {
+      
+      const isTodoList = Array.from(ul.children).some(li => {
+        return li.innerHTML.includes('type="checkbox"')
+      });
+
+      if (isTodoList) {
+        
+        const todolistContainer = document.createElement('div');
+        todolistContainer.className = 'todolist';
+
+        
+
+        
+        ul.querySelectorAll('li').forEach(li => {
+          const todoItemDiv = document.createElement('div');
+          todoItemDiv.className = 'todo-item';
+
+          
+          const isChecked = li.innerHTML.includes('checked');
+          const content = li.innerHTML
+            .replace(/<input[^>]+>/g, '') 
+            .trim();
+
+          
+          const checkedIcon = `<svg t="1742522457277" class="todo-item-checked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12342"><path d="M512 938.688A426.624 426.624 0 1 1 512 85.376a426.624 426.624 0 0 1 0 853.312z m0-85.312A341.312 341.312 0 1 0 512 170.688a341.312 341.312 0 0 0 0 682.688z m-42.56-170.688L288.448 501.632l60.288-60.288L469.44 561.92l241.28-241.28 60.416 60.288-301.696 301.696z" p-id="12343"></path></svg>`;
+          const uncheckedIcon = `<svg t="1742522354856" class="todo-item-unchecked-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11882"><path d="M512 938.666667C276.352 938.666667 85.333333 747.648 85.333333 512S276.352 85.333333 512 85.333333s426.666667 191.018667 426.666667 426.666667-191.018667 426.666667-426.666667 426.666667z m0-85.333334a341.333333 341.333333 0 1 0 0-682.709333A341.333333 341.333333 0 0 0 512 853.333333z" p-id="11883"></path></svg>`;
+
+          
+          todoItemDiv.innerHTML = `
+            <span class="todo-item-checkbox">
+              ${isChecked ? checkedIcon : uncheckedIcon}
+            </span>
+            <span class="todo-item-content">
+              ${isChecked ? `<del>${content}</del>` : content}
+            </span>
+          `;
+
+          
+          todolistContainer.appendChild(todoItemDiv);
+        });
+
+        
+        ul.parentNode.replaceChild(todolistContainer, ul);
+      }
+    });
+
+    function addTaskProgressBar(ul, todolistContainer) {
+      
+      const totalTasks = ul.children.length;
+      const finishedTasks = Array.from(ul.children).filter(li => li.innerHTML.includes('checked')).length;
+
+      
+      const progressContainer = document.createElement('div');
+      progressContainer.className = 'todo-progress';
+
+      
+      const counterSpan = document.createElement('span');
+      counterSpan.className = 'todo-progress-counter';
+      counterSpan.textContent = `${finishedTasks}/${totalTasks}`;
+
+      
+      const progressTrack = document.createElement('div');
+      progressTrack.className = 'todo-progress-bar';
+
+      
+      const progressFill = document.createElement('div');
+      progressFill.className = 'todo-progress-bar-fill';
+      progressFill.style.width = `${(finishedTasks / totalTasks) * 100}%`;
+
+      
+      const flagSpan = document.createElement('span');
+      flagSpan.className = 'todo-progress-flag';
+      flagSpan.innerHTML = `${finishedTasks === totalTasks ? '🌟' : '🚧'}`;
+
+      
+      progressTrack.appendChild(progressFill);
+      progressContainer.append(flagSpan, progressTrack, counterSpan);
+      todolistContainer.appendChild(progressContainer);
+    }
+  });
+</script>
+
+<style>
+   
+  .todolist {
+    padding-left: 0.6rem;
+  }
+
+  .todo-item {
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: -0.5rem 0 -0.5rem -0.7rem;
+    line-height: 1.3;
+  }
+
+  .todo-item-checkbox {
+    flex-shrink: 0;
+    font-size: 1.2em;
+
+    svg {
+      margin-top: 0.46rem;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .todo-item-checked-icon {
+    fill: #707070;
+  }
+
+  .todo-item-unchecked-icon {
+    fill: #1A61CC;
+  }
+
+  .todo-item-unchecked-icon:hover {
+    fill: red;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .todo-item-content {
+    flex: 1;
+    word-break: break-all;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+   
+  .todo-progress {
+    display: flex;
+     
+    align-items: center;
+    gap: 0.3rem;
+     
+    margin: 0.1rem 0 0 0.7rem;
+  }
+
+  .todo-progress-counter {
+     
+    font-family: "LXGW WenKai";
+    font-size: 0.8rem;
+    color: #707070;
+  }
+
+  .todo-progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #a64036;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    max-width: 20%;
+  }
+
+  .todo-progress-bar-fill {
+    height: 100%;
+    background: #84a729;
+    transition: width 0.3s ease;
+  }
+
+  .todo-progress-flag {
+    display: none;
+    position: relative;
+    font-size: 0.9rem;
+  }
+</style>
+
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github.min.css">
+<script src="https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/highlight/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll())</script>
+
+
+
+  <script>
+    const langToNerdFontMap = {
+        asm: '\ue6ab',
+        bash: '\ue760',
+        bazel: '\ue63a',
+        c: '\ue61e',
+        cmake: '\ue794',
+        cmd: '\uebc4',
+        cpp: '\ue61d',
+        'c++': '\ue61d',
+        csharp: '\ue7b2',
+        css: '\ue749',
+        diff: '\ueae1',
+        dockerfile: '\uf21f',
+        go: '\udb81\udfd3',
+        gradle: '\ue7f2',
+        html: '\ue736',
+        java: '\uedaf',
+        javascript: '\ue781',
+        json: '\ueb0f',
+        latex: '\ue81f',
+        llvm: '\ue823',
+        lua: '\ue826',
+        makefile: '\ue673',
+        markdown: '\uf48a',
+        maven: '\ue82c',
+        plaintext: '\udb80\udd4d',
+        plantuml: '\ue8cb',
+        powershell: '\ue86c',
+        python: '\ued1b',
+        rust: '\udb85\ude17',
+        shell: '\ue760',
+        sql: '\udb82\udc66',
+        text: '\udb80\udd4d',
+        toml: '\ue6b2',
+        txt: '\udb80\udd4d',
+        typescript: '\ue8ca',
+        uml: '\ue8cb',
+        vim: '\ue7c5',
+        wasm: '\ue8e0',
+        xml: '\ue8ea',
+        yaml: '\ue8eb',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            const parentElement = codeBlock.parentElement;
+
+            
+            const tools = document.createElement('div');
+            tools.className = 'code-tools';
+
+            
+            const foldBtn = document.createElement('button');
+            foldBtn.className = 'fold-btn';
+            foldBtn.innerHTML = '\uf48c';
+            foldBtn.style.display = 'none';
+
+            
+            const langLabel = document.createElement('div');
+            langLabel.className = 'lang-label';
+            const lang = [...codeBlock.classList].find(c => c.startsWith('language-'))?.split('-')[1] || 'text';
+            const icon = langToNerdFontMap[lang.toLowerCase()];
+            langLabel.textContent = icon || lang.toUpperCase();
+            if (!icon) langLabel.style.fontSize = '0.8rem';
+
+            
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = '\uf4bb COPY';
+
+            
+            const scale_height = 600;       
+            const collapsed_height = 500;   
+            const checkHeight = () => {
+                const originalDisplay = parentElement.style.display;
+                parentElement.style.display = 'block';
+                const fullHeight = parentElement.scrollHeight;
+                parentElement.style.display = originalDisplay;
+                return fullHeight > scale_height;
+            };
+
+            
+            if (checkHeight()) {
+                foldBtn.style.display = 'flex';
+                parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+
+                
+                parentElement.classList.add('collapsed');
+                parentElement.style.maxHeight = `${collapsed_height}px`;
+                foldBtn.innerHTML = '\uf4d9';
+
+                parentElement.style.overflowY = 'auto'; 
+
+                foldBtn.addEventListener('click', () => {
+                    const isCollapsed = parentElement.classList.toggle('collapsed');
+                    foldBtn.innerHTML = isCollapsed ? '\uf4d9' : '\uf48c';
+
+                    if (isCollapsed) {
+                        parentElement.style.maxHeight = `${collapsed_height}px`;
+                        parentElement.style.overflowX = 'auto';
+                    } else {
+                        parentElement.style.maxHeight = 'none';
+                        void parentElement.offsetHeight;
+                        parentElement.dataset.fullHeight = `${parentElement.scrollHeight}px`;
+                    }
+                });
+            }
+
+            
+            copyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeBlock.textContent);
+                    copyBtn.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyBtn.textContent = '\uf4bb COPY', 2000);
+                } catch (err) {
+                    console.error('复制失败:', err);
+                }
+            });
+
+            
+            tools.append(langLabel, foldBtn, copyBtn);
+            parentElement.prepend(tools);
+        });
+    });
+</script>
+
+<style>
+ 
+.code-tools {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+    font-family: "Maple Mono NF CN";
+}
+
+.fold-btn {
+    cursor: pointer;
+    border: none;
+    color: #666;
+    background: none;
+    font-family: "Maple Mono NF CN";
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin: 0 0 0 0.45rem;
+    transition: all 0.2s ease;
+}
+
+ 
+.lang-label {
+     
+    color: #666;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+ 
+.copy-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 0.3rem;
+    margin: 0 0 0 0.6rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.6rem;
+    line-height: 1.8;
+    cursor: pointer;
+    font-family: "Maple Mono NF CN";
+}
+
+ 
+pre:hover .code-tools {
+    opacity: 1;
+    pointer-events: auto;
+}
+</style>
+
+
+  
+<script>
+    
+    window.diagramRenderUtils = {
+        
+        getOrCreateFullscreenOverlay: function() {
+            let overlay = document.querySelector('.fullscreen-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'fullscreen-overlay';
+                document.body.appendChild(overlay);
+
+                
+                overlay.addEventListener('dblclick', (e) => {
+                    if (e.target === overlay) {
+                        overlay.classList.remove('active');
+                    }
+                });
+
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                        overlay.classList.remove('active');
+                    }
+                });
+            }
+            return overlay;
+        },
+
+        
+        createDiagramContainer: function() {
+            const container = document.createElement('div');
+            container.className = 'code-rendered-diagram';
+            return container;
+        },
+
+        
+        createCopyButton: function() {
+            const copyButton = document.createElement('button');
+            copyButton.className = 'code-rendered-diagram-copy-button';
+            copyButton.innerHTML = '&#xf4bb; COPY-SRC';
+            return copyButton;
+        },
+
+        
+        createFullscreenButton: function() {
+            const fullscreenButton = document.createElement('button');
+            fullscreenButton.className = 'code-rendered-diagram-fullscreen-button';
+            fullscreenButton.innerHTML = '&#xf065; FULL';
+            return fullscreenButton;
+        },
+
+        
+        makeSVGTransparent: function(svgText) {
+            const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
+            doc.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                .forEach(el => {
+                    if (el.tagName !== 'svg') {
+                        el.setAttribute('fill', 'transparent');
+                    }
+                });
+            doc.documentElement.style.backgroundColor = 'transparent';
+            return new XMLSerializer().serializeToString(doc);
+        },
+
+        
+        setupCopyButton: function(copyButton, codeContent) {
+            copyButton.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(codeContent);
+                    copyButton.textContent = '\uf00c COPIED!';
+                    setTimeout(() => copyButton.innerHTML = '&#xf4bb; COPY-SRC', 2000);
+                } catch (err) {
+                    copyButton.textContent = 'FAILED';
+                    console.error('复制失败:', err);
+                }
+            });
+        },
+
+        
+        setupShowSourceCode: function(imageElem, sourceCode) {
+            
+            imageElem.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+
+                
+                const pre = document.createElement('pre');
+                const codeElem = document.createElement('code');
+                codeElem.textContent = sourceCode;
+                pre.appendChild(codeElem);
+
+                
+                window.diagramRenderUtils.popupWindowUtils.create({
+                    title: 'Source Code',
+                    content: pre,
+                    x: e.clientX,
+                    y: e.clientY,
+                    minWidth: 300,
+                    maxWidth: '60%',
+                    maxHeight: '60%',
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    className: 'source-code-viewer'
+                });
+            });
+        },
+
+        
+        setupFullscreenButton: function(fullscreenButton, contentElement, isImage = false) {
+            fullscreenButton.addEventListener('click', () => {
+                const overlay = this.getOrCreateFullscreenOverlay();
+                let clonedContent;
+
+                if (isImage) {
+                    
+                    clonedContent = contentElement.cloneNode(true);
+                } else {
+                    
+                    const svgElement = contentElement.querySelector('svg');
+                    if (!svgElement) return;
+                    clonedContent = svgElement.cloneNode(true);
+                }
+
+                overlay.innerHTML = '';
+
+                
+                const exitButton = document.createElement('button');
+                exitButton.className = 'fullscreen-exit-button';
+                exitButton.innerHTML = 'ESC';
+                exitButton.onclick = () => overlay.classList.remove('active');
+
+                overlay.appendChild(exitButton);
+                overlay.appendChild(clonedContent);
+                overlay.classList.add('active');
+
+                
+                this.setupZoomAndDrag(overlay, isImage ? 'img' : 'svg');
+            });
+        },
+
+        
+        setupZoomAndDrag: function(overlay, selector) {
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            const element = overlay.querySelector(selector);
+
+            
+            overlay.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY * -0.002;
+                const newScale = Math.min(Math.max(scale + delta, 0.1), 10);
+
+                
+                const rect = element.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                
+                posX += mouseX * (1 - newScale / scale);
+                posY += mouseY * (1 - newScale / scale);
+
+                scale = newScale;
+                updateTransform();
+            });
+
+            
+            overlay.addEventListener('mousedown', (e) => {
+                if (e.target === overlay) return;
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                overlay.classList.add('dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                overlay.classList.remove('dragging');
+            });
+
+            function updateTransform() {
+                element.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+        },
+
+        
+        popupWindowUtils: {
+            
+            create: function(options) {
+                
+                const config = {
+                    title: 'Popup Window',
+                    content: '',         
+                    x: 100,              
+                    y: 100,              
+                    minWidth: 300,       
+                    maxWidth: '80%',     
+                    maxHeight: '80%',    
+                    closeOnClickOutside: true,
+                    closeOnEsc: true,
+                    onClose: null,       
+                    className: ''        
+                };
+
+                
+                Object.assign(config, options);
+
+                
+                if (config.className) {
+                    const existingPopup = document.querySelector(`.popup-window.${config.className}`);
+                    if (existingPopup) {
+                        document.body.removeChild(existingPopup);
+                    }
+                }
+
+                
+                const popup = document.createElement('div');
+                popup.className = `popup-window ${config.className}`.trim();
+
+                
+                const titleBar = document.createElement('div');
+                titleBar.className = 'popup-window-title';
+                titleBar.textContent = config.title;
+
+                
+                const closeButton = document.createElement('button');
+                closeButton.className = 'popup-window-close';
+                closeButton.innerHTML = '&times;';
+
+                
+                titleBar.appendChild(closeButton);
+
+                
+                const contentContainer = document.createElement('div');
+                contentContainer.className = 'popup-window-content';
+
+                
+                if (typeof config.content === 'string') {
+                    contentContainer.innerHTML = config.content;
+                } else if (config.content instanceof Element) {
+                    contentContainer.appendChild(config.content);
+                }
+
+                
+                popup.appendChild(titleBar);
+                popup.appendChild(contentContainer);
+
+                
+                popup.style.minWidth = typeof config.minWidth === 'number' ? `${config.minWidth}px` : config.minWidth;
+                popup.style.maxWidth = typeof config.maxWidth === 'number' ? `${config.maxWidth}px` : config.maxWidth;
+                popup.style.maxHeight = typeof config.maxHeight === 'number' ? `${config.maxHeight}px` : config.maxHeight;
+
+                
+                document.body.appendChild(popup);
+
+                
+                const popupRect = popup.getBoundingClientRect();
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+
+                
+                let left = Math.min(Math.max(config.x, 20), windowWidth - popupRect.width - 20);
+                let top = Math.min(Math.max(config.y, 20), windowHeight - popupRect.height - 20);
+
+                popup.style.left = `${left}px`;
+                popup.style.top = `${top}px`;
+
+                
+                const closePopup = () => {
+                    if (document.body.contains(popup)) {
+                        document.body.removeChild(popup);
+                        if (typeof config.onClose === 'function') {
+                            config.onClose();
+                        }
+                    }
+                };
+
+                closeButton.addEventListener('click', closePopup);
+
+                
+                if (config.closeOnEsc) {
+                    const escHandler = (e) => {
+                        if (e.key === 'Escape' && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('keydown', escHandler);
+                        }
+                    };
+                    document.addEventListener('keydown', escHandler);
+                }
+
+                
+                if (config.closeOnClickOutside) {
+                    const outsideClickHandler = (e) => {
+                        if (popup && !popup.contains(e.target) && document.body.contains(popup)) {
+                            closePopup();
+                            document.removeEventListener('mousedown', outsideClickHandler);
+                        }
+                    };
+
+                    
+                    setTimeout(() => {
+                        document.addEventListener('mousedown', outsideClickHandler);
+                    }, 100);
+                }
+
+                
+                let isDragging = false;
+                let offsetX = 0;
+                let offsetY = 0;
+
+                titleBar.addEventListener('mousedown', (e) => {
+                    
+                    if (e.target !== closeButton) {
+                        isDragging = true;
+                        offsetX = e.clientX - popup.getBoundingClientRect().left;
+                        offsetY = e.clientY - popup.getBoundingClientRect().top;
+                        popup.classList.add('dragging');
+                    }
+                });
+
+                const mouseMoveHandler = (e) => {
+                    if (isDragging) {
+                        let newLeft = e.clientX - offsetX;
+                        let newTop = e.clientY - offsetY;
+
+                        
+                        newLeft = Math.max(0, Math.min(windowWidth - popupRect.width, newLeft));
+                        newTop = Math.max(0, Math.min(windowHeight - popupRect.height, newTop));
+
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    }
+                };
+
+                const mouseUpHandler = () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        popup.classList.remove('dragging');
+                    }
+                };
+
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+
+                
+                return {
+                    element: popup,
+                    contentElement: contentContainer,
+                    close: closePopup,
+                    setTitle: (title) => {
+                        titleBar.textContent = title;
+                        titleBar.appendChild(closeButton); 
+                    },
+                    setContent: (content) => {
+                        contentContainer.innerHTML = '';
+                        if (typeof content === 'string') {
+                            contentContainer.innerHTML = content;
+                        } else if (content instanceof Element) {
+                            contentContainer.appendChild(content);
+                        }
+                    },
+                    setPosition: (x, y) => {
+                        let newLeft = Math.min(Math.max(x, 0), windowWidth - popupRect.width);
+                        let newTop = Math.min(Math.max(y, 0), windowHeight - popupRect.height);
+                        popup.style.left = `${newLeft}px`;
+                        popup.style.top = `${newTop}px`;
+                    },
+                    
+                    destroy: () => {
+                        document.removeEventListener('mousemove', mouseMoveHandler);
+                        document.removeEventListener('mouseup', mouseUpHandler);
+                        if (document.body.contains(popup)) {
+                            document.body.removeChild(popup);
+                        }
+                    }
+                };
+            }
+        }
+    };
+</script>
+<style>
+     
+    .code-rendered-diagram {
+        max-width: 80% !important;
+        height: auto;
+        position: relative;
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .code-rendered-diagram-copy-button,
+    .code-rendered-diagram-fullscreen-button {
+        position: absolute;
+        top: 20px;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 0.3rem;
+        margin: 0 0 0 0.6rem;
+        color: #333;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.6rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        opacity: 0;
+    }
+
+    .code-rendered-diagram-copy-button {
+        right: 10px;
+    }
+
+    .code-rendered-diagram-fullscreen-button {
+        right: 100px;
+    }
+
+    .code-rendered-diagram:hover .code-rendered-diagram-copy-button,
+    .code-rendered-diagram:hover .code-rendered-diagram-fullscreen-button {
+        opacity: 1;
+    }
+
+    .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #FBFBFB;
+         
+        z-index: 99999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fullscreen-overlay.active {
+        display: flex;
+    }
+
+    .fullscreen-overlay img,
+    .fullscreen-overlay svg {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        cursor: move;
+        transition: transform 0.1s ease-out;
+        transform-origin: center center;
+    }
+
+    .fullscreen-overlay svg {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+
+    .fullscreen-overlay.dragging {
+        cursor: move;
+    }
+
+    .fullscreen-exit-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        color: #666;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        font-size: 0.8rem;
+        line-height: 1.8;
+        cursor: pointer;
+        font-family: "Maple Mono NF CN";
+        transition: all 0.2s ease;
+        z-index: 100000;
+    }
+
+    .fullscreen-exit-button:hover {
+        background-color: #e0e0e0;
+        color: #333;
+    }
+
+     
+    .popup-window {
+        position: fixed;
+        z-index: 10000;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .popup-window.dragging {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        opacity: 0.95;
+    }
+
+    .popup-window-title {
+        background-color: #e8e8e8;
+        padding: 8px 12px;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        cursor: move;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #333;
+        font-family: "Maple Mono NF CN", monospace;
+        font-size: 0.9rem;
+    }
+
+    .popup-window-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #666;
+        padding: 0 4px;
+        margin: -4px -4px 0 0;
+        transition: color 0.2s ease;
+    }
+
+    .popup-window-close:hover {
+        color: #333;
+    }
+
+    .popup-window-content {
+        overflow: auto;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+     
+    .popup-window.source-code-viewer .popup-window-content {
+        font-family: "Maple Mono NF CN", monospace;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content pre {
+        margin: 0;
+        white-space: pre-wrap;
+    }
+
+    .popup-window.source-code-viewer .popup-window-content code {
+        font-family: "Maple Mono NF CN", monospace;
+        color: #333;
+    }
+</style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const plantumlBlocks = document.querySelectorAll('pre code.language-plantuml');
+        if (!plantumlBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js';
+
+        
+        script.onload = () => {
+            const plantuml_theme = parsePlantumlUserConfig();
+
+            plantumlBlocks.forEach(codeBlock => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const img = document.createElement('img');
+                img.className = 'code-rendered-diagram-img';
+                img.style.display = 'block';
+                img.alt = 'PlantUML Diagram';
+
+                
+                const fullCode = `${plantuml_theme}\n\n${codeBlock.textContent}`;
+                img.src = 'https://www.plantuml.com/plantuml/svg/' + plantumlEncoder.encode(fullCode);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, fullCode);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(img, fullCode);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, img, true);
+
+                
+                
+
+                
+                container.appendChild(img);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+                codeBlock.parentElement.replaceWith(container);
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+
+    function parsePlantumlUserConfig() {
+        let configItems = [];
+
+        
+            configItems.push(`scale 5`);
+        
+
+        
+            configItems.push(`skin rose`);
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        
+        
+            
+                configItems.push(`skinparam shadowing false`);
+            
+        
+
+        
+
+        
+            configItems.push(`skinparam BackgroundColor transparent`);
+        
+
+        return configItems.join("\n").trim();
+    }
+</script>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+        if (!mermaidBlocks.length) return;
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js';
+
+        
+        script.onload = () => {
+            
+            mermaid.initialize({
+                startOnLoad: false,
+                securityLevel: 'loose',
+                fontFamily: 'Maple Mono NF CN',
+                
+                look: 'handDrawn',
+                
+                theme: 'neutral',
+                
+                
+            });
+
+            
+            mermaidBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const renderDiv = document.createElement('div');
+                renderDiv.id = `mermaid-diagram-${index}`;
+                renderDiv.style.background = 'transparent';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                try {
+                    
+                    mermaid.render(`mermaid-svg-${index}`, code).then(result => {
+                        renderDiv.innerHTML = result.svg;
+
+                        
+                        const svg = renderDiv.querySelector('svg');
+                        if (svg) {
+                            svg.style.backgroundColor = 'transparent';
+                            
+                            svg.querySelectorAll('[fill="#ffffff"],[fill="white"],[style*="fill: white"]')
+                                .forEach(el => {
+                                    if (el.tagName !== 'svg') {
+                                        el.setAttribute('fill', 'transparent');
+                                    }
+                                });
+                        }
+                    });
+                } catch (error) {
+                    console.error('Mermaid渲染错误:', error);
+                    renderDiv.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                        Mermaid渲染错误: ${error.message}
+                    </div>`;
+                }
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(renderDiv, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, renderDiv, false);
+
+                
+                container.appendChild(renderDiv);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+            });
+        };
+
+        
+        document.head.appendChild(script);
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const markmapBlocks = document.querySelectorAll('pre code.language-map, pre code.language-mindmap');
+        if (!markmapBlocks.length) return;
+
+        
+        function loadScript(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+
+        
+        Promise.all([
+            loadScript('https://cdn.jsdelivr.net/npm/d3@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-view@latest'),
+            loadScript('https://cdn.jsdelivr.net/npm/markmap-lib@latest')
+        ]).then(() => {
+            
+            markmapBlocks.forEach((codeBlock, index) => {
+                
+                const container = window.diagramRenderUtils.createDiagramContainer();
+
+                
+                const markmapContainer = document.createElement('div');
+                markmapContainer.className = 'markmap';
+                markmapContainer.id = `markmap-${index}`;
+                markmapContainer.style.minHeight = '300px';
+                markmapContainer.style.width = '100%';
+                markmapContainer.style.position = 'relative';
+
+                
+                const code = codeBlock.textContent.trim();
+
+                
+                const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svgElement.style.width = '100%';
+                svgElement.style.height = '400px';
+                markmapContainer.appendChild(svgElement);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(markmapContainer, code);
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, markmapContainer, false);
+
+                
+                container.appendChild(markmapContainer);
+                container.appendChild(fullscreenButton);
+                container.appendChild(copyButton);
+
+                
+                const pre = codeBlock.closest('pre');
+                pre.insertAdjacentElement('afterend', container);
+                pre.remove();
+
+                
+                renderMarkmapWithRetry(svgElement, markmapContainer, code);
+            });
+        }).catch(error => {
+            console.error('加载markmap库失败:', error);
+        });
+
+        
+
+        function renderMarkmapWithRetry(svgElement, markmapContainer, code, maxRetries = 5, delay = 200) {
+            let attempt = 0;
+
+            function tryRender() {
+                attempt++;
+                try {
+                    
+                    if (!window.markmap || typeof window.markmap.Markmap !== 'function') {
+                        throw new Error('Markmap constructor not available yet.');
+                    }
+
+                    
+                    const { Transformer } = window.markmap;
+                    const transformer = new Transformer();
+
+                    
+                    const { root, features } = transformer.transform(code);
+
+                    
+                    const { Markmap } = window.markmap;
+                    const mm = new Markmap(svgElement, {
+                        autoFit: true,
+                        duration: 500,
+                        zoom: true,
+                    });
+
+                    
+                    mm.setData(root, features);
+                    mm.fit();
+
+                    
+                    markmapContainer.dataset.markmapData = JSON.stringify({
+                        root: root,
+                        features: features
+                    });
+
+                    
+                    setTimeout(() => {
+                        const links = svgElement.querySelectorAll('a');
+                        links.forEach(link => {
+                            link.setAttribute('target', '_blank');
+                            link.setAttribute('rel', 'noopener noreferrer');
+                        });
+                    }, 100);
+
+                } catch (error) {
+                    console.error(`Markmap渲染尝试第 ${attempt} 次失败:`, error.message);
+                    if (attempt < maxRetries) {
+                        
+                        setTimeout(tryRender, delay);
+                    } else {
+                        
+                        console.error('Markmap渲染在多次重试后仍然失败。');
+                        markmapContainer.innerHTML = `<div style="color:red;border:1px solid red;padding:10px;">
+                            Markmap渲染错误: ${error.message} (请尝试手动刷新网页)
+                        </div>`;
+                    }
+                }
+            }
+
+            
+            tryRender();
+        }
+    });
+</script>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        if (!window.diagramRenderUtils) return;
+
+        
+        const originalSetupFullscreenButton = window.diagramRenderUtils.setupFullscreenButton;
+        window.diagramRenderUtils.setupFullscreenButton = function(fullscreenButton, contentElement, isImage = false) {
+            
+            const isMarkmap = contentElement.classList.contains('markmap');
+
+            if (isMarkmap) {
+                fullscreenButton.addEventListener('click', () => {
+                    const overlay = this.getOrCreateFullscreenOverlay();
+                    overlay.innerHTML = '';
+
+                    
+                    const exitButton = document.createElement('button');
+                    exitButton.className = 'fullscreen-exit-button';
+                    exitButton.innerHTML = 'ESC';
+                    exitButton.onclick = () => overlay.classList.remove('active');
+                    overlay.appendChild(exitButton);
+
+                    
+                    const fullscreenContainer = document.createElement('div');
+                    fullscreenContainer.className = 'markmap';
+                    fullscreenContainer.style.width = '100%';
+                    fullscreenContainer.style.height = '100%';
+
+                    
+                    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svgElement.style.width = '100%';
+                    svgElement.style.height = '100%';
+                    fullscreenContainer.appendChild(svgElement);
+
+                    overlay.appendChild(fullscreenContainer);
+                    overlay.classList.add('active');
+
+                    
+                    try {
+                        const markmapData = JSON.parse(contentElement.dataset.markmapData || '{}');
+                        if (markmapData.root) {
+                            
+                            const { Markmap } = window.markmap;
+                            const mm = new Markmap(svgElement, {
+                                autoFit: true,
+                                duration: 500,
+                                zoom: true,
+                            });
+
+                            
+                            mm.setData(markmapData.root, markmapData.features);
+                            mm.fit();
+
+                            
+                            setTimeout(() => {
+                                const links = svgElement.querySelectorAll('a');
+                                links.forEach(link => {
+                                    link.setAttribute('target', '_blank');
+                                    link.setAttribute('rel', 'noopener noreferrer');
+                                });
+                            }, 100);
+                        }
+                    } catch (error) {
+                        console.error('全屏模式下渲染markmap失败:', error);
+                    }
+
+                    
+                    this.setupZoomAndDrag(overlay, 'svg');
+                });
+            } else {
+                
+                originalSetupFullscreenButton.call(this, fullscreenButton, contentElement, isImage);
+            }
+        };
+    });
+</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const xmindBlocks = document.querySelectorAll('pre code.language-xmind');
+        if (xmindBlocks.length === 0) {
+            return;
+        }
+
+        
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/xmind-embed-viewer/dist/umd/xmind-embed-viewer.js';
+        document.head.appendChild(script);
+
+        
+        script.onload = function() {
+            xmindBlocks.forEach((codeBlock, index) => {
+                const xmindUrl = codeBlock.textContent.trim();
+                if (!xmindUrl) {
+                    console.error('XMind code block is empty.');
+                    return;
+                }
+
+                
+                const mountId = `xmind-mount-${index}`;
+                const mountDiv = document.createElement('div');
+                mountDiv.id = mountId;
+
+                
+                const preElement = codeBlock.parentElement;
+                preElement.parentElement.replaceChild(mountDiv, preElement);
+
+                renderXmindFile(mountId, xmindUrl);
+            });
+
+            async function renderXmindFile(elementId, fileUrl) {
+                const mountEl = document.getElementById(elementId);
+
+                
+                
+                mountEl.className = 'xmind-container';
+                
+                mountEl.innerHTML = `
+                <div class="xmind-loader-wrapper">
+                    <div class="xmind-loader"></div>
+                    <div class="xmind-loader-text">xmind loading</div>
+                </div>
+            `;
+
+                try {
+                    
+                    const isExternal = fileUrl.startsWith('http');
+                    const fetchUrl = isExternal ? `https://api.allorigins.win/raw?url=${encodeURIComponent(fileUrl)}` : fileUrl;
+                    const res = await fetch(fetchUrl, {
+                        mode: 'cors'
+                    });
+
+                    
+                    if (!res.ok) {
+                        mountEl.innerHTML = `
+                        <div class="xmind-error">
+                            <span class="xmind-error-icon">⚠️</span>
+                            <div class="xmind-error-content">
+                                <strong>加载 XMind 文件失败</strong>
+                                <p>无法从 <code>${fileUrl}</code> 获取文件 (HTTP ${res.status})</p>
+                            </div>
+                        </div>
+                    `;
+                        console.error(`Failed to fetch XMind file: ${res.statusText}`);
+                        return;
+                    }
+                    const fileBuffer = await res.arrayBuffer();
+
+                    
+                    mountEl.className = ''; 
+                    mountEl.innerHTML = ''; 
+
+                    new XMindEmbedViewer({
+                        el: `#${elementId}`,
+                        file: fileBuffer,
+                        styles: {
+                            'height': '500px',
+                            'width': '100%'
+                        }
+                    });
+                } catch (error) {
+                    
+                    mountEl.innerHTML = `
+                    <div class="xmind-error">
+                        <span class="xmind-error-icon">⚠️</span>
+                        <div class="xmind-error-content">
+                            <strong>渲染 XMind 文件时出错</strong>
+                            <p>${error.message}</p>
+                        </div>
+                    </div>
+                `;
+                    console.error('Error rendering XMind file:', error);
+                }
+            }
+        }
+    });
+</script>
+
+<style>
+     
+    .xmind-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        background-color: #f9f9f9;
+        border: 1px dashed #ddd;
+        border-radius: 6px;
+        margin: 1.5rem 0;
+        padding: 20px;
+    }
+
+     
+    .xmind-loader-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+     
+    .xmind-loader {
+        border: 3px solid #f0f0f0;
+        border-top: 3px solid #999;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+    }
+
+     
+    .xmind-loader-text {
+        color: #888;
+        font-size: 0.9rem;
+        font-family: "LXGW WenKai", "Maple Mono NF CN", sans-serif;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+     
+    .xmind-error {
+        display: flex;
+        align-items: flex-start;
+        text-align: left;
+        color: #c0392b;
+        width: 100%;
+    }
+
+    .xmind-error-icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+        line-height: 1.2;
+    }
+
+    .xmind-error-content {
+        flex: 1;
+    }
+
+    .xmind-error strong {
+        font-size: 1.1rem;
+        color: #a93226;
+    }
+
+    .xmind-error p {
+        margin: 5px 0 0;
+        font-size: 0.9rem;
+        color: #7b241c;
+        word-break: break-all;
+    }
+
+    .xmind-error code {
+        background-color: #fbeae5;
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+    }
+</style>
+
+  
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        const DIAGRAM_MAP = new Map([
+            ['plantuml_kroki', 'plantuml'],
+            ['mermaid_kroki', 'mermaid'],
+            ['graphviz', 'graphviz'],
+            ['blockdiag', 'blockdiag'],
+            ['seqdiag', 'seqdiag'],
+            ['actdiag', 'actdiag'],
+            ['packetdiag', 'packetdiag'],
+            ['database', 'dbml'],
+            ['dbml', 'dbml'],
+            ['vega', 'vega']
+        ]);
+
+        
+        const blocks = [];
+        document.querySelectorAll('pre code[class]').forEach(block => {
+            if (block.dataset.kroki) return;
+            const lang = [...block.classList].find(c => DIAGRAM_MAP.has(c.split('-')[1]));
+            if (lang) {
+                block.dataset.kroki = 'processed';
+                blocks.push({ block, api: DIAGRAM_MAP.get(lang.split('-')[1]) });
+            }
+        });
+
+        if (!blocks.length) return;
+
+        
+        const CONCURRENCY = 6;
+        const queue = blocks.slice();
+
+        (async function processQueue() {
+            const workers = Array(Math.min(CONCURRENCY, queue.length))
+                .fill()
+                .map(async () => {
+                    while (queue.length) {
+                        const { block, api } = queue.pop();
+                        await renderBlock(block, api);
+                    }
+                });
+            await Promise.all(workers);
+        })();
+
+        async function renderBlock(block, api) {
+            const pre = block.closest('pre');
+            try {
+                const code = block.textContent.trim();
+                if (!code) {
+                    pre.style.border = '2px solid orange';
+                    return;
+                }
+
+                const res = await fetch(`https://kroki.io/${api}/svg`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: code
+                });
+
+                if (!res.ok) throw new Error(`${await res.text()} (HTTP ${res.status})`);
+
+                
+                const svg = window.diagramRenderUtils.createDiagramContainer();
+                svg.innerHTML = window.diagramRenderUtils.makeSVGTransparent(await res.text());
+
+                
+                const fullscreenButton = window.diagramRenderUtils.createFullscreenButton();
+                window.diagramRenderUtils.setupFullscreenButton(fullscreenButton, svg, false);
+                svg.appendChild(fullscreenButton);
+
+                
+                const copyButton = window.diagramRenderUtils.createCopyButton();
+                window.diagramRenderUtils.setupCopyButton(copyButton, code);
+                svg.appendChild(copyButton);
+
+                
+                window.diagramRenderUtils.setupShowSourceCode(svg, code);
+
+                pre.insertAdjacentElement('afterend', svg);
+
+                
+                pre.remove();
+            } catch (err) {
+                console.error(`[Kroki] 渲染失败: ${err.message}`);
+                pre.style.border = '2px solid red';
+                pre.title = err.message;
+            }
+        }
+    });
+</script>
+
+
+  <div id="search-modal">
+  <input type="text" id="modal-search-input" placeholder="输入关键词搜索..." aria-label="搜索框" autocomplete="off">
+  <div id="modal-search-debug" style="margin-bottom: 10px; color: #999;"></div>
+  <div id="modal-search-results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
+<script>
+  function debug(text) {
+      document.getElementById('modal-search-debug').textContent = text;
+  }
+  function showpages() {
+    debug("当前本站共有 " + searchIndex.length + " 篇文章");
+  }
+
+  let searchIndex = [];
+  
+  
+    
+  
+
+  
+    searchIndex.push({
+      title: "\"面向模式的软件架构 卷1 模式系统 读书笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E9%9D%A2%E5%90%91%E6%A8%A1%E5%BC%8F%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%8D%B71%E6%A8%A1%E5%BC%8F%E7%B3%BB%E7%BB%9F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/\"",
+      
+      categories: "[\"读书笔记\",\"软件工程\"]",
+      tags: "[\"设计模式\"]",
+      series: "[\"软件架构之道\"]",
+      date: "\"2025-12-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"链接符号与符号导入导出宏——记一次因clangd补全头文件产生的链接错误\"",
+      permalink: "\"/cpp/%E9%93%BE%E6%8E%A5%E7%AC%A6%E5%8F%B7%E5%AF%BC%E5%87%BA%E4%B8%8E%E7%AC%A6%E5%8F%B7%E5%8F%AF%E8%A7%81%E5%AE%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"C++踩坑\"]",
+      date: "\"2025-11-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"Qt从零开始（0）——环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/qt%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: "[\"Qt专栏\"]",
+      date: "\"2025-08-30\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu配置coredump文件生成位置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E7%94%9F%E6%88%90coredump%E6%96%87%E4%BB%B6/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-08-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"ubuntu安装中文输入法（fcitx5-rime）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E5%AE%89%E8%A3%85rime%E8%BE%93%E5%85%A5%E6%B3%95/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-07-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"SSH反向隧道中转机-远程连接本地服务器\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/ssh%E5%8F%8D%E5%90%91%E9%9A%A7%E9%81%93%E4%B8%AD%E8%BD%AC%E6%9C%BA%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"ssh\"]",
+      series: [],
+      date: "\"2025-06-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++ 高并发服务器模型实现 | [转载](https://github.com/linkxzhou/mylib/blob/master/c%2B%2B/concurrency_server/README.md)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/06/10/22%E7%A7%8Dc-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"C++\"]",
+      series: [],
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"libclang-py使用介绍\"",
+      permalink: "\"/cpp/libclang-py%E4%BD%BF%E7%94%A8/\"",
+      
+      categories: [],
+      tags: "[\"C++\",\"编译原理\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-06-10\""
+    });
+  
+    searchIndex.push({
+      title: "\"参数包与折叠表达式傻傻分不清\"",
+      permalink: "\"/cpp/%E5%8F%82%E6%95%B0%E5%8C%85%E4%B8%8E%E6%8A%98%E5%8F%A0%E8%A1%A8%E8%BE%BE%E5%BC%8F/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-06-05\""
+    });
+  
+    searchIndex.push({
+      title: "\"协程快速入门\"",
+      permalink: "\"/cpp/%E5%8D%8F%E7%A8%8B%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"coroutine\",\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-05-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"初等数学回忆录\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%88%9D%E7%AD%89%E6%95%B0%E5%AD%A6%E5%9B%9E%E5%BF%86%E5%BD%95/\"",
+      
+      categories: "[\"数学\"]",
+      tags: "[\"数学\",\"三角函数\",\"极坐标\",\"定积分\"]",
+      series: [],
+      date: "\"2025-05-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Epoll详细介绍 | [转载](https://mp.weixin.qq.com/s/pahk8ay5MvkvONeg1-M82w)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/epoll%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\",\"epoll\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"共享内存详解 | [转载](https://mp.weixin.qq.com/s/wOySn0oi0xXREpFRBXCMmQ)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/05/04/%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%AF%A6%E8%A7%A3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"网络编程\"]",
+      series: [],
+      date: "\"2025-05-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Asio 基本使用与核心设计思想 | [转载](https://blog.csdn.net/gma999/article/details/143983035)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/17/asio-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"asio\"]",
+      series: "[\"网络编程\"]",
+      date: "\"2025-04-17\""
+    });
+  
+    searchIndex.push({
+      title: "\"GoogleTest与gMock进阶指南 | [转载](https://www.cnblogs.com/jinyunshaobing/p/16804309.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/googletest%E4%B8%8Egmock%E8%BF%9B%E9%98%B6%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"GTest / GMock 单元测试实践手册 | [转载](https://imageslr.com/2023/gtest.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/16/gtest_gmock-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"GoogleTest\"]",
+      series: [],
+      date: "\"2025-04-16\""
+    });
+  
+    searchIndex.push({
+      title: "\"Docker 网络模式详解及容器间网络通信 | [转载](https://www.cnblogs.com/mrhelloworld/p/docker11.html)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/docker-%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3%E5%8F%8A%E5%AE%B9%E5%99%A8%E9%97%B4%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"Docker\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"万字长文简述Apollo中CyberRT框架基础概念 | [转载](https://zhuanlan.zhihu.com/p/479518561#CTZ_DEFAULT)\"",
+      permalink: "\"/%E8%BD%AC%E8%BD%BD/2025/04/15/%E4%B8%87%E5%AD%97%E9%95%BF%E6%96%87%E7%AE%80%E8%BF%B0apollo%E4%B8%ADcyberrt%E6%A1%86%E6%9E%B6%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/\"",
+      
+      categories: "[\"博客剪藏\"]",
+      tags: "[\"CyberRT\"]",
+      series: [],
+      date: "\"2025-04-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++小技巧\"",
+      permalink: "\"/cpp/c++%E5%B0%8F%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"C++笔记\"]",
+      tags: "[\"C++\"]",
+      series: "[\"modern c++\"]",
+      date: "\"2025-04-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"tmux 快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/tmux%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"tmux\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Valgrind快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/valgrind%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"valgrind\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-08\""
+    });
+  
+    searchIndex.push({
+      title: "\"Mermaid快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/mermaid%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"mermaid\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2025-04-07\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT框架总览\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E6%A1%86%E6%9E%B6%E6%80%BB%E8%A7%88/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"通信中间件术语表\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E6%9C%AF%E8%AF%AD%E8%A1%A8/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: [],
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-27\""
+    });
+  
+    searchIndex.push({
+      title: "\"现代C++开发环境配置指南\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"c++\"]",
+      series: [],
+      date: "\"2025-03-26\""
+    });
+  
+    searchIndex.push({
+      title: "\"带着目的学：CyberRT\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/%E5%B8%A6%E7%9D%80%E9%97%AE%E9%A2%98%E5%AD%A6cyberrt/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Linux环境变量加载顺序分析\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F%E5%88%86%E6%9E%90/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"linux\"]",
+      series: [],
+      date: "\"2025-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"手册速查方案（如cppreference）\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/zeal-dataset%E4%B8%AD%E6%96%87cppreference%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"cppreference\"]",
+      series: [],
+      date: "\"2025-03-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"CyberRT中的代码和工程技巧\"",
+      permalink: "\"/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/cyberrt/cyberrt%E4%B8%AD%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/\"",
+      
+      categories: "[\"自动驾驶\"]",
+      tags: "[\"CyberRT\",\"C++\"]",
+      series: "[\"CyberRT专项总结\"]",
+      date: "\"2025-03-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"设计模式\"",
+      permalink: "\"/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/\"",
+      
+      categories: "[\"软件工程\"]",
+      tags: "[\"SE\"]",
+      series: "[\"设计模式专项总结\"]",
+      date: "\"2025-02-28\""
+    });
+  
+    searchIndex.push({
+      title: "\"一站式环境配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E4%B8%80%E7%AB%99%E5%BC%8F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2025-02-24\""
+    });
+  
+    searchIndex.push({
+      title: "\"leetcode调试指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/\"",
+      
+      categories: [],
+      tags: "[\"leetcode\"]",
+      series: [],
+      date: "\"2024-03-14\""
+    });
+  
+    searchIndex.push({
+      title: "\"linux命令行大记忆恢复术\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E7%94%A8%E6%B3%95/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"linux\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"番茄鸡蛋面\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E8%8F%9C%E8%B0%B1/%E7%95%AA%E8%8C%84%E9%B8%A1%E8%9B%8B%E9%9D%A2/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: [],
+      series: "[\"快速做饭\"]",
+      date: "\"2023-10-22\""
+    });
+  
+    searchIndex.push({
+      title: "\"PlantUML快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/plantuml%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"uml\",\"plantuml\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2023-10-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"WSL安装与配置\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/wsl%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2023-09-12\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++网络编程入门概念及api总结\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/\"",
+      
+      categories: [],
+      tags: "[\"linux\",\"网络编程\"]",
+      series: "[\"面筋\",\"快速上手\"]",
+      date: "\"2023-04-02\""
+    });
+  
+    searchIndex.push({
+      title: "\"苏州旅行计划\"",
+      permalink: "\"/%E8%A1%A3%E9%A3%9F%E4%BD%8F%E8%A1%8C/%E6%97%85%E8%A1%8C%E6%94%BB%E7%95%A5/%E8%8B%8F%E5%B7%9E/\"",
+      
+      categories: "[\"衣食住行\"]",
+      tags: "[\"旅行\"]",
+      series: [],
+      date: "\"2023-04-01\""
+    });
+  
+    searchIndex.push({
+      title: "\"gdb快速上手\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/gdb%E6%95%99%E7%A8%8B/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"gdb\",\"cmdline\"]",
+      series: "[\"快速上手\"]",
+      date: "\"2022-11-25\""
+    });
+  
+    searchIndex.push({
+      title: "\"Ubuntu22.04安装Hadoop完全分布式集群\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/ubuntu%E9%85%8D%E7%BD%AEhadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: "[\"hadoop\"]",
+      series: [],
+      date: "\"2022-11-21\""
+    });
+  
+    searchIndex.push({
+      title: "\"C++连接mysql\"",
+      permalink: "\"/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/c++%E8%BF%9E%E6%8E%A5mysql/\"",
+      
+      categories: "[\"环境配置\"]",
+      tags: [],
+      series: [],
+      date: "\"2022-11-20\""
+    });
+  
+    searchIndex.push({
+      title: "\"征服C指针笔记\"",
+      permalink: "\"/%E7%AC%94%E8%AE%B0/%E5%BE%81%E6%9C%8Dc%E6%8C%87%E9%92%88/\"",
+      
+      categories: [],
+      tags: [],
+      series: [],
+      date: "\"2022-10-04\""
+    });
+  
+    searchIndex.push({
+      title: "\"Leetcode刷题指南\"",
+      permalink: "\"/%E7%AE%97%E6%B3%95/leetcode%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/\"",
+      
+      categories: "[\"算法\"]",
+      tags: "[\"leetcode\"]",
+      series: "[\"leetcode刷题指南\"]",
+      date: "\"2022-09-11\""
+    });
+  
+    searchIndex.push({
+      title: "\"word 页眉页脚设置\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/word%E9%A1%B5%E7%9C%89%E9%A1%B5%E8%84%9A%E9%85%8D%E7%BD%AE/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: [],
+      series: [],
+      date: "\"2021-04-03\""
+    });
+  
+    searchIndex.push({
+      title: "\"Markdown Demo\"",
+      permalink: "\"/%E6%B5%8B%E8%AF%95/markdown-demo/\"",
+      
+      categories: [],
+      tags: "[\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+    searchIndex.push({
+      title: "\"常用数学符号的latex表示\"",
+      permalink: "\"/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7%E7%9A%84latex%E8%A1%A8%E7%A4%BA/\"",
+      
+      categories: "[\"工具使用\"]",
+      tags: "[\"latex\",\"markdown\"]",
+      series: [],
+      date: "\"2021-02-15\""
+    });
+  
+
+  showpages()
+
+  const options = {
+    includeScore: true,
+    threshold: 0.6,
+    keys: [
+      { name: 'title', weight: 0.7 },
+      { name: 'content', weight: 0.3 },
+      { name: 'tags', weight: 0.5 },
+      { name: 'categories', weight: 0.5 },
+      { name: 'series', weight: 0.5 }
+    ]
+  };
+
+  const fuse = new Fuse(searchIndex, options);
+
+  document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'k') {
+      event.preventDefault();
+      toggleSearchModal();
+    } else if (event.key === 'Escape') {
+      document.getElementById('modal-search-input').value = "";
+      closeSearchModal();
+      var res = document.getElementById('modal-search-results');
+      while (res.firstChild) {
+        res.removeChild(res.firstChild);
+      }
+      showpages();
+    }
+  });
+
+  function toggleSearchModal() {
+    const modal = document.getElementById('search-modal');
+    if (modal.style.display === 'none') {
+      modal.style.display = 'block';
+      document.getElementById('modal-search-input').focus();
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+
+  function closeSearchModal() {
+    const modal = document.getElementById('search-modal');
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('modal-search-input').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.trim();
+    const resultsContainer = document.getElementById('modal-search-results');
+    resultsContainer.innerHTML = '';
+
+    if (searchTerm === '') {
+      showpages()
+      return;
+    }
+
+    const results = fuse.search(searchTerm);
+
+    results.sort((a, b) => new Date(b.item.date) - new Date(a.item.date));
+
+    if (results.length === 0) {
+      showpages()
+      resultsContainer.innerHTML = '<p>没有找到相关文章</p>';
+      return;
+    } else {
+      debug("共找到 " + results.length + " 篇匹配的文章")
+    }
+
+    results.forEach(result => {
+      const item = result.item;
+      const resultItem = document.createElement('div');
+      resultItem.className = 'modal-search-result-item';
+
+      const date = document.createElement('span');
+      date.textContent = item.date.replace(/^"|"$/g, '') + '   ';
+      date.className = 'modal-search-result-date';
+
+      const link = document.createElement('a');
+      link.href = item.permalink.replace(/^"|"$/g, '');
+      link.textContent = item.title.replace(/^"|"$/g, '');
+      link.className = 'modal-search-result-title';
+
+      resultItem.appendChild(date);
+      resultItem.appendChild(link);
+      resultsContainer.appendChild(resultItem);
+    });
+  });
+</script>
+
+<style>
+ 
+#search-modal {
+    display: none;
+    position: fixed;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(45, 45, 45, 0.5);
+    border-radius: 6px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+}
+
+#modal-search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+#modal-search-results {
+    margin-top: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-search-result-item {
+    padding: 0.7rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.modal-search-result-date {
+    color: #666;
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+    text-wrap: nowrap;
+}
+
+.modal-search-result-title {
+    font-weight: bold;
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.modal-search-result-title:hover {
+    text-decoration: underline;
+}
+</style>
+
+
+  
+
+  
+  <hr />
+  © 
+<a href="https://kaikaixixi.xyz"  target="_blank" rel="noopener noreferrer" >SHUAIKAI</a>
+ 2021 &ndash; 2025 | 🎨
+<a href="https://github.com/captainwc/ksimple"  target="_blank" rel="noopener noreferrer" >KSimple</a>
+  
+
+</footer>
+</body>
+
+</html>
