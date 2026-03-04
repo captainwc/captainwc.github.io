@@ -24,7 +24,7 @@ jobs:
         run: hugo  # 构建
 
       - name: Generate CNAME file
-        run: echo "kaikaixixi.xyz" > public/CNAME # 绑定域名
+        run: echo "captainwc.github.io" > public/CNAME
 
       - name: Deploy to Public Branch
         uses: peaceiris/actions-gh-pages@v3
