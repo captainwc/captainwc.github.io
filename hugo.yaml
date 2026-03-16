@@ -1,4 +1,4 @@
-baseurl: "https://captainwc.github.io"
+baseurl: "https://wddjwk.github.io"
 languageCode: "zh-cn"
 title: "SHUAIKAI's Blog"
 theme: ["ksimple"]
@@ -11,9 +11,9 @@ enableEmoji: true
 
 params:
   description: "Welcome to KaiKai's blog!"
-  footer: "&copy; [SHUAIKAI](https://captainwc.github.io) 2021 -- {Year} | 🎨[KSimple](https://github.com/captainwc/ksimple)"
+  footer: "&copy; [SHUAIKAI](https://wddjwk.github.io) 2021 -- {Year} | 🎨[KSimple](https://github.com/wddjwk/ksimple)"
   favicon: "/images/favicon.png"
-  githubUserName: "captainwc"
+  githubUserName: "wddjwk"
   cusdisID: "697d528d-b618-4ee1-a6fe-403c81a646ac"
 
   ## [[🛠️]] Features Config

@@ -843,7 +843,7 @@ run:
 
 ###### CMake
 
-这里只说基本的，拷下来一个cmake项目怎么运行。具体的CMake项目怎么写怎么组织，可以参考项目 [quick-cmake GitHub](https://github.com/captainwc/quick-cmake)
+这里只说基本的，拷下来一个cmake项目怎么运行。具体的CMake项目怎么写怎么组织，可以参考项目 [quick-cmake GitHub](https://github.com/wddjwk/quick-cmake)
 
 一般来说分为三步：
 1. 项目根目录创建一个build文件夹，然后cd进去。在build文件夹中进行构建，cmake生成的文件就会都在build文件夹内，不会污染源项目，所以十分推荐这种方式。（当然不cd进去直接用 -B build 指定也可以）
@@ -1036,7 +1036,7 @@ target_link_libraries(your_target PRIVATE fmt::fmt)
 
 这应该是最直观也是最常用的。不管你用的什么构建工具，编译出错，它都会告诉你错误是什么。有的报错信息很直观，你直接就能看懂。有的报错信息很冗长，像乱码一样，刚接触你可能看不懂，但是看多了，一看到某种乱码的模式，根据经验，或者捕捉关键词，就能立马明白错误是什么，应该怎么改。**读报错信息，然后明白过来哪里错了，这就是瞪眼法**。
 
-关于冗长的报错信息如何看，可以参考《Effective STL》的 `第49条：学会分析与STL相关的编译器诊断信`，简单来说就是，C++有很多模板，即使你没用，你用的标准库、三方库中也会用。报错信息看着很长，其实很多都是模板展开后的结果。肉眼排除掉冗余信息（或者写个过滤的小工具 [ErrorReducer.py](https://github.com/captainwc/.dotfiles/blob/main/scripts/py/ErrorReducer.py)）能够使得错误更直观一些。不过这些可能都是老巴式了，直接复制粘贴到AI中，让ai帮你分析，也是不错的。不过最好分析完了理解一些，不然每次都只会复制粘贴问AI，长进不大。
+关于冗长的报错信息如何看，可以参考《Effective STL》的 `第49条：学会分析与STL相关的编译器诊断信`，简单来说就是，C++有很多模板，即使你没用，你用的标准库、三方库中也会用。报错信息看着很长，其实很多都是模板展开后的结果。肉眼排除掉冗余信息（或者写个过滤的小工具 [ErrorReducer.py](https://github.com/wddjwk/.dotfiles/blob/main/scripts/py/ErrorReducer.py)）能够使得错误更直观一些。不过这些可能都是老巴式了，直接复制粘贴到AI中，让ai帮你分析，也是不错的。不过最好分析完了理解一些，不然每次都只会复制粘贴问AI，长进不大。
 
 ##### print 大法
 

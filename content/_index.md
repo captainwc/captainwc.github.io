@@ -6,7 +6,7 @@
 
 ## 欢迎来到开开曦曦的小院子😀 -->
 
-[<img src="/images/favicon.png" style="max-width:15%;min-width:10%;float:right;" alt="Github repo" />](https://github.com/captainwc)
+[<img src="/images/favicon.png" style="max-width:15%;min-width:10%;float:right;" alt="Github repo" />](https://github.com/wddjwk)
 
 # Hi there 👋
 

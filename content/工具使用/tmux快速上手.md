@@ -14,7 +14,7 @@ tmux是一个著名的终端复用工具
 
 [Releases · tmux/tmux](https://github.com/tmux/tmux/releases)，如果安装不了，或者C库版本不支持，可以直接下载 [静态的tmux版本 - tmux3.3a](https://gitee.com/kaikaixixi/modernunix/raw/main/linux-x86_64/static/tmux)
 
-配置，可以参考我的配置： [.dotfiles/.config/tmux at main · captainwc/.dotfiles](https://github.com/captainwc/.dotfiles/tree/main/.config/tmux)，将 `tmux.conf`和`tmux.conf.local`放到`~/.local/tmux`中。如果版本不支持，可以用一个简单版本的 `.tmux.conf.only-one-for-lower-version` 放到 `~/.tmux.conf`
+配置，可以参考我的配置： [.dotfiles/.config/tmux at main · wddjwk/.dotfiles](https://github.com/wddjwk/.dotfiles/tree/main/.config/tmux)，将 `tmux.conf`和`tmux.conf.local`放到`~/.local/tmux`中。如果版本不支持，可以用一个简单版本的 `.tmux.conf.only-one-for-lower-version` 放到 `~/.tmux.conf`
 
 如果安装了[Nerd Fonts](https://www.nerdfonts.com/cheat-sheet)后图标仍然显示不对，可以试下是否是没有 `export LANG=en_US.UTF-8`
 

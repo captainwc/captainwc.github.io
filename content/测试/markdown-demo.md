@@ -8,11 +8,11 @@ aliases:
     - /demo
 ---
 
-[<img src="https://simpleicons.org/icons/github.svg" style="max-width:10%;min-width:40px;float:right;" alt="Github repo" />](https://github.com/captainwc)
+[<img src="https://simpleicons.org/icons/github.svg" style="max-width:10%;min-width:40px;float:right;" alt="Github repo" />](https://github.com/wddjwk)
 
 # KSimple
 
-[Ksimple](https://github.com/captainwc/ksimple) 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 基础上修改而来一个 hugo 主题，加入了目录、xmind、mermaid/plantuml等代码渲染图片、代码块高亮复制折叠、模糊查找、评论系统以及其他各类元素样式定制，整体风格力求简约而实用。
+[Ksimple](https://github.com/wddjwk/ksimple) 是在 [hugo-xmin](https://github.com/yihui/hugo-xmin) 基础上修改而来一个 hugo 主题，加入了目录、xmind、mermaid/plantuml等代码渲染图片、代码块高亮复制折叠、模糊查找、评论系统以及其他各类元素样式定制，整体风格力求简约而实用。
 
 ## 样式一览
 
@@ -35,7 +35,7 @@ Reference[^Ref001], Reference2[^x2y]
 > ```
 > 内联公式支持 \(...\) 和 $...$ 两种写法；
 > 单行公式支持 $$...$$、\[...\]、\begin{equation}...\end{equation} 等等多种写法
-> 具体定制参见 https://cdn.jsdelivr.net/gh/captainwc/cdn-release/website/js/auto-render.min.js
+> 具体定制参见 https://cdn.jsdelivr.net/gh/wddjwk/cdn-release/website/js/auto-render.min.js
 > ```
 
 \(x^2 + y^2 = 1\)，$ \frac{x^2}{5} + \frac{y^2}{3} = 1$
