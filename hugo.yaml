@@ -69,6 +69,9 @@ menu:
     - name: 搜索
       url: "search/"
       weight: 6
+    - name: 画廊
+      url: "gallery/"
+      weight: 7
     - name: 关于
       url: "about/"
       weight: 10

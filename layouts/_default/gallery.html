@@ -1,0 +1,1236 @@
+{{ partial "header.html" . }}
+
+<div class="gallery-container">
+  <!-- Lock Screen / Login -->
+  <div id="lockScreen" class="lock-screen">
+    <div class="lock-content">
+      <div class="lock-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#2e59a7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </div>
+      <h2>画廊已锁定</h2>
+      <p>请输入账号密码解锁</p>
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="username">账号</label>
+          <input type="text" id="username" placeholder="请输入账号" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="password">密码</label>
+          <input type="password" id="password" placeholder="请输入密码" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="unlock-btn">解锁画廊</button>
+        <div id="loginError" class="error-message"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Gallery Content -->
+  <div id="galleryContent" class="gallery-content hidden">
+    <!-- Header -->
+    <div class="gallery-header">
+      <div class="gallery-title">
+        <h1>{{ .Title }}</h1>
+        <span id="photoCount" class="photo-count">0 张照片</span>
+      </div>
+      <div class="gallery-actions">
+        <div class="view-toggle">
+          <button id="timelineView" class="view-btn active" title="时间线">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="2" x2="12" y2="22"></line>
+              <circle cx="12" cy="6" r="2"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+              <circle cx="12" cy="18" r="2"></circle>
+            </svg>
+          </button>
+          <button id="gridView" class="view-btn" title="网格">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </button>
+        </div>
+        <a id="manageBtn" class="manage-btn" href="#" target="_blank" title="管理照片">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span>管理</span>
+        </a>
+        <div class="user-dropdown">
+          <button id="userBtn" class="user-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span id="currentUser">用户</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div id="userDropdown" class="dropdown-menu hidden">
+            <div class="dropdown-header">已保存的账户</div>
+            <div id="savedUsers" class="saved-users"></div>
+            <div class="dropdown-divider"></div>
+            <button id="logoutBtn" class="dropdown-item logout-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              退出登录
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline View -->
+    <div id="timelineContainer" class="timeline-container">
+      <div class="timeline-line"></div>
+      <div id="timelineContent" class="timeline-content"></div>
+    </div>
+
+    <!-- Grid View -->
+    <div id="gridContainer" class="grid-container hidden">
+      <div id="gridContent" class="grid-content"></div>
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="empty-state hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+        <polyline points="21 15 16 10 5 21"></polyline>
+      </svg>
+      <p>还没有照片</p>
+      <a id="emptyManageBtn" class="manage-link" href="#" target="_blank">去上传照片</a>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="loading-state">
+      <div class="spinner"></div>
+      <p>加载中...</p>
+    </div>
+  </div>
+
+  <!-- Photo Modal -->
+  <div id="photoModal" class="photo-modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <button class="modal-nav modal-prev" id="modalPrev">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="modal-nav modal-next" id="modalNext">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+      <img id="modalImage" src="" alt="">
+      <div class="modal-info">
+        <span id="modalDate"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Gallery Container */
+  .gallery-container {
+    min-height: 60vh;
+    position: relative;
+  }
+
+  /* Lock Screen */
+  .lock-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+  }
+
+  .lock-content {
+    text-align: center;
+    padding: 2rem 2.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px dashed #ddd;
+    border-radius: 8px;
+    max-width: 320px;
+    width: 100%;
+  }
+
+  .lock-icon {
+    margin-bottom: 1rem;
+  }
+
+  .lock-content h2 {
+    font-size: 1.4rem;
+    color: #333;
+    margin: 0 0 0.3rem 0;
+    font-weight: 600;
+  }
+
+  .lock-content h2::before {
+    content: "" !important;
+  }
+
+  .lock-content p {
+    color: #666;
+    margin: 0 0 1.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+    width: 100%;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    color: #555;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    background: white;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: #2e59a7;
+  }
+
+  .unlock-btn {
+    width: 100%;
+    padding: 10px 16px;
+    background: #efefef;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .unlock-btn:hover {
+    background: #2e59a7;
+    color: white;
+    border-color: #2e59a7;
+  }
+
+  .error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    min-height: 1.2em;
+  }
+
+  /* Gallery Content */
+  .gallery-content {
+    animation: fadeIn 0.3s ease;
+  }
+
+  .gallery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed #ddd;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .gallery-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+  }
+
+  .gallery-title h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .gallery-title h1::before {
+    content: "" !important;
+  }
+
+  .photo-count {
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .gallery-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .view-toggle {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .view-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #efefef;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+  }
+
+  .view-btn:first-child {
+    border-right: 1px solid #ddd;
+  }
+
+  .view-btn:hover {
+    color: #2e59a7;
+  }
+
+  .view-btn.active {
+    background: #2e59a7;
+    color: white;
+  }
+
+  .manage-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: #efefef;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .manage-btn:hover {
+    background: #2e59a7;
+    color: white;
+    border-color: #2e59a7;
+  }
+
+  .manage-btn::before {
+    display: none !important;
+  }
+
+  .user-dropdown {
+    position: relative;
+  }
+
+  .user-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: #efefef;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .user-btn:hover {
+    background: #e0e0e0;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    min-width: 180px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  .dropdown-header {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    color: #888;
+    background: #f8f8f8;
+    border-bottom: 1px solid #eee;
+  }
+
+  .saved-users {
+    max-height: 150px;
+    overflow-y: auto;
+  }
+
+  .saved-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .saved-user:hover {
+    background: #f0f0f0;
+  }
+
+  .saved-user.active {
+    color: #2e59a7;
+    font-weight: 500;
+  }
+
+  .saved-user-delete {
+    opacity: 0;
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .saved-user:hover .saved-user-delete {
+    opacity: 1;
+  }
+
+  .saved-user-delete:hover {
+    color: #dc3545;
+  }
+
+  .dropdown-divider {
+    height: 1px;
+    background: #eee;
+  }
+
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+  }
+
+  .dropdown-item:hover {
+    background: #f0f0f0;
+  }
+
+  .logout-item {
+    color: #dc3545;
+  }
+
+  /* Timeline View */
+  .timeline-container {
+    position: relative;
+    padding-left: 30px;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e0e0e0;
+  }
+
+  .timeline-content {
+    position: relative;
+  }
+
+  .timeline-year {
+    margin: 1.5rem 0 0.8rem 0;
+    position: relative;
+  }
+
+  .timeline-year h2 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+    padding: 0.3rem 0;
+    font-weight: 600;
+  }
+
+  .timeline-year h2::before {
+    content: "" !important;
+  }
+
+  .timeline-year::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: #2e59a7;
+    border-radius: 50%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .timeline-year:hover::before {
+    transform: translateY(-50%) scale(1.2);
+    box-shadow: 0 0 0 4px rgba(46, 89, 167, 0.2);
+  }
+
+  .timeline-month {
+    margin: 1rem 0 0.5rem 0;
+    position: relative;
+  }
+
+  .timeline-month h3 {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .timeline-month h3::before {
+    content: "" !important;
+  }
+
+  .timeline-month::before {
+    content: '';
+    position: absolute;
+    left: -23px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: #999;
+    border-radius: 50%;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .timeline-month:hover::before {
+    transform: translateY(-50%) scale(1.2);
+    background: #2e59a7;
+  }
+
+  .timeline-photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.8rem;
+    margin: 0.5rem 0;
+  }
+
+  .photo-card {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    background: white;
+    border: 1px solid #eee;
+    cursor: pointer;
+    aspect-ratio: 1;
+    transition: all 0.2s;
+  }
+
+  .photo-card:hover {
+    border-color: #2e59a7;
+    box-shadow: 0 2px 8px rgba(46, 89, 167, 0.15);
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+    color: white;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .photo-card:hover .photo-overlay {
+    opacity: 1;
+  }
+
+  .photo-date {
+    font-size: 0.75rem;
+  }
+
+  /* Grid View */
+  .grid-container {
+    animation: fadeIn 0.2s ease;
+  }
+
+  .grid-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .grid-content .photo-card {
+    aspect-ratio: 4/3;
+  }
+
+  /* Empty State */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 30vh;
+    color: #ccc;
+  }
+
+  .empty-state p {
+    margin: 0.8rem 0;
+    font-size: 1rem;
+    color: #888;
+  }
+
+  .manage-link {
+    font-size: 0.9rem;
+    color: #2e59a7;
+    text-decoration: none;
+  }
+
+  .manage-link::before {
+    display: none !important;
+  }
+
+  .manage-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Loading State */
+  .loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 30vh;
+  }
+
+  .spinner {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #f0f0f0;
+    border-top-color: #2e59a7;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .loading-state p {
+    margin-top: 0.8rem;
+    color: #888;
+    font-size: 0.9rem;
+  }
+
+  /* Photo Modal */
+  .photo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  .modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .modal-close:hover {
+    opacity: 1;
+  }
+
+  .modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    opacity: 0.6;
+  }
+
+  .modal-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 1;
+  }
+
+  .modal-prev {
+    left: -50px;
+  }
+
+  .modal-next {
+    right: -50px;
+  }
+
+  .modal-info {
+    margin-top: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Utility */
+  .hidden {
+    display: none !important;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .gallery-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .gallery-actions {
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    .timeline-container {
+      padding-left: 25px;
+    }
+
+    .timeline-line {
+      left: 8px;
+    }
+
+    .timeline-year::before {
+      left: -21px;
+    }
+
+    .timeline-month::before {
+      left: -18px;
+    }
+
+    .timeline-photos,
+    .grid-content {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .modal-prev {
+      left: 5px;
+    }
+
+    .modal-next {
+      right: 5px;
+    }
+
+    .lock-content {
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  // Gallery Configuration
+  const GALLERY_API = 'http://8.134.135.161:8082';
+  const STORAGE_KEY = 'gallery_auth';
+  const SAVED_USERS_KEY = 'gallery_saved_users';
+
+  // State
+  let photos = [];
+  let currentIndex = 0;
+  let viewMode = 'timeline';
+  let currentUser = null;
+
+  // DOM Elements
+  const lockScreen = document.getElementById('lockScreen');
+  const galleryContent = document.getElementById('galleryContent');
+  const loginForm = document.getElementById('loginForm');
+  const loginError = document.getElementById('loginError');
+  const timelineContainer = document.getElementById('timelineContainer');
+  const gridContainer = document.getElementById('gridContainer');
+  const timelineContent = document.getElementById('timelineContent');
+  const gridContent = document.getElementById('gridContent');
+  const emptyState = document.getElementById('emptyState');
+  const loadingState = document.getElementById('loadingState');
+  const photoModal = document.getElementById('photoModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalDate = document.getElementById('modalDate');
+  const photoCount = document.getElementById('photoCount');
+  const userBtn = document.getElementById('userBtn');
+  const userDropdown = document.getElementById('userDropdown');
+  const currentUserSpan = document.getElementById('currentUser');
+  const savedUsersContainer = document.getElementById('savedUsers');
+  const manageBtn = document.getElementById('manageBtn');
+  const emptyManageBtn = document.getElementById('emptyManageBtn');
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    checkAuth();
+    setupEventListeners();
+  });
+
+  function setupEventListeners() {
+    // Login form
+    loginForm.addEventListener('submit', handleLogin);
+
+    // View toggle
+    document.getElementById('timelineView').addEventListener('click', () => setView('timeline'));
+    document.getElementById('gridView').addEventListener('click', () => setView('grid'));
+
+    // User dropdown
+    userBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      userDropdown.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', () => {
+      userDropdown.classList.add('hidden');
+    });
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', handleLogout);
+
+    // Modal
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.querySelector('.modal-overlay').addEventListener('click', closeModal);
+    document.getElementById('modalPrev').addEventListener('click', () => navigateModal(-1));
+    document.getElementById('modalNext').addEventListener('click', () => navigateModal(1));
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (photoModal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') navigateModal(-1);
+      if (e.key === 'ArrowRight') navigateModal(1);
+    });
+  }
+
+  async function checkAuth() {
+    const auth = getAuth();
+    if (!auth) {
+      showLockScreen();
+      return;
+    }
+
+    try {
+      const res = await fetch(`${GALLERY_API}/api/auth/verify`, {
+        headers: { 'Authorization': `Bearer ${auth.token}` }
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        currentUser = data.username;
+        showGallery();
+        loadPhotos();
+      } else {
+        clearAuth();
+        showLockScreen();
+      }
+    } catch (err) {
+      showLockScreen();
+    }
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      const res = await fetch(`${GALLERY_API}/api/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        saveAuth(data.token, data.username);
+        saveUserToList(username);
+        currentUser = data.username;
+        showGallery();
+        loadPhotos();
+        document.getElementById('password').value = '';
+      } else {
+        loginError.textContent = data.error || '登录失败';
+      }
+    } catch (err) {
+      loginError.textContent = '网络错误，请重试';
+    }
+  }
+
+  function handleLogout() {
+    clearAuth();
+    currentUser = null;
+    showLockScreen();
+    userDropdown.classList.add('hidden');
+  }
+
+  function showLockScreen() {
+    lockScreen.classList.remove('hidden');
+    galleryContent.classList.add('hidden');
+    updateSavedUsers();
+  }
+
+  function showGallery() {
+    lockScreen.classList.add('hidden');
+    galleryContent.classList.remove('hidden');
+    currentUserSpan.textContent = currentUser || '用户';
+    updateManageLinks();
+    updateSavedUsers();
+  }
+
+  function updateManageLinks() {
+    const manageUrl = `${GALLERY_API}/api/management`;
+    manageBtn.href = manageUrl;
+    emptyManageBtn.href = manageUrl;
+  }
+
+  function setView(mode) {
+    viewMode = mode;
+    document.getElementById('timelineView').classList.toggle('active', mode === 'timeline');
+    document.getElementById('gridView').classList.toggle('active', mode === 'grid');
+
+    timelineContainer.classList.toggle('hidden', mode !== 'timeline');
+    gridContainer.classList.toggle('hidden', mode !== 'grid');
+
+    renderPhotos();
+  }
+
+  async function loadPhotos() {
+    const auth = getAuth();
+    if (!auth) return;
+
+    loadingState.classList.remove('hidden');
+    emptyState.classList.add('hidden');
+
+    try {
+      const res = await fetch(`${GALLERY_API}/api/photos`, {
+        headers: { 'Authorization': `Bearer ${auth.token}` }
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        photos = data.photos || [];
+        photoCount.textContent = `${photos.length} 张照片`;
+        renderPhotos();
+      }
+    } catch (err) {
+      console.error('Failed to load photos:', err);
+    }
+
+    loadingState.classList.add('hidden');
+  }
+
+  function renderPhotos() {
+    if (photos.length === 0) {
+      emptyState.classList.remove('hidden');
+      timelineContent.innerHTML = '';
+      gridContent.innerHTML = '';
+      return;
+    }
+
+    emptyState.classList.add('hidden');
+
+    if (viewMode === 'timeline') {
+      renderTimeline();
+    } else {
+      renderGrid();
+    }
+  }
+
+  function renderTimeline() {
+    const grouped = groupPhotosByDate();
+    let html = '';
+
+    for (const [year, months] of Object.entries(grouped)) {
+      html += `<div class="timeline-year"><h2>${year}</h2></div>`;
+
+      for (const [month, monthPhotos] of Object.entries(months)) {
+        html += `<div class="timeline-month"><h3>${getMonthName(month)}</h3></div>`;
+        html += '<div class="timeline-photos">';
+
+        monthPhotos.forEach((photo) => {
+          const globalIdx = photos.indexOf(photo);
+          html += createPhotoCard(photo, globalIdx);
+        });
+
+        html += '</div>';
+      }
+    }
+
+    timelineContent.innerHTML = html;
+    attachPhotoClickHandlers();
+  }
+
+  function renderGrid() {
+    let html = '';
+    photos.forEach((photo, idx) => {
+      html += createPhotoCard(photo, idx);
+    });
+    gridContent.innerHTML = html;
+    attachPhotoClickHandlers();
+  }
+
+  function createPhotoCard(photo, index) {
+    const date = new Date(photo.created_at);
+    const dateStr = formatDate(date);
+    const imgUrl = photo.url.startsWith('http') ? photo.url : `${GALLERY_API}${photo.url}`;
+
+    return `
+      <div class="photo-card" data-index="${index}">
+        <img src="${imgUrl}" alt="${photo.filename}" loading="lazy">
+        <div class="photo-overlay">
+          <span class="photo-date">${dateStr}</span>
+        </div>
+      </div>
+    `;
+  }
+
+  function attachPhotoClickHandlers() {
+    document.querySelectorAll('.photo-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const index = parseInt(card.dataset.index);
+        openModal(index);
+      });
+    });
+  }
+
+  function groupPhotosByDate() {
+    const grouped = {};
+
+    photos.forEach(photo => {
+      const date = new Date(photo.created_at);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+
+      if (!grouped[year]) grouped[year] = {};
+      if (!grouped[year][month]) grouped[year][month] = [];
+
+      grouped[year][month].push(photo);
+    });
+
+    // Sort years descending
+    const sorted = {};
+    Object.keys(grouped).sort((a, b) => b - a).forEach(year => {
+      sorted[year] = {};
+      Object.keys(grouped[year]).sort((a, b) => b - a).forEach(month => {
+        sorted[year][month] = grouped[year][month];
+      });
+    });
+
+    return sorted;
+  }
+
+  function openModal(index) {
+    currentIndex = index;
+    updateModalImage();
+    photoModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    photoModal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function navigateModal(direction) {
+    currentIndex = (currentIndex + direction + photos.length) % photos.length;
+    updateModalImage();
+  }
+
+  function updateModalImage() {
+    const photo = photos[currentIndex];
+    const imgUrl = photo.url.startsWith('http') ? photo.url : `${GALLERY_API}${photo.url}`;
+    modalImage.src = imgUrl;
+    modalDate.textContent = formatDate(new Date(photo.created_at));
+  }
+
+  function formatDate(date) {
+    return date.toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  function getMonthName(month) {
+    const months = ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月'];
+    return months[parseInt(month) - 1];
+  }
+
+  // Auth helpers
+  function getAuth() {
+    const data = localStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : null;
+  }
+
+  function saveAuth(token, username) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ token, username }));
+  }
+
+  function clearAuth() {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+
+  // Saved users helpers
+  function getSavedUsers() {
+    const data = localStorage.getItem(SAVED_USERS_KEY);
+    return data ? JSON.parse(data) : [];
+  }
+
+  function saveUserToList(username) {
+    let users = getSavedUsers();
+    if (!users.includes(username)) {
+      users.push(username);
+      localStorage.setItem(SAVED_USERS_KEY, JSON.stringify(users));
+    }
+  }
+
+  function removeUserFromList(username) {
+    let users = getSavedUsers();
+    users = users.filter(u => u !== username);
+    localStorage.setItem(SAVED_USERS_KEY, JSON.stringify(users));
+    updateSavedUsers();
+  }
+
+  function updateSavedUsers() {
+    const users = getSavedUsers();
+    savedUsersContainer.innerHTML = '';
+
+    if (users.length === 0) {
+      savedUsersContainer.innerHTML = '<div class="saved-user" style="color: #999; cursor: default;">暂无保存的账户</div>';
+      return;
+    }
+
+    users.forEach(username => {
+      const userDiv = document.createElement('div');
+      userDiv.className = `saved-user ${username === currentUser ? 'active' : ''}`;
+      userDiv.innerHTML = `
+        <span>${username}</span>
+        <button class="saved-user-delete" title="删除" onclick="event.stopPropagation(); removeUserFromList('${username}')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      `;
+      userDiv.addEventListener('click', () => {
+        document.getElementById('username').value = username;
+        document.getElementById('password').focus();
+        userDropdown.classList.add('hidden');
+        if (currentUser !== username) {
+          showLockScreen();
+        }
+      });
+      savedUsersContainer.appendChild(userDiv);
+    });
+  }
+</script>
+
+{{ partial "footer.html" . }}
