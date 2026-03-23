@@ -1065,6 +1065,7 @@
 
     timelineContent.innerHTML = html;
     attachPhotoClickHandlers();
+    loadImagesWithAuth();
   }
 
   function renderGrid() {
@@ -1074,6 +1075,7 @@
     });
     gridContent.innerHTML = html;
     attachPhotoClickHandlers();
+    loadImagesWithAuth();
   }
 
   function createPhotoCard(photo, index) {
@@ -1082,13 +1084,54 @@
     const imgUrl = photo.url.startsWith('http') ? photo.url : `${GALLERY_API}${photo.url}`;
 
     return `
-      <div class="photo-card" data-index="${index}">
-        <img src="${imgUrl}" alt="${photo.filename}" loading="lazy">
+      <div class="photo-card" data-index="${index}" data-img-url="${imgUrl}">
+        <img src="" alt="${photo.filename}" loading="lazy" class="photo-img">
         <div class="photo-overlay">
           <span class="photo-date">${dateStr}</span>
         </div>
       </div>
     `;
+  }
+
+  function loadImagesWithAuth() {
+    const auth = getAuth();
+    if (!auth) return;
+
+    const cards = document.querySelectorAll('.photo-card[data-img-url]');
+    
+    cards.forEach(card => {
+      const imgUrl = card.dataset.imgUrl;
+      const img = card.querySelector('.photo-img');
+      
+      if (!imgUrl || !img) return;
+      // 跳过已加载或正在加载的图片
+      if (img.src && img.src !== window.location.href) return;
+
+      // 检查是否需要通过 fetch 获取（HTTPS环境下访问HTTP资源）
+      const isMixedContent = window.location.protocol === 'https:' && imgUrl.startsWith('http:');
+      
+      if (isMixedContent) {
+        // HTTPS环境，使用 fetch 获取图片
+        fetch(imgUrl, {
+          headers: { 'Authorization': `Bearer ${auth.token}` }
+        })
+        .then(res => {
+          if (!res.ok) throw new Error('Fetch failed: ' + res.status);
+          return res.blob();
+        })
+        .then(blob => {
+          img.src = URL.createObjectURL(blob);
+        })
+        .catch(err => {
+          console.error('Failed to load image via fetch:', err);
+          // 回退到直接加载
+          img.src = imgUrl;
+        });
+      } else {
+        // HTTP环境，直接加载签名URL
+        img.src = imgUrl;
+      }
+    });
   }
 
   function attachPhotoClickHandlers() {
@@ -1146,8 +1189,31 @@
   function updateModalImage() {
     const photo = photos[currentIndex];
     const imgUrl = photo.url.startsWith('http') ? photo.url : `${GALLERY_API}${photo.url}`;
-    modalImage.src = imgUrl;
+    const auth = getAuth();
+    
     modalDate.textContent = formatDate(new Date(photo.created_at));
+    
+    // 如果是签名URL，直接加载
+    if (imgUrl.includes('expires=') && imgUrl.includes('sig=')) {
+      modalImage.src = imgUrl;
+      return;
+    }
+    
+    // 否则通过 fetch 获取（解决混合内容问题）
+    if (auth) {
+      fetch(imgUrl, {
+        headers: { 'Authorization': `Bearer ${auth.token}` }
+      })
+      .then(res => res.blob())
+      .then(blob => {
+        modalImage.src = URL.createObjectURL(blob);
+      })
+      .catch(() => {
+        modalImage.src = imgUrl; // 回退
+      });
+    } else {
+      modalImage.src = imgUrl;
+    }
   }
 
   function formatDate(date) {
