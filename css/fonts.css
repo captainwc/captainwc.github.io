@@ -1,0 +1,41 @@
+@import url("https://static.zeoseven.com/zsft/442/main/result.css"); /* Maple Mono NF CN */
+@import url("https://static.zeoseven.com/zsft/292/main/result.css"); /* LXGW WenKai */
+
+body {
+  font-family: "华文中宋", sans-serif, Calibri, "LXGW WenKai", Arial, Optima, Candara;
+  font-size: 110%;
+}
+
+/* 1080P屏幕稍微增大字号 */
+@media (max-width: 1920px) {
+  body {
+    font-size: 115%;
+  }
+}
+
+/* 小笔记本 */
+@media (max-width: 1440px) {
+  body {
+    font-size: 112%;
+  }
+}
+
+/* 平板 */
+@media (max-width: 1024px) {
+  body {
+    font-size: 108%;
+  }
+}
+
+/* 手机 */
+@media (max-width: 768px) {
+  body {
+    font-size: 100%;
+  }
+}
+
+code {
+  font-family: "Maple Mono Normal NF CN", "LXGW WenKai", "Lucida Console", Monaco, monospace;
+  font-size: 85%;
+  font-weight: normal;
+}
